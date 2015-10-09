@@ -1,0 +1,1689 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Paquetes y portes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Sobre la instalación"
+HREF="x46.htm"><LINK
+REL="NEXT"
+TITLE="Configuración y uso de programas y servicios básicos"
+HREF="x1075.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x46.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1075.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="paquetes-y-portes"
+>Paquetes y portes</A
+></H1
+><P
+>Diversos programas han sido portados a OpenBSD; a las fuentes
+      portadas se les llama portes y a los binarios de alguno de los
+      portes compilados para alguna plataforma se les llama paquetes.</P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="paquetes"
+>Paquetes</A
+></H2
+><P
+>&#13;	      Cada paquete es un archivo con extensión <TT
+CLASS="literal"
+>.tgz</TT
+> 
+	      que incluye 
+	información de dependencias y scripts para instalar
+	y desinstalar.  
+       	Para manejarlos se emplean los programas
+	<B
+CLASS="command"
+>pkg_add</B
+>, <B
+CLASS="command"
+>pkg_delete</B
+>,
+	<B
+CLASS="command"
+>pkg_info</B
+> y <B
+CLASS="command"
+>pkg_create</B
+>.  
+	El programa <B
+CLASS="command"
+>pkg_add</B
+> instala un paquete y
+	todos los que este requiera, usando para descargarlos lo(s)
+	repositorio(s) especificada(s) en la variable de ambiente
+	<TT
+CLASS="literal"
+>PKG_PATH</TT
+>, por esto en el archivo
+	<TT
+CLASS="filename"
+>~/.profile</TT
+> o en
+	<TT
+CLASS="filename"
+>~/.xsession</TT
+> vale la pena agregar: 
+	<PRE
+CLASS="screen"
+>&#13;	export PKG_PATH=ftp://ftp.pasosdeJesus.org/pub/OpenBSD/5.7/packages/amd64</PRE
+>
+o la vía del CD-ROM 1 o una vía de un espejo más rápido para su 
+caso<A
+NAME="AEN586"
+HREF="#FTN.AEN586"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+>.
+	Una vez establecida esta variable, para agregar por ejemplo el paquete 
+	<TT
+CLASS="filename"
+>vim-7.4.475-gtk2.tgz</TT
+>:
+        <PRE
+CLASS="screen"
+>&#13;	pkg_add $PKG_PATH/vim-7.4.475-gtk2.tgz </PRE
+>
+	Puede ver la lista de paquetes instalados en su sistema con 
+	<B
+CLASS="command"
+>pkg_info</B
+> o con <B
+CLASS="command"
+>ls -l /var/db/pkg</B
+>, 
+	podrá desinstalar uno con
+       	<B
+CLASS="command"
+>pkg_delete</B
+> seguido del nombre del paquete (con
+	la opción <TT
+CLASS="literal"
+>-f dependencies</TT
+> se eliminarán
+	también paquetes que dependan del que está quitando
+	--que es útil si está actualizando un paquete).        </P
+><P
+>Podrá ver los paquetes disponibles para instalar  en 
+	<A
+HREF="http://www.openbsd.org/5.7_packages/amd64.html"
+TARGET="_top"
+>&#13;	  http://www.openbsd.org/5.7_packages/amd64.html</A
+>. A
+	continuación destacamos algunos que permiten tener un ambiente
+	para producir contenidos, programar, escuchar música y ver vídeos 
+	(se incluyen en la distribución <A
+HREF="http://aprendiendo.pasosdeJesus.org"
+TARGET="_top"
+>adJ</A
+>):
+
+	
+
+
+<DIV
+CLASS="table"
+><A
+NAME="AEN600"
+></A
+><P
+><B
+>Tabla 2. Paquetes Caracter�sticos de adJ</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Paquete</TH
+><TH
+>Descripci�n</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>evangelios_dp</TD
+><TD
+>	Evangelios: traducci�n de dominio p�blico.</TD
+></TR
+><TR
+><TD
+>sword</TD
+><TD
+>		Permite consultar Biblia, incluye m�dulo KJV </TD
+></TR
+><TR
+><TD
+>xiphos</TD
+><TD
+>		Herramienta para estudiar Biblia, usa m�dulos de sword.</TD
+></TR
+><TR
+><TD
+>sivel</TD
+><TD
+>		Base de datos para manejar casos de violencia pol�tica</TD
+></TR
+><TR
+><TD
+>asigna</TD
+><TD
+>		Cuadra horarios en un colegio</TD
+></TR
+><TR
+><TD
+>markup</TD
+><TD
+>		Librer�a para reconocimiento de XML en Ocaml</TD
+></TR
+><TR
+><TD
+>repasa</TD
+><TD
+>		Crear y repasar contenidos (incluye curr�culo)</TD
+></TR
+><TR
+><TD
+>sigue</TD
+><TD
+>		Maneja registros valorativos de un colegio. </TD
+></TR
+><TR
+><TD
+>AnimalesI</TD
+><TD
+>		Hojas de lectoescritura letra script</TD
+></TR
+><TR
+><TD
+>AprestamientoI</TD
+><TD
+>	Hojas de lectoescritura letra script</TD
+></TR
+><TR
+><TD
+>NombresCursiva</TD
+><TD
+>	Hojas de lectoescritura letra cursiva</TD
+></TR
+><TR
+><TD
+>PlantasCursiva</TD
+><TD
+>	Hojas de lectoescritura letra cursiva</TD
+></TR
+><TR
+><TD
+>TiposLectoEscritura</TD
+><TD
+>	Tipos de letra para aprender a leer y escribir</TD
+></TR
+><TR
+><TD
+>basico_OpenBSD</TD
+><TD
+>	Manual de uso b�sico de OpenBSD</TD
+></TR
+><TR
+><TD
+>servidor_OpenBSD</TD
+><TD
+>	Documentaci�n de OpenBSD como servidor</TD
+></TR
+><TR
+><TD
+>usuario_adJ</TD
+><TD
+>	Documentaci�n para usuarios de OpenBSD</TD
+></TR
+><TR
+><TD
+>ruby19-apache2nginx</TD
+><TD
+>        Ayuda a traducir configuraci�n de apache a nginx</TD
+></TR
+><TR
+><TD
+>ruby19-apacheconf-parser</TD
+><TD
+>   Reconoc de apache</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+
+
+<DIV
+CLASS="table"
+><A
+NAME="AEN662"
+></A
+><P
+><B
+>Tabla 3. Escritorio gr�fico:</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Paquete</TH
+><TH
+>Descripci�n</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>audacious</TD
+><TD
+>		Reproductor multimedia </TD
+></TR
+><TR
+><TD
+>audacity</TD
+><TD
+>	Editor de audio</TD
+></TR
+><TR
+><TD
+>abiword</TD
+><TD
+>		Procesador de texto que puede importar MS-Word</TD
+></TR
+><TR
+><TD
+>chromium</TD
+><TD
+>	Navegador web Chrome</TD
+></TR
+><TR
+><TD
+>dia</TD
+><TD
+>		Herramienta para dibujar diagramas t�cnicos</TD
+></TR
+><TR
+><TD
+>djview4</TD
+><TD
+>		Visualizador de documentos DjVu</TD
+></TR
+><TR
+><TD
+>fbdesk</TD
+><TD
+>		Permite poner iconos en escritorio fluxbox</TD
+></TR
+><TR
+><TD
+>fluxbox</TD
+><TD
+>		Escritorio extra liviano</TD
+></TR
+><TR
+><TD
+>fluxter</TD
+><TD
+>		Pagina espacios de trabajo en fluxbox        </TD
+></TR
+><TR
+><TD
+>filezilla</TD
+><TD
+>	Transmite archivos (soporta protocolo ssh)</TD
+></TR
+><TR
+><TD
+>firefox</TD
+><TD
+>		Navegador web</TD
+></TR
+><TR
+><TD
+>fontforge</TD
+><TD
+>	Editor/conversor de tipos de letra vectoriales</TD
+></TR
+><TR
+><TD
+>gimp</TD
+><TD
+>		Editor gr�fico por pixels</TD
+></TR
+><TR
+><TD
+>gnumeric</TD
+><TD
+>	Hoja de c�lculo</TD
+></TR
+><TR
+><TD
+>gv</TD
+><TD
+>		Visualizador de PostScript y PDF</TD
+></TR
+><TR
+><TD
+>inkscape</TD
+><TD
+>	Editor gr�fico vectorial</TD
+></TR
+><TR
+><TD
+>midori</TD
+><TD
+>		Navegador web liviano</TD
+></TR
+><TR
+><TD
+>mplayer</TD
+><TD
+>	Escuchar y ver diversidad de audio y v�deo</TD
+></TR
+><TR
+><TD
+>libreoffice</TD
+><TD
+>	Ofim�tica</TD
+></TR
+><TR
+><TD
+>libreoffice-i18n-es</TD
+><TD
+>	Localizaci�n en Espa�ol para LibreOffice</TD
+></TR
+><TR
+><TD
+>pidgin</TD
+><TD
+>		Mensajer�a (soporta protocolo SILC)</TD
+></TR
+><TR
+><TD
+>plan</TD
+><TD
+>		Plao Motif</TD
+></TR
+><TR
+><TD
+>qemu</TD
+><TD
+>		Emulador de varios sistemas</TD
+></TR
+><TR
+><TD
+>qgis</TD
+><TD
+>		Sistema de informaci�n geogr�fica de escritorio</TD
+></TR
+><TR
+><TD
+>scribus</TD
+><TD
+>		Publicaci�n de escritorio</TD
+></TR
+><TR
+><TD
+>vlc</TD
+><TD
+>		Reproductor Multimedia</TD
+></TR
+><TR
+><TD
+>xcdplayer</TD
+><TD
+>		Reproductor de CDs</TD
+></TR
+><TR
+><TD
+>xarchiver</TD
+><TD
+>	Manejadro de archivos comprimidos</TD
+></TR
+><TR
+><TD
+>xfe</TD
+><TD
+>		Administrador de archivos</TD
+></TR
+><TR
+><TD
+>xfig</TD
+><TD
+>		Editor gr�fico vectorial</TD
+></TR
+><TR
+><TD
+>xmix</TD
+><TD
+>		Mezclador de audio. Volumen.</TD
+></TR
+><TR
+><TD
+>xsane</TD
+><TD
+>		Opera escaner con sane</TD
+></TR
+><TR
+><TD
+>xpdf</TD
+><TD
+>		Visualizador de archivos PDF</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+
+
+<DIV
+CLASS="table"
+><A
+NAME="AEN769"
+></A
+><P
+><B
+>Tabla 4. Escritorio consola:</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Paquete</TH
+><TH
+>Descripci�n</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>antiword</TD
+><TD
+>		Convierte a texto plano archivos de MS-Word</TD
+></TR
+><TR
+><TD
+>BitTorrent</TD
+><TD
+>		Sistema de distribuci�n de archivos cooperativo </TD
+></TR
+><TR
+><TD
+>bzip2</TD
+><TD
+>		Descompresor de formato BZ2</TD
+></TR
+><TR
+><TD
+>cdparanoia</TD
+><TD
+>	Utilidad para leer CDDA</TD
+></TR
+><TR
+><TD
+>cdrtools</TD
+><TD
+>		Quema CDs y sistemas de archivo ISO 9660</TD
+></TR
+><TR
+><TD
+>colorls</TD
+><TD
+>		Comando ls con color</TD
+></TR
+><TR
+><TD
+>cups</TD
+><TD
+>		Sistema de impresi�n</TD
+></TR
+><TR
+><TD
+>curl</TD
+><TD
+>		Descarga de servidores FTP, Gopher, HTTP y HTPPS</TD
+></TR
+><TR
+><TD
+>ffmpeg</TD
+><TD
+>		Conversor y emisor de video con bktr(4)</TD
+></TR
+><TR
+><TD
+>ImageMagick</TD
+><TD
+>	Conversi�n de formatos gr�ficos</TD
+></TR
+><TR
+><TD
+>ispell</TD
+><TD
+>		Diccionario</TD
+></TR
+><TR
+><TD
+>ispell-spanish</TD
+><TD
+>	Diccionario en espa�ol para ispell</TD
+></TR
+><TR
+><TD
+>rsync</TD
+><TD
+>		Para sincronizar copias remotas</TD
+></TR
+><TR
+><TD
+>scrot</TD
+><TD
+>		Captura im�genes de pantallas</TD
+></TR
+><TR
+><TD
+>silc-client</TD
+><TD
+>	Cliente para conferencia segura</TD
+></TR
+><TR
+><TD
+>sox</TD
+><TD
+>		Conversi�n, grabaci�n, reproducci�n de sonido</TD
+></TR
+><TR
+><TD
+>texlive_base</TD
+><TD
+>	Binarios para distribuci�n TeXLive</TD
+></TR
+><TR
+><TD
+>texlive_texmf-minimal</TD
+><TD
+>	texmf con funcionalidad b�sica</TD
+></TR
+><TR
+><TD
+>texlive_texmf-full</TD
+><TD
+>	texmf con macros extras</TD
+></TR
+><TR
+><TD
+>unzip</TD
+><TD
+>		Descompresi�n formato ZIP</TD
+></TR
+><TR
+><TD
+>vorbis-tools</TD
+><TD
+>	Reproduce, codifica y maneja OGG</TD
+></TR
+><TR
+><TD
+>wget</TD
+><TD
+>		Descarga sitios web</TD
+></TR
+><TR
+><TD
+>zip</TD
+><TD
+>			Comprime en formato ZIP</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+
+
+<DIV
+CLASS="table"
+><A
+NAME="AEN846"
+></A
+><P
+><B
+>Tabla 5. Servidor / Plataforma de comunicaciones:</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Paquete</TH
+><TH
+>Descripci�n</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>courier-authlib</TD
+><TD
+>	Librer�a de autenticaci�n para courier</TD
+></TR
+><TR
+><TD
+>courier-imap</TD
+><TD
+>	Servidor IMAP con buzones en formato maildir</TD
+></TR
+><TR
+><TD
+>courier-pop3</TD
+><TD
+>	Servidor POP3 con buzones en formato maildir</TD
+></TR
+><TR
+><TD
+>cyrus-sasl</TD
+><TD
+>	Capa de seguridad y autenticaci�n</TD
+></TR
+><TR
+><TD
+>mysql-client</TD
+><TD
+>	Cliente de motor de bases de datos MySQL</TD
+></TR
+><TR
+><TD
+>mysql-server</TD
+><TD
+>	Servidor del motor de bases de datos MySQL</TD
+></TR
+><TR
+><TD
+>php</TD
+><TD
+>		Lenguaje script empotrado en HTML que opera en servidor</TD
+></TR
+><TR
+><TD
+>php-fpm</TD
+><TD
+>		Versi�n independiente de PHP-FPM</TD
+></TR
+><TR
+><TD
+>php-gd</TD
+><TD
+>		Uso de gd (librer�a gr�fica) desde PHP</TD
+></TR
+><TR
+><TD
+>php-mcrypt</TD
+><TD
+>	Extensi�n para encripci�n/desencripci�n para PHP5</TD
+></TR
+><TR
+><TD
+>php-pdo_pgsql</TD
+><TD
+>	Extensiones PDO para acceso a base de datos para PHP5</TD
+></TR
+><TR
+><TD
+>php-pgsql</TD
+><TD
+>	Uso de PostgreSQL desde PHP</TD
+></TR
+><TR
+><TD
+>php-sqlite</TD
+><TD
+>	Uso de SQLite desde PHP</TD
+></TR
+><TR
+><TD
+>postgis</TD
+><TD
+>	        Soporte para objetos geogr�ficos en PostgreSQL</TD
+></TR
+><TR
+><TD
+>postgresql-client</TD
+><TD
+>	Cliente para motor de bases de datos PostgreSQL</TD
+></TR
+><TR
+><TD
+>postgresql-server</TD
+><TD
+>	Servidor de bases de datos PostgreSQL</TD
+></TR
+><TR
+><TD
+>sqlite</TD
+><TD
+>		Implementaci�n embebida de SQL (versi�n 2).</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+
+
+<DIV
+CLASS="table"
+><A
+NAME="AEN905"
+></A
+><P
+><B
+>Tabla 6. Seguridad:</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Paquete</TH
+><TH
+>Descripci�n</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>apg</TD
+><TD
+>		Genera claves aleatorias seguras</TD
+></TR
+><TR
+><TD
+>john</TD
+><TD
+>		Auditor�a de claves</TD
+></TR
+><TR
+><TD
+>sleuthkit</TD
+><TD
+>	Herramienta para an�lisis forense</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+
+
+<DIV
+CLASS="table"
+><A
+NAME="AEN922"
+></A
+><P
+><B
+>Tabla 7. Desarrollo de programas, documentaci�n y p�ginas web</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Paquete</TH
+><TH
+>Descripci�n</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>cppunit</TD
+><TD
+>		Infraestructura para probar programas en C++</TD
+></TR
+><TR
+><TD
+>git</TD
+><TD
+>		Almacenar historia de �rbol de directorios</TD
+></TR
+><TR
+><TD
+>llvm</TD
+><TD
+>    Compilador modular y r�pido de C/C++/ObjC</TD
+></TR
+><TR
+><TD
+>lua</TD
+><TD
+>		Lenguaje de programaci�n potente y liviano</TD
+></TR
+><TR
+><TD
+>ocaml</TD
+><TD
+>		Lenguaje de programaci�n funcional</TD
+></TR
+><TR
+><TD
+>python</TD
+><TD
+>		Lenguaje de programaci�n</TD
+></TR
+><TR
+><TD
+>ruby</TD
+><TD
+>    	Lenguaje de programaci�n</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+
+
+</P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="actualizacion-paquetes"
+>Actualización de paquetes</A
+></H3
+><P
+>&#13;Podrá actualizar un paquete con
+<B
+CLASS="command"
+>pkg_add -r -D update <TT
+CLASS="replaceable"
+><I
+>paquete.tgz</I
+></TT
+></B
+>
+	</P
+><P
+>Si configura <TT
+CLASS="literal"
+>PKG_PATH</TT
+> podrá
+		buscar dependencias que debe actualizar para actualizar un
+		paquete con <B
+CLASS="command"
+>pkg_add -u paquete</B
+>.
+	</P
+><P
+>Cada paquete instalado crea un directorio
+        con el nombre del paquete en <TT
+CLASS="filename"
+>/var/db/pkg</TT
+> por
+        lo que además de <B
+CLASS="command"
+>pkg_info -L</B
+> puede usar
+		<PRE
+CLASS="screen"
+>&#13;	ls /var/db/pkg
+        </PRE
+>
+        Y para actualizar todos los paquetes puede utilizar
+        <PRE
+CLASS="screen"
+>&#13;	sudo pkg_add -u 
+        </PRE
+>
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="portes"
+>Portes</A
+></H2
+><P
+> Aunque NetBSD y FreeBSD tienen más programas portados que
+	OpenBSD, la colección de portes de OpenBSD ya cuenta con casi
+	5000 programas clasificados en las siguientes categorías
+	empleadas por el sistema de portes: 
+	archivers,
+	astro,
+	audio,
+	benchmarks,
+	biology,
+	books,
+	cad,
+	chinese,
+	comms,
+	converters,
+	databases,
+	devel,
+	distfiles,
+	editors,
+	education,
+	emulators,
+	games,
+	graphics,
+	infrastructure,
+	japanese,
+	java,
+	korean,
+	lang,
+	mail,
+	math,
+	mbone,
+	misc,
+	multimedia,
+	net,
+	news,
+	palm,
+	plan9,
+	print,
+	productivity,
+	russian,
+	security,
+	shells,
+	sysutils,
+	telephony
+	textproc,
+	www,
+	x11.</P
+><P
+>Puede ver el desarrollo de los portes en: <A
+HREF="http://openports.se/"
+TARGET="_top"
+>http://openports.se</A
+>
+	y más información sobre portes y paquetes en:
+	  <A
+HREF="http://www.openbsd.org/ports.html"
+TARGET="_top"
+>http://www.openbsd.org/ports.html</A
+>
+      </P
+><P
+> Si prefiere compilar los paquetes que va a instalar o desea 
+	ayudar a portar aplicaciones a OpenBSD debe tener 
+	las fuentes de los portes (parches, makefiles y scripts),
+	que normalmente se ubican en
+	<TT
+CLASS="filename"
+>/usr/ports</TT
+>.  Puede bien descomprimirlas
+	de un CD oficial, o de un servidor FTP y después actualizarlas de un 
+	repositorio CVS
+	o bien descargarlas de un repositorio CVS como se presenta
+	a continuación:
+	<PRE
+CLASS="screen"
+>&#13;	cd /usr
+	export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+	cvs -z3 -q get -rOPENBSD_5_7 -P ports </PRE
+>
+      </P
+><P
+>&#13;	La vía para <TT
+CLASS="literal"
+>CVSROOT</TT
+> adaptela a su servidor 
+	más cercano, escogiendo entre los disponibles en:
+	<A
+HREF="http://www.openbsd.org/anoncvs.html"
+TARGET="_top"
+>&#13;	  http://www.openbsd.org/anoncvs.html</A
+>.
+      </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="busquedas-portes"
+>Busquedas de portes</A
+></H3
+><P
+>&#13;	  Para buscar un programa en la colección de portes puede emplear:
+	  <PRE
+CLASS="screen"
+>&#13;	cd /usr/ports
+	make search key=<TT
+CLASS="replaceable"
+><I
+>cadena</I
+></TT
+>
+	  </PRE
+>
+	  Que presentará los portes que en su descripción tengan la
+	  <TT
+CLASS="replaceable"
+><I
+>cadena</I
+></TT
+> dada.
+	  Esta busqueda se realiza sobre el archivo 
+	  <TT
+CLASS="filename"
+>/usr/ports/INDEX</TT
+>, el cual si lo 
+	  desea también puede explorar con un editor.  
+	</P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="compilación-portes"
+>Compilación de portes</A
+></H3
+><P
+> Para compilar e instalar un porte (tras la compilación
+	  normalmente se crea un paquete), basta pasar al directorio del porte
+	  y como usuario root ejecutar:
+	  <PRE
+CLASS="screen"
+>&#13;	make install </PRE
+>
+
+	  El respectivo <TT
+CLASS="filename"
+>Makefile</TT
+> obtendrá las fuentes
+	  originales de la red, aplicará los cambios necesarios, compilará, 
+	  creará un paquete y lo instalará (posteriormente podrá eliminar el 
+	  paquete con
+	  <B
+CLASS="command"
+>pkg_delete</B
+> ver <A
+HREF="x570.htm#paquetes"
+>Paquetes</A
+>).  Si el porte tiene otros
+	  portes como prerequisitos los compilará e instalará antes. 
+	</P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="creación-de-un-porte"
+>Creación de un porte</A
+></H3
+><P
+>&#13;	  Elija una categoría para su porte (i.e un directorio en
+	  <TT
+CLASS="filename"
+>/usr/ports</TT
+>), puede copiar el directorio
+	  de un porte similar al que desea hacer y modificarlo.  Emplee
+	  como nombre de directorio el nombre del paquete (sin versión).
+	  Debe tener al menos estos archivos:
+	  <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>Makefile</DT
+><DD
+><P
+>El cual incluye descripción corta, nombre del
+		  paquete, versión, URL del cual descargar fuentes,
+		  el correo de quien mantiene el porte, URL de parches
+		  si los hay, información sobre posibilidad de
+		  redistribución, foma de configurar, compilar e instalar.
+		  Este archivo normalmente es muy corto pues se basa en la 
+		  infraestructura para portes de 
+		  <TT
+CLASS="filename"
+>/usr/ports/infrastructure/mk/bsd.ports.mk</TT
+>.
+		  </P
+></DD
+><DT
+>distinfo</DT
+><DD
+><P
+>Este archivo incluye diversas
+		  "firmas"<A
+NAME="AEN1004"
+HREF="#FTN.AEN1004"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+> de cada
+		  fuente que debe descargarse para asegurar
+		  su integridad.   Se genera automáticamente
+		  con <B
+CLASS="command"
+>make makesum</B
+> y se
+		  verifica con <B
+CLASS="command"
+>make checksum</B
+>
+	      </P
+></DD
+><DT
+>pkg/DESCR</DT
+><DD
+><P
+>Este archivo incluye una descripción un
+		  poco más larga del paquete (la que presenta
+		  <B
+CLASS="command"
+>pkg_info</B
+> cuando se corre sin
+		  opciones).</P
+></DD
+><DT
+>pkg/PLIST</DT
+><DD
+><P
+>Indica los archivos que se instalan después
+		  de instalar el paquete.  Se puede crear un candidato 
+		  inicial de este archivo después de compilar y hacer
+		  una instalación de prueba (<B
+CLASS="command"
+>make
+			  fake</B
+>).   Puede actualizarse de 
+		  acuerdo a lo instalado con <B
+CLASS="command"
+>make plist</B
+>
+ 		 </P
+></DD
+><DT
+>patches/</DT
+><DD
+><P
+>En este directorio se mantienen parches que
+deben aplicarse a las fuentes descargadas.
+Puede generarlos automáticamente (con <B
+CLASS="command"
+>make patches</B
+>), 
+si en el directorio donde se descomprimen 
+las fuentes, saca una copia de cada archivo que vaya a modificar y le agrega
+el sufijo <TT
+CLASS="literal"
+>.orig</TT
+>
+ 		 </P
+></DD
+></DL
+></DIV
+>	    
+	  Crear un porte es un proceso iterativo, en cada iteración
+	  debe refinarse el porte para asegurar que cumple con todos
+	  los lineamientos que espera el equipo de portes de OpenBSD.
+	  Puede consultar más en 
+	  [<SPAN
+CLASS="citation"
+>porting-checklist</SPAN
+>]
+	  [<SPAN
+CLASS="citation"
+>porting</SPAN
+>].</P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="emulacion-linux"
+>Emulación de binarios para Linux</A
+></H2
+><P
+>Algunas aplicaciones cuyas fuentes no han sido portadas a OpenBSD
+      pueden ejecutarse con las capas de emulación de OpenBSD. En particular
+      para i386 hay capas de emulación para binarios de Linux, FreeBSD,
+      BSDI y SCO Unix (binarios iBCS2). Aquí se describe brevemente la
+      emulación de binarios para Linux (ver <TT
+CLASS="literal"
+>man
+	compat_linux</TT
+>).</P
+><P
+> Para comenzar rapidamente puede utilizar el paquete
+      <TT
+CLASS="literal"
+>redhat_base</TT
+> que instalará librerías compartidas 
+      y archivos básicos de una distribución Redhat con 
+      <TT
+CLASS="literal"
+>libc</TT
+>.  Cree un enlace para que la emulación
+      logre ubicar información donde la espera:
+      <PRE
+CLASS="screen"
+>&#13;	mkdir -p emul
+	ln -s /usr/local/emul/redhat /emul/linux
+      </PRE
+>
+      
+      Active la emulación de Linux en el 
+      kernel usando <B
+CLASS="command"
+>sysctl -w kern.emul.linux=1</B
+> y
+      haga que el cambio se repita cada vez que reinicie, moficando 
+      <TT
+CLASS="filename"
+>/etc/sysctl.conf</TT
+><A
+NAME="AEN1037"
+HREF="#FTN.AEN1037"
+><SPAN
+CLASS="footnote"
+>[3]</SPAN
+></A
+>
+      para que incluya la línea:
+      <PRE
+CLASS="screen"
+>&#13;	kern.emul.linux=1
+      </PRE
+>
+      Después de
+      hacer esto o de copiar nuevas librerías que algún programa requiera,
+      debe ejecutar <TT
+CLASS="filename"
+>/emul/linux/sbin/ldconfig</TT
+>.  Para 
+      automatizar esta tarea durante cada arranque puede agregar a su archivo
+      <TT
+CLASS="filename"
+>/etc/rc.local</TT
+>: 
+      <PRE
+CLASS="screen"
+>&#13;	if (test -x /emul/linux/sbin/ldconfig) then {
+	      /emul/linux/sbin/ldconfig
+	} fi; </PRE
+>
+    </P
+><P
+>Con el enlace que hizo, en el directorio
+      <TT
+CLASS="filename"
+>/emul/linux</TT
+> quedará una jerarquía de 
+      directorios como la raíz de un
+      sistema Linux (excepto por que no tiene kernel).</P
+><P
+>Al ejecutar un binario para Linux, OpenBSD transformará los
+      nombres que el programa requiera suponiendo que 
+      <TT
+CLASS="filename"
+>/emul/linux</TT
+> es la 
+      raíz.  Si un archivo que se debe leer no es encontrado allí, OpenBSD
+      intenta como segunda opción en la raíz real del sistema.  Por ejemplo
+      si después de instalar <TT
+CLASS="literal"
+>redhat_base</TT
+> y crear el
+      enlace intenta:
+      <PRE
+CLASS="screen"
+>&#13;	/emul/linux/bin/cp /bin/bash / </PRE
+>
+
+      es decir ejecuta <B
+CLASS="command"
+>cp</B
+> de Linux, el archivo 
+      <TT
+CLASS="filename"
+>/emul/linux/bin/bash</TT
+> (que es
+      dejado allí por <TT
+CLASS="literal"
+>redhat_base</TT
+>) será copiado a 
+      <TT
+CLASS="filename"
+>/emul/linux</TT
+>. Pero si ejecuta
+
+      <PRE
+CLASS="screen"
+>&#13;	/emul/linux/bin/cp /bin/ksh / </PRE
+>
+
+      como el archivo <TT
+CLASS="filename"
+>/emul/linux/bin/ksh</TT
+> no existe 
+      (<TT
+CLASS="literal"
+>redhat_base</TT
+> no lo incluye),
+      se copiará el archivo <TT
+CLASS="filename"
+>/bin/ksh</TT
+>
+      (<B
+CLASS="command"
+>ksh</B
+> de OpenBSD) en la raíz de Linux
+      (i.e <TT
+CLASS="filename"
+>/emul/linux</TT
+>).  </P
+><P
+> Si desea ver su sistema como si la raíz fuera
+      <TT
+CLASS="filename"
+>/emul/linux</TT
+>
+      (digamos para ejecutar varios programas Linux) puede emplear:
+
+      <PRE
+CLASS="screen"
+>&#13;	/emul/linux/bin/bash </PRE
+>
+
+      que iniciará un interprete de comandos compilado para Linux (así 
+      que las vías de ese interprete de comandos son las que ven todos 
+      los binarios de Linux).
+    </P
+><P
+>Aunque la emulación no es perfecta funcionan varios programas
+      (como el compilador <B
+CLASS="command"
+>gcc</B
+>), de hecho algunos paquetes 
+      OpenBSD emplean esta capa (e.g <B
+CLASS="command"
+>jdk-1.3-linux</B
+>).
+   </P
+><P
+>Para emplear una distribución de Linux diferente 
+      basta asegurar que pueda accederse desde 
+      <TT
+CLASS="filename"
+>/emul/linux</TT
+>.  Por ejemplo si en la partición 
+      <TT
+CLASS="filename"
+>/dev/wd0i</TT
+> tiene un sistema Debian, puede 
+      agregar la siguiente línea a <TT
+CLASS="filename"
+>/etc/fstab</TT
+> para 
+      montarla automáticamente durante el arranque:
+      <PRE
+CLASS="screen"
+>&#13;	/dev/wd0i /mnt/debian ext2fs rw 1 1 </PRE
+>
+      Cree un enlace de <TT
+CLASS="filename"
+>/emul/linux</TT
+> a
+      <TT
+CLASS="filename"
+>/mnt/debian</TT
+> (creando antes el directorio
+      <TT
+CLASS="filename"
+>/mnt/debian</TT
+>) y recuerde ejecutar 
+      <B
+CLASS="command"
+>ldconfig</B
+> para que las librerías compartidas
+      pueda ser ubicadas.  
+    </P
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notas</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN586"
+HREF="x570.htm#AEN586"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Para determinarlo puede ver la velocidad de cada espejo 
+		con algo como <B
+CLASS="command"
+>ping ftp.pasosdeJesus.org</B
+> 
+		o emplear el script <B
+CLASS="command"
+>pos.sh</B
+> que hará
+		la prueba para los espejos oficiales de OpenBSD. Está
+		en el directorio <TT
+CLASS="filename"
+>herram</TT
+> de las fuentes 
+		de este escrito.</P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN1004"
+HREF="x570.htm#AEN1004"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Resultados de pasar archivos
+		      por funciones de hashing.</P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN1037"
+HREF="x570.htm#AEN1037"
+><SPAN
+CLASS="footnote"
+>[3]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>El  kernel
+	  genérico permite hacer el cambio de esta manera porque fue
+	  compilado con la opción de configuración 
+	  <TT
+CLASS="literal"
+>COMPAT_LINUX</TT
+></P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x46.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1075.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Sobre la instalación</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuración y uso de programas y servicios básicos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

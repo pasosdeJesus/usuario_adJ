@@ -1,0 +1,297 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>3. Paquetes y portes</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="sobre-la-instalacion.html" title="2. Sobre la instalación"><link rel="next" href="configuracion-de-componentes-basicos.html" title="4. Configuración y uso de programas y servicios básicos"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">3. Paquetes y portes</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sobre-la-instalacion.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="configuracion-de-componentes-basicos.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="paquetes-y-portes"></a>3. Paquetes y portes</h2></div></div></div><p>Diversos programas han sido portados a OpenBSD; a las fuentes
+      portadas se les llama portes y a los binarios de alguno de los
+      portes compilados para alguna plataforma se les llama paquetes.</p><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="paquetes"></a>3.1. Paquetes</h3></div></div></div><p>
+	      Cada paquete es un archivo con extensión <code class="literal">.tgz</code> 
+	      que incluye 
+	información de dependencias y scripts para instalar
+	y desinstalar.  
+       	Para manejarlos se emplean los programas
+	<span><strong class="command">pkg_add</strong></span>, <span><strong class="command">pkg_delete</strong></span>,
+	<span><strong class="command">pkg_info</strong></span> y <span><strong class="command">pkg_create</strong></span>.  
+	El programa <span><strong class="command">pkg_add</strong></span> instala un paquete y
+	todos los que este requiera, usando para descargarlos lo(s)
+	repositorio(s) especificada(s) en la variable de ambiente
+	<code class="literal">PKG_PATH</code>, por esto en el archivo
+	<code class="filename">~/.profile</code> o en
+	<code class="filename">~/.xsession</code> vale la pena agregar: 
+	</p><pre class="screen">
+	export PKG_PATH=ftp://ftp.pasosdeJesus.org/pub/OpenBSD/5.7/packages/amd64</pre><p>
+o la vía del CD-ROM 1 o una vía de un espejo más rápido para su 
+caso<sup>[<a name="idm557118608" href="#ftn.idm557118608">8</a>]</sup>.
+	Una vez establecida esta variable, para agregar por ejemplo el paquete 
+	<code class="filename">vim-7.4.475-gtk2.tgz</code>:
+        </p><pre class="screen">
+	pkg_add $PKG_PATH/vim-7.4.475-gtk2.tgz </pre><p>
+	Puede ver la lista de paquetes instalados en su sistema con 
+	<span><strong class="command">pkg_info</strong></span> o con <span><strong class="command">ls -l /var/db/pkg</strong></span>, 
+	podrá desinstalar uno con
+       	<span><strong class="command">pkg_delete</strong></span> seguido del nombre del paquete (con
+	la opción <code class="literal">-f dependencies</code> se eliminarán
+	también paquetes que dependan del que está quitando
+	--que es útil si está actualizando un paquete).        </p><p>Podrá ver los paquetes disponibles para instalar  en 
+	<a href="http://www.openbsd.org/5.7_packages/amd64.html" target="_top">
+	  http://www.openbsd.org/5.7_packages/amd64.html</a>. A
+	continuación destacamos algunos que permiten tener un ambiente
+	para producir contenidos, programar, escuchar música y ver vídeos 
+	(se incluyen en la distribución <a href="http://aprendiendo.pasosdeJesus.org" target="_top">adJ</a>):
+
+	
+
+
+</p><div class="table"><a name="idp343156464"></a><p class="title"><b>Tabla 2. Paquetes Característicos de adJ</b></p><table summary="Paquetes Característicos de adJ" border="1"><colgroup><col><col></colgroup><thead><tr><th align="left">Paquete</th><th align="left">Descripción</th></tr></thead><tbody><tr><td align="left">evangelios_dp</td><td align="left">	Evangelios: traducción de dominio público.</td></tr><tr><td align="left">sword</td><td align="left">		Permite consultar Biblia, incluye módulo KJV </td></tr><tr><td align="left">xiphos</td><td align="left">		Herramienta para estudiar Biblia, usa módulos de sword.</td></tr><tr><td align="left">sivel</td><td align="left">		Base de datos para manejar casos de violencia política</td></tr><tr><td align="left">asigna</td><td align="left">		Cuadra horarios en un colegio</td></tr><tr><td align="left">markup</td><td align="left">		Librería para reconocimiento de XML en Ocaml</td></tr><tr><td align="left">repasa</td><td align="left">		Crear y repasar contenidos (incluye currículo)</td></tr><tr><td align="left">sigue</td><td align="left">		Maneja registros valorativos de un colegio. </td></tr><tr><td align="left">AnimalesI</td><td align="left">		Hojas de lectoescritura letra script</td></tr><tr><td align="left">AprestamientoI</td><td align="left">	Hojas de lectoescritura letra script</td></tr><tr><td align="left">NombresCursiva</td><td align="left">	Hojas de lectoescritura letra cursiva</td></tr><tr><td align="left">PlantasCursiva</td><td align="left">	Hojas de lectoescritura letra cursiva</td></tr><tr><td align="left">TiposLectoEscritura</td><td align="left">	Tipos de letra para aprender a leer y escribir</td></tr><tr><td align="left">basico_OpenBSD</td><td align="left">	Manual de uso básico de OpenBSD</td></tr><tr><td align="left">servidor_OpenBSD</td><td align="left">	Documentación de OpenBSD como servidor</td></tr><tr><td align="left">usuario_adJ</td><td align="left">	Documentación para usuarios de OpenBSD</td></tr><tr><td align="left">ruby19-apache2nginx</td><td align="left">        Ayuda a traducir configuración de apache a nginx</td></tr><tr><td align="left">ruby19-apacheconf-parser</td><td align="left">   Reconoc de apache</td></tr></tbody></table></div><p>
+
+
+</p><div class="table"><a name="idp475926896"></a><p class="title"><b>Tabla 3. Escritorio gráfico:</b></p><table summary="Escritorio gráfico:" border="1"><colgroup><col><col></colgroup><thead><tr><th align="left">Paquete</th><th align="left">Descripción</th></tr></thead><tbody><tr><td align="left">audacious</td><td align="left">		Reproductor multimedia </td></tr><tr><td align="left">audacity</td><td align="left">	Editor de audio</td></tr><tr><td align="left">abiword</td><td align="left">		Procesador de texto que puede importar MS-Word</td></tr><tr><td align="left">chromium</td><td align="left">	Navegador web Chrome</td></tr><tr><td align="left">dia</td><td align="left">		Herramienta para dibujar diagramas técnicos</td></tr><tr><td align="left">djview4</td><td align="left">		Visualizador de documentos DjVu</td></tr><tr><td align="left">fbdesk</td><td align="left">		Permite poner iconos en escritorio fluxbox</td></tr><tr><td align="left">fluxbox</td><td align="left">		Escritorio extra liviano</td></tr><tr><td align="left">fluxter</td><td align="left">		Pagina espacios de trabajo en fluxbox        </td></tr><tr><td align="left">filezilla</td><td align="left">	Transmite archivos (soporta protocolo ssh)</td></tr><tr><td align="left">firefox</td><td align="left">		Navegador web</td></tr><tr><td align="left">fontforge</td><td align="left">	Editor/conversor de tipos de letra vectoriales</td></tr><tr><td align="left">gimp</td><td align="left">		Editor gráfico por pixels</td></tr><tr><td align="left">gnumeric</td><td align="left">	Hoja de cálculo</td></tr><tr><td align="left">gv</td><td align="left">		Visualizador de PostScript y PDF</td></tr><tr><td align="left">inkscape</td><td align="left">	Editor gráfico vectorial</td></tr><tr><td align="left">midori</td><td align="left">		Navegador web liviano</td></tr><tr><td align="left">mplayer</td><td align="left">	Escuchar y ver diversidad de audio y vídeo</td></tr><tr><td align="left">libreoffice</td><td align="left">	Ofimática</td></tr><tr><td align="left">libreoffice-i18n-es</td><td align="left">	Localización en Español para LibreOffice</td></tr><tr><td align="left">pidgin</td><td align="left">		Mensajería (soporta protocolo SILC)</td></tr><tr><td align="left">plan</td><td align="left">		Plao Motif</td></tr><tr><td align="left">qemu</td><td align="left">		Emulador de varios sistemas</td></tr><tr><td align="left">qgis</td><td align="left">		Sistema de información geográfica de escritorio</td></tr><tr><td align="left">scribus</td><td align="left">		Publicación de escritorio</td></tr><tr><td align="left">vlc</td><td align="left">		Reproductor Multimedia</td></tr><tr><td align="left">xcdplayer</td><td align="left">		Reproductor de CDs</td></tr><tr><td align="left">xarchiver</td><td align="left">	Manejadro de archivos comprimidos</td></tr><tr><td align="left">xfe</td><td align="left">		Administrador de archivos</td></tr><tr><td align="left">xfig</td><td align="left">		Editor gráfico vectorial</td></tr><tr><td align="left">xmix</td><td align="left">		Mezclador de audio. Volumen.</td></tr><tr><td align="left">xsane</td><td align="left">		Opera escaner con sane</td></tr><tr><td align="left">xpdf</td><td align="left">		Visualizador de archivos PDF</td></tr></tbody></table></div><p>
+
+
+</p><div class="table"><a name="idp2648430832"></a><p class="title"><b>Tabla 4. Escritorio consola:</b></p><table summary="Escritorio consola:" border="1"><colgroup><col><col></colgroup><thead><tr><th align="left">Paquete</th><th align="left">Descripción</th></tr></thead><tbody><tr><td align="left">antiword</td><td align="left">		Convierte a texto plano archivos de MS-Word</td></tr><tr><td align="left">BitTorrent</td><td align="left">		Sistema de distribución de archivos cooperativo </td></tr><tr><td align="left">bzip2</td><td align="left">		Descompresor de formato BZ2</td></tr><tr><td align="left">cdparanoia</td><td align="left">	Utilidad para leer CDDA</td></tr><tr><td align="left">cdrtools</td><td align="left">		Quema CDs y sistemas de archivo ISO 9660</td></tr><tr><td align="left">colorls</td><td align="left">		Comando ls con color</td></tr><tr><td align="left">cups</td><td align="left">		Sistema de impresión</td></tr><tr><td align="left">curl</td><td align="left">		Descarga de servidores FTP, Gopher, HTTP y HTPPS</td></tr><tr><td align="left">ffmpeg</td><td align="left">		Conversor y emisor de video con bktr(4)</td></tr><tr><td align="left">ImageMagick</td><td align="left">	Conversión de formatos gráficos</td></tr><tr><td align="left">ispell</td><td align="left">		Diccionario</td></tr><tr><td align="left">ispell-spanish</td><td align="left">	Diccionario en español para ispell</td></tr><tr><td align="left">rsync</td><td align="left">		Para sincronizar copias remotas</td></tr><tr><td align="left">scrot</td><td align="left">		Captura imágenes de pantallas</td></tr><tr><td align="left">silc-client</td><td align="left">	Cliente para conferencia segura</td></tr><tr><td align="left">sox</td><td align="left">		Conversión, grabación, reproducción de sonido</td></tr><tr><td align="left">texlive_base</td><td align="left">	Binarios para distribución TeXLive</td></tr><tr><td align="left">texlive_texmf-minimal</td><td align="left">	texmf con funcionalidad básica</td></tr><tr><td align="left">texlive_texmf-full</td><td align="left">	texmf con macros extras</td></tr><tr><td align="left">unzip</td><td align="left">		Descompresión formato ZIP</td></tr><tr><td align="left">vorbis-tools</td><td align="left">	Reproduce, codifica y maneja OGG</td></tr><tr><td align="left">wget</td><td align="left">		Descarga sitios web</td></tr><tr><td align="left">zip</td><td align="left">			Comprime en formato ZIP</td></tr></tbody></table></div><p>
+
+
+</p><div class="table"><a name="idp1297145968"></a><p class="title"><b>Tabla 5. Servidor / Plataforma de comunicaciones:</b></p><table summary="Servidor / Plataforma de comunicaciones:" border="1"><colgroup><col><col></colgroup><thead><tr><th align="left">Paquete</th><th align="left">Descripción</th></tr></thead><tbody><tr><td align="left">courier-authlib</td><td align="left">	Librería de autenticación para courier</td></tr><tr><td align="left">courier-imap</td><td align="left">	Servidor IMAP con buzones en formato maildir</td></tr><tr><td align="left">courier-pop3</td><td align="left">	Servidor POP3 con buzones en formato maildir</td></tr><tr><td align="left">cyrus-sasl</td><td align="left">	Capa de seguridad y autenticación</td></tr><tr><td align="left">mysql-client</td><td align="left">	Cliente de motor de bases de datos MySQL</td></tr><tr><td align="left">mysql-server</td><td align="left">	Servidor del motor de bases de datos MySQL</td></tr><tr><td align="left">php</td><td align="left">		Lenguaje script empotrado en HTML que opera en servidor</td></tr><tr><td align="left">php-fpm</td><td align="left">		Versión independiente de PHP-FPM</td></tr><tr><td align="left">php-gd</td><td align="left">		Uso de gd (librería gráfica) desde PHP</td></tr><tr><td align="left">php-mcrypt</td><td align="left">	Extensión para encripción/desencripción para PHP5</td></tr><tr><td align="left">php-pdo_pgsql</td><td align="left">	Extensiones PDO para acceso a base de datos para PHP5</td></tr><tr><td align="left">php-pgsql</td><td align="left">	Uso de PostgreSQL desde PHP</td></tr><tr><td align="left">php-sqlite</td><td align="left">	Uso de SQLite desde PHP</td></tr><tr><td align="left">postgis</td><td align="left">	        Soporte para objetos geográficos en PostgreSQL</td></tr><tr><td align="left">postgresql-client</td><td align="left">	Cliente para motor de bases de datos PostgreSQL</td></tr><tr><td align="left">postgresql-server</td><td align="left">	Servidor de bases de datos PostgreSQL</td></tr><tr><td align="left">sqlite</td><td align="left">		Implementación embebida de SQL (versión 2).</td></tr></tbody></table></div><p>
+
+
+</p><div class="table"><a name="idp1804979824"></a><p class="title"><b>Tabla 6. Seguridad:</b></p><table summary="Seguridad:" border="1"><colgroup><col><col></colgroup><thead><tr><th align="left">Paquete</th><th align="left">Descripción</th></tr></thead><tbody><tr><td align="left">apg</td><td align="left">		Genera claves aleatorias seguras</td></tr><tr><td align="left">john</td><td align="left">		Auditoría de claves</td></tr><tr><td align="left">sleuthkit</td><td align="left">	Herramienta para análisis forense</td></tr></tbody></table></div><p>
+
+
+</p><div class="table"><a name="idm295745424"></a><p class="title"><b>Tabla 7. Desarrollo de programas, documentación y páginas web</b></p><table summary="Desarrollo de programas, documentación y páginas web" border="1"><colgroup><col><col></colgroup><thead><tr><th align="left">Paquete</th><th align="left">Descripción</th></tr></thead><tbody><tr><td align="left">cppunit</td><td align="left">		Infraestructura para probar programas en C++</td></tr><tr><td align="left">git</td><td align="left">		Almacenar historia de árbol de directorios</td></tr><tr><td align="left">llvm</td><td align="left">    Compilador modular y rápido de C/C++/ObjC</td></tr><tr><td align="left">lua</td><td align="left">		Lenguaje de programación potente y liviano</td></tr><tr><td align="left">ocaml</td><td align="left">		Lenguaje de programación funcional</td></tr><tr><td align="left">python</td><td align="left">		Lenguaje de programación</td></tr><tr><td align="left">ruby</td><td align="left">    	Lenguaje de programación</td></tr></tbody></table></div><p>
+
+
+</p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="actualizacion-paquetes"></a>3.1.1. Actualización de paquetes</h4></div></div></div><p>
+Podrá actualizar un paquete con
+<span><strong class="command">pkg_add -r -D update <em class="replaceable"><code>paquete.tgz</code></em></strong></span>
+	</p><p>Si configura <code class="literal">PKG_PATH</code> podrá
+		buscar dependencias que debe actualizar para actualizar un
+		paquete con <span><strong class="command">pkg_add -u paquete</strong></span>.
+	</p><p>Cada paquete instalado crea un directorio
+        con el nombre del paquete en <code class="filename">/var/db/pkg</code> por
+        lo que además de <span><strong class="command">pkg_info -L</strong></span> puede usar
+		</p><pre class="screen">
+	ls /var/db/pkg
+        </pre><p>
+        Y para actualizar todos los paquetes puede utilizar
+        </p><pre class="screen">
+	sudo pkg_add -u 
+        </pre><p>
+	</p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="portes"></a>3.2. Portes</h3></div></div></div><p> Aunque NetBSD y FreeBSD tienen más programas portados que
+	OpenBSD, la colección de portes de OpenBSD ya cuenta con casi
+	5000 programas clasificados en las siguientes categorías
+	empleadas por el sistema de portes: 
+	archivers,
+	astro,
+	audio,
+	benchmarks,
+	biology,
+	books,
+	cad,
+	chinese,
+	comms,
+	converters,
+	databases,
+	devel,
+	distfiles,
+	editors,
+	education,
+	emulators,
+	games,
+	graphics,
+	infrastructure,
+	japanese,
+	java,
+	korean,
+	lang,
+	mail,
+	math,
+	mbone,
+	misc,
+	multimedia,
+	net,
+	news,
+	palm,
+	plan9,
+	print,
+	productivity,
+	russian,
+	security,
+	shells,
+	sysutils,
+	telephony
+	textproc,
+	www,
+	x11.</p><p>Puede ver el desarrollo de los portes en: <a href="http://openports.se/" target="_top">http://openports.se</a>
+	y más información sobre portes y paquetes en:
+	  <a href="http://www.openbsd.org/ports.html" target="_top">http://www.openbsd.org/ports.html</a>
+      </p><p> Si prefiere compilar los paquetes que va a instalar o desea 
+	ayudar a portar aplicaciones a OpenBSD debe tener 
+	las fuentes de los portes (parches, makefiles y scripts),
+	que normalmente se ubican en
+	<code class="filename">/usr/ports</code>.  Puede bien descomprimirlas
+	de un CD oficial, o de un servidor FTP y después actualizarlas de un 
+	repositorio CVS
+	o bien descargarlas de un repositorio CVS como se presenta
+	a continuación:
+	</p><pre class="screen">
+	cd /usr
+	export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+	cvs -z3 -q get -rOPENBSD_5_7 -P ports </pre><p>
+      </p><p>
+	La vía para <code class="literal">CVSROOT</code> adaptela a su servidor 
+	más cercano, escogiendo entre los disponibles en:
+	<a href="http://www.openbsd.org/anoncvs.html" target="_top">
+	  http://www.openbsd.org/anoncvs.html</a>.
+      </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="busquedas-portes"></a>3.2.1. Busquedas de portes</h4></div></div></div><p>
+	  Para buscar un programa en la colección de portes puede emplear:
+	  </p><pre class="screen">
+	cd /usr/ports
+	make search key=<em class="replaceable"><code>cadena</code></em>
+	  </pre><p>
+	  Que presentará los portes que en su descripción tengan la
+	  <em class="replaceable"><code>cadena</code></em> dada.
+	  Esta busqueda se realiza sobre el archivo 
+	  <code class="filename">/usr/ports/INDEX</code>, el cual si lo 
+	  desea también puede explorar con un editor.  
+	</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="compilaci%C3%B3n-portes"></a>3.2.2. Compilación de portes</h4></div></div></div><p> Para compilar e instalar un porte (tras la compilación
+	  normalmente se crea un paquete), basta pasar al directorio del porte
+	  y como usuario root ejecutar:
+	  </p><pre class="screen">
+	make install </pre><p>
+
+	  El respectivo <code class="filename">Makefile</code> obtendrá las fuentes
+	  originales de la red, aplicará los cambios necesarios, compilará, 
+	  creará un paquete y lo instalará (posteriormente podrá eliminar el 
+	  paquete con
+	  <span><strong class="command">pkg_delete</strong></span> ver <a href="paquetes-y-portes.html#paquetes" title="3.1. Paquetes">Paquetes</a>).  Si el porte tiene otros
+	  portes como prerequisitos los compilará e instalará antes. 
+	</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="creaci%C3%B3n-de-un-porte"></a>3.2.3. Creación de un porte</h4></div></div></div><p>
+	  Elija una categoría para su porte (i.e un directorio en
+	  <code class="filename">/usr/ports</code>), puede copiar el directorio
+	  de un porte similar al que desea hacer y modificarlo.  Emplee
+	  como nombre de directorio el nombre del paquete (sin versión).
+	  Debe tener al menos estos archivos:
+	  </p><div class="variablelist"><dl><dt><span class="term">Makefile</span></dt><dd><p>El cual incluye descripción corta, nombre del
+		  paquete, versión, URL del cual descargar fuentes,
+		  el correo de quien mantiene el porte, URL de parches
+		  si los hay, información sobre posibilidad de
+		  redistribución, foma de configurar, compilar e instalar.
+		  Este archivo normalmente es muy corto pues se basa en la 
+		  infraestructura para portes de 
+		  <code class="filename">/usr/ports/infrastructure/mk/bsd.ports.mk</code>.
+		  </p></dd><dt><span class="term">distinfo</span></dt><dd><p>Este archivo incluye diversas
+		  "firmas"<sup>[<a name="idp4227056" href="#ftn.idp4227056">9</a>]</sup> de cada
+		  fuente que debe descargarse para asegurar
+		  su integridad.   Se genera automáticamente
+		  con <span><strong class="command">make makesum</strong></span> y se
+		  verifica con <span><strong class="command">make checksum</strong></span>
+	      </p></dd><dt><span class="term">pkg/DESCR</span></dt><dd><p>Este archivo incluye una descripción un
+		  poco más larga del paquete (la que presenta
+		  <span><strong class="command">pkg_info</strong></span> cuando se corre sin
+		  opciones).</p></dd><dt><span class="term">pkg/PLIST</span></dt><dd><p>Indica los archivos que se instalan después
+		  de instalar el paquete.  Se puede crear un candidato 
+		  inicial de este archivo después de compilar y hacer
+		  una instalación de prueba (<span><strong class="command">make
+			  fake</strong></span>).   Puede actualizarse de 
+		  acuerdo a lo instalado con <span><strong class="command">make plist</strong></span>
+ 		 </p></dd><dt><span class="term">patches/</span></dt><dd><p>En este directorio se mantienen parches que
+deben aplicarse a las fuentes descargadas.
+Puede generarlos automáticamente (con <span><strong class="command">make patches</strong></span>), 
+si en el directorio donde se descomprimen 
+las fuentes, saca una copia de cada archivo que vaya a modificar y le agrega
+el sufijo <code class="literal">.orig</code>
+ 		 </p></dd></dl></div><p>	    
+	  Crear un porte es un proceso iterativo, en cada iteración
+	  debe refinarse el porte para asegurar que cumple con todos
+	  los lineamientos que espera el equipo de portes de OpenBSD.
+	  Puede consultar más en 
+	  [<span class="citation">porting-checklist</span>]
+	  [<span class="citation">porting</span>].</p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="emulacion-linux"></a>3.3. Emulación de binarios para Linux</h3></div></div></div><p>Algunas aplicaciones cuyas fuentes no han sido portadas a OpenBSD
+      pueden ejecutarse con las capas de emulación de OpenBSD. En particular
+      para i386 hay capas de emulación para binarios de Linux, FreeBSD,
+      BSDI y SCO Unix (binarios iBCS2). Aquí se describe brevemente la
+      emulación de binarios para Linux (ver <code class="literal">man
+	compat_linux</code>).</p><p> Para comenzar rapidamente puede utilizar el paquete
+      <code class="literal">redhat_base</code> que instalará librerías compartidas 
+      y archivos básicos de una distribución Redhat con 
+      <code class="literal">libc</code>.  Cree un enlace para que la emulación
+      logre ubicar información donde la espera:
+      </p><pre class="screen">
+	mkdir -p emul
+	ln -s /usr/local/emul/redhat /emul/linux
+      </pre><p>
+      
+      Active la emulación de Linux en el 
+      kernel usando <span><strong class="command">sysctl -w kern.emul.linux=1</strong></span> y
+      haga que el cambio se repita cada vez que reinicie, moficando 
+      <code class="filename">/etc/sysctl.conf</code><sup>[<a name="idm723367312" href="#ftn.idm723367312">10</a>]</sup>
+      para que incluya la línea:
+      </p><pre class="screen">
+	kern.emul.linux=1
+      </pre><p>
+      Después de
+      hacer esto o de copiar nuevas librerías que algún programa requiera,
+      debe ejecutar <code class="filename">/emul/linux/sbin/ldconfig</code>.  Para 
+      automatizar esta tarea durante cada arranque puede agregar a su archivo
+      <code class="filename">/etc/rc.local</code>: 
+      </p><pre class="screen">
+	if (test -x /emul/linux/sbin/ldconfig) then {
+	      /emul/linux/sbin/ldconfig
+	} fi; </pre><p>
+    </p><p>Con el enlace que hizo, en el directorio
+      <code class="filename">/emul/linux</code> quedará una jerarquía de 
+      directorios como la raíz de un
+      sistema Linux (excepto por que no tiene kernel).</p><p>Al ejecutar un binario para Linux, OpenBSD transformará los
+      nombres que el programa requiera suponiendo que 
+      <code class="filename">/emul/linux</code> es la 
+      raíz.  Si un archivo que se debe leer no es encontrado allí, OpenBSD
+      intenta como segunda opción en la raíz real del sistema.  Por ejemplo
+      si después de instalar <code class="literal">redhat_base</code> y crear el
+      enlace intenta:
+      </p><pre class="screen">
+	/emul/linux/bin/cp /bin/bash / </pre><p>
+
+      es decir ejecuta <span><strong class="command">cp</strong></span> de Linux, el archivo 
+      <code class="filename">/emul/linux/bin/bash</code> (que es
+      dejado allí por <code class="literal">redhat_base</code>) será copiado a 
+      <code class="filename">/emul/linux</code>. Pero si ejecuta
+
+      </p><pre class="screen">
+	/emul/linux/bin/cp /bin/ksh / </pre><p>
+
+      como el archivo <code class="filename">/emul/linux/bin/ksh</code> no existe 
+      (<code class="literal">redhat_base</code> no lo incluye),
+      se copiará el archivo <code class="filename">/bin/ksh</code>
+      (<span><strong class="command">ksh</strong></span> de OpenBSD) en la raíz de Linux
+      (i.e <code class="filename">/emul/linux</code>).  </p><p> Si desea ver su sistema como si la raíz fuera
+      <code class="filename">/emul/linux</code>
+      (digamos para ejecutar varios programas Linux) puede emplear:
+
+      </p><pre class="screen">
+	/emul/linux/bin/bash </pre><p>
+
+      que iniciará un interprete de comandos compilado para Linux (así 
+      que las vías de ese interprete de comandos son las que ven todos 
+      los binarios de Linux).
+    </p><p>Aunque la emulación no es perfecta funcionan varios programas
+      (como el compilador <span><strong class="command">gcc</strong></span>), de hecho algunos paquetes 
+      OpenBSD emplean esta capa (e.g <span><strong class="command">jdk-1.3-linux</strong></span>).
+   </p><p>Para emplear una distribución de Linux diferente 
+      basta asegurar que pueda accederse desde 
+      <code class="filename">/emul/linux</code>.  Por ejemplo si en la partición 
+      <code class="filename">/dev/wd0i</code> tiene un sistema Debian, puede 
+      agregar la siguiente línea a <code class="filename">/etc/fstab</code> para 
+      montarla automáticamente durante el arranque:
+      </p><pre class="screen">
+	/dev/wd0i /mnt/debian ext2fs rw 1 1 </pre><p>
+      Cree un enlace de <code class="filename">/emul/linux</code> a
+      <code class="filename">/mnt/debian</code> (creando antes el directorio
+      <code class="filename">/mnt/debian</code>) y recuerde ejecutar 
+      <span><strong class="command">ldconfig</strong></span> para que las librerías compartidas
+      pueda ser ubicadas.  
+    </p></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm557118608" href="#idm557118608">8</a>] </sup>Para determinarlo puede ver la velocidad de cada espejo 
+		con algo como <span xmlns=""><strong class="command">ping ftp.pasosdeJesus.org</strong></span> 
+		o emplear el script <span xmlns=""><strong class="command">pos.sh</strong></span> que hará
+		la prueba para los espejos oficiales de OpenBSD. Está
+		en el directorio <code xmlns="" class="filename">herram</code> de las fuentes 
+		de este escrito.</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp4227056" href="#idp4227056">9</a>] </sup>Resultados de pasar archivos
+		      por funciones de hashing.</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm723367312" href="#idm723367312">10</a>] </sup>El  kernel
+	  genérico permite hacer el cambio de esta manera porque fue
+	  compilado con la opción de configuración 
+	  <code xmlns="" class="literal">COMPAT_LINUX</code></p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sobre-la-instalacion.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="configuracion-de-componentes-basicos.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">2. Sobre la instalación </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 4. Configuración y uso de programas y servicios básicos</td></tr></table></div></body></html>

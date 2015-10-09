@@ -1,0 +1,885 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>6. Configuración y uso de algunos dispositivos y servicios</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="configuracion-de-algunos-portes.html" title="5. Configuración y uso de algunas aplicaciones"><link rel="next" href="duales.html" title="7. Instalaciones duales"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">6. Configuración y uso de algunos dispositivos y servicios</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="configuracion-de-algunos-portes.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="configuracion-de-algunos-dispositivos"></a>6. Configuración y uso de algunos dispositivos y servicios</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="hardware-arranque"></a>6.1. Reconocimiento de hardware durante el arranque</h3></div></div></div><p>Durante el arranque el kernel detecta hardware usando
+	diversos controladores en cierto orden. El orden y los controladores
+	que se usen dependen de la configuración que se haya dado al 
+	kernel al compilarlo. El orden típico configurado en el kernel 
+	genérico es:
+	</p><div class="itemizedlist"><ul type="disc"><li><p>Procesador, Memoria, BIOS</p></li><li><p>Discos duros, CDROM y unidades de disquete</p></li><li><p>Buses, Teclado, Dispositivos ISA</p></li><li><p>Puertos paralelos y seriales</p></li><li><p>Dispositivos ISA plug and play</p></li></ul></div><p>
+
+	La configuración de la mayoría de estos dispositivos puede
+	ser determinada por el controlador, pero con algunos dispositivos
+	(e.g ISA, ciertos teclados) el kernel incluye valores 
+	predeterminados que en algunos casos pueden
+	no corresponder al hardware o que por la forma de detectar congelan
+	el sistema completo.  En tal caso, determine los recursos
+	que el dispositivo tiene configurados con jumpers o con software
+	(e.g IRQ, dirección de entrada salida base, DMA) 
+	y modifique los valores que emplea el kernel de una de estas formas
+	(en un caso extremo puede tener que deshabilitar el dispositivo):
+	</p><div class="itemizedlist"><ul type="disc"><li><p>Arranque con <span><strong class="command">boot -c</strong></span> y cambie
+	      parámetros usados por los controladores antes de continuar
+	      con la detección automática de hardware.  El cambio
+	      sólo durará mientras no reinicie el sistema, puede hacer
+	      el cambio durable por ejemplo con el comando:
+	      <span><strong class="command">config -u</strong></span>.
+	    </p></li><li><p>Después de que su sistema haya iniciado modifique 
+	      los recursos asignados por defecto del kernel con
+	      <span><strong class="command">config -e -o /bsd.new /bsd</strong></span>.</p></li><li><p>Recompile el kernel con una configuración apropiada.</p></li></ul></div><p>
+      </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="modificacion-antes-de-arrancar"></a>6.1.1. Modificación antes de arrancar</h4></div></div></div><p>
+	  Al arrancar, cuando esté en el prompt <code class="literal">boot&gt;</code>,
+	  inicie con:
+	  </p><pre class="screen">
+	    boot&gt; boot -c
+	  </pre><p>
+	  Así entrará a un entorno interactivo, que le permite cambiar la 
+	  asignación de recursos predeterminada para algunos dispositivos.  
+	  Por ejemplo si tiene una tarjeta de red
+	  compatible NE2000 con dirección base 0x300 e IRQ 3, el controlador
+	  <code class="literal">ne</code> la asignará la interfaz <code class="literal">ne1</code>
+	  que por defecto usa la dirección base 0x300 pero la IRQ 10.  
+	  Desde el prompt que <span><strong class="command">boot -c</strong></span> produce ingrese:
+	  </p><pre class="screen">
+	    UKC&gt; change ne1
+	  </pre><p>
+	  puede ver otros comandos disponibles con el comando
+	  <span><strong class="command">help</strong></span>.   Una vez complete la configuración
+	  salga del entorno interactivo con <span><strong class="command">quit</strong></span>, tras
+	  esto el kernel continuara la detección pero usando los cambios
+	  que haya hecho.
+	</p><p>Una vez haya configurado los recursos que un controlador
+	  emplea para que correspondan a los de un dispositivo y que
+	  su sistema esté operando, puede hacer el cambio permanente usando:
+	  </p><pre class="screen">
+	sudo config -e -o /bsd.ne1 -u /bsd
+	  </pre><p>
+	  que le permitirá al mismo entorno interactivo, que procurará
+	  detectar los cambios que usted haya podido hacer durante el
+	  arranque, le permitirá completarlos y cuando salga (con
+	  <span><strong class="command">quit</strong></span>) escribirá un nuevo kernel
+	  <code class="filename">/bsd.ne1</code> con la misma configuración de
+	  <code class="filename">/bsd</code> pero con sus cambios aplicados.
+  </p><p>Si no logra configurar algún dispositivo y esto hace que el 
+	  sistema completo se congele durante el arranque, puede requerir
+	  deshabilitar el dispositivo (situación que es muy inusual).
+  </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="hardware-arranque-lecturas"></a>6.1.2. Lecturas recomendadas</h4></div></div></div><p>
+	  </p><div class="itemizedlist"><ul type="disc"><li><p>Página del manual unix de <a href=""><span class="citerefentry"><span class="refentrytitle">autoconf</span>(8)</span></a>. 
+		<span><strong class="command">autoconf</strong></span> determina
+		el orden y los controladores que se usan para la detección
+		automática de hardware.
+	      </p></li><li><p>Página del manual unix de <a href=""><span class="citerefentry"><span class="refentrytitle">boot_config</span>()</span></a> y
+			    de 
+			    <a href=""><span class="citerefentry"><span class="refentrytitle">8</span>()</span></a>
+	donde se describen los comandos aceptados por el entorno interactivo
+	de configuración de dispositivos. </p></li><li><p>Puede encontrar más sobre la secuencia de
+			    arranque de OpenBSD por ejemplo en
+			    <a href="http://dhobsd.pasosdeJesus.org/pres21abr2005/" target="_top">http://dhobsd.pasosdeJesus.org/pres21abr2005/</a></p></li></ul></div><p>
+	</p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="impresion"></a>6.2. Impresión</h3></div></div></div><p>Para atender trabajos de impresión hay disponibles para
+    Unix varios sistemas: lpd, LPRng, CUPS, QPD.  El más popular 
+    y el incluido en la distribución básica de OpenBSD es 
+    <span><strong class="command">lpd</strong></span> 
+    que además de poder llevar cuentas de cada usuario, permite a varios 
+    computadores en red compartir una misma impresora.</p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="uso-impresora"></a>6.2.1. Uso de una impresora ya configurada</h4></div></div></div><p>Aun cuando algunos programas ofrecen menús con una opción
+      para imprimir, prácticamente todos usan en últimas el programa
+      <span><strong class="command">lpr</strong></span> (o <span><strong class="command">/usr/local/bin/lpr</strong></span> 
+      si está usando CUPS) que se encarga de poner la información
+      que debe enviarse a la impresora en una cola de trabajos
+      pendientes
+      <sup>[<a name="idp1803018352" href="#ftn.idp1803018352">13</a>]</sup>, que es atendida automáticamente (i.e de ella se
+      envían trabajos pendientes cuando la impresora está disponible)
+      por un programa.
+    </p><a class="indexterm" name="idp2090286192"></a><p>Cada impresora configurada tiene un nombre,  la impresora por defecto 
+      se llama <span><strong class="command">lp</strong></span>
+      <sup>[<a name="idp2291767536" href="#ftn.idp2291767536">14</a>]</sup>.
+    </p><p>Posiblemente su sistema esté configurado para permitir a
+      <span><strong class="command">lpr</strong></span> la impresión de textos planos y
+      documentos PostScript o PDF.  Para programar la impresión de un
+      texto plano con nombre <code class="filename">tarea.txt</code> en la
+      impresora por defecto, puede emplear:</p><pre class="screen">
+      lpr tarea.txt
+    </pre><p>o eventualmente para especificar una impresora diferente a
+      <span><strong class="command">lp</strong></span>, digamos <span><strong class="command">imp2</strong></span> use la
+      opción <code class="option">-P</code>:</p><pre class="screen">
+      lpr -Pimp2 tarea.txt
+    </pre><p>
+      Puede examinar la cola de sus impresiones pendientes con
+      <span><strong class="command">lpq</strong></span> que junto con los nombres de las
+      impresiones pendientes presentará un número que la identifica.
+      Tal número le permitirá cancelar una de sus tareas de impresión
+      pendiente, usándolo como parámetro de <span><strong class="command">lprm</strong></span>.
+    </p><a class="indexterm" name="idp2291766768"></a><a class="indexterm" name="idp2090294128"></a><p>Para imprimir gráficas y documentos con diversos tipos de
+      letra o colores, primero debe convertirse la información a
+      secuencias de control particulares de su impresora.  Cómo de una
+      impresora a otra varían los secuencias de control, en sistemas
+      tipo Unix con LPD suele 
+      emplearse PostScript (que es un lenguaje apropiado para documentos
+      por imprimir) como formato común y se usan los filtros del
+      programa Ghostscript para traducir de PostScript al formato
+      particular de su impresora
+      <sup>[<a name="idm1091443856" href="#ftn.idm1091443856">15</a>]</sup>.  Si se usa CUPS es posible emplear controladores
+       particulares para su impresora y no depender de Ghostscript.
+    </p><p>Ghostscript es un programa que puede leer documentos
+      PostScript y <span class="acronym">PDF</span>
+      <sup>[<a name="idm1091443728" href="#ftn.idm1091443728">16</a>]</sup>
+      y presentarlos en una ventana de X-Window o transformarlos al
+      lenguaje particular de algunas impresoras.  Por ejemplo para
+      generar a partir de un documento PostScript <code class="filename">s2.ps</code>
+      la secuencia de caracteres apropiada para una impresora LaserJet en
+      el archivo <code class="filename">s2.lj</code> se usaría:</p><pre class="screen">
+	gs -sDEVICE=laserjet -sOutputFile=s2.lj s2.ps -c quit       
+      </pre><p>	
+      O para imprimir directamente usando <span><strong class="command">lpr</strong></span>, en
+      lugar de <code class="filename">s2.lj</code> puede usar
+      <span><strong class="command">-sOutputFile=\|lpr</strong></span>. 
+      Puede experimentar
+      con este intérprete tecleando <span><strong class="command">gs</strong></span> y por
+      ejemplo ingresando la siguiente secuencia de instrucciones en
+      lenguaje PostScript:
+      </p><pre class="programlisting">
+	100 100
+	moveto
+	200 200
+	lineto
+	stroke
+      </pre><p>
+    </p><a class="indexterm" name="idp2565262192"></a><p>Para visualizar un documento PostScript o PDF puede emplear
+      el programa <span><strong class="command">gv</strong></span> ---el cual se apoya en
+      Ghostscript--- por ejemplo:</p><pre class="screen">
+	gv micarta.ps
+    </pre><p>
+      mostrará el documento PostScript <code class="filename">micarta.ps</code>
+      en una ventana de X-Window y con menús le permitirá consultarlo
+      e imprimirlo.
+    </p><a class="indexterm" name="idp2669333872"></a><p>Para imprimir y hacer transformaciones a un PostScript (por
+      ejemplo 2 páginas en una sola), o para convertir de otros
+      formatos a PostScript puede emplear el programa
+      <span><strong class="command">a2ps</strong></span>:
+      </p><pre class="screen">
+	a2ps --columns=2 -o micarta-2.ps micarta.ps
+      </pre><p>
+      o <span><strong class="command">mpage</strong></span>:
+      </p><pre class="screen">
+	mpage -2 micarta.ps &gt; micarta-2.ps
+      </pre><p>
+    </p><a class="indexterm" name="idp1767870576"></a><p>Además de los programas <code class="literal">a2ps</code> y del paquete
+      <code class="literal">psutils</code> es posible modificar directamente un
+      archivo PostScript. Por ejemplo siguiendo las indicaciones de
+      <a href="http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html" target="_top">http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html</a>,
+      resulta posible rotar una página, editando el archivo
+      y en la sección <code class="literal">%%%BeginPageSetup</code> agregando 
+      después de establecer tamaño de página, e.g.  
+      <code class="literal">595 842 /a4 setpagesize</code>: </p><pre class="screen">
+	currentpagedevice /PageSize get aload pop translate
+	180 rotate
+    </pre><p>Tanto PostScript como PDF requieren bastante espacio para
+      describir un documento, usualmente los documentos PDF requieren
+      menos porque mantienen la información comprimida.  Para
+      convertir entre PostScript y PDF se emplean
+      <span><strong class="command">ps2pdf</strong></span> y <span><strong class="command">pdf2ps</strong></span>
+      <sup>[<a name="idp1052348784" href="#ftn.idp1052348784">17</a>]</sup>.  Para visualizar e imprimir un PDF, además de
+      <span><strong class="command">gv</strong></span>, puede emplear <span><strong class="command">xpdf</strong></span> o
+      el programa Acrobat Reader (<span><strong class="command">acroread</strong></span>).
+    </p><a class="indexterm" name="idp2372587376"></a><p> 
+    </p><a class="indexterm" name="idm325317776"></a><a class="indexterm" name="idp1211962352"></a></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lpd-local"></a>6.2.2. Configuración de una impresora local
+			  con <span><strong class="command">lpd</strong></span></h4></div></div></div><p>
+    <span class="application">lpd</span> (también llamado <span class="foreignphrase"><em class="foreignphrase">Berkeley 
+      line printer spooling system</em></span>) es un sistema que 
+    maneja una cola de impresión por cada impresora configurada, filtros 
+    para convertir información de
+    diversos tipos (e.g PostScript y PDF) al lenguaje particular de
+    cada impresora así como filtros de cuentas que permiten
+    monitorear y controlar el uso de cada impresora por parte de
+    cada usuario. LPD recibe y procesa solicitudes de impresión 
+    realizadas por programas cliente e imprime la información de las 
+    colas en los dispositivo configurados para cada cola (e.g 
+    <code class="filename">/dev/lpt0</code> o enviando por red a una impresora 
+    remota).  
+  </p><p>
+      En OpenBSD <span class="application">lpd</span> debe activarse durante
+      el arranque, agregando en <code class="filename">/etc/rc.conf.local</code> 
+      la línea:
+      </p><pre class="screen">
+	lpd_flags="" </pre><p>
+      su archivo de configuración principal es
+      <code class="filename">/etc/printcap</code> el cual es leído cada vez que
+      <span class="application">lpd</span> inicia y	donde se configura cada cola
+      de impresión, el dispositivo asociado a cada una y sus parámetros,
+      los filtros para los diversos tipos de 
+      información que puede imprimir y filtros de cuentas.
+    </p><p>
+      <span class="application">lpd</span> es un servidor TCP/IP 
+      que imprime trabajos pendientes
+      en las colas de impresoras locales (sólo modificables con programas
+      clientes) y que atiende conexiones de clientes que emplean el 
+      protocolo LPD en el puerto TCP 515.  La conexión normalmente la 
+      realiza un programa cliente como 
+      <code class="literal">lpr</code>,
+      <code class="literal">lpq</code>, <code class="literal">lprm</code> o
+      <code class="literal">lpc</code> que pueden solicitar una de las siguientes
+      operaciones:
+      </p><div class="itemizedlist"><ul type="disc"><li><p>Revisar trabajos en cola de una impresora.</p></li><li><p>Recibir y poner en cola de una impresora un trabajo de otra 
+	    máquina.</p></li><li><p>Listado corto del estado de los trabajos de un usuario en la 
+	    cola de una impresora.</p></li><li><p>Listado largo del estado de los trabajos de un usuario en
+	    la cola de una impresora.</p></li><li><p>Eliminar trabajos de un usuario de la cola de una
+	    impresora</p></li></ul></div><p>
+      <span><strong class="command">lpd</strong></span> envía errores a la bitácora
+      <code class="filename">/var/log/lpd-errs</code>.
+    </p><a class="indexterm" name="idp1777610224"></a><p>Además de esta documentación puede consultar más sobre
+      la configuración de <span><strong class="command">lpd</strong></span> en
+      [<span class="citation">FreeBSDHandBook</span>] y
+      [<span class="citation">OpenBSDlpd</span>]
+    </p><a class="indexterm" name="idp1777610992"></a><p>La mayoría de impresoras se conectan al puerto paralelo
+	(por ejemplo utilizables con dispositivos
+	<code class="filename">/dev/lpt0</code> o <code class="filename">/dev/lpt1</code>).
+	Puede probar
+	que su impresora funciona enviando una cadena sencilla al
+	puerto apropiado por ejemplo <code class="literal">echo "Hola"
+	  &gt;/dev/lpt0</code> o <code class="literal">lptest &gt;
+	  /dev/lpt0</code>.
+      </p><a class="indexterm" name="idp178674800"></a><p>
+	El siguiente es un ejemplo del archivo 
+	<code class="filename">/etc/printcap</code>:
+	</p><pre class="programlisting">
+	  lp|local line printer:\
+	  :lp=/dev/lpt0:sd=/var/spool/output:lf=/var/log/lpd-errs:
+	</pre><p>
+	que configura una impresora local para textos llamada
+	<code class="literal">lp</code> o <code class="literal">local line printer</code>.
+	Está conectada a
+	<code class="filename">/dev/lpt0</code>, la cola de impresión la mantiene
+	en <code class="filename">/var/spool/output</code> y envia errores a
+	<code class="filename">/var/log/lpd-errs</code>.  
+	Para configurar impresoras que puedan imprimir gráficas (así como
+	PostScript con diversos tipos de letra) debe emplear un filtro del
+	programa Ghostscript.
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="cups"></a>6.2.3. CUPS</h4></div></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="cups-inst"></a>6.2.3.1. Instalación</h5></div></div></div><p>
+		  Hay un paquete de CUPS entre los portes oficiales de 
+		  OpenBSD 5.7. Una vez 
+		  instalado puede ejecutarlo con
+	</p><pre class="screen">
+	sudo cupsd
+	</pre><p>
+	Para que en cada arranque se ejecute automáticamente, se recomienda 
+	agregar en <code class="filename">rc.local</code>:
+
+	</p><pre class="screen">
+	if (test -x /usr/local/sbin/cupsd) then {
+		echo -n ' cupsd';
+		/usr/local/sbin/cupsd;
+	} fi;
+	</pre><p>
+
+	La distribución estándar de cups incluye unos pocos archivos 
+	<code class="filename">ppd</code>, así que posiblemente tendrá que generar 
+	o conseguir los apropiados para su impresora con 
+	<span><strong class="command">foomatic</strong></span> (ver <a href="configuracion-de-algunos-dispositivos.html#foomatic" title="6.2.4. foomatic">Sección 6.2.4, “foomatic”</a>).
+</p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="cups-conf"></a>6.2.3.2. Configuración</h5></div></div></div><p>
+	La configuración de CUPS (por ejemplo para añadir una
+       impresora)	puede hacerse con facilidad una vez
+	esté ejecutándose el servidor, usando un navegador y abriendo en
+	la máquina donde corre CUPS el puerto 631, por ejemplo
+	<span><strong class="command">http://127.0.0.1:631</strong></span>.   
+	Para hacer labores administrativas ingrese con la identificación
+	y la clave de un usuario que esté en el grupo 
+	<code class="literal">sys</code> o por la cuenta <code class="literal">root</code>.
+</p><p>También es recomendable que cree un directorio:
+	</p><pre class="screen">
+	sudo mkdir /var/spool/cups/tmp
+	sudo chown _cups:_cups /var/spool/cups/tmp/
+	</pre><p>
+</p><p>
+	Si tiene problemas al instalar/usar una impresora puede consultar
+	el archivo de errores de <span><strong class="command">cups</strong></span> en:
+	<code class="filename">/usr/local/var/log/cups/error_log</code>.
+
+</p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="uso-cups"></a>6.2.3.3. Utilización de CUPS</h5></div></div></div><p>
+	El paquete de <span><strong class="command">cups</strong></span> cuenta con programas 
+	análogos a los de LPD, pero ubicados en 
+	<code class="filename">/usr/local/bin</code>.
+	Diversos programas emplearan el comandos <span><strong class="command">lpr</strong></span> 
+	para hacer impresiones, así que tiene dos opciones:
+	</p><div class="itemizedlist"><ul type="disc"><li><p>Ejecutar <span><strong class="command">cups-enable</strong></span> que
+				remplazará los ejecutables relacionados con impresión
+				de <code class="filename">/usr/</code> con los
+				de CUPS disponibles en 
+				<code class="filename">/usr/local/</code>.</p></li><li><p>Configurar cada programa para 
+				que en lugar de emplear 
+				<code class="filename">/usr/bin/lpr</code> utilice 
+				<code class="filename">/usr/local/bin/lpr</code>. 
+				Por ejemplo así debe configurar xpdf.
+			</p></li></ul></div><p>
+</p></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="foomatic"></a>6.2.4. foomatic</h4></div></div></div><p>
+		  <span><strong class="command">foomatic</strong></span> ofrece gran cantidad
+		  de controladores para una variada gama de impresoras,
+		  estos controladores e instrucciones para impresoras
+		  particulares están disponibles
+		  en <a href="http://www.openprinting.org" target="_top">http://www.openprinting.org</a>
+		  Es posible emplearlos bien con <code class="literal">lpr</code> o 
+		  bien con <code class="literal">cups</code>.  
+	  </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="foomatic-lpr"></a>6.2.4.1. Foomatic con LPR</h5></div></div></div><p>
+	Si la impresora está impresora está conectada a
+	<code class="literal">/dev/lpt0</code> basta que agregue a
+	<code class="filename">/etc/printcap</code> una entrada como: 
+</p><pre class="screen">
+lp|local line printer:\
+	:lp=/dev/lpt0:\
+        :af=/etc/foomatic/laserjet6p.ppd:\
+        :if=/usr/local/bin/foomatic-rip:\
+        :sd=/var/spool/lpd:\
+        :lf=/var/log/lpd-errs:\
+        :mx#0:sh:
+</pre><p>
+</p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="foomatic-cups"></a>6.2.4.2. Foomatic con CUPS</h5></div></div></div><p>
+			  
+			  Cada archivo <code class="filename">ppd</code> 
+			  que descargue debe ubicarlo en:
+			  <code class="filename">/usr/local/share/cups/model/</code>.
+			  Después de agregar archivos en ese directorio
+			  reinicie CUPS para que lea nuevamente sus archivos
+			  de configuración con:
+			  </p><pre class="screen">
+# pkill -HUP cupsd
+			  </pre><p>
+		  </p></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="discos-duros"></a>6.3. Discos duros</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="particiones-slices"></a>6.3.1. Particiones</h4></div></div></div><p>Hay dos niveles de particiones: (1) del BIOS y (2) particulares
+	  de OpenBSD.  Las primeras se configuran con 
+	  <span><strong class="command">fdisk</strong></span> y las segundas se crean
+	  dentro de las primeras con <span><strong class="command">disklabel</strong></span>.  
+	</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="sistema-de-archivos-ffs"></a>6.3.2. Sistema de archivos ffs</h4></div></div></div><p>Un sistema de archivos ffs sólo puede crearse en una
+	  partición identificada con <span><strong class="command">disklabel</strong></span>.
+	  Como se explica en [<span class="citation">FFS</span>], consta de:
+	  </p><div class="itemizedlist"><ul type="disc"><li><p>Un superbloque con los parámetros básicos del sistema 
+		de archivos (e.g tamaño de cada bloque, lista de grupos
+		de cilindros) y con los parámetros del hardware que
+		afectan el desempeño<sup>[<a name="idm1017835792" href="#ftn.idm1017835792">18</a>]</sup> 
+	      (tipo de transferencia de disco a
+	      memoria, tiempo esperado por transferencia, bloques por pista, 
+	      velocidad de rotación).
+	      </p></li><li><p>Copias de seguridad del superbloque en diversos 
+		bloques del disco.
+	      </p></li><li><p>Archivos, algunos de los cuales pueden ser directorios.  
+		Todo archivo tiene asociado un nodo-i, que mantiene
+	  información del archivo (dueño, tiempo de última modificación
+	  y de creación, algunos de los bloques que emplea el archivo
+	  y referencia a otros nodos-i con el resto de bloques).
+	      </p></li></ul></div><p> 
+    </p><p>
+	  Los bloques pueden fragmentarse para aprovechar espacio cuando
+	  se mantienen archivos pequeños.
+	  Cada grupo de cilindros tiene una tabla de fragmentos libres
+	  en los bloques del grupo e información sobre bloques libres
+	  de acuerdo a las diversas posiciones rotacionales (para optimizar
+	  ubicación de información de acuerdo al hardware disponible).
+  </p><p>
+	  Algunos bloques se reservan para que sólo puedan ser usados
+	  por el administrador (reserva de espacio libre).  En OpenBSD
+	  por defecto es 5% del espacio total.
+  </p><p>
+	  Entre las características soportadas por FFS están:
+	  </p><div class="itemizedlist"><ul type="disc"><li><p>Enlaces duros dentro de una misma partición o
+		enlaces simbólicos. Candados, nombres largos para
+		archivos, validaciones y cuotas (para limitar espacio
+		utilizable por los usuarios).</p></li></ul></div><p>
+
+  </p><p>Para revisar un sistema de archivos <code class="literal">ffs</code> (digamos
+      que esté en la partición <code class="literal">/dev/wd1j</code>) ejecute:
+      </p><pre class="screen">
+	sudo fsck_ffs /dev/rwd1j
+      </pre><p>
+      note la <code class="literal">r</code> antes de <code class="literal">wd1j</code> que indica
+      que la partición debe tratarse en modo puro (del inglés <span class="emphasis"><em>raw</em></span>).
+      Puede agregar la opción <code class="literal">-y</code> antes del dispositivo
+      para responder si por defecto a toda pregunta (intentado que solucione
+      automáticamente todos los problemas).    En algunos casos cuando un
+      disco está bastante inconsistente en su estructura, puede perderse
+      información que <code class="literal">fsck_ffs</code> intentará recuperar y
+      dejar en archivos cuyos nombres son números en el directorio 
+      <code class="filename">lost+found</code>.   En los casos que se dañe el 
+      superbloque de la partición que desea revisar <code class="literal">fsck_ffs</code> 
+      se negará a realizar el chequeo, en tales casos puede intentar
+      con un superbloque de respaldo --típicamente hay uno en el bloque 32:
+      </p><pre class="screen">
+	sudo fsck_ffs -b 32 /dev/rwd1j
+      </pre><p>
+  </p><p>Para crear un sistema de archivos <code class="literal">ffs</code>
+	  en un disco ya particionado con <span><strong class="command">disklabel</strong></span>
+          puede emplearse <span><strong class="command">newfs</strong></span>, por ejemplo:</p><pre class="screen">
+	sudo newfs -t ffs /dev/wd1j
+</pre><p>
+</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Aviso]" src="./warning.png"></td><th align="left">Aviso</th></tr><tr><td align="left" valign="top"><p>Al crear un nuevo sistema de archivos se borra la
+    información que pudiera haber existido.</p></td></tr></table></div><p>
+	</p><p>Para detectar particiones ffs en un disco, puede
+	  emplearse <span><strong class="command">scan_ffs</strong></span>.
+	</p><p>Para examinar la estructura de una partición con
+	  ffs, se emplea <span><strong class="command">dumpfs</strong></span>. Puede afinarse
+	  un sistema ffs con <span><strong class="command">tunefs</strong></span>
+       	</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="zonas-de-intercambio"></a>6.3.3. Zonas de intercambio (swap)</h4></div></div></div><p>Son porciones de un disco duro que pueden emplearse como 
+	  si fuera memoria RAM (aunque es mucho más lenta).  Si por ejemplo
+	  desea agregar como dispositivo de intercambio el disco
+	  <code class="literal">/dev/wd1l</code> debe:
+	  </p><div class="orderedlist"><ol type="1"><li><p>Asegurarse de poner tipo swap a la partición.    
+		Puede emplear <span><strong class="command">disklabel</strong></span>. Por 
+		ejemplo puede emplear el modo interactivo de este
+		programa:
+		</p><pre class="screen">
+	sudo disklabel -E /dev/wd1c </pre><p>
+		en este modo puede examinar las particiones y divisiones
+		del disco con <span><strong class="keycap">p</strong></span>, puede ver una ayuda
+		abreviada con <span><strong class="keycap">h</strong></span>. Con <span><strong class="keycap">m</strong></span> 
+		le será posible cambiar el tipo de una partición
+		(por ejemplo puede ser <code class="literal">4.2BSD</code> si se
+		trata de un sistema ffs o <code class="literal">swap</code> si
+		se trata de un dispositivo para intercambio), y la
+		ubicación.
+		</p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Caution: Antes de cambiar la ubicación de una partición"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Atención]" src="./caution.png"></td><th align="left">Antes de cambiar la ubicación de una partición</th></tr><tr><td align="left" valign="top"><p>El sitio donde reubique una partición NO debe 
+		    estar traslapado sobre una partición ya existente.
+		    Si traslapa una partición sobre otra, la información que 
+		    hubiera en la partición sobre la que traslapa puede 
+		    perderse de manera irreversible.</p></td></tr></table></div><p>	  
+	      </p></li><li><p>Agregue una línea a su archivo 
+		<code class="filename">/etc/fstab</code> con el dispositivo de
+		intercambio, punto de montaje <code class="literal">none</code>, tipo 
+		<code class="literal">swap</code> y opción <code class="literal">sw</code>:
+		</p><pre class="screen">
+	/dev/wd1l none  swap sw 0 0 </pre><p>
+		Con este cambio, el dispositivo será montado como zona
+		de intercambio cada vez que el sistema inicie (está
+		en <code class="filename">/etc/rc</code>).
+	      </p></li><li><p>Intente agregar el dispositivo como zona de 
+		intercambio sin reiniciar con:
+		</p><pre class="screen">
+	sudo swapon -a </pre><p>
+		o con:
+		</p><pre class="screen">
+	sudo swapctl -A -t blk </pre><p>
+		Ambos comandos intentarán montar como
+		zonas de intercambio todos dispositivos por bloques de
+		<code class="filename">/etc/fstab</code> que tengan la opción
+		<code class="literal">sw</code>.   Puede verificar la adición 
+		listando todas las zonas de intercambio con:
+		</p><pre class="screen">
+	sudo swapctl -l </pre><p>
+	      </p></li></ol></div><p>
+	  </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="disquetes-e-imagenes-de-disquetes"></a>6.4. Disquetes e imágenes de disquetes</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mtools"></a>6.4.1. Programas del paquete <span><strong class="command">mtools</strong></span></h4></div></div></div><p>El usuario root podrá leer disquetes con las herramientas del
+	     paquete  <span class="application">mtools</span>, por
+	     ejemplo para ver el contenido de un disquete y después
+	     copiar del disquete al directorio actual el archivo
+	     <code class="filename">cart.txt</code>:
+      </p><pre class="screen">
+	mdir
+	mcopy a:cart.txt .  </pre><p>
+    </p><p>
+	Para escribir todos los 
+	archivos con extensión <code class="literal">tgz</code> en el disquete 
+	de la primera unidad:
+	</p><pre class="screen">
+	mcopy *tgz a: </pre><p>
+</p><p>En OpenBSD por omisión sólo <code class="literal">root</code> puede 
+	    montar y escribir disquetes.  Puede lograrse que  las herramientas
+	    de <span class="application">mtools</span> escriban en disquetes cuando
+	    son ejecutadas desde una cuenta que pertenezca al grupo
+	    <code class="literal">operator</code> cambiando permisos de algunos 
+	    archivos:
+	    </p><pre class="screen">
+	chmod g+xwr /dev/rfd* /dev/fd*
+	    </pre><p> 
+		Si no desea cambiar permisos de dispositivos, ni
+		manejar el grupo <code class="literal">operator</code> ni 
+		cambiar variables del kernel puede configurar y
+		emplear
+		<span><strong class="command">sudo</strong></span> (ver <a href="configuracion-de-componentes-basicos.html#sudo" title="4.3. sudo">sudo</a>):
+	</p><pre class="screen">
+	sudo mcopy *tgz a: </pre><p>
+	o incluso con <span><strong class="command">sudo</strong></span> y un alias hacer 
+	transparente la restricción para los usuarios que puedan
+	emplear <span><strong class="command">sudo</strong></span>:
+	</p><pre class="screen">
+	alias mcopy='sudo mcopy' </pre><p>
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-disquettes"></a>6.4.2. Montar disquettes en jerarquía de directorios</h4></div></div></div><p>Desde la cuenta <code class="literal">root</code> podrá
+		    montar disquettes de manera directa.</p><p>
+		    Para montar disquettes desde cuentas de usuarios que
+		    pertenezcan al grupo <code class="literal">operator</code>
+		    puede cambiar la variable de configuración del kernel
+	    <code class="literal">kern.usermount</code>, bien de forma
+	    permanente en <code class="filename">/etc/sysctl.conf</code> o
+	    bien en una sesión con:
+	    </p><pre class="screen">
+	sysctl -w kern.usermount=1		    
+	    </pre><p>
+	    Por ejemplo para montar el disquete de la 
+	    primera unidad en el directorio <code class="filename">/mnt/floppy</code>
+	    (el cual debió crear antes):
+	</p><pre class="screen">
+	mount -t msdos /dev/fd0c /mnt/floppy </pre><p>
+	o cree una entrada apropiada en <code class="filename">/etc/fstab</code>:
+	</p><pre class="screen">
+	/dev/fd0c /mnt/floppy msdos rw,noauto 0 0 </pre><p>
+	tras lo cual basta:
+	</p><pre class="screen">
+	mount /mnt/floppy </pre><p>
+
+	Tenga en cuenta que después de terminar todas las operaciones
+	con el disquette debe desmontarlo con:
+	</p><pre class="screen">
+	umount /mnt/floppy
+	</pre><p>
+</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-imagenes-disquettes"></a>6.4.3. Montar imagenes de disquettes</h4></div></div></div><p>Puede montar imágenes de disquetes creando primero un 
+	dispositivo con <span><strong class="command">vnconfing</strong></span> asociado 
+	con la imagen y después montar tal dispositivo en el directorio
+	deseado.  Vea la forma análoga de lograrlo con CDs en
+	<a href="configuracion-de-algunos-dispositivos.html#cd" title="6.5. Unidad de CD-ROM">Sección 6.5, “Unidad de CD-ROM”</a>.
+      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="cd"></a>6.5. Unidad de CD-ROM</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-cd"></a>6.5.1. Montar un CD</h4></div></div></div><p>Cómo en el caso de disquetes, por defecto, sólo root puede montar 
+	  CDs.  Puede permitir que se haga desde una cuenta diferente,
+	  agregando tal cuenta al grupo <code class="literal">operator</code> y
+	  cambiando la variable del kernel <code class="literal">kern.usermount</code>
+	  como se presentó en la sección sobre disquettes.
+	  Por ejemplo para montar el CD que está en la primera unidad
+	(después de haber creado el directorio 
+		<code class="filename">/mnt/cdrom</code>):
+	  </p><pre class="screen">
+	mount -t cd9660 /dev/cd0c /mnt/cdrom </pre><p>
+	  o para lograrlo con sólo <code class="literal">mount /mnt/cdrom</code> se
+	  agregaría en <code class="filename">/etc/fstab</code>:
+	  </p><pre class="screen">
+	/dev/cd0c /mnt/cdrom cd9660 ro,noauto 0 0 </pre><p>
+  </p><p>Para desmontar un CD se emplea:
+	  </p><pre class="screen">
+	umount /mnt/cdrom</pre><p>
+ </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-imagen-iso"></a>6.5.2. Montar imagen ISO 9660</h4></div></div></div><p>Para montar una imágen ISO (i.e un archivo con información de un
+	  CD con el sistema de archivos ISO 9660), primero debe crear un 
+	  dispositivo
+    que la represente, por ejemplo:
+    </p><pre class="screen">
+	vnconfig -c svnd0 /home/pablo/micd.iso 
+	mount /dev/svnd0a /mnt/tmp
+    </pre><p>
+  </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-cd-y-quemadoras"></a>6.5.3. Referencias</h4></div></div></div><p>Más sobre montaje de archivos con
+	    <span><strong class="command">man fstab</strong></span>.
+     </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="quemadora"></a>6.6. Quemadora de CD-R y CD-RW</h3></div></div></div><p>
+  Una quemadora de CD-R y CD-RW se puede comportar como un lector
+  de CDs y usarse como se explica en la sección sobre unidades
+  de CD (ver <a href="configuracion-de-algunos-dispositivos.html#cd" title="6.5. Unidad de CD-ROM">Sección 6.5, “Unidad de CD-ROM”</a>.
+  </p><p>Para quemar una imagen de un CD con datos que usted elija se debe:
+	  </p><div class="itemizedlist"><ul type="disc"><li><p> Contar con una imagen ISO del CD que desea 
+quemar.  Es decir un archivo con la 
+información que irá en el CD en formato ISO9660.  Tal imagen la puede crear
+a partir de un CD que tenga o crearla con archivos y directorios que usted
+elija.
+			  </p></li><li><p>
+Grabar (o quemar) la imagen ISO en un  CD-R o un CD-RW.
+			  </p></li></ul></div><p>
+	  Cada uno de estos pasos se describe en detalle a continuación.
+	</p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="crear-imagen-de-cd"></a>6.6.1. Crear una imagen ISO a partir de un CD existente</h4></div></div></div><p>
+	  Para crear una imagen ISO de un CD existente primero examine 
+	  la cantidad de sectores de los que consta con 
+	  </p><pre class="screen">
+	sudo disklabel /dev/rcd0c
+	  </pre><p>
+	  Suponiendo que cada sector tenga 2048 bytes y el total de sectores
+	  fuera 112120 puede crear la imagen 
+	  (<code class="filename">/home/imagen/micd.iso</code>) empleando el comando:
+	  </p><pre class="screen">
+	sudo dd if=/dev/rcd0c of=/home/imagen/micd.iso bs=2048 count=112120
+	  </pre><p>
+	</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="crear-nueva-imagen-iso"></a>6.6.2. Crear una imagen nueva ISO 9660</h4></div></div></div><p>
+Para crear una imágen ISO a partir de datos que usted
+elija, deje los archivos y directorios por incluir en un 
+directorio (digamos <code class="filename">/home/pablo/imagen</code>),
+el cual después puede especificarse a 
+<span><strong class="command">mkisofs</strong></span> (programa que hace
+parte del paquete <code class="literal">cdrtools</code>).  El formato estándar
+para salvar información en CD-ROMs (ISO9660) sólo permite nombres
+de archivos con 8 caracteres,  extensiones de 3 y restricciones
+en la codificación de caracteres, hay algunas
+extensiones que permiten aumentar este margen, una de estas que es
+algo portable es Rock Ridge (funciona al menos en sistemas Unix y
+en Windows). 
+    </p><p>
+Para crear una imagen ISO con nombre <code class="filename">/home/pablo/micd.iso</code> 
+a partir de la información disponible en <code class="filename">/home/pablo/imagen</code>
+puede ejecutar como usuario <code class="literal">root</code>:
+	    </p><pre class="screen">
+	cd /home/pablo/imagen
+	sudo mkisofs -r -l -f -o /home/pablo/micd.iso  .
+	</pre><p>
+Note que la imagen creada emplea la extensión Rock Ridge 
+(opción <code class="option">-r</code>), permite nombres largos (opción
+<code class="option">-l</code>) y maneja enlaces simbólicos 
+(opción <code class="option">-f</code>).
+    </p><p> 
+	    Por otra parte en sistemas i386 o amd64  es posible arrancar
+un computador desde un CD, configurando el arranque del computador
+desde el BIOS para que sea por la unidad y cuando la imágen del CD 
+se crea con la extensión El Torito.  La extensión El Torito permite 
+incluir la imágen de un floppy que se usa para arrancar.</p><p>Para crear una imágen ISO que use extensión Rock Ridge, con 
+una tabla de contenido de cada directorio
+(<code class="filename">TRANS.TBL</code>), que emplee la imágen
+de disquete <code class="filename">floppy.img</code> para arrancar, con
+información de derechos de reproducción del archivo
+<code class="filename">/home/pablo/Derechos.txt</code>, siguiendo
+enlaces simbólicos y con la jerarquía de directorios y
+archivos de <code class="filename">/home/pablo/imagen/</code> (en la que
+    no debe existir el archivo <code class="filename">boot.catalog</code>) use:
+    </p><pre class="screen">
+	cd /home/pablo/imagen
+	sudo mkisofs -b floppy.img -c boot.catalog -copyright /home/pablo/Derechos.txt \
+	  -r -l -f -o /home/pablo/micd.iso  .
+    </pre><p> 
+    
+    </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="quemar-imagen-iso"></a>6.6.3. Quemado de una imagen ISO 9660 en un CD-R o en un CD-RW</h4></div></div></div><p>
+	  Para escribir una imágen ISO (<code class="filename">micd.iso</code>) con datos
+	  en un CD-R, puede emplear el programa <span><strong class="command">cdrecord</strong></span>, 
+	  el cual puede emplear como dispositivo uno de la forma 
+	<code class="filename">/dev/cd0c</code>
+    o bien <code class="filename">/dev/rcd0c:0,0,0</code>, por ejemplo:
+    </p><pre class="screen">
+	sudo cdrecord dev=/dev/cd0c -data speed=16 /home/pablo/micd.iso
+    </pre><p>
+
+    Si emplea un CD-RW tenga en cuenta blanquearlo antes de escribir 
+    usando la opción <code class="option">blank=fast</code>:
+    </p><pre class="screen">
+	sudo cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/pablo/micd.iso
+    </pre><p>
+  </p><p>Si desea emplear varias sesiones en un mismo CD-R (o CD-RW) tenga
+    en cuenta:
+    </p><div class="itemizedlist"><ul type="disc"><li><p>La primera sesión se hace creando una imágen ISO usual y al 
+	  quemar con cdrecord agregue la opción <code class="option">-multi</code>.   
+	</p></li><li><p>Las imágenes de sesiones posteriores deben crearse empleando la
+    opción <code class="option">-C</code> de
+    <span><strong class="command">mkisofs</strong></span>
+<sup>[<a name="idm1517589264" href="#ftn.idm1517589264">19</a>]</sup>.  Los datos precisos que debe pasar a la 
+	opción -C los examina con:
+</p><pre class="screen">
+	sudo cdrecord dev=/dev/cd0c -msinfo
+</pre><p>
+	Que retorna un par de números (supongamos que 18904,26106), los 
+cuales debe usar con mkisofs, por ejemplo:
+</p><pre class="screen">
+	sudo mkisofs -r -l -f -C 18904,26106 -o ../micd.iso .
+</pre><p>
+Y nuevamente debe pasar 
+    la opción <code class="option">-multi</code> a <span><strong class="command">cdrecord</strong></span> en el
+    momento de quemar.
+	</p></li></ul></div><p>
+  </p><p>
+    Para crear CDs de audio deben emplearse archivos de sonido (por ejemplo
+    formatos <code class="filename">.wav</code> o <code class="filename">.au</code>)
+    con información de 16 bits en estéreo a 44100 muestras/s, codificación
+    PCM.  Al quemar con <span><strong class="command">cdrecord</strong></span> en lugar de la opción
+    <code class="option">-data</code> debe emplearse <code class="option">-audio</code>.
+  </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-quemadoras"></a>6.6.4. Referencias</h4></div></div></div><p>Puede consultar más sobre creación de imágenes para CDs con
+      <span><strong class="command">man mkisofs</strong></span> (tras haber instalado 
+      <code class="literal">cdrtools</code>)).</p><p>Para conocer más sobre el quemado de CDs puede consultar
+      <span><strong class="command">man cdrecord</strong></span> (también después
+      de instalar el paquete <code class="literal">cdrtools</code>). En foros de
+      usuarios pueden verse mensajes como
+      <a href="http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html%20%20" target="_top">http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html  </a>, 
+      <a href="http://www.deadly.org/article.php3?sid=20031105030127&amp;mode=flat" target="_top">http://www.deadly.org/article.php3?sid=20031105030127&amp;mode=flat</a>  y
+      <a href="http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html" target="_top">http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html</a>
+    </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="dvd"></a>6.7. Operaciones con DVD</h3></div></div></div><p>El sistema de archivos de los DVD es UDF, que es diferente al de los
+	  CDs (ISO9660). Desde la versión 4.0, OpenBSD soporta las versiones 
+	  1.02 y 1.50 de UDF en modos plain y VAT (ver <a href="" target="_top"></a>
+  </p><p>
+	  Las operaciones de montaje de DVDs, montaje de imagenes y copia de 
+	  DVDs a disco son como las de CDs 
+	  remplazando el tipo <code class="literal">cd9660</code> por 
+	  <code class="literal">udf</code>
+	  (ver <a href="configuracion-de-algunos-dispositivos.html#montar-cd" title="6.5.1. Montar un CD">Sección 6.5.1, “Montar un CD”</a>, 
+	  <a href="configuracion-de-algunos-dispositivos.html#montar-imagen-iso" title="6.5.2. Montar imagen ISO 9660">Sección 6.5.2, “Montar imagen ISO 9660”</a> y
+	  <a href="configuracion-de-algunos-dispositivos.html#crear-imagen-de-cd" title="6.6.1. Crear una imagen ISO a partir de un CD existente">Sección 6.6.1, “Crear una imagen ISO a partir de un CD existente”</a>).
+  </p><p>Para quemar DVDs es necesario instalar el paquete
+	  <code class="literal">cdrtools</code>, el cual incluye el programa
+	  <code class="literal">growisofs</code> que permite quemar DVDs al
+	  menos de dos formas:
+	  </p><div class="orderedlist"><ol type="1"><li><p>Incluir una serie de archivos sin necesidad 
+				  de preparar previamente una 
+	  imagen del DVD.  Por ejemplo para quemar un DVD que tenga los 
+	  archivos 
+	  <code class="filename">/home/copia/a</code> y 
+	  <code class="filename">/home/copia/b</code>:
+	  </p><pre class="screen">
+	sudo growisofs -Z /dev/rcd0c -R /home/copia/a /home/copia/b
+	  </pre><p>
+			  </p></li><li><p>Para quemar un DVD con la imagen ISO 
+				  <code class="filename">dvd.iso</code>
+				  </p><pre class="screen">
+	sudo growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
+				  </pre><p>
+			  </p></li></ol></div><p>
+  </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-dvd"></a>6.7.1. Referencias</h4></div></div></div><p> <span><strong class="command">man mount_udf</strong></span> y <span><strong class="command">man growisofs</strong></span>.
+    </p><p>
+	    Universal Disk Format: <a href="http://en.wikipedia.org/wiki/Universal_Disk_Format" target="_top">http://en.wikipedia.org/wiki/Universal_Disk_Format</a>
+    </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="memoria-usb"></a>6.8. Memoria USB</h3></div></div></div><p>
+	      Para emplear una memoria USB después de conectarse debe:
+	      </p><div class="orderedlist"><ol type="1"><li><p>
+	      Examinar el dispositivo con el cual fue reconocida su
+	      	memoria tras conectarla.  Vea los últimos mensajes 
+		presentados por <span><strong class="command">dmesg</strong></span>, típicamente
+		será <code class="literal">sd0</code>.
+			      </p></li><li><p>
+		Examinar la partición por montar con 
+		</p><pre class="screen">
+	sudo disklabel /dev/rsd0c
+		</pre><p>
+		la partición que deberá montar podría ser
+		<code class="literal">/dev/sd0c</code> o  por ejemplo
+		<code class="literal">/dev/sd0i</code>.
+			      </p></li><li><p>
+		Montar la partición apropiada en un punto del sistema
+			de archivos, por ejemplo con:
+			</p><pre class="screen">
+	sudo mkdir /mnt/usb
+	sudo mount /dev/sd0i /mnt/usb
+			</pre><p>
+			      </p></li><li><p>
+		Usar su memoria para leer/escribir (recordando que
+		sólo podría escribir el usuario que sea dueño
+		del punto de montaje)
+			      </p></li><li><p>
+		Cuando termine su utilización desmontar por ejemplo con:
+		</p><pre class="screen">
+	sudo umount /mnt/usb
+		</pre><p>
+			      </p></li></ol></div><p>
+      </p></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="imagen-encriptada"></a>6.9. Imagen encriptada</h3></div></div></div><p>
+  Es posible tener particiones encriptadas, estas requieren que se ingrese
+  una clave antes de montarlas ---por ejemplo en el momento del arranque.
+  </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="crear-imagen"></a>6.9.1. Creación de la imagen</h4></div></div></div><p>
+		  Para crear una imagen de aprox. 500MB en el archivo
+		  <code class="filename">/var/post.img</code> puede usar:
+		  </p><pre class="screen">
+
+	sudo dd if=/dev/zero of=/var/post.img bs=1024 count=500000
+	sudo vnconfig -ckv svnd0 /var/post.img
+	sudo newfs /dev/svnd0c
+	sudo vnconfig -u svnd0
+		  </pre><p>
+La clave que ingrese tras 
+<code class="literal">vnconfig -ckv svnd0 /var/post.img</code>,
+la requerirá posteriormente para usar la imagen.
+   </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-imagen"></a>6.9.2. Montar imagen</h4></div></div></div><p>
+		   Esta imagen puede ser montadas (por ejemplo
+		   en <code class="filename">/var/postgresql</code>) con el 
+		   siguiente archivo de comandos
+		   (ubíquelo por ejemplo en
+		   <code class="filename">/usr/local/sbin/montapost.sh</code>):
+		   </p><pre class="screen">
+#!/bin/sh
+# Monta imagenes encriptadas en OpenBSD. Dominio público. 2006.
+
+if (test ! -d /var/postgresql) then {
+	mkdir /var/postgresql
+	chown _postgresql:_postgresql /var/postgresql
+} fi;
+vnconfig -ckv svnd0 /var/post.img
+mount /dev/svnd0c /var/postgresql
+	</pre><p>
+	y recuerde otorgar permiso de ejecución del mismo:
+	</p><pre class="screen">
+	sudo chmod +x /usr/local/sbin/montapost.sh
+	</pre><p>
+</p><p>
+	Notará que este ejemplo es para montar una partición en 
+	la que funcionará una base de datos PostgreSQL, si  
+       	no existiera el usuario
+	<code class="literal">_postgresql</code> antes de ejecutar este archivo
+	de comandos ejecute <code class="literal">chmod a+w /var/postgresql</code>  y 
+	después
+	de que haya instalado PostgreSQL:
+	</p><pre class="screen">
+	sudo chown _postgresql:_postgresql /var/postgresql
+	sudo chmod o-w /var/postgresql
+	</pre><p>
+</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-arranque"></a>6.9.3. Montar en el arranque</h4></div></div></div><p>
+		Este script debe ejecutarse en el momento del arranque 
+		y antes de iniciar la base de datos, agregue a su archivo
+		<code class="filename">/etc/rc.local</code> (antes de la inicialización 
+		de PostgreSQL):
+		</p><pre class="screen">
+	sudo /usr/local/sbin/montapost.sh
+		</pre><p>
+		De forma que en cada arranque el script le solicitará la 
+		clave antes de continuar.
+	</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-imagen-encriptada"></a>6.9.4. Referencias</h4></div></div></div><p>Página <span><strong class="command">man vnconfig</strong></span>.
+     </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="teclado-en-espanol"></a>6.10. Teclado en español</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="consolas"></a>6.10.1. En las consolas tipo texto</h4></div></div></div><p> Si su teclado es español o latinoamericano puede configurarlo
+	durante la instalación.  Después de instalado puede elegir otra
+	configuración con <span><strong class="command">keyb la</strong></span> o 
+	<span><strong class="command">keyb es</strong></span>
+      </p><p>Si tiene un teclado US y desea emplear teclas muertas en la
+	consola puede usar desde la línea de comandos:
+	</p><pre class="screen">
+	sudo wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
+	sudo wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"
+	sudo wsconsctl -w keyboard.map+="keycode 56=Cmd2 Multi_key" </pre><p>
+
+	o para que esta configuración siempre sea realizada durante el 
+	arranque agregue estas líneas al final de 
+	<code class="filename">/etc/rc.local</code> (puede agregar al final de
+	cada línea <code class="literal">&gt; /dev/null</code>).
+      </p><p> Estas líneas configuran entre otros:
+	</p><div class="variablelist"><dl><dt><span class="term"><span><strong class="keycap">'</strong></span></span></dt><dd><p>como tecla muerta para la tilde (seguido de un espacio 
+		producirá el apostrofe)</p></dd><dt><span class="term"><span><strong class="keycap">"</strong></span></span></dt><dd><p>como tecla muerta para la diéresis (seguido de un espacio 
+		producirá las comillas)</p></dd><dt><span class="term"><span><strong class="keycap">`</strong></span></span></dt><dd><p>como tecla muerta para el acento grave (seguido 
+		de un espacio produce el apostrofe izquierdo)
+	    </p></dd><dt><span class="term"><span><strong class="keycap">~</strong></span></span></dt><dd><p>como tecla muerta para la virgulilla (seguido 
+		de un espacio produce ~)
+	    </p></dd><dt><span class="term"><span><strong class="keycap">^</strong></span></span></dt><dd><p>como tecla muerta para el acento circunflejo
+	    </p></dd><dt><span class="term"><span><strong class="keycap">Shift+Alt izquierdo</strong></span></span></dt><dd><p>Como tecla de composición</p></dd></dl></div><p>	  
+      </p><p>La tecla de composición<sup>[<a name="idm677452176" href="#ftn.idm677452176">20</a>]</sup>
+	le permitirá generar un carácter empleando una secuencia de dos
+	teclas.  
+	Por ejemplo si presiona la tecla de composición
+	(i.e <span><strong class="keycap">Shift+Alt izquierdo</strong></span> con la configuración
+	presentada), y después presiona <span><strong class="keycap">?</strong></span> seguido de
+	<span><strong class="keycap">?</strong></span> obtendrá el carácter ¿.  En el apendice <a href="caracteres-que-pueden-generarse.html" title="A. Caracteres que pueden generarse">Caracteres que pueden
+	  generarse</a>
+	encontrará una tabla con todas las combinaciones de teclas que 
+	pueden usarse con la tecla compose y con teclas muertas.
+
+	
+</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="teclado-xwindow"></a>6.10.2. X-Window</h4></div></div></div><p> Dado que X-Window emplea el teclado en modo crudo la
+	configuración que haga para las consolas virtuales no quedará
+	disponible.</p><p>Si tiene un teclado en español puede configurarlo con
+	<span><strong class="command">xorgcfg</strong></span> o bien con
+	<span><strong class="command">xorgcfg -textmode</strong></span>, o bien editando el
+	archivo <code class="filename">/etc/X11/xorg.conf</code> para que
+	en la sección del teclado quede la línea:
+	</p><pre class="screen">
+	Option  "XkbLayout" "es"
+	</pre><p>
+	o si su teclado es latinoamericano remplace <code class="literal">es</code>
+	por <code class="literal">latam</code>.
+</p><p>Si tiene un teclado en inglés puede agregar las siguientes 
+		líneas a su archivo <code class="filename">~/.Xmodmap</code> 
+	</p><pre class="screen">
+	keycode 64=Alt_L Multi_key
+	keycode 48=dead_acute dead_diaeresis
+	keycode 49=dead_grave dead_tilde </pre><p>
+
+		y asegurarse de ejecutar 
+		<span><strong class="command">xmodmap ~/.Xmodmap</strong></span>
+		durante el arranque de su sesión X (podría ser
+		por ejemplo agregándolo a <code class="filename">~/.xsession</code>)
+	</p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1803018352" href="#idp1803018352">13</a>] </sup>En el caso de LPD el directorio con la cola de trabajos 
+		      de una impresora
+	  se configura en <code xmlns="" class="filename">/etc/printcap</code>, en el
+	  caso de <span xmlns=""><strong class="command">lp</strong></span> el directorio por defecto es
+	  <code xmlns="" class="filename">/var/spool/outputlpd/lp</code>.
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2291767536" href="#idp2291767536">14</a>] </sup>Normalmente puede configurar otro nombre para la impresora 
+		      por defecto en la variable de ambiente 
+		      <code xmlns="" class="envar">PRINTER</code>.
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1091443856" href="#idm1091443856">15</a>] </sup>Hay algunas impresoras que pueden imprimir PostScript
+	  directamente, pero en general para hacer la traducción de
+	  PostScript al lenguaje de una impresora se requiere un filtro
+	  que el administrador del sistema debe configurar.  </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1091443728" href="#idm1091443728">16</a>] </sup><span xmlns="" class="acronym">PDF</span> (<span xmlns="" class="foreignphrase"><em class="foreignphrase">Portable Document
+	    Format</em></span> es otro lenguaje para impresión, de
+	  documentos con gráficas y diversos tipos de letras, basado en
+	  PostScript (de la misma compañía ---Adobe).
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1052348784" href="#idp1052348784">17</a>] </sup>De acuerdo a <em xmlns="" class="citetitle">Printig-HOWTO</em> estas
+	  herramientas ofrecen la funcionalidad de las herramientas
+	  "<span xmlns="" class="foreignphrase"><em class="foreignphrase">distiller</em></span>" de Adobe.
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1017835792" href="#idm1017835792">18</a>] </sup>Los
+		  parámetros del hardware mantenidos ayudan a localizar
+		  bloques libres de forma óptima.</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1517589264" href="#idm1517589264">19</a>] </sup>
+      Si la sesión previa tenia -T esta también con mismo nombre de tablas
+    (especificable con -table-name TN).
+    </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm677452176" href="#idm677452176">20</a>] </sup>Tecla de composición: en
+	  inglés <span xmlns="" class="foreignphrase"><em class="foreignphrase">compose key</em></span></p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-algunos-portes.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">5. Configuración y uso de algunas aplicaciones </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 7. Instalaciones duales</td></tr></table></div></body></html>

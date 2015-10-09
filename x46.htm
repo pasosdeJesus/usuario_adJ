@@ -1,0 +1,2236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Sobre la instalación</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+HREF="t1.htm"><LINK
+REL="NEXT"
+TITLE="Paquetes y portes"
+HREF="x570.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="t1.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x570.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="sobre-la-instalacion"
+>Sobre la instalación</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="prerequisitos-para-la-instalacion"
+>Prerequisitos para la instalación</A
+></H2
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Un computador con procesador de 64 bits de la familia x86 (hay imagenes de versiones anteriores a la 4.9 para procesadores de 32 bits).
+                </P
+></LI
+><LI
+><P
+>Componentes básicos para la instalación en un medio que
+	    pueda acceder.  Es decir en uno de los siguientes:
+        <P
+></P
+><UL
+><LI
+><P
+>DVD: Puede descargarlo de <A
+HREF="ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus"
+TARGET="_top"
+>ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus</A
+> por ejemplo con el programa 
+                      <B
+CLASS="command"
+>ftp</B
+> de
+                      OpenBSD:
+                      <PRE
+CLASS="screen"
+>&#13;	ftp -C ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus5.7-amd64.iso
+                      </PRE
+>
+                      o bien con el programa <B
+CLASS="command"
+>wget</B
+>:
+                      <PRE
+CLASS="screen"
+>&#13;	wget -c ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus5.7-amd64.iso 
+                      </PRE
+> 
+                      Usando estas formas podrá reanudar la transferencia en caso de que se interrumpa.
+                      Otra posibilidad que tiene que puede acelerar la descarga, pero sin posibilidad de reanudar en caso de que se interrumpa, es emplear el programa <B
+CLASS="command"
+>rsync</B
+>:
+                      <PRE
+CLASS="screen"
+>&#13;	rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/AprendiendoDeJesus5.7-amd64.iso .  
+                      </PRE
+> 
+                      Note que hay un punto al final, que indica que el destino de la copia es el directorio actual. 
+                      Si desea ver que otros archivos hay en el mismo directorio de esa imagen ISO utilice:
+                      <PRE
+CLASS="screen"
+>&#13;	rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/
+                      </PRE
+>
+		</P
+></LI
+><LI
+><P
+>O bien partición ext2 (de Linux), ffs (de OpenBSD) o FAT (de
+		DOS y Windows) con juegos de instalación.</P
+></LI
+><LI
+><P
+>O bien conexión a Internet o una Intranet con una tarjeta de 
+		red (el disco de instalación NO soporta PPP ni SLIP) y 
+		un espejo del servidor FTP o HTTP que se pueda acceder 
+		rapidamente desde su computador.</P
+></LI
+></UL
+>
+	  </P
+><P
+>Aunque es posible realizar la descarga de imagenes ISO,  
+	      recomendamos  comprar<A
+NAME="AEN71"
+HREF="#FTN.AEN71"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+> los CDs oficiales de instalación
+	      para apoyar los proyectos OpenBSD y adJ.  
+	    La estructura del CD oficial de OpenBSD
+	    tiene derechos de reproducción restrictivos ---sólo la
+	    estructura, las fuentes son de libre redistribución en su
+	    mayoría cubiertas por la licencia BSD.   Por esto en caso de
+	    comprar CDs oficiales comprelos sólo a los desarrolladores o a
+	    redistribuidores autorizados.  En el caso de OpenBSD ver
+        <A
+HREF="http://www.openbsd.org/orders.html"
+TARGET="_top"
+>http://www.openbsd.org/orders.html</A
+> y en el caso de adJ ver
+        <A
+HREF="https://aprendiendo.pasosdeJesus.org"
+TARGET="_top"
+>https://aprendiendo.pasosdeJesus.org</A
+>.
+	    </P
+></LI
+><LI
+><P
+>Contar con hardware soportado.  La mayoría de componentes
+		    típicos son soportados, aunque hay excepciones por
+		    lo que antes de comprar se recomienda consultar la 
+		    lista completa de los dispositivos para procesadores 
+		    amd64 que son soportados en:
+	      <A
+HREF="http://www.openbsd.org/amd64.html"
+TARGET="_top"
+>http://www.openbsd.org/amd64.html</A
+>.
+	    </P
+></LI
+><LI
+><P
+>Una partición primaria de al menos 13GB en un disco duro, que
+		    comience en un cilindro arbitrario, pero en la cabeza 1 
+		    ---en lugar de la cabeza 0.  Si planea comprar un
+		    computador con otro sistema operativo puede solicitarle
+		    al vendedor que le deje disponible una partición con estas 
+		  características.  Durante la 
+	      instalación podrá asignar a
+	      esta partición el tipo OpenBSD (A6), podrá dividirla en
+	      etiquetas que son como subparticiones lógicas sólo visibles en
+	      OpenBSD (e.g para <TT
+CLASS="filename"
+>/</TT
+>,
+	      <TT
+CLASS="filename"
+>/home</TT
+> y <TT
+CLASS="filename"
+>/var</TT
+>) sobre
+	      cada una de las cuales podrá emplear el sistema de archivos
+	      de OpenBSD (Fast File System o <TT
+CLASS="literal"
+>ufs</TT
+> en 
+	      terminología Linux).
+	      También podrá montar particiones de otros sistemas
+	      operativos, por ejemplo <TT
+CLASS="literal"
+>ext2</TT
+> está bien 
+	      soportado, o tener un sistema dual
+	      (ver <A
+HREF="x2299.htm"
+>la sección de nombre <I
+>Instalaciones duales</I
+></A
+>).  </P
+><P
+> Si en su computador no tiene una partición disponible,
+	puede intentar cambiar el tamaño de una existente para liberar 
+	espacio y crear una nueva (sacando copia de respaldo antes de estas
+	operaciones).   Si una de las particiones tiene sistema
+	FAT o FAT32 (e.g con Windows 9x o XP) puede usar 
+	<TT
+CLASS="literal"
+>fips</TT
+>.  
+	Si la partición 
+	que desea redimensionar tiene formato ext2fs (Linux) puede 
+	usar <TT
+CLASS="literal"
+>parted</TT
+> o <TT
+CLASS="literal"
+>resize2fs</TT
+>. En el
+	caso de particiones NTFS (Windows Vista o 7) puede usar 
+	<TT
+CLASS="literal"
+>ntfsresize</TT
+> desde un 
+	sistema Linux o arrancando con un disquette como 
+	<A
+HREF="http://paud.sourceforge.net/"
+TARGET="_top"
+>PAUD</A
+>, o bien
+	si prefiere utilidades gráficas para reparticionar puede arrancar 
+	desde un pequeño CD de rescate como
+	<A
+HREF="http://www.tux.org/pub/people/kent-robotti/looplinux/rip/"
+TARGET="_top"
+>RIP</A
+> 
+	o por ejemplo con un CD instalador de Ubuntu.</P
+></LI
+><LI
+><P
+>Leer la fe de erratas que incluye solucionas a eventuales problemas que tendrá durante la
+              instalación o cuando concluya junto con soluciones:
+              <A
+HREF="http://aprendiendo.pasosdejesus.org/?id=AdJ+5.7+-+Aprendiendo+de+Jesus+5.7"
+TARGET="_top"
+>http://aprendiendo.pasosdejesus.org/?id=AdJ+5.7+-+Aprendiendo+de+Jesus+5.7</A
+>
+          </P
+></LI
+></OL
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="ayudas-para-la-instalacion"
+>Ayudas para la instalación</A
+></H2
+><P
+>&#13;        Es muy recomendable consultar <A
+HREF="http://www.openbsd.org/faq/faq4.html#4.1"
+TARGET="_top"
+>guía de
+	    instalación de OpenBSD</A
+>.
+	</P
+><P
+>Si tiene el DVD oficial, configure su BIOS para que arranque por este y reinicie<A
+NAME="AEN101"
+HREF="#FTN.AEN101"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+>. 
+	Este DVD contiene un sistema OpenBSD mínimo que
+	  detectará automáticamente el hardware y lo guiará en el proceso
+	  de instalación.  Si había creado con anterioridad la partición
+	  primaria para OpenBSD
+	  seguramente no tendrá inconveniente en esta instalación, basta
+	  que tenga en cuenta algunas diferencias entre Linux y OpenBSD:
+	  <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>Nombres y manejo de dispositivos</DT
+><DD
+><DIV
+CLASS="table"
+><A
+NAME="AEN109"
+></A
+><P
+><B
+>Tabla 1. Nombres de dispositivos</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Dispositivo</TH
+><TH
+>Linux</TH
+><TH
+>OpenBSD</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>Disco IDE 1 maestro</TD
+><TD
+><TT
+CLASS="filename"
+>/dev/hda</TT
+></TD
+><TD
+><TT
+CLASS="filename"
+>/dev/wd0c</TT
+> o en modo crudo
+			  <TT
+CLASS="filename"
+>/dev/rwd0c</TT
+></TD
+></TR
+><TR
+><TD
+>Disco SCSI</TD
+><TD
+><TT
+CLASS="filename"
+>/dev/sda</TT
+></TD
+><TD
+><TT
+CLASS="filename"
+>/dev/sd0c</TT
+> o en modo crudo
+			  <TT
+CLASS="filename"
+>/dev/rsd0c</TT
+></TD
+></TR
+><TR
+><TD
+>Mouse</TD
+><TD
+><TT
+CLASS="filename"
+>/dev/psaux</TT
+> o
+			  <TT
+CLASS="filename"
+>/dev/ttyS0</TT
+>,
+			  <TT
+CLASS="filename"
+>/dev/ttyS1</TT
+> ...</TD
+><TD
+><TT
+CLASS="filename"
+>/dev/wsmouse</TT
+> si es
+			  PS/2. Si es serial uno como 
+			  <TT
+CLASS="filename"
+>/dev/tty00</TT
+> o
+			  <TT
+CLASS="filename"
+>/dev/tty01</TT
+>.</TD
+></TR
+><TR
+><TD
+>Teclado</TD
+><TD
+><TT
+CLASS="filename"
+>/dev/kbd</TT
+></TD
+><TD
+><TT
+CLASS="filename"
+>/dev/wskbd</TT
+></TD
+></TR
+><TR
+><TD
+>Primera unidad de disquete</TD
+><TD
+><TT
+CLASS="filename"
+>/dev/fd0</TT
+></TD
+><TD
+><TT
+CLASS="filename"
+>/dev/fd0c</TT
+><A
+NAME="AEN154"
+HREF="#FTN.AEN154"
+><SPAN
+CLASS="footnote"
+>[a]</SPAN
+></A
+>
+			</TD
+></TR
+><TR
+><TD
+>Primera unidad de DVD</TD
+><TD
+>Si es IDE algo como
+			  <TT
+CLASS="filename"
+>/dev/hdb</TT
+>, si es SCSI algo
+			  como <TT
+CLASS="filename"
+>/dev/sda</TT
+> </TD
+><TD
+><TT
+CLASS="filename"
+>/dev/cd0c</TT
+></TD
+></TR
+></TBODY
+><TR
+><TD
+COLSPAN="3"
+>Notas de tabla:<BR><A
+NAME="FTN.AEN154"
+>a. </A
+>En discos, DVDs y disquettes las 
+			      particiones se indican con a, b, d y letras
+			      que se usan como postfijo.  El postfijo c 
+			      representa el disco/DVD/disquette
+			      completo.  Por ejemplo en el caso del primer
+			      disco IDE las particiones pueden ser:
+			      <TT
+CLASS="filename"
+>/dev/wd0a</TT
+>,
+			      <TT
+CLASS="filename"
+>/dev/wd0b</TT
+>,
+			      <TT
+CLASS="filename"
+>/dev/wd0d</TT
+> y así
+			      sucesivamente, mientras que
+			      <TT
+CLASS="filename"
+>/dev/wd0c</TT
+> 
+			      representa el disco completo.  Pueden
+			      verse las particiones precisas que se usan
+			      del primer disco IDE  con 
+			      <B
+CLASS="command"
+>disklabel /dev/wd0c</B
+>
+			  <BR></TD
+></TR
+></TABLE
+></DIV
+><P
+>En Linux los controladores están en módulos algunos de
+		los cuales deben configurarse con herramientas externas al
+		kernel o manualmente.  En OpenBSD los controladores están
+		integrados en el kernel y normalmente detectan los
+		dispositivos y se configuran automáticamente.  Si durante el
+		arranque del disquete o del sistema algún dispositivo
+		soportado no logra ser detectado o configurado puede
+		emplear <B
+CLASS="command"
+>boot -c</B
+> en el prompt de arranque 
+		para entrar a un
+		editor de las variables de configuración del kernel y
+		ajustar manualmente los recursos para el
+		dispositivo.</P
+></DD
+><DT
+>Sistema básico y portes</DT
+><DD
+><P
+>Notará que la instalación es muy corta porque
+		sólo se instala un sistema básico, que consta del kernel,
+		comandos básicos (de <TT
+CLASS="filename"
+>/bin</TT
+> y
+		<TT
+CLASS="filename"
+>/sbin</TT
+> y <TT
+CLASS="filename"
+>/usr/lib</TT
+>), 
+		archivos de configuración (de <TT
+CLASS="filename"
+>/etc</TT
+>)
+		y eventualmente, si los escoge al instalar, compilador, 
+		documentación y el servidor X-Window. Estos componentes
+		conforman OpenBSD y han sido ampliamente auditados.</P
+><P
+>Después de instalar el sistema básico podrá instalar
+		programas que han sido portados pero que no han
+		pasado por un proceso de revisión tan intenso como el de 
+		los componentes
+		básicos (ver <A
+HREF="x570.htm"
+>Paquetes y
+		  portes</A
+>).</P
+></DD
+><DT
+>Particiones</DT
+><DD
+><P
+>OpenBSD puede dividir la partición que haya 
+				  destinado para este sistema  en 
+		"subparticiones".  Tenga en cuenta no
+		transpasar los límites de la partición que reservó para
+		OpenBSD al definir esta subparticiones con el programa
+		<B
+CLASS="command"
+>disklabel</B
+> (el
+		mismo programa le ayudará a evitarlo).  Los componentes
+		básicos del sistema estarán especialmente en
+		<TT
+CLASS="filename"
+>/usr</TT
+>, mientras que los paquetes
+		emplearán <TT
+CLASS="filename"
+>/usr/local</TT
+></P
+><P
+>Para un sistema de escritorio puede bastar dividir
+		el espacio de su partición para OpenBSD en:
+		<TT
+CLASS="filename"
+>/</TT
+> (al menos con 3G o si
+		desea instalar los paquetes incluidos en el DVD y para compilar fuentes
+		al menos con 50G), <TT
+CLASS="filename"
+>/home</TT
+> (con tanto
+		espacio como desee para los usuarios)
+        y	<TT
+CLASS="filename"
+>/var</TT
+> (al menos con 1.2G si planea sacar respaldos de imagenes encriptadas
+        en CD o de 8G si planea sacarlas en DVD).
+		</P
+></DD
+><DT
+>Interprete de comandos</DT
+><DD
+><P
+>Por defecto emplea <B
+CLASS="command"
+>ksh</B
+> 
+		   que es muy parecido a
+		  <B
+CLASS="command"
+>bash</B
+>. Hay también un paquete de 
+		  <B
+CLASS="command"
+>bash</B
+> que podría instalar después 
+		  de tener en operación el sistema básico.
+	      </P
+></DD
+><DT
+>Herramientas UNIX</DT
+><DD
+><P
+> Notará también que otros programas (como
+		    <B
+CLASS="command"
+>sed</B
+>, <B
+CLASS="command"
+>awk</B
+>, 
+		    <B
+CLASS="command"
+>tar</B
+> y <B
+CLASS="command"
+>make</B
+>) tienden 
+		    a conformar el estándar POSIX pero no algunas
+		    extensiones comunes en sistemas Linux.
+	      	</P
+></DD
+></DL
+></DIV
+>
+</P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="instalacion-y-configuracion-del-sistema-basico"
+>Instalación y configuración del sistema básico</A
+></H2
+><P
+>&#13;
+	      Una vez pueda iniciar un medio con un instalador, el
+	      sistema reconocerá las partes de su computador y esperará
+	      algunas respuestas de su parte, como si desea instalar,
+	      actualizar o iniciar un interprete de comandos para 
+	      rescatar un sistema:
+	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN209"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="instala1.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+También podrá elegir distribución del teclado, por ejemplo el teclado típico 
+con 'ñ' y junto a esta un '{' corresponde a 'es'.
+
+El instalador a continuación le permitirá configurar dispositivo
+de red que usará, clave para la cuenta root y detalles para el inicio
+del sistema entre los cuales es importante que confirme
+el uso de <TT
+CLASS="literal"
+>xdm</TT
+>, la zona horaria (por defecto
+<TT
+CLASS="literal"
+>America/Bogota</TT
+>) y que cree una cuenta del sistema
+(en este ejemplo servidor) que posteriormente podrá configurar como
+cuenta de usuario administrador
+(<TT
+CLASS="literal"
+>sshd</TT
+> es un servicio que permite operación 
+remota con ssh, <TT
+CLASS="literal"
+>ntpd</TT
+> permite sincronizar reloj 
+con servidores
+para esto, X-Window es el entorno gráfico, <TT
+CLASS="literal"
+>xdm</TT
+> 
+es el programa que tras iniciar el entorno gráfico le permite 
+autenticarse).
+
+<DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN221"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="instala2.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+
+En las capturas de pantalla de ejemplo hay un sólo disco duro que se usará completo
+para OpenBSD, es decir tendrá una sóla partición del BIOS
+que abarca todo el disco.  De no usarse completo el instalador
+ingresará al programa <B
+CLASS="command"
+>fdisk</B
+> que le permitirá
+especificar la partición del BIOS que destinará para OpenBSD (en
+<B
+CLASS="command"
+>fdisk</B
+> el comando 'h' le presentará una breve 
+ayuda).
+<DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN230"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="instala3.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+Tras definir el área del disco dedicada a OpenBSD podrá definir
+etiquetas o subparticiones para el área de OpenBSD con el programa 
+<B
+CLASS="command"
+>disklabel</B
+>.    Aunque hay un modo de
+autolocalización de las subparticiones se recomienda que cree su
+propio esquema de subparticiones dejando al menos 10GB para la
+partición donde estará <TT
+CLASS="filename"
+>/usr/local</TT
+> y al menos 
+1.2GB para <TT
+CLASS="filename"
+>/var</TT
+>.
+El comando 'h' en <B
+CLASS="command"
+>disklabel</B
+> presenta una breve ayuda.
+En el ejemplo siguiente se crean 4 subparticiones, la primera (<TT
+CLASS="literal"
+>a</TT
+>) siempre
+debe ser para el sistema raíz (/), la segunda (<TT
+CLASS="literal"
+>b</TT
+>) 
+siempre debe ser área de intercambio o swap (es indispensable tenerla o 
+podrá tener problemas de memoria posteriormente con algunas aplicaciones), la 
+partición <TT
+CLASS="literal"
+>c</TT
+> representa la partición del BIOS 
+completa y no debe tocarse, la tercera (<TT
+CLASS="literal"
+>d</TT
+>) corresponderá 
+a <TT
+CLASS="filename"
+>/home</TT
+> y la cuarta (<TT
+CLASS="literal"
+>e</TT
+>) a 
+<TT
+CLASS="filename"
+>/var</TT
+><A
+NAME="AEN248"
+HREF="#FTN.AEN248"
+><SPAN
+CLASS="footnote"
+>[3]</SPAN
+></A
+>.
+
+Note que con este esquema los programas y sus datos estáticos (típicos
+de los directorios <TT
+CLASS="filename"
+>/bin</TT
+>, <TT
+CLASS="filename"
+>/sbin</TT
+>
+y <TT
+CLASS="filename"
+>/usr</TT
+> quedarán en la subpartición <TT
+CLASS="literal"
+>a</TT
+>.
+Los datos de usuario típicamente en <TT
+CLASS="filename"
+>/home</TT
+> quedarán
+en la subpartición <TT
+CLASS="literal"
+>d</TT
+>, y los datos variables de los
+programas (e.g páginas web, bases de datos, bitácoras) típicos de
+<TT
+CLASS="filename"
+>/var</TT
+> quedarán en la subpartición <TT
+CLASS="literal"
+>e</TT
+>.
+
+<DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN258"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="instala4.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+Note que de cada subpartición debe especificar desplazamiento (i.e sector
+en el que comienza) y tamaño (i.e cantidad de sectores que ocupa). Tenga
+en cuenta que un sector es de 512bytes, así que aproximadamente 2'000.000
+de sectores corresponden a 1GB.  En el ejemplo anterior / es de 
+aproximadamente 10GB,
+la partición de intercambio es de 500MB, /home de 1GB y /var 
+aproximadamente de 2.1GB.
+<DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN265"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="instala5.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+
+Después de elegir subparticiones el instalador formateará las subparticiones.  
+
+Después podrá especificar la ruta donde están los juegos de instalación (en
+el caso de la distribución Aprendiendo de Jesús es <TT
+CLASS="literal"
+>/</TT
+>) y 
+elegir los que instalará.
+
+Podrá elegir entre:
+	<P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>bsd</DT
+><DD
+><P
+>Se trata del kernel genérico
+					ya compilado para su plataforma</P
+></DD
+><DT
+>bsd.mp</DT
+><DD
+><P
+>El kernel con soporte para
+			múltiples procesadores (SMP).</P
+></DD
+><DT
+>bsd.rd</DT
+><DD
+><P
+>El kernel pero que no usa dispositivos de
+			almacenamiento sino un disco virtual en RAM
+			(útil por ejemplo para hacer actualizaciones).</P
+></DD
+><DT
+>base57</DT
+><DD
+><P
+>Que es indispensable, porque además de la jerarquía de
+		directorios incluye: los 
+		programas de los directorios <TT
+CLASS="filename"
+>/bin</TT
+>,
+		<TT
+CLASS="filename"
+>/usr/bin</TT
+>, <TT
+CLASS="filename"
+>/sbin</TT
+>,
+		<TT
+CLASS="filename"
+>/usr/libexec</TT
+> y 
+		<TT
+CLASS="filename"
+>/usr/sbin</TT
+>;
+		las librerías de <TT
+CLASS="filename"
+>/usr/lib</TT
+>,
+		<TT
+CLASS="filename"
+>/usr/libdata</TT
+> ;
+	        información de <TT
+CLASS="filename"
+>/usr/share</TT
+> y de 
+		<TT
+CLASS="filename"
+>/var</TT
+>.  Entre los programas y servicios
+		auditados que incluye están: herramientas estándar de Unix, 
+		servidor web Apache, OpenSSH, NIS, CVS, sendmail, NTP,
+		IPv6, autenticación con Kerberos, NFS, NAT, AMD, AFS,
+		perl y algunas herramientas de desarrollo.
+	      </P
+></DD
+><DT
+>etc57</DT
+><DD
+><P
+>También indispensable en sistemas que se
+		instalan por primera vez (aunque no necesariamente si se hace
+		actualización). Incluye los
+		archivos de configuración del directorio
+		<TT
+CLASS="filename"
+>/etc</TT
+> e información complementaria
+		de <TT
+CLASS="filename"
+>/var</TT
+>.</P
+></DD
+><DT
+>comp57</DT
+><DD
+><P
+>Que incluye herramientas de desarrollo para
+		Fortran, C y C++.  Las librerías que estas requieren y la
+		documentación de las llamadas al sistema y de las
+		librerías.</P
+></DD
+><DT
+>man57</DT
+><DD
+><P
+>Que incluye documentación HTML, info y man de 
+		los programas y librerías de base57.</P
+></DD
+><DT
+>game57</DT
+><DD
+><P
+>Algunos juegos que se instalan en
+		<TT
+CLASS="filename"
+>/usr/games</TT
+></P
+></DD
+><DT
+>misc57</DT
+><DD
+><P
+>Que incluye información del directorio
+		<TT
+CLASS="filename"
+>/usr/share</TT
+> como diccionarios y
+		documentación complementaria.</P
+></DD
+><DT
+>xbase57</DT
+><DD
+><P
+>Programas básicos de X-Window
+		(<TT
+CLASS="filename"
+>/usr/X11R6/bin</TT
+>), librerías
+		(<TT
+CLASS="filename"
+>/usr/X11R6/lib</TT
+>)  y su
+		documentación (<TT
+CLASS="filename"
+>/usr/X11R6/man</TT
+>).
+	    </P
+></DD
+><DT
+>xfont57</DT
+><DD
+><P
+>Tipos de letra para X-Window
+		(<TT
+CLASS="filename"
+>/usr/X11R6/lib/X11/fonts</TT
+>), para
+		diversas codificaciones e idiomas, en resoluciones 100ppp
+		y 75ppp.</P
+></DD
+><DT
+>xserv57</DT
+><DD
+><P
+>Servidores X-Window para diversas tarjetas de
+		video, librerías para soportar fuentes y 
+		documentación.</P
+></DD
+><DT
+>xshare57</DT
+><DD
+><P
+>Encabezados y documentación complementaria de 
+		X-Window</P
+></DD
+><DT
+>site57</DT
+><DD
+><P
+>Requerido para continuar la instalación y configuración de Aprendiendo de Jesús.  
+				  En particular archivo de comandos <TT
+CLASS="filename"
+>/usr/local/adJ/inst-adJ.sh</TT
+>
+que deberá ejecutar como usuario administrador cuando haya reiniciado.
+		</P
+></DD
+></DL
+></DIV
+>
+	la instalación de los componentes indispensables
+	(base57 y etc57) 
+	requiere cerca de 100MB, y la instalación de todos requiere
+	alrededor de 300MB.  </P
+><P
+>Una vez se instalen el kernel genérico (<TT
+CLASS="filename"
+>/bsd</TT
+>)
+	      y los componentes que eligió 
+	      el instalador preparará el directorio 
+	      <TT
+CLASS="literal"
+>/dev</TT
+> de dispositivos y cambiará la partición
+	      de OpenBSD para que pueda arrancar el sistema en caso de que
+	      sea la partición activa<A
+NAME="AEN351"
+HREF="#FTN.AEN351"
+><SPAN
+CLASS="footnote"
+>[4]</SPAN
+></A
+>.  
+	      Puede entonces apagar con el comando
+	      <TT
+CLASS="literal"
+>halt -p</TT
+>, retirar el CD y volver a 
+	      iniciar para entrar al sistema instalado.  
+	      Si tienes problemas para ingresar a OpenBSD
+	      puede arrancar con el CD de instalación y cuando este
+	      comenzando a cargar expulsarlo para quedar en la
+	      linea de espera:
+	      <PRE
+CLASS="screen"
+>&#13;	boot&#62;
+	      </PRE
+>
+	      En la que puede teclear <TT
+CLASS="literal"
+>boot hd0a:bsd</TT
+>
+      </P
+><P
+>&#13;	     Si en su computador usa otro sistema operativo, ejecute
+	     el programa de configuración de algún administrador
+	     de arranque para asegurarse de permitir elegir OpenBSD
+	     o el otro o los otros sistemas que tenga (e.g GRUB o 
+	     LILO si también usa Linux ver 
+	      <A
+HREF="x2299.htm#con-linux"
+>la sección de nombre <I
+>Dual con Linux</I
+></A
+>,
+	<A
+HREF="http://www.ranish.com/part/xosl.htm"
+TARGET="_top"
+>XOSL</A
+> si usa 
+	Windows 95/98/ME. Si usa 
+	Windows NT o XP puede ser con el manejador de arranque de ese 
+	sistema ver <A
+HREF="x2299.htm#con-windows-xp"
+>la sección de nombre <I
+>Dual con Windows XP o NT</I
+></A
+>, si usa Windows Vista o 7 puede ser con EasyBCD).
+</P
+><P
+>Una vez ingrese verá <TT
+CLASS="literal"
+>xdm</TT
+> como se presenta a continuación (siempre y cuando haya elegido iniciarlo durante la instalación y mientras su tarjeta gráfico y monitor sean autodetectados).
+<DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN363"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="instala6.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+
+</P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="instalacion-del-resto"
+>Instalación del resto de adJ</A
+></H2
+><P
+>&#13;	      Tras instalar el sistema base y reiniciar su computador,
+	      puede ingresar a la cuenta del usuario administrador que
+	      creó y puede completar la instalación ejecutando desde una terminal:
+	     <PRE
+CLASS="screen"
+>&#13;	/inst-adJ.sh
+</PRE
+>
+Este procedimiento permite instalar y actualizar adJ, así que puede 
+ejecutarlo cuantas
+veces lo requiera para completar la instalación o una actualización.
+El archivo de comandos <TT
+CLASS="filename"
+>/inst-adJ.sh</TT
+> lo guiará en la instalación del resto 
+del sistema con preguntas típicamente de si o no, como se presenta
+en las siguientes capturas de pantalla de ejemplo:
+      	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN375"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="insadJ1.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+
+      	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN382"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="insadJ2.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+      	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN389"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="insadJ3.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+
+adJ puede configurar por defecto 2 imagenes cifradas, una para almacenar bases de datos de PostgreSQL 
+(directorio <TT
+CLASS="filename"
+>/var/postgresql</TT
+>
+y otra para almacenar copias de respaldo de la base de datos y otros datos que usted requiera (directorio <TT
+CLASS="filename"
+>/var/www/resbase</TT
+>).
+
+Cada una de estas imagenes tienen asociadas claves para cifrar y descifrar, estas claves debe suministrarlas típicamente durante el arranque o posteriormente ejecutando:
+<PRE
+CLASS="screen"
+>&#13;	/etc/init.d/montaencpos
+	/etc/init.d/montaencres
+</PRE
+>
+
+      	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN399"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="insadJ4.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+      	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN406"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="insadJ5.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+El servidor web Apache será configurado con SSL por lo que debe 
+dar detalles para el certificado como se presenta en la siguiente 
+captura de pantalla.
+      	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN413"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="insadJ6.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+
+      	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN420"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="insadJ7.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+
+      </P
+><P
+>Después es recomendable que consulte 
+	<TT
+CLASS="literal"
+>man afterboot</TT
+> que incluye una lista de chequeo 
+	de cosas por hacer después de la instalación.  </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="inicio-del-sistema"
+>Inicio del sistema</A
+></H2
+><P
+>El arranque se realiza de acuerdo al
+	      archivo <TT
+CLASS="filename"
+>/etc/rc</TT
+> (que no debe modificarse),
+	      este archivo en particular lee variables definidas por
+	      el usuario en <TT
+CLASS="filename"
+>/etc/rc.conf.local</TT
+> donde puede
+	      especificar que servicios desea iniciar durante el arranque.
+	      Un servicio es un programa que se mantiene en operación
+	      mientras el computador está encendido, esperando conexiones
+	      o requerimientos de programas o de otros servicios para
+	      atenderlos, por ejemplo un servidor web es un servicio (que
+	      responde a requerimientos de páginas web en cualquier momento
+	      que un usuario las realice).
+	      <TT
+CLASS="filename"
+>/etc/rc</TT
+> también iniciará los
+	      servicios  típicos del sistema y algunos proveidos por
+	      paquetes y después ejecutará <TT
+CLASS="filename"
+>/etc/rc.local</TT
+>.
+      </P
+><P
+>&#13;	      En el archivo <TT
+CLASS="filename"
+>/etc/rc.conf.local</TT
+> pueden
+	      definirse variables asociadas a servicios (puede verse
+	      el listado de variables posibles para el sistema base en 
+	      <TT
+CLASS="filename"
+>/etc/rc.conf</TT
+>), si el valor de una 
+	      variable es <TT
+CLASS="literal"
+>NO</TT
+> el servicio relacionado no se
+	      activa, mientras que otro valor activa el servicio y es pasado como
+	      parámetro (si no se desean parámetros adicionales puede simplemente
+	      asignarse ""). Por ejemplo para iniciar XDM en cada arranque:
+	<PRE
+CLASS="screen"
+>&#13;	xdm_flags=""
+	</PRE
+>
+	</P
+><P
+>Los servicios proveidos por paquetes que son iniciados
+	      se especifican en la variable <TT
+CLASS="literal"
+>pkg_scripts</TT
+>,
+	      que se define en el archivo
+	      <TT
+CLASS="filename"
+>/etc/rc.conf.local</TT
+>. 
+	      Los servicios tanto del sistema base como de paquetes
+	      típicamente tiene  un archivo en el directorio
+	      <TT
+CLASS="filename"
+>/etc/rc.d</TT
+>.   Estos archivos de comandos
+	      pueden ejecutarse con una de las siguientes opciones:
+	      <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="literal"
+>start</TT
+></DT
+><DD
+><P
+>Para iniciar el servicio.</P
+></DD
+><DT
+><TT
+CLASS="literal"
+>stop</TT
+></DT
+><DD
+><P
+>Para detener el servicio.</P
+></DD
+><DT
+><TT
+CLASS="literal"
+>check</TT
+></DT
+><DD
+><P
+>Para examinar el estado del servicio.  Si retorna 0 significa que el servicio está operando, 1 de lo contrario.</P
+></DD
+><DT
+><TT
+CLASS="literal"
+>restart</TT
+></DT
+><DD
+><P
+>Detiene y vuelve a iniciar 
+					      el servicio.</P
+></DD
+><DT
+><TT
+CLASS="literal"
+>reload</TT
+></DT
+><DD
+><P
+>Si el servicio está operando 
+					      lo vuelve a iniciar.</P
+></DD
+></DL
+></DIV
+>
+      </P
+><P
+>&#13;	      En adJ el archivo de comandos <TT
+CLASS="filename"
+>/etc/rc.local</TT
+> 
+	      además de poder contener
+	      acciones por realizar en el arranque, permite reiniciar
+	      servicios que se hayan detenido.  Por esto tras detener
+	      un servicio (bien intencionalmente o por error) puede
+	      ejecutar este archivo de comandos para reiniciarlo con:
+	      <PRE
+CLASS="screen"
+>&#13;	sudo sh /etc/rc.local
+	      </PRE
+>
+      </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="configuracion-de-xorg"
+>Configuración de Xorg</A
+></H2
+><P
+>Si durante la instalación eligió usar X-Window y xdm, 
+				e instaló los juegos de instalación de X-Window
+				(i.e <TT
+CLASS="literal"
+>xbase57</TT
+>, 
+				<TT
+CLASS="literal"
+>xfont57</TT
+>,
+				<TT
+CLASS="literal"
+>xserv57</TT
+>, 
+				<TT
+CLASS="literal"
+>xshare57</TT
+>), 
+				y si su tarjeta fue correctamente configurada, al arrancar
+				iniciará en el ambiente gráfico.  </P
+><P
+>Xorg puede también leer la configuración de su
+				tarjeta de video, monitor, teclado y ratón del archivo
+				<TT
+CLASS="filename"
+>/etc/X11/xorg.conf</TT
+>, por lo que
+				este es el archivo que debe generar y configurar en caso
+				de que la autodetección de Xorg no opere con su hardware.
+			</P
+><P
+>Para generar un archivo de configuración inicial ejecute:
+	<PRE
+CLASS="screen"
+>&#13;    su -
+    Xorg -configure
+	</PRE
+>
+	no siempre funciona, pero si en varios casos dejará un archivo de
+	configuración en 
+	<TT
+CLASS="filename"
+>/root/xorg.conf.new</TT
+> que puede probar con:
+	<PRE
+CLASS="screen"
+>&#13;    su -
+    Xorg -config xorg.conf.new
+	</PRE
+>
+	Si no logra ingresar al modo gráfico revise la bitácora de errores del 
+	servidor X-Window con:
+	<PRE
+CLASS="screen"
+>&#13;  	sudo less /var/log/Xorg.0.log
+</PRE
+>
+y edite el archivo de configuración, siguiendo las instrucciones de
+<PRE
+CLASS="screen"
+>&#13;    man xorg.conf	
+</PRE
+>hasta lograr que opere, puede editar
+por ejemplo con:
+<PRE
+CLASS="screen"
+>&#13;    sudo mg /root/xorg.conf.new
+</PRE
+>
+
+	Una vez le funciona (entra a modo gráfico del cual puede salir con
+	Ctrl-Alt-BackSpace) copielo al sitio donde debe quedar :
+	<PRE
+CLASS="screen"
+>&#13;    sudo cp /root/xorg.conf.new /etc/X11/xorg.conf
+	</PRE
+>
+	y termine ejecutando
+	<PRE
+CLASS="screen"
+>&#13;    sudo xdm
+	</PRE
+>
+</P
+><P
+>&#13;	Si persisten sus dificultades, puede buscar en Internet una 
+	configuración correcta o solicitar el archivo de configuración a 
+	alguien que le funcione o enviar la bitácora 
+	<TT
+CLASS="filename"
+>/var/log/Xorg.0.log</TT
+> a un grupo de
+	usuarios.
+	Unos cambios que suelen funcionar son:
+	<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;Si en la bitácora <TT
+CLASS="filename"
+>/var/log/Xorg.0.log</TT
+>
+se recomienda, agregar 
+				<PRE
+CLASS="screen"
+>&#13;    machdep.allowaperture=2
+			</PRE
+>
+	o bien
+	<PRE
+CLASS="screen"
+>&#13;    machdep.allowaperture=1
+	</PRE
+>
+
+			en <TT
+CLASS="filename"
+>/etc/sysctl.conf</TT
+>,
+			según lo recomendado en la bitácora.
+			</P
+><P
+>&#13;				Elegir un monitor y editar el archivo 
+				para quitar el comentario que deja
+				en la frecuencia horizontal --es decir
+				el símbolo # al comienzo de la línea.
+			</P
+></LI
+><LI
+><P
+>&#13;				Escoger <TT
+CLASS="literal"
+>vesa</TT
+> como 
+				controlador y tarjeta de video.
+			</P
+></LI
+></OL
+>
+</P
+><P
+>&#13;	En casos extremos puede comenzar con un archivo de configuración 
+	típico como el que se presenta a continuación (para teclado en español, 
+	tarjeta de video que soporta VESA, y un monitor que no requiere 
+	especificar rangos):
+
+	<PRE
+CLASS="screen"
+>&#13;Section "ServerLayout"
+	Identifier     "X.org Configured"
+	Screen      0  "Screen0" 0 0
+	InputDevice    "Mouse0" "CorePointer"
+	InputDevice    "Keyboard0" "CoreKeyboard"
+EndSection
+
+Section "Files"
+#	RgbPath      "/usr/X11R6/share/X11/rgb"
+#	ModulePath   "/usr/X11R6/lib/modules"
+	FontPath     "/usr/X11R6/lib/X11/fonts/misc/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/TTF/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/Type1/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/CID/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/75dpi/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/100dpi/"
+	FontPath     "/usr/local/lib/X11/fonts/local/"
+	FontPath     "/usr/local/lib/X11/fonts/Speedo/"
+	FontPath     "/usr/local/lib/X11/fonts/TrueType/"
+	FontPath     "/usr/local/lib/X11/fonts/freefont/"
+EndSection
+
+Section "Module"
+	Load  "dbe"
+	Load  "freetype"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Keyboard0"
+	Driver      "kbd"
+	Option      "XkbLayout" "es"
+	# Si el teclado fuera latinoamericano en vez de "es" usar "latam"
+	Option      "XkbModel" "pc105"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Mouse0"
+	Driver      "mouse"
+	Option      "Protocol" "wsmouse"
+	Option      "Device" "/dev/wsmouse"
+	# Si es serial usar protocolo "Microsoft" y dispositivo "/dev/tty00" 
+	Option      "ZAxisMapping" "4 5"
+EndSection
+
+Section "Monitor"
+#       HorizSync    30.0 - 70.0
+#       VertRefresh  50.0 - 90.0
+# Puede funcionar quitar el comentario en HorizSync (vea /var/log/Xorg.0.log)
+	Identifier   "Monitor0"
+	Option      "DPMS"
+EndSection
+
+Section "Device"
+	Identifier  "Card0"
+	Driver      "vesa
+#	BusID       "PCI:0:1:0"
+EndSection
+
+Section "Screen"     
+	Identifier "Screen0"
+	Device     "Card0"
+	Monitor    "Monitor0"
+	DefaultDepth     16
+	SubSection "Display"
+		Viewport   0 0
+		Depth     1
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     4
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     8
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     15
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     16
+		Modes    "1024x768"
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     24
+	EndSubSection
+EndSection
+	</PRE
+>
+	
+	En este ejemplo mire que en la sección del monitor, la línea 
+	<TT
+CLASS="literal"
+>HorizSync</TT
+> está comentada (el símbolo # al 
+	comienzo de la línea) por lo que no se usa ese parámetro de 
+	configuración.
+	De funcionar en su caso este archivo iniciara en 1024 x 768
+	con colores de 16 bits, porque la profundidad de color por
+	defecto especificada es esa (<TT
+CLASS="literal"
+>DefaultDepth 16</TT
+>) y
+	el primer modo indica esa resolución 
+	(<TT
+CLASS="literal"
+>Modes "1024x768"</TT
+>).
+</P
+><P
+>	Algunas tarjetas antiguas no 
+	son soportadas por Xorg pero si por el servidor XFree86 3.3.6, que
+  podrá encontrar en versiones de OpenBSD anteriores a 3.7.
+	Este último emplea normalmente el archivo de configuración 
+	<TT
+CLASS="filename"
+>/etc/XF86Config</TT
+> que puede generarse con ayuda de 
+	<B
+CLASS="command"
+>XF86Setup</B
+> o
+	 bien en modo texto con <B
+CLASS="command"
+>xf86config3</B
+>.
+       </P
+><P
+>Para la configuración del ratón tenga en cuenta que los
+	       ratones PS/2 y USB se usan con el protocolo 
+	       <TT
+CLASS="literal"
+>wsmouse</TT
+>, dispositivo <TT
+CLASS="filename"
+>/dev/wsmouse</TT
+>, 
+	       mientas que diversos ratones seriales emplean el protocolo 
+	       <TT
+CLASS="literal"
+>Microsoft</TT
+> y uno de los dispositivos 
+	       seriales <TT
+CLASS="filename"
+>/dev/tty00</TT
+> o 
+	       <TT
+CLASS="filename"
+>/dev/tty01</TT
+>.
+       </P
+><P
+>&#13;	      Una vez logre configurar Xorg puede activar el 
+	      administrador de vistas XDM permanentemente agregando 
+	      la siguiente línea 
+	      al archivo <TT
+CLASS="filename"
+>/etc/rc.conf.local</TT
+>
+	(creélo si no existe):
+       	<PRE
+CLASS="screen"
+>&#13;    xdm_flags="" </PRE
+> 
+      </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="tipos-de-letra"
+>Tipos de letra</A
+></H3
+><P
+>Los tipos de letra para X-Window se mantienen en
+		<TT
+CLASS="filename"
+>/usr/X11R6/lib/X11/fonts</TT
+> en diversos
+		formatos (por ejemplo PCF, SNF, BDF, TTF).
+		Podrá editar diversos formatos y crear nuevos tipos
+		de letra con el excelente editor <TT
+CLASS="literal"
+>fontforge</TT
+>.
+	</P
+><P
+>&#13;	  Una secuencia
+	  típica para copiar una fuente PCF (tomada de la documentación
+	  de Bochs 2.0.2) es:
+	  <PRE
+CLASS="screen"
+>&#13;    cp font/vga.pcf /usr/X11R6/lib/X11/fonts/misc
+    compress /usr/X11R6/lib/X11/fonts/misc/vga.pcf
+    mkfontdir /usr/X11R6/lib/X11/fonts/misc
+    xset fp rehash
+	  </PRE
+>
+</P
+><P
+>&#13;Para emplear un nuevo tipo de letra TrueType deber registrarla
+	tanto con el servidor X como con <B
+CLASS="command"
+>fontconfig</B
+> así:
+	  <P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;Asegurar que la ruta de la fuente está en un <TT
+CLASS="literal"
+>FontPath</TT
+> 
+de la sección <TT
+CLASS="literal"
+>Files</TT
+> de 
+<TT
+CLASS="filename"
+>/etc/X11/xorg.conf</TT
+>.  Por ejemplo si sus fuentes 
+TTF están en <TT
+CLASS="filename"
+>/usr/local/lib/X11/fonts/MisTTF/</TT
+>:
+	<PRE
+CLASS="screen"
+>&#13;    FontPath     "/usr/local/lib/X11/fonts/MisTTF/"
+	</PRE
+>
+			  </P
+></LI
+><LI
+><P
+>&#13;				  Genere archivos <TT
+CLASS="filename"
+>fonts.dir</TT
+> y 
+				  <TT
+CLASS="filename"
+>scale</TT
+> en el directorio donde está la fuente:
+				  <PRE
+CLASS="screen"
+>&#13;    cd /usr/local/lib/X11/fonts/MisTTF
+    /usr/X11R6/bin/mkfontscale
+    /usr/X11R6/bin/mkfontdir
+				  </PRE
+>
+			  </P
+></LI
+><LI
+><P
+>&#13;				  Aplicar cambios a sesión actual
+				  <PRE
+CLASS="screen"
+>&#13;    xset fp rehash
+				  </PRE
+>
+			  </P
+></LI
+><LI
+><P
+>&#13;	Editar <TT
+CLASS="filename"
+>/etc/fonts/local.conf</TT
+> 
+	para que sea de la forma:
+	<PRE
+CLASS="screen"
+>&#13;&#60;?xml version="1.0"?&#62;
+&#60;!DOCTYPE fontconfig SYSTEM "/etc/fonts/fonts.dtd"&#62;
+&#60;fontconfig&#62;
+  &#60;dir&#62;/usr/local/lib/X11/fonts/MisTTF&#60;/dir&#62;
+&#60;/fontconfig&#62; 
+</PRE
+>
+			  </P
+></LI
+><LI
+><P
+>&#13;Regenerar cache de tipos de letra, ejecutando como usuario 
+<TT
+CLASS="literal"
+>root</TT
+>:
+				  <PRE
+CLASS="screen"
+>&#13;	cd /usr/local/lib/X11/fonts/MisTTF
+	/usr/X11R6/bin/fc-cache -v
+	/usr/X11R6/bin/fc-cache -v
+				  </PRE
+>
+			  </P
+></LI
+></OL
+>
+	  Si eventualmente el nuevo tipo no queda en los archivos generados
+	  (<TT
+CLASS="filename"
+>fonts.dir</TT
+>, <TT
+CLASS="filename"
+>fonts.scale</TT
+>)
+	  edítelos y agréguelo (el primer número en estos archivos es
+	  la cantidad de tipos por lo que debe incrementarlo).
+  </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="lecturas-xorg"
+>Lecturas recomendadas</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+>Página man de <B
+CLASS="command"
+>xorg.conf</B
+></P
+></LI
+><LI
+><P
+>Hay detalles sobre la configuración de Xorg en
+		  OpenBSD en el archivo <TT
+CLASS="filename"
+>/usr/X11R6/README</TT
+>
+	  </P
+></LI
+><LI
+><P
+>El servidor de X-Window incluido en OpenBSD 5.7 
+		  soporta fuentes anti-aliasing y True Type.
+		  Puede consultar el procedimiento para instalar fuentes 
+		  True Type en
+		  <A
+HREF="http://www.openbsd.org/faq/truetype.html"
+TARGET="_top"
+>http://www.openbsd.org/faq/truetype.html</A
+>.
+	  </P
+></LI
+></UL
+></DIV
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notas</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN71"
+HREF="x46.htm#AEN71"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Los 
+		CDs de OpenBSD ordenados por la página web de OpenBSD si llegan a 
+		Colombia.</P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN101"
+HREF="x46.htm#AEN101"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>El método de
+				instalación por red PXE requiere que 
+				configure otro servidor con los servicios 
+				DHCP para asignarle dirección
+				durante la instalación y TFTP para que pueda servirle 
+				el archivo de arranque
+				<TT
+CLASS="filename"
+>boot</TT
+> y un kernel como
+				<TT
+CLASS="filename"
+>bsd</TT
+></P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN248"
+HREF="x46.htm#AEN248"
+><SPAN
+CLASS="footnote"
+>[3]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>  Si el disco tiene otras particiones 
+	del BIOS para otros sistemas, estos
+se verán con otras etiquetas (típicamente i para la primera partición
+Windows, m para la primera partición Linux).</P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN351"
+HREF="x46.htm#AEN351"
+><SPAN
+CLASS="footnote"
+>[4]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Si no tiene un 
+			      manejador de arranque, puede determinar 
+			      cual de las 4 particiones primarias es 
+			      la activa con el programa 
+			      <TT
+CLASS="literal"
+>fdisk</TT
+>.</P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x570.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Paquetes y portes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
