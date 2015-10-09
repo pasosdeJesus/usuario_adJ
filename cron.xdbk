@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect2 id="cron">
+	<title><literal>cron</literal>: para programar tareas</title>
+
+	<para>El programa <literal>cron</literal>  ejecuta tareas
+		configuradas para correr en cierto(s) momento(s).
+		Este servico debe correr permanentemente.
+		Puede comprar que opera con <command>pgrep cron</command> que
+		debe responder con el número del proceso.  Si no está
+		corriendo debe ejecutarlo urgentemente bien reiniciando el
+		servido o ejecutando <literal>sudo cron</literal>.
+	</para>
+	<para>Cada minuto el programa <literal>cron</literal> busca
+		tareas cuya ejecución esté pendiente.  
+       	</para>
+	      <para>
+      </para>
+    </sect2>
+

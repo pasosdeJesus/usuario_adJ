@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect2 id="sudo">
+      <title>sudo</title>
+
+      <para> Este programa permite ejecutar comandos privilegiados a
+	algunos usuarios.  Se configura en
+	<filename>/etc/sudoers</filename> que debe editarse con
+	<command>visudo</command>.
+	</para>
+	<para> Consulte los ejemplos allí presentados
+	en líneas con comentarios y quite el comentario a la configuración
+	que considere apropiada.  Por ejemplo si desea que todo usuario
+	que esté en el grupo <literal>wheel</literal> pueda emplear 
+	<command>sudo</command> sin necesidad de ingresar una clave,
+	quite el comentario a la línea:
+	<screen>
+	%wheel  ALL=(ALL)       NOPASSWD: ALL
+	</screen>
+      </para>
+
+      <para>Una vez configurado, para ejecutar un comando privilegiado
+	desde una cuenta configurada se usa
+	<command>sudo <replaceable>comando</replaceable></command>.
+	Por ejemplo:
+	<screen>
+	sudo vi /etc/rc.conf.local </screen>
+	o formatear un disquete y marcar zonas con errores con:
+	<screen>
+	sudo mformat a:
+	sudo mbadblocks a:</screen>
+      </para>
+
+      <para>
+	Puede verse en <ulink
+	  url="http://rr.sans.org/authentic/sudo.php">
+	  http://rr.sans.org/authentic/sudo.php</ulink> interacción 
+	entre <command>sudo</command> y <command>ssh</command> para 
+	administrar una red.
+      </para>
+    </sect2>
+

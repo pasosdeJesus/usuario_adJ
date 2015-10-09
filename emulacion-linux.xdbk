@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect2 id="emulacion-linux">
+      <title>Emulación de binarios para Linux</title>
+
+    <para>Algunas aplicaciones cuyas fuentes no han sido portadas a OpenBSD
+      pueden ejecutarse con las capas de emulación de OpenBSD. En particular
+      para i386 hay capas de emulación para binarios de Linux, FreeBSD,
+      BSDI y SCO Unix (binarios iBCS2). Aquí se describe brevemente la
+      emulación de binarios para Linux (ver <literal>man
+	compat_linux</literal>).</para>
+
+    <para> Para comenzar rapidamente puede utilizar el paquete
+      <literal>redhat_base</literal> que instalará librerías compartidas 
+      y archivos básicos de una distribución Redhat con 
+      <literal>libc</literal>.  Cree un enlace para que la emulación
+      logre ubicar información donde la espera:
+      <screen>
+	mkdir -p emul
+	ln -s /usr/local/emul/redhat /emul/linux
+      </screen>
+      
+      Active la emulación de Linux en el 
+      kernel usando <command>sysctl -w kern.emul.linux=1</command> y
+      haga que el cambio se repita cada vez que reinicie, moficando 
+      <filename>/etc/sysctl.conf</filename><footnote><para>El  kernel
+	  genérico permite hacer el cambio de esta manera porque fue
+	  compilado con la opción de configuración 
+	  <literal>COMPAT_LINUX</literal></para></footnote>
+      para que incluya la línea:
+      <screen>
+	kern.emul.linux=1
+      </screen>
+      Después de
+      hacer esto o de copiar nuevas librerías que algún programa requiera,
+      debe ejecutar <filename>/emul/linux/sbin/ldconfig</filename>.  Para 
+      automatizar esta tarea durante cada arranque puede agregar a su archivo
+      <filename>/etc/rc.local</filename>: 
+      <screen>
+	if (test -x /emul/linux/sbin/ldconfig) then {
+	      /emul/linux/sbin/ldconfig
+	} fi; </screen>
+    </para>
+
+    <para>Con el enlace que hizo, en el directorio
+      <filename>/emul/linux</filename> quedará una jerarquía de 
+      directorios como la raíz de un
+      sistema Linux (excepto por que no tiene kernel).</para>
+
+
+    <para>Al ejecutar un binario para Linux, OpenBSD transformará los
+      nombres que el programa requiera suponiendo que 
+      <filename>/emul/linux</filename> es la 
+      raíz.  Si un archivo que se debe leer no es encontrado allí, OpenBSD
+      intenta como segunda opción en la raíz real del sistema.  Por ejemplo
+      si después de instalar <literal>redhat_base</literal> y crear el
+      enlace intenta:
+      <screen>
+	/emul/linux/bin/cp /bin/bash / </screen>
+
+      es decir ejecuta <command>cp</command> de Linux, el archivo 
+      <filename>/emul/linux/bin/bash</filename> (que es
+      dejado allí por <literal>redhat_base</literal>) será copiado a 
+      <filename>/emul/linux</filename>. Pero si ejecuta
+
+      <screen>
+	/emul/linux/bin/cp /bin/ksh / </screen>
+
+      como el archivo <filename>/emul/linux/bin/ksh</filename> no existe 
+      (<literal>redhat_base</literal> no lo incluye),
+      se copiará el archivo <filename>/bin/ksh</filename>
+      (<command>ksh</command> de OpenBSD) en la raíz de Linux
+      (i.e <filename>/emul/linux</filename>).  </para>
+
+    <para> Si desea ver su sistema como si la raíz fuera
+      <filename>/emul/linux</filename>
+      (digamos para ejecutar varios programas Linux) puede emplear:
+
+      <screen>
+	/emul/linux/bin/bash </screen>
+
+      que iniciará un interprete de comandos compilado para Linux (así 
+      que las vías de ese interprete de comandos son las que ven todos 
+      los binarios de Linux).
+    </para>
+
+    <para>Aunque la emulación no es perfecta funcionan varios programas
+      (como el compilador <command>gcc</command>), de hecho algunos paquetes 
+      OpenBSD emplean esta capa (e.g <command>jdk-1.3-linux</command>).
+   </para>
+
+    <para>Para emplear una distribución de Linux diferente 
+      basta asegurar que pueda accederse desde 
+      <filename>/emul/linux</filename>.  Por ejemplo si en la partición 
+      <filename>/dev/wd0i</filename> tiene un sistema Debian, puede 
+      agregar la siguiente línea a <filename>/etc/fstab</filename> para 
+      montarla automáticamente durante el arranque:
+      <screen>
+	/dev/wd0i /mnt/debian ext2fs rw 1 1 </screen>
+      Cree un enlace de <filename>/emul/linux</filename> a
+      <filename>/mnt/debian</filename> (creando antes el directorio
+      <filename>/mnt/debian</filename>) y recuerde ejecutar 
+      <command>ldconfig</command> para que las librerías compartidas
+      pueda ser ubicadas.  
+    </para>
+
+
+    </sect2>
+

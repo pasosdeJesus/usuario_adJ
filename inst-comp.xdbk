@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect2 id="instalacion-del-resto">
+      <title>Instalación del resto de adJ</title>
+
+      <para>
+	      Tras instalar el sistema base y reiniciar su computador,
+	      puede ingresar a la cuenta del usuario administrador que
+	      creó y puede completar la instalación ejecutando desde una terminal:
+	     <screen>
+	/inst-adJ.sh
+</screen>
+Este procedimiento permite instalar y actualizar adJ, así que puede 
+ejecutarlo cuantas
+veces lo requiera para completar la instalación o una actualización.
+El archivo de comandos <filename>/inst-adJ.sh</filename> lo guiará en la instalación del resto 
+del sistema con preguntas típicamente de si o no, como se presenta
+en las siguientes capturas de pantalla de ejemplo:
+      	      <informalfigure><screenshot><mediaobject>
+			<imageobject><imagedata fileref="insadJ1.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+			<imageobject><imagedata fileref="insadJ1.png" format="PNG" align="center"></imagedata></imageobject>
+</mediaobject></screenshot></informalfigure>
+
+      	      <informalfigure><screenshot><mediaobject>
+			<imageobject><imagedata fileref="insadJ2.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+			<imageobject><imagedata fileref="insadJ2.png" format="PNG" align="center"></imagedata></imageobject>
+</mediaobject></screenshot></informalfigure>
+      	      <informalfigure><screenshot><mediaobject>
+			<imageobject><imagedata fileref="insadJ3.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+			<imageobject><imagedata fileref="insadJ3.png" format="PNG" align="center"></imagedata></imageobject>
+</mediaobject></screenshot></informalfigure>
+
+adJ puede configurar por defecto 2 imagenes cifradas, una para almacenar bases de datos de PostgreSQL 
+(directorio <filename>/var/postgresql</filename>
+y otra para almacenar copias de respaldo de la base de datos y otros datos que usted requiera (directorio <filename>/var/www/resbase</filename>).
+
+Cada una de estas imagenes tienen asociadas claves para cifrar y descifrar, estas claves debe suministrarlas típicamente durante el arranque o posteriormente ejecutando:
+<screen>
+	/etc/init.d/montaencpos
+	/etc/init.d/montaencres
+</screen>
+
+      	      <informalfigure><screenshot><mediaobject>
+			<imageobject><imagedata fileref="insadJ4.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+			<imageobject><imagedata fileref="insadJ4.png" format="PNG" align="center"></imagedata></imageobject>
+</mediaobject></screenshot></informalfigure>
+      	      <informalfigure><screenshot><mediaobject>
+			<imageobject><imagedata fileref="insadJ5.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+			<imageobject><imagedata fileref="insadJ5.png" format="PNG" align="center"></imagedata></imageobject>
+</mediaobject></screenshot></informalfigure>
+El servidor web Apache será configurado con SSL por lo que debe 
+dar detalles para el certificado como se presenta en la siguiente 
+captura de pantalla.
+      	      <informalfigure><screenshot><mediaobject>
+			<imageobject><imagedata fileref="insadJ6.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+			<imageobject><imagedata fileref="insadJ6.png" format="PNG" align="center"></imagedata></imageobject>
+</mediaobject></screenshot></informalfigure>
+
+      	      <informalfigure><screenshot><mediaobject>
+			<imageobject><imagedata fileref="insadJ7.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+			<imageobject><imagedata fileref="insadJ7.png" format="PNG" align="center"></imagedata></imageobject>
+</mediaobject></screenshot></informalfigure>
+
+      </para>
+
+
+      <para>Después es recomendable que consulte 
+	<literal>man afterboot</literal> que incluye una lista de chequeo 
+	de cosas por hacer después de la instalación.  </para> 
+    </sect2>
+

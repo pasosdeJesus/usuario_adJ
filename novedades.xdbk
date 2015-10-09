@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<variablelist>
+	<varlistentry><term>Versión 5.6</term>
+		<listitem><para><itemizedlist>
+
+		<listitem>
+			<para>Documentación de mozilla cambiada por chromium, <xref linkend="chromium"/></para>
+		</listitem>
+		<listitem>
+			<para>Mejorada <xref linkend="msoffice"/></para>
+		</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Versión 5.5</term>
+		<listitem><para><itemizedlist>
+
+		<listitem>
+			<para>Actualizada <xref linkend="configuracion-de-xorg"/></para>
+		</listitem>
+		<listitem>
+			<para>Mejorada <xref linkend="msoffice"/></para>
+		</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Versión 5.4</term>
+		<listitem><para><itemizedlist>
+
+		<listitem>
+			<para>Nueva <xref linkend="edicionaudio"/></para>
+		</listitem>
+
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Versión 5.3</term>
+		<listitem><para><itemizedlist>
+		<listitem>
+			<para>Nueva <xref linkend="xfe"/></para>
+		</listitem>
+		<listitem>
+			<para>Fuentes en utf-8</para>
+		</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Versión 5.2</term>
+		<listitem><para><itemizedlist>
+		<listitem>
+			<para><xref linkend="fluxbox"/> renovada.</para>
+		</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Versión 5.1</term>
+		<listitem><para><itemizedlist>
+		<listitem>
+			<para>Nueva <xref linkend="syslog"/>.</para>
+			<para><xref linkend="instalacion-y-configuracion-del-sistema-basico"/> renovada.</para>
+		</listitem>
+		<listitem><para><xref linkend="instalacion-del-resto"/> renovada.</para></listitem>
+		<listitem>
+			<para><xref linkend="inicio-del-sistema"/> renovada de acuerdo a nueva forma de servicios en <filename>/etc/rc.d</filename></para>
+		</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+	<varlistentry><term>Versión 4.9</term>
+		<listitem><para><itemizedlist>
+		<listitem><para>Sección de instalación renovada.</para></listitem>
+		<listitem><para>Renovaciones pequeñas en sección sobre discos duros y aplicaciones.</para></listitem>
+		<listitem><para>Cubre Aprendiendo de Jesús 4.9 </para></listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Versión 4.8</term>
+		<listitem><para><itemizedlist>
+		<listitem><para>Nueva sección <xref linkend="ediciongraficos"/></para></listitem>
+		<listitem><para>Precisada sección sobre Ofimatica, <xref linkend="msoffice"></xref></para></listitem>
+		<listitem><para>Cubre Aprendiendo de Jesús 4.8 </para></listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Versión 4.7</term>
+		<listitem><para><itemizedlist>
+			<listitem>
+				<para><xref linkend="xiphos"/></para>
+			</listitem>
+			<listitem>
+				<para>Cubre Aprendiendo de Jesús 4.7</para>
+			</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Versión 4.6</term>
+		<listitem><para><itemizedlist>
+			<listitem>
+				<para>Cubre Aprendiendo de Jesús 4.6</para>
+			</listitem>
+			<listitem>
+				<para>Reestructura sección de paquetes, 
+					renovada sección sobre 
+					TeX (ver <xref linkend="conf-tex-gv"/> ), 
+					e iniciada una para mplayer (ver
+                    <xref linkend="mplayer"/>)</para>
+			</listitem>
+			<listitem>
+				<para>Sección sobre operaciones con DVD</para>
+			</listitem>
+
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Versión 4.4</term>
+		<listitem><para><itemizedlist>
+			<listitem>
+				<para>Cubre Aprendiendo de Jesús 4.4</para>
+			</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Versión 4.3</term>
+		<listitem><para><itemizedlist>
+			<listitem>
+				<para>Cubre adJ 4.3</para>
+			</listitem>
+			<listitem>
+				<para>Renovada configuración de X-Window</para>
+			</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Versión 1.8</term>
+		<listitem><para><itemizedlist>
+			<listitem>
+				<para>Cubre OpenBSD 4.2 y paquetes de adJ</para>
+			</listitem>
+			<listitem>
+				<para>Instalación más detallada.</para>
+			</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Versión 1.7</term>
+		<listitem><para><itemizedlist>
+			<listitem>
+				<para>Cubre OpenBSD 4.1 y paquetes de adJ</para>
+			</listitem>
+			<listitem>
+				<para>OpenOffice nativo.</para>
+			</listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+	<varlistentry><term>Versión 1.6</term>
+		<listitem><para><itemizedlist>
+			<listitem>
+				<para>Cubre OpenBSD 3.9</para>
+			</listitem>
+			<listitem>
+				<para>Instalación. Inicialmente contribuida por Christian Llanos Sanchez y Alvaro Pinzón </para>
+			</listitem>
+			<listitem>
+				<para>Ejemplo mínimo de DocBook</para>
+			</listitem>
+			<listitem>
+				<para>Memoria USB</para>
+			</listitem>
+			<listitem>
+				<para>Configuración de Xorg</para>
+			</listitem>
+		</itemizedlist>
+			</para>
+		</listitem>
+	</varlistentry>
+</variablelist>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect3 id="xfe">
+	<title><command>xfe</command></title>
+
+	<para>La operación básica se describe en
+		<xref linkend="basico_OpenBSD"></xref>,
+		aquí describimos algunos detalles de configuración.
+	</para>
+	<para>
+		El archivo de configuración se ubica en 
+		<filename>~/.config/xfe/xferc</filename>.   La
+		mayoría de posibilidades se configuran desde 
+		<menuchoice><guimenu>Editar</guimenu><guimenuitem>Preferencias</guimenuitem></menuchoice>, sin embargo para que opere bien 
+
+		<menuchoice><guimenu>Herramientas</guimenu><guimenuitem>Ventana superusuario nueva</guimenuitem></menuchoice> 
+		en adJ el archivo de configuración en la sección 
+		<literal>OPTIONS</literal> 
+		debe incluir:
+		<screen>
+uso_sudo=1
+sudo_nopasswd=1
+		</screen>
+	</para>
+</sect3>
+

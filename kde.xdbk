@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect2 id="kde">
+      <title>KDE</title>
+
+      <para>
+	      Para que funcione KDE primero debe instalar el paquete 
+	      <literal>kdebase</literal>.   Eventualmente también
+	      estará interesad@ en instalar 
+	      <itemizedlist>
+		      <listitem><para> <literal>kde-i18n-es</literal>
+				      que es localización en español</para></listitem>
+		      <listitem><para> <literal>kdeutils</literal>
+				      que son diversas utilidades para KDE</para></listitem>
+	      </itemizedlist>
+      </para>
+      <para>Una vez instalado, la configuración de KDE depende del administrador
+	      de vistas que emplee. El administrador de vistas por defecto
+	      es <command>xdm</command> (ver
+	      <xref linkend="configuracion-de-xorg"/>), pero si lo
+	      desea puede remplazarlo por <command>kdm</command> como se 
+	      explica más adelante.
+      </para>
+      <para>
+	      Si desea usar <command>xdm</command> o no está usando
+	      un administrador de vistas, puede configurar una
+	      cuenta para que use KDE
+	      creando o modificando el archivo <filename>~/.xsession</filename>
+	      para que ejecute <command>startkde</command>. Por ejemplo
+	      si tal archivo no existe en la cuenta de un usuario puede 
+	      crearlo con:
+	      <screen>
+	echo "PATH=$PATH:/usr/local/bin" > ~/.xsession
+	echo "/usr/local/bin/startkde" >> ~/.xsession
+	chmod +x ~/.xsession
+	      </screen>
+      </para>
+
+      <para>Si desea emplear <command>kdm</command> como administrador
+	      de vistas en lugar de <command>xdm</command> , ejecute:
+	      <screen>
+	/usr/local/bin/genkdmconf
+	      </screen>
+	      asegurese de no iniciar <command>xdm</command>, por
+	     ejemplo  poniendo en <filename>/etc/rc.conf.local</filename>
+	     <screen>
+	xdm_flags="NO"
+	      </screen>
+		y asegurese de iniciar <filename>kdm</filename>
+		en cada arranque, por ejemplo agregando a
+		<filename>/etc/rc.local</filename>:
+		<screen>
+	if [ X"$kdm_flags" != X"NO" -a \
+		-x /usr/local/bin/kdm ]; then
+		/usr/local/bin/kdm  $kdm_flags
+	fi
+		</screen>
+		y en <filename>/etc/rc.conf.local</filename>:
+		<screen>
+	kdm_flags=""
+		</screen>
+      </para>
+    </sect2>
+

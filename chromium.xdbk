@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect3 id="chromium">
+      <title>Chromium</title>
+
+      <para>
+	      Puede iniciarlo desde el menú de fluxbox o desde una
+	      terminal con <literal>chromium</literal>.
+      </para>
+      <para>
+	      Es posible que chrome use como proxy un tunel SOCKS creado con 
+	      ssh.  Esto es útil por ejemplo para ingresar a sitios
+	      web que están en intranets. 
+	      Primero cree el tunel ingresando al cortafuegos/enrutador de la 
+	      Intranet, por ejemplo en el puerto 9080 con:
+	      <screen>
+ssh -D9080 miusuario@micortafuegos 
+	      </screen>
+	      A continuación inicie chromium indicando que debe usarse el 
+	      proxy socks del puerto 9080:
+	      <screen>
+chromium --proxy-server=socks://127.0.0.1:9080
+	      </screen>
+	      Tras esto ya podrá ingresar direcciones de la intranet desde
+	      el navegador.
+	</para>
+    </sect3>
+

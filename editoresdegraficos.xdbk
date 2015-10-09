@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect3 id="ediciongraficos">
+      <title>Edición de gráficos</title>
+
+      <para>Para ver una gráfica (sin editarla) prácticamente en cualquier
+	      formato, puede usar <literal>display</literal> incluido
+	      en <application>&p-ImageMagick;</application>:
+	      <screen>
+display migrafica.png
+	      </screen>
+	      Otra opción que facilita ver un directorio con imagenes es
+	      <literal>xfi</literal> incluido en el paquete
+	      <application>&p-xfe;</application>:
+	      <screen>
+xfi migrafica.png
+	      </screen>
+      </para>
+      <para>Las operaciones típicas con gráficos son el retoque de fotos y
+	      la creación de diagramas.   Para retocar 
+	      fotografías se emplean editores gráficos a nivel de pixels,
+	      mientras que para creación de diagramas resultan
+	      más convenientes editores de gráficos vectoriales.</para>
+      <para>Como editor de gráficos a nivel de pixels, el CD de adJ incluye 
+	      <application>&p-gimp;</application></para>
+	<para>
+	      <informalfigure><screenshot><mediaobject>
+			<imageobject><imagedata fileref="gimp.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+			<imageobject><imagedata fileref="gimp.png" format="PNG" align="center"></imagedata></imageobject>
+</mediaobject></screenshot></informalfigure>
+	</para>
+
+	<para>Como editor vectorial incluye <application>&p-inkscape;</application></para>
+	<informalfigure><screenshot><mediaobject>
+				<imageobject><imagedata fileref="inkscape.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+				<imageobject><imagedata fileref="inkscape.png" format="PNG" align="center"></imagedata></imageobject>
+	</mediaobject></screenshot></informalfigure>
+
+      <para>OpenOffice incluye otro editor vectorial llamado <application>draw</application>. </para>
+      <para>Para la generación de gráficos de barras y estadísticos resulta
+	      más apropiado el graficador de <application>&p-gnumeric;</application> o de calc --la hoja de cálculo de OpenOffice--, 
+	      ver <xref linkend="msoffice"></xref></para>
+    </sect3>
+

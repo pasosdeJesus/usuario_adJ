@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect3 id="mutt">
+	<title><command>mutt</command></title>
+
+	<para>El uso básico de mutt puede consultarlo en
+		<xref linkend="basico_OpenBSD"></xref>.
+	</para>
+  
+	<sect4 id="otro-smtp">
+		<title>Enviado correo con <command>sendmail</command> 
+			de otro computador</title>
+		<para>
+Para enviar correos <command>mutt</command> corre por defecto el programa
+<command>sendmail</command> (por defecto con parámetros: 
+<command>sendmail -oem -oi</command>), si usted prefiere o necesita emplear el 
+<command>sendmail</command> de otro computador puede:
+			<itemizedlist>
+				<listitem>
+	<para>Hacer un script (digamos
+<filename>/home/&EUSUARIO;/scripts/envia.sh</filename>)
+que llame al <command>sendmail</command> remoto (por ejemplo 
+con <command>ssh</command>) y le pase lo que recibe por entrada estándar:
+<screen>
+#!/bin/sh
+# envia.sh Dominio público
+
+if (test "$SSH_AUTH_SOCK" = "") then {
+	echo "Usar con ssh-agent";
+	exit 2;
+} fi;
+
+cat - | ssh &EUSUARIO;@&ECLIENTE; /usr/sbin/sendmail -oem -oi
+</screen>
+Note que este script está hecho para ser ejecutado junto con el
+agente de autenticación de ssh (i.e <command>ssh-agent</command>).
+					</para>
+				</listitem>
+			<listitem>
+				<para>Configure <command>mutt</command> para
+que emplee su script con la variable <literal>sendmail</literal>,
+la cual puede establecer en su archivo <filename>~/.muttrc</filename> con
+algo como:
+<screen>
+	set sendmail=/home/&EUSUARIO;/scripts/envia.sh
+</screen>
+				</para>	
+			</listitem>
+			<listitem>
+<para>Asegurese de ejecutar <command>mutt</command>
+junto con el agente de autenticación de <command>ssh</command>.  Por
+ejemplo con:
+					<screen>
+	ssh-agent /bin/ksh
+	ssh-add
+	mutt
+					</screen>
+o si emplea XWindow es posible que pueda configurar su manejador de
+escritorio o su administrador de ventanas para que toda la sesión 
+emplee el agente (ver un ejemplo en <xref linkend="fluxbox"/>).
+				</para>
+			</listitem>
+		</itemizedlist>
+	</para>
+</sect4>
+	<sect4 id="lecturas-mutt">
+	      <title>Lecturas recomendadas</title>
+	      <para>
+		      <itemizedlist>
+			      <listitem>
+<para>Página man de <command>mutt</command></para>
+			      </listitem>
+			      <listitem>
+<para>Sección sobre <command>mutt</command> de
+<citation>basico_OpenBSD</citation>.</para>
+			      </listitem>
+		      </itemizedlist>
+	      </para>	
+      </sect4>
+
+
+    </sect3>
+

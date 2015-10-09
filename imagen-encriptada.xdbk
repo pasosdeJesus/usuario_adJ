@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect2 id="imagen-encriptada">
+  <title>Imagen encriptada</title>
+
+  <para>
+  Es posible tener particiones encriptadas, estas requieren que se ingrese
+  una clave antes de montarlas ---por ejemplo en el momento del arranque.
+  </para>
+  <sect3 id="crear-imagen">
+	  <title>Creación de la imagen</title>
+	  <para>
+		  Para crear una imagen de aprox. 500MB en el archivo
+		  <filename>/var/post.img</filename> puede usar:
+		  <screen>
+
+	sudo dd if=/dev/zero of=/var/post.img bs=1024 count=500000
+	sudo vnconfig -ckv svnd0 /var/post.img
+	sudo newfs /dev/svnd0c
+	sudo vnconfig -u svnd0
+		  </screen>
+La clave que ingrese tras 
+<literal>vnconfig -ckv svnd0 /var/post.img</literal>,
+la requerirá posteriormente para usar la imagen.
+   </para> 
+  </sect3> 
+
+   <sect3 id="montar-imagen">
+	   <title>Montar imagen</title>
+	   <para>
+		   Esta imagen puede ser montadas (por ejemplo
+		   en <filename>/var/postgresql</filename>) con el 
+		   siguiente archivo de comandos
+		   (ubíquelo por ejemplo en
+		   <filename>/usr/local/sbin/montapost.sh</filename>):
+		   <screen>
+#!/bin/sh
+# Monta imagenes encriptadas en OpenBSD. Dominio público. 2006.
+
+if (test ! -d /var/postgresql) then {
+	mkdir /var/postgresql
+	chown _postgresql:_postgresql /var/postgresql
+} fi;
+vnconfig -ckv svnd0 /var/post.img
+mount /dev/svnd0c /var/postgresql
+	</screen>
+	y recuerde otorgar permiso de ejecución del mismo:
+	<screen>
+	sudo chmod +x /usr/local/sbin/montapost.sh
+	</screen>
+</para>
+<para>
+	Notará que este ejemplo es para montar una partición en 
+	la que funcionará una base de datos PostgreSQL, si  
+       	no existiera el usuario
+	<literal>_postgresql</literal> antes de ejecutar este archivo
+	de comandos ejecute <literal>chmod a+w /var/postgresql</literal>  y 
+	después
+	de que haya instalado PostgreSQL:
+	<screen>
+	sudo chown _postgresql:_postgresql /var/postgresql
+	sudo chmod o-w /var/postgresql
+	</screen>
+</para>
+</sect3>
+
+<sect3 id="montar-arranque">
+	<title>Montar en el arranque</title>
+	<para>
+		Este script debe ejecutarse en el momento del arranque 
+		y antes de iniciar la base de datos, agregue a su archivo
+		<filename>/etc/rc.local</filename> (antes de la inicialización 
+		de PostgreSQL):
+		<screen>
+	sudo /usr/local/sbin/montapost.sh
+		</screen>
+		De forma que en cada arranque el script le solicitará la 
+		clave antes de continuar.
+	</para>
+</sect3>
+
+    <sect3 id="referencias-imagen-encriptada">
+    <title>Referencias</title>
+    <para>Página <command>man vnconfig</command>.
+     </para>
+  </sect3>
+
+
+    </sect2>
+

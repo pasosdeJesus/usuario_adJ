@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect2 id='inicio-del-sistema'>
+      <title>Inicio del sistema</title>
+      <para>El arranque se realiza de acuerdo al
+	      archivo <filename>/etc/rc</filename> (que no debe modificarse),
+	      este archivo en particular lee variables definidas por
+	      el usuario en <filename>/etc/rc.conf.local</filename> donde puede
+	      especificar que servicios desea iniciar durante el arranque.
+	      Un servicio es un programa que se mantiene en operación
+	      mientras el computador está encendido, esperando conexiones
+	      o requerimientos de programas o de otros servicios para
+	      atenderlos, por ejemplo un servidor web es un servicio (que
+	      responde a requerimientos de páginas web en cualquier momento
+	      que un usuario las realice).
+	      <filename>/etc/rc</filename> también iniciará los
+	      servicios  típicos del sistema y algunos proveidos por
+	      paquetes y después ejecutará <filename>/etc/rc.local</filename>.
+      </para>
+      <para>
+	      En el archivo <filename>/etc/rc.conf.local</filename> pueden
+	      definirse variables asociadas a servicios (puede verse
+	      el listado de variables posibles para el sistema base en 
+	      <filename>/etc/rc.conf</filename>), si el valor de una 
+	      variable es <literal>NO</literal> el servicio relacionado no se
+	      activa, mientras que otro valor activa el servicio y es pasado como
+	      parámetro (si no se desean parámetros adicionales puede simplemente
+	      asignarse ""). Por ejemplo para iniciar XDM en cada arranque:
+	<screen>
+	xdm_flags=""
+	</screen>
+	</para>
+      <para>Los servicios proveidos por paquetes que son iniciados
+	      se especifican en la variable <literal>pkg_scripts</literal>,
+	      que se define en el archivo
+	      <filename>/etc/rc.conf.local</filename>. 
+	      Los servicios tanto del sistema base como de paquetes
+	      típicamente tiene  un archivo en el directorio
+	      <filename>/etc/rc.d</filename>.   Estos archivos de comandos
+	      pueden ejecutarse con una de las siguientes opciones:
+	      <variablelist>
+		      <varlistentry><term><literal>start</literal></term>
+			      <listitem>
+				      <para>Para iniciar el servicio.</para>
+			      </listitem>
+		      </varlistentry>
+		      <varlistentry><term><literal>stop</literal></term>
+			      <listitem><para>Para detener el servicio.</para></listitem>
+		      </varlistentry>
+		      <varlistentry><term><literal>check</literal></term>
+			      <listitem><para>Para examinar el estado del servicio.  Si retorna 0 significa que el servicio está operando, 1 de lo contrario.</para></listitem>
+		      </varlistentry>
+		      <varlistentry><term><literal>restart</literal></term>
+			      <listitem><para>Detiene y vuelve a iniciar 
+					      el servicio.</para></listitem>
+		      </varlistentry>
+		      <varlistentry><term><literal>reload</literal></term>
+			      <listitem><para>Si el servicio está operando 
+					      lo vuelve a iniciar.</para></listitem>
+		      </varlistentry>
+	      </variablelist>
+      </para>
+      <para>
+	      En adJ el archivo de comandos <filename>/etc/rc.local</filename> 
+	      además de poder contener
+	      acciones por realizar en el arranque, permite reiniciar
+	      servicios que se hayan detenido.  Por esto tras detener
+	      un servicio (bien intencionalmente o por error) puede
+	      ejecutar este archivo de comandos para reiniciarlo con:
+	      <screen>
+	sudo sh /etc/rc.local
+	      </screen>
+      </para>
+    </sect2>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect3 id="xiphos">
+	<title><command>xiphos</command></title>
+
+	<para>Como se describe en <xref linkend="xiphosmanual"></xref>,
+		es una herramienta gráfica de estudio e investigación bíblica 
+		que se basa en las librerías del proyecto Sword. 
+	</para>
+	<para>
+	      <informalfigure><screenshot><mediaobject>
+			<imageobject><imagedata fileref="xiphos.eps" format="EPS" scale="40" align="center"></imagedata></imageobject>
+			<imageobject><imagedata fileref="xiphos.png" format="PNG" align="center"></imagedata></imageobject>
+</mediaobject></screenshot></informalfigure>
+	</para>
+	<para>Puede iniciarla desde el menu de fluxbox Espiritualidad->Xiphos
+		o desde una terminal con <command>xiphos</command>.
+		Deben instalarse módulos primero.  Cada módulo  puede
+		ser una traducción, comentario, diccionario. 
+		Hay traducciones a muchos idiomas (incluyendo manuscritos
+		griegos y hebreo). En español entre otras se encuentra
+		parte de la traducción de dominio público de los evangelios
+		que típicamente se ha incluido con adJ.</para>
+	<para>Una vez instale los módulos que desea usar, 
+		es posible ver varias traducciones en paralelo. 
+		Cada traducción puede contar con opciones como:
+		Palabras de Cristo en Rojo, Números Strong, Etiquetas
+		morfológicas, Notas al pie, encabezados.
+	</para>
+  
+
+</sect3>
+

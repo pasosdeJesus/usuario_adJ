@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect3 id="conf-tex-gv">
+      <title>TeX y Ghostview</title>
+      
+      <para> Para emplear TeX, LaTeX y asociados instale
+	      texlive y gv:
+      </para>
+      <screen>
+	sudo pkg_add $PKG_PATH/&p-texlive_base;.tgz 
+	sudo pkg_add $PKG_PATH/&p-texlive_texmf-full;.tgz 
+	sudo pkg_add $PKG_PATH/&p-gv;.tgz </screen>
+	<para>
+		Puede configurar tamaño del papel, separado en sílabas 
+		y otros detalles con <command>texconfig</command>.
+</para>
+<para>A continuación se incluye un mini-tutorial de LaTeX adaptado de
+	<citation>AALinux</citation>, por otra parte puede consultar
+	algo más sobre <command>gv</command> en la sección
+	<xref linkend="uso-impresora"/>.
+</para>
+
+   <sect4 id='latex'>
+    <title>LaTeX</title>
+
+     <para>LaTeX es una extensión a un sistema
+      llamado TeX, desarrollado para escribir documentos de
+      matemáticas.  A continuación se presenta un ejemplo de un
+      documento LaTeX y el resultado que se obtiene tras procesarlo.
+<programlisting>
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\begin{document}
+\author{Rupertino Gonzales}
+\title{Algunas posibilidades de LaTeX}
+\maketitle
+
+\section{Elementos}
+Puede estructurar el documento en capítulos, secciones, etc.
+Este texto es el contenido de la primera sección de este ejemplo, 
+puede escribir cada párrafo en líneas consecutivas.
+
+\subsection{Ayudas}
+Puede lograr efectos como \emph{Itálicas}, \textbf{negrillas} o 
+cambios en el \textsf{tipo o {\small tamaño} de letra} (note 
+como se anidaron ambientes en este ejemplo).
+
+Puede crear listas:
+\begin{itemize}
+\item Primer elemento de lista.
+\item Segundo elemento de lista.
+\end{itemize}
+o tablas
+\\
+\begin{tabular}{|l|r|} \hline
+Título 1 &amp; Título 2 \\\hline
+elemento 1 &amp; elemento 2 \\\hline
+\end{tabular}
+\subsection{Ecuaciones}
+LaTeX es un experto en esta materia:
+\[ \int_{x=-\infty}^{\infty}e^{-|x|} \]
+\end{document}
+</programlisting>
+     </para>
+     <indexterm role="pal">
+      <primary>section</primary>
+     </indexterm>
+     <para role="sig" id="documenta.genera.section" userlevel="3">Comando de LaTeX para iniciar una sección.</para>
+     <indexterm role="pal">
+      <primary>emph</primary>
+     </indexterm>
+     <para role="sig" id="documenta.genera.emph" userlevel="3">Comando de LaTeX para ambiar tipo de letra a itálicas.</para>
+     <indexterm role="pal">
+      <primary>textbf</primary>
+     </indexterm>
+     <para role="sig" id="documenta.genera.textbf" userlevel="3">Comando de LaTeX para cambiar tipo de letra a negrilla.</para>
+
+     <para>LaTeX ofrece plantillas para varios tipos de documentos:
+      artículo, reporte, libro y ofrece el concepto de ambiente para
+      indicar como presentar cierta información de acuerdo a la
+      plantilla.  En el ejemplo presentado, el tipo de documento es
+      artículo (lo indica la línea
+      <literal>documentclass{article}</literal>), y uno de los
+      ambientes empleados es <literal>tabular</literal>, que genera
+      una tabla.
+    </para>
+
+     <para>Una vez edite un documento puede procesarlo con LaTeX para
+      obtener un archivo DVI, por ejemplo para generar el archivo
+      <filename>documento.dvi</filename> a partir de
+      <filename>documento.tex</filename>:</para>
+<screen>
+	latex documento.tex
+</screen>
+     <indexterm role="pal">
+      <primary><application>latex</application></primary>
+     </indexterm>
+     <para role="sig" id="documenta.genera.latex" userlevel="5">Programa que convierte un archivo LaTeX a DVI.</para>
+     <indexterm role="pal">
+      <primary><application>xdvi</application></primary>
+     </indexterm>
+     <para role="sig" id="documenta.lee.xdvi" userlevel="3">Programa para ver un archivo DVI en pantalla.</para>
+     
+     <para>El archivo DVI es apropiado para imprimir, puede imprimirlo
+      con un comando como <command>dvilj</command>,
+      <command>dvidj</command> o un nombre análogo que corresponda a
+      su impresora
+      <footnote>
+	      <para>Si usa <command>ksh</command> puede ver una lista de 
+		      posibles programas que le permitan imprimir, 
+		      tecleando <literal>dvi</literal> desde un intérprete
+	de comandos y presionando <keycap>Tab</keycap> dos veces. 
+       </para>
+      </footnote>.  Para visualizar un archivo <acronym>DVI</acronym>
+	puede emplear el comando <application>xdvi</application>:
+	</para>
+<screen>
+	xdvi documento.dvi
+</screen>
+     <indexterm role="pal">
+      <primary><command>dvi2ps</command></primary>
+     </indexterm>
+     <para role="sig" id="documenta.lee.dvi2ps" userlevel="3">Programa para convertir un DVI en PostScript.</para>
+    <para>
+      y para convertirlo a PostScript puede emplear
+      <command>dvi2ps</command>:
+     </para>
+<screen>
+	dvi2ps -c documento.ps documento.dvi
+</screen>
+     <para>
+      A continuación se presenta como se ve el ejemplo de esta sección
+      con el programa <command>xdvi</command>.</para>
+
+	<informalfigure>
+	  <screenshot><mediaobject><imageobject>
+		<imagedata fileref="ejlatex.eps" format="EPS" scale="40"
+		  align="center"></imagedata></imageobject>
+	      <imageobject><imagedata fileref="ejlatex.png" format="PNG"
+		  align="center"></imagedata></imageobject>
+	      <textobject><phrase>Visualización de DVI generado de 
+		  fuente en LaTeX</phrase></textobject></mediaobject>
+	  </screenshot>
+	 </informalfigure>
+     <para>Existen además otros programas para convertir de LaTeX a
+      HTML como latex2html y HeVeA.  Puede encontrar más información
+      de latex2html en <ulink
+      url='http://ctan.tug.org/ctan/tex-archive/support/latex2html/'></ulink>
+      y de HeVeA en <ulink
+      url='http://pauillac.inria.fr/hevea/'></ulink>.  
+    </para>
+   </sect4>
+
+    </sect3>
+

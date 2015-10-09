@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect2 id="memoria-usb">
+      <title>Memoria USB</title>
+
+      <para>
+	      Para emplear una memoria USB después de conectarse debe:
+	      <orderedlist>
+		      <listitem>
+			      <para>
+	      Examinar el dispositivo con el cual fue reconocida su
+	      	memoria tras conectarla.  Vea los últimos mensajes 
+		presentados por <command>dmesg</command>, típicamente
+		será <literal>sd0</literal>.
+			      </para>
+		      </listitem>
+		      <listitem>
+			      <para>
+		Examinar la partición por montar con 
+		<screen>
+	sudo disklabel /dev/rsd0c
+		</screen>
+		la partición que deberá montar podría ser
+		<literal>/dev/sd0c</literal> o  por ejemplo
+		<literal>/dev/sd0i</literal>.
+			      </para>
+		      </listitem>
+
+		      <listitem>
+			      <para>
+		Montar la partición apropiada en un punto del sistema
+			de archivos, por ejemplo con:
+			<screen>
+	sudo mkdir /mnt/usb
+	sudo mount /dev/sd0i /mnt/usb
+			</screen>
+			      </para>
+		      </listitem>
+		      <listitem>
+			      <para>
+		Usar su memoria para leer/escribir (recordando que
+		sólo podría escribir el usuario que sea dueño
+		del punto de montaje)
+			      </para>
+		      </listitem>
+		      <listitem>
+			      <para>
+		Cuando termine su utilización desmontar por ejemplo con:
+		<screen>
+	sudo umount /mnt/usb
+		</screen>
+			      </para>
+		      </listitem>
+	      </orderedlist>
+      </para>
+    </sect2>
+
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sect2 id="kernel">
+      <title>Kernel</title>
+      <para>Algunas configuraciones pueden hacerse con 
+	      <command>sysctl</command>, otras MUY inusuales requieren 
+	      recompilación del kernel.
+      </para>
+      <sect3 id="compilacion-del-kernel">
+	<title>Compilación del kernel</title>
+	<para>Puede sacar las fuentes del CD de instalación o
+		de un repositorio FTP (<filename>src.tgz</filename>)
+	  descomprimiendolas en <filename>/usr/src</filename>, después
+	  puede actualizarlas con el CVS de OpenBSD con:
+	  <screen>
+	cd /usr
+	export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+	cvs -z3 co -rOPENBSD_&VER-OPENBSD-U; -P src </screen>
+	empleando un espejo más cercano a su computador y cambiado
+	OPENBSD_&VER-OPENBSD-U; por la versión que desea actualizar, 
+	o si las fuentes que tiene son la versión que desea puede emplear:
+	<screen>
+	cd /usr/src
+	export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+	cvs -z3 update -r OPENBSD_&VER-OPENBSD-U; -Pd </screen>
+	</para>
+	<para>Tal como se describe en <command>man afterboot</command>,
+	  para compilar basta editar el archivo de configuración del
+	  kernel que se desea, después ejecutar 
+	  <command>config</command>, cambiar al directorio donde se
+	  compila y compilar.  Por ejemplo:
+	  <screen>
+	cd /usr/src/sys/arch/amd64/conf
+	vi GENERIC
+	config GENERIC
+	cd ../compile/GENERIC
+	make clean
+	make depend
+	make
+	  </screen>
+	  con esto se generará el ejecutable <filename>bsd</filename> en
+	  el directorio de compilación, tal ejecutable puede usarse para 
+	  reemplazar
+	  <filename>/bsd</filename>, eventualmente dejando el kernel
+	  anterior listo para un arranque de emergencia:
+	  <screen>
+	mv /bsd /bsd.old
+	mv bsd /bsd
+	  </screen>
+	</para>
+      </sect3>
+    </sect2>
+

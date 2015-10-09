@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect3 id="ispell">
+	<title>ispell</title>
+	<para><command>ispell</command> permite revisar ortografía de
+		textos planos o fuentes de documentos en diversos formatos
+		(HTML, XML o TeX).  Hay diccionarios disponibles para
+		diversos idiomas.
+		Al instalar el paquete <literal>ispell</literal> se instalarán
+		dos diccionarios: inglés de EUA (<literal>american</literal>) e 
+		inglés de Inglaterra (<literal>british</literal>).  Para
+		emplear el diccionario en español (<literal>spanish</literal>)
+		instale el paquete
+		<literal>ispell-spanish</literal>, puede configurarlo como diccionario
+		por defecto con <command>ispell-config</command>.
+	</para>
+	<sect4 id="correccion-ortográfica">
+		<title>Corrección ortográfica</title>
+		<para>Puede corregir interactivamente la ortografía de un texto
+			plano (digamos <filename>carta.txt</filename>) usando el
+			diccionario por defecto con:<screen>
+	ispell carta.txt
+			</screen>
+			o si desea emplear el diccionario de un idioma particular:<screen>
+	ispell -d spanish carta.txt
+			</screen>
+			Al corregir interactivamente <literal>ispell</literal> mostrará
+			palabras que no encuentre en el diccionario del idioma ni en 
+			su diccionario personal<footnote><para>Puede cambiar
+					el diccionario personal que <literal>ispell</literal> debe
+					emplear con la opción <literal>-p 
+						<replaceable>archivo</replaceable></literal></para></footnote> 
+			del idioma 
+			(e.g. <filename>~/.ispell_spanish</filename>), así como posibles
+			remplazos.  Podrá elegir uno de los remplazos tecleando el
+			número que antecede al remplazo.
+		</para>
+	</sect4>
+</sect3>

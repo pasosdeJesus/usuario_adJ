@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Variables de configuración  -->
+<!-- Este archivo es generado automáticamente por conf.sh. No editar -->
+<!ENTITY PROGVER "chunk.xsl">
+<!ENTITY SERVIDOR "www.pasosdeJesus.org">
+<!ENTITY DESCSERV "sirve desinteresadamente a quienes busquen seguir a Jesús">
+<!ENTITY USUARIO "juan">
+
