@@ -1,4 +1,4 @@
-# Reglas para generar HTML, PostScript y PDF de basico_OpenBSD
+# Reglas para generar HTML, PostScript y PDF de usuario_adJ
 # Basadas en infraestructura de dominio público de repasa 
 #   (http://structio.sourceforge.net/repasa)
 
