@@ -1,5 +1,5 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>5. Configuración y uso de algunas aplicaciones</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="configuracion-de-componentes-basicos.html" title="4. Configuración y uso de programas y servicios básicos"><link rel="next" href="configuracion-de-algunos-dispositivos.html" title="6. Configuración y uso de algunos dispositivos y servicios"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">5. Configuración y uso de algunas aplicaciones</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="configuracion-de-algunos-dispositivos.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="configuracion-de-algunos-portes"></a>5. Configuración y uso de algunas aplicaciones</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="escritorio"></a>5.1. Escritorio y Archivos</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="fluxbox"></a>5.1.1. FluxBox</h4></div></div></div><p>La operación básica de este liviano y estético administrador de 
-	      ventanas se describe en [<a href="bi01.html#basico_OpenBSD" title="[basico_OpenBSD]">basico_OpenBSD</a>],
+	      ventanas se describe en ???,
       aquí describimos algunos detalles de configuración.</p><p>Para emplearlo como administrador de ventanas por defecto 
 	      debe modificarse 
 	<code class="filename">~/.xsession</code>, así como en 
@@ -39,7 +39,7 @@ export LANG=es_CO.UTF-8
 		      </p><div class="itemizedlist"><ul type="disc"><li><p>Sitio oficial <a href="fluxbox.org" target="_top">fluxbox.org</a>.
 </p></li><li><p>Página sobre fluxbox de NetBSD <a href="http://wiki.netbsd.org/fluxbox/" target="_top">http://wiki.netbsd.org/fluxbox/</a></p></li><li><p>Página sobre fluxbox de Gentoo <a href="http://www.gentoo.org/doc/es/fluxbox-config.xml" target="_top">http://www.gentoo.org/doc/es/fluxbox-config.xml</a></p></li></ul></div><p>
 	      </p></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="xfe"></a>5.1.2. <span><strong class="command">xfe</strong></span></h4></div></div></div><p>La operación básica se describe en
-		[<a href="bi01.html#basico_OpenBSD" title="[basico_OpenBSD]">basico_OpenBSD</a>],
+		???,
 		aquí describimos algunos detalles de configuración.
 	</p><p>
 		El archivo de configuración se ubica en 
@@ -164,7 +164,7 @@ LaTeX es un experto en esta materia:
 \[ \int_{x=-\infty}^{\infty}e^{-|x|} \]
 \end{document}
 </pre><p>
-     </p><a class="indexterm" name="idp2065626608"></a><a class="indexterm" name="idp2520145136"></a><a class="indexterm" name="idp2065626864"></a><p>LaTeX ofrece plantillas para varios tipos de documentos:
+     </p><a class="indexterm" name="idp970093168"></a><a class="indexterm" name="idp365268208"></a><a class="indexterm" name="idp2769309424"></a><p>LaTeX ofrece plantillas para varios tipos de documentos:
       artículo, reporte, libro y ofrece el concepto de ambiente para
       indicar como presentar cierta información de acuerdo a la
       plantilla.  En el ejemplo presentado, el tipo de documento es
@@ -177,15 +177,15 @@ LaTeX es un experto en esta materia:
       <code class="filename">documento.dvi</code> a partir de
       <code class="filename">documento.tex</code>:</p><pre class="screen">
 	latex documento.tex
-</pre><a class="indexterm" name="idp1792815216"></a><a class="indexterm" name="idp1792816880"></a><p>El archivo DVI es apropiado para imprimir, puede imprimirlo
+</pre><a class="indexterm" name="idp365273712"></a><a class="indexterm" name="idp2769319920"></a><p>El archivo DVI es apropiado para imprimir, puede imprimirlo
       con un comando como <span><strong class="command">dvilj</strong></span>,
       <span><strong class="command">dvidj</strong></span> o un nombre análogo que corresponda a
       su impresora
-      <sup>[<a name="idm104422416" href="#ftn.idm104422416">11</a>]</sup>.  Para visualizar un archivo <span class="acronym">DVI</span>
+      <sup>[<a name="idp365272688" href="#ftn.idp365272688">11</a>]</sup>.  Para visualizar un archivo <span class="acronym">DVI</span>
 	puede emplear el comando <span class="application">xdvi</span>:
 	</p><pre class="screen">
 	xdvi documento.dvi
-</pre><a class="indexterm" name="idm1071433104"></a><p>
+</pre><a class="indexterm" name="idp1268116208"></a><p>
       y para convertirlo a PostScript puede emplear
       <span><strong class="command">dvi2ps</strong></span>:
      </p><pre class="screen">
@@ -303,7 +303,7 @@ con una hoja XSLT de DocBook con:
 			</pre><p>
 			Al corregir interactivamente <code class="literal">ispell</code> mostrará
 			palabras que no encuentre en el diccionario del idioma ni en 
-			su diccionario personal<sup>[<a name="idp523999728" href="#ftn.idp523999728">12</a>]</sup> 
+			su diccionario personal<sup>[<a name="idp831667696" href="#ftn.idp831667696">12</a>]</sup> 
 			del idioma 
 			(e.g. <code class="filename">~/.ispell_spanish</code>), así como posibles
 			remplazos.  Podrá elegir uno de los remplazos tecleando el
@@ -371,7 +371,7 @@ formatos.
 	      <span class="application">audacity-1.3.9p6</span>:
 	      </p><div class="informalfigure"><div class="screenshot"><div class="mediaobject" align="center"><img src="audacity.png" align="middle"></div></div></div><p>
 	</p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="red"></a>5.6. Operación en red</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mutt"></a>5.6.1. <span><strong class="command">mutt</strong></span></h4></div></div></div><p>El uso básico de mutt puede consultarlo en
-		[<a href="bi01.html#basico_OpenBSD" title="[basico_OpenBSD]">basico_OpenBSD</a>].
+		???.
 	</p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="otro-smtp"></a>5.6.1.1. Enviado correo con <span><strong class="command">sendmail</strong></span> 
 			de otro computador</h5></div></div></div><p>
 Para enviar correos <span><strong class="command">mutt</strong></span> corre por defecto el programa
@@ -481,11 +481,11 @@ para datos con algo como:
 </pre><p>
 que de requerirse puede ejecutarse desde la cuenta root (cuyo límite máximo
 es mayor que el de cuentas de usuario).
-	      </p></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm104422416" href="#idm104422416">11</a>] </sup>Si usa <span xmlns=""><strong class="command">ksh</strong></span> puede ver una lista de 
+	      </p></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp365272688" href="#idp365272688">11</a>] </sup>Si usa <span xmlns=""><strong class="command">ksh</strong></span> puede ver una lista de 
 		      posibles programas que le permitan imprimir, 
 		      tecleando <code xmlns="" class="literal">dvi</code> desde un intérprete
 	de comandos y presionando <span xmlns=""><strong class="keycap">Tab</strong></span> dos veces. 
-       </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp523999728" href="#idp523999728">12</a>] </sup>Puede cambiar
+       </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp831667696" href="#idp831667696">12</a>] </sup>Puede cambiar
 					el diccionario personal que <code xmlns="" class="literal">ispell</code> debe
 					emplear con la opción <code xmlns="" class="literal">-p 
 						<em class="replaceable"><code>archivo</code></em></code></p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="configuracion-de-algunos-dispositivos.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">4. Configuración y uso de programas y servicios básicos </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 6. Configuración y uso de algunos dispositivos y servicios</td></tr></table></div></body></html>
