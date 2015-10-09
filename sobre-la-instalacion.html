@@ -27,7 +27,7 @@
 		un espejo del servidor FTP o HTTP que se pueda acceder 
 		rapidamente desde su computador.</p></li></ul></div><p>
 	  </p><p>Aunque es posible realizar la descarga de imagenes ISO,  
-	      recomendamos  comprar<sup>[<a name="idp3957984624" href="#ftn.idp3957984624">4</a>]</sup> los CDs oficiales de instalación
+	      recomendamos  comprar<sup>[<a name="idm1209583248" href="#ftn.idm1209583248">4</a>]</sup> los CDs oficiales de instalación
 	      para apoyar los proyectos OpenBSD y adJ.  
 	    La estructura del CD oficial de OpenBSD
 	    tiene derechos de reproducción restrictivos ---sólo la
@@ -82,24 +82,24 @@
           </p></li></ol></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="ayudas-para-la-instalacion"></a>2.2. Ayudas para la instalación</h3></div></div></div><p>
         Es muy recomendable consultar <a href="http://www.openbsd.org/faq/faq4.html#4.1" target="_top">guía de
 	    instalación de OpenBSD</a>.
-	</p><p>Si tiene el DVD oficial, configure su BIOS para que arranque por este y reinicie<sup>[<a name="idp2463369968" href="#ftn.idp2463369968">5</a>]</sup>. 
+	</p><p>Si tiene el DVD oficial, configure su BIOS para que arranque por este y reinicie<sup>[<a name="idm1021913616" href="#ftn.idm1021913616">5</a>]</sup>. 
 	Este DVD contiene un sistema OpenBSD mínimo que
 	  detectará automáticamente el hardware y lo guiará en el proceso
 	  de instalación.  Si había creado con anterioridad la partición
 	  primaria para OpenBSD
 	  seguramente no tendrá inconveniente en esta instalación, basta
 	  que tenga en cuenta algunas diferencias entre Linux y OpenBSD:
-	  </p><div class="variablelist"><dl><dt><span class="term">Nombres y manejo de dispositivos</span></dt><dd><div class="table"><a name="idp2463371760"></a><p class="title"><b>Tabla 1. Nombres de dispositivos</b></p><table summary="Nombres de dispositivos" border="1"><colgroup><col><col><col></colgroup><thead><tr><th align="left">Dispositivo</th><th align="left">Linux</th><th align="left">OpenBSD</th></tr></thead><tbody><tr><td align="left">Disco IDE 1 maestro</td><td align="left"><code class="filename">/dev/hda</code></td><td align="left"><code class="filename">/dev/wd0c</code> o en modo crudo
+	  </p><div class="variablelist"><dl><dt><span class="term">Nombres y manejo de dispositivos</span></dt><dd><div class="table"><a name="idm3967640592"></a><p class="title"><b>Tabla 1. Nombres de dispositivos</b></p><table summary="Nombres de dispositivos" border="1"><colgroup><col><col><col></colgroup><thead><tr><th align="left">Dispositivo</th><th align="left">Linux</th><th align="left">OpenBSD</th></tr></thead><tbody><tr><td align="left">Disco IDE 1 maestro</td><td align="left"><code class="filename">/dev/hda</code></td><td align="left"><code class="filename">/dev/wd0c</code> o en modo crudo
 			  <code class="filename">/dev/rwd0c</code></td></tr><tr><td align="left">Disco SCSI</td><td align="left"><code class="filename">/dev/sda</code></td><td align="left"><code class="filename">/dev/sd0c</code> o en modo crudo
 			  <code class="filename">/dev/rsd0c</code></td></tr><tr><td align="left">Mouse</td><td align="left"><code class="filename">/dev/psaux</code> o
 			  <code class="filename">/dev/ttyS0</code>,
 			  <code class="filename">/dev/ttyS1</code> ...</td><td align="left"><code class="filename">/dev/wsmouse</code> si es
 			  PS/2. Si es serial uno como 
 			  <code class="filename">/dev/tty00</code> o
-			  <code class="filename">/dev/tty01</code>.</td></tr><tr><td align="left">Teclado</td><td align="left"><code class="filename">/dev/kbd</code></td><td align="left"><code class="filename">/dev/wskbd</code></td></tr><tr><td align="left">Primera unidad de disquete</td><td align="left"><code class="filename">/dev/fd0</code></td><td align="left"><code class="filename">/dev/fd0c</code><sup>[<a name="idp719672432" href="#ftn.idp719672432">a</a>]</sup>
+			  <code class="filename">/dev/tty01</code>.</td></tr><tr><td align="left">Teclado</td><td align="left"><code class="filename">/dev/kbd</code></td><td align="left"><code class="filename">/dev/wskbd</code></td></tr><tr><td align="left">Primera unidad de disquete</td><td align="left"><code class="filename">/dev/fd0</code></td><td align="left"><code class="filename">/dev/fd0c</code><sup>[<a name="idm1021923856" href="#ftn.idm1021923856">a</a>]</sup>
 			</td></tr><tr><td align="left">Primera unidad de DVD</td><td align="left">Si es IDE algo como
 			  <code class="filename">/dev/hdb</code>, si es SCSI algo
-			  como <code class="filename">/dev/sda</code> </td><td align="left"><code class="filename">/dev/cd0c</code></td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp719672432" href="#idp719672432">a</a>] </sup>En discos, DVDs y disquettes las 
+			  como <code class="filename">/dev/sda</code> </td><td align="left"><code class="filename">/dev/cd0c</code></td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1021923856" href="#idm1021923856">a</a>] </sup>En discos, DVDs y disquettes las 
 			      particiones se indican con a, b, d y letras
 			      que se usan como postfijo.  El postfijo c 
 			      representa el disco/DVD/disquette
@@ -215,7 +215,7 @@ podrá tener problemas de memoria posteriormente con algunas aplicaciones), la
 partición <code class="literal">c</code> representa la partición del BIOS 
 completa y no debe tocarse, la tercera (<code class="literal">d</code>) corresponderá 
 a <code class="filename">/home</code> y la cuarta (<code class="literal">e</code>) a 
-<code class="filename">/var</code><sup>[<a name="idp2666984304" href="#ftn.idp2666984304">6</a>]</sup>.
+<code class="filename">/var</code><sup>[<a name="idm2435329040" href="#ftn.idm2435329040">6</a>]</sup>.
 
 Note que con este esquema los programas y sus datos estáticos (típicos
 de los directorios <code class="filename">/bin</code>, <code class="filename">/sbin</code>
@@ -294,7 +294,7 @@ que deberá ejecutar como usuario administrador cuando haya reiniciado.
 	      el instalador preparará el directorio 
 	      <code class="literal">/dev</code> de dispositivos y cambiará la partición
 	      de OpenBSD para que pueda arrancar el sistema en caso de que
-	      sea la partición activa<sup>[<a name="idp2920397552" href="#ftn.idp2920397552">7</a>]</sup>.  
+	      sea la partición activa<sup>[<a name="idm2098621968" href="#ftn.idm2098621968">7</a>]</sup>.  
 	      Puede entonces apagar con el comando
 	      <code class="literal">halt -p</code>, retirar el CD y volver a 
 	      iniciar para entrar al sistema instalado.  
@@ -680,19 +680,19 @@ Regenerar cache de tipos de letra, ejecutando como usuario
 		  Puede consultar el procedimiento para instalar fuentes 
 		  True Type en
 		  <a href="http://www.openbsd.org/faq/truetype.html" target="_top">http://www.openbsd.org/faq/truetype.html</a>.
-	  </p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp3957984624" href="#idp3957984624">4</a>] </sup>Los 
+	  </p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1209583248" href="#idm1209583248">4</a>] </sup>Los 
 		CDs de OpenBSD ordenados por la página web de OpenBSD si llegan a 
-		Colombia.</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2463369968" href="#idp2463369968">5</a>] </sup>El método de
+		Colombia.</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1021913616" href="#idm1021913616">5</a>] </sup>El método de
 				instalación por red PXE requiere que 
 				configure otro servidor con los servicios 
 				DHCP para asignarle dirección
 				durante la instalación y TFTP para que pueda servirle 
 				el archivo de arranque
 				<code xmlns="" class="filename">boot</code> y un kernel como
-				<code xmlns="" class="filename">bsd</code></p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2666984304" href="#idp2666984304">6</a>] </sup>  Si el disco tiene otras particiones 
+				<code xmlns="" class="filename">bsd</code></p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2435329040" href="#idm2435329040">6</a>] </sup>  Si el disco tiene otras particiones 
 	del BIOS para otros sistemas, estos
 se verán con otras etiquetas (típicamente i para la primera partición
-Windows, m para la primera partición Linux).</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2920397552" href="#idp2920397552">7</a>] </sup>Si no tiene un 
+Windows, m para la primera partición Linux).</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2098621968" href="#idm2098621968">7</a>] </sup>Si no tiene un 
 			      manejador de arranque, puede determinar 
 			      cual de las 4 particiones primarias es 
 			      la activa con el programa 
