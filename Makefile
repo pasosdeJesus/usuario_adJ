@@ -54,16 +54,16 @@ INDEX=indice.$(EXT_DOCBOOK)
 GENDIST=Derechos.txt $(SOURCES) $(IMAGES)
 # Dependencias por cumplir antes de generar distribución
 
-ACTHOST=web.sourceforge.net
+ACTHOST=git@github.com:pasosdeJesus/
 # Sitio en Internet donde actualizar. Método indicado por $(ACT_PROC) de confv.sh
 
-ACTDIR=/home/groups/s/st/structio/htdocs/guias/usuario_adJ/
+ACTDIR=usuario_adJ
 # Directorio en $(ACTHOST) por actualizar
 
-USER=$(LOGNAME),structio
+#USER=$(LOGNAME),structio
 # Usuario en $(ACTHOST).  Si es el mismo que en la máquina local comentar.
 
-GENACT=cvsall $(PROYECTO)-$(PRY_VERSION)_html.tar.gz #$(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).ps.gz $(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).pdf 
+GENACT=ghtodo $(PROYECTO)-$(PRY_VERSION)_html.tar.gz #$(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).ps.gz $(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).pdf 
 # Dependencias por cumplir antes de actualizar sitio en Internet al publicar
 
 FILESACT=$(PROYECTO)-$(PRY_VERSION).tar.gz $(PROYECTO)-$(PRY_VERSION)_html.tar.gz $(HTML_DIR)/* #$(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).ps.gz $(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).pdf 
@@ -71,14 +71,18 @@ FILESACT=$(PROYECTO)-$(PRY_VERSION).tar.gz $(PROYECTO)-$(PRY_VERSION)_html.tar.g
 
 all: $(HTML_TARGET) #$(PRINT_DIR)/$(PROYECTO).ps $(PRINT_DIR)/$(PROYECTO).pdf
 
-cvsall: distcvs 
+cvstodo: distcvs 
 	rm -rf $(PROYECTO)-$(PRY_VERSION)
 	tar xvfz $(PROYECTO)-$(PRY_VERSION).tar.gz
 	(cd $(PROYECTO)-$(PRY_VERSION); ./conf.sh; make $(PROYECTO)-$(PRY_VERSION)_html.tar.gz)
 	cp $(PROYECTO)-$(PRY_VERSION)/$(PROYECTO)-$(PRY_VERSION)_html.tar.gz .
 
+ghtodo: distgh
+	(cd $(PROYECTO)-$(PRY_VERSION); ./conf.sh; make $(PROYECTO)-$(PRY_VERSION)_html.tar.gz)
+	cp $(PROYECTO)-$(PRY_VERSION)/$(PROYECTO)-$(PRY_VERSION)_html.tar.gz .
+
 repasa:
-	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="openbsd_usuario" awk -f herram/db2rep $(SOURCES)
+	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="adJ_usuario" awk -f herram/db2rep $(SOURCES)
 
 # Para usar DocBook
 include herram/comdocbook.mak
@@ -98,6 +102,10 @@ limpiamas: limpia
 	rm -f img/*.eps img/*.ps
 	rm -f $(PROYECTO)-$(PRY_VERSION).tar.gz
 	rm -f genindice.xdbk genindice.xdbk.m genindice.xml.m HTML.index.m
+	rm -rf $(PROYECTO)-$(PRY_VERSION)
+	rm -rf $(PROYECTO)_gh-pages
+	rm -f $(INDEX).xdbk $(INDEX).xdbk.m $(INDEX).xml.m HTML.index.m
+	rm -f confaux.sed indice.xdbk.m confv.ent
 
 
 # Elimina backups y archivos temporales
@@ -118,26 +126,12 @@ instala:
 repasa:
 	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="openbsd_usuario" awk -f herram/db2rep $(SOURCES)
 
-# Para usar DocBook
-include herram/comdocbook.mak
-
-# Para crear distribución de fuentes y publicar en Internet
-include herram/comdist.mak
-
-# Elimina hasta configuración
-limpiadist: limpiamas
-	rm -f confv.sh confv.xml Make.inc personaliza.ent
-	rm -rf $(HTML_DIR)
-	rm -rf $(PRINT_DIR)
-
-
-# Elimina archivos generables
-limpiamas: limpia
-	rm -f img/*.eps img/*.ps
-	r
-	#install imp/*ps $(DESTDIR)$(INSDOC)
 
 programas.xdbk: 
 	if (test -f /home/$(LOGNAME)/comp/adJ/Contenido.txt) then { cp /home/$(LOGNAME)/comp/adJ/Contenido.txt Contenido.txt ; recode utf8..latin1 Contenido.txt; } else { touch Contenido.txt; } fi;
 	awk -f herram/convContenido.awk Contenido.txt > programas.xdbk; 
 
+infoversion.ent:
+	if (test -f ../servidor_adJ/infoversion.ent) then { \
+		cp ../servidor_adJ/infoversion.ent .; \
+	} fi;

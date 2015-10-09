@@ -18,6 +18,11 @@
 # limpiadist 	Que debe limpiar todo excepto los archivos que deben ir
 # 		en una distribución de fuentes.
 
+distgh:
+	git clone $(ACTHOST)$(PROYECTO) 
+	$(RM) -rf $(PROYECTO)-$(PRY_VERSION) 
+	$(MV) $(PROYECTO) $(PROYECTO)-$(PRY_VERSION)
+
 
 distcvs:
 	$(CVS) -z3 co $(PRECVS)$(PROYECTO) 
@@ -65,3 +70,14 @@ act-scp:
 act-ncftpput:
 	if (test "$(NCFTPPUT)" = "") then { echo "Falta programa ncftpput, instale y configure de nuevo con conf.sh"; exit 1; } fi;
 	$(NCFTPPUT) -u $(USER) $(ACTHOST) $(ACTDIR) $(FILESACT)
+
+# Publica en github.io
+act-gh:
+	rm -rf $(PROYECTO)_gh-pages
+	git clone -b gh-pages git@github.com:pasosdeJesus/$(PROYECTO) $(PROYECTO)_gh-pages
+	rsync -rvz html/ $(PROYECTO)_gh-pages/
+	cp $(PROYECTO)-$(PRY_VERSION)_html.tar.gz $(PROYECTO)_gh-pages/
+	(cd $(PROYECTO)_gh-pages/;\
+	git add *; \
+	git commit -a;\
+	git push origin gh-pages)

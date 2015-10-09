@@ -53,11 +53,5 @@ configuración).
 
 5. Retroalimentación y ayuda
 
-Para motivarnos, nos gustaría saber donde se usan estas guías,
-puede contactar a los desarrolladores y contarnos o reportar problemas
-escribiendo a:
-
-	structio-info@lists.sourceforge.net
-
-Puede ver los derechos de reproducción de esta documentación y formas de 
-colaborar en els archivo Ayudan.txt
+Consulte Desarrollo.txt, contribuya en
+	https://github.com/pasosdeJesus/usuario_adJ/

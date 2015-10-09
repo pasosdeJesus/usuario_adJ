@@ -1,13 +1,11 @@
 
 RECOMENDACIONES PARA CONTINUAR DESARROLLO
 
-Antes de desarrollar o si no desea desarrollar, sino sólo generar
-documentación PDF, PostsScript o HTML, por favor consulte las
-instrucciones del archivo Leame.txt
+Antes de consultar este documento se sugiere consultar Leame.txt
 
 La información de este archivo es apropiada para quien desea continuar
-el desarrollo de estas fuentes DocBook que siguen convenciones de 
-define.
+el desarrollo de estas fuentes DocBook (http://www.docbook.org) que emplean 
+las ayudas de repasa (http://structio.sourceforge.net/repasa).
 
 
 EDICIÓN DE FUENTES XML
@@ -28,22 +26,21 @@ Tenga en cuenta las siguientes recomendaciones al hacer modificaciones:
   en español sobre este formato en:
 	 http://lucas.hispalinux.es/Tutoriales/DOCBOOK/doctut/
 	
-* Emplee las convenciones de define para documentos DocBook en cuanto
+* Emplee las convenciones de repasa para documentos DocBook en cuanto
   a estructura, indicadores, logros, ejercicios y definiciones.  Consulte
-  estas convenciones en http://structio.sourceforge.net/define/doc
-  o si instaló define puede emplear
-	man docdef
-  o consultar la documentación HTML en 
+  estas convenciones en http://structio.sourceforge.net/repasa/doc
+  o si instaló repasa puede emplear
+	man db2rep
+  o consultar la documentación HTML que debe estar en 
 
 * Si requiere agregar un nuevo archivo xml (incluyendolo en el xml principal), 
   añada también el nombre en la variables SOURCES del Makefile, de forma 
   análoga si elimina un archivo xml también retirelo de esta variable.  
 
 * Si requiere añadir una gráfica, sugerimos que la agregue al directorio
-  img en formato png y a la variable IMAGES del Makefile (las reglas por
-  defecto del Makefile se encargarán de hacer las conversiones necesarios
-  y de copiarlas en el directorio apropiado antes de generar PDF, HTML o 
-  PostScript).
+  img y a la variable IMAGES del Makefile (las reglas por defecto del 
+  Makefile se encargarán de hacer las conversiones necesarios y de copiarlas 
+  en el directorio apropiado antes de generar PDF, HTML o PostScript).
   De forma análoga cuando elimine una gráfica del directorio img, también
   retirela de la variable IMAGES.  Emplee de ser posible formato PNG (aunque 
   JPG también es soportado).
@@ -55,7 +52,8 @@ configuración con conf.sh a partir del módelo confv.empty)  están disponibles
 en:
 	* conf.sh para usarlas durante la configuración
 	* en el Makefile (que incluye el archivo generado Make.inc)
-	* y en las fuentes XML (que deberían incluir confv.xml).  
+	* y en las fuentes XML (que deberían incluir el archivo generado 
+	  confv.ent).  
 Así por ejemplo en sus fuentes XML puede referirse al nombre del proyecto 
 con &PROYECTO; o a la versión con &PRY_VERSION; 
 En el Makefile puede referirse a estos datos con $(PROYECTO) y
@@ -65,22 +63,22 @@ $(PRY_VERSION).
 GENERACIÓN DE OTROS ARCHIVOS Y PUBLICACION
 
 Es posible generar un comprimido con las páginas HTML con nombre
-usuario_adJ-version_html.tar.gz usando:
+usuario_adJ-1.0_html.tgz usando:
 
-	make usuario_adJ-version_html.tar.gz
+	make usuario_adJ-1.0_html.tgz
 
-O un comprimido del PostScript  con nombre usuario_adJ-version.ps.gz usando:
-	make imp/usuario_adJ-version.ps.gz
+O un comprimido del PostScript  con nombre usuario_adJ-1.0.ps.gz usando:
+	make imp/usuario_adJ-1.0.ps.gz
 
 También puede generarse una distribución de fuentes (nombre 
-usuario_adJ-version.tar.gz) con:
+usuario_adJ-1.0.tgz) con:
 
 	make dist
 
 La regla dist, primero chequeará las reglas definidas en la variable
 GENDIST  (por si algunos archivos que deben ir en la distribución de
 fuentes deben generarse).  Si en su proyecto ningún archivo requiere
-ser generado esta variables pueden ser:
+ser generado estas variables pueden ser:
 
 	GENDIST=$(SOURCES) $(IMAGES)
 
@@ -89,7 +87,7 @@ copia de información usando scp (incluido con el paquete ssh).  Puede
 configurar el nombre del servidor y dentro de este la ubicación en 
 el MAKEFILE en la variable ACTHOST por ejemplo:
 
-ACTHOST=shell.sourceforge.net:/home/groups/s/st/structio/htdocs/guias/usuario_adJ
+ACTHOST=shell.sourceforge.net:/home/groups/s/st/structio/htdocs/guias/servidor_OpenBSD
 
 Si el nombre de usuario con el que debe publicar es diferente al del
 login en la máquina donde trabaja puede agregar en el Makefile la
@@ -98,7 +96,6 @@ variable USER con el login en el servidor donde publicará.
 La información que será copiada será la especificada en la variable
 GENDIST del Makefile, y la copia se realizará sólo despues de haber
 chequeado todas las reglas y archivos de la variable GENACT del Makefile.
-
 
 
 VERSIÓN Y OTRAS VARIABLES DE CONFIGURACIÓN 
@@ -118,7 +115,7 @@ de los archivos confv.emtpy y confv.sh (note que puede actualizar sólo
 confv.empty y borrar confv.sh pues este último es generado por conf.sh).
 Por ejemplo:
 
-	PRJ_VERSION=1.1
+	PRY_VERSION=1.1
 
 Puede revisar todas las variables disponibles y su descripción en
 el archivo confv.empty (el primer comentario debajo de cada variable
@@ -140,8 +137,8 @@ estilo.dsl	Usado por OpenJade para generar PostScript/PDF y
 		HTML en varias páginas
 estilohtml.xsl	Usado por xsltproc para generar HTML en varias páginas
 
-Estas hojas de estilo incluyen las hojas de estilo de define
-(docbookdef_html.dsl, docbookdef_html.xsl, docbookdef_tex.dsl), que
+Estas hojas de estilo incluyen las hojas de estilo de repasa
+(docbookrep_html.dsl, docbookrep_html.xsl, docbookrep_tex.dsl), que
 harán procesamiento por defecto para:
 	* Palabras con sus definiciones  (no presenta definiciones)
 	* Indicadores de logro
@@ -178,7 +175,7 @@ $(HTML_TARGETS)  (normalmente $(HTML_DIR)/$(PROYECTO).html).
 
 CAMBIOS A LA INFRAESTRUCTURA
 
-Parte de la infraestructura de estas guías es del proyecto define, en
+Parte de la infraestructura de estas guías es del proyecto repasa, en
 particular:
 
 * Las convenciones para DocBook para logros, indicadores, definiciones y
@@ -187,19 +184,14 @@ particular:
 	conf.sh, herram/confaux.sh  	
 		Establecer valor de variables de configuración 
 		en la plataforma donde se ejecuta
-	docbookdef_*	
-		Hojas de éstilo de define
+	docbookrep_*	
+		Hojas de éstilo de repasa
 	herram/comdocbook.mak	
 		Porciones del Makefile para generar HTML/PS/PDF
 	herram/comdist.mak	
 		Porciones del Makefile para distribución 
 		y publicación
 
-Si modifica estos scripts o mejora las convenciones, eventualmente su
-cambio puede ser útil para la infraestructura de define.  Si lo desea
-puede desarrollar al tiempo tal infraestructura con su proyecto 
-instalando define y empleando enlaces en lugar de archivos separados.  
-Si lo desea, también puede compartir sus mejoras de dominio público 
-para que pueda ser integradas a define y beneficiar las instituciones 
-que emplean ese proyecto, puede enviar sus mejoras a 
-	structio-define@lists.sourceforge.net
+Lo invitamos a aportar sus cambios en el repositorio de fuentes
+de este proyecto:
+https://github.com/pasosdeJesus/usuario_adJ/
