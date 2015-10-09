@@ -4,7 +4,7 @@
       <title>FluxBox</title>
 
       <para>La operación básica de este liviano y estético administrador de 
-	      ventanas se describe en <xref linkend="basico_OpenBSD"></xref>,
+	      ventanas se describe en <xref linkend="basico_adJ"></xref>,
       aquí describimos algunos detalles de configuración.</para>
       <para>Para emplearlo como administrador de ventanas por defecto 
 	      debe modificarse 

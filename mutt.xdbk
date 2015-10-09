@@ -3,7 +3,7 @@
 	<title><command>mutt</command></title>
 
 	<para>El uso básico de mutt puede consultarlo en
-		<xref linkend="basico_OpenBSD"></xref>.
+		<xref linkend="basico_adJ"></xref>.
 	</para>
   
 	<sect4 id="otro-smtp">
@@ -71,7 +71,7 @@ emplee el agente (ver un ejemplo en <xref linkend="fluxbox"/>).
 			      </listitem>
 			      <listitem>
 <para>Sección sobre <command>mutt</command> de
-<citation>basico_OpenBSD</citation>.</para>
+<citation>basico_adJ</citation>.</para>
 			      </listitem>
 		      </itemizedlist>
 	      </para>	

@@ -3,7 +3,7 @@
 	<title><command>xfe</command></title>
 
 	<para>La operación básica se describe en
-		<xref linkend="basico_OpenBSD"></xref>,
+		<xref linkend="basico_adJ"></xref>,
 		aquí describimos algunos detalles de configuración.
 	</para>
 	<para>

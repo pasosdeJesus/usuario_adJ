@@ -1,2 +1,2 @@
-../basico_OpenBSD/fixldevdbrep.sh
+../basico_adJ/fixldevdbrep.sh
 
