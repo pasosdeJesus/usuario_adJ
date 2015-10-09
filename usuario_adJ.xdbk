@@ -97,20 +97,17 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
 	      de Jaime Carvajal, Hernan Quishpe y los aportes de 
           Christian Llanos (christian.sanchez@gmail.com) 
           y Alvaron Pinzón.</para>
-      <para>
-	La versión publicada más reciente está disponible
-	en <ulink url="&URLSITE;">HTML</ulink><!--,  como <ulink
+  <para>
+	La versión publicada más reciente está tanto
+	<ulink url="&URLSITE;">en línea</ulink>  como
+	<ulink url="&PROYECTO;-&PRY-VERSION;_html.tar.gz">en archivo comprimido</ulink> 
+	y como <ulink url="http://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus/&PRY-VERSION;/paquetes/&PROYECTO;-&PRY-VERSION;.tar.gz">paquete para adJ/OpenBSD</ulink>.
+	<!--, como <ulink
 	  url="&URLSITE;/&PROYECTO;-&PRY-VERSION;.ps.gz">PostScript
-	  comprimido</ulink>, como 
-  <ulink url="&URLSITE;/&PROYECTO;-&PRY-VERSION;.pdf">PDF</ulink> -->
-  y <ulink url="&URLSITE;/&PROYECTO;-&PRY-VERSION;_html.tar.gz">HTML comprimido</ulink>.
-	También están publicadas
-	<ulink url="&URLSITE;/&PROYECTO;-&PRY-VERSION;.tar.gz">sus fuentes en
-	  DocBook comprimidas</ulink>.  La versión de desarrollo está 
-	en el
-	<ulink
-		url="http://cvs.sourceforge.net/viewcvs.py/structio/guias/usuario_adJ/">
-	  repositorio CVS de Structio</ulink>.
+	  comprimido</ulink> y como 
+  <ulink url="&URLSITE;/&PROYECTO;-&PRY-VERSION;.pdf">PDF</ulink>. -->
+	Sus fuentes en DocBook están disponibles en 
+	<ulink url="https://github.com/pasosdeJesus/&PROYECTO;/">https://github.com/pasosdeJesus/&PROYECTO;/</ulink>.
       </para>
     </legalnotice>
 
