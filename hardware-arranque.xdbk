@@ -85,7 +85,7 @@
 	  emplea para que correspondan a los de un dispositivo y que
 	  su sistema esté operando, puede hacer el cambio permanente usando:
 	  <screen>
-	sudo config -e -o /bsd.ne1 -u /bsd
+	doas config -e -o /bsd.ne1 -u /bsd
 	  </screen>
 	  que le permitirá al mismo entorno interactivo, que procurará
 	  detectar los cambios que usted haya podido hacer durante el

@@ -72,7 +72,7 @@
   <para>Para revisar un sistema de archivos <literal>ffs</literal> (digamos
       que esté en la partición <literal>/dev/wd1j</literal>) ejecute:
       <screen>
-	sudo fsck_ffs /dev/rwd1j
+	doas fsck_ffs /dev/rwd1j
       </screen>
       note la <literal>r</literal> antes de <literal>wd1j</literal> que indica
       que la partición debe tratarse en modo puro (del inglés <emphasis>raw</emphasis>).
@@ -87,13 +87,13 @@
       se negará a realizar el chequeo, en tales casos puede intentar
       con un superbloque de respaldo --típicamente hay uno en el bloque 32:
       <screen>
-	sudo fsck_ffs -b 32 /dev/rwd1j
+	doas fsck_ffs -b 32 /dev/rwd1j
       </screen>
   </para>
 	<para>Para crear un sistema de archivos <literal>ffs</literal>
 	  en un disco ya particionado con <command>disklabel</command>
           puede emplearse <command>newfs</command>, por ejemplo:<screen>
-	sudo newfs -t ffs /dev/wd1j
+	doas newfs -t ffs /dev/wd1j
 </screen>
 <warning><para>Al crear un nuevo sistema de archivos se borra la
     información que pudiera haber existido.</para></warning>

@@ -21,9 +21,9 @@
 	  <filename>/var/empty</filename> y si no existe crear el usuario 
 	  sshd. 
 	  <screen>
-	sudo mkdir /var/empty
-	sudo chown root:wheel /var/empty
-	sudo chmod u=rwx,go=rx /var/empty
+	doas mkdir /var/empty
+	doas chown root:wheel /var/empty
+	doas chmod u=rwx,go=rx /var/empty
 	  </screen>
 	</para>
       </sect3>

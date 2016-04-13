@@ -356,7 +356,7 @@
 		  OpenBSD &VER-OPENBSD;. Una vez 
 		  instalado puede ejecutarlo con
 	<screen>
-	sudo cupsd
+	doas cupsd
 	</screen>
 	Para que en cada arranque se ejecute automáticamente, se recomienda 
 	agregar en <filename>rc.local</filename>:
@@ -389,8 +389,8 @@
 </para>
 <para>También es recomendable que cree un directorio:
 	<screen>
-	sudo mkdir /var/spool/cups/tmp
-	sudo chown _cups:_cups /var/spool/cups/tmp/
+	doas mkdir /var/spool/cups/tmp
+	doas chown _cups:_cups /var/spool/cups/tmp/
 	</screen>
 </para>
 <para>
@@ -515,7 +515,7 @@ lp|local line printer:\
 			  <!--	  Después de instalar <command>foomatic</command> y 
 			  <command>cups</command> ejecutar:
 			  <screen>
-sudo ln -s /usr/local/bin/foomatic-rip /usr/local/libexec/cups/filter/
+doas ln -s /usr/local/bin/foomatic-rip /usr/local/libexec/cups/filter/
 			  </screen> -->
 			  Cada archivo <filename>ppd</filename> 
 			  que descargue debe ubicarlo en:

@@ -25,7 +25,7 @@
 <!ENTITY conf-ld SYSTEM "conf-ld.xdbk">
 <!ENTITY conf-pdksh SYSTEM "conf-pdksh.xdbk">
 <!ENTITY ftp SYSTEM "ftp.xdbk" >
-<!ENTITY sudo SYSTEM "sudo.xdbk">
+<!ENTITY doas SYSTEM "doas.xdbk">
 <!ENTITY cron SYSTEM "cron.xdbk">
 <!ENTITY mutt SYSTEM "mutt.xdbk">
 
@@ -143,7 +143,7 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
     <title>Configuración y uso de programas y servicios básicos</title>
     &conf-pdksh;
     &ftp;
-    &sudo;
+    &doas;
     &cron;
     &conf-ld;
     &conf-kernel;
@@ -155,7 +155,7 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
 	    <filename>/etc/localtime</filename> con una de las zonas del 
 	    directorio <filename>/usr/share/zoneinfo</filename>, por ejemplo
 	    <screen>
-sudo ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
+doas ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
 	    </screen>
 	</para>
     </sect2>
@@ -281,7 +281,7 @@ Una vez efectúe el cambio recuerde ejecutar:
 	       remplazando msdos3 por la partición primaria
 	       donde instaló.  Después ejecute:
 	       <screen>
-	sudo update-grub2
+	doas update-grub2
 </screen>
 		y reinicie.
        </para>
@@ -294,8 +294,8 @@ Una vez efectúe el cambio recuerde ejecutar:
 	       <filename>/dev/wd0i</filename> que 
 	       puede examinar con <literal>disklabel</literal>) con:
 	 <screen>
-	sudo mkdir -p /mnt/linux
-	sudo mount -t ext2 /dev/wd0i /mnt/linux </screen>
+	doas mkdir -p /mnt/linux
+	doas mount -t ext2 /dev/wd0i /mnt/linux </screen>
 
 	 Desde Linux podrá montar una partición de OpenBSD usando el tipo
 	 ufs con la opción 44bsd.  Si una partición para OpenBSD está
@@ -303,8 +303,8 @@ Una vez efectúe el cambio recuerde ejecutar:
 	 asignará dispositivos apropiados (busque los nombres entre los
 	 mensajes de <command>dmesg</command>):
 	 <screen>
-	sudo mkdir -p /mnt/openbsd
-	sudo mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd </screen>
+	doas mkdir -p /mnt/openbsd
+	doas mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd </screen>
        </para>
      </sect3>
      </sect2>

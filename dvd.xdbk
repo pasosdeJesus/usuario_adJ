@@ -28,7 +28,7 @@
 	  <filename>/home/copia/a</filename> y 
 	  <filename>/home/copia/b</filename>:
 	  <screen>
-	sudo growisofs -Z /dev/rcd0c -R /home/copia/a /home/copia/b
+	doas growisofs -Z /dev/rcd0c -R /home/copia/a /home/copia/b
 	  </screen>
 			  </para>
 		  </listitem>
@@ -36,7 +36,7 @@
 			  <para>Para quemar un DVD con la imagen ISO 
 				  <filename>dvd.iso</filename>
 				  <screen>
-	sudo growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
+	doas growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
 				  </screen>
 			  </para>
 		  </listitem>

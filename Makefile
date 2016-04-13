@@ -12,7 +12,7 @@ SOURCES=$(PROYECTO).$(EXT_DOCBOOK)  intro.xdbk \
 	pre-inst.xdbk ayu-inst.xdbk inst-basico.xdbk inst-comp.xdbk inicio-sistema.xdbk xorg.xdbk \
 	paquetes.xdbk programas.xdbk portes.xdbk emulacion-linux.xdbk \
 	conf-kernel.xdbk syslog.xdbk conf-ld.xdbk conf-pdksh.xdbk ftp.xdbk \
-	sudo.xdbk \
+	doas.xdbk \
 	conf-fluxbox.xdbk xiphos.xdbk ispell.xdbk conf-tex-gv.xdbk \
 	editoresdegraficos.xdbk editoresdeaudio.xdbk \
 	mplayer.xdbk java.xdbk docbook.xdbk msoffice.xdbk kde.xdbk mutt.xdbk \

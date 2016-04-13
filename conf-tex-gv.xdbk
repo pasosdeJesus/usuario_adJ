@@ -6,9 +6,9 @@
 	      texlive y gv:
       </para>
       <screen>
-	sudo pkg_add $PKG_PATH/&p-texlive_base;.tgz 
-	sudo pkg_add $PKG_PATH/&p-texlive_texmf-full;.tgz 
-	sudo pkg_add $PKG_PATH/&p-gv;.tgz </screen>
+	doas pkg_add $PKG_PATH/&p-texlive_base;.tgz 
+	doas pkg_add $PKG_PATH/&p-texlive_texmf-full;.tgz 
+	doas pkg_add $PKG_PATH/&p-gv;.tgz </screen>
 	<para>
 		Puede configurar tamaño del papel, separado en sílabas 
 		y otros detalles con <command>texconfig</command>.

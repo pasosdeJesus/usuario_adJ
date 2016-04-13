@@ -10,9 +10,9 @@
     <title>SGML 4.4 con DSSSL</title>
     <para>Instale los paquetes openjade, docbook y docbook-dsssl:
       <screen>
-	sudo pkg_add $PKG_PATH/&p-docbook;.tgz
-	sudo pkg_add $PKG_PATH/&p-docbook-dsssl;.tgz
-	sudo pkg_add $PKG_PATH/&p-openjade;.tgz </screen>
+	doas pkg_add $PKG_PATH/&p-docbook;.tgz
+	doas pkg_add $PKG_PATH/&p-docbook-dsssl;.tgz
+	doas pkg_add $PKG_PATH/&p-openjade;.tgz </screen>
       Esto bastará para hacer conversiones de DocBook SGML a 
       HTML por ejemplo si su hoja de estílo DSSL es "marcos.dsl" y 
       va a convertir el documento DocBook marcos.xml:

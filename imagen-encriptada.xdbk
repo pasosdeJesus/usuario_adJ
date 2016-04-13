@@ -13,10 +13,10 @@
 		  <filename>/var/post.img</filename> puede usar:
 		  <screen>
 
-	sudo dd if=/dev/zero of=/var/post.img bs=1024 count=500000
-	sudo vnconfig -ckv svnd0 /var/post.img
-	sudo newfs /dev/svnd0c
-	sudo vnconfig -u svnd0
+	doas dd if=/dev/zero of=/var/post.img bs=1024 count=500000
+	doas vnconfig -ckv svnd0 /var/post.img
+	doas newfs /dev/svnd0c
+	doas vnconfig -u svnd0
 		  </screen>
 La clave que ingrese tras 
 <literal>vnconfig -ckv svnd0 /var/post.img</literal>,

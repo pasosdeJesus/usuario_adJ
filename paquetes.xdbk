@@ -67,7 +67,7 @@ Podrá actualizar un paquete con
         </screen>
         Y para actualizar todos los paquetes puede utilizar
         <screen>
-	sudo pkg_add -u 
+	doas pkg_add -u 
         </screen>
 	</para>
 </sect3>

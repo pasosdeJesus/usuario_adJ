@@ -67,7 +67,7 @@
 	      un servicio (bien intencionalmente o por error) puede
 	      ejecutar este archivo de comandos para reiniciarlo con:
 	      <screen>
-	sudo sh /etc/rc.local
+	doas sh /etc/rc.local
 	      </screen>
       </para>
     </sect2>

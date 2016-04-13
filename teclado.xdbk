@@ -13,9 +13,9 @@
       <para>Si tiene un teclado US y desea emplear teclas muertas en la
 	consola puede usar desde la línea de comandos:
 	<screen>
-	sudo wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
-	sudo wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"
-	sudo wsconsctl -w keyboard.map+="keycode 56=Cmd2 Multi_key" </screen>
+	doas wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
+	doas wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"
+	doas wsconsctl -w keyboard.map+="keycode 56=Cmd2 Multi_key" </screen>
 
 	o para que esta configuración siempre sea realizada durante el 
 	arranque agregue estas líneas al final de 

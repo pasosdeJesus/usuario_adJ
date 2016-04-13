@@ -37,12 +37,12 @@
 		<command>sudo</command> (ver <link
 	  linkend="sudo">sudo</link>):
 	<screen>
-	sudo mcopy *tgz a: </screen>
+	doas mcopy *tgz a: </screen>
 	o incluso con <command>sudo</command> y un alias hacer 
 	transparente la restricción para los usuarios que puedan
 	emplear <command>sudo</command>:
 	<screen>
-	alias mcopy='sudo mcopy' </screen>
+	alias mcopy='doas mcopy' </screen>
       </para>
 </sect3>
     <sect3 id="montar-disquettes">

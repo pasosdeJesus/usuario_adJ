@@ -34,13 +34,13 @@ Grabar (o quemar) la imagen ISO en un  CD-R o un CD-RW.
 	  Para crear una imagen ISO de un CD existente primero examine 
 	  la cantidad de sectores de los que consta con 
 	  <screen>
-	sudo disklabel /dev/rcd0c
+	doas disklabel /dev/rcd0c
 	  </screen>
 	  Suponiendo que cada sector tenga 2048 bytes y el total de sectores
 	  fuera 112120 puede crear la imagen 
 	  (<filename>/home/imagen/micd.iso</filename>) empleando el comando:
 	  <screen>
-	sudo dd if=/dev/rcd0c of=/home/imagen/micd.iso bs=2048 count=112120
+	doas dd if=/dev/rcd0c of=/home/imagen/micd.iso bs=2048 count=112120
 	  </screen>
 	</para>
   </sect3>
@@ -67,7 +67,7 @@ a partir de la información disponible en <filename>/home/&EUSUARIO;/imagen</fil
 puede ejecutar como usuario <literal>root</literal>:
 	    <screen>
 	cd /home/&EUSUARIO;/imagen
-	sudo mkisofs -r -l -f -o /home/&EUSUARIO;/micd.iso  .
+	doas mkisofs -r -l -f -o /home/&EUSUARIO;/micd.iso  .
 	</screen>
 Note que la imagen creada emplea la extensión Rock Ridge 
 (opción <option>-r</option>), permite nombres largos (opción
@@ -92,7 +92,7 @@ archivos de <filename>/home/&EUSUARIO;/imagen/</filename> (en la que
     no debe existir el archivo <filename>boot.catalog</filename>) use:
     <screen>
 	cd /home/&EUSUARIO;/imagen
-	sudo mkisofs -b floppy.img -c boot.catalog -copyright /home/&EUSUARIO;/Derechos.txt \
+	doas mkisofs -b floppy.img -c boot.catalog -copyright /home/&EUSUARIO;/Derechos.txt \
 	  -r -l -f -o /home/&EUSUARIO;/micd.iso  .
     </screen> 
     <!-- Para incluir más información usar archivo .mkisofrc o parametros
@@ -110,13 +110,13 @@ archivos de <filename>/home/&EUSUARIO;/imagen/</filename> (en la que
 	<filename>/dev/cd0c</filename>
     o bien <filename>/dev/rcd0c:0,0,0</filename>, por ejemplo:
     <screen>
-	sudo cdrecord dev=/dev/cd0c -data speed=16 /home/&EUSUARIO;/micd.iso
+	doas cdrecord dev=/dev/cd0c -data speed=16 /home/&EUSUARIO;/micd.iso
     </screen>
 
     Si emplea un CD-RW tenga en cuenta blanquearlo antes de escribir 
     usando la opción <option>blank=fast</option>:
     <screen>
-	sudo cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/&EUSUARIO;/micd.iso
+	doas cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/&EUSUARIO;/micd.iso
     </screen>
   </para>
 
@@ -138,12 +138,12 @@ archivos de <filename>/home/&EUSUARIO;/imagen/</filename> (en la que
     </para></footnote>.  Los datos precisos que debe pasar a la 
 	opción -C los examina con:
 <screen>
-	sudo cdrecord dev=/dev/cd0c -msinfo
+	doas cdrecord dev=/dev/cd0c -msinfo
 </screen>
 	Que retorna un par de números (supongamos que 18904,26106), los 
 cuales debe usar con mkisofs, por ejemplo:
 <screen>
-	sudo mkisofs -r -l -f -C 18904,26106 -o ../micd.iso .
+	doas mkisofs -r -l -f -C 18904,26106 -o ../micd.iso .
 </screen>
 Y nuevamente debe pasar 
     la opción <option>-multi</option> a <command>cdrecord</command> en el

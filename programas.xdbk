@@ -10,9 +10,10 @@
 <row><entry>evangelios_dp</entry><entry>	Evangelios: traducción de dominio público.</entry></row>
 <row><entry>sword</entry><entry>		Permite consultar Biblia, incluye módulo KJV </entry></row>
 <row><entry>xiphos</entry><entry>		Herramienta para estudiar Biblia, usa módulos de sword.</entry></row>
-<row><entry>basico_adJ</entry><entry>	Manual de uso básico de OpenBSD</entry></row>
+<row><entry>Mt77</entry><entry>		Buscar rápido y preciso</entry></row>
+<row><entry>basico_adJ</entry><entry>		Manual de uso básico de OpenBSD</entry></row>
 <row><entry>servidor_adJ</entry><entry>	Documentación de OpenBSD como servidor</entry></row>
-<row><entry>usuario_adJ</entry><entry>	Documentación para usuarios de OpenBSD</entry></row>
+<row><entry>usuario_adJ</entry><entry>		Documentación para usuarios de OpenBSD</entry></row>
 <row><entry>asigna</entry><entry>		Cuadra horarios en un colegio</entry></row>
 <row><entry>markup</entry><entry>		Librería para reconocimiento de XML en Ocaml</entry></row>
 <row><entry>repasa</entry><entry>		Crear y repasar contenidos (incluye currículo)</entry></row>
@@ -34,7 +35,7 @@
         <entry>Paquete</entry><entry>Descripción</entry>
     </row></thead>
 	   <tbody>
-<row><entry>audacious</entry><entry>		Reproductor multimedia </entry></row>
+<row><entry>audacious</entry><entry>	Reproductor multimedia </entry></row>
 <row><entry>audacity</entry><entry>	Editor de audio</entry></row>
 <row><entry>abiword</entry><entry>		Procesador de texto que puede importar MS-Word</entry></row>
 <row><entry>chromium</entry><entry>	Navegador web Chrome</entry></row>
@@ -42,7 +43,7 @@
 <row><entry>fbdesk</entry><entry>		Permite poner iconos en escritorio fluxbox</entry></row>
 <row><entry>fluxbox</entry><entry>		Escritorio extra liviano</entry></row>
 <row><entry>fluxter</entry><entry>		Pagina espacios de trabajo en fluxbox        </entry></row>
-<row><entry>filezilla</entry><entry>		Transmite archivos (soporta protocolo ssh)</entry></row>
+<row><entry>filezilla</entry><entry>	Transmite archivos (soporta protocolo ssh)</entry></row>
 <row><entry>fontforge</entry><entry>	Editor/conversor de tipos de letra vectoriales</entry></row>
 <row><entry>gimp</entry><entry>		Editor gráfico por pixels</entry></row>
 <row><entry>gnumeric</entry><entry>	Hoja de cálculo</entry></row>
@@ -53,15 +54,13 @@
 <row><entry>libreoffice</entry><entry>	Aplicaciones de oficina</entry></row>
 <row><entry>libreoffice-i18n-es</entry><entry>	Localización en Español para LibreOffice</entry></row>
 <row><entry>pidgin</entry><entry>	Mensajería (soporta protocolo SILC)</entry></row>
-<row><entry>plan</entry><entry>		Planeador y calendario Motif</entry></row>
 <row><entry>qemu</entry><entry>		Emulador de varios sistemas</entry></row>
 <row><entry>qgis</entry><entry>		Sistema de información geográfica de escritorio</entry></row>
 <row><entry>scribus</entry><entry>		Publicación de escritorio</entry></row>
 <row><entry>vlc</entry><entry>		Reproductor Multimedia</entry></row>
 <row><entry>xcdplayer</entry><entry>		Reproductor de CDs</entry></row>
-<row><entry>xarchiver</entry><entry>		Manejador de archivos comprimidos</entry></row>
+<row><entry>xarchiver</entry><entry>	Manejador de archivos comprimidos</entry></row>
 <row><entry>xfe</entry><entry>		Administrador de archivos</entry></row>
-<row><entry>xfig</entry><entry>		Editor gráfico vectorial</entry></row>
 <row><entry>xsane</entry><entry>		Opera escaner con sane</entry></row>
 <row><entry>xpdf</entry><entry>		Visualizador de archivos PDF</entry></row>
 </tbody></tgroup></table>
@@ -83,6 +82,7 @@
 <row><entry>curl</entry><entry>		Descarga de servidores FTP, Gopher, HTTP y HTPPS</entry></row>
 <row><entry>dfc</entry><entry>		Muestra uso de disc</entry></row>
 <row><entry>ffmpeg</entry><entry>	Conversor y emisor de video con bktr(4)</entry></row>
+<row><entry>hexedit</entry><entry> 	Ver y editar archivos en hexadecimal o ASCII</entry></row>
 <row><entry>ImageMagick</entry><entry>	Conversión de formatos gráficos</entry></row>
 <row><entry>ispell</entry><entry>		Diccionario</entry></row>
 <row><entry>ispell-spanish</entry><entry>	Diccionario en español para ispell</entry></row>
@@ -111,9 +111,13 @@
 <row><entry>ldapvi</entry><entry>		Actualiza entradas LDAP con un editor de texto</entry></row>
 <row><entry>nginx</entry><entry>		Servidor web</entry></row>
 <row><entry>openpoppassd</entry><entry>	Serivicio para cambio de claves</entry></row>
+<row><entry>owncloud</entry><entry>	Acceso universal y sencillo a archivos personales compartidos</entry></row>
 <row><entry>p5-Mail-SpamAssassin</entry><entry>	Filtro de correo para identificar y marcar spam</entry></row>
 <row><entry>php</entry><entry>		Lenguaje script empotrado en HTML que opera en servidor</entry></row>
+<row><entry>php-bz2</entry><entry>   	Extensión de compresión bzip2 para php5</entry></row>
+<row><entry>php-curl</entry><entry>		Extensiones para php5 de la libreria de URLs curl</entry></row>
 <row><entry>php-fpm</entry><entry>		Versión independiente de PHP-FPM</entry></row>
+<row><entry>php-gmp</entry><entry>		Librería de matemáticas gmp para PHP</entry></row>
 <row><entry>php-gd</entry><entry>		Uso de gd (librería gráfica) desde PHP</entry></row>
 <row><entry>php-intl</entry><entry>		Extensión de internacionalización con librería ICU</entry></row>
 <row><entry>php-ldap</entry><entry>		Extensión a PHP para protocolo LDAP</entry></row>
@@ -147,7 +151,8 @@
     </row></thead>
 	   <tbody>
 <row><entry>cppcheck</entry><entry>		Verificador estático de C/C++</entry></row>
-<row><entry>cppunit</entry><entry>		Infraestructura para probar programas en C++</entry></row>
+<row><entry>cppunit</entry><entry>	Infraestructura para probar programas en C++</entry></row>
+<row><entry>gcc</entry><entry>		Versión más reciente de gcc</entry></row>
 <row><entry>git</entry><entry>		Almacenar historia de árbol de directorios</entry></row>
 <row><entry>llvm</entry><entry>    Compilador modular y rápido de C/C++/ObjC</entry></row>
 <row><entry>lua</entry><entry>		Lenguaje de programación potente y liviano</entry></row>

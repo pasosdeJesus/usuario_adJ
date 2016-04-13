@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect2 id="doas">
+	<title>doas</title>
+	<para>
+Este programa permite ejecutar comandos privilegiados a
+algunos usuarios.
+A partir de adJ y OpenBSD 5.8 el sistema base incluye <literal>doas</literal> 
+como remplazo del antiguo <literal>sudo</literal>. <literal>doas</literal>
+es más simple y fácil de auditar.
+	</para>
+	<para>
+Se configura en <filename>/etc/doas.conf</filename>.  Un ejemplo mínimo es:
+<screen>
+	permit nopass keepenv :wheel
+</screen>
+que permitirá su uso sin requerir clave a todos los usuarios del grupo
+<literal>wheel</literal> manteniendo las varibles de ambiente.
+
+	</para>
+	<para>
+Una vez configurado, puede ejecutar un comando privilegiado
+desde una cuenta configurada con
+<command>doas <replaceable>comando</replaceable></command>.
+Por ejemplo:
+<screen>
+	doas vi /etc/rc.conf.local 
+</screen>
+	</para>
+
+	<sect3 id="sudo">
+		<title>sudo</title>
+
+		<para>
+El programa <literal>sudo</literal> se mantiene como paquete, 
+si lo requiere instalelo con:
+<screen>
+	pkg_add sudo
+</screen>
+		</para>
+		<para>   
+Se configura en <filename>/etc/sudoers</filename> que debe editarse con
+<command>visudo</command>.
+		</para>
+		<para> 
+Consulte los ejemplos allí presentados
+en líneas con comentarios y quite el comentario a la configuración
+que considere apropiada.  Por ejemplo si desea que todo usuario
+que esté en el grupo <literal>wheel</literal> pueda emplear 
+<command>sudo</command> sin necesidad de ingresar una clave,
+quite el comentario a la línea:
+<screen>
+	%wheel  ALL=(ALL)       NOPASSWD: ALL
+</screen>
+		</para>
+
+		<para>
+Puede verse en <ulink url="http://rr.sans.org/authentic/sudo.php">http://rr.sans.org/authentic/sudo.php</ulink> 
+interacción 
+entre <command>sudo</command> y <command>ssh</command> para 
+administrar una red.
+		</para>
+	</sect3>
+</sect2>

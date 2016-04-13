@@ -8,7 +8,7 @@
 		Puede comprar que opera con <command>pgrep cron</command> que
 		debe responder con el número del proceso.  Si no está
 		corriendo debe ejecutarlo urgentemente bien reiniciando el
-		servido o ejecutando <literal>sudo cron</literal>.
+		servido o ejecutando <literal>doas cron</literal>.
 	</para>
 	<para>Cada minuto el programa <literal>cron</literal> busca
 		tareas cuya ejecución esté pendiente.  
