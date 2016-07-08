@@ -94,12 +94,12 @@ sudo_nopasswd=1
 				para diagrama <code class="literal">draw</code> (que puede iniciar con
 				<span><strong class="command">sdraw</strong></span>). 
 				Puede aprender más sobre este procesador en [<a href="bi01.html#libreoffice-basico" title="[libreoffice-basico]">libreoffice-basico</a>]
-      </p><p>Además el DVD de adJ incluye <span class="application">abiword-3.0.1</span>
+      </p><p>Además el DVD de adJ incluye <span class="application">abiword-3.0.1p3</span>
 	      como procesador de texto capaz de abrir y escribir tanto
 	      en el formato de Microsoft Office como en OpenDocument (que
 	      es el formato de LibreOffice y OpenOffice).
       </p><p>Para operar con hojas de cálculo incluye 
-	      <span class="application">gnumeric-1.12.20</span>, que también
+	      <span class="application">gnumeric-1.12.23</span>, que también
 	      puede abrir y guardar en OpenDocument y en formatos de 
 				Microsoft Office.
 	      </p><div class="informalfigure"><div class="screenshot"><div class="mediaobject" align="center"><img src="gnumeric.png" align="middle"></div></div></div><p>
@@ -116,9 +116,9 @@ sudo_nopasswd=1
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="conf-tex-gv"></a>5.3.2. TeX y Ghostview</h4></div></div></div><p> Para emplear TeX, LaTeX y asociados instale
 	      texlive y gv:
       </p><pre class="screen">
-	sudo pkg_add $PKG_PATH/texlive_base-2013p3.tgz 
-	sudo pkg_add $PKG_PATH/texlive_texmf-full-2013p0.tgz 
-	sudo pkg_add $PKG_PATH/gv-3.7.1p1.tgz </pre><p>
+	doas pkg_add $PKG_PATH/texlive_base-2014p0.tgz 
+	doas pkg_add $PKG_PATH/texlive_texmf-full-2014.tgz 
+	doas pkg_add $PKG_PATH/gv-3.7.1p1.tgz </pre><p>
 		Puede configurar tamaño del papel, separado en sílabas 
 		y otros detalles con <span><strong class="command">texconfig</strong></span>.
 </p><p>A continuación se incluye un mini-tutorial de LaTeX adaptado de
@@ -164,7 +164,7 @@ LaTeX es un experto en esta materia:
 \[ \int_{x=-\infty}^{\infty}e^{-|x|} \]
 \end{document}
 </pre><p>
-     </p><a class="indexterm" name="idm79201808"></a><a class="indexterm" name="idm1752436880"></a><a class="indexterm" name="idm79202960"></a><p>LaTeX ofrece plantillas para varios tipos de documentos:
+     </p><a class="indexterm" name="idm2865742192"></a><a class="indexterm" name="idm1800943856"></a><a class="indexterm" name="idm1800943344"></a><p>LaTeX ofrece plantillas para varios tipos de documentos:
       artículo, reporte, libro y ofrece el concepto de ambiente para
       indicar como presentar cierta información de acuerdo a la
       plantilla.  En el ejemplo presentado, el tipo de documento es
@@ -177,15 +177,15 @@ LaTeX es un experto en esta materia:
       <code class="filename">documento.dvi</code> a partir de
       <code class="filename">documento.tex</code>:</p><pre class="screen">
 	latex documento.tex
-</pre><a class="indexterm" name="idm79209872"></a><a class="indexterm" name="idm2881730320"></a><p>El archivo DVI es apropiado para imprimir, puede imprimirlo
+</pre><a class="indexterm" name="idp65205776"></a><a class="indexterm" name="idp65205136"></a><p>El archivo DVI es apropiado para imprimir, puede imprimirlo
       con un comando como <span><strong class="command">dvilj</strong></span>,
       <span><strong class="command">dvidj</strong></span> o un nombre análogo que corresponda a
       su impresora
-      <sup>[<a name="idm2881729808" href="#ftn.idm2881729808">11</a>]</sup>.  Para visualizar un archivo <span class="acronym">DVI</span>
+      <sup>[<a name="idm2129465968" href="#ftn.idm2129465968">11</a>]</sup>.  Para visualizar un archivo <span class="acronym">DVI</span>
 	puede emplear el comando <span class="application">xdvi</span>:
 	</p><pre class="screen">
 	xdvi documento.dvi
-</pre><a class="indexterm" name="idm1752433680"></a><p>
+</pre><a class="indexterm" name="idm2129466736"></a><p>
       y para convertirlo a PostScript puede emplear
       <span><strong class="command">dvi2ps</strong></span>:
      </p><pre class="screen">
@@ -201,9 +201,9 @@ LaTeX es un experto en esta materia:
     las hojas de estilo DSSSL, o bien DocBook XML 4.4 y procesarse
     con <span><strong class="command">xsltproc</strong></span>.</p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="sgml-4-4-con-dsssl"></a>5.3.3.1. SGML 4.4 con DSSSL</h5></div></div></div><p>Instale los paquetes openjade, docbook y docbook-dsssl:
       </p><pre class="screen">
-	sudo pkg_add $PKG_PATH/docbook-4.5p1.tgz
-	sudo pkg_add $PKG_PATH/docbook-dsssl-1.79.tgz
-	sudo pkg_add $PKG_PATH/openjade-1.3.3pre1p1.tgz </pre><p>
+	doas pkg_add $PKG_PATH/docbook-4.5p1.tgz
+	doas pkg_add $PKG_PATH/docbook-dsssl-1.79.tgz
+	doas pkg_add $PKG_PATH/openjade-1.3.3pre1p2.tgz </pre><p>
       Esto bastará para hacer conversiones de DocBook SGML a 
       HTML por ejemplo si su hoja de estílo DSSL es "marcos.dsl" y 
       va a convertir el documento DocBook marcos.xml:
@@ -303,7 +303,7 @@ con una hoja XSLT de DocBook con:
 			</pre><p>
 			Al corregir interactivamente <code class="literal">ispell</code> mostrará
 			palabras que no encuentre en el diccionario del idioma ni en 
-			su diccionario personal<sup>[<a name="idm945849360" href="#ftn.idm945849360">12</a>]</sup> 
+			su diccionario personal<sup>[<a name="idp497382672" href="#ftn.idp497382672">12</a>]</sup> 
 			del idioma 
 			(e.g. <code class="filename">~/.ispell_spanish</code>), así como posibles
 			remplazos.  Podrá elegir uno de los remplazos tecleando el
@@ -333,7 +333,7 @@ con una hoja XSLT de DocBook con:
 	 que permite convertir de un formato a otro.   
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="ediciongraficos"></a>5.5.2. Edición de gráficos</h4></div></div></div><p>Para ver una gráfica (sin editarla) prácticamente en cualquier
 	      formato, puede usar <code class="literal">display</code> incluido
-	      en <span class="application">ImageMagick-6.7.7.7p8</span>:
+	      en <span class="application">ImageMagick-6.7.7.7p10</span>:
 	      </p><pre class="screen">
 display migrafica.png
 	      </pre><p>
@@ -348,27 +348,27 @@ xfi migrafica.png
 	      fotografías se emplean editores gráficos a nivel de pixels,
 	      mientras que para creación de diagramas resultan
 	      más convenientes editores de gráficos vectoriales.</p><p>Como editor de gráficos a nivel de pixels, el CD de adJ incluye 
-	      <span class="application">gimp-2.8.14</span></p><p>
+	      <span class="application">gimp-2.8.14p2</span></p><p>
 	      </p><div class="informalfigure"><div class="screenshot"><div class="mediaobject" align="center"><img src="gimp.png" align="middle"></div></div></div><p>
-	</p><p>Como editor vectorial incluye <span class="application">inkscape-0.48.5</span></p><div class="informalfigure"><div class="screenshot"><div class="mediaobject" align="center"><img src="inkscape.png" align="middle"></div></div></div><p>OpenOffice incluye otro editor vectorial llamado <span class="application">draw</span>. </p><p>Para la generación de gráficos de barras y estadísticos resulta
-	      más apropiado el graficador de <span class="application">gnumeric-1.12.20</span> o de calc --la hoja de cálculo de OpenOffice--, 
+	</p><p>Como editor vectorial incluye <span class="application">inkscape-0.91p2</span></p><div class="informalfigure"><div class="screenshot"><div class="mediaobject" align="center"><img src="inkscape.png" align="middle"></div></div></div><p>OpenOffice incluye otro editor vectorial llamado <span class="application">draw</span>. </p><p>Para la generación de gráficos de barras y estadísticos resulta
+	      más apropiado el graficador de <span class="application">gnumeric-1.12.23</span> o de calc --la hoja de cálculo de OpenOffice--, 
 	      ver <a href="configuracion-de-algunos-portes.html#msoffice" title="5.3.1. Aplicaciones estilo MS-Office">Sección 5.3.1, “Aplicaciones estilo MS-Office”</a></p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="edicionaudio"></a>5.5.3. Edición de audio</h4></div></div></div><p>
 Para reproducir una pista de audio en diversos formatos
 (incluyendo el libre ogg, el común wav y el patentado mp3) 
 puede usar
 <code class="literal">mplayer</code> (ver <a href="configuracion-de-algunos-portes.html#mplayer" title="5.5.1. Mplayer">Sección 5.5.1, “Mplayer”</a>),
 o bien <code class="literal">audacious</code> (incluido en el
-paquete <span class="application">audacious-3.5.2</span>):
+paquete <span class="application">audacious-3.5.2p0</span>):
 </p><div class="informalfigure"><div class="screenshot"><div class="mediaobject" align="center"><img src="audacious.png" align="middle"></div></div></div><p>
 El programa <code class="literal">play</code> incluido en el paquete
-<span class="application">sox-14.4.1p0</span> también le permitirá escuchar diversos
+<span class="application">sox-14.4.2</span> también le permitirá escuchar diversos
 formatos.
       </p><p>Desde la línea de comandos podrá recortar, cambiar volumen y
 	      aplicar otros efectos empleando el programa <code class="literal">sox</code>.</p><p>Si prefiere un editor gráfico que le permite recortar y aplicar 
 	      algunos efectos a pistas de
 	      audio en prácticamente cualquier formato de audio
 	      utilice el programa 
-	      <span class="application">audacity-1.3.9p6</span>:
+	      <span class="application">audacity-1.3.9p7</span>:
 	      </p><div class="informalfigure"><div class="screenshot"><div class="mediaobject" align="center"><img src="audacity.png" align="middle"></div></div></div><p>
 	</p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="red"></a>5.6. Operación en red</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mutt"></a>5.6.1. <span><strong class="command">mutt</strong></span></h4></div></div></div><p>El uso básico de mutt puede consultarlo en
 		[<a href="bi01.html#basico_adJ" title="[basico_adJ]">basico_adJ</a>].
@@ -481,11 +481,11 @@ para datos con algo como:
 </pre><p>
 que de requerirse puede ejecutarse desde la cuenta root (cuyo límite máximo
 es mayor que el de cuentas de usuario).
-	      </p></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2881729808" href="#idm2881729808">11</a>] </sup>Si usa <span xmlns=""><strong class="command">ksh</strong></span> puede ver una lista de 
+	      </p></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2129465968" href="#idm2129465968">11</a>] </sup>Si usa <span xmlns=""><strong class="command">ksh</strong></span> puede ver una lista de 
 		      posibles programas que le permitan imprimir, 
 		      tecleando <code xmlns="" class="literal">dvi</code> desde un intérprete
 	de comandos y presionando <span xmlns=""><strong class="keycap">Tab</strong></span> dos veces. 
-       </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm945849360" href="#idm945849360">12</a>] </sup>Puede cambiar
+       </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp497382672" href="#idp497382672">12</a>] </sup>Puede cambiar
 					el diccionario personal que <code xmlns="" class="literal">ispell</code> debe
 					emplear con la opción <code xmlns="" class="literal">-p 
 						<em class="replaceable"><code>archivo</code></em></code></p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="configuracion-de-algunos-dispositivos.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">4. Configuración y uso de programas y servicios básicos </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 6. Configuración y uso de algunos dispositivos y servicios</td></tr></table></div></body></html>

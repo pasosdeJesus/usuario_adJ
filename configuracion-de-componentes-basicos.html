@@ -58,41 +58,59 @@
 	      emplearse <code class="literal">*</code> para indicar transmisión de 
 	      varios archivos.
 	    </p></li></ul></div><p>
-      </p></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="sudo"></a>4.3. sudo</h3></div></div></div><p> Este programa permite ejecutar comandos privilegiados a
-	algunos usuarios.  Se configura en
-	<code class="filename">/etc/sudoers</code> que debe editarse con
-	<span><strong class="command">visudo</strong></span>.
-	</p><p> Consulte los ejemplos allí presentados
-	en líneas con comentarios y quite el comentario a la configuración
-	que considere apropiada.  Por ejemplo si desea que todo usuario
-	que esté en el grupo <code class="literal">wheel</code> pueda emplear 
-	<span><strong class="command">sudo</strong></span> sin necesidad de ingresar una clave,
-	quite el comentario a la línea:
-	</p><pre class="screen">
+      </p></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="doas"></a>4.3. doas</h3></div></div></div><p>
+Este programa permite ejecutar comandos privilegiados a
+algunos usuarios.
+A partir de adJ y OpenBSD 5.8 el sistema base incluye <code class="literal">doas</code> 
+como remplazo del antiguo <code class="literal">sudo</code>. <code class="literal">doas</code>
+es más simple y fácil de auditar.
+	</p><p>
+Se configura en <code class="filename">/etc/doas.conf</code>.  Un ejemplo mínimo es:
+</p><pre class="screen">
+	permit nopass keepenv :wheel
+</pre><p>
+que permitirá su uso sin requerir clave a todos los usuarios del grupo
+<code class="literal">wheel</code> manteniendo las varibles de ambiente.
+
+	</p><p>
+Una vez configurado, puede ejecutar un comando privilegiado
+desde una cuenta configurada con
+<span><strong class="command">doas <em class="replaceable"><code>comando</code></em></strong></span>.
+Por ejemplo:
+</p><pre class="screen">
+	doas vi /etc/rc.conf.local 
+</pre><p>
+	</p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="sudo"></a>4.3.1. sudo</h4></div></div></div><p>
+El programa <code class="literal">sudo</code> se mantiene como paquete, 
+si lo requiere instalelo con:
+</p><pre class="screen">
+	pkg_add sudo
+</pre><p>
+		</p><p>   
+Se configura en <code class="filename">/etc/sudoers</code> que debe editarse con
+<span><strong class="command">visudo</strong></span>.
+		</p><p> 
+Consulte los ejemplos allí presentados
+en líneas con comentarios y quite el comentario a la configuración
+que considere apropiada.  Por ejemplo si desea que todo usuario
+que esté en el grupo <code class="literal">wheel</code> pueda emplear 
+<span><strong class="command">sudo</strong></span> sin necesidad de ingresar una clave,
+quite el comentario a la línea:
+</p><pre class="screen">
 	%wheel  ALL=(ALL)       NOPASSWD: ALL
-	</pre><p>
-      </p><p>Una vez configurado, para ejecutar un comando privilegiado
-	desde una cuenta configurada se usa
-	<span><strong class="command">sudo <em class="replaceable"><code>comando</code></em></strong></span>.
-	Por ejemplo:
-	</p><pre class="screen">
-	sudo vi /etc/rc.conf.local </pre><p>
-	o formatear un disquete y marcar zonas con errores con:
-	</p><pre class="screen">
-	sudo mformat a:
-	sudo mbadblocks a:</pre><p>
-      </p><p>
-	Puede verse en <a href="http://rr.sans.org/authentic/sudo.php" target="_top">
-	  http://rr.sans.org/authentic/sudo.php</a> interacción 
-	entre <span><strong class="command">sudo</strong></span> y <span><strong class="command">ssh</strong></span> para 
-	administrar una red.
-      </p></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="cron"></a>4.4. <code class="literal">cron</code>: para programar tareas</h3></div></div></div><p>El programa <code class="literal">cron</code>  ejecuta tareas
+</pre><p>
+		</p><p>
+Puede verse en <a href="http://rr.sans.org/authentic/sudo.php" target="_top">http://rr.sans.org/authentic/sudo.php</a> 
+interacción 
+entre <span><strong class="command">sudo</strong></span> y <span><strong class="command">ssh</strong></span> para 
+administrar una red.
+		</p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="cron"></a>4.4. <code class="literal">cron</code>: para programar tareas</h3></div></div></div><p>El programa <code class="literal">cron</code>  ejecuta tareas
 		configuradas para correr en cierto(s) momento(s).
 		Este servico debe correr permanentemente.
 		Puede comprar que opera con <span><strong class="command">pgrep cron</strong></span> que
 		debe responder con el número del proceso.  Si no está
 		corriendo debe ejecutarlo urgentemente bien reiniciando el
-		servido o ejecutando <code class="literal">sudo cron</code>.
+		servido o ejecutando <code class="literal">doas cron</code>.
 	</p><p>Cada minuto el programa <code class="literal">cron</code> busca
 		tareas cuya ejecución esté pendiente.  
        	</p><p>
@@ -131,14 +149,14 @@
 	  </p><pre class="screen">
 	cd /usr
 	export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-	cvs -z3 co -rOPENBSD_5_7 -P src </pre><p>
+	cvs -z3 co -rOPENBSD_5_8 -P src </pre><p>
 	empleando un espejo más cercano a su computador y cambiado
-	OPENBSD_5_7 por la versión que desea actualizar, 
+	OPENBSD_5_8 por la versión que desea actualizar, 
 	o si las fuentes que tiene son la versión que desea puede emplear:
 	</p><pre class="screen">
 	cd /usr/src
 	export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-	cvs -z3 update -r OPENBSD_5_7 -Pd </pre><p>
+	cvs -z3 update -r OPENBSD_5_8 -Pd </pre><p>
 	</p><p>Tal como se describe en <span><strong class="command">man afterboot</strong></span>,
 	  para compilar basta editar el archivo de configuración del
 	  kernel que se desea, después ejecutar 
@@ -185,6 +203,6 @@
 	    <code class="filename">/etc/localtime</code> con una de las zonas del 
 	    directorio <code class="filename">/usr/share/zoneinfo</code>, por ejemplo
 	    </p><pre class="screen">
-sudo ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
+doas ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
 	    </pre><p>
 	</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="paquetes-y-portes.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="configuracion-de-algunos-portes.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">3. Paquetes y portes </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 5. Configuración y uso de algunas aplicaciones</td></tr></table></div></body></html>

@@ -42,15 +42,15 @@ Una vez efectúe el cambio recuerde ejecutar:
 	       remplazando msdos3 por la partición primaria
 	       donde instaló.  Después ejecute:
 	       </p><pre class="screen">
-	sudo update-grub2
+	doas update-grub2
 </pre><p>
 		y reinicie.
        </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montaje-de-directorios-del-otro-sistema"></a>7.1.2. Montar directorios del otro sistema</h4></div></div></div><p> Desde OpenBSD podrá montar una partición ext2 de Linux (digamos
 	       <code class="filename">/dev/wd0i</code> que 
 	       puede examinar con <code class="literal">disklabel</code>) con:
 	 </p><pre class="screen">
-	sudo mkdir -p /mnt/linux
-	sudo mount -t ext2 /dev/wd0i /mnt/linux </pre><p>
+	doas mkdir -p /mnt/linux
+	doas mount -t ext2 /dev/wd0i /mnt/linux </pre><p>
 
 	 Desde Linux podrá montar una partición de OpenBSD usando el tipo
 	 ufs con la opción 44bsd.  Si una partición para OpenBSD está
@@ -58,8 +58,8 @@ Una vez efectúe el cambio recuerde ejecutar:
 	 asignará dispositivos apropiados (busque los nombres entre los
 	 mensajes de <span><strong class="command">dmesg</strong></span>):
 	 </p><pre class="screen">
-	sudo mkdir -p /mnt/openbsd
-	sudo mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd </pre><p>
+	doas mkdir -p /mnt/openbsd
+	doas mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd </pre><p>
        </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="con-windows-xp"></a>7.2. Dual con Windows XP o NT</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="arranque-multiple-ntfs"></a>7.2.1. Arranque múltiple</h4></div></div></div><p>
 		     El arranque múltiple puede administrarse con
 		     NTLDR el gestor de arranque de Windows XP/NT.

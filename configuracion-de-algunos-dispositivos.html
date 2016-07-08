@@ -49,7 +49,7 @@
 	  emplea para que correspondan a los de un dispositivo y que
 	  su sistema esté operando, puede hacer el cambio permanente usando:
 	  </p><pre class="screen">
-	sudo config -e -o /bsd.ne1 -u /bsd
+	doas config -e -o /bsd.ne1 -u /bsd
 	  </pre><p>
 	  que le permitirá al mismo entorno interactivo, que procurará
 	  detectar los cambios que usted haya podido hacer durante el
@@ -83,12 +83,12 @@
       si está usando CUPS) que se encarga de poner la información
       que debe enviarse a la impresora en una cola de trabajos
       pendientes
-      <sup>[<a name="idm1565088784" href="#ftn.idm1565088784">13</a>]</sup>, que es atendida automáticamente (i.e de ella se
+      <sup>[<a name="idm2133147376" href="#ftn.idm2133147376">13</a>]</sup>, que es atendida automáticamente (i.e de ella se
       envían trabajos pendientes cuando la impresora está disponible)
       por un programa.
-    </p><a class="indexterm" name="idm1565096720"></a><p>Cada impresora configurada tiene un nombre,  la impresora por defecto 
+    </p><a class="indexterm" name="idm2133140976"></a><p>Cada impresora configurada tiene un nombre,  la impresora por defecto 
       se llama <span><strong class="command">lp</strong></span>
-      <sup>[<a name="idm1565096976" href="#ftn.idm1565096976">14</a>]</sup>.
+      <sup>[<a name="idm1357807600" href="#ftn.idm1357807600">14</a>]</sup>.
     </p><p>Posiblemente su sistema esté configurado para permitir a
       <span><strong class="command">lpr</strong></span> la impresión de textos planos y
       documentos PostScript o PDF.  Para programar la impresión de un
@@ -105,7 +105,7 @@
       impresiones pendientes presentará un número que la identifica.
       Tal número le permitirá cancelar una de sus tareas de impresión
       pendiente, usándolo como parámetro de <span><strong class="command">lprm</strong></span>.
-    </p><a class="indexterm" name="idm2770577168"></a><a class="indexterm" name="idm2770579472"></a><p>Para imprimir gráficas y documentos con diversos tipos de
+    </p><a class="indexterm" name="idm2895635056"></a><a class="indexterm" name="idm2167219056"></a><p>Para imprimir gráficas y documentos con diversos tipos de
       letra o colores, primero debe convertirse la información a
       secuencias de control particulares de su impresora.  Cómo de una
       impresora a otra varían los secuencias de control, en sistemas
@@ -114,11 +114,11 @@
       por imprimir) como formato común y se usan los filtros del
       programa Ghostscript para traducir de PostScript al formato
       particular de su impresora
-      <sup>[<a name="idm3065264912" href="#ftn.idm3065264912">15</a>]</sup>.  Si se usa CUPS es posible emplear controladores
+      <sup>[<a name="idm885137776" href="#ftn.idm885137776">15</a>]</sup>.  Si se usa CUPS es posible emplear controladores
        particulares para su impresora y no depender de Ghostscript.
     </p><p>Ghostscript es un programa que puede leer documentos
       PostScript y <span class="acronym">PDF</span>
-      <sup>[<a name="idm2770578704" href="#ftn.idm2770578704">16</a>]</sup>
+      <sup>[<a name="idm2895637872" href="#ftn.idm2895637872">16</a>]</sup>
       y presentarlos en una ventana de X-Window o transformarlos al
       lenguaje particular de algunas impresoras.  Por ejemplo para
       generar a partir de un documento PostScript <code class="filename">s2.ps</code>
@@ -140,7 +140,7 @@
 	lineto
 	stroke
       </pre><p>
-    </p><a class="indexterm" name="idm3065266704"></a><p>Para visualizar un documento PostScript o PDF puede emplear
+    </p><a class="indexterm" name="idm2323125616"></a><p>Para visualizar un documento PostScript o PDF puede emplear
       el programa <span><strong class="command">gv</strong></span> ---el cual se apoya en
       Ghostscript--- por ejemplo:</p><pre class="screen">
 	gv micarta.ps
@@ -148,7 +148,7 @@
       mostrará el documento PostScript <code class="filename">micarta.ps</code>
       en una ventana de X-Window y con menús le permitirá consultarlo
       e imprimirlo.
-    </p><a class="indexterm" name="idm2651360656"></a><p>Para imprimir y hacer transformaciones a un PostScript (por
+    </p><a class="indexterm" name="idp720004368"></a><p>Para imprimir y hacer transformaciones a un PostScript (por
       ejemplo 2 páginas en una sola), o para convertir de otros
       formatos a PostScript puede emplear el programa
       <span><strong class="command">a2ps</strong></span>:
@@ -159,7 +159,7 @@
       </p><pre class="screen">
 	mpage -2 micarta.ps &gt; micarta-2.ps
       </pre><p>
-    </p><a class="indexterm" name="idm2651362064"></a><p>Además de los programas <code class="literal">a2ps</code> y del paquete
+    </p><a class="indexterm" name="idm2029391600"></a><p>Además de los programas <code class="literal">a2ps</code> y del paquete
       <code class="literal">psutils</code> es posible modificar directamente un
       archivo PostScript. Por ejemplo siguiendo las indicaciones de
       <a href="http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html" target="_top">http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html</a>,
@@ -174,11 +174,11 @@
       menos porque mantienen la información comprimida.  Para
       convertir entre PostScript y PDF se emplean
       <span><strong class="command">ps2pdf</strong></span> y <span><strong class="command">pdf2ps</strong></span>
-      <sup>[<a name="idm993046672" href="#ftn.idm993046672">17</a>]</sup>.  Para visualizar e imprimir un PDF, además de
+      <sup>[<a name="idm313267056" href="#ftn.idm313267056">17</a>]</sup>.  Para visualizar e imprimir un PDF, además de
       <span><strong class="command">gv</strong></span>, puede emplear <span><strong class="command">xpdf</strong></span> o
       el programa Acrobat Reader (<span><strong class="command">acroread</strong></span>).
-    </p><a class="indexterm" name="idm993051920"></a><p> 
-    </p><a class="indexterm" name="idm993053328"></a><a class="indexterm" name="idm993047184"></a></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lpd-local"></a>6.2.2. Configuración de una impresora local
+    </p><a class="indexterm" name="idm2029390704"></a><p> 
+    </p><a class="indexterm" name="idm1115104624"></a><a class="indexterm" name="idm2223833968"></a></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lpd-local"></a>6.2.2. Configuración de una impresora local
 			  con <span><strong class="command">lpd</strong></span></h4></div></div></div><p>
     <span class="application">lpd</span> (también llamado <span class="foreignphrase"><em class="foreignphrase">Berkeley 
       line printer spooling system</em></span>) es un sistema que 
@@ -222,11 +222,11 @@
 	    impresora</p></li></ul></div><p>
       <span><strong class="command">lpd</strong></span> envía errores a la bitácora
       <code class="filename">/var/log/lpd-errs</code>.
-    </p><a class="indexterm" name="idm745283344"></a><p>Además de esta documentación puede consultar más sobre
+    </p><a class="indexterm" name="idm1547194224"></a><p>Además de esta documentación puede consultar más sobre
       la configuración de <span><strong class="command">lpd</strong></span> en
       [<span class="citation">FreeBSDHandBook</span>] y
       [<span class="citation">OpenBSDlpd</span>]
-    </p><a class="indexterm" name="idm944694160"></a><p>La mayoría de impresoras se conectan al puerto paralelo
+    </p><a class="indexterm" name="idm984228720"></a><p>La mayoría de impresoras se conectan al puerto paralelo
 	(por ejemplo utilizables con dispositivos
 	<code class="filename">/dev/lpt0</code> o <code class="filename">/dev/lpt1</code>).
 	Puede probar
@@ -234,7 +234,7 @@
 	puerto apropiado por ejemplo <code class="literal">echo "Hola"
 	  &gt;/dev/lpt0</code> o <code class="literal">lptest &gt;
 	  /dev/lpt0</code>.
-      </p><a class="indexterm" name="idm1486078224"></a><p>
+      </p><a class="indexterm" name="idp30605328"></a><p>
 	El siguiente es un ejemplo del archivo 
 	<code class="filename">/etc/printcap</code>:
 	</p><pre class="programlisting">
@@ -252,10 +252,10 @@
 	programa Ghostscript.
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="cups"></a>6.2.3. CUPS</h4></div></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="cups-inst"></a>6.2.3.1. Instalación</h5></div></div></div><p>
 		  Hay un paquete de CUPS entre los portes oficiales de 
-		  OpenBSD 5.7. Una vez 
+		  OpenBSD 5.8. Una vez 
 		  instalado puede ejecutarlo con
 	</p><pre class="screen">
-	sudo cupsd
+	doas cupsd
 	</pre><p>
 	Para que en cada arranque se ejecute automáticamente, se recomienda 
 	agregar en <code class="filename">rc.local</code>:
@@ -282,8 +282,8 @@
 	<code class="literal">sys</code> o por la cuenta <code class="literal">root</code>.
 </p><p>También es recomendable que cree un directorio:
 	</p><pre class="screen">
-	sudo mkdir /var/spool/cups/tmp
-	sudo chown _cups:_cups /var/spool/cups/tmp/
+	doas mkdir /var/spool/cups/tmp
+	doas chown _cups:_cups /var/spool/cups/tmp/
 	</pre><p>
 </p><p>
 	Si tiene problemas al instalar/usar una impresora puede consultar
@@ -348,7 +348,7 @@ lp|local line printer:\
 	  </p><div class="itemizedlist"><ul type="disc"><li><p>Un superbloque con los parámetros básicos del sistema 
 		de archivos (e.g tamaño de cada bloque, lista de grupos
 		de cilindros) y con los parámetros del hardware que
-		afectan el desempeño<sup>[<a name="idm1137014928" href="#ftn.idm1137014928">18</a>]</sup> 
+		afectan el desempeño<sup>[<a name="idm392551280" href="#ftn.idm392551280">18</a>]</sup> 
 	      (tipo de transferencia de disco a
 	      memoria, tiempo esperado por transferencia, bloques por pista, 
 	      velocidad de rotación).
@@ -381,7 +381,7 @@ lp|local line printer:\
   </p><p>Para revisar un sistema de archivos <code class="literal">ffs</code> (digamos
       que esté en la partición <code class="literal">/dev/wd1j</code>) ejecute:
       </p><pre class="screen">
-	sudo fsck_ffs /dev/rwd1j
+	doas fsck_ffs /dev/rwd1j
       </pre><p>
       note la <code class="literal">r</code> antes de <code class="literal">wd1j</code> que indica
       que la partición debe tratarse en modo puro (del inglés <span class="emphasis"><em>raw</em></span>).
@@ -396,12 +396,12 @@ lp|local line printer:\
       se negará a realizar el chequeo, en tales casos puede intentar
       con un superbloque de respaldo --típicamente hay uno en el bloque 32:
       </p><pre class="screen">
-	sudo fsck_ffs -b 32 /dev/rwd1j
+	doas fsck_ffs -b 32 /dev/rwd1j
       </pre><p>
   </p><p>Para crear un sistema de archivos <code class="literal">ffs</code>
 	  en un disco ya particionado con <span><strong class="command">disklabel</strong></span>
           puede emplearse <span><strong class="command">newfs</strong></span>, por ejemplo:</p><pre class="screen">
-	sudo newfs -t ffs /dev/wd1j
+	doas newfs -t ffs /dev/wd1j
 </pre><p>
 </p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Aviso]" src="./warning.png"></td><th align="left">Aviso</th></tr><tr><td align="left" valign="top"><p>Al crear un nuevo sistema de archivos se borra la
     información que pudiera haber existido.</p></td></tr></table></div><p>
@@ -484,14 +484,14 @@ lp|local line printer:\
 		manejar el grupo <code class="literal">operator</code> ni 
 		cambiar variables del kernel puede configurar y
 		emplear
-		<span><strong class="command">sudo</strong></span> (ver <a href="configuracion-de-componentes-basicos.html#sudo" title="4.3. sudo">sudo</a>):
+		<span><strong class="command">sudo</strong></span> (ver <a href="configuracion-de-componentes-basicos.html#sudo" title="4.3.1. sudo">sudo</a>):
 	</p><pre class="screen">
-	sudo mcopy *tgz a: </pre><p>
+	doas mcopy *tgz a: </pre><p>
 	o incluso con <span><strong class="command">sudo</strong></span> y un alias hacer 
 	transparente la restricción para los usuarios que puedan
 	emplear <span><strong class="command">sudo</strong></span>:
 	</p><pre class="screen">
-	alias mcopy='sudo mcopy' </pre><p>
+	alias mcopy='doas mcopy' </pre><p>
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-disquettes"></a>6.4.2. Montar disquettes en jerarquía de directorios</h4></div></div></div><p>Desde la cuenta <code class="literal">root</code> podrá
 		    montar disquettes de manera directa.</p><p>
 		    Para montar disquettes desde cuentas de usuarios que
@@ -570,13 +570,13 @@ Grabar (o quemar) la imagen ISO en un  CD-R o un CD-RW.
 	  Para crear una imagen ISO de un CD existente primero examine 
 	  la cantidad de sectores de los que consta con 
 	  </p><pre class="screen">
-	sudo disklabel /dev/rcd0c
+	doas disklabel /dev/rcd0c
 	  </pre><p>
 	  Suponiendo que cada sector tenga 2048 bytes y el total de sectores
 	  fuera 112120 puede crear la imagen 
 	  (<code class="filename">/home/imagen/micd.iso</code>) empleando el comando:
 	  </p><pre class="screen">
-	sudo dd if=/dev/rcd0c of=/home/imagen/micd.iso bs=2048 count=112120
+	doas dd if=/dev/rcd0c of=/home/imagen/micd.iso bs=2048 count=112120
 	  </pre><p>
 	</p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="crear-nueva-imagen-iso"></a>6.6.2. Crear una imagen nueva ISO 9660</h4></div></div></div><p>
 Para crear una imágen ISO a partir de datos que usted
@@ -597,7 +597,7 @@ a partir de la información disponible en <code class="filename">/home/pablo/ima
 puede ejecutar como usuario <code class="literal">root</code>:
 	    </p><pre class="screen">
 	cd /home/pablo/imagen
-	sudo mkisofs -r -l -f -o /home/pablo/micd.iso  .
+	doas mkisofs -r -l -f -o /home/pablo/micd.iso  .
 	</pre><p>
 Note que la imagen creada emplea la extensión Rock Ridge 
 (opción <code class="option">-r</code>), permite nombres largos (opción
@@ -619,7 +619,7 @@ archivos de <code class="filename">/home/pablo/imagen/</code> (en la que
     no debe existir el archivo <code class="filename">boot.catalog</code>) use:
     </p><pre class="screen">
 	cd /home/pablo/imagen
-	sudo mkisofs -b floppy.img -c boot.catalog -copyright /home/pablo/Derechos.txt \
+	doas mkisofs -b floppy.img -c boot.catalog -copyright /home/pablo/Derechos.txt \
 	  -r -l -f -o /home/pablo/micd.iso  .
     </pre><p> 
     
@@ -630,13 +630,13 @@ archivos de <code class="filename">/home/pablo/imagen/</code> (en la que
 	<code class="filename">/dev/cd0c</code>
     o bien <code class="filename">/dev/rcd0c:0,0,0</code>, por ejemplo:
     </p><pre class="screen">
-	sudo cdrecord dev=/dev/cd0c -data speed=16 /home/pablo/micd.iso
+	doas cdrecord dev=/dev/cd0c -data speed=16 /home/pablo/micd.iso
     </pre><p>
 
     Si emplea un CD-RW tenga en cuenta blanquearlo antes de escribir 
     usando la opción <code class="option">blank=fast</code>:
     </p><pre class="screen">
-	sudo cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/pablo/micd.iso
+	doas cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/pablo/micd.iso
     </pre><p>
   </p><p>Si desea emplear varias sesiones en un mismo CD-R (o CD-RW) tenga
     en cuenta:
@@ -645,15 +645,15 @@ archivos de <code class="filename">/home/pablo/imagen/</code> (en la que
 	</p></li><li><p>Las imágenes de sesiones posteriores deben crearse empleando la
     opción <code class="option">-C</code> de
     <span><strong class="command">mkisofs</strong></span>
-<sup>[<a name="idm1260850448" href="#ftn.idm1260850448">19</a>]</sup>.  Los datos precisos que debe pasar a la 
+<sup>[<a name="idm2565492720" href="#ftn.idm2565492720">19</a>]</sup>.  Los datos precisos que debe pasar a la 
 	opción -C los examina con:
 </p><pre class="screen">
-	sudo cdrecord dev=/dev/cd0c -msinfo
+	doas cdrecord dev=/dev/cd0c -msinfo
 </pre><p>
 	Que retorna un par de números (supongamos que 18904,26106), los 
 cuales debe usar con mkisofs, por ejemplo:
 </p><pre class="screen">
-	sudo mkisofs -r -l -f -C 18904,26106 -o ../micd.iso .
+	doas mkisofs -r -l -f -C 18904,26106 -o ../micd.iso .
 </pre><p>
 Y nuevamente debe pasar 
     la opción <code class="option">-multi</code> a <span><strong class="command">cdrecord</strong></span> en el
@@ -696,12 +696,12 @@ Y nuevamente debe pasar
 	  <code class="filename">/home/copia/a</code> y 
 	  <code class="filename">/home/copia/b</code>:
 	  </p><pre class="screen">
-	sudo growisofs -Z /dev/rcd0c -R /home/copia/a /home/copia/b
+	doas growisofs -Z /dev/rcd0c -R /home/copia/a /home/copia/b
 	  </pre><p>
 			  </p></li><li><p>Para quemar un DVD con la imagen ISO 
 				  <code class="filename">dvd.iso</code>
 				  </p><pre class="screen">
-	sudo growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
+	doas growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
 				  </pre><p>
 			  </p></li></ol></div><p>
   </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-dvd"></a>6.7.1. Referencias</h4></div></div></div><p> <span><strong class="command">man mount_udf</strong></span> y <span><strong class="command">man growisofs</strong></span>.
@@ -717,7 +717,7 @@ Y nuevamente debe pasar
 			      </p></li><li><p>
 		Examinar la partición por montar con 
 		</p><pre class="screen">
-	sudo disklabel /dev/rsd0c
+	doas disklabel /dev/rsd0c
 		</pre><p>
 		la partición que deberá montar podría ser
 		<code class="literal">/dev/sd0c</code> o  por ejemplo
@@ -726,8 +726,8 @@ Y nuevamente debe pasar
 		Montar la partición apropiada en un punto del sistema
 			de archivos, por ejemplo con:
 			</p><pre class="screen">
-	sudo mkdir /mnt/usb
-	sudo mount /dev/sd0i /mnt/usb
+	doas mkdir /mnt/usb
+	doas mount /dev/sd0i /mnt/usb
 			</pre><p>
 			      </p></li><li><p>
 		Usar su memoria para leer/escribir (recordando que
@@ -736,7 +736,7 @@ Y nuevamente debe pasar
 			      </p></li><li><p>
 		Cuando termine su utilización desmontar por ejemplo con:
 		</p><pre class="screen">
-	sudo umount /mnt/usb
+	doas umount /mnt/usb
 		</pre><p>
 			      </p></li></ol></div><p>
       </p></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="imagen-encriptada"></a>6.9. Imagen encriptada</h3></div></div></div><p>
@@ -747,10 +747,10 @@ Y nuevamente debe pasar
 		  <code class="filename">/var/post.img</code> puede usar:
 		  </p><pre class="screen">
 
-	sudo dd if=/dev/zero of=/var/post.img bs=1024 count=500000
-	sudo vnconfig -ckv svnd0 /var/post.img
-	sudo newfs /dev/svnd0c
-	sudo vnconfig -u svnd0
+	doas dd if=/dev/zero of=/var/post.img bs=1024 count=500000
+	doas vnconfig -ckv svnd0 /var/post.img
+	doas newfs /dev/svnd0c
+	doas vnconfig -u svnd0
 		  </pre><p>
 La clave que ingrese tras 
 <code class="literal">vnconfig -ckv svnd0 /var/post.img</code>,
@@ -806,9 +806,9 @@ mount /dev/svnd0c /var/postgresql
       </p><p>Si tiene un teclado US y desea emplear teclas muertas en la
 	consola puede usar desde la línea de comandos:
 	</p><pre class="screen">
-	sudo wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
-	sudo wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"
-	sudo wsconsctl -w keyboard.map+="keycode 56=Cmd2 Multi_key" </pre><p>
+	doas wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
+	doas wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"
+	doas wsconsctl -w keyboard.map+="keycode 56=Cmd2 Multi_key" </pre><p>
 
 	o para que esta configuración siempre sea realizada durante el 
 	arranque agregue estas líneas al final de 
@@ -823,7 +823,7 @@ mount /dev/svnd0c /var/postgresql
 		de un espacio produce ~)
 	    </p></dd><dt><span class="term"><span><strong class="keycap">^</strong></span></span></dt><dd><p>como tecla muerta para el acento circunflejo
 	    </p></dd><dt><span class="term"><span><strong class="keycap">Shift+Alt izquierdo</strong></span></span></dt><dd><p>Como tecla de composición</p></dd></dl></div><p>	  
-      </p><p>La tecla de composición<sup>[<a name="idm1395704464" href="#ftn.idm1395704464">20</a>]</sup>
+      </p><p>La tecla de composición<sup>[<a name="idm1521553776" href="#ftn.idm1521553776">20</a>]</sup>
 	le permitirá generar un carácter empleando una secuencia de dos
 	teclas.  
 	Por ejemplo si presiona la tecla de composición
@@ -858,28 +858,28 @@ mount /dev/svnd0c /var/postgresql
 		<span><strong class="command">xmodmap ~/.Xmodmap</strong></span>
 		durante el arranque de su sesión X (podría ser
 		por ejemplo agregándolo a <code class="filename">~/.xsession</code>)
-	</p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1565088784" href="#idm1565088784">13</a>] </sup>En el caso de LPD el directorio con la cola de trabajos 
+	</p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2133147376" href="#idm2133147376">13</a>] </sup>En el caso de LPD el directorio con la cola de trabajos 
 		      de una impresora
 	  se configura en <code xmlns="" class="filename">/etc/printcap</code>, en el
 	  caso de <span xmlns=""><strong class="command">lp</strong></span> el directorio por defecto es
 	  <code xmlns="" class="filename">/var/spool/outputlpd/lp</code>.
-	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1565096976" href="#idm1565096976">14</a>] </sup>Normalmente puede configurar otro nombre para la impresora 
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1357807600" href="#idm1357807600">14</a>] </sup>Normalmente puede configurar otro nombre para la impresora 
 		      por defecto en la variable de ambiente 
 		      <code xmlns="" class="envar">PRINTER</code>.
-	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm3065264912" href="#idm3065264912">15</a>] </sup>Hay algunas impresoras que pueden imprimir PostScript
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm885137776" href="#idm885137776">15</a>] </sup>Hay algunas impresoras que pueden imprimir PostScript
 	  directamente, pero en general para hacer la traducción de
 	  PostScript al lenguaje de una impresora se requiere un filtro
-	  que el administrador del sistema debe configurar.  </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2770578704" href="#idm2770578704">16</a>] </sup><span xmlns="" class="acronym">PDF</span> (<span xmlns="" class="foreignphrase"><em class="foreignphrase">Portable Document
+	  que el administrador del sistema debe configurar.  </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2895637872" href="#idm2895637872">16</a>] </sup><span xmlns="" class="acronym">PDF</span> (<span xmlns="" class="foreignphrase"><em class="foreignphrase">Portable Document
 	    Format</em></span> es otro lenguaje para impresión, de
 	  documentos con gráficas y diversos tipos de letras, basado en
 	  PostScript (de la misma compañía ---Adobe).
-	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm993046672" href="#idm993046672">17</a>] </sup>De acuerdo a <em xmlns="" class="citetitle">Printig-HOWTO</em> estas
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm313267056" href="#idm313267056">17</a>] </sup>De acuerdo a <em xmlns="" class="citetitle">Printig-HOWTO</em> estas
 	  herramientas ofrecen la funcionalidad de las herramientas
 	  "<span xmlns="" class="foreignphrase"><em class="foreignphrase">distiller</em></span>" de Adobe.
-	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1137014928" href="#idm1137014928">18</a>] </sup>Los
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm392551280" href="#idm392551280">18</a>] </sup>Los
 		  parámetros del hardware mantenidos ayudan a localizar
-		  bloques libres de forma óptima.</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1260850448" href="#idm1260850448">19</a>] </sup>
+		  bloques libres de forma óptima.</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2565492720" href="#idm2565492720">19</a>] </sup>
       Si la sesión previa tenia -T esta también con mismo nombre de tablas
     (especificable con -table-name TN).
-    </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1395704464" href="#idm1395704464">20</a>] </sup>Tecla de composición: en
+    </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1521553776" href="#idm1521553776">20</a>] </sup>Tecla de composición: en
 	  inglés <span xmlns="" class="foreignphrase"><em class="foreignphrase">compose key</em></span></p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-algunos-portes.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">5. Configuración y uso de algunas aplicaciones </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 7. Instalaciones duales</td></tr></table></div></body></html>
