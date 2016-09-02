@@ -40,6 +40,7 @@
 <!ENTITY conf-tex-gv SYSTEM "conf-tex-gv.xdbk">
 <!ENTITY mplayer SYSTEM "mplayer.xdbk">
 <!ENTITY java SYSTEM "java.xdbk">
+<!ENTITY ruby SYSTEM "ruby.xdbk">
 <!ENTITY docbook SYSTEM "docbook.xdbk">
 <!ENTITY msoffice SYSTEM "msoffice.xdbk">
 <!ENTITY chromium SYSTEM "chromium.xdbk">
@@ -204,6 +205,7 @@ doas ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
 
 	  <sect2 id="desarrollo">
 	  <title>Ambiente de Desarrollo</title>
+    &ruby;
     &java;
 	  </sect2>
 

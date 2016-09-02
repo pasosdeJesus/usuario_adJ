@@ -109,22 +109,14 @@
 	   <tbody>
 <row><entry>dovecot</entry><entry>	Servidor compacto de IMAP/POP3</entry></row>
 <row><entry>ldapvi</entry><entry>		Actualiza entradas LDAP con un editor de texto</entry></row>
+<row><entry>letsencrypt</entry><entry>	Gestiona certificados SSL gratuitos </entry></row>
+<row><entry>mariadb-client</entry><entry>	Cliente de base de datos SQL de multiples hilos</entry></row>
+<row><entry>mariadb-server</entry><entry> 	Servidor de base de datos SQL de multiples hilos</entry></row>
 <row><entry>nginx</entry><entry>		Servidor web</entry></row>
 <row><entry>openpoppassd</entry><entry>	Serivicio para cambio de claves</entry></row>
-<row><entry>owncloud</entry><entry>	Acceso universal y sencillo a archivos personales compartidos</entry></row>
+<row><entry>owncloud</entry><entry>		Acceso universal a archivos personales compartidos</entry></row>
 <row><entry>p5-Mail-SpamAssassin</entry><entry>	Filtro de correo para identificar y marcar spam</entry></row>
 <row><entry>php</entry><entry>		Lenguaje script empotrado en HTML que opera en servidor</entry></row>
-<row><entry>php-bz2</entry><entry>   	Extensión de compresión bzip2 para php5</entry></row>
-<row><entry>php-curl</entry><entry>		Extensiones para php5 de la libreria de URLs curl</entry></row>
-<row><entry>php-fpm</entry><entry>		Versión independiente de PHP-FPM</entry></row>
-<row><entry>php-gmp</entry><entry>		Librería de matemáticas gmp para PHP</entry></row>
-<row><entry>php-gd</entry><entry>		Uso de gd (librería gráfica) desde PHP</entry></row>
-<row><entry>php-intl</entry><entry>		Extensión de internacionalización con librería ICU</entry></row>
-<row><entry>php-ldap</entry><entry>		Extensión a PHP para protocolo LDAP</entry></row>
-<row><entry>php-mcrypt</entry><entry>	Extensión para encripción/desencripción para PHP5</entry></row>
-<row><entry>php-pdo_pgsql</entry><entry>	Extensiones PDO para acceso a base de datos para PHP5</entry></row>
-<row><entry>php-pgsql</entry><entry>	Uso de PostgreSQL desde PHP</entry></row>
-<row><entry>php-zip</entry><entry>		Funciones zip para php5</entry></row>
 <row><entry>postgis</entry><entry>	        Soporte para objetos geográficos en PostgreSQL</entry></row>
 <row><entry>postgresql-client</entry><entry>	Cliente para motor de bases de datos PostgreSQL</entry></row>
 <row><entry>postgresql-server</entry><entry>	Servidor de bases de datos PostgreSQL</entry></row>

@@ -15,7 +15,7 @@ SOURCES=$(PROYECTO).$(EXT_DOCBOOK)  intro.xdbk \
 	doas.xdbk \
 	conf-fluxbox.xdbk xiphos.xdbk ispell.xdbk conf-tex-gv.xdbk \
 	editoresdegraficos.xdbk editoresdeaudio.xdbk \
-	mplayer.xdbk java.xdbk docbook.xdbk msoffice.xdbk kde.xdbk mutt.xdbk \
+	mplayer.xdbk java.xdbk ruby.xdbk docbook.xdbk msoffice.xdbk kde.xdbk mutt.xdbk \
 	hardware-arranque.xdbk impresion.xdbk discos-duros.xdbk disquetes.xdbk cd.xdbk cdrw.xdbk imagen-encriptada.xdbk teclado.xdbk \
 	programas.xdbk chromium.xdbk
 # Listado de fuentes XML. Preferiblmente en el orden de inclusión.

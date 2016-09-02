@@ -21,24 +21,6 @@
 -->
 
 <indexentry>
-  <primaryie>/dev/lpt0,
-    <ulink url="x1669.htm#lpd-local" role="AEN1884">Configuración de una impresora local 			  con lpd</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>/etc/printcap,
-    <ulink url="x1669.htm#lpd-local" role="AEN1893">Configuración de una impresora local 			  con lpd</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>a2ps,
-    <ulink url="x1669.htm#uso-impresora" role="AEN1810">Uso de una impresora ya configurada</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
   <primaryie>auditan,
     <ulink url="t1.htm#introduccion" role="AEN29">Introducción</ulink>
   </primaryie>
@@ -46,91 +28,37 @@
 
 <indexentry>
   <primaryie>dvi2ps,
-    <ulink url="x1254.htm#latex" role="AEN1433">LaTeX</ulink>
+    <ulink url="x1230.htm#latex" role="AEN1409">LaTeX</ulink>
   </primaryie>
 </indexentry>
 
 <indexentry>
   <primaryie>emph,
-    <ulink url="x1254.htm#latex" role="AEN1401">LaTeX</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>gs,
-    <ulink url="x1669.htm#uso-impresora" role="AEN1793">Uso de una impresora ya configurada</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>gv,
-    <ulink url="x1669.htm#uso-impresora" role="AEN1801">Uso de una impresora ya configurada</ulink>
+    <ulink url="x1230.htm#latex" role="AEN1377">LaTeX</ulink>
   </primaryie>
 </indexentry>
 
 <indexentry>
   <primaryie>latex,
-    <ulink url="x1254.htm#latex" role="AEN1414">LaTeX</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>lpd,
-    <ulink url="x1669.htm#lpd-local" role="AEN1876">Configuración de una impresora local 			  con lpd</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>lpq,
-    <ulink url="x1669.htm#uso-impresora" role="AEN1768">Uso de una impresora ya configurada</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>lpr,
-    <ulink url="x1669.htm#uso-impresora" role="AEN1747">Uso de una impresora ya configurada</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>lprm,
-    <ulink url="x1669.htm#uso-impresora" role="AEN1772">Uso de una impresora ya configurada</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>pdf2ps,
-    <ulink url="x1669.htm#uso-impresora" role="AEN1840">Uso de una impresora ya configurada</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>ps2pdf,
-    <ulink url="x1669.htm#uso-impresora" role="AEN1836">Uso de una impresora ya configurada</ulink>
+    <ulink url="x1230.htm#latex" role="AEN1390">LaTeX</ulink>
   </primaryie>
 </indexentry>
 
 <indexentry>
   <primaryie>section,
-    <ulink url="x1254.htm#latex" role="AEN1398">LaTeX</ulink>
+    <ulink url="x1230.htm#latex" role="AEN1374">LaTeX</ulink>
   </primaryie>
 </indexentry>
 
 <indexentry>
   <primaryie>textbf,
-    <ulink url="x1254.htm#latex" role="AEN1404">LaTeX</ulink>
+    <ulink url="x1230.htm#latex" role="AEN1380">LaTeX</ulink>
   </primaryie>
 </indexentry>
 
 <indexentry>
   <primaryie>xdvi,
-    <ulink url="x1254.htm#latex" role="AEN1418">LaTeX</ulink>
-  </primaryie>
-</indexentry>
-
-<indexentry>
-  <primaryie>xpdf,
-    <ulink url="x1669.htm#uso-impresora" role="AEN1831">Uso de una impresora ya configurada</ulink>
+    <ulink url="x1230.htm#latex" role="AEN1394">LaTeX</ulink>
   </primaryie>
 </indexentry>
 

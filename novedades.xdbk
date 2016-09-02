@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <variablelist>
+	<varlistentry><term>Versión 5.9</term>
+		<listitem><para><itemizedlist>
+			<listitem><para>
+					Ambiente de desarrollo para aplicaciones <command>ruby</command> y
+					Ruby on Rails, <xref linkend="ruby"/>
+			</para></listitem>
+		</itemizedlist></para></listitem>
+	</varlistentry>
+
+
 	<varlistentry><term>Versión 5.8</term>
 		<listitem><para><itemizedlist>
 			<listitem><para>
