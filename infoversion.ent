@@ -568,7 +568,6 @@
 <!ENTITY p-rrdupdate "rrdupdate-1.5.5p0">
 <!ENTITY p-rsync "rsync-3.1.2">
 <!ENTITY p-rtorrent "rtorrent-0.9.6p0v0">
-<!ENTITY p-ruby "ruby-2.2.4">
 <!ENTITY p-ruby "ruby-2.3.1">
 <!ENTITY p-ruby22-augeas "ruby22-augeas-0.5.0p3">
 <!ENTITY p-ruby22-deep_merge "ruby22-deep_merge-1.0.1">
