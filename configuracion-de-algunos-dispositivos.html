@@ -83,12 +83,12 @@
       si está usando CUPS) que se encarga de poner la información
       que debe enviarse a la impresora en una cola de trabajos
       pendientes
-      <sup>[<a name="idm2133147376" href="#ftn.idm2133147376">13</a>]</sup>, que es atendida automáticamente (i.e de ella se
+      <sup>[<a name="idm1154588272" href="#ftn.idm1154588272">13</a>]</sup>, que es atendida automáticamente (i.e de ella se
       envían trabajos pendientes cuando la impresora está disponible)
       por un programa.
-    </p><a class="indexterm" name="idm2133140976"></a><p>Cada impresora configurada tiene un nombre,  la impresora por defecto 
+    </p><a class="indexterm" name="idp1258522000"></a><p>Cada impresora configurada tiene un nombre,  la impresora por defecto 
       se llama <span><strong class="command">lp</strong></span>
-      <sup>[<a name="idm1357807600" href="#ftn.idm1357807600">14</a>]</sup>.
+      <sup>[<a name="idm1980449648" href="#ftn.idm1980449648">14</a>]</sup>.
     </p><p>Posiblemente su sistema esté configurado para permitir a
       <span><strong class="command">lpr</strong></span> la impresión de textos planos y
       documentos PostScript o PDF.  Para programar la impresión de un
@@ -105,7 +105,7 @@
       impresiones pendientes presentará un número que la identifica.
       Tal número le permitirá cancelar una de sus tareas de impresión
       pendiente, usándolo como parámetro de <span><strong class="command">lprm</strong></span>.
-    </p><a class="indexterm" name="idm2895635056"></a><a class="indexterm" name="idm2167219056"></a><p>Para imprimir gráficas y documentos con diversos tipos de
+    </p><a class="indexterm" name="idm503556592"></a><a class="indexterm" name="idp1258522128"></a><p>Para imprimir gráficas y documentos con diversos tipos de
       letra o colores, primero debe convertirse la información a
       secuencias de control particulares de su impresora.  Cómo de una
       impresora a otra varían los secuencias de control, en sistemas
@@ -114,11 +114,11 @@
       por imprimir) como formato común y se usan los filtros del
       programa Ghostscript para traducir de PostScript al formato
       particular de su impresora
-      <sup>[<a name="idm885137776" href="#ftn.idm885137776">15</a>]</sup>.  Si se usa CUPS es posible emplear controladores
+      <sup>[<a name="idm1061713776" href="#ftn.idm1061713776">15</a>]</sup>.  Si se usa CUPS es posible emplear controladores
        particulares para su impresora y no depender de Ghostscript.
     </p><p>Ghostscript es un programa que puede leer documentos
       PostScript y <span class="acronym">PDF</span>
-      <sup>[<a name="idm2895637872" href="#ftn.idm2895637872">16</a>]</sup>
+      <sup>[<a name="idp1609891984" href="#ftn.idp1609891984">16</a>]</sup>
       y presentarlos en una ventana de X-Window o transformarlos al
       lenguaje particular de algunas impresoras.  Por ejemplo para
       generar a partir de un documento PostScript <code class="filename">s2.ps</code>
@@ -140,7 +140,7 @@
 	lineto
 	stroke
       </pre><p>
-    </p><a class="indexterm" name="idm2323125616"></a><p>Para visualizar un documento PostScript o PDF puede emplear
+    </p><a class="indexterm" name="idp1251088144"></a><p>Para visualizar un documento PostScript o PDF puede emplear
       el programa <span><strong class="command">gv</strong></span> ---el cual se apoya en
       Ghostscript--- por ejemplo:</p><pre class="screen">
 	gv micarta.ps
@@ -148,7 +148,7 @@
       mostrará el documento PostScript <code class="filename">micarta.ps</code>
       en una ventana de X-Window y con menús le permitirá consultarlo
       e imprimirlo.
-    </p><a class="indexterm" name="idp720004368"></a><p>Para imprimir y hacer transformaciones a un PostScript (por
+    </p><a class="indexterm" name="idp526342928"></a><p>Para imprimir y hacer transformaciones a un PostScript (por
       ejemplo 2 páginas en una sola), o para convertir de otros
       formatos a PostScript puede emplear el programa
       <span><strong class="command">a2ps</strong></span>:
@@ -159,7 +159,7 @@
       </p><pre class="screen">
 	mpage -2 micarta.ps &gt; micarta-2.ps
       </pre><p>
-    </p><a class="indexterm" name="idm2029391600"></a><p>Además de los programas <code class="literal">a2ps</code> y del paquete
+    </p><a class="indexterm" name="idm2434546160"></a><p>Además de los programas <code class="literal">a2ps</code> y del paquete
       <code class="literal">psutils</code> es posible modificar directamente un
       archivo PostScript. Por ejemplo siguiendo las indicaciones de
       <a href="http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html" target="_top">http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html</a>,
@@ -174,11 +174,11 @@
       menos porque mantienen la información comprimida.  Para
       convertir entre PostScript y PDF se emplean
       <span><strong class="command">ps2pdf</strong></span> y <span><strong class="command">pdf2ps</strong></span>
-      <sup>[<a name="idm313267056" href="#ftn.idm313267056">17</a>]</sup>.  Para visualizar e imprimir un PDF, además de
+      <sup>[<a name="idm23575152" href="#ftn.idm23575152">17</a>]</sup>.  Para visualizar e imprimir un PDF, además de
       <span><strong class="command">gv</strong></span>, puede emplear <span><strong class="command">xpdf</strong></span> o
       el programa Acrobat Reader (<span><strong class="command">acroread</strong></span>).
-    </p><a class="indexterm" name="idm2029390704"></a><p> 
-    </p><a class="indexterm" name="idm1115104624"></a><a class="indexterm" name="idm2223833968"></a></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lpd-local"></a>6.2.2. Configuración de una impresora local
+    </p><a class="indexterm" name="idm23574768"></a><p> 
+    </p><a class="indexterm" name="idm23575280"></a><a class="indexterm" name="idm2236977008"></a></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lpd-local"></a>6.2.2. Configuración de una impresora local
 			  con <span><strong class="command">lpd</strong></span></h4></div></div></div><p>
     <span class="application">lpd</span> (también llamado <span class="foreignphrase"><em class="foreignphrase">Berkeley 
       line printer spooling system</em></span>) es un sistema que 
@@ -222,11 +222,11 @@
 	    impresora</p></li></ul></div><p>
       <span><strong class="command">lpd</strong></span> envía errores a la bitácora
       <code class="filename">/var/log/lpd-errs</code>.
-    </p><a class="indexterm" name="idm1547194224"></a><p>Además de esta documentación puede consultar más sobre
+    </p><a class="indexterm" name="idm516663792"></a><p>Además de esta documentación puede consultar más sobre
       la configuración de <span><strong class="command">lpd</strong></span> en
       [<span class="citation">FreeBSDHandBook</span>] y
       [<span class="citation">OpenBSDlpd</span>]
-    </p><a class="indexterm" name="idm984228720"></a><p>La mayoría de impresoras se conectan al puerto paralelo
+    </p><a class="indexterm" name="idm630015984"></a><p>La mayoría de impresoras se conectan al puerto paralelo
 	(por ejemplo utilizables con dispositivos
 	<code class="filename">/dev/lpt0</code> o <code class="filename">/dev/lpt1</code>).
 	Puede probar
@@ -234,7 +234,7 @@
 	puerto apropiado por ejemplo <code class="literal">echo "Hola"
 	  &gt;/dev/lpt0</code> o <code class="literal">lptest &gt;
 	  /dev/lpt0</code>.
-      </p><a class="indexterm" name="idp30605328"></a><p>
+      </p><a class="indexterm" name="idp396592400"></a><p>
 	El siguiente es un ejemplo del archivo 
 	<code class="filename">/etc/printcap</code>:
 	</p><pre class="programlisting">
@@ -252,7 +252,7 @@
 	programa Ghostscript.
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="cups"></a>6.2.3. CUPS</h4></div></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="cups-inst"></a>6.2.3.1. Instalación</h5></div></div></div><p>
 		  Hay un paquete de CUPS entre los portes oficiales de 
-		  OpenBSD 5.8. Una vez 
+		  OpenBSD 5.9. Una vez 
 		  instalado puede ejecutarlo con
 	</p><pre class="screen">
 	doas cupsd
@@ -348,7 +348,7 @@ lp|local line printer:\
 	  </p><div class="itemizedlist"><ul type="disc"><li><p>Un superbloque con los parámetros básicos del sistema 
 		de archivos (e.g tamaño de cada bloque, lista de grupos
 		de cilindros) y con los parámetros del hardware que
-		afectan el desempeño<sup>[<a name="idm392551280" href="#ftn.idm392551280">18</a>]</sup> 
+		afectan el desempeño<sup>[<a name="idm2053423984" href="#ftn.idm2053423984">18</a>]</sup> 
 	      (tipo de transferencia de disco a
 	      memoria, tiempo esperado por transferencia, bloques por pista, 
 	      velocidad de rotación).
@@ -645,7 +645,7 @@ archivos de <code class="filename">/home/pablo/imagen/</code> (en la que
 	</p></li><li><p>Las imágenes de sesiones posteriores deben crearse empleando la
     opción <code class="option">-C</code> de
     <span><strong class="command">mkisofs</strong></span>
-<sup>[<a name="idm2565492720" href="#ftn.idm2565492720">19</a>]</sup>.  Los datos precisos que debe pasar a la 
+<sup>[<a name="idm1016991856" href="#ftn.idm1016991856">19</a>]</sup>.  Los datos precisos que debe pasar a la 
 	opción -C los examina con:
 </p><pre class="screen">
 	doas cdrecord dev=/dev/cd0c -msinfo
@@ -823,7 +823,7 @@ mount /dev/svnd0c /var/postgresql
 		de un espacio produce ~)
 	    </p></dd><dt><span class="term"><span><strong class="keycap">^</strong></span></span></dt><dd><p>como tecla muerta para el acento circunflejo
 	    </p></dd><dt><span class="term"><span><strong class="keycap">Shift+Alt izquierdo</strong></span></span></dt><dd><p>Como tecla de composición</p></dd></dl></div><p>	  
-      </p><p>La tecla de composición<sup>[<a name="idm1521553776" href="#ftn.idm1521553776">20</a>]</sup>
+      </p><p>La tecla de composición<sup>[<a name="idp14944784" href="#ftn.idp14944784">20</a>]</sup>
 	le permitirá generar un carácter empleando una secuencia de dos
 	teclas.  
 	Por ejemplo si presiona la tecla de composición
@@ -858,28 +858,28 @@ mount /dev/svnd0c /var/postgresql
 		<span><strong class="command">xmodmap ~/.Xmodmap</strong></span>
 		durante el arranque de su sesión X (podría ser
 		por ejemplo agregándolo a <code class="filename">~/.xsession</code>)
-	</p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2133147376" href="#idm2133147376">13</a>] </sup>En el caso de LPD el directorio con la cola de trabajos 
+	</p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1154588272" href="#idm1154588272">13</a>] </sup>En el caso de LPD el directorio con la cola de trabajos 
 		      de una impresora
 	  se configura en <code xmlns="" class="filename">/etc/printcap</code>, en el
 	  caso de <span xmlns=""><strong class="command">lp</strong></span> el directorio por defecto es
 	  <code xmlns="" class="filename">/var/spool/outputlpd/lp</code>.
-	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1357807600" href="#idm1357807600">14</a>] </sup>Normalmente puede configurar otro nombre para la impresora 
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1980449648" href="#idm1980449648">14</a>] </sup>Normalmente puede configurar otro nombre para la impresora 
 		      por defecto en la variable de ambiente 
 		      <code xmlns="" class="envar">PRINTER</code>.
-	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm885137776" href="#idm885137776">15</a>] </sup>Hay algunas impresoras que pueden imprimir PostScript
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1061713776" href="#idm1061713776">15</a>] </sup>Hay algunas impresoras que pueden imprimir PostScript
 	  directamente, pero en general para hacer la traducción de
 	  PostScript al lenguaje de una impresora se requiere un filtro
-	  que el administrador del sistema debe configurar.  </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2895637872" href="#idm2895637872">16</a>] </sup><span xmlns="" class="acronym">PDF</span> (<span xmlns="" class="foreignphrase"><em class="foreignphrase">Portable Document
+	  que el administrador del sistema debe configurar.  </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1609891984" href="#idp1609891984">16</a>] </sup><span xmlns="" class="acronym">PDF</span> (<span xmlns="" class="foreignphrase"><em class="foreignphrase">Portable Document
 	    Format</em></span> es otro lenguaje para impresión, de
 	  documentos con gráficas y diversos tipos de letras, basado en
 	  PostScript (de la misma compañía ---Adobe).
-	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm313267056" href="#idm313267056">17</a>] </sup>De acuerdo a <em xmlns="" class="citetitle">Printig-HOWTO</em> estas
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm23575152" href="#idm23575152">17</a>] </sup>De acuerdo a <em xmlns="" class="citetitle">Printig-HOWTO</em> estas
 	  herramientas ofrecen la funcionalidad de las herramientas
 	  "<span xmlns="" class="foreignphrase"><em class="foreignphrase">distiller</em></span>" de Adobe.
-	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm392551280" href="#idm392551280">18</a>] </sup>Los
+	</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2053423984" href="#idm2053423984">18</a>] </sup>Los
 		  parámetros del hardware mantenidos ayudan a localizar
-		  bloques libres de forma óptima.</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2565492720" href="#idm2565492720">19</a>] </sup>
+		  bloques libres de forma óptima.</p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1016991856" href="#idm1016991856">19</a>] </sup>
       Si la sesión previa tenia -T esta también con mismo nombre de tablas
     (especificable con -table-name TN).
-    </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1521553776" href="#idm1521553776">20</a>] </sup>Tecla de composición: en
+    </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp14944784" href="#idp14944784">20</a>] </sup>Tecla de composición: en
 	  inglés <span xmlns="" class="foreignphrase"><em class="foreignphrase">compose key</em></span></p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-algunos-portes.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">5. Configuración y uso de algunas aplicaciones </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 7. Instalaciones duales</td></tr></table></div></body></html>

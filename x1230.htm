@@ -1,0 +1,3421 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Configuración y uso de algunas aplicaciones</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Configuración y uso de programas y servicios básicos"
+HREF="x1078.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1078.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+>&nbsp;</TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="configuracion-de-algunos-portes"
+>Configuración y uso de algunas aplicaciones</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="escritorio"
+>Escritorio y Archivos</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="fluxbox"
+>FluxBox</A
+></H3
+><P
+>La operación básica de este liviano y estético administrador de 
+	      ventanas se describe en ,
+      aquí describimos algunos detalles de configuración.</P
+><P
+>Para emplearlo como administrador de ventanas por defecto 
+	      debe modificarse 
+	<TT
+CLASS="filename"
+>~/.xsession</TT
+>, así como en 
+	<TT
+CLASS="filename"
+>~/.xinitrc</TT
+> y agregar al final:
+	<PRE
+CLASS="screen"
+>&#13;	if (test -x /usr/local/bin/startfluxbox) then {
+		/usr/local/bin/startfluxbox
+	} fi; </PRE
+>
+	</P
+><P
+>Una vez en operación podrá realizar diversas configuraciones
+		oprimiendo el botón derecho sobre el escritorio en el menú 
+		<TT
+CLASS="literal"
+>fluxbox menu</TT
+>.   Por ejemplo podrá 
+		cambiar estilos en <TT
+CLASS="literal"
+>System Styles</TT
+> y
+		esconder/mostrar la barra de herramientas con 
+		<TT
+CLASS="literal"
+>Configure -&#62; Toolbar -&#62; Visible</TT
+>
+
+      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN1246"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="fluxbox-xfig.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+  </P
+><P
+>Entre sus características:
+	<P
+></P
+><UL
+><LI
+><P
+>Es altamente configurable (recursos, menús, decoración
+	      de ventanas y estilos).
+	    </P
+></LI
+><LI
+><P
+>Es muy liviano, requiere alrededor de 4MB en RAM.</P
+></LI
+><LI
+><P
+>Con <B
+CLASS="keycap"
+>Alt</B
+>+[Boton izquierdo] permite
+	      cambiar ubicación de la ventana sobre la que está el curso,
+	      y con <B
+CLASS="keycap"
+>Alt</B
+>+[Botono derecho] el tamaño.</P
+></LI
+></UL
+>
+      </P
+><P
+>El menú que presenta se configura en un archivo texto con
+	una sintaxis sencilla, puede cambiarse editando en
+	<TT
+CLASS="filename"
+>~/.fluxbox/menu</TT
+>. 
+</P
+><P
+>Los programas que se inician con el escritorio pueden 
+	configurarse en <TT
+CLASS="filename"
+>~/.fluxbox/startup</TT
+>. 
+	Por ejemplo en este archivo puede configurar el locale que usará 
+	agregando o cambiando la línea:
+	<PRE
+CLASS="screen"
+>&#13;export LANG=es_CO.UTF-8
+	</PRE
+>
+</P
+><P
+>La apariencia en general puede configurarse en
+	<TT
+CLASS="filename"
+>~/.fluxbox/init</TT
+></P
+><P
+>Puede configurar teclas rápidas en el archivo
+	<TT
+CLASS="filename"
+>~/.fluxbox/keys</TT
+></P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="lecturas-conf-fluxbox"
+>Lecturas recomendadas</A
+></H4
+><P
+>&#13;		      <P
+></P
+><UL
+><LI
+><P
+>Sitio oficial <A
+HREF="fluxbox.org"
+TARGET="_top"
+>fluxbox.org</A
+>.
+</P
+></LI
+><LI
+><P
+>Página sobre fluxbox de NetBSD <A
+HREF="http://wiki.netbsd.org/fluxbox/"
+TARGET="_top"
+>http://wiki.netbsd.org/fluxbox/</A
+></P
+></LI
+><LI
+><P
+>Página sobre fluxbox de Gentoo <A
+HREF="http://www.gentoo.org/doc/es/fluxbox-config.xml"
+TARGET="_top"
+>http://www.gentoo.org/doc/es/fluxbox-config.xml</A
+></P
+></LI
+></UL
+>
+	      </P
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="xfe"
+><B
+CLASS="command"
+>xfe</B
+></A
+></H3
+><P
+>La operación básica se describe en
+		,
+		aquí describimos algunos detalles de configuración.
+	</P
+><P
+>&#13;		El archivo de configuración se ubica en 
+		<TT
+CLASS="filename"
+>~/.config/xfe/xferc</TT
+>.   La
+		mayoría de posibilidades se configuran desde 
+		<SPAN
+CLASS="guimenu"
+>Editar</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Preferencias</SPAN
+>, sin embargo para que opere bien 
+
+		<SPAN
+CLASS="guimenu"
+>Herramientas</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Ventana superusuario nueva</SPAN
+> 
+		en adJ el archivo de configuración en la sección 
+		<TT
+CLASS="literal"
+>OPTIONS</TT
+> 
+		debe incluir:
+		<PRE
+CLASS="screen"
+>&#13;uso_sudo=1
+sudo_nopasswd=1
+		</PRE
+>
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="espiritualidad"
+>Espiritualidad</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="xiphos"
+><B
+CLASS="command"
+>xiphos</B
+></A
+></H3
+><P
+>Como se describe en ,
+		es una herramienta gráfica de estudio e investigación bíblica 
+		que se basa en las librerías del proyecto Sword. 
+	</P
+><P
+>&#13;	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN1311"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="xiphos.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+	</P
+><P
+>Puede iniciarla desde el menu de fluxbox Espiritualidad-&#62;Xiphos
+		o desde una terminal con <B
+CLASS="command"
+>xiphos</B
+>.
+		Deben instalarse módulos primero.  Cada módulo  puede
+		ser una traducción, comentario, diccionario. 
+		Hay traducciones a muchos idiomas (incluyendo manuscritos
+		griegos y hebreo). En español entre otras se encuentra
+		parte de la traducción de dominio público de los evangelios
+		que típicamente se ha incluido con adJ.</P
+><P
+>Una vez instale los módulos que desea usar, 
+		es posible ver varias traducciones en paralelo. 
+		Cada traducción puede contar con opciones como:
+		Palabras de Cristo en Rojo, Números Strong, Etiquetas
+		morfológicas, Notas al pie, encabezados.
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="documentos"
+>Preparación de Documentos y Aplicaciones de Oficina</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="msoffice"
+>Aplicaciones estilo MS-Office</A
+></H3
+><P
+>LibreOffice  es un juego de aplicaciones de oficina que
+	      ofrece, prácticamente, la misma funcionalidad de MS-Office,
+	      un formato de documentos estándar (ISO) y facilidades para
+	      importar y exportar en formatos de MS-Office.  
+      </P
+><P
+>Lo puede iniciar desde el escritorio con botón derecho 
+	      <SPAN
+CLASS="guimenu"
+>Oficina</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>LibreOffice</SPAN
+> o bien desde una terminal con
+	      <PRE
+CLASS="screen"
+>&#13;	soffice
+	      </PRE
+>
+          Después de instalarlo y ejecutarlo por primera vez arrancará en inglés, 
+          para configurarlo en español vaya al menú <SPAN
+CLASS="guimenu"
+>Tools</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Options</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Language</SPAN
+>
+          y elija Español y Español/Colombia en las casillas de idioma que
+          aparecen al lado derecho.</P
+><P
+>&#13;				Incluye el procesador de texto <TT
+CLASS="literal"
+>writer</TT
+> (que
+				puede iniciar desde una terminal con <B
+CLASS="command"
+>swriter</B
+>), 
+				la hoja de cálculo <TT
+CLASS="literal"
+>calc</TT
+> (que inicia
+				desde una terminal con <B
+CLASS="command"
+>scalc</B
+>), el
+				creador de presentaciones <TT
+CLASS="literal"
+>impress</TT
+> (que inicia
+				con <B
+CLASS="command"
+>simpress</B
+> desde un terminal) y el programa
+				para diagrama <TT
+CLASS="literal"
+>draw</TT
+> (que puede iniciar con
+				<B
+CLASS="command"
+>sdraw</B
+>). 
+				Puede aprender más sobre este procesador en 
+      </P
+><P
+>Además el DVD de adJ incluye <SPAN
+CLASS="application"
+>abiword-3.0.1p4</SPAN
+>
+	      como procesador de texto capaz de abrir y escribir tanto
+	      en el formato de Microsoft Office como en OpenDocument (que
+	      es el formato de LibreOffice y OpenOffice).
+      </P
+><P
+>Para operar con hojas de cálculo incluye 
+	      <SPAN
+CLASS="application"
+>gnumeric-1.12.26</SPAN
+>, que también
+	      puede abrir y guardar en OpenDocument y en formatos de 
+				Microsoft Office.
+	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN1349"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="gnumeric.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+
+			</P
+><P
+> La funcionalidad de un procesador de palabra, así como la
+	      básica para hacer presentaciones también las ofrece
+	      LaTeX (ver <A
+HREF="x1230.htm#latex"
+>la sección de nombre <I
+>LaTeX</I
+></A
+>).
+	      Parte de la funcionalidad de una hoja de cálculo 
+	      la tiene desde una terminal <B
+CLASS="command"
+>sc</B
+>. 
+	      También puede usar 
+	      <B
+CLASS="command"
+>magicpoint</B
+> para hacer presentaciones.
+	      Sin embargo para usar estas herramientas se requiere
+	      aprender formas diferentes de operar.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="conf-tex-gv"
+>TeX y Ghostview</A
+></H3
+><P
+> Para emplear TeX, LaTeX y asociados instale
+	      texlive y gv:
+      </P
+><PRE
+CLASS="screen"
+>&#13;	doas pkg_add $PKG_PATH/texlive_base-2014p1.tgz 
+	doas pkg_add $PKG_PATH/texlive_texmf-full-2014p0.tgz 
+	doas pkg_add $PKG_PATH/gv-3.7.1p1.tgz </PRE
+><P
+>&#13;		Puede configurar tamaño del papel, separado en sílabas 
+		y otros detalles con <B
+CLASS="command"
+>texconfig</B
+>.
+</P
+><P
+>A continuación se incluye un mini-tutorial de LaTeX adaptado de
+	[<SPAN
+CLASS="citation"
+>AALinux</SPAN
+>], por otra parte puede consultar
+	algo más sobre <B
+CLASS="command"
+>gv</B
+> en la sección
+	.
+</P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="latex"
+>LaTeX</A
+></H4
+><P
+>LaTeX es una extensión a un sistema
+      llamado TeX, desarrollado para escribir documentos de
+      matemáticas.  A continuación se presenta un ejemplo de un
+      documento LaTeX y el resultado que se obtiene tras procesarlo.
+<PRE
+CLASS="programlisting"
+>&#13;\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\begin{document}
+\author{Rupertino Gonzales}
+\title{Algunas posibilidades de LaTeX}
+\maketitle
+
+\section{Elementos}
+Puede estructurar el documento en capítulos, secciones, etc.
+Este texto es el contenido de la primera sección de este ejemplo, 
+puede escribir cada párrafo en líneas consecutivas.
+
+\subsection{Ayudas}
+Puede lograr efectos como \emph{Itálicas}, \textbf{negrillas} o 
+cambios en el \textsf{tipo o {\small tamaño} de letra} (note 
+como se anidaron ambientes en este ejemplo).
+
+Puede crear listas:
+\begin{itemize}
+\item Primer elemento de lista.
+\item Segundo elemento de lista.
+\end{itemize}
+o tablas
+\\
+\begin{tabular}{|l|r|} \hline
+Título 1 &#38; Título 2 \\\hline
+elemento 1 &#38; elemento 2 \\\hline
+\end{tabular}
+\subsection{Ecuaciones}
+LaTeX es un experto en esta materia:
+\[ \int_{x=-\infty}^{\infty}e^{-|x|} \]
+\end{document}
+</PRE
+>
+     </P
+><A
+NAME="AEN1374"
+></A
+><P
+>Comando de LaTeX para iniciar una sección.</P
+><A
+NAME="AEN1377"
+></A
+><P
+>Comando de LaTeX para ambiar tipo de letra a itálicas.</P
+><A
+NAME="AEN1380"
+></A
+><P
+>Comando de LaTeX para cambiar tipo de letra a negrilla.</P
+><P
+>LaTeX ofrece plantillas para varios tipos de documentos:
+      artículo, reporte, libro y ofrece el concepto de ambiente para
+      indicar como presentar cierta información de acuerdo a la
+      plantilla.  En el ejemplo presentado, el tipo de documento es
+      artículo (lo indica la línea
+      <TT
+CLASS="literal"
+>documentclass{article}</TT
+>), y uno de los
+      ambientes empleados es <TT
+CLASS="literal"
+>tabular</TT
+>, que genera
+      una tabla.
+    </P
+><P
+>Una vez edite un documento puede procesarlo con LaTeX para
+      obtener un archivo DVI, por ejemplo para generar el archivo
+      <TT
+CLASS="filename"
+>documento.dvi</TT
+> a partir de
+      <TT
+CLASS="filename"
+>documento.tex</TT
+>:</P
+><PRE
+CLASS="screen"
+>&#13;	latex documento.tex
+</PRE
+><A
+NAME="AEN1390"
+></A
+><P
+>Programa que convierte un archivo LaTeX a DVI.</P
+><A
+NAME="AEN1394"
+></A
+><P
+>Programa para ver un archivo DVI en pantalla.</P
+><P
+>El archivo DVI es apropiado para imprimir, puede imprimirlo
+      con un comando como <B
+CLASS="command"
+>dvilj</B
+>,
+      <B
+CLASS="command"
+>dvidj</B
+> o un nombre análogo que corresponda a
+      su impresora
+      <A
+NAME="AEN1401"
+HREF="#FTN.AEN1401"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+>.  Para visualizar un archivo <ACRONYM
+CLASS="acronym"
+>DVI</ACRONYM
+>
+	puede emplear el comando <SPAN
+CLASS="application"
+>xdvi</SPAN
+>:
+	</P
+><PRE
+CLASS="screen"
+>&#13;	xdvi documento.dvi
+</PRE
+><A
+NAME="AEN1409"
+></A
+><P
+>Programa para convertir un DVI en PostScript.</P
+><P
+>&#13;      y para convertirlo a PostScript puede emplear
+      <B
+CLASS="command"
+>dvi2ps</B
+>:
+     </P
+><PRE
+CLASS="screen"
+>&#13;	dvi2ps -c documento.ps documento.dvi
+</PRE
+><P
+>&#13;      A continuación se presenta como se ve el ejemplo de esta sección
+      con el programa <B
+CLASS="command"
+>xdvi</B
+>.</P
+><DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN1418"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="ejlatex.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+><P
+>Existen además otros programas para convertir de LaTeX a
+      HTML como latex2html y HeVeA.  Puede encontrar más información
+      de latex2html en <A
+HREF="http://ctan.tug.org/ctan/tex-archive/support/latex2html/"
+TARGET="_top"
+>http://ctan.tug.org/ctan/tex-archive/support/latex2html/</A
+>
+      y de HeVeA en <A
+HREF="http://pauillac.inria.fr/hevea/"
+TARGET="_top"
+>http://pauillac.inria.fr/hevea/</A
+>.  
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="docbook"
+>DocBook</A
+></H3
+><P
+>Puede configurarse tanto DocBook SGML 4.4 y procesarse con 
+    las hojas de estilo DSSSL, o bien DocBook XML 4.4 y procesarse
+    con <B
+CLASS="command"
+>xsltproc</B
+>.</P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="sgml-4-4-con-dsssl"
+>SGML 4.4 con DSSSL</A
+></H4
+><P
+>Instale los paquetes openjade, docbook y docbook-dsssl:
+      <PRE
+CLASS="screen"
+>&#13;	doas pkg_add $PKG_PATH/docbook-4.5p1.tgz
+	doas pkg_add $PKG_PATH/docbook-dsssl-1.79.tgz
+	doas pkg_add $PKG_PATH/openjade-1.3.3pre1p2.tgz </PRE
+>
+      Esto bastará para hacer conversiones de DocBook SGML a 
+      HTML por ejemplo si su hoja de estílo DSSL es "marcos.dsl" y 
+      va a convertir el documento DocBook marcos.xml:
+      <PRE
+CLASS="screen"
+>&#13;	openjade  -t sgml -ihtml -d marcos.dsl#html marcos.xml </PRE
+>
+    </P
+><P
+>Para convertir a PostScript además de los paquetes anteriores
+      requiere el paquete <SPAN
+CLASS="application"
+>texlive</SPAN
+> (ver
+      <A
+HREF="x1230.htm#conf-tex-gv"
+>TeX y Ghostview</A
+>) y
+      el paquete <SPAN
+CLASS="application"
+>jadetex</SPAN
+> 
+      
+    </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="xml-4-4-con-xsl"
+>XML 4.4 con XSL</A
+></H4
+><P
+>Cómo parte del paquete <TT
+CLASS="literal"
+>docbook-4.5p1</TT
+> se
+      instalará el DTD de DocBook XML 4.4 en el directorio
+      <TT
+CLASS="filename"
+>/usr/local/share/xml/docbook</TT
+>.  Es
+      recomendable que cree el archivo 
+      <TT
+CLASS="filename"
+>/usr/local/share/xml/catalog</TT
+> inicialmente
+      con:
+      <PRE
+CLASS="screen"
+>&#13;	CATALOG "docbook/catalog" </PRE
+>
+      y que agregue en este archivo la ruta de otros catálogos XML o
+      de DTDs.
+    </P
+><P
+>Para transformar documentos XML con hojas de estilo XSL
+      puede emplear un procesador  como <TT
+CLASS="literal"
+>xsltproc</TT
+>,
+      que está incluido en el paquete <TT
+CLASS="literal"
+>libxslt</TT
+>.
+      Esta herramienta recibe el nombre del archivo XSL y el nombre
+      del archivo XML por transformar.  También puede recibir la opción
+      <TT
+CLASS="literal"
+>--catalogs</TT
+> que indica usar los catálogos 
+      de la variable <TT
+CLASS="literal"
+>SGML_CATALOG_FILES</TT
+> (se separan
+      unos catálogos de otros con el carácter ':'), o la opción
+      <TT
+CLASS="literal"
+>--nonet</TT
+> que indica no descargar DTDs de Internet
+      (los catálogos deben resolver todos los identificadores
+      públicos).
+    </P
+><P
+>Las hojas de estilo XSL para transformar DocBook XML en
+      HTML y en XML-FO (Formatting objects, apropiado para imprimir con un 
+      procesador FO) se instalan con el paquete 
+      <TT
+CLASS="literal"
+>docbook-xsl-1.68.1p5</TT
+> y quedan en 
+      <TT
+CLASS="filename"
+>/usr/local/share/xsl/docbook</TT
+>.
+    </P
+><P
+>Una vez instalados todas las partes puede procesar el archivo
+	    <TT
+CLASS="filename"
+>ejemplo.xdbk</TT
+>:
+	    <PRE
+CLASS="screen"
+>&#13;&#60;?xml version="1.0" encoding="UTF-8"?&#62;
+&#60;!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"  "/usr/local/share/xml/docbook/4.4/docbookx.dtd" &#62; 
+
+&#60;article lang="es"&#62;
+	&#60;title&#62;articulo&#60;/title&#62;
+  &#60;articleinfo&#62;
+    &#60;authorgroup&#62;
+      &#60;author&#62;
+	&#60;firstname&#62;Nombres&#60;/firstname&#62;
+	&#60;surname&#62;Apellidos&#60;/surname&#62;
+	&#60;authorblurb&#62;
+          &#60;para&#62;&#60;address&#62;
+	      &#60;email&#62;micorreo@pasosdeJesus.org&#60;/email&#62;
+           &#60;/address&#62;&#60;/para&#62;
+	&#60;/authorblurb&#62;
+      &#60;/author&#62; 
+    &#60;/authorgroup&#62;
+    
+    &#60;abstract&#62;
+	    &#60;para&#62;Resumen&#60;/para&#62;
+    &#60;/abstract&#62;
+
+    &#60;legalnotice&#62;
+	    &#60;para&#62;nota legal&#60;/para&#62;
+    &#60;/legalnotice&#62;
+
+  &#60;/articleinfo&#62;
+
+  &#60;sect1 id="s1"&#62;
+    &#60;title&#62;Primera sección&#60;/title&#62;
+
+    &#60;para&#62;Parrafo&#60;/para&#62;
+  &#60;/sect1&#62;
+&#60;/article&#62;
+</PRE
+> 
+con una hoja XSLT de DocBook con:
+      <PRE
+CLASS="screen"
+>&#13;	export SGML_CATALOG_FILES="/usr/local/share/xml/catalog"
+	xsltproc --catalogs --nonet /usr/local/share/xsl/docbook/html/chunk.xsl ejemplo.xdbk</PRE
+>
+    </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="espanol"
+>Español</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="ispell"
+>ispell</A
+></H3
+><P
+><B
+CLASS="command"
+>ispell</B
+> permite revisar ortografía de
+		textos planos o fuentes de documentos en diversos formatos
+		(HTML, XML o TeX).  Hay diccionarios disponibles para
+		diversos idiomas.
+		Al instalar el paquete <TT
+CLASS="literal"
+>ispell</TT
+> se instalarán
+		dos diccionarios: inglés de EUA (<TT
+CLASS="literal"
+>american</TT
+>) e 
+		inglés de Inglaterra (<TT
+CLASS="literal"
+>british</TT
+>).  Para
+		emplear el diccionario en español (<TT
+CLASS="literal"
+>spanish</TT
+>)
+		instale el paquete
+		<TT
+CLASS="literal"
+>ispell-spanish</TT
+>, puede configurarlo como diccionario
+		por defecto con <B
+CLASS="command"
+>ispell-config</B
+>.
+	</P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="correccion-ortográfica"
+>Corrección ortográfica</A
+></H4
+><P
+>Puede corregir interactivamente la ortografía de un texto
+			plano (digamos <TT
+CLASS="filename"
+>carta.txt</TT
+>) usando el
+			diccionario por defecto con:<PRE
+CLASS="screen"
+>&#13;	ispell carta.txt
+			</PRE
+>
+			o si desea emplear el diccionario de un idioma particular:<PRE
+CLASS="screen"
+>&#13;	ispell -d spanish carta.txt
+			</PRE
+>
+			Al corregir interactivamente <TT
+CLASS="literal"
+>ispell</TT
+> mostrará
+			palabras que no encuentre en el diccionario del idioma ni en 
+			su diccionario personal<A
+NAME="AEN1482"
+HREF="#FTN.AEN1482"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+> 
+			del idioma 
+			(e.g. <TT
+CLASS="filename"
+>~/.ispell_spanish</TT
+>), así como posibles
+			remplazos.  Podrá elegir uno de los remplazos tecleando el
+			número que antecede al remplazo.
+		</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="multimedia"
+>Multimedia</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="mplayer"
+>Mplayer</A
+></H3
+><P
+>Es un reproductor de audio y video que soporta gran variedad de 
+	      formatos.  Por ejemplo para ver video.flv:
+	      <PRE
+CLASS="screen"
+>&#13;	mplayer video.flv
+	      </PRE
+>
+	      Se distribuye con codecs que pueden distribuirse libremente.
+	      Para que soporte codecs de Windows es importante instalar
+	      también el paquete <TT
+CLASS="literal"
+>win32-codecs</TT
+>
+      </P
+><P
+>&#13;	      También permite hacer conversiones y extraer partes.
+	Por ejemplo para extraer pista de audio de un video descargado
+	de youtube, y dejarla en formato WAV:
+	<PRE
+CLASS="screen"
+>&#13;	mplayer -vo null -ao "pcm:file=pista.wav" -af resample=44100 "video.flv"
+	</PRE
+>
+	Para reproducir 10 segundos de un DVD comenzando en el segundo
+	240:
+	<PRE
+CLASS="screen"
+>&#13;	mplayer -ss 240 -endpos 10 dvd://1
+	</PRE
+>
+	</P
+><P
+>&#13;	 Se distribuye junto con <B
+CLASS="command"
+>mencoder</B
+>
+	 que permite convertir de un formato a otro.   
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="ediciongraficos"
+>Edición de gráficos</A
+></H3
+><P
+>Para ver una gráfica (sin editarla) prácticamente en cualquier
+	      formato, puede usar <TT
+CLASS="literal"
+>display</TT
+> incluido
+	      en <SPAN
+CLASS="application"
+>ImageMagick-6.9.4.10</SPAN
+>:
+	      <PRE
+CLASS="screen"
+>&#13;display migrafica.png
+	      </PRE
+>
+	      Otra opción que facilita ver un directorio con imagenes es
+	      <TT
+CLASS="literal"
+>xfi</TT
+> incluido en el paquete
+	      <SPAN
+CLASS="application"
+>xfe-1.40.1p0</SPAN
+>:
+	      <PRE
+CLASS="screen"
+>&#13;xfi migrafica.png
+	      </PRE
+>
+      </P
+><P
+>Las operaciones típicas con gráficos son el retoque de fotos y
+	      la creación de diagramas.   Para retocar 
+	      fotografías se emplean editores gráficos a nivel de pixels,
+	      mientras que para creación de diagramas resultan
+	      más convenientes editores de gráficos vectoriales.</P
+><P
+>Como editor de gráficos a nivel de pixels, el CD de adJ incluye 
+	      <SPAN
+CLASS="application"
+>gimp-2.8.16</SPAN
+></P
+><P
+>&#13;	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN1513"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="gimp.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+	</P
+><P
+>Como editor vectorial incluye <SPAN
+CLASS="application"
+>inkscape-0.91p8</SPAN
+></P
+><DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN1522"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="inkscape.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+><P
+>OpenOffice incluye otro editor vectorial llamado <SPAN
+CLASS="application"
+>draw</SPAN
+>. </P
+><P
+>Para la generación de gráficos de barras y estadísticos resulta
+	      más apropiado el graficador de <SPAN
+CLASS="application"
+>gnumeric-1.12.26</SPAN
+> o de calc --la hoja de cálculo de OpenOffice--, 
+	      ver <A
+HREF="x1230.htm#msoffice"
+>la sección de nombre <I
+>Aplicaciones estilo MS-Office</I
+></A
+></P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="edicionaudio"
+>Edición de audio</A
+></H3
+><P
+>&#13;Para reproducir una pista de audio en diversos formatos
+(incluyendo el libre ogg, el común wav y el patentado mp3) 
+puede usar
+<TT
+CLASS="literal"
+>mplayer</TT
+> (ver <A
+HREF="x1230.htm#mplayer"
+>la sección de nombre <I
+>Mplayer</I
+></A
+>),
+o bien <TT
+CLASS="literal"
+>audacious</TT
+> (incluido en el
+paquete <SPAN
+CLASS="application"
+>audacious-3.5.2p0</SPAN
+>):
+<DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN1541"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="audacious.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+El programa <TT
+CLASS="literal"
+>play</TT
+> incluido en el paquete
+<SPAN
+CLASS="application"
+>sox-14.4.2</SPAN
+> también le permitirá escuchar diversos
+formatos.
+      </P
+><P
+>Desde la línea de comandos podrá recortar, cambiar volumen y
+	      aplicar otros efectos empleando el programa <TT
+CLASS="literal"
+>sox</TT
+>.</P
+><P
+>Si prefiere un editor gráfico que le permite recortar y aplicar 
+	      algunos efectos a pistas de
+	      audio en prácticamente cualquier formato de audio
+	      utilice el programa 
+	      <SPAN
+CLASS="application"
+>audacity-1.3.9p8</SPAN
+>:
+	      <DIV
+CLASS="informalfigure"
+><P
+></P
+><A
+NAME="AEN1554"
+></A
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="audacity.png"
+ALIGN="center"></P
+></DIV
+><P
+></P
+></DIV
+>
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="red"
+>Operación en red</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="mutt"
+><B
+CLASS="command"
+>mutt</B
+></A
+></H3
+><P
+>El uso básico de mutt puede consultarlo en
+		.
+	</P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="otro-smtp"
+>Enviado correo con <B
+CLASS="command"
+>sendmail</B
+> 
+			de otro computador</A
+></H4
+><P
+>&#13;Para enviar correos <B
+CLASS="command"
+>mutt</B
+> corre por defecto el programa
+<B
+CLASS="command"
+>sendmail</B
+> (por defecto con parámetros: 
+<B
+CLASS="command"
+>sendmail -oem -oi</B
+>), si usted prefiere o necesita emplear el 
+<B
+CLASS="command"
+>sendmail</B
+> de otro computador puede:
+			<P
+></P
+><UL
+><LI
+><P
+>Hacer un script (digamos
+<TT
+CLASS="filename"
+>/home/pablo/scripts/envia.sh</TT
+>)
+que llame al <B
+CLASS="command"
+>sendmail</B
+> remoto (por ejemplo 
+con <B
+CLASS="command"
+>ssh</B
+>) y le pase lo que recibe por entrada estándar:
+<PRE
+CLASS="screen"
+>&#13;#!/bin/sh
+# envia.sh Dominio público
+
+if (test "$SSH_AUTH_SOCK" = "") then {
+	echo "Usar con ssh-agent";
+	exit 2;
+} fi;
+
+cat - | ssh pablo@amor.miescuela.edu.co /usr/sbin/sendmail -oem -oi
+</PRE
+>
+Note que este script está hecho para ser ejecutado junto con el
+agente de autenticación de ssh (i.e <B
+CLASS="command"
+>ssh-agent</B
+>).
+					</P
+></LI
+><LI
+><P
+>Configure <B
+CLASS="command"
+>mutt</B
+> para
+que emplee su script con la variable <TT
+CLASS="literal"
+>sendmail</TT
+>,
+la cual puede establecer en su archivo <TT
+CLASS="filename"
+>~/.muttrc</TT
+> con
+algo como:
+<PRE
+CLASS="screen"
+>&#13;	set sendmail=/home/pablo/scripts/envia.sh
+</PRE
+>
+				</P
+></LI
+><LI
+><P
+>Asegurese de ejecutar <B
+CLASS="command"
+>mutt</B
+>
+junto con el agente de autenticación de <B
+CLASS="command"
+>ssh</B
+>.  Por
+ejemplo con:
+					<PRE
+CLASS="screen"
+>&#13;	ssh-agent /bin/ksh
+	ssh-add
+	mutt
+					</PRE
+>
+o si emplea XWindow es posible que pueda configurar su manejador de
+escritorio o su administrador de ventanas para que toda la sesión 
+emplee el agente (ver un ejemplo en <A
+HREF="x1230.htm#fluxbox"
+>la sección de nombre <I
+>FluxBox</I
+></A
+>).
+				</P
+></LI
+></UL
+>
+	</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="lecturas-mutt"
+>Lecturas recomendadas</A
+></H4
+><P
+>&#13;		      <P
+></P
+><UL
+><LI
+><P
+>Página man de <B
+CLASS="command"
+>mutt</B
+></P
+></LI
+><LI
+><P
+>Sección sobre <B
+CLASS="command"
+>mutt</B
+> de
+[<SPAN
+CLASS="citation"
+>basico_adJ</SPAN
+>].</P
+></LI
+></UL
+>
+	      </P
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="chromium"
+>Chromium</A
+></H3
+><P
+>&#13;	      Puede iniciarlo desde el menú de fluxbox o desde una
+	      terminal con <TT
+CLASS="literal"
+>chromium</TT
+>.
+      </P
+><P
+>&#13;	      Es posible que chrome use como proxy un tunel SOCKS creado con 
+	      ssh.  Esto es útil por ejemplo para ingresar a sitios
+	      web que están en intranets. 
+	      Primero cree el tunel ingresando al cortafuegos/enrutador de la 
+	      Intranet, por ejemplo en el puerto 9080 con:
+	      <PRE
+CLASS="screen"
+>&#13;ssh -D9080 miusuario@micortafuegos 
+	      </PRE
+>
+	      A continuación inicie chromium indicando que debe usarse el 
+	      proxy socks del puerto 9080:
+	      <PRE
+CLASS="screen"
+>&#13;chromium --proxy-server=socks://127.0.0.1:9080
+	      </PRE
+>
+	      Tras esto ya podrá ingresar direcciones de la intranet desde
+	      el navegador.
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="desarrollo"
+>Ambiente de Desarrollo</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="ruby"
+>Ruby</A
+></H3
+><P
+>&#13;En adJ es sencillo usar ruby-2.3.1 con Ruby on Rails 5. Lo básico 
+se instala de paquetes de OpenBSD y lo más reciente de Ruby directamente 
+como gemas.
+</P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="instalación-y-configuración"
+>Instalación y configuración</A
+></H4
+><P
+>Asegúrese de tener instalados los paquetes ruby-2.3.1, 
+		      libv8-3.12.19p1v0 y node-4.3.0p0, incluidos en el DVD de 
+		      adJ 5.9</P
+><P
+>&#13;Asegúrese de tener enlaces al interprete de ruby y herramientas (como 
+describe el paquete ruby):
+		      <PRE
+CLASS="screen"
+>&#13;doas sh
+ln -sf /usr/local/bin/ruby23 /usr/local/bin/ruby
+ln -sf /usr/local/bin/erb23 /usr/local/bin/erb
+ln -sf /usr/local/bin/irb23 /usr/local/bin/irb
+ln -sf /usr/local/bin/rdoc23 /usr/local/bin/rdoc
+ln -sf /usr/local/bin/ri23 /usr/local/bin/ri
+ln -sf /usr/local/bin/rake23 /usr/local/bin/rake
+ln -sf /usr/local/bin/gem23 /usr/local/bin/gem
+		      </PRE
+>
+	      </P
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="límites-amplios"
+>Límites amplios</A
+></H5
+><P
+>&#13;Asegurarse de tener limites amplios del sistema operativo para abrir archivos 
+y manejar memoria, por ejemplo superiores a los siguientes en 
+<FONT
+COLOR="RED"
+>/etc/systctl.conf</FONT
+>
+<PRE
+CLASS="screen"
+>&#13;kern.shminfo.shmmni=1024
+kern.seminfo.semmns=2048
+kern.shminfo.shmmax=50331648
+kern.shminfo.shmall=51200
+kern.maxfiles=20000
+</PRE
+>
+El usuario desde el cual desarrollará o ejecutará aplicaciones también debe 
+tener límites amplios, en particular su clase de login (por ejemplo 
+<FONT
+COLOR="RED"
+>staff</FONT
+>). Debe tener al menos los siguientes en 
+<FONT
+COLOR="RED"
+>/etc/login.conf</FONT
+>
+<PRE
+CLASS="screen"
+>&#13;staff:\
+        :datasize-cur=1536M:\
+        :datasize-max=infinity:\
+        :maxproc-max=4096:\
+        :maxproc-cur=4096:\
+        :openfiles-max=8090:\
+        :openfiles-cur=8090:\
+        :ignorenologin:\
+        :requirehome@:\
+        :tc=default:
+</PRE
+>
+	</P
+><P
+>&#13;(Si modifica el archivo <FONT
+COLOR="RED"
+>/etc/login.conf</FONT
+> debe reconstruir su 
+versión binaria con <FONT
+COLOR="RED"
+>doas cap_mkdb /etc/login.conf</FONT
+>).</P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="irb"
+>irb</A
+></H5
+><P
+>&#13;Para facilitar su exploración del lenguaje ruby, puede usar <FONT
+COLOR="RED"
+>irb</FONT
+> 
+(ver {4}), pero antes verifique que su archivo <FONT
+COLOR="RED"
+>~/.irbrc</FONT
+> tenga 
+las siguientes líneas (añadidas por defecto en adJ a la cuenta de 
+administrador):
+	</P
+><PRE
+CLASS="screen"
+>&#13;# Configuración de irb
+# Basado en archivo de comandos disponible en &#60;http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/&#62;
+require 'irb/completion'
+require 'pp'
+IRB.conf[:AUTO_INDENT] = true
+IRB.conf[:USE_READLINE] = true
+
+def clear
+    system('clear')
+end
+</PRE
+><P
+>&#13;A continuación ingrese a <FONT
+COLOR="RED"
+>irb</FONT
+> y escriba por ejemplo 
+<FONT
+COLOR="RED"
+>4.</FONT
+> y presione la tecla [Tab] 2 veces para ver los métodos 
+de la clase Integer.
+</P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="gemas"
+>Gemas</A
+></H5
+><P
+>&#13;El paquete <FONT
+COLOR="RED"
+>ruby</FONT
+> incluye <FONT
+COLOR="RED"
+>rubygems</FONT
+> que manejan gemas 
+(es decir librerías) con el programa <FONT
+COLOR="RED"
+>gem</FONT
+>. Puede actualizar a 
+la versión más reciente con:
+<PRE
+CLASS="screen"
+>&#13;doas gem update --system
+QMAKE=qmake-qt5 make=gmake MAKE=gmake doas gem pristine --all
+</PRE
+>
+</P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="AEN1651"
+>Bundler</A
+></H5
+><P
+>&#13;Para facilitar el manejo de varias gemas en un proyecto es típico emplear 
+<FONT
+COLOR="RED"
+>bundler</FONT
+> que instala con:
+<PRE
+CLASS="screen"
+>&#13;doas gem install bundler
+</PRE
+>
+</P
+><P
+>&#13;	Configurelo para que instale gemas para un usuario en 
+	<FONT
+COLOR="RED"
+>/var/www/bundler</FONT
+>
+(así evitará problemas de permisos y la dificultad de bundler para 
+usar <FONT
+COLOR="RED"
+>doas</FONT
+> en lugar de <FONT
+COLOR="RED"
+>sudo</FONT
+>):
+<PRE
+CLASS="screen"
+>&#13;bundler config path /var/www/bundler
+</PRE
+>
+</P
+><P
+>&#13;Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
+verá un archivo <FONT
+COLOR="RED"
+>Gemfile</FONT
+>, donde bundler examina de que librerías 
+depende la aplicación y genera un archivo <FONT
+COLOR="RED"
+>Gemfile.lock</FONT
+> con las 
+versiones precisas por instalar de cada gema.
+</P
+><P
+>&#13;Una vez tenga un proyecto puede instalar las gemas de las que depende con 
+<FONT
+COLOR="RED"
+>bundle install</FONT
+>
+</P
+><P
+>&#13;Si eventualmente no logra instalar algunas --por problemas de permisos 
+tipicamente-- puede instalar con <FONT
+COLOR="RED"
+>doas</FONT
+> e indicar la ruta de las 
+gemas locales, por ejemplo:
+<PRE
+CLASS="screen"
+>&#13;doas gem install --install-dir /var/www/bundler/ruby/2.3/ bcrypt -v '3.1.11'
+</PRE
+>
+</P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="rails"
+>Rails</A
+></H5
+><P
+>&#13;Se trata de una popular gema que facilita mucho crear sitios web dinámicos.
+</P
+><P
+>&#13;Para instalarla globalmente (en <FONT
+COLOR="RED"
+>/usr/local/bin</FONT
+> y 
+<FONT
+COLOR="RED"
+>/usr/local/lib/ruby/gems/</FONT
+>) la versión estable más reciente de 
+Rails (5.0.0 en el momento de este escrito), ejecute
+<PRE
+CLASS="screen"
+>&#13;doas gem install rails
+</PRE
+>
+</P
+><P
+>&#13;Rails requiere en el servidor un interprete de JavaScript,  por lo que
+recomendamos <FONT
+COLOR="RED"
+>node.js</FONT
+> (ver {1}) incluido en el DVD de 
+adJ 5.9 y que se configurará automáticamente.
+</P
+><P
+>&#13;La gran mayoría de gemas usadas por rails instalarán de la misma forma 
+que se explicó. Algunos casos especiales son:
+</P
+><P
+></P
+><UL
+><LI
+><P
+><FONT
+COLOR="RED"
+>nokogiri</FONT
+> que puede requerir 
+			<PRE
+CLASS="screen"
+>&#13;doas gem install --install-dir /var/www/bundler/ nokogiri -- --use-system-libraries 
+			</PRE
+>
+		</P
+></LI
+><LI
+><P
+><FONT
+COLOR="RED"
+>capybara-webkit</FONT
+> 
+que podría requerir 
+<PRE
+CLASS="screen"
+>&#13;QMAKE=qmake-qt5 MAKE=gmake doas gem install capybara-webkit
+</PRE
+>
+</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="editor-vim"
+>Editor vim</A
+></H5
+><P
+>&#13;Para emplear <FONT
+COLOR="RED"
+>vim</FONT
+> como editor se recomienda asegurarse de 
+haber ejecutado:
+	<PRE
+CLASS="screen"
+>&#13;cd ~
+mkdir -p .vim
+cd .vim
+cp -rf /usr/local/share/vim/vim74/* .
+	</PRE
+>
+y si no tiene archivo ~/.vimrc ejecutar:
+	<PRE
+CLASS="screen"
+>&#13;cp /usr/local/share/vim/vim74/vimrc_example.vi ~/.vimrc
+	</PRE
+>
+asi como agregar el archivo <FONT
+COLOR="RED"
+>~/.vim/ftplugin/ruby.vim</FONT
+> 
+las siguientes líneas:
+	<PRE
+CLASS="screen"
+>&#13;setlocal shiftwidth=2
+setlocal tabstop=2
+set expandtab   
+	</PRE
+>
+</P
+></DIV
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="documentación"
+>Documentación</A
+></H4
+><P
+>&#13;Puede aprender por ejemplo con los tutoriales interactivos de 
+<A
+HREF="https://rubymonk.com"
+TARGET="_top"
+>https://rubymonk.com</A
+>
+</P
+><P
+>&#13;En Internet puede ver la referencia oficial de las clases en: 
+<A
+HREF="http://ruby-doc.org/core-2.1.5/Integer.html"
+TARGET="_top"
+>http://ruby-doc.org/core-2.1.5/Integer.html</A
+>
+</P
+><P
+>&#13;Y es buena referencia para Ruby, Rails y Rspec (incluidos cambios 
+entre una versión y otra y comentarios) es: 
+<A
+HREF="http://apidock.com/"
+TARGET="_top"
+>http://apidock.com/</A
+>
+</P
+><P
+>&#13;Podrá consultar documentación del núcleo, librería estándar y gemas 
+instalando el paquete <FONT
+COLOR="RED"
+>ruby-ri_docs</FONT
+> y ejecutando <FONT
+COLOR="RED"
+>ri</FONT
+> 
+seguido de la clase (por ejemplo <FONT
+COLOR="RED"
+>ri Float</FONT
+>) o sin parámetro 
+ingresa a una consola que da la posibilidad de autocompletar presionando 
+Tab (por ejemplo pruebe tecleando <FONT
+COLOR="RED"
+>Float</FONT
+> y después Tab dos veces).
+</P
+><P
+>&#13;También podrá ver la documentación de las gemas en formato Rdoc ejecutando:
+	<PRE
+CLASS="screen"
+>&#13;gem server
+	</PRE
+>
+y con un navegador consultando 
+<A
+HREF="http://localhost:8808"
+TARGET="_top"
+>http://localhost:8808</A
+>
+</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="uso"
+>Uso</A
+></H4
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="nueva-aplicación-usando-sqlite"
+>Nueva aplicación usando SQLite</A
+></H5
+><P
+>&#13;Genere una nueva aplicación:
+			<PRE
+CLASS="screen"
+>&#13;rails new aplicacion
+cd aplicacion
+bundle install
+			</PRE
+>
+		</P
+><P
+>&#13;Esto creará una nueva aplicación de ejemplo e instalará todas sus dependencias.
+Las gemas que no logre instalar por falta de permisos, como se explicó 
+anteriormente instalelas con <FONT
+COLOR="RED"
+>doas gem install</FONT
+> y la 
+opción <FONT
+COLOR="RED"
+>--install-dir /var/www/bundler/</FONT
+>
+</P
+><P
+>&#13;Una vez haya logrado que <FONT
+COLOR="RED"
+>bundle install</FONT
+> se ejecute completo 
+puede ejecutar:
+		<PRE
+CLASS="screen"
+>&#13;			rails server
+		</PRE
+>
+</P
+><P
+>&#13;Tras esto puede ver con un navegador la aplicación en el puerto 3000 del 
+computador donde instaló: <A
+HREF="http://127.0.0.1:3000/"
+TARGET="_top"
+>http://127.0.0.1:3000/</A
+>
+</P
+><P
+>&#13;Notará que se generan los siguientes directorios y archivos:
+</P
+><DIV
+CLASS="table"
+><A
+NAME="AEN1727"
+></A
+><P
+><B
+>Tabla 8. Archivos generados</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Archivo/Directorio</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>README.rdoc</TD
+><TD
+>Documentación en formato Rdoc (puede cambiarse por README.md en formato Markdown)</TD
+></TR
+><TR
+><TD
+>Rakefile</TD
+><TD
+>Tareas para <FONT
+COLOR="RED"
+>rake</FONT
+> (algo análogo a <FONT
+COLOR="RED"
+>make</FONT
+>)</TD
+></TR
+><TR
+><TD
+>config.ru</TD
+><TD
+>Configurar servidor web por usar</TD
+></TR
+><TR
+><TD
+>.gitignore</TD
+><TD
+>Archivos por ignorar en control de versiones</TD
+></TR
+><TR
+><TD
+>Gemfile</TD
+><TD
+>Gemas requeridas</TD
+></TR
+><TR
+><TD
+>app/assets/javascripts/application.js</TD
+><TD
+>Plantilla de Javascript para aplicación</TD
+></TR
+><TR
+><TD
+>app/assets/stylesheets/application.css</TD
+><TD
+>Plantilla de CSS para aplicación</TD
+></TR
+><TR
+><TD
+>app/controllers/application_controller.rb</TD
+><TD
+>Plantilla del controlador de la aplicación</TD
+></TR
+><TR
+><TD
+>app/helpers/application_helper.rb</TD
+><TD
+>Ayudas para construir vistas (sin lógica del modelos).</TD
+></TR
+><TR
+><TD
+>app/views/layouts/application.html.erb</TD
+><TD
+>Plantilla por defecto para el sitio</TD
+></TR
+><TR
+><TD
+>app/assets/</TD
+><TD
+>Datos estáticos de la página</TD
+></TR
+><TR
+><TD
+>app/assets/images/</TD
+><TD
+>Gráficos de la aplicación (tipicamente que no se sirven estáticos)</TD
+></TR
+><TR
+><TD
+>app/mailers/</TD
+><TD
+>Controlador para enviar correos</TD
+></TR
+><TR
+><TD
+>app/models/</TD
+><TD
+>Modelos</TD
+></TR
+><TR
+><TD
+>app/channel/</TD
+><TD
+>Controlador de websockets</TD
+></TR
+><TR
+><TD
+>app/jobs/</TD
+><TD
+>Maneja cola de tareas programadas</TD
+></TR
+><TR
+><TD
+>app/mailer/</TD
+><TD
+>Facilita envío y recepción de correos</TD
+></TR
+><TR
+><TD
+>app/controllers/concerns/</TD
+><TD
+>Código que se repite en controladores</TD
+></TR
+><TR
+><TD
+>app/models/concerns/</TD
+><TD
+>Código que se repite en modelos</TD
+></TR
+><TR
+><TD
+>bin/bundle</TD
+><TD
+>Maneja dependencias con el ambiente de la aplicación</TD
+></TR
+><TR
+><TD
+>bin/rails</TD
+><TD
+>Maneja posibilidades de generación y controles Rails</TD
+></TR
+><TR
+><TD
+>bin/rake</TD
+><TD
+>Maneja tareas definidas en <FONT
+COLOR="RED"
+>Rakefile</FONT
+> y <FONT
+COLOR="RED"
+>lib/tasks</FONT
+></TD
+></TR
+><TR
+><TD
+>bin/setup</TD
+><TD
+>Plantilla de un configurador de la aplicación</TD
+></TR
+><TR
+><TD
+>config/routes.rb</TD
+><TD
+>Rutas</TD
+></TR
+><TR
+><TD
+>config/application.rb</TD
+><TD
+>Configura aplicación</TD
+></TR
+><TR
+><TD
+>config/environment.rb</TD
+><TD
+>Configura ambiente</TD
+></TR
+><TR
+><TD
+>config/secrets.yml</TD
+><TD
+>Para verificar integridad de galletas firmadas</TD
+></TR
+><TR
+><TD
+>config/environments/development.rb</TD
+><TD
+>Configuración ambiente de desarrollo</TD
+></TR
+><TR
+><TD
+>config/environments/production.rb</TD
+><TD
+>Configuración ambiente de producción</TD
+></TR
+><TR
+><TD
+>config/environments/test.rb</TD
+><TD
+>Configuración ambiente de pruebas</TD
+></TR
+><TR
+><TD
+>config/initializers/assets.rb</TD
+><TD
+>Configura recursos</TD
+></TR
+><TR
+><TD
+>config/initializers/backtrace_silencers.rb</TD
+><TD
+>Inhibe trazas de algunas librerías</TD
+></TR
+><TR
+><TD
+>config/initializers/cookies_serializer.rb</TD
+><TD
+>Configura como serializar galletas</TD
+></TR
+><TR
+><TD
+>config/initializers/filter_parameter_logging.rb</TD
+><TD
+>Parametros por filtrar (no dejar) en bitácoras</TD
+></TR
+><TR
+><TD
+>config/initializers/inflections.rb</TD
+><TD
+>Inflecciones singular/plural</TD
+></TR
+><TR
+><TD
+>config/initializers/mime_types.rb</TD
+><TD
+>Registra tipos MIME</TD
+></TR
+><TR
+><TD
+>config/initializers/session_store.rb</TD
+><TD
+>Configura donde se almacena sesión</TD
+></TR
+><TR
+><TD
+>config/initializers/wrap_parameters.rb</TD
+><TD
+>Configuración para ActionController::ParamsWrapper</TD
+></TR
+><TR
+><TD
+>config/locales/en.yml</TD
+><TD
+>Localización en inglés</TD
+></TR
+><TR
+><TD
+>config/boot.rb</TD
+><TD
+>Prepara rutas para encontrar gemas</TD
+></TR
+><TR
+><TD
+>config/database.yml</TD
+><TD
+>Configuración de base de datos</TD
+></TR
+><TR
+><TD
+>config/puma.rb</TD
+><TD
+>Configuración de servidor web puma</TD
+></TR
+><TR
+><TD
+>db/seeds.rb</TD
+><TD
+>Datos iniciales para base de datos</TD
+></TR
+><TR
+><TD
+>lib/tasks/</TD
+><TD
+>Tareas para <FONT
+COLOR="RED"
+>rake</FONT
+></TD
+></TR
+><TR
+><TD
+>lib/assets/</TD
+><TD
+>"Activos" comunes para librerías</TD
+></TR
+><TR
+><TD
+>log/</TD
+><TD
+>Bitácoras</TD
+></TR
+><TR
+><TD
+>public</TD
+><TD
+>Archivos estáticos</TD
+></TR
+><TR
+><TD
+>public/404.html</TD
+><TD
+>Mensaje por defecto para páginas no encontradas</TD
+></TR
+><TR
+><TD
+>public/422.html</TD
+><TD
+>Mensaje por defecto para rechazar cambios</TD
+></TR
+><TR
+><TD
+>public/500.html</TD
+><TD
+>Mensaje por defecto cuando ocurren errores en servidor</TD
+></TR
+><TR
+><TD
+>public/favicon.ico</TD
+><TD
+>Icono</TD
+></TR
+><TR
+><TD
+>public/robots.txt</TD
+><TD
+>Puede evitar indexación por parte de motores de búsqueda</TD
+></TR
+><TR
+><TD
+>test/fixtures</TD
+><TD
+>Datos para pruebas</TD
+></TR
+><TR
+><TD
+>test/controllers</TD
+><TD
+>Pruebas a controladores</TD
+></TR
+><TR
+><TD
+>test/mailers</TD
+><TD
+>Pruebas a controladores de envio de correo</TD
+></TR
+><TR
+><TD
+>test/models</TD
+><TD
+>Pruebas a modelos</TD
+></TR
+><TR
+><TD
+>test/helpers</TD
+><TD
+>Pruebas a funciones para ayudar a construir vistas</TD
+></TR
+><TR
+><TD
+>test/integration</TD
+><TD
+>Pruebas de integración</TD
+></TR
+><TR
+><TD
+>test/test_helper.rb</TD
+><TD
+>Pruebas funciones auxiliares</TD
+></TR
+><TR
+><TD
+>tmp/</TD
+><TD
+>Temporales y cache</TD
+></TR
+><TR
+><TD
+>vendor/assets/javascripts</TD
+><TD
+>Fuentes Javascript para código de terceros</TD
+></TR
+><TR
+><TD
+>vendor/assets/stylesheets</TD
+><TD
+>Hojas de estilo para código de terceros</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="generar-un-recurso"
+>Generar un recurso</A
+></H5
+><P
+>&#13;Puede crear un primer recurso (digamos <FONT
+COLOR="RED"
+>Departamento</FONT
+>) con modelo, 
+controlador simple y vistas para operaciones CRUD y RESTful con:
+				<PRE
+CLASS="screen"
+>&#13;rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
+rake db:migrate
+				</PRE
+>
+			</P
+><P
+>&#13;Tras esto y volver a iniciar el servidor (más breve con <FONT
+COLOR="RED"
+>rails s</FONT
+>) 
+podrá realizar las operaciones básicas sobre departamentos desde: 
+<A
+HREF="http://127.0.0.1:3000/departamentos/"
+TARGET="_top"
+>http://127.0.0.1:3000/departamentos/</A
+>
+</P
+><P
+>&#13;El <FONT
+COLOR="RED"
+>scaffold</FONT
+> genera tablas (con una migración), modelo, 
+controlador, vistas y rutas iniciales que con una interfaz muy simple 
+le permitirán listar departamentos, ver detalles de cada uno, crear nuevos, 
+editar existentes y eliminar.
+</P
+><P
+>Los archivos generados son:</P
+><DIV
+CLASS="table"
+><A
+NAME="AEN1937"
+></A
+><P
+><B
+>Tabla 9. Archivos generados con scaffold</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Archivo/Directorio</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>db/migrate/20160320131555_create_departamentos.rb</FONT
+>
+</TD
+><TD
+>Migración para crear tabla 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/models/departamento.rb</FONT
+>
+</TD
+><TD
+>Modelo 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>test/models/departamento_test.rb</FONT
+>
+</TD
+><TD
+>Prueba al modelo
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>test/fixtures/departamentos.yml</FONT
+>
+</TD
+><TD
+>Datos para pruebas
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/controllers/departamentos_controller.rb</FONT
+>
+</TD
+><TD
+>Controlador 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/views/departamentos</FONT
+>
+</TD
+><TD
+>Vistas 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/views/departamentos/index.html.erb</FONT
+>
+</TD
+><TD
+>Lista de departamentos 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/views/departamentos/edit.html.erb</FONT
+>
+</TD
+><TD
+>Formulario para editar 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/views/departamentos/show.html.erb</FONT
+>
+</TD
+><TD
+>Muestra un departamento 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/views/departamentos/new.html.erb</FONT
+>
+</TD
+><TD
+>Nuevo departamento 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/views/departamentos/_form.html.erb</FONT
+>
+</TD
+><TD
+>Formulario usado por <FONT
+COLOR="RED"
+>edit</FONT
+> y <FONT
+COLOR="RED"
+>new</FONT
+> 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>test/controllers/departamentos_controller_test.rb</FONT
+>
+</TD
+><TD
+>Pruebas al controlador 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/helpers/departamentos_helper.rb</FONT
+>
+</TD
+><TD
+>Funciones auxiliares para construir vistas 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/views/departamentos/index.json.jbuilder</FONT
+>
+</TD
+><TD
+>Lista en JSON 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/views/departamentos/show.json.jbuilder</FONT
+>
+</TD
+><TD
+>Muestra un departamento en JSON 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/assets/javascripts/departamentos.coffee</FONT
+>
+</TD
+><TD
+>Donde agregar código Coffescript para vistas 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/assets/stylesheets/departamentos.scss</FONT
+>
+</TD
+><TD
+>Para poner CSS de las vistas 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/assets/stylesheets/scaffolds.scss</FONT
+>
+</TD
+><TD
+>Para poner CSS de las vistas 
+</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>Por convención de Ruby on Rails:</P
+><P
+></P
+><UL
+><LI
+>Las fuentes del módelo quedan en <FONT
+COLOR="RED"
+>app/models/departamento.rb</FONT
+></LI
+><LI
+>El nombre de la tabla será la forma plural del nombre del módelo (e.g <FONT
+COLOR="RED"
+>departamentos</FONT
+>)</LI
+><LI
+>La tabla incluirá automáticamente un campo id de tipo entero que se autoincrementa</LI
+><LI
+>La tabla incluirá automáticamente los campos <FONT
+COLOR="RED"
+>created_at</FONT
+>y <FONT
+COLOR="RED"
+>updated_at</FONT
+>de tipo <FONT
+COLOR="RED"
+>datetime</FONT
+>.
+				</LI
+><LI
+>La tabla será creada con una migración (cuya fuente quedará en <FONT
+COLOR="RED"
+>db/migrate/</FONT
+>) y el registro de las migraciones ya aplicadas se lleva en una tabla <FONT
+COLOR="RED"
+>schema_migrations</FONT
+>creada automáticamente en la base de datos.</LI
+></UL
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="página-de-inicio"
+>Página de inicio</A
+></H5
+><P
+>La página inicial de su aplicación puede crearla generando un controlador con vista, modificando la vista y especificando la ruta:</P
+><PRE
+CLASS="screen"
+>&#13;rails g controller hogar
+			</PRE
+><P
+>Que genera:</P
+><DIV
+CLASS="table"
+><A
+NAME="AEN2038"
+></A
+><P
+><B
+>Tabla 10. Archivos generados con <FONT
+COLOR="RED"
+>g controller hogar</FONT
+></B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Archivo/Directorio</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/controllers/hogar_controller.rb</FONT
+>
+</TD
+><TD
+>Controlador 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/views/hogar</FONT
+>
+</TD
+><TD
+>Vistas relacionadas con el controlador 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>test/controllers/hogar_controller_test.rb</FONT
+>
+</TD
+><TD
+>Pruebas 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/helpers/hogar_helper.rb</FONT
+>
+</TD
+><TD
+>Funciones auxiliares para vistas 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/assets/javascripts/hogar.coffee</FONT
+>
+</TD
+><TD
+>Coffescript para vistas 
+</TD
+></TR
+><TR
+><TD
+>&#13;<FONT
+COLOR="RED"
+>app/assets/stylesheets/hogar.scss</FONT
+>
+</TD
+><TD
+>CSS para vistas 
+</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;Modifique el controlador <FONT
+COLOR="RED"
+>app/controllers/hogar_controller.rb</FONT
+> 
+para indicar que tendrá un vista <FONT
+COLOR="RED"
+>index</FONT
+>:
+			<PRE
+CLASS="screen"
+>&#13;class HogarController &#60; ApplicationController
+  def index
+  end
+end
+			</PRE
+>
+		</P
+><P
+>&#13;Cree la vista <FONT
+COLOR="RED"
+>app/views/hogar/index.html.erb</FONT
+>:
+<PRE
+CLASS="screen"
+>&#13;&#60;article&#62;
+&#60;h1&#62;Mi aplicación&#60;/h1&#62;
+&#60;para&#62; Manejar &#60;a href="/departamentos"&#62;Departamentos&#60;/a&#62;&#60;/para&#62;
+&#60;/article&#62;
+			</PRE
+>
+Y en el archivo de configuración de rutas <FONT
+COLOR="RED"
+>config/routes.rb</FONT
+> 
+añada:
+			<PRE
+CLASS="screen"
+>&#13;root "hogar#index"
+			</PRE
+>
+</P
+><P
+>&#13;Al modificar fuentes en general no necesita volver a lanzar el servidor de 
+rails, pero si modifica <FONT
+COLOR="RED"
+>config/routes.rb</FONT
+> o cualquier archivo 
+fuera del directorio <FONT
+COLOR="RED"
+>app</FONT
+> debe reiniciar el servicio.
+</P
+><P
+>&#13;Examine desde un navegador <A
+HREF="http://127.0.0.1:3000/"
+TARGET="_top"
+>http://127.0.0.1:3000/</A
+>. 
+Verá lo que escribió en <FONT
+COLOR="RED"
+>app/views/hogar/index.html.erb</FONT
+> en el 
+ambiente HTML que tenga diseñado en 
+<FONT
+COLOR="RED"
+>app/views/layouts/application.html.erb</FONT
+>.</P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="interacción-con-la-base-de-datos"
+>Interacción con la base de datos</A
+></H5
+><P
+>&#13;Puede examinar la tabla creada e interactuar con la base de datos con la 
+interfaz texto de SQLite como se ejemplifca a continuación:
+<PRE
+CLASS="screen"
+>&#13;$ rails dbconsole
+sqlite&#62; .schema
+CREATE TABLE "departamentos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre"
+varchar(500), "latitud" float, "longitud" float, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
+CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version"
+);
+</PRE
+>
+</P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="ayudas-para-usar-una-base-de-datos-postgresql-existente"
+>Ayudas para usar una base de datos PostgreSQL existente:</A
+></H5
+><P
+>&#13;Se recomienda emplear UTF8 como codificación de PostgreSQL (si 
+emplea otra codificación convierta sacando un respaldo eliminando la base, 
+volviendola a crear con <FONT
+COLOR="RED"
+>-E UTF8</FONT
+> y restaurando los datos).
+</P
+><P
+></P
+><UL
+><LI
+>Arregle la aplicación recién creada para que emplee PostgreSQL, 
+modificando parámetros de base de datos en <FONT
+COLOR="RED"
+>config/database.yml</FONT
+>. 
+Si crea una nueva aplicación:
+				<PRE
+CLASS="screen"
+>&#13;cd ..
+rails new prueba1 --database=postgresql
+			</PRE
+></LI
+><LI
+>Si lo requiere en otra terminal cree un usuario para la base de datos 
+que será el que empleará desde su aplicación ruby:
+				<PRE
+CLASS="screen"
+>&#13;doas su - _postgresql 
+$ createuser -Upostgres -h/var/www/tmp prueba
+Shall the new role be a superuser? (y/n) n 
+Shall the new role be allowed to create databases? (y/n) y
+Shall the new role be allowed to create more new roles? (y/n) n 
+$ psql -h/var/www/tmp -Upostgres psql (9.3.6) Type "help" for help.
+postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
+			</PRE
+></LI
+><LI
+>Vuelva a las fuentes de la aplicación y modifique los parámetros de la base de datos editando <FONT
+COLOR="RED"
+>conf/database.yml</FONT
+>Ponga el usuario recién creado, la clave y en la especificación de cada una de las 3 bases de datos (desarrollo, pruebas y producción) agregue la ruta de la conexión al motor de bases de datos:
+				<PRE
+CLASS="screen"
+>&#13;host: /var/www/tmp/
+			</PRE
+></LI
+><LI
+>A manera de prueba de su configuración intente ingresar a un interprete de comandos para su base de datos con:
+				<PRE
+CLASS="screen"
+>&#13;rails dbconsole
+			</PRE
+></LI
+><LI
+>Si las tablas de la base de datos no emplean la convención para nomenclatura de Ruby on Rails (nombres de tabla en plural, clases en singular) agregue al archivo <FONT
+COLOR="RED"
+>config/environment.rb</FONT
+>:
+				<PRE
+CLASS="screen"
+>&#13;ActiveRecord::Base.pluralize_table_names=false
+				</PRE
+>Además de esto para que las pruebas puedan operar seguramente deberá renombrar los archivos con datos de prueba del directorio <FONT
+COLOR="RED"
+>tests/fixtures</FONT
+>, y en lugar de dejar forma plural dejar forma singular. Si el nombre de tabla es muy diferente en el modelo puede usar <FONT
+COLOR="RED"
+>self.table_name = "cc"</FONT
+>como se indica en {8}.</LI
+><LI
+>Para generar un volcado inicial de la base de datos en <FONT
+COLOR="RED"
+>db/structure.sql</FONT
+>(incluyendo características no portables de PostgreSQL a otros motores de bases de datos), agregue al archivo <FONT
+COLOR="RED"
+>config/application.rb</FONT
+>la línea <FONT
+COLOR="RED"
+>config.active_record.schema_format=:sql</FONT
+>y después ejecute la tarea rake apropiada (ver {4}):
+				<PRE
+CLASS="screen"
+>&#13;rake db:structure:dump
+			</PRE
+></LI
+><LI
+>Genere clases (módelos) en blanco en el directorio <FONT
+COLOR="RED"
+>app/models</FONT
+>para cada una de las tablas de su aplicación, por ejemplo para la tabla <FONT
+COLOR="RED"
+>mitabla</FONT
+>:
+				<PRE
+CLASS="screen"
+>&#13;rails generate model mitabla --migration=false --timestamp=false
+			</PRE
+></LI
+><LI
+>Cuando la aplicación esté en operación ActiveRecord tomará la estructura 
+directamente de la base de datos, no de los modelos en sus fuentes. 
+Sin embargo puede ser útil poner comentarios en esos modelos con los 
+campos de cada tabla. Esto puede hacerse instalando la gema 
+<FONT
+COLOR="RED"
+>annotate</FONT
+>con <FONT
+COLOR="RED"
+>doas gem install annotate</FONT
+>y ejecutando:
+				<PRE
+CLASS="screen"
+>&#13;annotate
+			</PRE
+></LI
+><LI
+>Si desea ayuda en la generación de controladores y vistas para sus tablas, 
+instale <FONT
+COLOR="RED"
+>doas gem install schema_to_scaffold</FONT
+>, genere 
+(puede ser momentaneamente) el archivo <FONT
+COLOR="RED"
+>db/schema.rb</FONT
+>con 
+<FONT
+COLOR="RED"
+>rake db:schema:dump</FONT
+>y ejecute <FONT
+COLOR="RED"
+>scaffold</FONT
+>para 
+ver las instrucciones que debe dar a rails para generar modelos, 
+controladores y vistas para las tablas de la base de datos.
+</LI
+></UL
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="detalles-para-tener-en-cuenta-al-migrar-aplicaciones"
+>Detalles para tener en cuenta al migrar aplicaciones</A
+></H5
+><P
+>&#13;RoR tiene sus propias convenciones respecto a 
+SQL, nombres de tablas y demás, en ocasiones puede ser mejor 
+intercambiar datos JSON con una aplicación ya existente que 
+interactúe con la base de datos. Sin embargo si desea emplear 
+RoR tanto como pueda para interactuar con la base de datos, tenga en cuenta:
+</P
+><P
+></P
+><UL
+><LI
+>Toda tabla creada y maneja por RoR se espera que tenga los campos 
+<FONT
+COLOR="RED"
+>created_at</FONT
+>y <FONT
+COLOR="RED"
+>updated_at</FONT
+>de tipo 
+<FONT
+COLOR="RED"
+>datetime</FONT
+>. Puede generar una migración que agregue estos campos 
+digamos para la tabla <FONT
+COLOR="RED"
+>intervalo</FONT
+>con 
+<FONT
+COLOR="RED"
+>rails g migration addTiempoToIntervalo created_at:datetime updated_at:datetime</FONT
+>tras lo cual debe editar la migración creada para asegurar que queda bien 
+(por ejemplo pasando a singular la tabla si ese es su caso).
+</LI
+><LI
+>Por defecto cada tabla debe tener una única llave primaria de nombre 
+<FONT
+COLOR="RED"
+>id</FONT
+>y tipo entero autoincremental. Esto puede cambiarse un 
+poco --pero no del todo según {6}-- la sugerencia allí dada es definir 
+la llave primaria en SQL en la migración, la cual debe incluir 
+<FONT
+COLOR="RED"
+>id:false</FONT
+>y en el modelo agregar 
+<FONT
+COLOR="RED"
+>self.primary_key=:campo_llave_primaria</FONT
+>. 
+Por ejemplo si la llave primaria de una tabla usuario debe 
+<FONT
+COLOR="RED"
+>id</FONT
+>pero de tipo <FONT
+COLOR="RED"
+>string</FONT
+>, la migración será:
+<PRE
+CLASS="screen"
+>&#13;create_table "usuario", id: false, force: true do |t| 
+  t.string "id", limit: 15, null: false 
+  t.string "nombre", limit: 50 ... 
+  t.datetime "created_at" 
+  t.datetime "updated_at" 
+end
+add_index "usuario", ["id"], name: "index_usuario_on_id", unique: true, using: :btree
+</PRE
+>Y en el modelo <FONT
+COLOR="RED"
+>app/models/usuario.rb</FONT
+>debe quedar:
+<PRE
+CLASS="screen"
+>&#13;class Usuario &#60; ActiveRecord::Base
+  ...
+  self.primary_key=:id
+end
+</PRE
+></LI
+><LI
+>Aunque es posible insertar datos iniciales para algunas tablas en 
+<FONT
+COLOR="RED"
+>db/seeds.rb</FONT
+>, los métodos por defecto de RoR emplearán un 
+campo autoincremental para la identificación, puede insertarse directamente 
+en SQL, como se explica en {7}, con:
+<PRE
+CLASS="screen"
+>&#13;connection = ActiveRecord::Base.connection()
+connection.execute("INSERT INTO mitabla(id, nombre) VALUES ('id1', 'nom1')")
+</PRE
+></LI
+></UL
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="localización"
+>4.3 Localización</A
+></H5
+><P
+>&#13;Si su público objetivo habla principalmente español puede:
+		</P
+><P
+></P
+><UL
+><LI
+>Instalar la gema <FONT
+COLOR="RED"
+>rails-i18n</FONT
+>que incluye traducción a 
+español y otros idiomas de varias cadenas de Ruby on Rails
+				<PRE
+CLASS="screen"
+>&#13;doas gem install rails-i18n
+			</PRE
+></LI
+><LI
+>Agregar <FONT
+COLOR="RED"
+>gem "rails-i18n"</FONT
+>en su archivo <FONT
+COLOR="RED"
+>Gemfile</FONT
+>y ejecutar
+				<PRE
+CLASS="screen"
+>&#13;bundle update
+			</PRE
+></LI
+><LI
+>Configurar en <FONT
+COLOR="RED"
+>config/application.rb</FONT
+>:
+				<PRE
+CLASS="screen"
+>&#13;config.time_zone = 'America/Bogota'
+config.i18n.default_locale = :es
+			</PRE
+></LI
+><LI
+>Eventualmente corregir inflexiones singular/plural en 
+<FONT
+COLOR="RED"
+>config/initializers/inflections.rb</FONT
+>, por ejemplo (ver {3}):
+				<PRE
+CLASS="screen"
+>&#13;ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'pais', 'paises'
+end
+			</PRE
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="depuración"
+>Depuración</A
+></H4
+><P
+>&#13;	Como se explica en {5}, desde la aplicación en rails puede entrar a depurar: 
+	<P
+></P
+><UL
+><LI
+>Instale la gema <FONT
+COLOR="RED"
+>gem install byebug</FONT
+></LI
+><LI
+>* Para activar el depurador en sitios en producción debe además inicar el servidor web con <FONT
+COLOR="RED"
+>rails s --debugger</FONT
+></LI
+><LI
+>* En el sitio de las fuentes donde quiere comenzar a depurar llamando la función <FONT
+COLOR="RED"
+>debugger</FONT
+></LI
+></UL
+>
+</P
+><P
+>&#13;	Ruby también ofrece facilidades para medir tiempos como se resume en {4}.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="referencias"
+>Referencias</A
+></H4
+><P
+></P
+><UL
+><LI
+>{1} <A
+HREF="http://guides.rubyonrails.org/getting_started.html"
+TARGET="_top"
+>http://guides.rubyonrails.org/getting_started.html</A
+></LI
+></UL
+></DIV
+></DIV
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notas</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN1401"
+HREF="x1230.htm#AEN1401"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Si usa <B
+CLASS="command"
+>ksh</B
+> puede ver una lista de 
+		      posibles programas que le permitan imprimir, 
+		      tecleando <TT
+CLASS="literal"
+>dvi</TT
+> desde un intérprete
+	de comandos y presionando <B
+CLASS="keycap"
+>Tab</B
+> dos veces. 
+       </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN1482"
+HREF="x1230.htm#AEN1482"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Puede cambiar
+					el diccionario personal que <TT
+CLASS="literal"
+>ispell</TT
+> debe
+					emplear con la opción <TT
+CLASS="literal"
+>-p 
+						<TT
+CLASS="replaceable"
+><I
+>archivo</I
+></TT
+></TT
+></P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1078.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuración y uso de programas y servicios básicos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
