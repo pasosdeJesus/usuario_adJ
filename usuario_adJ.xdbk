@@ -305,8 +305,8 @@ Una vez efectúe el cambio recuerde ejecutar:
 	 asignará dispositivos apropiados (busque los nombres entre los
 	 mensajes de <command>dmesg</command>):
 	 <screen>
-	doas mkdir -p /mnt/openbsd
-	doas mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd </screen>
+	sudo mkdir -p /mnt/openbsd
+	sudo mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd </screen>
        </para>
      </sect3>
      </sect2>
