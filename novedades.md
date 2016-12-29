@@ -1,6 +1,9 @@
 Versión 6.0
 
 :   -   Guía migrada a Markdown
+    -   Eliminada sección sobre emulación Linux (características 
+        retirada de OpenBSD 6.0)
+
 
 Versión 5.9
 

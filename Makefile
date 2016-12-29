@@ -8,7 +8,7 @@ include Make.inc
 
 EXT_DOCBOOK=xdbk
 
-FUENTESDB=introduccion.xdbk pre-inst.xdbk ayu-inst.xdbk inst-basico.xdbk inst-comp.xdbk inicio-sistema.xdbk xorg.xdbk paquetes.xdbk programas.xdbk portes.xdbk emulacion-linux.xdbk conf-kernel.xdbk syslog.xdbk conf-ld.xdbk conf-pdksh.xdbk ftp.xdbk doas.xdbk conf-fluxbox.xdbk xiphos.xdbk ispell.xdbk conf-tex-gv.xdbk editoresdegraficos.xdbk editoresdeaudio.xdbk mplayer.xdbk java.xdbk ruby.xdbk docbook.xdbk msoffice.xdbk kde.xdbk mutt.xdbk hardware-arranque.xdbk impresion.xdbk discos-duros.xdbk disquetes.xdbk cd.xdbk cdrw.xdbk imagen-encriptada.xdbk teclado.xdbk chromium.xdbk cron.xdbk biblio.xdbk usb.xdbk dvd.xdbk novedades.xdbk conf-xfe.xdbk
+FUENTESDB=introduccion.xdbk instalacion.xdbk paquetesyportes.xdbk configuracionbasicos.xdbk programas.xdbk emulacion-linux.xdbk conf-fluxbox.xdbk xiphos.xdbk ispell.xdbk conf-tex-gv.xdbk editoresdegraficos.xdbk editoresdeaudio.xdbk mplayer.xdbk java.xdbk ruby.xdbk docbook.xdbk msoffice.xdbk kde.xdbk mutt.xdbk hardware-arranque.xdbk impresion.xdbk discos-duros.xdbk disquetes.xdbk cd.xdbk cdrw.xdbk imagen-encriptada.xdbk teclado.xdbk chromium.xdbk biblio.xdbk usb.xdbk dvd.xdbk novedades.xdbk conf-xfe.xdbk
 
 SOURCES=$(PROYECTO).$(EXT_DOCBOOK)  $(FUENTESDB)
 # Listado de fuentes XML. Preferiblmente en el orden de inclusión.

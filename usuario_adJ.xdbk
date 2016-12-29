@@ -9,13 +9,9 @@
 
 <!ENTITY introduccion SYSTEM "introduccion.xdbk">
 
-<!ENTITY pre-inst SYSTEM "pre-inst.xdbk">
-<!ENTITY ayu-inst SYSTEM "ayu-inst.xdbk">
-<!ENTITY inicio-sistema SYSTEM "inicio-sistema.xdbk">
-<!ENTITY xorg SYSTEM "xorg.xdbk">
+<!ENTITY instalacion SYSTEM "instalacion.xdbk">
 <!ENTITY emulacion-linux SYSTEM "emulacion-linux.xdbk">
-<!ENTITY portes SYSTEM "portes.xdbk">
-<!ENTITY paquetes SYSTEM "paquetes.xdbk">
+<!ENTITY paquetesyportes SYSTEM "paquetesyportes.xdbk">
 <!ENTITY programas SYSTEM "programas.xdbk">
 <!ENTITY inst-basico SYSTEM "inst-basico.xdbk">
 <!ENTITY inst-comp SYSTEM "inst-comp.xdbk">
@@ -115,54 +111,10 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
   </articleinfo>
 
   &introduccion;
+  &instalacion;
+  &paquetesyportes;
+  &configuracionbasicos;
 
-  <sect1 id="sobre-la-instalacion">
-    <title>Sobre la instalación</title>
-
-    &pre-inst;
-    &ayu-inst;
-    &inst-basico;
-    &inst-comp;
-    &inicio-sistema;
-    &xorg;
-  </sect1>
-
-
-  <sect1 id="paquetes-y-portes">
-    <title>Paquetes y portes</title>
-
-    <para>Diversos programas han sido portados a OpenBSD; a las fuentes
-      portadas se les llama portes y a los binarios de alguno de los
-      portes compilados para alguna plataforma se les llama paquetes.</para>
-
-    &paquetes;
-    &portes;
-    &emulacion-linux;
-  </sect1>
-
-  <sect1 id="configuracion-de-componentes-basicos">
-    <title>Configuración y uso de programas y servicios básicos</title>
-    &conf-pdksh;
-    &ftp;
-    &doas;
-    &cron;
-    &conf-ld;
-    &conf-kernel;
-    &syslog;
-    <sect2 id="zona-horaria">
-	    <title>Zona Horaria</title>
-	    <para>
-	    La zona horaria se establece enlazando 
-	    <filename>/etc/localtime</filename> con una de las zonas del 
-	    directorio <filename>/usr/share/zoneinfo</filename>, por ejemplo
-	    <screen>
-doas ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
-	    </screen>
-	</para>
-    </sect2>
-
-    <!--    &ssh; -->
-  </sect1>
 
   <sect1 id="configuracion-de-algunos-portes">
 	  <title>Configuración y uso de algunas aplicaciones</title>
