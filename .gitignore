@@ -1,14 +1,18 @@
 *~
 *.swp
+html/*html
+html/*htm
+html/img/*png
 HTML.index.m
 Make.inc
+basico_adJ-4.1.2.xdbk
 confaux.sed
-confaux.tmp
-confv.bak
 confv.ent
 confv.sh
-html/
+genindice.xdbk
+genindice.xdbk.m
+indice.xdbk
 indice.xdbk.m
-personaliza.ent
-usuario_adJ-4.1.2.xdbk
+s.xdbk
+*xdbk
 

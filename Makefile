@@ -8,16 +8,9 @@ include Make.inc
 
 EXT_DOCBOOK=xdbk
 
-SOURCES=$(PROYECTO).$(EXT_DOCBOOK)  intro.xdbk \
-	pre-inst.xdbk ayu-inst.xdbk inst-basico.xdbk inst-comp.xdbk inicio-sistema.xdbk xorg.xdbk \
-	paquetes.xdbk programas.xdbk portes.xdbk emulacion-linux.xdbk \
-	conf-kernel.xdbk syslog.xdbk conf-ld.xdbk conf-pdksh.xdbk ftp.xdbk \
-	doas.xdbk \
-	conf-fluxbox.xdbk xiphos.xdbk ispell.xdbk conf-tex-gv.xdbk \
-	editoresdegraficos.xdbk editoresdeaudio.xdbk \
-	mplayer.xdbk java.xdbk ruby.xdbk docbook.xdbk msoffice.xdbk kde.xdbk mutt.xdbk \
-	hardware-arranque.xdbk impresion.xdbk discos-duros.xdbk disquetes.xdbk cd.xdbk cdrw.xdbk imagen-encriptada.xdbk teclado.xdbk \
-	programas.xdbk chromium.xdbk
+FUENTESDB=introduccion.xdbk pre-inst.xdbk ayu-inst.xdbk inst-basico.xdbk inst-comp.xdbk inicio-sistema.xdbk xorg.xdbk paquetes.xdbk programas.xdbk portes.xdbk emulacion-linux.xdbk conf-kernel.xdbk syslog.xdbk conf-ld.xdbk conf-pdksh.xdbk ftp.xdbk doas.xdbk conf-fluxbox.xdbk xiphos.xdbk ispell.xdbk conf-tex-gv.xdbk editoresdegraficos.xdbk editoresdeaudio.xdbk mplayer.xdbk java.xdbk ruby.xdbk docbook.xdbk msoffice.xdbk kde.xdbk mutt.xdbk hardware-arranque.xdbk impresion.xdbk discos-duros.xdbk disquetes.xdbk cd.xdbk cdrw.xdbk imagen-encriptada.xdbk teclado.xdbk chromium.xdbk cron.xdbk biblio.xdbk usb.xdbk dvd.xdbk novedades.xdbk conf-xfe.xdbk
+
+SOURCES=$(PROYECTO).$(EXT_DOCBOOK)  $(FUENTESDB)
 # Listado de fuentes XML. Preferiblmente en el orden de inclusión.
 
 IMAGES=img/fluxbox-xfig.png img/home.png img/prev.png img/toc-minus.png img/blank.png img/important.png img/toc-plus.png img/caution.png img/next.png img/tip.png img/up.png img/draft.png img/note.png img/toc-blank.png img/warning.png img/instala1.png img/instala2.png img/instala3.png img/instala4.png img/instala5.png img/instala6.png img/ejlatex.png img/xiphos.png img/gimp.png img/inkscape.png img/insadJ1.png img/insadJ1.png img/insadJ2.png img/insadJ3.png img/insadJ4.png img/insadJ5.png img/insadJ6.png img/insadJ7.png img/audacious.png img/audacity.png img/gnumeric.png
@@ -63,7 +56,7 @@ ACTDIR=usuario_adJ
 #USER=$(LOGNAME),structio
 # Usuario en $(ACTHOST).  Si es el mismo que en la máquina local comentar.
 
-GENACT=ghtodo $(PROYECTO)-$(PRY_VERSION)_html.tar.gz #$(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).ps.gz $(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).pdf 
+GENACT=ghtodo $(PROYECTO)-$(PRY_VERSION)_html.tar.gz $(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).ps.gz $(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).pdf 
 # Dependencias por cumplir antes de actualizar sitio en Internet al publicar
 
 FILESACT=$(PROYECTO)-$(PRY_VERSION).tar.gz $(PROYECTO)-$(PRY_VERSION)_html.tar.gz $(HTML_DIR)/* #$(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).ps.gz $(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).pdf 
@@ -120,8 +113,11 @@ Derechos.txt: $(PROYECTO).$(EXT_DOCBOOK)
 
 instala:
 	mkdir -p $(DESTDIR)$(INSDOC)
-	install html/*html html/*png $(DESTDIR)$(INSDOC)
-	if (test -f $(PRINT_DIR)/$(PROYECTO).ps) then { install imp/*ps $(DESTDIR)$(INSDOC); } fi;
+	install html/*html $(DESTDIR)$(INSDOC)
+	install html/img/*png $(DESTDIR)$(INSDOC)/img/
+	if (test -f $(PRINT_DIR)/$(PROYECTO).ps) then { \
+		install imp/*ps $(DESTDIR)$(INSDOC);\
+	} fi;
 
 repasa:
 	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="openbsd_usuario" awk -f herram/db2rep $(SOURCES)
@@ -135,3 +131,10 @@ infoversion.ent:
 	if (test -f ../servidor_adJ/infoversion.ent) then { \
 		cp ../servidor_adJ/infoversion.ent .; \
 	} fi;
+
+.SUFFIXES: .md .xdbk
+.md.xdbk:
+	mkdir -p tmp
+	$(PANDOC) -t docbook -o tmp/$@ $<
+	sed -e "s/<link linkend=\"\([^\"]*\)\">xref<\/link>/<xref linkend=\"\1\"\/>/g" tmp/$@ > $@
+

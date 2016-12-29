@@ -7,7 +7,7 @@
 %infoversion;
 %personaliza;
 
-<!ENTITY intro SYSTEM "intro.xdbk">
+<!ENTITY introduccion SYSTEM "introduccion.xdbk">
 
 <!ENTITY pre-inst SYSTEM "pre-inst.xdbk">
 <!ENTITY ayu-inst SYSTEM "ayu-inst.xdbk">
@@ -114,7 +114,7 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
 
   </articleinfo>
 
-  &intro;
+  &introduccion;
 
   <sect1 id="sobre-la-instalacion">
     <title>Sobre la instalación</title>
