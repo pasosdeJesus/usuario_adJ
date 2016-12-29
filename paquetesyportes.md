@@ -30,10 +30,12 @@ está actualizando un paquete).
 
 Podrá ver los paquetes disponibles para instalar en
 [http://www.openbsd.org/VER-OPENBSD\_packages/amd64.html](http://www.openbsd.org/&VER-OPENBSD;_packages/amd64.html).
-A continuación destacamos algunos que permiten tener un ambiente para
-producir contenidos, programar, escuchar música y ver vídeos (se
-incluyen en la distribución [adJ](http://aprendiendo.pasosdeJesus.org)):
-PROGRAMAS
+
+En el [Ápendice Paquetes de adJ](#paquetes-adJ) destacamos algunos que 
+permiten tener un ambiente para producir contenidos, programar, escuchar 
+música y ver vídeos (se incluyen en la distribución 
+[adJ](http://aprendiendo.pasosdeJesus.org)).
+
 
 ### Actualización de paquetes {#actualizacion-paquetes}
 

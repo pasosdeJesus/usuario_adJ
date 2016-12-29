@@ -8,7 +8,7 @@ include Make.inc
 
 EXT_DOCBOOK=xdbk
 
-FUENTESDB=introduccion.xdbk instalacion.xdbk paquetesyportes.xdbk configuracionbasicos.xdbk programas.xdbk emulacion-linux.xdbk conf-fluxbox.xdbk xiphos.xdbk ispell.xdbk conf-tex-gv.xdbk editoresdegraficos.xdbk editoresdeaudio.xdbk mplayer.xdbk java.xdbk ruby.xdbk docbook.xdbk msoffice.xdbk kde.xdbk mutt.xdbk hardware-arranque.xdbk impresion.xdbk discos-duros.xdbk disquetes.xdbk cd.xdbk cdrw.xdbk imagen-encriptada.xdbk teclado.xdbk chromium.xdbk biblio.xdbk usb.xdbk dvd.xdbk novedades.xdbk conf-xfe.xdbk
+FUENTESDB=introduccion.xdbk instalacion.xdbk paquetesyportes.xdbk conf-basicos.xdbk conf-programas.xdbk conf-dispositivos.xdbk duales.xdbk paquetes-adJ.xdbk openbsdsrc/tabcompose.xdbk novedades.xdbk biblio.xdbk 
 
 SOURCES=$(PROYECTO).$(EXT_DOCBOOK)  $(FUENTESDB)
 # Listado de fuentes XML. Preferiblmente en el orden de inclusión.
@@ -123,9 +123,9 @@ repasa:
 	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="openbsd_usuario" awk -f herram/db2rep $(SOURCES)
 
 
-programas.xdbk: infoversion.ent
+paquetes-adJ.xdbk: infoversion.ent
 	if (test -f /home/$(LOGNAME)/comp/adJ/Contenido.txt) then { cp /home/$(LOGNAME)/comp/adJ/Contenido.txt Contenido.txt ; recode utf8..latin1 Contenido.txt; } else { touch Contenido.txt; } fi;
-	awk -f herram/convContenido.awk Contenido.txt > programas.xdbk; 
+	awk -f herram/convContenido.awk Contenido.txt > paquetes-adJ.xdbk; 
 
 infoversion.ent:
 	if (test -f ../servidor_adJ/infoversion.ent) then { \

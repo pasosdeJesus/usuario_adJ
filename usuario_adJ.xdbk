@@ -8,53 +8,15 @@
 %personaliza;
 
 <!ENTITY introduccion SYSTEM "introduccion.xdbk">
-
 <!ENTITY instalacion SYSTEM "instalacion.xdbk">
-<!ENTITY emulacion-linux SYSTEM "emulacion-linux.xdbk">
 <!ENTITY paquetesyportes SYSTEM "paquetesyportes.xdbk">
-<!ENTITY programas SYSTEM "programas.xdbk">
-<!ENTITY inst-basico SYSTEM "inst-basico.xdbk">
-<!ENTITY inst-comp SYSTEM "inst-comp.xdbk">
+<!ENTITY conf-basicos SYSTEM "conf-basicos.xdbk">
+<!ENTITY conf-programas SYSTEM "conf-programas.xdbk">
+<!ENTITY conf-dispositivos SYSTEM "conf-dispositivos.xdbk">
+<!ENTITY duales SYSTEM "duales.xdbk">
 
-<!ENTITY conf-kernel SYSTEM "conf-kernel.xdbk">
-<!ENTITY syslog SYSTEM "syslog.xdbk">
-<!ENTITY conf-ld SYSTEM "conf-ld.xdbk">
-<!ENTITY conf-pdksh SYSTEM "conf-pdksh.xdbk">
-<!ENTITY ftp SYSTEM "ftp.xdbk" >
-<!ENTITY doas SYSTEM "doas.xdbk">
-<!ENTITY cron SYSTEM "cron.xdbk">
-<!ENTITY mutt SYSTEM "mutt.xdbk">
-
-<!-- <!ENTITY ssh SYSTEM "ssh.xdbk"> -->
-
-<!ENTITY conf-fluxbox SYSTEM "conf-fluxbox.xdbk">
-<!ENTITY conf-xfe SYSTEM "conf-xfe.xdbk">
-<!ENTITY ispell SYSTEM "ispell.xdbk">
-<!ENTITY xiphos SYSTEM "xiphos.xdbk">
-<!ENTITY editoresdegraficos SYSTEM "editoresdegraficos.xdbk">
-<!ENTITY editoresdeaudio SYSTEM "editoresdeaudio.xdbk">
-<!ENTITY conf-tex-gv SYSTEM "conf-tex-gv.xdbk">
-<!ENTITY mplayer SYSTEM "mplayer.xdbk">
-<!ENTITY java SYSTEM "java.xdbk">
-<!ENTITY ruby SYSTEM "ruby.xdbk">
-<!ENTITY docbook SYSTEM "docbook.xdbk">
-<!ENTITY msoffice SYSTEM "msoffice.xdbk">
-<!ENTITY chromium SYSTEM "chromium.xdbk">
-<!ENTITY kde SYSTEM "kde.xdbk">
-
-<!ENTITY hardware-arranque SYSTEM "hardware-arranque.xdbk">
-<!ENTITY impresion SYSTEM "impresion.xdbk">
-<!ENTITY discos-duros SYSTEM "discos-duros.xdbk">
-<!ENTITY disquetes SYSTEM "disquetes.xdbk">
-<!ENTITY cd SYSTEM "cd.xdbk">
-<!ENTITY cdrw SYSTEM "cdrw.xdbk">
-<!ENTITY dvd SYSTEM "dvd.xdbk">
-<!ENTITY usb SYSTEM "usb.xdbk">
-<!ENTITY imagen-encriptada SYSTEM "imagen-encriptada.xdbk">
-<!ENTITY teclado SYSTEM "teclado.xdbk">
-
+<!ENTITY paquetes-adJ SYSTEM "paquetes-adJ.xdbk">
 <!ENTITY tabcompose SYSTEM "openbsdsrc/tabcompose.xdbk">
-
 <!ENTITY novedades SYSTEM "novedades.xdbk">
 
 <!ENTITY biblio SYSTEM "biblio.xdbk">
@@ -113,218 +75,19 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
   &introduccion;
   &instalacion;
   &paquetesyportes;
-  &configuracionbasicos;
+  &conf-basicos;
+  &conf-programas;
+  &conf-dispositivos;
+  &duales;
+
+  <appendix id="paquetes-adJ">
+     <title>Paquetes incluidos en adJ</title>
+     <para>
+       &paquetes-adJ;
+     </para>
+   </appendix>  
 
 
-  <sect1 id="configuracion-de-algunos-portes">
-	  <title>Configuración y uso de algunas aplicaciones</title>
-	  <sect2 id="escritorio">
-	  <title>Escritorio y Archivos</title>
-    &conf-fluxbox;
-    &conf-xfe;
-	  </sect2>
-
-	  <sect2 id="espiritualidad">
-	  <title>Espiritualidad</title>
-    &xiphos;
-	  </sect2>
-
-	  <sect2 id="documentos">
-	  <title>Preparación de Documentos y Aplicaciones de Oficina</title>
-    &msoffice; 
-    &conf-tex-gv;
-    &docbook;  
-	  </sect2>
-
-	  <sect2 id="espanol">
-	  <title>Español</title>
-    &ispell; 
-	  </sect2>
-
-
-	  <sect2 id="multimedia">
-	  <title>Multimedia</title>
-    &mplayer; 
-    &editoresdegraficos; 
-    &editoresdeaudio; 
-	  </sect2>
-
-	  <sect2 id="red">
-	  <title>Operación en red</title>
-    &mutt;     
-    &chromium;  
-	  </sect2>
-
-	  <sect2 id="desarrollo">
-	  <title>Ambiente de Desarrollo</title>
-    &ruby;
-    &java;
-	  </sect2>
-
-
-
-  </sect1>
-
-  <sect1 id="configuracion-de-algunos-dispositivos">
-    <title>Configuración y uso de algunos dispositivos y servicios</title>
-
-    &hardware-arranque;
-    &impresion;
-    &discos-duros;
-    &disquetes; 
-    &cd; 
-    &cdrw; 
-    &dvd; 
-    &usb; 
-    &imagen-encriptada; 
-    &teclado; 
-  </sect1>
-
-  <sect1 id="duales">
-	  <title>Instalaciones duales</title>
-	  <para>Aunque no es recomendable, es posible tener en un mismo
-		  computador OpenBSD y otros sistemas operativos.  En
-		  esta sección se describen algunos detalles de estas
-		  configuraciones. </para>
-   <sect2 id="con-linux">
-     <title>Dual con Linux</title> 
-
-
-     <sect3 id="arranque-multiple">
-       <title>Arranque múltiple</title>
-
-       <para> Si deja en su computador tanto Linux como OpenBSD podrá
-	 configurar LILO o GRUB para arrancar cualquiera de los dos
-	 sistemas.  En caso de usar LILO, desde Linux edite 
-	 <filename>/etc/lilo.conf</filename> para dejar una entrada que
-	 identifique su sistema Linux y otra para openBSD.  En el siguiente
-	 ejemplo Linux está en <filename>/dev/hda2</filename> mientras que 
-	 OpenBSD en <filename>/dev/hda1</filename>:
-	 <screen>
-#Instalar LILO en MBR
-boot=/dev/hda
-
-# Linux, note que supone que el directorio raíz está en la segunda
-# partición primaria del primer disco IDE (/dev/hda2)
-image=/vmlinuz
-    root=/dev/hda2
-    label=Linux
-    read-only
-
-# OpenBSD, note que supone que está en la primera partición primaria 
-# del primer disco IDE (/dev/hda1)
-other=/dev/hda1
-    label=OpenBSD
-    table=/dev/hda </screen>
-Una vez efectúe el cambio recuerde ejecutar:
-<screen>
-	lilo
-</screen>
-       </para> 
-       <para>En caso de usar GRUB las instrucciones dependen de
-	       la versión que emplee, puede ver opciones para diversas
-	       versiones en <ulink url="http://dhobsd.pasosdejesus.org/index.php?id=Grub2"></ulink>. 
-	       Por ejemplo con Grub2-1.99 (incluido en Ubuntu 12.04), 
-	       debe agregar en <filename>/etc/grub.d/40_custom</filename>:
-	       <screen>
-	menuentry "adJ" {
-	  set root=(hd0,msdos3)
-	  kopenbsd /bsd
-	}
-	       </screen>
-	       remplazando msdos3 por la partición primaria
-	       donde instaló.  Después ejecute:
-	       <screen>
-	doas update-grub2
-</screen>
-		y reinicie.
-       </para>
-     </sect3>
-
-     <sect3 id="montaje-de-directorios-del-otro-sistema">
-       <title>Montar directorios del otro sistema</title>
-
-       <para> Desde OpenBSD podrá montar una partición ext2 de Linux (digamos
-	       <filename>/dev/wd0i</filename> que 
-	       puede examinar con <literal>disklabel</literal>) con:
-	 <screen>
-	doas mkdir -p /mnt/linux
-	doas mount -t ext2 /dev/wd0i /mnt/linux </screen>
-
-	 Desde Linux podrá montar una partición de OpenBSD usando el tipo
-	 ufs con la opción 44bsd.  Si una partición para OpenBSD está
-	 dividida en slices Linux los detectará durante el arranque y
-	 asignará dispositivos apropiados (busque los nombres entre los
-	 mensajes de <command>dmesg</command>):
-	 <screen>
-	sudo mkdir -p /mnt/openbsd
-	sudo mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd </screen>
-       </para>
-     </sect3>
-     </sect2>
-     <sect2 id="con-windows-xp">
-	     <title>Dual con Windows XP o NT</title>
-
-     <sect3 id="arranque-multiple-ntfs">
-       <title>Arranque múltiple</title>
-	     <para>
-		     El arranque múltiple puede administrarse con
-		     NTLDR el gestor de arranque de Windows XP/NT.
-		     La herramienta Bootpart le facilitará configurar
-		     el menu de arranque que NTLDR puede presentar,
-		     descarguelo bien del CD adJ del subdirectorio
-		     <filename>util/bootpart</filename> o de
-		     <ulink url="http://www.winimage.com/bootpart.htm"/>, 
-		     descomprimalo
-		     y copie <literal>bootpart.exe</literal> al 
-		     directorio <literal>C:\</literal>. Inice un
-		     interprete de comandos (Inicio->Ejecutar->cmd) y después:
-		     <screen>
-	cd \
-	bootpart 
-		     </screen>
-		     Con esto podrá ver el número de la partición de OpenBSD
-		     que distinguirá porque su tipo es <literal>a6</literal>.
-		     Suponiendo que fuera la partición 1, después desde el
-		     mismo interprete teclee:
-		     <screen>
-	bootpart 1 lba openbsd.prt OpenBSD
-		     </screen>
-		     tras esto reinicie Windows y al arranque debe poder ver
-		     un menú que le permite elegir con las flechas bien
-		     Windows XP o bien OpenBSD.
-	     </para>
-     </sect3>
-     <sect3 id="discos-xp">
-	     <title>Montaje de particiones NTFS</title>
-	     <para>
-		     Es posible montar particiones escritas por
-		     Windows NT o XP en formato NTFS, pero sólo en
-		     modo lectura. 
-	     </para>
-	     <para>Puede montar una partición 
-		     (digamos <literal>wd0i</literal>) con:
-		     <screen>
-	mkdir /mnt/winc
-	mount_ntfs /dev/wd0i /mnt/winc
-</screen>
-		     o agregar una entrada en <filename>/etc/fstab</filename>
-		     para montaje automático en cada arranque:
-		     <screen>
-	/dev/wd0i /mnt/winc ntfs ro 0,0
-</screen>
-	     </para>
-     </sect3>
-     </sect2>
-   </sect1>
-
-   <!-- Redes.
-
-   Actualización de IP usando DynDNS:
-   http://www.dorkzilla.org/~dlg/scripts/realip
-   www.dyndns.org
-
-   -->
    <appendix id="caracteres-que-pueden-generarse">
      <title>Caracteres que pueden generarse</title>
      <para>
@@ -356,9 +119,6 @@ Una vez efectúe el cambio recuerde ejecutar:
        &novedades;
      </para>
    </appendix>  
-
-
-
    
    &biblio;
 
