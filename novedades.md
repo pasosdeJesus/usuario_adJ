@@ -8,11 +8,11 @@ Versión 6.0
 Versión 5.9
 
 :   -   Ambiente de desarrollo para aplicaciones `ruby` y Ruby on Rails,
-        [???](#ruby)
+        [xref](#ruby)
 
 Versión 5.8
 
-:   -   `doas` en lugar de `sudo`, [???](#doas)
+:   -   `doas` en lugar de `sudo`, [xref](#doas)
 
 Versión 5.7
 
@@ -21,39 +21,39 @@ Versión 5.7
 
 Versión 5.6
 
-:   -   Documentación de mozilla cambiada por chromium, [???](#chromium)
+:   -   Documentación de mozilla cambiada por chromium, [xref](#chromium)
 
-    -   Mejorada [???](#msoffice)
+    -   Mejorada [xref](#msoffice)
 
 Versión 5.5
 
-:   -   Actualizada [???](#configuracion-de-xorg)
+:   -   Actualizada [xref](#configuracion-de-xorg)
 
-    -   Mejorada [???](#msoffice)
+    -   Mejorada [xref](#msoffice)
 
 Versión 5.4
 
-:   -   Nueva [???](#edicionaudio)
+:   -   Nueva [xref](#edicionaudio)
 
 Versión 5.3
 
-:   -   Nueva [???](#xfe)
+:   -   Nueva [xref](#xfe)
 
     -   Fuentes en utf-8
 
 Versión 5.2
 
-:   -   [???](#fluxbox) renovada.
+:   -   [xref](#fluxbox) renovada.
 
 Versión 5.1
 
-:   -   Nueva [???](#syslog).
+:   -   Nueva [xref](#syslog).
 
-        [???](#instalacion-y-configuracion-del-sistema-basico) renovada.
+        [xref](#instalacion-y-configuracion-del-sistema-basico) renovada.
 
-    -   [???](#instalacion-del-resto) renovada.
+    -   [xref](#instalacion-del-resto) renovada.
 
-    -   [???](#inicio-del-sistema) renovada de acuerdo a nueva forma de
+    -   [xref](#inicio-del-sistema) renovada de acuerdo a nueva forma de
         servicios en `/etc/rc.d`
 
 Versión 4.9
@@ -67,15 +67,15 @@ Versión 4.9
 
 Versión 4.8
 
-:   -   Nueva sección [???](#ediciongraficos)
+:   -   Nueva sección [xref](#ediciongraficos)
 
-    -   Precisada sección sobre Ofimatica, [???](#msoffice)
+    -   Precisada sección sobre Ofimatica, [xref](#msoffice)
 
     -   Cubre Aprendiendo de Jesús 4.8
 
 Versión 4.7
 
-:   -   [???](#xiphos)
+:   -   [xref](#xiphos)
 
     -   Cubre Aprendiendo de Jesús 4.7
 
@@ -84,8 +84,8 @@ Versión 4.6
 :   -   Cubre Aprendiendo de Jesús 4.6
 
     -   Reestructura sección de paquetes, renovada sección sobre TeX
-        (ver [???](#conf-tex-gv) ), e iniciada una para mplayer (ver
-        [???](#mplayer))
+        (ver [xref](#conf-tex-gv) ), e iniciada una para mplayer (ver
+        [xref](#mplayer))
 
     -   Sección sobre operaciones con DVD
 

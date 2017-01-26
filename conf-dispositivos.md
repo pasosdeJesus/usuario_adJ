@@ -618,7 +618,7 @@ disquette debe desmontarlo con:
 Puede montar imágenes de disquetes creando primero un dispositivo con
 `vnconfing` asociado con la imagen y después montar tal dispositivo en
 el directorio deseado. Vea la forma análoga de lograrlo con CDs en
-[???](#cd).
+[xref](#cd).
 
 
 ## Unidad de CD-ROM {#cd}
@@ -662,7 +662,7 @@ Más sobre montaje de archivos con `man fstab`.
 
 Una quemadora de CD-R y CD-RW se puede comportar como un lector de CDs y
 usarse como se explica en la sección sobre unidades de CD (ver
-[???](#cd).
+[xref](#cd).
 
 Para quemar una imagen de un CD con datos que usted elija se debe:
 
@@ -798,8 +798,8 @@ El sistema de archivos de los DVD es UDF, que es diferente al de los CDs
 
 Las operaciones de montaje de DVDs, montaje de imagenes y copia de DVDs
 a disco son como las de CDs remplazando el tipo `cd9660` por `udf` (ver
-[???](#montar-cd), [???](#montar-imagen-iso) y
-[???](#crear-imagen-de-cd)).
+[xref](#montar-cd), [xref](#montar-imagen-iso) y
+[xref](#crear-imagen-de-cd)).
 
 Para quemar DVDs es necesario instalar el paquete `cdrtools`, el cual
 incluye el programa `growisofs` que permite quemar DVDs al menos de dos

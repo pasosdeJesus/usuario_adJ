@@ -71,7 +71,7 @@
     cuales podrá emplear el sistema de archivos de OpenBSD (Fast File
     System o `ufs` en terminología Linux). También podrá montar
     particiones de otros sistemas operativos, por ejemplo `ext2` está
-    bien soportado, o tener un sistema dual (ver [???](#duales)).
+    bien soportado, o tener un sistema dual (ver [xref](#duales)).
 
     Si en su computador no tiene una partición disponible, puede
     intentar cambiar el tamaño de una existente para liberar espacio y
@@ -335,10 +335,10 @@ En la que puede teclear `boot hd0a:bsd`
 Si en su computador usa otro sistema operativo, ejecute el programa de
 configuración de algún administrador de arranque para asegurarse de
 permitir elegir OpenBSD o el otro o los otros sistemas que tenga (e.g
-GRUB o LILO si también usa Linux ver [???](#con-linux),
+GRUB o LILO si también usa Linux ver [xref](#con-linux),
 [XOSL](http://www.ranish.com/part/xosl.htm) si usa Windows 95/98/ME. Si
 usa Windows NT o XP puede ser con el manejador de arranque de ese
-sistema ver [???](#con-windows-xp), si usa Windows Vista o 7 puede ser
+sistema ver [xref](#con-windows-xp), si usa Windows Vista o 7 puede ser
 con EasyBCD).
 
 Una vez ingrese verá `xdm` como se presenta a continuación (siempre y

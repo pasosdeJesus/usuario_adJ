@@ -5,7 +5,7 @@
 ### FluxBox
 
 La operación básica de este liviano y estético administrador de 
-ventanas se describe en [???](#basico_adJ), aquí describimos algunos 
+ventanas se describe en [xref](#basico_adJ), aquí describimos algunos 
 detalles de configuración.
 
 Para emplearlo como administrador de ventanas por defecto debe
@@ -57,7 +57,7 @@ Puede configurar teclas rápidas en el archivo `~/.fluxbox/keys`
 
 ### `xfe`
 
-La operación básica se describe en [???](#basico_adJ), aquí describimos
+La operación básica se describe en [xref](#basico_adJ), aquí describimos
 algunos detalles de configuración.
 
 El archivo de configuración se ubica en `~/.config/xfe/xferc`. La
@@ -74,7 +74,7 @@ archivo de configuración en la sección `OPTIONS` debe incluir:
             
 ### `xiphos`
 
-Como se describe en [???](#xiphosmanual), es una herramienta gráfica de
+Como se describe en [xref](#xiphosmanual), es una herramienta gráfica de
 estudio e investigación bíblica que se basa en las librerías del
 proyecto Sword.
 
@@ -115,7 +115,7 @@ terminal con `swriter`), la hoja de cálculo `calc` (que inicia desde una
 terminal con `scalc`), el creador de presentaciones `impress` (que
 inicia con `simpress` desde un terminal) y el programa para diagrama
 `draw` (que puede iniciar con `sdraw`). Puede aprender más sobre este
-procesador en [???](#libreoffice-basico)
+procesador en [xref](#libreoffice-basico)
 
 Además el DVD de adJ incluye P-ABIWORD como procesador de texto capaz de
 abrir y escribir tanto en el formato de Microsoft Office como en
@@ -125,7 +125,7 @@ Para operar con hojas de cálculo incluye P-GNUMERIC, que también puede
 abrir y guardar en OpenDocument y en formatos de Microsoft Office.
 
 La funcionalidad de un procesador de palabra, así como la básica para
-hacer presentaciones también las ofrece LaTeX (ver [???](#latex)). Parte
+hacer presentaciones también las ofrece LaTeX (ver [xref](#latex)). Parte
 de la funcionalidad de una hoja de cálculo la tiene desde una terminal
 `sc`. También puede usar `magicpoint` para hacer presentaciones. Sin
 embargo para usar estas herramientas se requiere aprender formas
@@ -145,7 +145,7 @@ con `texconfig`.
 
 A continuación se incluye un mini-tutorial de LaTeX adaptado de AALinux,
 por otra parte puede consultar algo más sobre `gv` en la sección
-[???](#uso-impresora).
+[xref](#uso-impresora).
 
 #### LaTeX
 
@@ -427,14 +427,14 @@ OpenOffice incluye otro editor vectorial llamado draw.
 
 Para la generación de gráficos de barras y estadísticos resulta más
 apropiado el graficador de P-GNUMERIC o de calc --la hoja de cálculo de
-OpenOffice--, ver [???](#msoffice)
+OpenOffice--, ver [xref](#msoffice)
 
 
 ### Edición de audio {#edicionaudio}
 
 Para reproducir una pista de audio en diversos formatos (incluyendo el
 libre ogg, el común wav y el patentado mp3) puede usar `mplayer` (ver
-[???](#mplayer)), o bien `audacious` (incluido en el paquete
+[xref](#mplayer)), o bien `audacious` (incluido en el paquete
 P-AUDACIOUS): El programa `play` incluido en el paquete P-SOX también le
 permitirá escuchar diversos formatos.
 
@@ -449,7 +449,7 @@ utilice el programa P-AUDACITY:
 
 ### `mutt`
 
-El uso básico de mutt puede consultarlo en [???](#basico_adJ).
+El uso básico de mutt puede consultarlo en [xref](#basico_adJ).
 
 #### Enviado correo con `sendmail` de otro computador {#otro-smtp}
 
@@ -490,7 +490,7 @@ necesita emplear el `sendmail` de otro computador puede:
 
     o si emplea XWindow es posible que pueda configurar su manejador de
     escritorio o su administrador de ventanas para que toda la sesión
-    emplee el agente (ver un ejemplo en [???](#fluxbox)).
+    emplee el agente (ver un ejemplo en [xref](#fluxbox)).
 
 #### Lecturas recomendadas {#lecturas-mutt}
 
@@ -1184,7 +1184,7 @@ ubicarlas en `/usr/ports/distfiles`.
 Tras descargar manualmente las fuentes, la compilación e instalación son
 directas (i.e con `make` y `make install` respectivamente). Tenga en
 cuenta que los portes del jdk para su compilación requieren que la capa
-de emulación de Linux esté activada (ver [???](#emulacion-linux)).
+de emulación de Linux esté activada (ver [xref](#emulacion-linux)).
 
 Si por ejemplo instala `jdk-1.4` los binarios quedarán en
 `/usr/local/jdk1.4/bin/` así que es recomendable que agregue tal ruta a

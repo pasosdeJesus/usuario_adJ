@@ -136,7 +136,7 @@ se ejecuta:
 
 También pueden especificarse otros directorios por usar durante el
 arranque definiendo la variable `shlib_dirs` en `/etc/rc.conf.local`
-(ver [???](#inicio-del-sistema))
+(ver [xref](#inicio-del-sistema))
 
 Incluso un usuario puede establecer otros directorios donde buscar
 librerías compartidas especificandolos en la variable de entorno
