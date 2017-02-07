@@ -112,7 +112,7 @@ Derechos.txt: $(PROYECTO).$(EXT_DOCBOOK)
 	$(W3M) $(W3M_OPT) -dump html/index.html | awk -f herram/conthtmldoc.awk > Derechos.txt
 
 instala:
-	mkdir -p $(DESTDIR)$(INSDOC)
+	mkdir -p $(DESTDIR)$(INSDOC)/img/
 	install html/*html $(DESTDIR)$(INSDOC)
 	install html/img/*png $(DESTDIR)$(INSDOC)/img/
 	if (test -f $(PRINT_DIR)/$(PROYECTO).ps) then { \
