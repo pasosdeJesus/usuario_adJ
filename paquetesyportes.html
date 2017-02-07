@@ -1,0 +1,177 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>3. Paquetes y portes</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="sobre-la-instalacion.html" title="2. Sobre la instalación"><link rel="next" href="configuracion-de-componentes-basicos.html" title="4. Configuración y uso de programas y servicios básicos"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">3. Paquetes y portes</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sobre-la-instalacion.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="configuracion-de-componentes-basicos.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="paquetesyportes"></a>3. Paquetes y portes</h2></div></div></div><p>
+    Diversos programas han sido portados a OpenBSD; a las fuentes
+    portadas se les llama portes y a los binarios de alguno de los
+    portes compilados para alguna plataforma se les llama paquetes.
+  </p><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="paquetes"></a>3.1. Paquetes</h3></div></div></div><p>
+      Cada paquete es un archivo con extensión <code class="literal">.tgz</code>
+      que incluye información de dependencias y scripts para instalar y
+      desinstalar. Para manejarlos se emplean los programas
+      <code class="literal">pkg_add</code>, <code class="literal">pkg_delete</code>,
+      <code class="literal">pkg_info</code> y <code class="literal">pkg_create</code>. El
+      programa <code class="literal">pkg_add</code> instala un paquete y todos los
+      que este requiera, usando para descargarlos lo(s) repositorio(s)
+      especificada(s) en la variable de ambiente
+      <code class="literal">PKG_PATH</code>, por esto en el archivo
+      <code class="literal">~/.profile</code> o en <code class="literal">~/.xsession</code>
+      vale la pena agregar:
+    </p><pre class="programlisting">
+    export PKG_PATH=ftp://ftp.pasosdeJesus.org/pub/OpenBSD/6.0/packages/amd64
+</pre><p>
+      o la vía del CD-ROM 1 o una vía de un espejo más rápido para su
+      caso<sup>[<a name="idp2322896112" href="#ftn.idp2322896112">8</a>]</sup>. Una vez establecida esta variable, para agregar por
+      ejemplo el paquete <code class="literal">&amp;p-vim;.tgz</code>:
+    </p><pre class="programlisting">
+    pkg_add $PKG_PATH/&amp;p-vim;.tgz 
+</pre><p>
+      Puede ver la lista de paquetes instalados en su sistema con
+      <code class="literal">pkg_info</code> o con
+      <code class="literal">ls -l /var/db/pkg</code>, podrá desinstalar uno con
+      <code class="literal">pkg_delete</code> seguido del nombre del paquete (con
+      la opción <code class="literal">-f dependencies</code> se eliminarán también
+      paquetes que dependan del que está quitando --que es útil si está
+      actualizando un paquete).
+    </p><p>
+      Podrá ver los paquetes disponibles para instalar en
+      <a href="http://www.openbsd.org/&amp;6.0;_packages/amd64.html" target="_top">http://www.openbsd.org/6.0_packages/amd64.html</a>.
+    </p><p>
+      En el <a href="paquetes-adJ.html" title="A. Paquetes incluidos en adJ">Ápendice Paquetes de adJ</a>
+      destacamos algunos que permiten tener un ambiente para producir
+      contenidos, programar, escuchar música y ver vídeos (se incluyen
+      en la distribución
+      <a href="http://aprendiendo.pasosdeJesus.org" target="_top">adJ</a>).
+    </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="actualizacion-paquetes"></a>3.1.1. Actualización de paquetes</h4></div></div></div><p>
+        Podrá actualizar un paquete con
+        <code class="literal">pkg_add -r -D update paquete.tgz</code>
+      </p><p>
+        Si configura <code class="literal">PKG_PATH</code> podrá buscar
+        dependencias que debe actualizar para actualizar un paquete con
+        <code class="literal">pkg_add -u paquete</code>.
+      </p><p>
+        Cada paquete instalado crea un directorio con el nombre del
+        paquete en <code class="literal">/var/db/pkg</code> por lo que además de
+        <code class="literal">pkg_info -L</code> puede usar
+      </p><pre class="programlisting">
+    ls /var/db/pkg
+        
+</pre><p>
+        Y para actualizar todos los paquetes puede utilizar
+      </p><pre class="programlisting">
+    doas pkg_add -u 
+        
+</pre></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="portes"></a>3.2. Portes</h3></div></div></div><p>
+      Aunque NetBSD y FreeBSD tienen más programas portados que OpenBSD,
+      la colección de portes de OpenBSD ya cuenta con casi 5000
+      programas clasificados en las siguientes categorías empleadas por
+      el sistema de portes: archivers, astro, audio, benchmarks,
+      biology, books, cad, chinese, comms, converters, databases, devel,
+      distfiles, editors, education, emulators, games, graphics,
+      infrastructure, japanese, java, korean, lang, mail, math, mbone,
+      misc, multimedia, net, news, palm, plan9, print, productivity,
+      russian, security, shells, sysutils, telephony textproc, www, x11.
+    </p><p>
+      Puede ver el desarrollo de los portes en:
+      <a href="http://openports.se/" target="_top">http://openports.se</a> y
+      más información sobre portes y paquetes en:
+      <a href="http://www.openbsd.org/ports.html" target="_top">http://www.openbsd.org/ports.html</a>
+    </p><p>
+      Si prefiere compilar los paquetes que va a instalar o desea ayudar
+      a portar aplicaciones a OpenBSD debe tener las fuentes de los
+      portes (parches, makefiles y scripts), que normalmente se ubican
+      en <code class="literal">/usr/ports</code>. Puede bien descomprimirlas de un
+      CD oficial, o de un servidor FTP y después actualizarlas de un
+      repositorio CVS o bien descargarlas de un repositorio CVS como se
+      presenta a continuación:
+    </p><pre class="programlisting">
+    cd /usr
+    export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+    cvs -z3 -q get -rOPENBSD_6.0-U -P ports 
+</pre><p>
+      La vía para <code class="literal">CVSROOT</code> adaptela a su servidor más
+      cercano, escogiendo entre los disponibles en:
+      <a href="http://www.openbsd.org/anoncvs.html" target="_top">http://www.openbsd.org/anoncvs.html</a>.
+    </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="busquedas-portes"></a>3.2.1. Busquedas de portes</h4></div></div></div><p>
+        Para buscar un programa en la colección de portes puede emplear:
+      </p><pre class="programlisting">
+    cd /usr/ports
+    make search key=cadena
+      
+</pre><p>
+        Que presentará los portes que en su descripción tengan la cadena
+        dada. Esta busqueda se realiza sobre el archivo
+        <code class="literal">/usr/ports/INDEX</code>, el cual si lo desea también
+        puede explorar con un editor.
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="compilaci%C3%B3n-portes"></a>3.2.2. Compilación de portes</h4></div></div></div><p>
+        Para compilar e instalar un porte (tras la compilación
+        normalmente se crea un paquete), basta pasar al directorio del
+        porte y como usuario root ejecutar:
+      </p><pre class="programlisting">
+    make install 
+</pre><p>
+        El respectivo <code class="literal">Makefile</code> obtendrá las fuentes
+        originales de la red, aplicará los cambios necesarios,
+        compilará, creará un paquete y lo instalará (posteriormente
+        podrá eliminar el paquete con <code class="literal">pkg_delete</code> ver
+        <a href="paquetesyportes.html#paquetes" title="3.1. Paquetes">Paquetes</a>). Si el porte tiene
+        otros portes como prerequisitos los compilará e instalará antes.
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="creaci%C3%B3n-de-un-porte"></a>3.2.3. Creación de un porte</h4></div></div></div><p>
+        Elija una categoría para su porte (i.e un directorio en
+        <code class="literal">/usr/ports</code>), puede copiar el directorio de un
+        porte similar al que desea hacer y modificarlo. Emplee como
+        nombre de directorio el nombre del paquete (sin versión). Debe
+        tener al menos estos archivos:
+      </p><div class="variablelist"><dl><dt><span class="term">
+            Makefile
+          </span></dt><dd><p>
+              El cual incluye descripción corta, nombre del paquete,
+              versión, URL del cual descargar fuentes, el correo de
+              quien mantiene el porte, URL de parches si los hay,
+              información sobre posibilidad de redistribución, foma de
+              configurar, compilar e instalar. Este archivo normalmente
+              es muy corto pues se basa en la infraestructura para
+              portes de
+              <code class="literal">/usr/ports/infrastructure/mk/bsd.ports.mk</code>.
+            </p></dd><dt><span class="term">
+            distinfo
+          </span></dt><dd><p>
+              Este archivo incluye diversas "firmas"<sup>[<a name="idp2752832112" href="#ftn.idp2752832112">9</a>]</sup> de cada fuente que debe descargarse para
+              asegurar su integridad. Se genera automáticamente con
+              <code class="literal">make makesum</code> y se verifica con
+              <code class="literal">make checksum</code>
+            </p></dd><dt><span class="term">
+            pkg/DESCR
+          </span></dt><dd><p>
+              Este archivo incluye una descripción un poco más larga del
+              paquete (la que presenta <code class="literal">pkg_info</code>
+              cuando se corre sin opciones).
+            </p></dd><dt><span class="term">
+            pkg/PLIST
+          </span></dt><dd><p>
+              Indica los archivos que se instalan después de instalar el
+              paquete. Se puede crear un candidato inicial de este
+              archivo después de compilar y hacer una instalación de
+              prueba (<code class="literal">make               fake</code>). Puede
+              actualizarse de acuerdo a lo instalado con
+              <code class="literal">make plist</code>
+            </p></dd><dt><span class="term">
+            patches/
+          </span></dt><dd><p>
+              En este directorio se mantienen parches que deben
+              aplicarse a las fuentes descargadas. Puede generarlos
+              automáticamente (con <code class="literal">make patches</code>), si
+              en el directorio donde se descomprimen las fuentes, saca
+              una copia de cada archivo que vaya a modificar y le agrega
+              el sufijo <code class="literal">.orig</code>
+            </p></dd></dl></div><p>
+        Crear un porte es un proceso iterativo, en cada iteración debe
+        refinarse el porte para asegurar que cumple con todos los
+        lineamientos que espera el equipo de portes de OpenBSD. Puede
+        consultar más en porting-checklist porting.
+      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2322896112" href="#idp2322896112">8</a>] </sup>
+          Para determinarlo puede ver la velocidad de cada espejo con
+          algo como <code xmlns="" class="literal">ping ftp.pasosdeJesus.org</code> o
+          emplear el script <code xmlns="" class="literal">pos.sh</code> que hará la prueba
+          para los espejos oficiales de OpenBSD. Está en el directorio
+          <code xmlns="" class="literal">herram</code> de las fuentes de este escrito.
+        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2752832112" href="#idp2752832112">9</a>] </sup>
+                  Resultados de pasar archivos por funciones de hashing.
+                </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sobre-la-instalacion.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="configuracion-de-componentes-basicos.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">2. Sobre la instalación </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 4. Configuración y uso de programas y servicios básicos</td></tr></table></div></body></html>

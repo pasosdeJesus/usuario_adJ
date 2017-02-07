@@ -1,14 +1,16 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>7. Instalaciones duales</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="configuracion-de-algunos-dispositivos.html" title="6. Configuración y uso de algunos dispositivos y servicios"><link rel="next" href="caracteres-que-pueden-generarse.html" title="A. Caracteres que pueden generarse"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">7. Instalaciones duales</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="configuracion-de-algunos-dispositivos.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="caracteres-que-pueden-generarse.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="duales"></a>7. Instalaciones duales</h2></div></div></div><p>Aunque no es recomendable, es posible tener en un mismo
-		  computador OpenBSD y otros sistemas operativos.  En
-		  esta sección se describen algunos detalles de estas
-		  configuraciones. </p><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="con-linux"></a>7.1. Dual con Linux</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="arranque-multiple"></a>7.1.1. Arranque múltiple</h4></div></div></div><p> Si deja en su computador tanto Linux como OpenBSD podrá
-	 configurar LILO o GRUB para arrancar cualquiera de los dos
-	 sistemas.  En caso de usar LILO, desde Linux edite 
-	 <code class="filename">/etc/lilo.conf</code> para dejar una entrada que
-	 identifique su sistema Linux y otra para openBSD.  En el siguiente
-	 ejemplo Linux está en <code class="filename">/dev/hda2</code> mientras que 
-	 OpenBSD en <code class="filename">/dev/hda1</code>:
-	 </p><pre class="screen">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>7. Instalaciones duales</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="conf-dispositivos.html" title="6. Configuración y uso de algunos dispositivos y servicios"><link rel="next" href="paquetes-adJ.html" title="A. Paquetes incluidos en adJ"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">7. Instalaciones duales</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="conf-dispositivos.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="paquetes-adJ.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="duales"></a>7. Instalaciones duales</h2></div></div></div><p>
+    Aunque no es recomendable, es posible tener en un mismo computador
+    OpenBSD y otros sistemas operativos. En esta sección se describen
+    algunos detalles de estas configuraciones.
+  </p><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="con-linux"></a>7.1. Dual con Linux</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="arranque-multiple"></a>7.1.1. Arranque múltiple</h4></div></div></div><p>
+        Si deja en su computador tanto Linux como OpenBSD podrá
+        configurar LILO o GRUB para arrancar cualquiera de los dos
+        sistemas. En caso de usar LILO, desde Linux edite
+        <code class="literal">/etc/lilo.conf</code> para dejar una entrada que
+        identifique su sistema Linux y otra para openBSD. En el
+        siguiente ejemplo Linux está en <code class="literal">/dev/hda2</code>
+        mientras que OpenBSD en <code class="literal">/dev/hda1</code>:
+      </p><pre class="programlisting">
 #Instalar LILO en MBR
 boot=/dev/hda
 
@@ -23,82 +25,84 @@ image=/vmlinuz
 # del primer disco IDE (/dev/hda1)
 other=/dev/hda1
     label=OpenBSD
-    table=/dev/hda </pre><p>
-Una vez efectúe el cambio recuerde ejecutar:
-</p><pre class="screen">
-	lilo
+    table=/dev/hda 
 </pre><p>
-       </p><p>En caso de usar GRUB las instrucciones dependen de
-	       la versión que emplee, puede ver opciones para diversas
-	       versiones en <a href="http://dhobsd.pasosdejesus.org/index.php?id=Grub2" target="_top">http://dhobsd.pasosdejesus.org/index.php?id=Grub2</a>. 
-	       Por ejemplo con Grub2-1.99 (incluido en Ubuntu 12.04), 
-	       debe agregar en <code class="filename">/etc/grub.d/40_custom</code>:
-	       </p><pre class="screen">
-	menuentry "adJ" {
-	  set root=(hd0,msdos3)
-	  kopenbsd /bsd
-	}
-	       </pre><p>
-	       remplazando msdos3 por la partición primaria
-	       donde instaló.  Después ejecute:
-	       </p><pre class="screen">
-	doas update-grub2
+        Una vez efectúe el cambio recuerde ejecutar:
+      </p><pre class="programlisting">
+    lilo
 </pre><p>
-		y reinicie.
-       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montaje-de-directorios-del-otro-sistema"></a>7.1.2. Montar directorios del otro sistema</h4></div></div></div><p> Desde OpenBSD podrá montar una partición ext2 de Linux (digamos
-	       <code class="filename">/dev/wd0i</code> que 
-	       puede examinar con <code class="literal">disklabel</code>) con:
-	 </p><pre class="screen">
-	doas mkdir -p /mnt/linux
-	doas mount -t ext2 /dev/wd0i /mnt/linux </pre><p>
-
-	 Desde Linux podrá montar una partición de OpenBSD usando el tipo
-	 ufs con la opción 44bsd.  Si una partición para OpenBSD está
-	 dividida en slices Linux los detectará durante el arranque y
-	 asignará dispositivos apropiados (busque los nombres entre los
-	 mensajes de <span><strong class="command">dmesg</strong></span>):
-	 </p><pre class="screen">
-	doas mkdir -p /mnt/openbsd
-	doas mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd </pre><p>
-       </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="con-windows-xp"></a>7.2. Dual con Windows XP o NT</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="arranque-multiple-ntfs"></a>7.2.1. Arranque múltiple</h4></div></div></div><p>
-		     El arranque múltiple puede administrarse con
-		     NTLDR el gestor de arranque de Windows XP/NT.
-		     La herramienta Bootpart le facilitará configurar
-		     el menu de arranque que NTLDR puede presentar,
-		     descarguelo bien del CD adJ del subdirectorio
-		     <code class="filename">util/bootpart</code> o de
-		     <a href="http://www.winimage.com/bootpart.htm" target="_top">http://www.winimage.com/bootpart.htm</a>, 
-		     descomprimalo
-		     y copie <code class="literal">bootpart.exe</code> al 
-		     directorio <code class="literal">C:\</code>. Inice un
-		     interprete de comandos (Inicio-&gt;Ejecutar-&gt;cmd) y después:
-		     </p><pre class="screen">
-	cd \
-	bootpart 
-		     </pre><p>
-		     Con esto podrá ver el número de la partición de OpenBSD
-		     que distinguirá porque su tipo es <code class="literal">a6</code>.
-		     Suponiendo que fuera la partición 1, después desde el
-		     mismo interprete teclee:
-		     </p><pre class="screen">
-	bootpart 1 lba openbsd.prt OpenBSD
-		     </pre><p>
-		     tras esto reinicie Windows y al arranque debe poder ver
-		     un menú que le permite elegir con las flechas bien
-		     Windows XP o bien OpenBSD.
-	     </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="discos-xp"></a>7.2.2. Montaje de particiones NTFS</h4></div></div></div><p>
-		     Es posible montar particiones escritas por
-		     Windows NT o XP en formato NTFS, pero sólo en
-		     modo lectura. 
-	     </p><p>Puede montar una partición 
-		     (digamos <code class="literal">wd0i</code>) con:
-		     </p><pre class="screen">
-	mkdir /mnt/winc
-	mount_ntfs /dev/wd0i /mnt/winc
+        En caso de usar GRUB las instrucciones dependen de la versión
+        que emplee, puede ver opciones para diversas versiones en
+        <a href="http://dhobsd.pasosdejesus.org/index.php?id=Grub2" target="_top">http://dhobsd.pasosdejesus.org/index.php?id=Grub2</a>.
+        Por ejemplo con Grub2-1.99 (incluido en Ubuntu 12.04), debe
+        agregar en <code class="literal">/etc/grub.d/40_custom</code>:
+      </p><pre class="programlisting">
+    menuentry "adJ" {
+      set root=(hd0,msdos3)
+      kopenbsd /bsd
+    }
+           
 </pre><p>
-		     o agregar una entrada en <code class="filename">/etc/fstab</code>
-		     para montaje automático en cada arranque:
-		     </p><pre class="screen">
-	/dev/wd0i /mnt/winc ntfs ro 0,0
+        remplazando msdos3 por la partición primaria donde instaló.
+        Después ejecute:
+      </p><pre class="programlisting">
+    doas update-grub2
 </pre><p>
-	     </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-algunos-dispositivos.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="caracteres-que-pueden-generarse.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">6. Configuración y uso de algunos dispositivos y servicios </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> A. Caracteres que pueden generarse</td></tr></table></div></body></html>
+        y reinicie.
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montaje-de-directorios-del-otro-sistema"></a>7.1.2. Montar directorios del otro sistema</h4></div></div></div><p>
+        Desde OpenBSD podrá montar una partición ext2 de Linux (digamos
+        <code class="literal">/dev/wd0i</code> que puede examinar con
+        <code class="literal">disklabel</code>) con:
+      </p><pre class="programlisting">
+    doas mkdir -p /mnt/linux
+    doas mount -t ext2 /dev/wd0i /mnt/linux 
+</pre><p>
+        Desde Linux podrá montar una partición de OpenBSD usando el tipo
+        ufs con la opción 44bsd. Si una partición para OpenBSD está
+        dividida en slices Linux los detectará durante el arranque y
+        asignará dispositivos apropiados (busque los nombres entre los
+        mensajes de <code class="literal">dmesg</code>):
+      </p><pre class="programlisting">
+    sudo mkdir -p /mnt/openbsd
+    sudo mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd 
+</pre></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="con-windows-xp"></a>7.2. Dual con Windows XP o NT</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="arranque-multiple-ntfs"></a>7.2.1. Arranque múltiple</h4></div></div></div><p>
+        El arranque múltiple puede administrarse con NTLDR el gestor de
+        arranque de Windows XP/NT. La herramienta Bootpart le facilitará
+        configurar el menu de arranque que NTLDR puede presentar,
+        descarguelo bien del CD adJ del subdirectorio
+        <code class="literal">util/bootpart</code> o de
+        <a href="http://www.winimage.com/bootpart.htm" target="_top">http://www.winimage.com/bootpart.htm</a>,
+        descomprimalo y copie <code class="literal">bootpart.exe</code> al
+        directorio <code class="literal">C:\</code>. Inice un interprete de
+        comandos (Inicio-&gt;Ejecutar-&gt;cmd) y después:
+      </p><pre class="programlisting">
+    cd \
+    bootpart 
+             
+</pre><p>
+        Con esto podrá ver el número de la partición de OpenBSD que
+        distinguirá porque su tipo es <code class="literal">a6</code>. Suponiendo
+        que fuera la partición 1, después desde el mismo interprete
+        teclee:
+      </p><pre class="programlisting">
+    bootpart 1 lba openbsd.prt OpenBSD
+             
+</pre><p>
+        tras esto reinicie Windows y al arranque debe poder ver un menú
+        que le permite elegir con las flechas bien Windows XP o bien
+        OpenBSD.
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="discos-xp"></a>7.2.2. Montaje de particiones NTFS</h4></div></div></div><p>
+        Es posible montar particiones escritas por Windows NT o XP en
+        formato NTFS, pero sólo en modo lectura.
+      </p><p>
+        Puede montar una partición (digamos <code class="literal">wd0i</code>)
+        con:
+      </p><pre class="programlisting">
+    mkdir /mnt/winc
+    mount_ntfs /dev/wd0i /mnt/winc
+</pre><p>
+        o agregar una entrada en <code class="literal">/etc/fstab</code> para
+        montaje automático en cada arranque:
+      </p><pre class="programlisting">
+    /dev/wd0i /mnt/winc ntfs ro 0,0
+</pre></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="conf-dispositivos.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="paquetes-adJ.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">6. Configuración y uso de algunos dispositivos y servicios </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> A. Paquetes incluidos en adJ</td></tr></table></div></body></html>
