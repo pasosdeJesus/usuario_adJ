@@ -45,7 +45,7 @@
         computador.
 
     Aunque es posible realizar la descarga de imagenes ISO, recomendamos
-    comprar[^1] los CDs oficiales de instalación para apoyar los
+    comprar[^pre.1] los CDs oficiales de instalación para apoyar los
     proyectos OpenBSD y adJ. La estructura del CD oficial de OpenBSD
     tiene derechos de reproducción restrictivos ---sólo la estructura,
     las fuentes son de libre redistribución en su mayoría cubiertas por
@@ -92,7 +92,7 @@
     soluciones:
     [](http://aprendiendo.pasosdejesus.org/?id=AdJ+&VER-ADJ;+-+Aprendiendo+de+Jesus+&VER-ADJ;)
 
-[^1]: Los CDs de OpenBSD ordenados por la página web de OpenBSD si
+[^pre.1]: Los CDs de OpenBSD ordenados por la página web de OpenBSD si
     llegan a Colombia.
 
 ## Ayudas para la instalación {#ayudas-para-la-instalacion}
@@ -101,7 +101,7 @@ Es muy recomendable consultar [guía de instalación de
 OpenBSD](http://www.openbsd.org/faq/faq4.html#4.1).
 
 Si tiene el DVD oficial, configure su BIOS para que arranque por este y
-reinicie[^1]. Este DVD contiene un sistema OpenBSD mínimo que detectará
+reinicie[^ayu.1]. Este DVD contiene un sistema OpenBSD mínimo que detectará
 automáticamente el hardware y lo guiará en el proceso de instalación. Si
 había creado con anterioridad la partición primaria para OpenBSD
 seguramente no tendrá inconveniente en esta instalación, basta que tenga
@@ -116,7 +116,7 @@ Nombres y manejo de dispositivos
       Disco SCSI                   `/dev/sda`                                                        `/dev/sd0c` o en modo crudo `/dev/rsd0c`
       Mouse                        `/dev/psaux` o `/dev/ttyS0`, `/dev/ttyS1` ...                     `/dev/wsmouse` si es PS/2. Si es serial uno como `/dev/tty00` o `/dev/tty01`.
       Teclado                      `/dev/kbd`                                                        `/dev/wskbd`
-      Primera unidad de disquete   `/dev/fd0`                                                        `/dev/fd0c`[^2]
+      Primera unidad de disquete   `/dev/fd0`                                                        `/dev/fd0c`[^ayu.2]
       Primera unidad de DVD        Si es IDE algo como `/dev/hdb`, si es SCSI algo como `/dev/sda`   `/dev/cd0c`
 
       : Nombres de dispositivos
@@ -160,7 +160,7 @@ Particiones
     los paquetes incluidos en el DVD y para compilar fuentes al menos
     con 50G), `/home` (con tanto espacio como desee para los usuarios) y
     `/var` (al menos con 1.2G si planea sacar respaldos de imagenes
-    encriptadas en CD o de 8G si planea sacarlas en DVD).
+    cifradas en CD o de 8G si planea sacarlas en DVD).
 
 Interprete de comandos
 
@@ -174,12 +174,12 @@ Herramientas UNIX
     `make`) tienden a conformar el estándar POSIX pero no algunas
     extensiones comunes en sistemas Linux.
 
-[^1]: El método de instalación por red PXE requiere que configure otro
+[^ayu.1]: El método de instalación por red PXE requiere que configure otro
     servidor con los servicios DHCP para asignarle dirección durante la
     instalación y TFTP para que pueda servirle el archivo de arranque
     `boot` y un kernel como `bsd`
 
-[^2]: En discos, DVDs y disquettes las particiones se indican con a, b,
+[^ayu.2]: En discos, DVDs y disquettes las particiones se indican con a, b,
     d y letras que se usan como postfijo. El postfijo c representa el
     disco/DVD/disquette completo. Por ejemplo en el caso del primer
     disco IDE las particiones pueden ser: `/dev/wd0a`, `/dev/wd0b`,
@@ -192,7 +192,11 @@ Herramientas UNIX
 Una vez pueda iniciar un medio con un instalador, el sistema reconocerá
 las partes de su computador y esperará algunas respuestas de su parte,
 como si desea instalar, actualizar o iniciar un interprete de comandos
-para rescatar un sistema: También podrá elegir distribución del teclado,
+para rescatar un sistema: 
+
+![](img/instala1.png)
+
+También podrá elegir distribución del teclado,
 por ejemplo el teclado típico con 'ñ' y junto a esta un '{' corresponde
 a 'es'. El instalador a continuación le permitirá configurar dispositivo
 de red que usará, clave para la cuenta root y detalles para el inicio
@@ -203,12 +207,20 @@ como cuenta de usuario administrador (`sshd` es un servicio que permite
 operación remota con ssh, `ntpd` permite sincronizar reloj con
 servidores para esto, X-Window es el entorno gráfico, `xdm` es el
 programa que tras iniciar el entorno gráfico le permite autenticarse).
+
+
+![](img/instala2.png)
+
 En las capturas de pantalla de ejemplo hay un sólo disco duro que se
 usará completo para OpenBSD, es decir tendrá una sóla partición del BIOS
 que abarca todo el disco. De no usarse completo el instalador ingresará
 al programa `fdisk` que le permitirá especificar la partición del BIOS
-que destinará para OpenBSD (en `fdisk` el comando 'h' le presentará una
-breve ayuda). Tras definir el área del disco dedicada a OpenBSD podrá
+ue destinará para OpenBSD (en `fdisk` el comando 'h' le presentará una
+breve ayuda). 
+
+![](img/instala3.png)
+
+Tras definir el área del disco dedicada a OpenBSD podrá
 definir etiquetas o subparticiones para el área de OpenBSD con el
 programa `disklabel`. Aunque hay un modo de autolocalización de las
 subparticiones se recomienda que cree su propio esquema de
@@ -220,22 +232,29 @@ subparticiones, la primera (`a`) siempre debe ser para el sistema raíz
 indispensable tenerla o podrá tener problemas de memoria posteriormente
 con algunas aplicaciones), la partición `c` representa la partición del
 BIOS completa y no debe tocarse, la tercera (`d`) corresponderá a
-`/home` y la cuarta (`e`) a `/var`[^1]. Note que con este esquema los
+`/home` y la cuarta (`e`) a `/var`[^ins.1]. Note que con este esquema los
 programas y sus datos estáticos (típicos de los directorios `/bin`,
 `/sbin` y `/usr` quedarán en la subpartición `a`. Los datos de usuario
 típicamente en `/home` quedarán en la subpartición `d`, y los datos
 variables de los programas (e.g páginas web, bases de datos, bitácoras)
-típicos de `/var` quedarán en la subpartición `e`. Note que de cada
+típicos de `/var` quedarán en la subpartición `e`. 
+
+![](img/instala4.png)
+
+Note que de cada
 subpartición debe especificar desplazamiento (i.e sector en el que
 comienza) y tamaño (i.e cantidad de sectores que ocupa). Tenga en cuenta
 que un sector es de 512bytes, así que aproximadamente 2'000.000 de
 sectores corresponden a 1GB. En el ejemplo anterior / es de
 aproximadamente 10GB, la partición de intercambio es de 500MB, /home de
-1GB y /var aproximadamente de 2.1GB. Después de elegir subparticiones el
-instalador formateará las subparticiones. Después podrá especificar la
-ruta donde están los juegos de instalación (en el caso de la
-distribución Aprendiendo de Jesús es `/`) y elegir los que instalará.
-Podrá elegir entre:
+1GB y /var aproximadamente de 2.1GB. 
+
+![](img/instala5.png)
+
+Después de elegir subparticiones el instalador formateará las subparticiones. 
+Después podrá especificar la ruta donde están los juegos de instalación 
+(en el caso de la distribución Aprendiendo de Jesús es `/`) y elegir los que 
+instalará.  Podrá elegir entre:
 
 bsd
 
@@ -250,7 +269,7 @@ bsd.rd
 :   El kernel pero que no usa dispositivos de almacenamiento sino un
     disco virtual en RAM (útil por ejemplo para hacer actualizaciones).
 
-baseVER-OPENBSD-S
+base&VER-OPENBSD-S;
 
 :   Que es indispensable, porque además de la jerarquía de directorios
     incluye: los programas de los directorios `/bin`, `/usr/bin`,
@@ -261,67 +280,67 @@ baseVER-OPENBSD-S
     NTP, IPv6, autenticación con Kerberos, NFS, NAT, AMD, AFS, perl y
     algunas herramientas de desarrollo.
 
-etcVER-OPENBSD-S
+etc&VER-OPENBSD-S;
 
 :   También indispensable en sistemas que se instalan por primera vez
     (aunque no necesariamente si se hace actualización). Incluye los
     archivos de configuración del directorio `/etc` e información
     complementaria de `/var`.
 
-compVER-OPENBSD-S
+comp&VER-OPENBSD-S;
 
 :   Que incluye herramientas de desarrollo para Fortran, C y C++. Las
     librerías que estas requieren y la documentación de las llamadas al
     sistema y de las librerías.
 
-manVER-OPENBSD-S
+man&VER-OPENBSD-S;
 
 :   Que incluye documentación HTML, info y man de los programas y
-    librerías de baseVER-OPENBSD-S.
+    librerías de base&VER-OPENBSD-S;.
 
-gameVER-OPENBSD-S
+game&VER-OPENBSD-S;
 
 :   Algunos juegos que se instalan en `/usr/games`
 
-miscVER-OPENBSD-S
+misc&VER-OPENBSD-S;
 
 :   Que incluye información del directorio `/usr/share` como
     diccionarios y documentación complementaria.
 
-xbaseVER-OPENBSD-S
+xbase&VER-OPENBSD-S;
 
 :   Programas básicos de X-Window (`/usr/X11R6/bin`), librerías
     (`/usr/X11R6/lib`) y su documentación (`/usr/X11R6/man`).
 
-xfontVER-OPENBSD-S
+xfont&VER-OPENBSD-S;
 
 :   Tipos de letra para X-Window (`/usr/X11R6/lib/X11/fonts`), para
     diversas codificaciones e idiomas, en resoluciones 100ppp y 75ppp.
 
-xservVER-OPENBSD-S
+xserv&VER-OPENBSD-S;
 
 :   Servidores X-Window para diversas tarjetas de video, librerías para
     soportar fuentes y documentación.
 
-xshareVER-OPENBSD-S
+xshare&VER-OPENBSD-S;
 
 :   Encabezados y documentación complementaria de X-Window
 
-siteVER-OPENBSD-S
+site&VER-OPENBSD-S;
 
 :   Requerido para continuar la instalación y configuración de
     Aprendiendo de Jesús. En particular archivo de comandos
     `/usr/local/adJ/inst-adJ.sh` que deberá ejecutar como usuario
     administrador cuando haya reiniciado.
 
-la instalación de los componentes indispensables (baseVER-OPENBSD-S y
-etcVER-OPENBSD-S) requiere cerca de 100MB, y la instalación de todos
+la instalación de los componentes indispensables (base&VER-OPENBSD-S; y
+etc&VER-OPENBSD-S;) requiere cerca de 100MB, y la instalación de todos
 requiere alrededor de 300MB.
 
 Una vez se instalen el kernel genérico (`/bsd`) y los componentes que
 eligió el instalador preparará el directorio `/dev` de dispositivos y
 cambiará la partición de OpenBSD para que pueda arrancar el sistema en
-caso de que sea la partición activa[^2]. Puede entonces apagar con el
+caso de que sea la partición activa[^ins.2]. Puede entonces apagar con el
 comando `halt -p`, retirar el CD y volver a iniciar para entrar al
 sistema instalado. Si tienes problemas para ingresar a OpenBSD puede
 arrancar con el CD de instalación y cuando este comenzando a cargar
@@ -345,11 +364,13 @@ Una vez ingrese verá `xdm` como se presenta a continuación (siempre y
 cuando haya elegido iniciarlo durante la instalación y mientras su
 tarjeta gráfico y monitor sean autodetectados).
 
-[^1]: Si el disco tiene otras particiones del BIOS para otros sistemas,
+![](img/instala6.png)
+
+[^ins.1]: Si el disco tiene otras particiones del BIOS para otros sistemas,
     estos se verán con otras etiquetas (típicamente i para la primera
     partición Windows, m para la primera partición Linux).
 
-[^2]: Si no tiene un manejador de arranque, puede determinar cual de las
+[^ins.2]: Si no tiene un manejador de arranque, puede determinar cual de las
     4 particiones primarias es la activa con el programa `fdisk`.
 
 
@@ -361,12 +382,22 @@ instalación ejecutando desde una terminal:
 
         /inst-adJ.sh
 
+Note que la J es mayúscula (en sistemas tipo Unix los nombres de 
+archivos y programas son sensibles a la capitalización).
+
 Este procedimiento permite instalar y actualizar adJ, así que puede
 ejecutarlo cuantas veces lo requiera para completar la instalación o una
 actualización. El archivo de comandos `/inst-adJ.sh` lo guiará en la
 instalación del resto del sistema con preguntas típicamente de si o no,
-como se presenta en las siguientes capturas de pantalla de ejemplo: adJ
-puede configurar por defecto 2 imagenes cifradas, una para almacenar
+como se presenta en las siguientes capturas de pantalla de ejemplo: 
+
+![](img/insadJ1.png)
+
+![](img/insadJ2.png)
+
+![](img/insadJ3.png)
+
+adJ puede configurar por defecto 2 imagenes cifradas, una para almacenar
 bases de datos de PostgreSQL (directorio `/var/postgresql` y otra para
 almacenar copias de respaldo de la base de datos y otros datos que usted
 requiera (directorio `/var/www/resbase`). Cada una de estas imagenes
@@ -377,9 +408,17 @@ ejecutando:
         /etc/init.d/montaencpos
         /etc/init.d/montaencres
 
+![](img/insadJ4.png)
+
+![](img/insadJ5.png)
+
 El servidor web Apache será configurado con SSL por lo que debe dar
 detalles para el certificado como se presenta en la siguiente captura de
 pantalla.
+
+![](img/insadJ6.png)
+
+![](img/insadJ7.png)
 
 Después es recomendable que consulte `man afterboot` que incluye una
 lista de chequeo de cosas por hacer después de la instalación.
@@ -447,8 +486,8 @@ con:
 ## Configuración de Xorg {#configuracion-de-xorg}
 
 Si durante la instalación eligió usar X-Window y xdm, e instaló los
-juegos de instalación de X-Window (i.e `xbaseVER-OPENBSD-S`,
-`xfontVER-OPENBSD-S`, `xservVER-OPENBSD-S`, `xshareVER-OPENBSD-S`), y si
+juegos de instalación de X-Window (i.e `xbase&VER-OPENBSD-S;`,
+`xfont&VER-OPENBSD-S;`, `xserv&VER-OPENBSD-S;`, `xshare&VER-OPENBSD-S;`), y si
 su tarjeta fue correctamente configurada, al arrancar iniciará en el
 ambiente gráfico.
 

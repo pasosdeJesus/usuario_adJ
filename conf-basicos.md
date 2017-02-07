@@ -14,8 +14,9 @@ ejemplo dentro de `xterm`:
 
 El método de edición (`vi`,`emacs` o `gmacs`) se configura en la
 variable `VISUAL`.
-ftp
----
+
+
+## ftp {#ftp}
 
 Además de las características usuales de un cliente `ftp` (RFC 959,
 extendido en RFC 1123), el cliente `ftp` de OpenBSD:
@@ -41,7 +42,7 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
     `anonymous`, con clave `EUSUARIO@EDOMINIO` al hacer conexiones con
     `rt.fm`.
 
-    > **Warning**
+    > ![Aviso](img/warning.png) **Advertencia**
     >
     > Las claves que se almacenan en este archivo son textos planos que
     > el superusuario del sistema podría ver. Para que otros usuarios no
@@ -49,9 +50,6 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
     > para el grupo:
     >
     >         chmod og-r ~/.netrc
-    >               
-    >
-    > .
 
 -   Permite especificar el URL (iniciado con `http://` o `ftp://`) de un
     archivo por descargar en la línea de comandos (y realiza
@@ -85,7 +83,7 @@ cuenta configurada con `doas comando`. Por ejemplo:
 ### sudo
 
 El programa `sudo` se mantiene como paquete, si lo requiere instalelo
-con:
+desde la cuenta `root` con:
 
         pkg_add sudo
 
@@ -111,8 +109,8 @@ servido o ejecutando `doas cron`.
 
 Cada minuto el programa `cron` busca tareas cuya ejecución esté
 pendiente.
-ld
---
+
+## ld {#ld}
 
 `ld` es el programa que carga otros programas junto con las librerías
 compartidas que requieran y resuelve los símbolos. Para buscar librerías

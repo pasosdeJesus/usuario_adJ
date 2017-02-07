@@ -19,7 +19,8 @@ Una vez en operación podrá realizar diversas configuraciones oprimiendo
 el botón derecho sobre el escritorio en el menú `fluxbox menu`. Por
 ejemplo podrá cambiar estilos en `System Styles` y esconder/mostrar la
 barra de herramientas con `Configure -> Toolbar -> Visible` FluxBox
-ejecutando `xfig`
+
+![](img/fluxbox-xfig.png)
 
 Entre sus características:
 
@@ -57,7 +58,7 @@ Puede configurar teclas rápidas en el archivo `~/.fluxbox/keys`
 
 ### `xfe`
 
-La operación básica se describe en [xref](#basico_adJ), aquí describimos
+La operación básica se describe en [basico_adJ](#biblio), aquí describimos
 algunos detalles de configuración.
 
 El archivo de configuración se ubica en `~/.config/xfe/xferc`. La
@@ -74,9 +75,11 @@ archivo de configuración en la sección `OPTIONS` debe incluir:
             
 ### `xiphos`
 
-Como se describe en [xref](#xiphosmanual), es una herramienta gráfica de
+Como se describe en [xiphosmanual](#biblio), es una herramienta gráfica de
 estudio e investigación bíblica que se basa en las librerías del
 proyecto Sword.
+
+![](img/xiphos.png)
 
 Puede iniciarla desde el menu de fluxbox Espiritualidad-&gt;Xiphos o
 desde una terminal con `xiphos`. Deben instalarse módulos primero. Cada
@@ -99,6 +102,8 @@ prácticamente, la misma funcionalidad de MS-Office, un formato de
 documentos estándar (ISO) y facilidades para importar y exportar en
 formatos de MS-Office.
 
+![](img/gnumeric.png)
+
 Lo puede iniciar desde el escritorio con botón derecho [Oficina &gt;
 LibreOffice]{.menuchoice} o bien desde una terminal con
 
@@ -117,11 +122,11 @@ inicia con `simpress` desde un terminal) y el programa para diagrama
 `draw` (que puede iniciar con `sdraw`). Puede aprender más sobre este
 procesador en [xref](#libreoffice-basico)
 
-Además el DVD de adJ incluye P-ABIWORD como procesador de texto capaz de
+Además el DVD de adJ incluye &p-abiword; como procesador de texto capaz de
 abrir y escribir tanto en el formato de Microsoft Office como en
 OpenDocument (que es el formato de LibreOffice y OpenOffice).
 
-Para operar con hojas de cálculo incluye P-GNUMERIC, que también puede
+Para operar con hojas de cálculo incluye &p-gnumeric;, que también puede
 abrir y guardar en OpenDocument y en formatos de Microsoft Office.
 
 La funcionalidad de un procesador de palabra, así como la básica para
@@ -136,9 +141,9 @@ diferentes de operar.
 
 Para emplear TeX, LaTeX y asociados instale texlive y gv:
 
-        doas pkg_add $PKG_PATH/P-TEXLIVE_BASE.tgz 
-        doas pkg_add $PKG_PATH/P-TEXLIVE_TEXMF-FULL.tgz 
-        doas pkg_add $PKG_PATH/P-GV.tgz 
+        doas pkg_add $PKG_PATH/&p-texlive;_BASE.tgz 
+        doas pkg_add $PKG_PATH/&p-texlive;_TEXMF-FULL.tgz 
+        doas pkg_add $PKG_PATH/&p-gv;.tgz 
 
 Puede configurar tamaño del papel, separado en sílabas y otros detalles
 con `texconfig`.
@@ -188,14 +193,14 @@ procesarlo.
     \[ \int_{x=-\infty}^{\infty}e^{-|x|} \]
     \end{document}
 
-section
-Comando de LaTeX para iniciar una sección.
+<!--section
+Comando de LaTeX para iniciar una sección.-->
 
-emph
-Comando de LaTeX para ambiar tipo de letra a itálicas.
+<!--emph
+Comando de LaTeX para ambiar tipo de letra a itálicas.-->
 
-textbf
-Comando de LaTeX para cambiar tipo de letra a negrilla.
+<!--textbf
+Comando de LaTeX para cambiar tipo de letra a negrilla.-->
 
 LaTeX ofrece plantillas para varios tipos de documentos: artículo,
 reporte, libro y ofrece el concepto de ambiente para indicar como
@@ -218,7 +223,7 @@ Programa para ver un archivo DVI en pantalla.
 
 El archivo DVI es apropiado para imprimir, puede imprimirlo con un
 comando como `dvilj`, `dvidj` o un nombre análogo que corresponda a su
-impresora [^1]. Para visualizar un archivo DVI puede emplear el comando
+impresora [^lat.1]. Para visualizar un archivo DVI puede emplear el comando
 xdvi:
 
         xdvi documento.dvi
@@ -233,14 +238,14 @@ y para convertirlo a PostScript puede emplear `dvi2ps`:
 A continuación se presenta como se ve el ejemplo de esta sección con el
 programa `xdvi`.
 
-![Visualización de DVI generado de fuente en LaTeX](ejlatex.eps)
+![Visualización de DVI generado de fuente en LaTeX](img/ejlatex.png)
 
 Existen además otros programas para convertir de LaTeX a HTML como
 latex2html y HeVeA. Puede encontrar más información de latex2html en
 [](http://ctan.tug.org/ctan/tex-archive/support/latex2html/) y de HeVeA
 en [](http://pauillac.inria.fr/hevea/).
 
-[^1]: Si usa `ksh` puede ver una lista de posibles programas que le
+[^lat.1]: Si usa `ksh` puede ver una lista de posibles programas que le
     permitan imprimir, tecleando `dvi` desde un intérprete de comandos y
     presionando Tab dos veces.
 
@@ -254,9 +259,9 @@ estilo DSSSL, o bien DocBook XML 4.4 y procesarse con `xsltproc`.
 
 Instale los paquetes openjade, docbook y docbook-dsssl:
 
-        doas pkg_add $PKG_PATH/P-DOCBOOK.tgz
-        doas pkg_add $PKG_PATH/P-DOCBOOK-DSSSL.tgz
-        doas pkg_add $PKG_PATH/P-OPENJADE.tgz 
+        doas pkg_add $PKG_PATH/&p-docbook;.tgz
+        doas pkg_add $PKG_PATH/&p-docbook-dssl;.tgz
+        doas pkg_add $PKG_PATH/&p-openjade;.tgz 
 
 Esto bastará para hacer conversiones de DocBook SGML a HTML por ejemplo
 si su hoja de estílo DSSL es "marcos.dsl" y va a convertir el documento
@@ -360,12 +365,12 @@ o si desea emplear el diccionario de un idioma particular:
                 
 
 Al corregir interactivamente `ispell` mostrará palabras que no encuentre
-en el diccionario del idioma ni en su diccionario personal[^1] del
+en el diccionario del idioma ni en su diccionario personal[^corr.1] del
 idioma (e.g. `~/.ispell_spanish`), así como posibles remplazos. Podrá
 elegir uno de los remplazos tecleando el número que antecede al
 remplazo.
 
-[^1]: Puede cambiar el diccionario personal que `ispell` debe emplear
+[^corr.1]: Puede cambiar el diccionario personal que `ispell` debe emplear
     con la opción `-p 
                             archivo`
 
@@ -401,13 +406,13 @@ otro.
 ### Edición de gráficos {#ediciongraficos}
 
 Para ver una gráfica (sin editarla) prácticamente en cualquier formato,
-puede usar `display` incluido en P-IMAGEMAGICK:
+puede usar `display` incluido en &p-imagemagick;:
 
     display migrafica.png
               
 
 Otra opción que facilita ver un directorio con imagenes es `xfi`
-incluido en el paquete P-XFE:
+incluido en el paquete &p-xfe;:
 
     xfi migrafica.png
               
@@ -417,16 +422,18 @@ creación de diagramas. Para retocar fotografías se emplean editores
 gráficos a nivel de pixels, mientras que para creación de diagramas
 resultan más convenientes editores de gráficos vectoriales.
 
-Como editor de gráficos a nivel de pixels, el CD de adJ incluye P-GIMP
+Como editor de gráficos a nivel de pixels, el CD de adJ incluye &p-gimp;
 
-Como editor vectorial incluye P-INKSCAPE
+![](img/gimp.png)
 
-![](inkscape.eps)
+Como editor vectorial incluye &p-inkscape;
 
-OpenOffice incluye otro editor vectorial llamado draw.
+![](img/inkscape.png)
+
+OpenOffice incluye otro editor vectorial llamado `draw`.
 
 Para la generación de gráficos de barras y estadísticos resulta más
-apropiado el graficador de P-GNUMERIC o de calc --la hoja de cálculo de
+apropiado el graficador de &p-gnumeric; o de calc --la hoja de cálculo de
 OpenOffice--, ver [xref](#msoffice)
 
 
@@ -435,7 +442,11 @@ OpenOffice--, ver [xref](#msoffice)
 Para reproducir una pista de audio en diversos formatos (incluyendo el
 libre ogg, el común wav y el patentado mp3) puede usar `mplayer` (ver
 [xref](#mplayer)), o bien `audacious` (incluido en el paquete
-P-AUDACIOUS): El programa `play` incluido en el paquete P-SOX también le
+&p-audacious;):
+
+![](img/audacious.png)
+
+ El programa `play` incluido en el paquete &p-sox; también le
 permitirá escuchar diversos formatos.
 
 Desde la línea de comandos podrá recortar, cambiar volumen y aplicar
@@ -443,7 +454,9 @@ otros efectos empleando el programa `sox`.
 
 Si prefiere un editor gráfico que le permite recortar y aplicar algunos
 efectos a pistas de audio en prácticamente cualquier formato de audio
-utilice el programa P-AUDACITY:
+utilice el programa &p-audacity;:
+
+![](img/audacity.png)
 
 ## Operación en red {#operación-en-red}
 
@@ -525,13 +538,13 @@ navegador.
 
 ### Ruby
 
-En adJ es sencillo usar P-RUBY con Ruby on Rails 5. Lo básico se instala
+En adJ es sencillo usar &p-ruby; con Ruby on Rails 5. Lo básico se instala
 de paquetes de OpenBSD y lo más reciente de Ruby directamente como
 gemas.
 
 #### Instalación y configuración
 
-Asegúrese de tener instalados los paquetes P-RUBY, P-LIBV8 y P-NODE,
+Asegúrese de tener instalados los paquetes &p-ruby;, &p-libv8; y &p-node;,
 incluidos en el DVD de adJ 5.9
 
 Asegúrese de tener enlaces al interprete de ruby y herramientas (como

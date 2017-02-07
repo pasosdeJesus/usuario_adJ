@@ -1,11 +1,11 @@
-[](http://traduccion.pasosdeJesus.org/) 2013
+[bdp] Traducción de los evangelios de dominio público y abierta a mejoras <http://traduccion.pasosdeJesus.org/> 2013
 
-<http://structio.sourceforge.net> Feb/2003
+[AALinux] Aprendiendo a aprender Linux: Guías para colegios con plataforma de referencia S-Helio 1.1 <http://structio.sourceforge.net> Feb/2003
 
-<http://pasosdeJesus.github.io/basico_adJ> ANIO-ACT
+[basico_adJ] Uso Básico de la distribución Aprendiendo de Jesús de OpenBSD <http://pasosdeJesus.github.io/basico_adJ> &ANIO-ACT;
 
-<http://pasosdeJesus.github.io/servidor_adJ> ANIO-ACT
+[servdor_adJ] La distribución Aprendiendo de Jesús de OpenBSD como Servidor y Cortafuegos <http://pasosdeJesus.github.io/servidor_adJ> &ANIO-ACT;
 
-[](http://xiphos.org/manual/index) 2010
+[xiphosmanual] Manual de Xiphos <http://xiphos.org/manual/index> 2010
 
-[](http://www.p2pu.org/general/libreoffice-basico) 2011
+[libreoffice-basico] Curso LibreOffice Básico <http://www.p2pu.org/general/libreoffice-basico> 2011

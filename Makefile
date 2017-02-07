@@ -132,9 +132,3 @@ infoversion.ent:
 		cp ../servidor_adJ/infoversion.ent .; \
 	} fi;
 
-.SUFFIXES: .md .xdbk
-.md.xdbk:
-	mkdir -p tmp
-	$(PANDOC) -t docbook -o tmp/$@ $<
-	sed -e "s/<link linkend=\"\([^\"]*\)\">xref<\/link>/<xref linkend=\"\1\"\/>/g" tmp/$@ > $@
-

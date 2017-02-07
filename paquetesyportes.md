@@ -14,13 +14,18 @@ este requiera, usando para descargarlos lo(s) repositorio(s)
 especificada(s) en la variable de ambiente `PKG_PATH`, por esto en el
 archivo `~/.profile` o en `~/.xsession` vale la pena agregar:
 
-        export PKG_PATH=ftp://ftp.pasosdeJesus.org/pub/OpenBSD/VER-OPENBSD/packages/amd64
+        export PKG_PATH=ftp://ftp.pasosdeJesus.org/pub/OpenBSD/&VER-OPENBSD;/packages/amd64
 
 o la vía del CD-ROM 1 o una vía de un espejo más rápido para su
-caso[^1]. Una vez establecida esta variable, para agregar por ejemplo el
-paquete `P-VIM.tgz`:
+caso[^paq.1]. Una vez establecida esta variable, para agregar por ejemplo el
+paquete `&p-vim;.tgz`:
 
-        pkg_add $PKG_PATH/P-VIM.tgz 
+        pkg_add $PKG_PATH/&p-vim;.tgz 
+
+[^paq.1]: Para determinarlo puede ver la velocidad de cada espejo con algo
+    como `ping ftp.pasosdeJesus.org` o emplear el script `pos.sh` que
+    hará la prueba para los espejos oficiales de OpenBSD. Está en el
+    directorio `herram` de las fuentes de este escrito.
 
 Puede ver la lista de paquetes instalados en su sistema con `pkg_info` o
 con `ls -l /var/db/pkg`, podrá desinstalar uno con `pkg_delete` seguido
@@ -29,7 +34,7 @@ también paquetes que dependan del que está quitando --que es útil si
 está actualizando un paquete).
 
 Podrá ver los paquetes disponibles para instalar en
-[http://www.openbsd.org/VER-OPENBSD\_packages/amd64.html](http://www.openbsd.org/&VER-OPENBSD;_packages/amd64.html).
+[http://www.openbsd.org/&VER-OPENBSD;\_packages/amd64.html](http://www.openbsd.org/&&VER-OPENBSD;;_packages/amd64.html).
 
 En el [Ápendice Paquetes de adJ](#paquetes-adJ) destacamos algunos que 
 permiten tener un ambiente para producir contenidos, programar, escuchar 
@@ -54,11 +59,6 @@ Y para actualizar todos los paquetes puede utilizar
 
         doas pkg_add -u 
             
-
-[^1]: Para determinarlo puede ver la velocidad de cada espejo con algo
-    como `ping ftp.pasosdeJesus.org` o emplear el script `pos.sh` que
-    hará la prueba para los espejos oficiales de OpenBSD. Está en el
-    directorio `herram` de las fuentes de este escrito.
 
 ## Portes
 
@@ -85,7 +85,7 @@ descargarlas de un repositorio CVS como se presenta a continuación:
 
         cd /usr
         export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-        cvs -z3 -q get -rOPENBSD_VER-OPENBSD-U -P ports 
+        cvs -z3 -q get -rOPENBSD_&VER-OPENBSD;-U -P ports 
 
 La vía para `CVSROOT` adaptela a su servidor más cercano, escogiendo
 entre los disponibles en: <http://www.openbsd.org/anoncvs.html>.
@@ -134,7 +134,7 @@ Makefile
 
 distinfo
 
-:   Este archivo incluye diversas "firmas"[^1] de cada fuente que debe
+:   Este archivo incluye diversas "firmas"[^cre.1] de cada fuente que debe
     descargarse para asegurar su integridad. Se genera automáticamente
     con `make makesum` y se verifica con `make checksum`
 
@@ -164,4 +164,4 @@ el porte para asegurar que cumple con todos los lineamientos que espera
 el equipo de portes de OpenBSD. Puede consultar más en porting-checklist
 porting.
 
-[^1]: Resultados de pasar archivos por funciones de hashing.
+[^cre.1]: Resultados de pasar archivos por funciones de hashing.

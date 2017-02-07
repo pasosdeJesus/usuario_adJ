@@ -48,8 +48,8 @@ $(HTML_TARGET): $(HTML_PROC)
 
 # To generate HTML in multiple pages with xsltproc
 dbrep_html_xsltproc: $(PROYECTO)-4.1.2.$(EXT_DOCBOOK) $(INDEX) $(SOURCES) $(IMAGES) $(XSLT_HTML) 
-	$(MKDIR) -p $(HTML_DIR)
-	for i in $(IMAGES)  ; do $(CP) $$i $(HTML_DIR)/`basename $$i`; done 
+	$(MKDIR) -p $(HTML_DIR)/img/
+	for i in $(IMAGES)  ; do $(CP) $$i $(HTML_DIR)/img/`basename $$i`; done 
 	bp=`pwd`;cd $(HTML_DIR) && $(RM) -f *html && $(XSLTPROC) --catalogs --nonet $$bp/$(XSLT_HTML) $$bp/$(PROYECTO)-4.1.2.$(EXT_DOCBOOK) 
 	for i in $(HTML_DIR)/*html; do $(CP) $$i $$i.bak; $(SED) -e "s/­/-/g" $$i.bak > $$i; done
 	rm -f $(HTML_DIR)/*bak
@@ -138,7 +138,7 @@ ispell: $(HTML_TARGET)
 	$(ISPELL) -d spanish -p $(PROYECTO).ispell imp/$(PROYECTO).txt
 
 
-.SUFFIXES: .eps .png .dot .fig
+.SUFFIXES: .dot .eps .fig .md .png .xdbk
 
 .jpg.eps:
 	$(CONVERT) $< EPS:$@
@@ -153,3 +153,12 @@ ispell: $(HTML_TARGET)
 
 .fig.png:
 	$(FIG2DEV) -L png $< $@
+
+# Extensiones a Markdown:
+# Referencias a otra sección [xref](#id)
+# Sustitución de entidades igual que en SGML &nombreentidad;
+.md.xdbk:
+	mkdir -p tmp
+	$(PANDOC) -t docbook -o tmp/$@ $<
+	sed -e "s/<link linkend=\"\([^\"]*\)\">xref<\/link>/<xref linkend=\"\1\"\/>/g;s/&amp;\([-A-Z]*\);/\&\1;/g;" tmp/$@ > $@
+

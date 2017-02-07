@@ -119,8 +119,14 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
        &novedades;
      </para>
    </appendix>  
+
+   <appendix id="bibliografia">
+	   <title>Bibliografía</title>
+     <para>
+   	&biblio;
+     </para>
+   </appendix>  
    
-   &biblio;
 
    <!-- &indice; -->
 </article>

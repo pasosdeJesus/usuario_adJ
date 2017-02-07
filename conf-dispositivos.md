@@ -28,14 +28,14 @@ software (e.g IRQ, dirección de entrada salida base, DMA) y modifique
 los valores que emplea el kernel de una de estas formas (en un caso
 extremo puede tener que deshabilitar el dispositivo):
 
--   Arranque con `boot -c` y cambie parámetros usados por los
+-   Arranque con __`boot -c`__ y cambie parámetros usados por los
     controladores antes de continuar con la detección automática de
     hardware. El cambio sólo durará mientras no reinicie el sistema,
     puede hacer el cambio durable por ejemplo con el comando:
-    `config -u`.
+    __`config -u`__.
 
 -   Después de que su sistema haya iniciado modifique los recursos
-    asignados por defecto del kernel con `config -e -o /bsd.new /bsd`.
+    asignados por defecto del kernel con __`config -e -o /bsd.new /bsd`__
 
 -   Recompile el kernel con una configuración apropiada.
 
@@ -106,16 +106,16 @@ Aun cuando algunos programas ofrecen menús con una opción para imprimir,
 prácticamente todos usan en últimas el programa `lpr` (o
 `/usr/local/bin/lpr` si está usando CUPS) que se encarga de poner la
 información que debe enviarse a la impresora en una cola de trabajos
-pendientes [^1], que es atendida automáticamente (i.e de ella se envían
+pendientes [^imp.1], que es atendida automáticamente (i.e de ella se envían
 trabajos pendientes cuando la impresora está disponible) por un
 programa.
 
-lpr
+<!-- lpr
 Nombre del programa empleado para poner una impresión más en su cola de
-impresiones pendientes.
+impresiones pendientes. -->
 
 Cada impresora configurada tiene un nombre, la impresora por defecto se
-llama `lp` [^2].
+llama `lp` [^imp.2].
 
 Posiblemente su sistema esté configurado para permitir a `lpr` la
 impresión de textos planos y documentos PostScript o PDF. Para programar
@@ -136,13 +136,13 @@ con los nombres de las impresiones pendientes presentará un número que
 la identifica. Tal número le permitirá cancelar una de sus tareas de
 impresión pendiente, usándolo como parámetro de `lprm`.
 
-lpq
+<!-- lpq
 Nombre del programa empleado para examinar la cola de sus impresiones
-pendientes.
+pendientes. -->
 
-lprm
+<!-- lprm
 Nombre del programa empleado para eliminar una impresión de la cola de
-impresiones pendientes.
+impresiones pendientes. -->
 
 Para imprimir gráficas y documentos con diversos tipos de letra o
 colores, primero debe convertirse la información a secuencias de control
@@ -150,12 +150,12 @@ particulares de su impresora. Cómo de una impresora a otra varían los
 secuencias de control, en sistemas tipo Unix con LPD suele emplearse
 PostScript (que es un lenguaje apropiado para documentos por imprimir)
 como formato común y se usan los filtros del programa Ghostscript para
-traducir de PostScript al formato particular de su impresora [^3]. Si se
+traducir de PostScript al formato particular de su impresora [^imp.3]. Si se
 usa CUPS es posible emplear controladores particulares para su impresora
 y no depender de Ghostscript.
 
 Ghostscript es un programa que puede leer documentos PostScript y PDF
-[^4] y presentarlos en una ventana de X-Window o transformarlos al
+[^imp.4] y presentarlos en una ventana de X-Window o transformarlos al
 lenguaje particular de algunas impresoras. Por ejemplo para generar a
 partir de un documento PostScript `s2.ps` la secuencia de caracteres
 apropiada para una impresora LaserJet en el archivo `s2.lj` se usaría:
@@ -222,18 +222,18 @@ e.g. `595 842 /a4 setpagesize`:
 Tanto PostScript como PDF requieren bastante espacio para describir un
 documento, usualmente los documentos PDF requieren menos porque
 mantienen la información comprimida. Para convertir entre PostScript y
-PDF se emplean `ps2pdf` y `pdf2ps` [^5]. Para visualizar e imprimir un
+PDF se emplean `ps2pdf` y `pdf2ps` [^imp.5]. Para visualizar e imprimir un
 PDF, además de `gv`, puede emplear `xpdf` o el programa Acrobat Reader
 (`acroread`).
 
-xpdf
-Programa empleado para consultar documentos PDF.
+<!-- xpdf
+Programa empleado para consultar documentos PDF. -->
 
-ps2pdf
-Programa para transformar de PostScript a PDF.
+<!-- ps2pdf
+Programa para transformar de PostScript a PDF. -->
 
-pdf2ps
-Programa para transformar de PDF a PostScript.
+<!-- pdf2ps
+Programa para transformar de PDF a PostScript. -->
 
 ### Configuración de una impresora local con `lpd` {#lpd-local}
 
@@ -318,7 +318,7 @@ un filtro del programa Ghostscript.
 #### Instalación {#cups-inst}
 
 Hay un paquete de CUPS entre los portes oficiales de OpenBSD
-VER-OPENBSD. Una vez instalado puede ejecutarlo con
+&VER-OPENBSD;. Una vez instalado puede ejecutarlo con
 
         doas cupsd
         
@@ -397,23 +397,23 @@ configuración con:
     # pkill -HUP cupsd
                   
 
-[^1]: En el caso de LPD el directorio con la cola de trabajos de una
+[^imp.1]: En el caso de LPD el directorio con la cola de trabajos de una
     impresora se configura en `/etc/printcap`, en el caso de `lp` el
     directorio por defecto es `/var/spool/outputlpd/lp`.
 
-[^2]: Normalmente puede configurar otro nombre para la impresora por
+[^imp.2]: Normalmente puede configurar otro nombre para la impresora por
     defecto en la variable de ambiente PRINTER.
 
-[^3]: Hay algunas impresoras que pueden imprimir PostScript
+[^imp.3]: Hay algunas impresoras que pueden imprimir PostScript
     directamente, pero en general para hacer la traducción de PostScript
     al lenguaje de una impresora se requiere un filtro que el
     administrador del sistema debe configurar.
 
-[^4]: PDF (*Portable Document Format* es otro lenguaje para impresión,
+[^imp.4]: PDF (*Portable Document Format* es otro lenguaje para impresión,
     de documentos con gráficas y diversos tipos de letras, basado en
     PostScript (de la misma compañía ---Adobe).
 
-[^5]: De acuerdo a Printig-HOWTO estas herramientas ofrecen la
+[^imp.5]: De acuerdo a Printig-HOWTO estas herramientas ofrecen la
     funcionalidad de las herramientas "*distiller*" de Adobe.
 
 ## Discos duros
@@ -431,7 +431,7 @@ identificada con `disklabel`. Como se explica en FFS, consta de:
 
 -   Un superbloque con los parámetros básicos del sistema de archivos
     (e.g tamaño de cada bloque, lista de grupos de cilindros) y con los
-    parámetros del hardware que afectan el desempeño[^1] (tipo de
+    parámetros del hardware que afectan el desempeño[^dis.1] (tipo de
     transferencia de disco a memoria, tiempo esperado por transferencia,
     bloques por pista, velocidad de rotación).
 
@@ -484,7 +484,7 @@ Para crear un sistema de archivos `ffs` en un disco ya particionado con
 
         doas newfs -t ffs /dev/wd1j
 
-> **Warning**
+> ![](img/warning.png) **Advertencia**
 >
 > Al crear un nuevo sistema de archivos se borra la información que
 > pudiera haber existido.
@@ -512,7 +512,7 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
     se trata de un sistema ffs o `swap` si se trata de un dispositivo
     para intercambio), y la ubicación.
 
-    > **Caution**
+    > ![](img/caution.png) **Cuidado**
     >
     > El sitio donde reubique una partición NO debe estar traslapado
     > sobre una partición ya existente. Si traslapa una partición sobre
@@ -543,7 +543,7 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
 
             sudo swapctl -l 
 
-[^1]: Los parámetros del hardware mantenidos ayudan a localizar bloques
+[^dis.1]: Los parámetros del hardware mantenidos ayudan a localizar bloques
     libres de forma óptima.
 
 
@@ -755,7 +755,7 @@ cuenta:
     con cdrecord agregue la opción `-multi`.
 
 -   Las imágenes de sesiones posteriores deben crearse empleando la
-    opción `-C` de `mkisofs` [^1]. Los datos precisos que debe pasar a
+    opción `-C` de `mkisofs` [^que.1]. Los datos precisos que debe pasar a
     la opción -C los examina con:
 
             doas cdrecord dev=/dev/cd0c -msinfo
@@ -786,7 +786,7 @@ usuarios pueden verse mensajes como
 [](http://www.deadly.org/article.php3?sid=20031105030127&mode=flat) y
 [](http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html)
 
-[^1]: Si la sesión previa tenia -T esta también con mismo nombre de
+[^que.1]: Si la sesión previa tenia -T esta también con mismo nombre de
     tablas (especificable con -table-name TN).
 
 
@@ -856,9 +856,9 @@ Para emplear una memoria USB después de conectarse debe:
             doas umount /mnt/usb
                 
 
-## Imagen encriptada
+## Imagen cifrada
 
-Es posible tener particiones encriptadas, estas requieren que se ingrese
+Es posible tener particiones cifradas, estas requieren que se ingrese
 una clave antes de montarlas ---por ejemplo en el momento del arranque.
 
 ### Creación de la imagen {#crear-imagen}
@@ -883,7 +883,7 @@ siguiente archivo de comandos (ubíquelo por ejemplo en
 `/usr/local/sbin/montapost.sh`):
 
     #!/bin/sh
-    # Monta imagenes encriptadas en OpenBSD. Dominio público. 2006.
+    # Monta imagenes cifradas en OpenBSD. Dominio público. 2006.
 
     if (test ! -d /var/postgresql) then {
         mkdir /var/postgresql
@@ -919,7 +919,7 @@ la inicialización de PostgreSQL):
 De forma que en cada arranque el script le solicitará la clave antes de
 continuar.
 
-### Referencias {#referencias-imagen-encriptada}
+### Referencias {#referencias-imagen-cifrada}
 
 Página `man vnconfig`.
 
@@ -972,7 +972,7 @@ Shift+Alt izquierdo
 
 :   Como tecla de composición
 
-La tecla de composición[^1] le permitirá generar un carácter empleando
+La tecla de composición[^tec.1] le permitirá generar un carácter empleando
 una secuencia de dos teclas. Por ejemplo si presiona la tecla de
 composición (i.e Shift+Alt izquierdo con la configuración presentada), y
 después presiona ? seguido de ? obtendrá el carácter ¿. En el apendice
@@ -1004,4 +1004,4 @@ archivo `~/.Xmodmap`
 y asegurarse de ejecutar `xmodmap ~/.Xmodmap` durante el arranque de su
 sesión X (podría ser por ejemplo agregándolo a `~/.xsession`)
 
-[^1]: Tecla de composición: en inglés *compose key*
+[^tec.1]: Tecla de composición: en inglés *compose key*
