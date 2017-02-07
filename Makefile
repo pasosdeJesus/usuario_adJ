@@ -1,5 +1,5 @@
 # Reglas para generar HTML, PostScript y PDF de usuario_adJ
-# Basadas en infraestructura de dominio público de repasa 
+# Basadas en infraestructura de dominio pÃºblico de repasa 
 #   (http://structio.sourceforge.net/repasa)
 
 include Make.inc
@@ -11,13 +11,13 @@ EXT_DOCBOOK=xdbk
 FUENTESDB=introduccion.xdbk instalacion.xdbk paquetesyportes.xdbk conf-basicos.xdbk conf-programas.xdbk conf-dispositivos.xdbk duales.xdbk paquetes-adJ.xdbk openbsdsrc/tabcompose.xdbk novedades.xdbk biblio.xdbk 
 
 SOURCES=$(PROYECTO).$(EXT_DOCBOOK)  $(FUENTESDB)
-# Listado de fuentes XML. Preferiblmente en el orden de inclusión.
+# Listado de fuentes XML. Preferiblmente en el orden de inclusiÃ³n.
 
 IMAGES=img/fluxbox-xfig.png img/home.png img/prev.png img/toc-minus.png img/blank.png img/important.png img/toc-plus.png img/caution.png img/next.png img/tip.png img/up.png img/draft.png img/note.png img/toc-blank.png img/warning.png img/instala1.png img/instala2.png img/instala3.png img/instala4.png img/instala5.png img/instala6.png img/ejlatex.png img/xiphos.png img/gimp.png img/inkscape.png img/insadJ1.png img/insadJ1.png img/insadJ2.png img/insadJ3.png img/insadJ4.png img/insadJ5.png img/insadJ6.png img/insadJ7.png img/audacious.png img/audacity.png img/gnumeric.png
 # Listado de imagenes, preferiblemente en formato PNG
 
 HTML_DIR=html
-# Directorio en el que se generará información en HTML (con reglas por defecto)
+# Directorio en el que se generarÃ¡ informaciÃ³n en HTML (con reglas por defecto)
 
 HTML_TARGET=$(HTML_DIR)/index.html
 # Nombre del HTML principal (debe coincidir con el especificado en estilohtml.xsl)
@@ -39,22 +39,22 @@ OTHER_HTML=
 PRECVS=guias/
 
 INDEX=indice.$(EXT_DOCBOOK)
-# Si habrá un índice, nombre del archivo con el que debe generarse (incluirlo al final del documento).
+# Si habrÃ¡ un Ã­ndice, nombre del archivo con el que debe generarse (incluirlo al final del documento).
 
 
 # Variables requeridas por comdist.mk
 
 GENDIST=Derechos.txt $(SOURCES) $(IMAGES)
-# Dependencias por cumplir antes de generar distribución
+# Dependencias por cumplir antes de generar distribuciÃ³n
 
 ACTHOST=git@github.com:pasosdeJesus/
-# Sitio en Internet donde actualizar. Método indicado por $(ACT_PROC) de confv.sh
+# Sitio en Internet donde actualizar. MÃ©todo indicado por $(ACT_PROC) de confv.sh
 
 ACTDIR=usuario_adJ
 # Directorio en $(ACTHOST) por actualizar
 
 #USER=$(LOGNAME),structio
-# Usuario en $(ACTHOST).  Si es el mismo que en la máquina local comentar.
+# Usuario en $(ACTHOST).  Si es el mismo que en la mÃ¡quina local comentar.
 
 GENACT=ghtodo $(PROYECTO)-$(PRY_VERSION)_html.tar.gz $(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).ps.gz $(PRINT_DIR)/$(PROYECTO)-$(PRY_VERSION).pdf 
 # Dependencias por cumplir antes de actualizar sitio en Internet al publicar
@@ -75,15 +75,15 @@ ghtodo: distgh
 	cp $(PROYECTO)-$(PRY_VERSION)/$(PROYECTO)-$(PRY_VERSION)_html.tar.gz .
 
 repasa:
-	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="adJ_usuario" awk -f herram/db2rep $(SOURCES)
+	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="InformaciÃ³n extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio pÃºblico" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="InformaciÃ³n cedida al dominio pÃºblico. Sin garantÃ­as." AUTORES="Vladimir TÃ¡mara" IDSIGNIFICADO="adJ_usuario" awk -f herram/db2rep $(SOURCES)
 
 # Para usar DocBook
 include herram/comdocbook.mak
 
-# Para crear distribución de fuentes y publicar en Internet
+# Para crear distribuciÃ³n de fuentes y publicar en Internet
 include herram/comdist.mak
 
-# Elimina hasta configuración
+# Elimina hasta configuraciÃ³n
 limpiadist: limpiamas
 	rm -f confv.sh confv.xml Make.inc personaliza.ent
 	rm -rf $(HTML_DIR)
@@ -120,7 +120,7 @@ instala:
 	} fi;
 
 repasa:
-	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="openbsd_usuario" awk -f herram/db2rep $(SOURCES)
+	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="InformaciÃ³n extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio pÃºblico" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="InformaciÃ³n cedida al dominio pÃºblico. Sin garantÃ­as." AUTORES="Vladimir TÃ¡mara" IDSIGNIFICADO="openbsd_usuario" awk -f herram/db2rep $(SOURCES)
 
 
 paquetes-adJ.xdbk: infoversion.ent
