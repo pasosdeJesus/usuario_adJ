@@ -141,8 +141,8 @@ diferentes de operar.
 
 Para emplear TeX, LaTeX y asociados instale texlive y gv:
 
-        doas pkg_add $PKG_PATH/&p-texlive;_BASE.tgz 
-        doas pkg_add $PKG_PATH/&p-texlive;_TEXMF-FULL.tgz 
+        doas pkg_add $PKG_PATH/&p-texlive_base;.tgz 
+        doas pkg_add $PKG_PATH/&p-texlive_texmf-full;.tgz 
         doas pkg_add $PKG_PATH/&p-gv;.tgz 
 
 Puede configurar tamaño del papel, separado en sílabas y otros detalles
@@ -260,7 +260,7 @@ estilo DSSSL, o bien DocBook XML 4.4 y procesarse con `xsltproc`.
 Instale los paquetes openjade, docbook y docbook-dsssl:
 
         doas pkg_add $PKG_PATH/&p-docbook;.tgz
-        doas pkg_add $PKG_PATH/&p-docbook-dssl;.tgz
+        doas pkg_add $PKG_PATH/&p-docbook-dsssl;.tgz
         doas pkg_add $PKG_PATH/&p-openjade;.tgz 
 
 Esto bastará para hacer conversiones de DocBook SGML a HTML por ejemplo
@@ -406,7 +406,7 @@ otro.
 ### Edición de gráficos {#ediciongraficos}
 
 Para ver una gráfica (sin editarla) prácticamente en cualquier formato,
-puede usar `display` incluido en &p-imagemagick;:
+puede usar `display` incluido en &p-ImageMagick;:
 
     display migrafica.png
               
@@ -538,26 +538,26 @@ navegador.
 
 ### Ruby
 
-En adJ es sencillo usar &p-ruby; con Ruby on Rails 5. Lo básico se instala
-de paquetes de OpenBSD y lo más reciente de Ruby directamente como
-gemas.
+En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 5. 
+Lo básico se instala de paquetes de OpenBSD y lo más reciente de Ruby 
+directamente como gemas.
 
 #### Instalación y configuración
 
-Asegúrese de tener instalados los paquetes &p-ruby;, &p-libv8; y &p-node;,
-incluidos en el DVD de adJ 5.9
+Asegúrese de tener instalados los paquetes &p-ruby; y &p-node;,
+incluidos en el DVD de adJ &VER-ADJ;
 
 Asegúrese de tener enlaces al interprete de ruby y herramientas (como
 describe el paquete ruby):
 
     doas sh
-    ln -sf /usr/local/bin/ruby23 /usr/local/bin/ruby
-    ln -sf /usr/local/bin/erb23 /usr/local/bin/erb
-    ln -sf /usr/local/bin/irb23 /usr/local/bin/irb
-    ln -sf /usr/local/bin/rdoc23 /usr/local/bin/rdoc
-    ln -sf /usr/local/bin/ri23 /usr/local/bin/ri
-    ln -sf /usr/local/bin/rake23 /usr/local/bin/rake
-    ln -sf /usr/local/bin/gem23 /usr/local/bin/gem
+    ln -sf /usr/local/bin/ruby24 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb24 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb24 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc24 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri24 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake24 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem24 /usr/local/bin/gem
                   
 
 ##### Límites amplios
@@ -566,7 +566,7 @@ Asegurarse de tener limites amplios del sistema operativo para abrir
 archivos y manejar memoria, por ejemplo superiores a los siguientes en
 `/etc/systctl.conf`
 
-    kern.shminfo.shmmni=1024
+    kern.shminfo.semmni=1024
     kern.seminfo.semmns=2048
     kern.shminfo.shmmax=50331648
     kern.shminfo.shmall=51200
@@ -589,6 +589,7 @@ debe tener límites amplios, en particular su clase de login (por ejemplo
 
 (Si modifica el archivo `/etc/login.conf` debe reconstruir su versión
 binaria con `doas cap_mkdb /etc/login.conf`).
+a
 
 ##### irb
 
@@ -613,48 +614,95 @@ tecla \[Tab\] 2 veces para ver los métodos de la clase Integer.
 
 ##### Gemas
 
-El paquete `ruby` incluye `rubygems` que manejan gemas (es decir
+El paquete `ruby` incluye `rubygems` que maneja gemas (es decir
 librerías) con el programa `gem`. Puede actualizar a la versión más
-reciente con:
+reciente las gemas globales con:
 
     doas gem update --system
     QMAKE=qmake-qt5 make=gmake MAKE=gmake doas gem pristine --all
 
+Para facilitar compilación de algunas extensiones (como las de nokogiri) se recomienda instalar globalmente:
+
+```
+doas gem install pkg-config 
+```
+
+El directorio donde se instalan las gemas globales es 
+```/usr/local/lib/ruby/gems/2.4/``` 
+donde sólo pueden instalarse con ```doas```. 
+Recomendamos iniciar un directoio para instalar gemas como usuario normal 
+en  ```/var/www/bundler/ruby/2.4```, por 3 razones (1) evitar riesgos de 
+seguridad al instalar gemas como root, (2) evitar problemas de permisos 
+y la dificultad de programas como bundler para usar ```doas``` en lugar 
+de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones 
+corran en una jaula chroot en ```/var/www```
+
+Prepare ese directorio con:
+
+```
+doas mkdir -p /var/www/bundler/ruby/2.4/
+doas chown -R $USER:www /var/www/bundler
+```
+
+Y cuando requiera instalar una gema allí emplee:
+```
+gem install --install-dir /var/www/bundler/ruby/2.4/ json -v '2.0'
+```
+
+O si llega a tener problemas de permisos con:
+```
+doas gem install --install-dir /var/www/bundler/ruby/2.4/ bcrypt -v '3.1.11'
+```
+
 ##### Bundler
 
-Para facilitar el manejo de varias gemas en un proyecto es típico
-emplear `bundler` que instala con:
+Para facilitar el manejo de varias gemas (y sus interdependencias) en un 
+proyecto es típico emplear ```bundler``` que instala con:
+```
+doas gem install bundler
+if (test -x /usr/lcoal/bin/bundle24) then { doas ln -sf /usr/local/bin/bundle24 /usr/local/bin/bundle; } fi
+```
 
-    doas gem install bundler
+Configurelo para que instale gemas localmente en 
+```/var/www/bundler/ruby/2.4```:
+<pre>
+bundler config path /var/www/bundler/ruby/2.4
+</pre>
 
-Configurelo para que instale gemas para un usuario en `/var/www/bundler`
-(así evitará problemas de permisos y la dificultad de bundler para usar
-`doas` en lugar de `sudo`):
+Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
+verá un archivo ```Gemfile```, donde ```bundler``` examina de que librerías 
+depende la aplicación y genera un archivo ```Gemfile.lock``` con las versiones 
+precisas por instalar de cada gema.  
 
-    bundler config path /var/www/bundler
+Una vez tenga un proyecto asegura que este emplea las gemas de 
+```/var/www/bundler/ruby/2.4``` ejecutando dentro del directorio del proyecto:
 
-Puede experimentar descargando un proyecto para ruby ya hecho,
-seguramente verá un archivo `Gemfile`, donde bundler examina de que
-librerías depende la aplicación y genera un archivo `Gemfile.lock` con
-las versiones precisas por instalar de cada gema.
+```
+mkdir .bundle
+cat > .bundle/config <<EOF
+---
+BUNDLE_PATH: "/var/www/bundler"
+BUNDLE_DISABLE_SHARED_GEMS: "true"
+EOF
+```
 
-Una vez tenga un proyecto puede instalar las gemas de las que depende
-con `bundle install`
+las gemas de las que depende con ```bundle install```
 
-Si eventualmente no logra instalar algunas --por problemas de permisos
-tipicamente-- puede instalar con `doas` e indicar la ruta de las gemas
-locales, por ejemplo:
+Si eventualmente no logra instalar algunas --por problemas de permisos 
+tipicamente-- puede instalar con 
 
-    doas gem install --install-dir /var/www/bundler/ruby/2.3/ bcrypt -v '3.1.11'
+```
+doas gem install --install-dir /var/www/bundler/ruby/2.4 json -v '2.0'
+```
 
 ##### Rails
 
-Se trata de una popular gema que facilita mucho crear sitios web
+Se trata de una popular gema que facilita mucho la creación de sitios 
 dinámicos.
 
 Para instalarla globalmente (en `/usr/local/bin` y
 `/usr/local/lib/ruby/gems/`) la versión estable más reciente de Rails
-(5.0.0 en el momento de este escrito), ejecute
+(5.0.2 en el momento de este escrito), ejecute
 
     doas gem install rails
 
@@ -667,12 +715,27 @@ que se explicó. Algunos casos especiales son:
 
 -   `nokogiri` que puede requerir
 
-        doas gem install --install-dir /var/www/bundler/ nokogiri -- --use-system-libraries 
+        doas gem install --install-dir /var/www/bundler/ruby/2.4/ nokogiri -- --use-system-libraries 
                     
 
 -   `capybara-webkit` que podría requerir
 
         QMAKE=qmake-qt5 MAKE=gmake doas gem install capybara-webkit
+
+##### Coffescript
+
+Si su aplicación rails emplea coffescript necesitará un programa que pueda 
+ejecutar javascript al lado del servidor, recomendamos node.js incluido en adJ, 
+que actualice a la versión más reciente de npm con:
+``` 
+doas npm install npm -g
+``` 
+
+y que instale coffeescript con:
+
+``` 
+doas npm install -g coffee-script
+``` 
 
 ##### Editor vim
 
