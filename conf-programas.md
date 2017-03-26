@@ -589,7 +589,7 @@ debe tener límites amplios, en particular su clase de login (por ejemplo
 
 (Si modifica el archivo `/etc/login.conf` debe reconstruir su versión
 binaria con `doas cap_mkdb /etc/login.conf`).
-a
+
 
 ##### irb
 
@@ -627,10 +627,9 @@ Para facilitar compilación de algunas extensiones (como las de nokogiri) se rec
 doas gem install pkg-config 
 ```
 
-El directorio donde se instalan las gemas globales es 
-```/usr/local/lib/ruby/gems/2.4/``` 
+El directorio donde se instalan las gemas globales es ```/usr/local/lib/ruby/gems/2.4/```
 donde sólo pueden instalarse con ```doas```. 
-Recomendamos iniciar un directoio para instalar gemas como usuario normal 
+Recomendamos iniciar un directorio para instalar gemas como usuario normal 
 en  ```/var/www/bundler/ruby/2.4```, por 3 razones (1) evitar riesgos de 
 seguridad al instalar gemas como root, (2) evitar problemas de permisos 
 y la dificultad de programas como bundler para usar ```doas``` en lugar 
@@ -674,7 +673,7 @@ verá un archivo ```Gemfile```, donde ```bundler``` examina de que librerías
 depende la aplicación y genera un archivo ```Gemfile.lock``` con las versiones 
 precisas por instalar de cada gema.  
 
-Una vez tenga un proyecto asegura que este emplea las gemas de 
+Una vez tenga un proyecto asegure que este emplea las gemas de 
 ```/var/www/bundler/ruby/2.4``` ejecutando dentro del directorio del proyecto:
 
 ```
@@ -685,8 +684,6 @@ BUNDLE_PATH: "/var/www/bundler"
 BUNDLE_DISABLE_SHARED_GEMS: "true"
 EOF
 ```
-
-las gemas de las que depende con ```bundle install```
 
 Si eventualmente no logra instalar algunas --por problemas de permisos 
 tipicamente-- puede instalar con 
@@ -707,7 +704,7 @@ Para instalarla globalmente (en `/usr/local/bin` y
     doas gem install rails
 
 Rails requiere en el servidor un interprete de JavaScript, por lo que
-recomendamos `node.js` (ver {1}) incluido en el DVD de adJ VER-ADJ y que
+recomendamos `node.js` (ver {1}) incluido en el DVD de adJ &VER-ADJ; y que
 se configurará automáticamente.
 
 La gran mayoría de gemas usadas por rails instalarán de la misma forma
@@ -725,13 +722,12 @@ que se explicó. Algunos casos especiales son:
 ##### Coffescript
 
 Si su aplicación rails emplea coffescript necesitará un programa que pueda 
-ejecutar javascript al lado del servidor, recomendamos node.js incluido en adJ, 
-que actualice a la versión más reciente de npm con:
+ejecutar javascript al lado del servidor, recomendamos node.js incluido en 
+adJ.  Actualice a la versión más reciente de npm con:
 ``` 
 doas npm install npm -g
 ``` 
-
-y que instale coffeescript con:
+Instale coffeescript con:
 
 ``` 
 doas npm install -g coffee-script
