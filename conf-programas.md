@@ -566,7 +566,7 @@ Asegurarse de tener limites amplios del sistema operativo para abrir
 archivos y manejar memoria, por ejemplo superiores a los siguientes en
 `/etc/systctl.conf`
 
-    kern.shminfo.semmni=1024
+    kern.shminfo.shmmni=1024
     kern.seminfo.semmns=2048
     kern.shminfo.shmmax=50331648
     kern.shminfo.shmall=51200
