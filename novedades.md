@@ -1,4 +1,8 @@
-Versión 6.0
+Versión 6.1
+
+:   -   Mejorada  sección de Ruby on Rails [xref](#ruby)
+
+ Versión 6.0
 
 :   -   Guía migrada a Markdown
     -   Eliminada sección sobre emulación Linux (característica

@@ -143,7 +143,7 @@ Sistema básico y portes
     Después de instalar el sistema básico podrá instalar programas que
     han sido portados pero que no han pasado por un proceso de revisión
     tan intenso como el de los componentes básicos (ver [Paquetes y
-    portes](#paquetes-y-portes)).
+    portes](#paquetesyportes)).
 
 Particiones
 
