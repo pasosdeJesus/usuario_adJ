@@ -1,0 +1,750 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Configuración y uso de programas y servicios básicos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Paquetes y portes"
+HREF="x594.htm"><LINK
+REL="NEXT"
+TITLE="Configuracioń y uso de algunos programas"
+HREF="x852.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x594.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x852.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="configuracion-de-componentes-basicos"
+>Configuración y uso de programas y servicios básicos</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="pdksh"
+>pdksh (ksh)</A
+></H2
+><P
+>&#13;      Es un interprete de comandos similar a <TT
+CLASS="literal"
+>bash</TT
+>.
+      Este interprete de comandos al iniciarse como interprete de login
+      lee los archivos <TT
+CLASS="literal"
+>/etc/profile</TT
+> y
+      <TT
+CLASS="literal"
+>$HOME/.profile</TT
+>, pero no lo hace si es iniciado
+      como interprete interactivo. Puede iniciarse explícitamente como
+      interprete de login con <TT
+CLASS="literal"
+>ksh -l</TT
+>. Esto puede
+      resultar útil para iniciarlo por ejemplo dentro de
+      <TT
+CLASS="literal"
+>xterm</TT
+>:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    xterm -en utf8 -e /bin/ksh -l 
+</PRE
+><P
+>&#13;      El método de edición
+      (<TT
+CLASS="literal"
+>vi</TT
+>,<TT
+CLASS="literal"
+>emacs</TT
+> o
+      <TT
+CLASS="literal"
+>gmacs</TT
+>) se configura en la variable
+      <TT
+CLASS="literal"
+>VISUAL</TT
+>.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="ftp"
+>ftp</A
+></H2
+><P
+>&#13;      Además de las características usuales de un cliente
+      <TT
+CLASS="literal"
+>ftp</TT
+> (RFC 959, extendido en RFC 1123), el
+      cliente <TT
+CLASS="literal"
+>ftp</TT
+> de OpenBSD:
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;          Realiza conexiones pasivas por defecto. Sin embargo algunos
+          servidores de ftp requiere conexiones activas, si ese es el
+          caso (por ejemplo cuando el servidor responde a
+          <TT
+CLASS="literal"
+>ls</TT
+> con
+          <TT
+CLASS="literal"
+>425 Can't open data connection</TT
+>) emplee la
+          opción <TT
+CLASS="literal"
+>-A</TT
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;          Emplea el archivo de configuración <TT
+CLASS="literal"
+>~/.netrc</TT
+>
+          para establecer conexiones automáticamente. En ese archivo
+          usted puede especificar servidores a los que suele conectarse
+          (y por ejemplo emplear redireccionamiento para automatizar
+          operaciones . Este archivo puede tener comentarios (líneas
+          iniciadas con el caracter '#') o líneas como:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    machine ESERV login EUSUARIO
+    machine rt.fm login anonymous passwd EUSUARIO@EDOMINIO
+</PRE
+><P
+>&#13;          que indican emplear el usuario EUSUARIO al conectarse a ESERV
+          (pedirá la clave al hacer la conexión) y emplear el usuario
+          <TT
+CLASS="literal"
+>anonymous</TT
+>, con clave
+          <TT
+CLASS="literal"
+>EUSUARIO@EDOMINIO</TT
+> al hacer conexiones con
+          <TT
+CLASS="literal"
+>rt.fm</TT
+>.
+        </P
+><A
+NAME="AEN738"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>&#13;            <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/warning.png"></SPAN
+>
+            <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+>Advertencia</B
+></SPAN
+>
+          </P
+><P
+>&#13;            Las claves que se almacenan en este archivo son textos
+            planos que el superusuario del sistema podría ver. Para que
+            otros usuarios no puedan verlas quite el permiso de lectura
+            para otros usuarios y para el grupo:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    chmod og-r ~/.netrc
+</PRE
+></BLOCKQUOTE
+></LI
+><LI
+><P
+>&#13;          Permite especificar el URL (iniciado con
+          <TT
+CLASS="literal"
+>http://</TT
+> o <TT
+CLASS="literal"
+>ftp://</TT
+>) de un
+          archivo por descargar en la línea de comandos (y realiza
+          autenticación automática si es ftp:// y se ha configurado
+          <TT
+CLASS="literal"
+>~/.netrc</TT
+>, o si el URL es análogo a
+          <TT
+CLASS="literal"
+>ftp://EUSUARIO:miclave@ESERV/pub/doc.txt</TT
+>).
+          En este caso si se requiere puede emplearse la opción
+          <TT
+CLASS="literal"
+>-o</TT
+> seguida del nombre del archivo con el
+          que se desea salvar el archivo transmitido. También puede
+          emplearse <TT
+CLASS="literal"
+>*</TT
+> para indicar transmisión de
+          varios archivos.
+        </P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="doas"
+>doas</A
+></H2
+><P
+>&#13;      Este programa permite ejecutar comandos privilegiados a algunos
+      usuarios. A partir de adJ y OpenBSD 5.8 el sistema base incluye
+      <TT
+CLASS="literal"
+>doas</TT
+> como remplazo del antiguo
+      <TT
+CLASS="literal"
+>sudo</TT
+>. <TT
+CLASS="literal"
+>doas</TT
+> es más simple y
+      fácil de auditar.
+    </P
+><P
+>&#13;      Se configura en <TT
+CLASS="literal"
+>/etc/doas.conf</TT
+>. Un ejemplo
+      mínimo es:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    permit nopass keepenv :wheel
+</PRE
+><P
+>&#13;      que permitirá su uso sin requerir clave a todos los usuarios del
+      grupo <TT
+CLASS="literal"
+>wheel</TT
+> manteniendo las varibles de
+      ambiente.
+    </P
+><P
+>&#13;      Una vez configurado, puede ejecutar un comando privilegiado desde
+      una cuenta configurada con <TT
+CLASS="literal"
+>doas comando</TT
+>. Por
+      ejemplo:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas vi /etc/rc.conf.local 
+</PRE
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="sudo"
+>sudo</A
+></H3
+><P
+>&#13;        El programa <TT
+CLASS="literal"
+>sudo</TT
+> se mantiene como paquete, si
+        lo requiere instalelo desde la cuenta <TT
+CLASS="literal"
+>root</TT
+>
+        con:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    pkg_add sudo
+</PRE
+><P
+>&#13;        Se configura en <TT
+CLASS="literal"
+>/etc/sudoers</TT
+> que debe
+        editarse con <TT
+CLASS="literal"
+>visudo</TT
+>.
+      </P
+><P
+>&#13;        Consulte los ejemplos allí presentados en líneas con comentarios
+        y quite el comentario a la configuración que considere
+        apropiada. Por ejemplo si desea que todo usuario que esté en el
+        grupo <TT
+CLASS="literal"
+>wheel</TT
+> pueda emplear
+        <TT
+CLASS="literal"
+>sudo</TT
+> sin necesidad de ingresar una clave,
+        quite el comentario a la línea:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    %wheel  ALL=(ALL)       NOPASSWD: ALL
+</PRE
+><P
+>&#13;        Puede verse en
+        <A
+HREF="http://rr.sans.org/authentic/sudo.php"
+TARGET="_top"
+>http://rr.sans.org/authentic/sudo.php</A
+>
+        interacción entre <TT
+CLASS="literal"
+>sudo</TT
+> y
+        <TT
+CLASS="literal"
+>ssh</TT
+> para administrar una red.
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="cron"
+><TT
+CLASS="literal"
+>cron</TT
+>: para programar tareas</A
+></H2
+><P
+>&#13;      El programa <TT
+CLASS="literal"
+>cron</TT
+> ejecuta tareas configuradas
+      para correr en cierto(s) momento(s). Este servico debe correr
+      permanentemente. Puede comprar que opera con
+      <TT
+CLASS="literal"
+>pgrep cron</TT
+> que debe responder con el número del
+      proceso. Si no está corriendo debe ejecutarlo urgentemente bien
+      reiniciando el servido o ejecutando <TT
+CLASS="literal"
+>doas cron</TT
+>.
+    </P
+><P
+>&#13;      Cada minuto el programa <TT
+CLASS="literal"
+>cron</TT
+> busca tareas cuya
+      ejecución esté pendiente.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="ld"
+>ld</A
+></H2
+><P
+>&#13;      <TT
+CLASS="literal"
+>ld</TT
+> es el programa que carga otros programas
+      junto con las librerías compartidas que requieran y resuelve los
+      símbolos. Para buscar librerías compartidas emplea la información
+      de <TT
+CLASS="literal"
+>/var/run/ld.so.hints</TT
+> (que puede examinarse
+      con <TT
+CLASS="literal"
+>ldconfig -r</TT
+>).
+    </P
+><P
+>&#13;      Con <TT
+CLASS="literal"
+>ldd</TT
+> pueden examinarse las librerías
+      compartidas que un programa requiere, por ejemplo:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    ldd /usr/bin/less
+    
+</PRE
+><P
+>&#13;      Cuando se agregan librerías compartidas o se requiere que las
+      librerias de nuevos directorios sean referenciados en
+      <TT
+CLASS="literal"
+>/var/run/ld.so.hints</TT
+> puede ejecutar
+      <TT
+CLASS="literal"
+>ldconfig</TT
+> (que por defecto busca nuevas
+      librerías en <TT
+CLASS="literal"
+>/usr/lib</TT
+>). Por ejemplo durante el
+      arranque en un sistema con X-Window se ejecuta:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    ldconfig /usr/local/lib /usr/X11R6/lib
+    
+</PRE
+><P
+>&#13;      También pueden especificarse otros directorios por usar durante el
+      arranque definiendo la variable <TT
+CLASS="literal"
+>shlib_dirs</TT
+> en
+      <TT
+CLASS="literal"
+>/etc/rc.conf.local</TT
+> (ver
+      <A
+HREF="x43.htm#inicio-del-sistema"
+>la sección de nombre <I
+>Inicio del sistema</I
+></A
+>)
+    </P
+><P
+>&#13;      Incluso un usuario puede establecer otros directorios donde buscar
+      librerías compartidas especificandolos en la variable de entorno
+      <TT
+CLASS="literal"
+>LD_LIBRARY_PATH</TT
+> (separar un directorio de otro
+      con ':' ).
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="kernel"
+>Kernel</A
+></H2
+><P
+>&#13;      Algunas configuraciones pueden hacerse con
+      <TT
+CLASS="literal"
+>sysctl</TT
+>, otras MUY inusuales requieren
+      recompilación del kernel.
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="compilacion-del-kernel"
+>Compilación del kernel</A
+></H3
+><P
+>&#13;        Puede sacar las fuentes del CD de instalación o de un
+        repositorio FTP (<TT
+CLASS="literal"
+>src.tgz</TT
+>) descomprimiendolas
+        en <TT
+CLASS="literal"
+>/usr/src</TT
+>, después puede actualizarlas con
+        el CVS de OpenBSD con:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd /usr
+    export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+    cvs -z3 co -rOPENBSD_VER-OPENBSD-U -P src 
+</PRE
+><P
+>&#13;        empleando un espejo más cercano a su computador y cambiado
+        OPENBSD_VER-OPENBSD-U por la versión que desea actualizar, o si
+        las fuentes que tiene son la versión que desea puede emplear:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd /usr/src
+    export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+    cvs -z3 update -r OPENBSD_VER-OPENBSD-U -Pd 
+</PRE
+><P
+>&#13;        Tal como se describe en <TT
+CLASS="literal"
+>man afterboot</TT
+>, para
+        compilar basta editar el archivo de configuración del kernel que
+        se desea, después ejecutar <TT
+CLASS="literal"
+>config</TT
+>, cambiar al
+        directorio donde se compila y compilar. Por ejemplo:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd /usr/src/sys/arch/amd64/conf
+    vi GENERIC
+    config GENERIC
+    cd ../compile/GENERIC
+    make clean
+    make depend
+    make
+      
+</PRE
+><P
+>&#13;        con esto se generará el ejecutable <TT
+CLASS="literal"
+>bsd</TT
+> en el
+        directorio de compilación, tal ejecutable puede usarse para
+        reemplazar <TT
+CLASS="literal"
+>/bsd</TT
+>, eventualmente dejando el
+        kernel anterior listo para un arranque de emergencia:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    mv /bsd /bsd.old
+    mv bsd /bsd
+      
+</PRE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="syslog"
+>syslog</A
+></H2
+><P
+>&#13;      <TT
+CLASS="literal"
+>syslogd</TT
+> es un servidor que recibe mensajes de
+      depuración y trazas de diversos programas. Su archivo de
+      configuración es <TT
+CLASS="literal"
+>/etc/syslog.conf</TT
+>, cada línea
+      de este archivo especifica que hacer con los mensajes recibidos
+      por uno o más programas.
+    </P
+><P
+>&#13;      Tras modificar <TT
+CLASS="literal"
+>/etc/syslog.conf</TT
+> puede obligarse
+      a <TT
+CLASS="literal"
+>syslogd</TT
+> a leerlo de nuevo enviado la señal
+      HUP, por ejemplo:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;# ps ax | grep syslogd
+7723 ??  Is      0:00.06 syslogd 
+# kill -HUP 7723
+    
+</PRE
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="referencias-syslog"
+>Referencias y lecturas recomendadas</A
+></H3
+><P
+>&#13;        Las siguientes páginas man: syslog.conf 8, syslog 3, syslogd 8 y
+        logger 1.
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="zona-horaria"
+>Zona horaria</A
+></H2
+><P
+>&#13;      La zona horaria se establece enlazando
+      <TT
+CLASS="literal"
+>/etc/localtime</TT
+> con una de las zonas del
+      directorio <TT
+CLASS="literal"
+>/usr/share/zoneinfo</TT
+>, por ejemplo
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;doas ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
+</PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x594.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x852.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Paquetes y portes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuracioń y uso de algunos programas</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
