@@ -444,6 +444,7 @@ openssl-[v]		Librería y herramientas para TLS/SSL
 opus-[v]    		Codificador de audio IETF
 opusfile-[v]		API de alto nivel para decodificar en archivos Opus
 ORBit2-[v]	CORBA ORB de alto desempeño
+ocamlbuild-[v]		
 orc-[v]		Librerìa y herraminetas para operar arreglos de datos
 p11-kit-[v]	Librería para enumerar módulos PKCS#11
 p5-Clone-[v]		Copia tipos de datos perl recursivamente
@@ -606,6 +607,7 @@ python-tkinter-[v]	Interfaces gráficas Python
 qca-ossl-[v]	Extensión de SSL/TLS para QCA2
 qca2-[v]    	Arquitectura criptográfica de Qt
 qhull-[v]		Calcular caso convexo
+qdbm-[v]
 qjson-[v]
 qpdf-[v]    		Utilidad para inspeccionar y transformar PDF
 qscintilla-[v]		Porte a qt4 del editor de código fuente Scintilla

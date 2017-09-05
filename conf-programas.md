@@ -801,6 +801,9 @@ líneas:
 
 #### Documentación
 
+Para aprender lo básico de Ruby puede comenzar con el tutorial en español
+disponible en <http://rubytutorial.wikidot.com/>
+
 Puede aprender por ejemplo con los tutoriales interactivos de
 <https://rubymonk.com>
 
