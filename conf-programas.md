@@ -648,7 +648,8 @@ tecla \[Tab\] 2 veces para ver los métodos de la clase Integer.
 
 El paquete `ruby` incluye `rubygems` que maneja gemas (es decir
 librerías) con el programa `gem`. Puede actualizar a la versión más
-reciente las gemas globales con:
+reciente las gemas globales (necesario por ejemplo cuando
+actualiza el sistema operativo) con:
 
 ```
     doas gem update --system
@@ -703,11 +704,12 @@ Configurelo para que instale gemas localmente en ```/var/www/bundler/ruby/2.4```
 
 Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
 verá un archivo ```Gemfile```, donde ```bundler``` examina de que librerías 
-depende la aplicación y genera un archivo ```Gemfile.lock``` con las versiones 
-precisas por instalar de cada gema.  
+depende la aplicación y genera un archivo ```Gemfile.lock``` con las 
+versiones precisas por instalar de cada gema.  
 
 Una vez tenga un proyecto asegure que este emplea las gemas de 
-```/var/www/bundler/ruby/2.4``` ejecutando dentro del directorio del proyecto:
+```/var/www/bundler/ruby/2.4``` ejecutando dentro del directorio del 
+proyecto:
 
 ```
 	mkdir .bundle
@@ -727,6 +729,14 @@ tipicamente-- puede instalar con
 
 ```
 	doas gem install --install-dir /var/www/bundler/ruby/2.4 json -v '2.0'
+```
+
+Cuando actualice la versión del sistema operativo al igual que con gemas 
+es importante reinstalar las gemas de las que depende una aplicación
+--necesariamente las que tengan extensiones en C.  Esto es sencillo
+con versiones de bundler posteriores a la 1.15.4:
+```
+	bundle pristine
 ```
 
 ##### Rails
