@@ -624,7 +624,6 @@
 <!ENTITY p-rrdupdate "rrdupdate-1.6.0">
 <!ENTITY p-rsync "rsync-3.1.2p0">
 <!ENTITY p-rtorrent "rtorrent-0.9.6p1v0">
-<!ENTITY p-ruby "ruby-2.3.3">
 <!ENTITY p-ruby "ruby-2.4.1">
 <!ENTITY p-ruby24-ri_docs "ruby24-ri_docs-2.4.1">
 <!ENTITY p-samba "samba-4.5.8">
