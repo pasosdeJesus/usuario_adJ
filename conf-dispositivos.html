@@ -106,12 +106,12 @@
         <code class="literal">lpr</code> (o <code class="literal">/usr/local/bin/lpr</code>
         si está usando CUPS) que se encarga de poner la información que
         debe enviarse a la impresora en una cola de trabajos pendientes
-        <sup>[<a name="idm526928592" href="#ftn.idm526928592">12</a>]</sup>, que es atendida automáticamente (i.e de ella se
+        <sup>[<a name="idm2996819432" href="#ftn.idm2996819432">12</a>]</sup>, que es atendida automáticamente (i.e de ella se
         envían trabajos pendientes cuando la impresora está disponible)
         por un programa.
       </p><p>
         Cada impresora configurada tiene un nombre, la impresora por
-        defecto se llama <code class="literal">lp</code> <sup>[<a name="idm526928464" href="#ftn.idm526928464">13</a>]</sup>.
+        defecto se llama <code class="literal">lp</code> <sup>[<a name="idm1552205672" href="#ftn.idm1552205672">13</a>]</sup>.
       </p><p>
         Posiblemente su sistema esté configurado para permitir a
         <code class="literal">lpr</code> la impresión de textos planos y
@@ -142,11 +142,11 @@
         LPD suele emplearse PostScript (que es un lenguaje apropiado
         para documentos por imprimir) como formato común y se usan los
         filtros del programa Ghostscript para traducir de PostScript al
-        formato particular de su impresora <sup>[<a name="idp1571923632" href="#ftn.idp1571923632">14</a>]</sup>. Si se usa CUPS es posible emplear controladores
+        formato particular de su impresora <sup>[<a name="idm993656296" href="#ftn.idm993656296">14</a>]</sup>. Si se usa CUPS es posible emplear controladores
         particulares para su impresora y no depender de Ghostscript.
       </p><p>
         Ghostscript es un programa que puede leer documentos PostScript
-        y PDF <sup>[<a name="idm987973712" href="#ftn.idm987973712">15</a>]</sup> y presentarlos en una ventana de X-Window o
+        y PDF <sup>[<a name="idp828614040" href="#ftn.idp828614040">15</a>]</sup> y presentarlos en una ventana de X-Window o
         transformarlos al lenguaje particular de algunas impresoras. Por
         ejemplo para generar a partir de un documento PostScript
         <code class="literal">s2.ps</code> la secuencia de caracteres apropiada
@@ -219,7 +219,7 @@
         describir un documento, usualmente los documentos PDF requieren
         menos porque mantienen la información comprimida. Para convertir
         entre PostScript y PDF se emplean <code class="literal">ps2pdf</code> y
-        <code class="literal">pdf2ps</code> <sup>[<a name="idm618432976" href="#ftn.idm618432976">16</a>]</sup>. Para visualizar e imprimir un PDF, además de
+        <code class="literal">pdf2ps</code> <sup>[<a name="idm3106790376" href="#ftn.idm3106790376">16</a>]</sup>. Para visualizar e imprimir un PDF, además de
         <code class="literal">gv</code>, puede emplear <code class="literal">xpdf</code> o
         el programa Acrobat Reader (<code class="literal">acroread</code>).
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lpd-local"></a>6.2.2. Configuración de una impresora local con
@@ -405,7 +405,7 @@ lp|local line printer:\
             Un superbloque con los parámetros básicos del sistema de
             archivos (e.g tamaño de cada bloque, lista de grupos de
             cilindros) y con los parámetros del hardware que afectan el
-            desempeño<sup>[<a name="idp1384310448" href="#ftn.idp1384310448">17</a>]</sup> (tipo de transferencia de disco a memoria,
+            desempeño<sup>[<a name="idm1921414760" href="#ftn.idm1921414760">17</a>]</sup> (tipo de transferencia de disco a memoria,
             tiempo esperado por transferencia, bloques por pista,
             velocidad de rotación).
           </p></li><li><p>
@@ -739,7 +739,7 @@ lp|local line printer:\
           </p></li><li><p>
             Las imágenes de sesiones posteriores deben crearse empleando
             la opción <code class="literal">-C</code> de
-            <code class="literal">mkisofs</code> <sup>[<a name="idp2005832752" href="#ftn.idp2005832752">18</a>]</sup>. Los datos precisos que debe pasar a la opción
+            <code class="literal">mkisofs</code> <sup>[<a name="idp383800216" href="#ftn.idp383800216">18</a>]</sup>. Los datos precisos que debe pasar a la opción
             -C los examina con:
           </p><pre class="programlisting">
     doas cdrecord dev=/dev/cd0c -msinfo
@@ -945,7 +945,7 @@ mount /dev/svnd0c /var/postgresql
           </span></dt><dd><p>
               Como tecla de composición
             </p></dd></dl></div><p>
-        La tecla de composición<sup>[<a name="idp1593618864" href="#ftn.idp1593618864">19</a>]</sup> le permitirá generar un carácter empleando una
+        La tecla de composición<sup>[<a name="idm390866920" href="#ftn.idm390866920">19</a>]</sup> le permitirá generar un carácter empleando una
         secuencia de dos teclas. Por ejemplo si presiona la tecla de
         composición (i.e Shift+Alt izquierdo con la configuración
         presentada), y después presiona ? seguido de ? obtendrá el
@@ -981,36 +981,36 @@ mount /dev/svnd0c /var/postgresql
         y asegurarse de ejecutar <code class="literal">xmodmap ~/.Xmodmap</code>
         durante el arranque de su sesión X (podría ser por ejemplo
         agregándolo a <code class="literal">~/.xsession</code>)
-      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm526928592" href="#idm526928592">12</a>] </sup>
+      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2996819432" href="#idm2996819432">12</a>] </sup>
             En el caso de LPD el directorio con la cola de trabajos de
             una impresora se configura en
             <code xmlns="" class="literal">/etc/printcap</code>, en el caso de
             <code xmlns="" class="literal">lp</code> el directorio por defecto es
             <code xmlns="" class="literal">/var/spool/outputlpd/lp</code>.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm526928464" href="#idm526928464">13</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1552205672" href="#idm1552205672">13</a>] </sup>
             Normalmente puede configurar otro nombre para la impresora
             por defecto en la variable de ambiente PRINTER.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1571923632" href="#idp1571923632">14</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm993656296" href="#idm993656296">14</a>] </sup>
             Hay algunas impresoras que pueden imprimir PostScript
             directamente, pero en general para hacer la traducción de
             PostScript al lenguaje de una impresora se requiere un
             filtro que el administrador del sistema debe configurar.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm987973712" href="#idm987973712">15</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp828614040" href="#idp828614040">15</a>] </sup>
             PDF (<span xmlns="" class="emphasis"><em>Portable Document Format</em></span> es otro
             lenguaje para impresión, de documentos con gráficas y
             diversos tipos de letras, basado en PostScript (de la misma
             compañía ---Adobe).
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm618432976" href="#idm618432976">16</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm3106790376" href="#idm3106790376">16</a>] </sup>
             De acuerdo a Printig-HOWTO estas herramientas ofrecen la
             funcionalidad de las herramientas
             "<span xmlns="" class="emphasis"><em>distiller</em></span>" de Adobe.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1384310448" href="#idp1384310448">17</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1921414760" href="#idm1921414760">17</a>] </sup>
                 Los parámetros del hardware mantenidos ayudan a
                 localizar bloques libres de forma óptima.
-              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2005832752" href="#idp2005832752">18</a>] </sup>
+              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp383800216" href="#idp383800216">18</a>] </sup>
                 Si la sesión previa tenia -T esta también con mismo
                 nombre de tablas (especificable con -table-name TN).
-              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1593618864" href="#idp1593618864">19</a>] </sup>
+              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm390866920" href="#idm390866920">19</a>] </sup>
             Tecla de composición: en inglés <span xmlns="" class="emphasis"><em>compose
             key</em></span>
           </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="conf-programas.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">5. Configuracioń y uso de algunos programas </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 7. Instalaciones duales</td></tr></table></div></body></html>
