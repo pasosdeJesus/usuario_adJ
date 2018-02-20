@@ -576,13 +576,13 @@ describe el paquete ruby):
 
 ```
     doas sh
-    ln -sf /usr/local/bin/ruby24 /usr/local/bin/ruby
-    ln -sf /usr/local/bin/erb24 /usr/local/bin/erb
-    ln -sf /usr/local/bin/irb24 /usr/local/bin/irb
-    ln -sf /usr/local/bin/rdoc24 /usr/local/bin/rdoc
-    ln -sf /usr/local/bin/ri24 /usr/local/bin/ri
-    ln -sf /usr/local/bin/rake24 /usr/local/bin/rake
-    ln -sf /usr/local/bin/gem24 /usr/local/bin/gem
+    ln -sf /usr/local/bin/ruby25 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb25 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb25 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc25 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri25 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake25 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem25 /usr/local/bin/gem
 ```
                   
 
@@ -647,25 +647,13 @@ tecla \[Tab\] 2 veces para ver los métodos de la clase Integer.
 ##### Gemas
 
 El paquete `ruby` incluye `rubygems` que maneja gemas (es decir
-librerías) con el programa `gem`. Puede actualizar a la versión más
-reciente las gemas globales (necesario por ejemplo cuando
-actualiza el sistema operativo) con:
+librerías) con el programa `gem`.
 
-```
-    doas gem update --system
-    QMAKE=qmake-qt5 make=gmake MAKE=gmake doas gem pristine --all
-```
-
-Para facilitar compilación de algunas extensiones (como las de nokogiri) se recomienda instalar globalmente:
-
-```
-	doas gem install pkg-config 
-```
-
-El directorio donde se instalan las gemas globales es ```/usr/local/lib/ruby/gems/2.4/```
-donde sólo pueden instalarse con ```doas```. 
+El directorio donde se instalan las gemas globales 
+es ```/usr/local/lib/ruby/gems/2.5/``` donde sólo pueden 
+instalarse con ```doas```. 
 Recomendamos iniciar un directorio para instalar gemas como usuario normal 
-en  ```/var/www/bundler/ruby/2.4```, por 3 razones (1) evitar riesgos de 
+en  ```/var/www/bundler/ruby/2.5```, por 3 razones (1) evitar riesgos de 
 seguridad al instalar gemas como root, (2) evitar problemas de permisos 
 y la dificultad de programas como bundler para usar ```doas``` en lugar 
 de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones 
@@ -674,18 +662,39 @@ corran en una jaula chroot en ```/var/www```
 Prepare ese directorio con:
 
 ```
-	doas mkdir -p /var/www/bundler/ruby/2.4/
+	doas mkdir -p /var/www/bundler/ruby/2.5/
 	doas chown -R $USER:www /var/www/bundler
 ```
 
 Y cuando requiera instalar una gema allí emplee:
 ```
-	gem install --install-dir /var/www/bundler/ruby/2.4/ json -v '2.0'
+	gem install --install-dir /var/www/bundler/ruby/2.5/ json -v '2.0'
 ```
 
 O si llega a tener problemas de permisos con:
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.4/ bcrypt -v '3.1.11'
+	doas gem install --install-dir /var/www/bundler/ruby/2.5/ bcrypt -v '3.1.11'
+```
+
+
+Puede actualizar a la versión más reciente las gemas globales (necesario 
+por ejemplo cuando actualiza el sistema operativo) con:
+
+```
+    doas gem update --system
+    QMAKE=qmake-qt5 make=gmake MAKE=gmake doas gem pristine --all
+    for i in `ls /var/www/bundler/ruby/2.5/extensions/x86_64-openbsd/2.5/`; do
+        v=`echo $i | sed -e 's/.*-\([0-9.]*\)/\1/g'` ; 
+        n=`echo $i | sed -e 's/\(.*\)-[0-9.]*/\1/g'` ; 
+        doas gem install --install-dir /var/www/bundler/ruby/2.5/ $n -v $v; 
+    done
+```
+
+Para facilitar compilación de algunas extensiones (como las de nokogiri) se 
+recomienda instalar globalmente:
+
+```
+	doas gem install pkg-config 
 ```
 
 ##### Bundler
@@ -693,13 +702,16 @@ O si llega a tener problemas de permisos con:
 Para facilitar el manejo de varias gemas (y sus interdependencias) en un 
 proyecto es típico emplear ```bundler``` que instala con:
 ```
-	doas gem install bundler
-	if (test -x /usr/lcoal/bin/bundle24) then { doas ln -sf /usr/local/bin/bundle24 /usr/local/bin/bundle; } fi
+    doas gem install bundler
+    if (test -x /usr/lcoal/bin/bundle25) then { 
+       doas ln -sf /usr/local/bin/bundle25 /usr/local/bin/bundle; 
+    } fi
 ```
 
-Configurelo para que instale gemas localmente en ```/var/www/bundler/ruby/2.4``` con:
+Configurelo para que instale gemas localmente 
+en ```/var/www/bundler/ruby/2.5``` con:
 ```
-	bundler config path /var/www/bundler/ruby/2.4
+	bundle config path /var/www/bundler/ruby/2.5
 ```
 
 Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
@@ -708,7 +720,7 @@ depende la aplicación y genera un archivo ```Gemfile.lock``` con las
 versiones precisas por instalar de cada gema.  
 
 Una vez tenga un proyecto asegure que este emplea las gemas de 
-```/var/www/bundler/ruby/2.4``` ejecutando dentro del directorio del 
+```/var/www/bundler/ruby/2.5``` ejecutando dentro del directorio del 
 proyecto:
 
 ```
@@ -728,7 +740,7 @@ Si eventualmente no logra instalar algunas --por problemas de permisos
 tipicamente-- puede instalar con 
 
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.4 json -v '2.0'
+	doas gem install --install-dir /var/www/bundler/ruby/2.5 json -v '2.0'
 ```
 
 Cuando actualice la versión del sistema operativo al igual que con gemas 
@@ -761,7 +773,7 @@ que se explicó. Algunos casos especiales son:
 
 -   ```nokogiri``` que puede requerir
 ```
-        doas gem install --install-dir /var/www/bundler/ruby/2.4/ nokogiri -- --use-system-libraries 
+        doas gem install --install-dir /var/www/bundler/ruby/2.5/ nokogiri -- --use-system-libraries 
 ```
                     
 
@@ -781,7 +793,7 @@ adJ.  Actualice a la versión más reciente de npm con:
 Instale coffeescript con:
 
 ``` 
-	doas npm install -g coffee-script
+	Doas npm install -g coffee-script
 ``` 
 
 ##### Editor vim
@@ -846,9 +858,14 @@ Genere una nueva aplicación:
 ``` 
 	rails new aplicacion
 	cd aplicacion
+	mkdir .bundle
+	cat > .bundle/config <<EOF
+	---
+	BUNDLE_PATH: "/var/www/bundler"
+	BUNDLE_DISABLE_SHARED_GEMS: "true"
+	EOF
 	bundle install
 ``` 
-
 Esto creará una nueva aplicación de ejemplo e instalará todas sus
 dependencias. Las gemas que no logre instalar por falta de permisos,
 como se explicó anteriormente instalelas con `doas gem install` y la
@@ -868,11 +885,12 @@ Notará que se generan los siguientes directorios y archivos:
 
 Archivo/Directorio                                  Descripción
 --------------------------------------------------- -----------------------------------------------------------------------------------
-README.rdoc                                         Documentación en formato Rdoc (puede cambiarse por README.md en formato Markdown)
+README.md                                           Documentación en formato Markdown (puede cambiarse por README.rdoc en formato RDoc)
 Rakefile                                            Tareas para `rake` (algo análogo a `make`)
 config.ru                                           Configurar servidor web por usar
 .gitignore                                          Archivos por ignorar en control de versiones
 Gemfile                                             Gemas requeridas
+Gemfile.lock                                        Versiones de las gemas requeridas
 app/assets/javascripts/application.js               Plantilla de Javascript para aplicación
 app/assets/stylesheets/application.css              Plantilla de CSS para aplicación
 app/controllers/application_controller.rb          Plantilla del controlador de la aplicación
