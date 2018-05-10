@@ -106,12 +106,12 @@
         <code class="literal">lpr</code> (o <code class="literal">/usr/local/bin/lpr</code>
         si está usando CUPS) que se encarga de poner la información que
         debe enviarse a la impresora en una cola de trabajos pendientes
-        <sup>[<a name="idm1180645208" href="#ftn.idm1180645208">12</a>]</sup>, que es atendida automáticamente (i.e de ella se
+        <sup>[<a name="idm2298629336" href="#ftn.idm2298629336">12</a>]</sup>, que es atendida automáticamente (i.e de ella se
         envían trabajos pendientes cuando la impresora está disponible)
         por un programa.
       </p><p>
         Cada impresora configurada tiene un nombre, la impresora por
-        defecto se llama <code class="literal">lp</code> <sup>[<a name="idm2483308376" href="#ftn.idm2483308376">13</a>]</sup>.
+        defecto se llama <code class="literal">lp</code> <sup>[<a name="idp1127312680" href="#ftn.idp1127312680">13</a>]</sup>.
       </p><p>
         Posiblemente su sistema esté configurado para permitir a
         <code class="literal">lpr</code> la impresión de textos planos y
@@ -142,11 +142,11 @@
         LPD suele emplearse PostScript (que es un lenguaje apropiado
         para documentos por imprimir) como formato común y se usan los
         filtros del programa Ghostscript para traducir de PostScript al
-        formato particular de su impresora <sup>[<a name="idm2248304216" href="#ftn.idm2248304216">14</a>]</sup>. Si se usa CUPS es posible emplear controladores
+        formato particular de su impresora <sup>[<a name="idm32270296" href="#ftn.idm32270296">14</a>]</sup>. Si se usa CUPS es posible emplear controladores
         particulares para su impresora y no depender de Ghostscript.
       </p><p>
         Ghostscript es un programa que puede leer documentos PostScript
-        y PDF <sup>[<a name="idm2248303960" href="#ftn.idm2248303960">15</a>]</sup> y presentarlos en una ventana de X-Window o
+        y PDF <sup>[<a name="idp234615336" href="#ftn.idp234615336">15</a>]</sup> y presentarlos en una ventana de X-Window o
         transformarlos al lenguaje particular de algunas impresoras. Por
         ejemplo para generar a partir de un documento PostScript
         <code class="literal">s2.ps</code> la secuencia de caracteres apropiada
@@ -219,7 +219,7 @@
         describir un documento, usualmente los documentos PDF requieren
         menos porque mantienen la información comprimida. Para convertir
         entre PostScript y PDF se emplean <code class="literal">ps2pdf</code> y
-        <code class="literal">pdf2ps</code> <sup>[<a name="idm2627401304" href="#ftn.idm2627401304">16</a>]</sup>. Para visualizar e imprimir un PDF, además de
+        <code class="literal">pdf2ps</code> <sup>[<a name="idm2837444824" href="#ftn.idm2837444824">16</a>]</sup>. Para visualizar e imprimir un PDF, además de
         <code class="literal">gv</code>, puede emplear <code class="literal">xpdf</code> o
         el programa Acrobat Reader (<code class="literal">acroread</code>).
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lpd-local"></a>6.2.2. Configuración de una impresora local con
@@ -405,7 +405,7 @@ lp|local line printer:\
             Un superbloque con los parámetros básicos del sistema de
             archivos (e.g tamaño de cada bloque, lista de grupos de
             cilindros) y con los parámetros del hardware que afectan el
-            desempeño<sup>[<a name="idp67253800" href="#ftn.idp67253800">17</a>]</sup> (tipo de transferencia de disco a memoria,
+            desempeño<sup>[<a name="idp635202472" href="#ftn.idp635202472">17</a>]</sup> (tipo de transferencia de disco a memoria,
             tiempo esperado por transferencia, bloques por pista,
             velocidad de rotación).
           </p></li><li><p>
@@ -632,8 +632,8 @@ lp|local line printer:\
         CD con el sistema de archivos ISO 9660), primero debe crear un
         dispositivo que la represente, por ejemplo:
       </p><pre class="programlisting">
-    vnconfig -c svnd0 /home/EUSUARIO/micd.iso 
-    mount /dev/svnd0a /mnt/tmp
+    vnconfig -c vnd0 /home/EUSUARIO/micd.iso 
+    mount /dev/vnd0a /mnt/tmp
     
 </pre></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-cd-y-quemadoras"></a>6.5.3. Referencias</h4></div></div></div><p>
         Más sobre montaje de archivos con <code class="literal">man fstab</code>.
@@ -739,7 +739,7 @@ lp|local line printer:\
           </p></li><li><p>
             Las imágenes de sesiones posteriores deben crearse empleando
             la opción <code class="literal">-C</code> de
-            <code class="literal">mkisofs</code> <sup>[<a name="idm3142077144" href="#ftn.idm3142077144">18</a>]</sup>. Los datos precisos que debe pasar a la opción
+            <code class="literal">mkisofs</code> <sup>[<a name="idm211396056" href="#ftn.idm211396056">18</a>]</sup>. Los datos precisos que debe pasar a la opción
             -C los examina con:
           </p><pre class="programlisting">
     doas cdrecord dev=/dev/cd0c -msinfo
@@ -844,13 +844,13 @@ lp|local line printer:\
         <code class="literal">/var/post.img</code> puede usar:
       </p><pre class="programlisting">
     doas dd if=/dev/zero of=/var/post.img bs=1024 count=500000
-    doas vnconfig -ckv svnd0 /var/post.img
-    doas newfs /dev/svnd0c
-    doas vnconfig -u svnd0
+    doas vnconfig -ckv vnd0 /var/post.img
+    doas newfs /dev/vnd0c
+    doas vnconfig -u vnd0
           
 </pre><p>
         La clave que ingrese tras
-        <code class="literal">vnconfig -ckv svnd0 /var/post.img</code>, la
+        <code class="literal">vnconfig -ckv vnd0 /var/post.img</code>, la
         requerirá posteriormente para usar la imagen.
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-imagen"></a>6.9.2. Montar imagen</h4></div></div></div><p>
         Esta imagen puede ser montadas (por ejemplo en
@@ -865,8 +865,8 @@ if (test ! -d /var/postgresql) then {
     mkdir /var/postgresql
     chown _postgresql:_postgresql /var/postgresql
 } fi;
-vnconfig -ckv svnd0 /var/post.img
-mount /dev/svnd0c /var/postgresql
+vnconfig -ckv vnd0 /var/post.img
+mount /dev/vnd0c /var/postgresql
     
 </pre><p>
         y recuerde otorgar permiso de ejecución del mismo:
@@ -945,7 +945,7 @@ mount /dev/svnd0c /var/postgresql
           </span></dt><dd><p>
               Como tecla de composición
             </p></dd></dl></div><p>
-        La tecla de composición<sup>[<a name="idm428961496" href="#ftn.idm428961496">19</a>]</sup> le permitirá generar un carácter empleando una
+        La tecla de composición<sup>[<a name="idm1401534168" href="#ftn.idm1401534168">19</a>]</sup> le permitirá generar un carácter empleando una
         secuencia de dos teclas. Por ejemplo si presiona la tecla de
         composición (i.e Shift+Alt izquierdo con la configuración
         presentada), y después presiona ? seguido de ? obtendrá el
@@ -981,36 +981,36 @@ mount /dev/svnd0c /var/postgresql
         y asegurarse de ejecutar <code class="literal">xmodmap ~/.Xmodmap</code>
         durante el arranque de su sesión X (podría ser por ejemplo
         agregándolo a <code class="literal">~/.xsession</code>)
-      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1180645208" href="#idm1180645208">12</a>] </sup>
+      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2298629336" href="#idm2298629336">12</a>] </sup>
             En el caso de LPD el directorio con la cola de trabajos de
             una impresora se configura en
             <code xmlns="" class="literal">/etc/printcap</code>, en el caso de
             <code xmlns="" class="literal">lp</code> el directorio por defecto es
             <code xmlns="" class="literal">/var/spool/outputlpd/lp</code>.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2483308376" href="#idm2483308376">13</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1127312680" href="#idp1127312680">13</a>] </sup>
             Normalmente puede configurar otro nombre para la impresora
             por defecto en la variable de ambiente PRINTER.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2248304216" href="#idm2248304216">14</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm32270296" href="#idm32270296">14</a>] </sup>
             Hay algunas impresoras que pueden imprimir PostScript
             directamente, pero en general para hacer la traducción de
             PostScript al lenguaje de una impresora se requiere un
             filtro que el administrador del sistema debe configurar.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2248303960" href="#idm2248303960">15</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp234615336" href="#idp234615336">15</a>] </sup>
             PDF (<span xmlns="" class="emphasis"><em>Portable Document Format</em></span> es otro
             lenguaje para impresión, de documentos con gráficas y
             diversos tipos de letras, basado en PostScript (de la misma
             compañía ---Adobe).
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2627401304" href="#idm2627401304">16</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2837444824" href="#idm2837444824">16</a>] </sup>
             De acuerdo a Printig-HOWTO estas herramientas ofrecen la
             funcionalidad de las herramientas
             "<span xmlns="" class="emphasis"><em>distiller</em></span>" de Adobe.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp67253800" href="#idp67253800">17</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp635202472" href="#idp635202472">17</a>] </sup>
                 Los parámetros del hardware mantenidos ayudan a
                 localizar bloques libres de forma óptima.
-              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm3142077144" href="#idm3142077144">18</a>] </sup>
+              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm211396056" href="#idm211396056">18</a>] </sup>
                 Si la sesión previa tenia -T esta también con mismo
                 nombre de tablas (especificable con -table-name TN).
-              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm428961496" href="#idm428961496">19</a>] </sup>
+              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1401534168" href="#idm1401534168">19</a>] </sup>
             Tecla de composición: en inglés <span xmlns="" class="emphasis"><em>compose
             key</em></span>
           </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="conf-programas.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">5. Configuracioń y uso de algunos programas </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 7. Instalaciones duales</td></tr></table></div></body></html>
