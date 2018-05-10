@@ -649,8 +649,8 @@ Para montar una imágen ISO (i.e un archivo con información de un CD con
 el sistema de archivos ISO 9660), primero debe crear un dispositivo que
 la represente, por ejemplo:
 
-        vnconfig -c svnd0 /home/EUSUARIO/micd.iso 
-        mount /dev/svnd0a /mnt/tmp
+        vnconfig -c vnd0 /home/EUSUARIO/micd.iso 
+        mount /dev/vnd0a /mnt/tmp
         
 
 ### Referencias {#referencias-cd-y-quemadoras}
@@ -868,12 +868,12 @@ puede usar:
 
 
         doas dd if=/dev/zero of=/var/post.img bs=1024 count=500000
-        doas vnconfig -ckv svnd0 /var/post.img
-        doas newfs /dev/svnd0c
-        doas vnconfig -u svnd0
+        doas vnconfig -ckv vnd0 /var/post.img
+        doas newfs /dev/vnd0c
+        doas vnconfig -u vnd0
               
 
-La clave que ingrese tras `vnconfig -ckv svnd0 /var/post.img`, la
+La clave que ingrese tras `vnconfig -ckv vnd0 /var/post.img`, la
 requerirá posteriormente para usar la imagen.
 
 ### Montar imagen
@@ -889,8 +889,8 @@ siguiente archivo de comandos (ubíquelo por ejemplo en
         mkdir /var/postgresql
         chown _postgresql:_postgresql /var/postgresql
     } fi;
-    vnconfig -ckv svnd0 /var/post.img
-    mount /dev/svnd0c /var/postgresql
+    vnconfig -ckv vnd0 /var/post.img
+    mount /dev/vnd0c /var/postgresql
         
 
 y recuerde otorgar permiso de ejecución del mismo:
