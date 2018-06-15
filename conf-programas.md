@@ -793,7 +793,7 @@ adJ.  Actualice a la versión más reciente de npm con:
 Instale coffeescript con:
 
 ``` 
-	Doas npm install -g coffee-script
+	doas npm install -g coffee-script
 ``` 
 
 ##### Editor vim
