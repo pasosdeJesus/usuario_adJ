@@ -649,7 +649,7 @@ Para montar una imágen ISO (i.e un archivo con información de un CD con
 el sistema de archivos ISO 9660), primero debe crear un dispositivo que
 la represente, por ejemplo:
 
-        vnconfig -c vnd0 /home/EUSUARIO/micd.iso 
+        vnconfig -c vnd0 /home/&EUSUARIO;/micd.iso 
         mount /dev/vnd0a /mnt/tmp
         
 
@@ -694,7 +694,7 @@ comando:
 
 Para crear una imágen ISO a partir de datos que usted elija, deje los
 archivos y directorios por incluir en un directorio (digamos
-`/home/EUSUARIO/imagen`), el cual después puede especificarse a
+`/home/&EUSUARIO;/imagen`), el cual después puede especificarse a
 `mkisofs` (programa que hace parte del paquete `cdrtools`). El formato
 estándar para salvar información en CD-ROMs (ISO9660) sólo permite
 nombres de archivos con 8 caracteres, extensiones de 3 y restricciones
@@ -702,12 +702,12 @@ en la codificación de caracteres, hay algunas extensiones que permiten
 aumentar este margen, una de estas que es algo portable es Rock Ridge
 (funciona al menos en sistemas Unix y en Windows).
 
-Para crear una imagen ISO con nombre `/home/EUSUARIO/micd.iso` a partir
-de la información disponible en `/home/EUSUARIO/imagen` puede ejecutar
+Para crear una imagen ISO con nombre `/home/&EUSUARIO;/micd.iso` a partir
+de la información disponible en `/home/&EUSUARIO;/imagen` puede ejecutar
 como usuario `root`:
 
-        cd /home/EUSUARIO/imagen
-        doas mkisofs -r -l -f -o /home/EUSUARIO/micd.iso  .
+        cd /home/&EUSUARIO;/imagen
+        doas mkisofs -r -l -f -o /home/&EUSUARIO;/micd.iso  .
         
 
 Note que la imagen creada emplea la extensión Rock Ridge (opción `-r`),
@@ -723,14 +723,14 @@ un floppy que se usa para arrancar.
 Para crear una imágen ISO que use extensión Rock Ridge, con una tabla de
 contenido de cada directorio (`TRANS.TBL`), que emplee la imágen de
 disquete `floppy.img` para arrancar, con información de derechos de
-reproducción del archivo `/home/EUSUARIO/Derechos.txt`, siguiendo
+reproducción del archivo `/home/&EUSUARIO;/Derechos.txt`, siguiendo
 enlaces simbólicos y con la jerarquía de directorios y archivos de
-`/home/EUSUARIO/imagen/` (en la que no debe existir el archivo
+`/home/&EUSUARIO;/imagen/` (en la que no debe existir el archivo
 `boot.catalog`) use:
 
-        cd /home/EUSUARIO/imagen
-        doas mkisofs -b floppy.img -c boot.catalog -copyright /home/EUSUARIO/Derechos.txt \
-          -r -l -f -o /home/EUSUARIO/micd.iso  .
+        cd /home/&EUSUARIO;/imagen
+        doas mkisofs -b floppy.img -c boot.catalog -copyright /home/&EUSUARIO;/Derechos.txt \
+          -r -l -f -o /home/&EUSUARIO;/micd.iso  .
         
 
 ### Quemado de una imagen ISO 9660 en un CD-R o en un CD-RW {#quemar-imagen-iso}
@@ -739,13 +739,13 @@ Para escribir una imágen ISO (`micd.iso`) con datos en un CD-R, puede
 emplear el programa `cdrecord`, el cual puede emplear como dispositivo
 uno de la forma `/dev/cd0c` o bien `/dev/rcd0c:0,0,0`, por ejemplo:
 
-        doas cdrecord dev=/dev/cd0c -data speed=16 /home/EUSUARIO/micd.iso
+        doas cdrecord dev=/dev/cd0c -data speed=16 /home/&EUSUARIO;/micd.iso
         
 
 Si emplea un CD-RW tenga en cuenta blanquearlo antes de escribir usando
 la opción `blank=fast`:
 
-        doas cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/EUSUARIO/micd.iso
+        doas cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/&EUSUARIO;/micd.iso
         
 
 Si desea emplear varias sesiones en un mismo CD-R (o CD-RW) tenga en

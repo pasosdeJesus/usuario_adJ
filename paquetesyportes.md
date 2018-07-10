@@ -85,7 +85,7 @@ descargarlas de un repositorio CVS como se presenta a continuación:
 
         cd /usr
         export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-        cvs -z3 -q get -rOPENBSD_&VER-OPENBSD;-U -P ports 
+        cvs -z3 -q get -rOPENBSD_&VER-OPENBSD-U; -P ports 
 
 La vía para `CVSROOT` adaptela a su servidor más cercano, escogiendo
 entre los disponibles en: <http://www.openbsd.org/anoncvs.html>.

@@ -485,7 +485,7 @@ Para enviar correos `mutt` corre por defecto el programa `sendmail` (por
 defecto con parámetros: `sendmail -oem -oi`), si usted prefiere o
 necesita emplear el `sendmail` de otro computador puede:
 
--   Hacer un script (digamos `/home/EUSUARIO/scripts/envia.sh`) que
+-   Hacer un script (digamos `/home/&EUSUARIO;/scripts/envia.sh`) que
     llame al `sendmail` remoto (por ejemplo con `ssh`) y le pase lo que
     recibe por entrada estándar:
 
@@ -498,7 +498,7 @@ necesita emplear el `sendmail` de otro computador puede:
             exit 2;
         } fi;
 
-        cat - | ssh EUSUARIO@ECLIENTE /usr/sbin/sendmail -oem -oi
+        cat - | ssh &EUSUARIO;@&ECLIENTE; /usr/sbin/sendmail -oem -oi
 ```
 
     Note que este script está hecho para ser ejecutado junto con el
@@ -508,7 +508,7 @@ necesita emplear el `sendmail` de otro computador puede:
     `sendmail`, la cual puede establecer en su archivo `~/.muttrc` con
     algo como:
 ```
-            set sendmail=/home/EUSUARIO/scripts/envia.sh
+            set sendmail=/home/&EUSUARIO;/scripts/envia.sh
 ```
 
 

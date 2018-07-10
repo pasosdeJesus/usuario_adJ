@@ -33,13 +33,13 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
     tener comentarios (líneas iniciadas con el caracter '\#') o líneas
     como:
 
-            machine ESERV login EUSUARIO
-            machine rt.fm login anonymous passwd EUSUARIO@EDOMINIO
+            machine &ESERV; login &EUSUARIO;
+            machine rt.fm login anonymous passwd &EUSUARIO;@&EDOMINIO;
                 
 
-    que indican emplear el usuario EUSUARIO al conectarse a ESERV
+    que indican emplear el usuario &EUSUARIO; al conectarse a &ESERV;
     (pedirá la clave al hacer la conexión) y emplear el usuario
-    `anonymous`, con clave `EUSUARIO@EDOMINIO` al hacer conexiones con
+    `anonymous`, con clave `&EUSUARIO;@&EDOMINIO;` al hacer conexiones con
     `rt.fm`.
 
     > ![Aviso](img/warning.png) **Advertencia**
@@ -55,7 +55,7 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
     archivo por descargar en la línea de comandos (y realiza
     autenticación automática si es ftp:// y se ha configurado
     `~/.netrc`, o si el URL es análogo a
-    `ftp://EUSUARIO:miclave@ESERV/pub/doc.txt`). En este caso si se
+    `ftp://&EUSUARIO;:miclave@&ESERV;/pub/doc.txt`). En este caso si se
     requiere puede emplearse la opción `-o` seguida del nombre del
     archivo con el que se desea salvar el archivo transmitido. También
     puede emplearse `*` para indicar transmisión de varios archivos.
@@ -154,15 +154,15 @@ actualizarlas con el CVS de OpenBSD con:
 
         cd /usr
         export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-        cvs -z3 co -rOPENBSD_VER-OPENBSD-U -P src 
+        cvs -z3 co -r&VER-OPENBSD;_&VER-OPENBSD-U; -P src 
 
 empleando un espejo más cercano a su computador y cambiado
-OPENBSD\_VER-OPENBSD-U por la versión que desea actualizar, o si las
+&VER-OPENBSD;\_&VER-OPENBSD-U; por la versión que desea actualizar, o si las
 fuentes que tiene son la versión que desea puede emplear:
 
         cd /usr/src
         export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-        cvs -z3 update -r OPENBSD_VER-OPENBSD-U -Pd 
+        cvs -z3 update -r&VER-OPENBSD;_&VER-OPENBSD-U; -Pd 
 
 Tal como se describe en `man afterboot`, para compilar basta editar el
 archivo de configuración del kernel que se desea, después ejecutar
