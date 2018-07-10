@@ -33,14 +33,14 @@
           operaciones . Este archivo puede tener comentarios (líneas
           iniciadas con el caracter '#') o líneas como:
         </p><pre class="programlisting">
-    machine ESERV login EUSUARIO
-    machine rt.fm login anonymous passwd EUSUARIO@EDOMINIO
+    machine Jesus.miescuela.edu.co login pablo
+    machine rt.fm login anonymous passwd pablo@miescuela.edu.co
 </pre><p>
-          que indican emplear el usuario EUSUARIO al conectarse a ESERV
-          (pedirá la clave al hacer la conexión) y emplear el usuario
-          <code class="literal">anonymous</code>, con clave
-          <code class="literal">EUSUARIO@EDOMINIO</code> al hacer conexiones con
-          <code class="literal">rt.fm</code>.
+          que indican emplear el usuario pablo al conectarse a
+          Jesus.miescuela.edu.co (pedirá la clave al hacer la conexión) y emplear
+          el usuario <code class="literal">anonymous</code>, con clave
+          <code class="literal">pablo@miescuela.edu.co</code> al hacer
+          conexiones con <code class="literal">rt.fm</code>.
         </p><div class="blockquote"><blockquote class="blockquote"><p>
             <span class="inlinemediaobject"><img src="img/warning.png"></span>
             <span class="strong"><strong>Advertencia</strong></span>
@@ -57,7 +57,7 @@
           archivo por descargar en la línea de comandos (y realiza
           autenticación automática si es ftp:// y se ha configurado
           <code class="literal">~/.netrc</code>, o si el URL es análogo a
-          <code class="literal">ftp://EUSUARIO:miclave@ESERV/pub/doc.txt</code>).
+          <code class="literal">ftp://pablo:miclave@Jesus.miescuela.edu.co/pub/doc.txt</code>).
           En este caso si se requiere puede emplearse la opción
           <code class="literal">-o</code> seguida del nombre del archivo con el
           que se desea salvar el archivo transmitido. También puede
@@ -161,15 +161,16 @@
       </p><pre class="programlisting">
     cd /usr
     export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-    cvs -z3 co -rOPENBSD_VER-OPENBSD-U -P src 
+    cvs -z3 co -r6.3_6_3 -P src 
 </pre><p>
         empleando un espejo más cercano a su computador y cambiado
-        OPENBSD_VER-OPENBSD-U por la versión que desea actualizar, o si
-        las fuentes que tiene son la versión que desea puede emplear:
+        6.3_6_3 por la versión que desea
+        actualizar, o si las fuentes que tiene son la versión que desea
+        puede emplear:
       </p><pre class="programlisting">
     cd /usr/src
     export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-    cvs -z3 update -r OPENBSD_VER-OPENBSD-U -Pd 
+    cvs -z3 update -r6.3_6_3 -Pd 
 </pre><p>
         Tal como se describe en <code class="literal">man afterboot</code>, para
         compilar basta editar el archivo de configuración del kernel que
