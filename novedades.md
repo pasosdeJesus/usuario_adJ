@@ -1,3 +1,7 @@
+Versión 6.2
+
+:   -   Mejorada [xref](#inicio-del-sistema)
+
 Versión 6.1
 
 :   -   Mejorada  sección de Ruby on Rails [xref](#ruby)

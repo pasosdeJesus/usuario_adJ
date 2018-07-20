@@ -5,17 +5,14 @@ OpenBSD es un sistema operativo tipo Unix de libre redistribución[^1].
 Es descendiente directo de NetBSD que a su vez desciende de los sistemas
 Unix desarrollados en la Universidad de Berkeley i.e. BSD[^2]. Sus
 puntos más fuertes son estandarización (cumplir POSIX), seguridad y
-criptografía. Para lograr seguridad y descubrir fallas sus
-desarrolladores examinan detalladamente (auditan) y mejoran las fuentes
-de los componentes básicos del sistema operativo[^3]. Este trabajo ha
+criptografía. Para lograr seguridad los desarrolladores de OpenBSD 
+continuamente examinan detalladamente (auditan) y mejoran el código 
+fuente para descrubir fallas de seguridad[^3]. Este trabajo ha
 permitido liberar varias versiones de OpenBSD desde hace más de 10 años
 con tan sólo dos fallas de seguridad conocidas en los componentes
 básicos, en la instalación por defecto (apropiada para un servidor
 conectado a Internet).
 
-auditan
-Los desarrolladores de OpenBSD ... el código fuente para descubrir
-fallas de seguridad.
 
 Diferencias entre OpenBSD y Linux
 ---------------------------------
@@ -41,8 +38,7 @@ Diferencias entre OpenBSD y Linux
     desarrolladores mantienen excelentes páginas man.
 
 -   La licencia del kernel de OpenBSD y de la mayoría de componentes del
-    sistema básico es BSD, aunque todo el sistema depende de una versión
-    auditada de gcc.
+    sistema básico es BSD.
 
 [^1]: La mayoría de los componentes básicos de OpenBSD están cubiertos
     por licencias tipo BSD, que permiten copia, redistribución,

@@ -134,7 +134,7 @@ Nombres y manejo de dispositivos
 Sistema básico y portes
 
 :   Notará que la instalación es muy corta porque sólo se instala un
-    sistema básico, que consta del kernel, comandos básicos (de `/bin` y
+    sistema básico, que consta del kernel, ordenes básicas (de `/bin` y
     `/sbin` y `/usr/lib`), archivos de configuración (de `/etc`) y
     eventualmente, si los escoge al instalar, compilador, documentación
     y el servidor X-Window. Estos componentes conforman OpenBSD y han
@@ -162,7 +162,7 @@ Particiones
     `/var` (al menos con 1.2G si planea sacar respaldos de imagenes
     cifradas en CD o de 8G si planea sacarlas en DVD).
 
-Interprete de comandos
+Interprete de ordenes
 
 :   Por defecto emplea `ksh` que es muy parecido a `bash`. Hay también
     un paquete de `bash` que podría instalar después de tener en
@@ -191,7 +191,7 @@ Herramientas UNIX
 
 Una vez pueda iniciar un medio con un instalador, el sistema reconocerá
 las partes de su computador y esperará algunas respuestas de su parte,
-como si desea instalar, actualizar o iniciar un interprete de comandos
+como si desea instalar, actualizar o iniciar un interprete de ordenes
 para rescatar un sistema: 
 
 ![](img/instala1.png)
@@ -329,7 +329,7 @@ xshare&VER-OPENBSD-S;
 site&VER-OPENBSD-S;
 
 :   Requerido para continuar la instalación y configuración de
-    Aprendiendo de Jesús. En particular archivo de comandos
+    Aprendiendo de Jesús. En particular archivo de ordenes
     `/usr/local/adJ/inst-adJ.sh` que deberá ejecutar como usuario
     administrador cuando haya reiniciado.
 
@@ -387,7 +387,7 @@ archivos y programas son sensibles a la capitalización).
 
 Este procedimiento permite instalar y actualizar adJ, así que puede
 ejecutarlo cuantas veces lo requiera para completar la instalación o una
-actualización. El archivo de comandos `/inst-adJ.sh` lo guiará en la
+actualización. El archivo de ordenes `/inst-adJ.sh` lo guiará en la
 instalación del resto del sistema con preguntas típicamente de si o no,
 como se presenta en las siguientes capturas de pantalla de ejemplo: 
 
@@ -398,7 +398,7 @@ como se presenta en las siguientes capturas de pantalla de ejemplo:
 ![](img/insadJ3.png)
 
 adJ puede configurar por defecto 2 imagenes cifradas, una para almacenar
-bases de datos de PostgreSQL (directorio `/var/postgresql` y otra para
+bases de datos de PostgreSQL (directorio `/var/postgresql`) y otra para
 almacenar copias de respaldo de la base de datos y otros datos que usted
 requiera (directorio `/var/www/resbase`). Cada una de estas imagenes
 tienen asociadas claves para cifrar y descifrar, estas claves debe
@@ -412,7 +412,7 @@ ejecutando:
 
 ![](img/insadJ5.png)
 
-El servidor web Apache será configurado con SSL por lo que debe dar
+El servidor web nginx será configurado con SSL por lo que debe dar
 detalles para el certificado como se presenta en la siguiente captura de
 pantalla.
 
@@ -423,7 +423,7 @@ pantalla.
 Después es recomendable que consulte `man afterboot` que incluye una
 lista de chequeo de cosas por hacer después de la instalación.
 
-## Inicio del sistema
+## Inicio del sistema {#inicio-del-sistema}
 
 El arranque se realiza de acuerdo al archivo `/etc/rc` (que no debe
 modificarse), este archivo en particular lee variables definidas por el
@@ -451,8 +451,8 @@ Los servicios proveidos por paquetes que son iniciados se especifican en
 la variable `pkg_scripts`, que se define en el archivo
 `/etc/rc.conf.local`. Los servicios tanto del sistema base como de
 paquetes típicamente tiene un archivo en el directorio `/etc/rc.d`.
-Estos archivos de comandos pueden ejecutarse con una de las siguientes
-opciones:
+Estos archivos de ordenes pueden ejecutarse con una de las siguientes
+opciones (llamadas acciones):
 
 `start`
 
@@ -473,12 +473,70 @@ opciones:
 
 `reload`
 
-:   Si el servicio está operando lo vuelve a iniciar.
+:   Envía una señal al servicio para que vuelva a cargar sus archivos de
+    configuración sin necesidad de detenerlo y volverlo a iniciar.
 
-En adJ el archivo de comandos `/etc/rc.local` además de poder contener
+
+Otra forma de manejar servicios y sus variables (especificadas en 
+`/etc/rc.conf.local`) es con `rcctl.` Esta herramienta maneja cada servicio
+con 5 variables que indican como ejecutarlo: class (clase de login con la
+que inicia), flags (opciones para iniciarlo), status (estado habilitado o no),
+timeout (tiempo de espera para arranque), user (usuario que lo inicia).
+
+Veamos ejemplos de su uso:
+
+`doas rcctl enable cupsd`
+
+:   Habilita un servicio disponible en `/etc/rc.d` de nombre `cupsd`. Alias
+    de `doas rcctl set cupsd status on`
+
+`doas rcctl disable cupsd`
+
+:   Deshabilita un servicio disponible en `/etc/rc.d` de nombre `cupsd`. Alias
+    de `doas rcctl set cupsd status off`
+
+`doas rcctl -d restart cupsd`
+
+:   Reinicia servicio cupsd presentado errores en la terminal si los hay, 
+    en lugar `restart` también pueden usarse las acciones explicadas
+    antes para archivos de ordenes del dirctorio `/etc/rc.d`.
+
+`doas rcctl get cupsd`
+
+:   Presenta las variables del servicio `cupsd` (también podría agregar una 
+    variable al final si desea ver sólo una).
+
+`doas rcctl getdef cupsd`
+
+:   Presenta valor por omisión de las variables del servicio `cupsd` 
+    (también podría agregar el nombre de una variable al final si desea 
+     ver sólo una).
+
+`doas rcctl set cupsd flags "-c /etc/cupsd2.conf"`
+
+:   Establece la variable `flags` de servicio cupsd en `-c /etc/cupsd2.conf`
+    es decir opciones especiales para el arranque.   La variable
+    `status` es especial porque sólo permite los valores on y off para
+    habilitar o deshabiltiar el servicio respectivamente (agregandolo
+    o quitandolo de pkg_scripts en `/etc/rc.conf.local`).
+
+`doas rcctl ls on`
+
+:   Presenta los servicios que están habilitados. En lugar de on
+    también puede usarse `all` (todos), `failed` (los que fallaron),
+    `off` (deshabiltiados), `started` (que están corriendo), 
+    `stopped` (detenidos).
+ 
+`doas rcctl order cupsd postgresql`
+
+:   Pone primero los servicios `cupsd` y `postgresql` en `pkg_script`
+    de forma que serán los primeros servicios en iniciar.
+ 
+
+En adJ el archivo de ordenes `/etc/rc.local` además de poder contener
 acciones por realizar en el arranque, permite reiniciar servicios que se
 hayan detenido. Por esto tras detener un servicio (bien intencionalmente
-o por error) puede ejecutar este archivo de comandos para reiniciarlo
+o por error) puede ejecutar este archivo de ordenes para reiniciarlo
 con:
 
         doas sh /etc/rc.local
