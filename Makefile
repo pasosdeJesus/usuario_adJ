@@ -75,13 +75,13 @@ ghtodo: distgh
 	cp $(PROYECTO)-$(PRY_VERSION)/$(PROYECTO)-$(PRY_VERSION)_html.tar.gz .
 
 repasa:
-	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="adJ_usuario" awk -f herram/db2rep $(SOURCES)
+	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="adJ_usuario" awk -f herram_confsh/db2rep $(SOURCES)
 
 # Para usar DocBook
-include herram/comdocbook.mak
+include herram_confsh/comdocbook.mak
 
 # Para crear distribución de fuentes y publicar en Internet
-include herram/comdist.mak
+include herram_confsh/comdist.mak
 
 # Elimina hasta configuración
 limpiadist: limpiamas
@@ -109,7 +109,7 @@ limpia:
 
 Derechos.txt: $(PROYECTO).$(EXT_DOCBOOK)
 	make html/index.html
-	$(W3M) $(W3M_OPT) -dump html/index.html | awk -f herram/conthtmldoc.awk > Derechos.txt
+	$(W3M) $(W3M_OPT) -dump html/index.html | awk -f herram_confsh/conthtmldoc.awk > Derechos.txt
 
 instala:
 	mkdir -p $(DESTDIR)$(INSDOC)/img/
@@ -120,12 +120,12 @@ instala:
 	} fi;
 
 repasa:
-	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="openbsd_usuario" awk -f herram/db2rep $(SOURCES)
+	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="openbsd_usuario" awk -f herram_confsh/db2rep $(SOURCES)
 
 
 paquetes-adJ.xdbk: infoversion.ent
 	if (test -f /home/$(LOGNAME)/comp/adJ/Contenido.txt) then { cp /home/$(LOGNAME)/comp/adJ/Contenido.txt Contenido.txt ; recode utf8..latin1 Contenido.txt; } else { touch Contenido.txt; } fi;
-	awk -f herram/convContenido.awk Contenido.txt > paquetes-adJ.xdbk; 
+	awk -f herram_confsh/convContenido.awk Contenido.txt > paquetes-adJ.xdbk; 
 
 infoversion.ent:
 	if (test -f ../servidor_adJ/infoversion.ent) then { \
