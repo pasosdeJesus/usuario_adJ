@@ -31,7 +31,7 @@ extremo puede tener que deshabilitar el dispositivo):
 -   Arranque con __`boot -c`__ y cambie parámetros usados por los
     controladores antes de continuar con la detección automática de
     hardware. El cambio sólo durará mientras no reinicie el sistema,
-    puede hacer el cambio durable por ejemplo con el comando:
+    puede hacer el cambio durable por ejemplo con la orden:
     __`config -u`__.
 
 -   Después de que su sistema haya iniciado modifique los recursos
@@ -56,7 +56,7 @@ defecto usa la dirección base 0x300 pero la IRQ 10. Desde el prompt que
             UKC> change ne1
           
 
-puede ver otros comandos disponibles con el comando `help`. Una vez
+puede ver otras ordenes disponibles con la orden `help`. Una vez
 complete la configuración salga del entorno interactivo con `quit`, tras
 esto el kernel continuara la detección pero usando los cambios que haya
 hecho.
@@ -84,8 +84,8 @@ dispositivo (situación que es muy inusual).
     los controladores que se usan para la detección automática de
     hardware.
 
--   Página del manual unix de boot\_config y de 8 donde se describen los
-    comandos aceptados por el entorno interactivo de configuración de
+-   Página del manual unix de boot\_config y de 8 donde se describen las
+    ordenes aceptados por el entorno interactivo de configuración de
     dispositivos.
 
 -   Puede encontrar más sobre la secuencia de arranque de OpenBSD por
@@ -357,7 +357,7 @@ archivo de errores de `cups` en: `/usr/local/var/log/cups/error_log`.
 #### Utilización de CUPS {#uso-cups}
 
 El paquete de `cups` cuenta con programas análogos a los de LPD, pero
-ubicados en `/usr/local/bin`. Diversos programas emplearan el comandos
+ubicados en `/usr/local/bin`. Diversos programas emplearan la orden
 `lpr` para hacer impresiones, así que tiene dos opciones:
 
 -   Ejecutar `cups-enable` que remplazará los ejecutables relacionados
@@ -536,7 +536,7 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
 
             sudo swapctl -A -t blk 
 
-    Ambos comandos intentarán montar como zonas de intercambio todos
+    Ambas ordenes intentarán montar como zonas de intercambio todos
     dispositivos por bloques de `/etc/fstab` que tengan la opción `sw`.
     Puede verificar la adición listando todas las zonas de intercambio
     con:
@@ -684,8 +684,8 @@ de sectores de los que consta con
           
 
 Suponiendo que cada sector tenga 2048 bytes y el total de sectores fuera
-112120 puede crear la imagen (`/home/imagen/micd.iso`) empleando el
-comando:
+112120 puede crear la imagen (`/home/imagen/micd.iso`) empleando la
+orden:
 
         doas dd if=/dev/rcd0c of=/home/imagen/micd.iso bs=2048 count=112120
           
@@ -879,7 +879,7 @@ requerirá posteriormente para usar la imagen.
 ### Montar imagen
 
 Esta imagen puede ser montadas (por ejemplo en `/var/postgresql`) con el
-siguiente archivo de comandos (ubíquelo por ejemplo en
+siguiente archivo de ordenes (ubíquelo por ejemplo en
 `/usr/local/sbin/montapost.sh`):
 
     #!/bin/sh
@@ -900,7 +900,7 @@ y recuerde otorgar permiso de ejecución del mismo:
 
 Notará que este ejemplo es para montar una partición en la que
 funcionará una base de datos PostgreSQL, si no existiera el usuario
-`_postgresql` antes de ejecutar este archivo de comandos ejecute
+`_postgresql` antes de ejecutar este archivo de ordenes ejecute
 `chmod a+w /var/postgresql` y después de que haya instalado PostgreSQL:
 
         sudo chown _postgresql:_postgresql /var/postgresql
@@ -932,7 +932,7 @@ instalación. Después de instalado puede elegir otra configuración con
 `keyb la` o `keyb es`
 
 Si tiene un teclado US y desea emplear teclas muertas en la consola
-puede usar desde la línea de comandos:
+puede usar desde la línea de ordenes:
 
         doas wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
         doas wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"

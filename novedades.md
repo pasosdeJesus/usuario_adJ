@@ -1,6 +1,8 @@
 Versión 6.2
 
 :   -   Mejorada [xref](#inicio-del-sistema)
+    - Diversos renombramientos para mejorar español (e.g orden en lugar de 
+      comando)
 
 Versión 6.1
 

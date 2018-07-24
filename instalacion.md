@@ -215,7 +215,7 @@ En las capturas de pantalla de ejemplo hay un sólo disco duro que se
 usará completo para OpenBSD, es decir tendrá una sóla partición del BIOS
 que abarca todo el disco. De no usarse completo el instalador ingresará
 al programa `fdisk` que le permitirá especificar la partición del BIOS
-ue destinará para OpenBSD (en `fdisk` el comando 'h' le presentará una
+ue destinará para OpenBSD (en `fdisk` la orden 'h' le presentará una
 breve ayuda). 
 
 ![](img/instala3.png)
@@ -225,7 +225,7 @@ definir etiquetas o subparticiones para el área de OpenBSD con el
 programa `disklabel`. Aunque hay un modo de autolocalización de las
 subparticiones se recomienda que cree su propio esquema de
 subparticiones dejando al menos 10GB para la partición donde estará
-`/usr/local` y al menos 1.2GB para `/var`. El comando 'h' en `disklabel`
+`/usr/local` y al menos 1.2GB para `/var`. La orden 'h' en `disklabel`
 presenta una breve ayuda. En el ejemplo siguiente se crean 4
 subparticiones, la primera (`a`) siempre debe ser para el sistema raíz
 (/), la segunda (`b`) siempre debe ser área de intercambio o swap (es
@@ -340,8 +340,8 @@ requiere alrededor de 300MB.
 Una vez se instalen el kernel genérico (`/bsd`) y los componentes que
 eligió el instalador preparará el directorio `/dev` de dispositivos y
 cambiará la partición de OpenBSD para que pueda arrancar el sistema en
-caso de que sea la partición activa[^ins.2]. Puede entonces apagar con el
-comando `halt -p`, retirar el CD y volver a iniciar para entrar al
+caso de que sea la partición activa[^ins.2]. Puede entonces apagar con la
+orden `halt -p`, retirar el CD y volver a iniciar para entrar al
 sistema instalado. Si tienes problemas para ingresar a OpenBSD puede
 arrancar con el CD de instalación y cuando este comenzando a cargar
 expulsarlo para quedar en la linea de espera:

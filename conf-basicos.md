@@ -3,10 +3,10 @@
 
 ## pdksh (ksh) {#pdksh}
 
-Es un interprete de comandos similar a `bash`. Este interprete de
-comandos al iniciarse como interprete de login lee los archivos
+Es un intérprete de ordenes similar a `bash`. Este intérprete de
+ordenes al iniciarse como intérprete de login lee los archivos
 `/etc/profile` y `$HOME/.profile`, pero no lo hace si es iniciado como
-interprete interactivo. Puede iniciarse explícitamente como interprete
+intérprete interactivo. Puede iniciarse explícitamente como intérprete
 de login con `ksh -l`. Esto puede resultar útil para iniciarlo por
 ejemplo dentro de `xterm`:
 
@@ -52,7 +52,7 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
     >         chmod og-r ~/.netrc
 
 -   Permite especificar el URL (iniciado con `http://` o `ftp://`) de un
-    archivo por descargar en la línea de comandos (y realiza
+    archivo por descargar en la línea de ordenes (y realiza
     autenticación automática si es ftp:// y se ha configurado
     `~/.netrc`, o si el URL es análogo a
     `ftp://&EUSUARIO;:miclave@&ESERV;/pub/doc.txt`). En este caso si se
@@ -63,7 +63,7 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
 
 ## doas
 
-Este programa permite ejecutar comandos privilegiados a algunos
+Este programa permite ejecutar ordenes privilegiadas a algunos
 usuarios. A partir de adJ y OpenBSD 5.8 el sistema base incluye `doas`
 como remplazo del antiguo `sudo`. `doas` es más simple y fácil de
 auditar.
@@ -75,8 +75,8 @@ Se configura en `/etc/doas.conf`. Un ejemplo mínimo es:
 que permitirá su uso sin requerir clave a todos los usuarios del grupo
 `wheel` manteniendo las varibles de ambiente.
 
-Una vez configurado, puede ejecutar un comando privilegiado desde una
-cuenta configurada con `doas comando`. Por ejemplo:
+Una vez configurado, puede ejecutar una orden privilegiada desde una
+cuenta configurada con `doas orden`. Por ejemplo:
 
         doas vi /etc/rc.conf.local 
 

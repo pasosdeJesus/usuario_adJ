@@ -220,7 +220,7 @@ dbus-glib-[v]	Enlaces entre dbus y glib
 dconf-[v]		Extremo posterior de sistema de configuración
 desktop-file-utils-[v]	Utilidades para entradas del escritorio
 detex-[v]		Sacar código TeX/LaTeX de un archivo
-dialog-[v]	Mejora la presentación de archivos de comandos 
+dialog-[v]	Mejora la presentación de archivos de ordenes 
 djvulibre-[v]	Ver, Decodificar y codificar archivos DjVu
 docbook-[v]		Definiciones XML/SGML de documentación técnica
 docbook-xsl-[v]	Hojas de estilo XSL para DocBook
@@ -238,7 +238,7 @@ ffcall-[v]		Librería para llamod a funciones foraneas
 fftw3-[v]		Rutinas en C para Transformada Discreta de Fourier
 fftw3-common-[v]	Archivos comunes para paquetes fftw3
 flac-[v]		Codec abierto de audio sin perdidas
-flock-[v]	Administrador de flock para archivos de comandos
+flock-[v]	Administrador de flock para archivos de ordenes
 foomatic-db-engine-[v]	Generador de PPDs de Foomatic
 foomatic-db-[v]	Datos PPD de Foomatic
 fox-[v]		Juego de herramientas para interfaces en C++

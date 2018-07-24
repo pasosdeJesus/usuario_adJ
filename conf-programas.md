@@ -221,9 +221,9 @@ Programa que convierte un archivo LaTeX a DVI.
 xdvi
 Programa para ver un archivo DVI en pantalla.
 
-El archivo DVI es apropiado para imprimir, puede imprimirlo con un
-comando como `dvilj`, `dvidj` o un nombre análogo que corresponda a su
-impresora [^lat.1]. Para visualizar un archivo DVI puede emplear el comando
+El archivo DVI es apropiado para imprimir, puede imprimirlo con una
+orden como `dvilj`, `dvidj` o un nombre análogo que corresponda a su
+impresora [^lat.1]. Para visualizar un archivo DVI puede emplear la orden
 xdvi:
 
         xdvi documento.dvi
@@ -247,7 +247,7 @@ latex2html y HeVeA. Puede encontrar más información de latex2html en
 en [](http://pauillac.inria.fr/hevea/).
 
 [^lat.1]: Si usa `ksh` puede ver una lista de posibles programas que le
-    permitan imprimir, tecleando `dvi` desde un intérprete de comandos y
+    permitan imprimir, tecleando `dvi` desde un intérprete de ordenes y
     presionando Tab dos veces.
 
 
@@ -464,7 +464,7 @@ libre ogg, el común wav y el patentado mp3) puede usar `mplayer` (ver
  El programa `play` incluido en el paquete &p-sox; también le
 permitirá escuchar diversos formatos.
 
-Desde la línea de comandos podrá recortar, cambiar volumen y aplicar
+Desde la línea de ordenes podrá recortar, cambiar volumen y aplicar
 otros efectos empleando el programa `sox`.
 
 Si prefiere un editor gráfico que le permite recortar y aplicar algunos
@@ -630,7 +630,7 @@ administrador):
 
 ```
     # Configuración de irb
-    # Basado en archivo de comandos disponible en <http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/>
+    # Basado en archivo de ordenes disponible en <http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/>
     require 'irb/completion'
     require 'pp'
     IRB.conf[:AUTO_INDENT] = true
@@ -1111,7 +1111,7 @@ volviendola a crear con `-E UTF8` y restaurando los datos).
                     
 
 -   A manera de prueba de su configuración intente ingresar a un
-    interprete de comandos para su base de datos con:
+    interprete de ordenes para su base de datos con:
 ```
         rails dbconsole
 ```                    
