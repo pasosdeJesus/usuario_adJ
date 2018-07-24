@@ -1,10 +1,10 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>4. Configuración y uso de programas y servicios básicos</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="paquetesyportes.html" title="3. Paquetes y portes"><link rel="next" href="conf-programas.html" title="5. Configuracioń y uso de algunos programas"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">4. Configuración y uso de programas y servicios básicos</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="paquetesyportes.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="conf-programas.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="configuracion-de-componentes-basicos"></a>4. Configuración y uso de programas y servicios básicos</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="pdksh"></a>4.1. pdksh (ksh)</h3></div></div></div><p>
-      Es un interprete de comandos similar a <code class="literal">bash</code>.
-      Este interprete de comandos al iniciarse como interprete de login
+      Es un intérprete de ordenes similar a <code class="literal">bash</code>.
+      Este intérprete de ordenes al iniciarse como intérprete de login
       lee los archivos <code class="literal">/etc/profile</code> y
       <code class="literal">$HOME/.profile</code>, pero no lo hace si es iniciado
-      como interprete interactivo. Puede iniciarse explícitamente como
-      interprete de login con <code class="literal">ksh -l</code>. Esto puede
+      como intérprete interactivo. Puede iniciarse explícitamente como
+      intérprete de login con <code class="literal">ksh -l</code>. Esto puede
       resultar útil para iniciarlo por ejemplo dentro de
       <code class="literal">xterm</code>:
     </p><pre class="programlisting">
@@ -54,7 +54,7 @@
 </pre></blockquote></div></li><li><p>
           Permite especificar el URL (iniciado con
           <code class="literal">http://</code> o <code class="literal">ftp://</code>) de un
-          archivo por descargar en la línea de comandos (y realiza
+          archivo por descargar en la línea de ordenes (y realiza
           autenticación automática si es ftp:// y se ha configurado
           <code class="literal">~/.netrc</code>, o si el URL es análogo a
           <code class="literal">ftp://pablo:miclave@Jesus.miescuela.edu.co/pub/doc.txt</code>).
@@ -64,7 +64,7 @@
           emplearse <code class="literal">*</code> para indicar transmisión de
           varios archivos.
         </p></li></ul></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="doas"></a>4.3. doas</h3></div></div></div><p>
-      Este programa permite ejecutar comandos privilegiados a algunos
+      Este programa permite ejecutar ordenes privilegiados a algunos
       usuarios. A partir de adJ y OpenBSD 5.8 el sistema base incluye
       <code class="literal">doas</code> como remplazo del antiguo
       <code class="literal">sudo</code>. <code class="literal">doas</code> es más simple y
@@ -79,8 +79,8 @@
       grupo <code class="literal">wheel</code> manteniendo las varibles de
       ambiente.
     </p><p>
-      Una vez configurado, puede ejecutar un comando privilegiado desde
-      una cuenta configurada con <code class="literal">doas comando</code>. Por
+      Una vez configurado, puede ejecutar una orden privilegiado desde
+      una cuenta configurada con <code class="literal">doas orden</code>. Por
       ejemplo:
     </p><pre class="programlisting">
     doas vi /etc/rc.conf.local 
