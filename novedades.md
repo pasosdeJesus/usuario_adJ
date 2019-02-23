@@ -1,3 +1,8 @@
+Versión 6.4
+
+:   - Mejorada [xref](#)
+    - Mejorado el formato
+
 Versión 6.2
 
 :   -   Mejorada [xref](#inicio-del-sistema)

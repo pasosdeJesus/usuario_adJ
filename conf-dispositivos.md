@@ -89,7 +89,7 @@ dispositivo (situación que es muy inusual).
     dispositivos.
 
 -   Puede encontrar más sobre la secuencia de arranque de OpenBSD por
-    ejemplo en [](http://dhobsd.pasosdeJesus.org/pres21abr2005/)
+    ejemplo en <http://dhobsd.pasosdeJesus.org/pres21abr2005/>
 
 
 ## Impresión {#impresion}
@@ -210,7 +210,7 @@ transformaciones a un Postcript.
 Además de los programas `a2ps` y del paquete `psutils` es posible
 modificar directamente un archivo PostScript. Por ejemplo siguiendo las
 indicaciones de
-[](http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html),
+<http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html>,
 resulta posible rotar una página, editando el archivo y en la sección
 `%%%BeginPageSetup` agregando después de establecer tamaño de página,
 e.g. `595 842 /a4 setpagesize`:
@@ -371,7 +371,7 @@ ubicados en `/usr/local/bin`. Diversos programas emplearan la orden
 
 `foomatic` ofrece gran cantidad de controladores para una variada gama
 de impresoras, estos controladores e instrucciones para impresoras
-particulares están disponibles en [](http://www.openprinting.org) Es
+particulares están disponibles en <http://www.openprinting.org> Es
 posible emplearlos bien con `lpr` o bien con `cups`.
 
 #### Foomatic con LPR {#foomatic-lpr}
@@ -512,7 +512,7 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
     se trata de un sistema ffs o `swap` si se trata de un dispositivo
     para intercambio), y la ubicación.
 
-    > ![](img/caution.png) **Cuidado**
+    > !<img/caution.png> **Cuidado**
     >
     > El sitio donde reubique una partición NO debe estar traslapado
     > sobre una partición ya existente. Si traslapa una partición sobre
@@ -781,10 +781,9 @@ Puede consultar más sobre creación de imágenes para CDs con
 Para conocer más sobre el quemado de CDs puede consultar `man cdrecord`
 (también después de instalar el paquete `cdrtools`). En foros de
 usuarios pueden verse mensajes como
-[](http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html
-    ),
-[](http://www.deadly.org/article.php3?sid=20031105030127&mode=flat) y
-[](http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html)
+<http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html>,
+<http://www.deadly.org/article.php3?sid=20031105030127&mode=flat> y
+<http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html>
 
 [^que.1]: Si la sesión previa tenia -T esta también con mismo nombre de
     tablas (especificable con -table-name TN).
@@ -794,7 +793,7 @@ usuarios pueden verse mensajes como
 
 El sistema de archivos de los DVD es UDF, que es diferente al de los CDs
 (ISO9660). Desde la versión 4.0, OpenBSD soporta las versiones 1.02 y
-1.50 de UDF en modos plain y VAT (ver []()
+1.50 de UDF en modos plain y VAT (ver <>
 
 Las operaciones de montaje de DVDs, montaje de imagenes y copia de DVDs
 a disco son como las de CDs remplazando el tipo `cd9660` por `udf` (ver
@@ -822,7 +821,7 @@ formas:
 `man mount_udf` y `man growisofs`.
 
 Universal Disk Format:
-[](http://en.wikipedia.org/wiki/Universal_Disk_Format)
+<http://en.wikipedia.org/wiki/Universal_Disk_Format>
 
 
 ## Memoria USB

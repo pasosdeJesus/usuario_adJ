@@ -51,8 +51,8 @@
     las fuentes son de libre redistribución en su mayoría cubiertas por
     la licencia BSD. Por esto en caso de comprar CDs oficiales comprelos
     sólo a los desarrolladores o a redistribuidores autorizados. En el
-    caso de OpenBSD ver [](http://www.openbsd.org/orders.html) y en el
-    caso de adJ ver [](https://aprendiendo.pasosdeJesus.org).
+    caso de OpenBSD ver <http://www.openbsd.org/orders.html> y en el
+    caso de adJ ver <https://aprendiendo.pasosdeJesus.org>.
 
 3.  Contar con hardware soportado. La mayoría de componentes típicos son
     soportados, aunque hay excepciones por lo que antes de comprar se
@@ -90,7 +90,7 @@
 5.  Leer la fe de erratas que incluye solucionas a eventuales problemas
     que tendrá durante la instalación o cuando concluya junto con
     soluciones:
-    [](http://aprendiendo.pasosdejesus.org/?id=AdJ+&VER-ADJ;+-+Aprendiendo+de+Jesus+&VER-ADJ;)
+    <http://aprendiendo.pasosdejesus.org/?id=AdJ+&VER-ADJ;+-+Aprendiendo+de+Jesus+&VER-ADJ;>
 
 [^pre.1]: Los CDs de OpenBSD ordenados por la página web de OpenBSD si
     llegan a Colombia.
@@ -802,6 +802,6 @@ estos archivos es la cantidad de tipos por lo que debe incrementarlo).
 -   El servidor de X-Window incluido en OpenBSD VER-OPENBSD soporta
     fuentes anti-aliasing y True Type. Puede consultar el procedimiento
     para instalar fuentes True Type en
-    [](http://www.openbsd.org/faq/truetype.html).
+    <http://www.openbsd.org/faq/truetype.html>.
 
 

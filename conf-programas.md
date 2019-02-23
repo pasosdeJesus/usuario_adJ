@@ -50,10 +50,10 @@ Puede configurar teclas rápidas en el archivo `~/.fluxbox/keys`
 
 -   Sitio oficial [](fluxbox.org).
 
--   Página sobre fluxbox de NetBSD [](http://wiki.netbsd.org/fluxbox/)
+-   Página sobre fluxbox de NetBSD <http://wiki.netbsd.org/fluxbox/>
 
 -   Página sobre fluxbox de Gentoo
-    [](http://www.gentoo.org/doc/es/fluxbox-config.xml)
+    <http://www.gentoo.org/doc/es/fluxbox-config.xml>
 
 
 ### `xfe`
@@ -243,8 +243,8 @@ programa `xdvi`.
 
 Existen además otros programas para convertir de LaTeX a HTML como
 latex2html y HeVeA. Puede encontrar más información de latex2html en
-[](http://ctan.tug.org/ctan/tex-archive/support/latex2html/) y de HeVeA
-en [](http://pauillac.inria.fr/hevea/).
+<http://ctan.tug.org/ctan/tex-archive/support/latex2html/> y de HeVeA
+en <http://pauillac.inria.fr/hevea/>.
 
 [^lat.1]: Si usa `ksh` puede ver una lista de posibles programas que le
     permitan imprimir, tecleando `dvi` desde un intérprete de ordenes y
