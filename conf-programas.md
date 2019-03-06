@@ -46,7 +46,7 @@ La apariencia en general puede configurarse en `~/.fluxbox/init`
 
 Puede configurar teclas rápidas en el archivo `~/.fluxbox/keys`
 
-#### Lecturas recomendadas {#lecturas-conf-fluxbox}
+#### Lecturas recomendadas y referencias {#lecturas-conf-fluxbox}
 
 -   Sitio oficial [](fluxbox.org).
 
@@ -525,7 +525,7 @@ necesita emplear el `sendmail` de otro computador puede:
     escritorio o su administrador de ventanas para que toda la sesión
     emplee el agente (ver un ejemplo en [xref](#fluxbox)).
 
-#### Lecturas recomendadas {#lecturas-mutt}
+#### Lecturas recomendadas y referencias {#lecturas-mutt}
 
 -   Página man de `mutt`
 
@@ -1279,7 +1279,7 @@ depurar:
 Ruby también ofrece facilidades para medir tiempos como se resume en
 {4}.
 
-#### Referencias
+#### Lecturas recomendadas y referencias
 
 -   {1}
     http://guides.rubyonrails.org/getting_started.html

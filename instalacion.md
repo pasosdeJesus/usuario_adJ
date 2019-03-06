@@ -187,7 +187,12 @@ Herramientas UNIX
     el disco completo. Pueden verse las particiones precisas que se usan
     del primer disco IDE con `disklabel /dev/wd0c`
 
-## Instalación y configuración del sistema básico {#instalacion-y-configuracion-del-sistema-basico}
+## Instalación y configuración del sistema base {#instalacion-y-configuracion-del-sistema-base}
+
+Arranque por el medio de instalación, su prompt será algo como
+		boot>
+Si no arranca de inmediato el medio de instalación intente con
+		boot> boot bsd.rd
 
 Una vez pueda iniciar un medio con un instalador, el sistema reconocerá
 las partes de su computador y esperará algunas respuestas de su parte,
@@ -792,7 +797,7 @@ Si eventualmente el nuevo tipo no queda en los archivos generados
 (`fonts.dir`, `fonts.scale`) edítelos y agréguelo (el primer número en
 estos archivos es la cantidad de tipos por lo que debe incrementarlo).
 
-### Lecturas recomendadas {#lecturas-xorg}
+### Lecturas recomendadas y referencias {#lecturas-xorg}
 
 -   Página man de `xorg.conf`
 

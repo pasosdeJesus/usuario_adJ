@@ -78,7 +78,7 @@ Si no logra configurar algún dispositivo y esto hace que el sistema
 completo se congele durante el arranque, puede requerir deshabilitar el
 dispositivo (situación que es muy inusual).
 
-### Lecturas recomendadas {#hardware-arranque-lecturas}
+### Lecturas recomendadas y referencias {#hardware-arranque-lecturas}
 
 -   Página del manual unix de autoconf8. `autoconf` determina el orden y
     los controladores que se usan para la detección automática de
@@ -504,7 +504,7 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
     `disklabel`. Por ejemplo puede emplear el modo interactivo de este
     programa:
 
-            sudo disklabel -E /dev/wd1c 
+            doas disklabel -E /dev/wd1c 
 
     en este modo puede examinar las particiones y divisiones del disco
     con p, puede ver una ayuda abreviada con h. Con m le será posible
@@ -512,7 +512,7 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
     se trata de un sistema ffs o `swap` si se trata de un dispositivo
     para intercambio), y la ubicación.
 
-    > !<img/caution.png> **Cuidado**
+    > ![](img/caution.png) **Cuidado**
     >
     > El sitio donde reubique una partición NO debe estar traslapado
     > sobre una partición ya existente. Si traslapa una partición sobre
@@ -530,21 +530,155 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
 3.  Intente agregar el dispositivo como zona de intercambio sin
     reiniciar con:
 
-            sudo swapon -a 
+            doas swapon -a 
 
     o con:
 
-            sudo swapctl -A -t blk 
+            doas swapctl -A -t blk 
 
     Ambas ordenes intentarán montar como zonas de intercambio todos
     dispositivos por bloques de `/etc/fstab` que tengan la opción `sw`.
     Puede verificar la adición listando todas las zonas de intercambio
     con:
 
-            sudo swapctl -l 
+            doas swapctl -l 
 
 [^dis.1]: Los parámetros del hardware mantenidos ayudan a localizar bloques
     libres de forma óptima.
+
+### Arreglo de discos RAID por software {#raid}
+
+Cómo se explica en la página del manual de `softraid`, OpenBSD incluye 
+el dispositivo `softraid` que puede proveer RAID y otros 
+servicios relacionados con entrada/salida.  
+Un volumen es un disco virtual que consta de varios "pedazos", cada "pedazo" 
+(del inglés __chunk__) es una subpartición del disco de tipo RAID (el
+tipo se establece con `disklabel`).
+
+Las posibles disciplinas que soporta `softraid` son:
+
+* RAID 0:  Que segmenta los datos sobre un número de "pedazos" para
+	aumentar el desempeño (aunque no provee redundancia).  No
+	es posible hacer volumenes de arranque.
+* RAID 1: Copia cada dato en más de un "pedazo" para facilitar
+  	recuperar información en caso de perdida de datos.  Si es
+	posible hacer volúmenes de arranque.
+* RAID 5: Divide los datos en varios pedazos pero proveed paridad
+ 	para prevenir perdida de datos.  No es posible hacer volumenes
+	de arranque.
+* CRYPTO: Cifra los datos en un sólo pedazo para proveer
+	confidencialidad (aunque no redundancia). Si es posible hacer
+	volumenes de arranque.
+* CONCAT: Que concatena varios pedazos, aunque no provee redundancia ni
+	permite hacer volumenes de arranque.
+
+Hemos notado en la práctica que cada "pedazo" debe ser máximo de 2T.
+
+#### RAID 1 sin arranque
+
+La disciplina RAID 1 provee redundancia, pues cada dato lo escribe en 
+todos los pedazos que conforman el arreglo.  Así que cada pedazo es 
+como una copia de cada uno de los otros. 
+
+Para el caso típico de 2 "pedazos" que se configurarán en RAID 1 pero no
+como volumen de arranque, se recomienda usar 3 discos duros.
+Uno para arrancar (digamos sd0) y 2 de las mismas dimensiones que se 
+configuraran en RAID 1 (digamos sd1 y sd2 cada uno de 2T).
+
+sd0 debe tener un sistema OpenBSD/adJ típico para (1) configurar
+el RAID 1 para sd1 y sd2 y (2) montar el arreglo resultante
+en un directorio de su sistema de archivos.
+
+Primero se preparan sd1 y sd2 completos para OpenBSD (o si es una parte de
+cada uno usar -e)
+
+		doas fdisk -iy sd1
+		doas fdisk -iy sd2
+
+Después en cada uno se crea una subpartición de tipo RAID con disklabel, 
+ambas deben quedar del mismo tamaño y se recomienda inicializarlas
+en ceros:
+
+		$ doas disklabel -E sd1
+		Label editor (enter '?' for help at any prompt)
+		> a a
+		offset: [64]
+		size: [39825135] *
+		FS type: [4.2BSD] RAID
+		> w
+		> q
+		$ doas dd if=/dev/zero of=/dev/rsd1a bs=1m count=1
+
+En el ejemplo anterior se presentó el caso de creación de sd1a, debe repetirse 
+lo mismo para sd2 para contar con sd2a.
+
+A continuación debe ensamblarse el arreglo RAID con algo como:
+
+		doas bioctl -v -c 1 -l sd1a,sd2a softraid0
+
+Que creará otro dispositivo, digamos sd3 (aún si necesita hacer varios 
+arreglos RAID emplee siempre softraid0).  Puede verificar que sd3 es el 
+arreglo RAID con:
+	
+		$ doas bioctl sd3
+		Volume Status Size Device 
+		softraid0 0 Online 3298542608896 sd3 RAID1 
+		0 Online 3298542608896 0:0.0 noencl 
+		1 Online 3298542608896 0:1.0 noencl
+
+Con el arreglo ensamblado en sd3, usted puede operar con ese dispositivo 
+como si fuera un disco más, es recomendable que inicialice sus primeros 
+sectores en 0:
+
+		doas dd if=/dev/zero of=/dev/rsd3c bs=1m count=1
+
+Y proceda a crear partición,  subpartición(es) e inicializar cada 
+subpartición. En el siguiente ejemplo se creará una sola subpartición,
+se inicializará y se montará en /var/raid1:
+
+		$ doas fdisk -iy /dev/rsd3c
+		$ doas disklabel -E /dev/sd3c
+		> a a
+		offset: [64]
+		size: [3999992128] *
+		FS type: [4.2BSD] 
+		> w
+		> q
+		$ doas newfs /dev/rsd3a
+		$ doas mkdir /var/raid1
+		$ doas mount /dev/sd3a /var/raid1
+
+Con el ejemplo presentado ya habrían disponibles 2T con redundancia RAID 1 
+en el punto de montaje /var/raid1.
+
+Para hacer el cambio permanente es recomendable que en /etc/fstab
+agregue el duid del arreglo (pues al agregar discos físicos podría
+cambiar el sd3 por ejemplo por sd4).  Examina el duid con 
+		disklabel /dev/sd3c
+
+
+##### Operación y recuperación en caso de falla de uno de los discos
+
+Es importante revisar con periodicidad el estado del arreglo con:
+
+		$ doas bioctl sd3
+
+Allí podría verse si alguno de los discos está fallando (Offline) y en
+tal caso, debe remplazarse el disco defectuso (digamos sd2).  En el nuevo 
+disco debe crearse partición y subpartición con las mismas características 
+del que funciona bien y entonces debe reconstruirse el espejo.
+Por ejemplo para reconstruir y unir un nuevo /dev/sd2a:
+
+		$ doas bioctl -R /dev/sd2a sd3
+
+
+#### Lecturas recomendadas y referencias
+
+-  Página del manual de `softraid`
+
+-  Página del manual de `bioctl`
+
+-  <https://www.openbsd.org/faq/faq14.html>
 
 
 ## Disquetes e imágenes de disquetes {#disquetes-e-imagenes-de-disquetes}
@@ -573,12 +707,12 @@ cuando son ejecutadas desde una cuenta que pertenezca al grupo
 
 Si no desea cambiar permisos de dispositivos, ni manejar el grupo
 `operator` ni cambiar variables del kernel puede configurar y emplear
-`sudo` (ver [sudo](#sudo)):
+`doas` (ver [doas](#doas)):
 
         doas mcopy *tgz a: 
 
-o incluso con `sudo` y un alias hacer transparente la restricción para
-los usuarios que puedan emplear `sudo`:
+o incluso con `doas` y un alias hacer transparente la restricción para
+los usuarios que puedan emplear `doas`:
 
         alias mcopy='doas mcopy' 
 
@@ -653,9 +787,9 @@ la represente, por ejemplo:
         mount /dev/vnd0a /mnt/tmp
         
 
-### Referencias {#referencias-cd-y-quemadoras}
+### Lecturas recomendadas y referencias {#referencias-cd-y-quemadoras}
 
-Más sobre montaje de archivos con `man fstab`.
+-   Más sobre montaje de archivos con `man fstab`.
 
 
 ## Quemadora de CD-R y CD-RW {#quemadora}
@@ -773,12 +907,12 @@ formatos `.wav` o `.au`) con información de 16 bits en estéreo a 44100
 muestras/s, codificación PCM. Al quemar con `cdrecord` en lugar de la
 opción `-data` debe emplearse `-audio`.
 
-### Referencias {#referencias-quemadoras}
+### Lecturas recomendadas y referencias {#referencias-quemadoras}
 
-Puede consultar más sobre creación de imágenes para CDs con
+- Puede consultar más sobre creación de imágenes para CDs con
 `man mkisofs` (tras haber instalado `cdrtools`)).
 
-Para conocer más sobre el quemado de CDs puede consultar `man cdrecord`
+- Para conocer más sobre el quemado de CDs puede consultar `man cdrecord`
 (también después de instalar el paquete `cdrtools`). En foros de
 usuarios pueden verse mensajes como
 <http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html>,
@@ -816,11 +950,11 @@ formas:
             doas growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
                           
 
-### Referencias {#referencias-dvd}
+### Lecturas recomendadas y referencias {#referencias-dvd}
 
-`man mount_udf` y `man growisofs`.
+- `man mount_udf` y `man growisofs`.
 
-Universal Disk Format:
+- Universal Disk Format:
 <http://en.wikipedia.org/wiki/Universal_Disk_Format>
 
 
@@ -894,7 +1028,7 @@ siguiente archivo de ordenes (ubíquelo por ejemplo en
 
 y recuerde otorgar permiso de ejecución del mismo:
 
-        sudo chmod +x /usr/local/sbin/montapost.sh
+        doas chmod +x /usr/local/sbin/montapost.sh
         
 
 Notará que este ejemplo es para montar una partición en la que
@@ -902,8 +1036,8 @@ funcionará una base de datos PostgreSQL, si no existiera el usuario
 `_postgresql` antes de ejecutar este archivo de ordenes ejecute
 `chmod a+w /var/postgresql` y después de que haya instalado PostgreSQL:
 
-        sudo chown _postgresql:_postgresql /var/postgresql
-        sudo chmod o-w /var/postgresql
+        doas chown _postgresql:_postgresql /var/postgresql
+        doas chmod o-w /var/postgresql
         
 
 ### Montar en el arranque {#montar-arranque}
@@ -912,13 +1046,13 @@ Este script debe ejecutarse en el momento del arranque y antes de
 iniciar la base de datos, agregue a su archivo `/etc/rc.local` (antes de
 la inicialización de PostgreSQL):
 
-        sudo /usr/local/sbin/montapost.sh
+        doas /usr/local/sbin/montapost.sh
             
 
 De forma que en cada arranque el script le solicitará la clave antes de
 continuar.
 
-### Referencias {#referencias-imagen-cifrada}
+### Lecturas recomendadas y referencias {#referencias-imagen-cifrada}
 
 Página `man vnconfig`.
 

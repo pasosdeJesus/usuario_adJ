@@ -66,8 +66,8 @@ la opción 44bsd. Si una partición para OpenBSD está dividida en slices
 Linux los detectará durante el arranque y asignará dispositivos
 apropiados (busque los nombres entre los mensajes de `dmesg`):
 
-        sudo mkdir -p /mnt/openbsd
-        sudo mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd 
+        doas mkdir -p /mnt/openbsd
+        doas mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd 
 
 ## Dual con Windows XP o NT {#con-windows-xp}
 

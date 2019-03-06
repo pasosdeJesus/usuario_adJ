@@ -1,6 +1,6 @@
 Versión 6.4
 
-:   - Mejorada [xref](#)
+:   - Nueva sección sobre arreglos Raid [xref](#raid)
     - Mejorado el formato
 
 Versión 6.2
