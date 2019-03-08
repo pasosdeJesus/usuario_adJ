@@ -352,7 +352,7 @@ También es recomendable que cree un directorio:
         
 
 Si tiene problemas al instalar/usar una impresora puede consultar el
-archivo de errores de `cups` en: `/usr/local/var/log/cups/error_log`.
+archivo de errores de `cups` en: `/var/log/cups/error_log`.
 
 #### Utilización de CUPS {#uso-cups}
 
