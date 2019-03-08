@@ -80,7 +80,7 @@
         Si no logra configurar algún dispositivo y esto hace que el
         sistema completo se congele durante el arranque, puede requerir
         deshabilitar el dispositivo (situación que es muy inusual).
-      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="hardware-arranque-lecturas"></a>6.1.2. Lecturas recomendadas</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="hardware-arranque-lecturas"></a>6.1.2. Lecturas recomendadas y referencias</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
             Página del manual unix de autoconf8.
             <code class="literal">autoconf</code> determina el orden y los
             controladores que se usan para la detección automática de
@@ -106,12 +106,12 @@
         <code class="literal">lpr</code> (o <code class="literal">/usr/local/bin/lpr</code>
         si está usando CUPS) que se encarga de poner la información que
         debe enviarse a la impresora en una cola de trabajos pendientes
-        <sup>[<a name="idp1497873064" href="#ftn.idp1497873064">12</a>]</sup>, que es atendida automáticamente (i.e de ella se
+        <sup>[<a name="idp1038185640" href="#ftn.idp1038185640">12</a>]</sup>, que es atendida automáticamente (i.e de ella se
         envían trabajos pendientes cuando la impresora está disponible)
         por un programa.
       </p><p>
         Cada impresora configurada tiene un nombre, la impresora por
-        defecto se llama <code class="literal">lp</code> <sup>[<a name="idp813106600" href="#ftn.idp813106600">13</a>]</sup>.
+        defecto se llama <code class="literal">lp</code> <sup>[<a name="idm298457688" href="#ftn.idm298457688">13</a>]</sup>.
       </p><p>
         Posiblemente su sistema esté configurado para permitir a
         <code class="literal">lpr</code> la impresión de textos planos y
@@ -142,11 +142,11 @@
         LPD suele emplearse PostScript (que es un lenguaje apropiado
         para documentos por imprimir) como formato común y se usan los
         filtros del programa Ghostscript para traducir de PostScript al
-        formato particular de su impresora <sup>[<a name="idp2595588264" href="#ftn.idp2595588264">14</a>]</sup>. Si se usa CUPS es posible emplear controladores
+        formato particular de su impresora <sup>[<a name="idp2294629544" href="#ftn.idp2294629544">14</a>]</sup>. Si se usa CUPS es posible emplear controladores
         particulares para su impresora y no depender de Ghostscript.
       </p><p>
         Ghostscript es un programa que puede leer documentos PostScript
-        y PDF <sup>[<a name="idp2595586600" href="#ftn.idp2595586600">15</a>]</sup> y presentarlos en una ventana de X-Window o
+        y PDF <sup>[<a name="idm334572760" href="#ftn.idm334572760">15</a>]</sup> y presentarlos en una ventana de X-Window o
         transformarlos al lenguaje particular de algunas impresoras. Por
         ejemplo para generar a partir de un documento PostScript
         <code class="literal">s2.ps</code> la secuencia de caracteres apropiada
@@ -219,7 +219,7 @@
         describir un documento, usualmente los documentos PDF requieren
         menos porque mantienen la información comprimida. Para convertir
         entre PostScript y PDF se emplean <code class="literal">ps2pdf</code> y
-        <code class="literal">pdf2ps</code> <sup>[<a name="idp1925872680" href="#ftn.idp1925872680">16</a>]</sup>. Para visualizar e imprimir un PDF, además de
+        <code class="literal">pdf2ps</code> <sup>[<a name="idp1051419944" href="#ftn.idp1051419944">16</a>]</sup>. Para visualizar e imprimir un PDF, además de
         <code class="literal">gv</code>, puede emplear <code class="literal">xpdf</code> o
         el programa Acrobat Reader (<code class="literal">acroread</code>).
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lpd-local"></a>6.2.2. Configuración de una impresora local con
@@ -311,7 +311,7 @@
         del programa Ghostscript.
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="cups"></a>6.2.3. CUPS</h4></div></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="cups-inst"></a>6.2.3.1. Instalación</h5></div></div></div><p>
           Hay un paquete de CUPS entre los portes oficiales de OpenBSD
-          6.3. Una vez instalado puede ejecutarlo con
+          6.4. Una vez instalado puede ejecutarlo con
         </p><pre class="programlisting">
     doas cupsd
     
@@ -348,7 +348,7 @@
 </pre><p>
           Si tiene problemas al instalar/usar una impresora puede
           consultar el archivo de errores de <code class="literal">cups</code> en:
-          <code class="literal">/usr/local/var/log/cups/error_log</code>.
+          <code class="literal">/var/log/cups/error_log</code>.
         </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="uso-cups"></a>6.2.3.3. Utilización de CUPS</h5></div></div></div><p>
           El paquete de <code class="literal">cups</code> cuenta con programas
           análogos a los de LPD, pero ubicados en
@@ -369,7 +369,8 @@
         <code class="literal">foomatic</code> ofrece gran cantidad de
         controladores para una variada gama de impresoras, estos
         controladores e instrucciones para impresoras particulares están
-        disponibles en <a href="http://www.openprinting.org" target="_top">http://www.openprinting.org</a>
+        disponibles en
+        <a href="http://www.openprinting.org" target="_top">http://www.openprinting.org</a>
         Es posible emplearlos bien con <code class="literal">lpr</code> o bien con
         <code class="literal">cups</code>.
       </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="foomatic-lpr"></a>6.2.4.1. Foomatic con LPR</h5></div></div></div><p>
@@ -405,7 +406,7 @@ lp|local line printer:\
             Un superbloque con los parámetros básicos del sistema de
             archivos (e.g tamaño de cada bloque, lista de grupos de
             cilindros) y con los parámetros del hardware que afectan el
-            desempeño<sup>[<a name="idp375549992" href="#ftn.idp375549992">17</a>]</sup> (tipo de transferencia de disco a memoria,
+            desempeño<sup>[<a name="idp1296153128" href="#ftn.idp1296153128">17</a>]</sup> (tipo de transferencia de disco a memoria,
             tiempo esperado por transferencia, bloques por pista,
             velocidad de rotación).
           </p></li><li><p>
@@ -489,7 +490,7 @@ lp|local line printer:\
             <code class="literal">disklabel</code>. Por ejemplo puede emplear el
             modo interactivo de este programa:
           </p><pre class="programlisting">
-    sudo disklabel -E /dev/wd1c 
+    doas disklabel -E /dev/wd1c 
 </pre><p>
             en este modo puede examinar las particiones y divisiones del
             disco con p, puede ver una ayuda abreviada con h. Con m le
@@ -521,11 +522,11 @@ lp|local line printer:\
             Intente agregar el dispositivo como zona de intercambio sin
             reiniciar con:
           </p><pre class="programlisting">
-    sudo swapon -a 
+    doas swapon -a 
 </pre><p>
             o con:
           </p><pre class="programlisting">
-    sudo swapctl -A -t blk 
+    doas swapctl -A -t blk 
 </pre><p>
             Ambas ordenes intentarán montar como zonas de intercambio
             todos dispositivos por bloques de
@@ -533,8 +534,137 @@ lp|local line printer:\
             <code class="literal">sw</code>. Puede verificar la adición listando
             todas las zonas de intercambio con:
           </p><pre class="programlisting">
-    sudo swapctl -l 
-</pre></li></ol></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="disquetes-e-imagenes-de-disquetes"></a>6.4. Disquetes e imágenes de disquetes</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mtools"></a>6.4.1. Programas del paquete <code class="literal">mtools</code></h4></div></div></div><p>
+    doas swapctl -l 
+</pre></li></ol></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="raid"></a>6.3.4. Arreglo de discos RAID por software</h4></div></div></div><div class="literallayout"><p>Cómo se explica en la página del manual de <code class="literal">softraid</code>, OpenBSD incluye el dispositivo <code class="literal">softraid</code> que puede proveer RAID y otros servicios relacionados con entrada/salida.<br>
+Un volumen es un disco virtual que consta de varios "pedazos", cada "pedazo" (del inglés <span class="strong"><strong>chunk</strong></span>) es una subpartición del disco de tipo RAID (el tipo se establece con <code class="literal">disklabel</code>).</p></div><p>
+        Las posibles disciplinas que soporta <code class="literal">softraid</code>
+        son:
+      </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+            RAID 0: Que segmenta los datos sobre un número de
+            "pedazos" para aumentar el desempeño (aunque no
+            provee redundancia). No es posible hacer volumenes de
+            arranque.
+          </p></li><li><p>
+            RAID 1: Copia cada dato en más de un "pedazo" para
+            facilitar recuperar información en caso de perdida de datos.
+            Si es posible hacer volúmenes de arranque.
+          </p></li><li><p>
+            RAID 5: Divide los datos en varios pedazos pero proveed
+            paridad para prevenir perdida de datos. No es posible hacer
+            volumenes de arranque.
+          </p></li><li><p>
+            CRYPTO: Cifra los datos en un sólo pedazo para proveer
+            confidencialidad (aunque no redundancia). Si es posible
+            hacer volumenes de arranque.
+          </p></li><li><p>
+            CONCAT: Que concatena varios pedazos, aunque no provee
+            redundancia ni permite hacer volumenes de arranque.
+          </p></li></ul></div><p>
+        Hemos notado en la práctica que cada "pedazo" debe ser
+        máximo de 2T.
+      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="raid-1-sin-arranque"></a>6.3.4.1. RAID 1 sin arranque</h5></div></div></div><p>
+          La disciplina RAID 1 provee redundancia, pues cada dato lo
+          escribe en todos los pedazos que conforman el arreglo. Así que
+          cada pedazo es como una copia de cada uno de los otros.
+        </p><p>
+          Para el caso típico de 2 "pedazos" que se
+          configurarán en RAID 1 pero no como volumen de arranque, se
+          recomienda usar 3 discos duros. Uno para arrancar (digamos
+          sd0) y 2 de las mismas dimensiones que se configuraran en RAID
+          1 (digamos sd1 y sd2 cada uno de 2T).
+        </p><p>
+          sd0 debe tener un sistema OpenBSD/adJ típico para (1)
+          configurar el RAID 1 para sd1 y sd2 y (2) montar el arreglo
+          resultante en un directorio de su sistema de archivos.
+        </p><p>
+          Primero se preparan sd1 y sd2 completos para OpenBSD (o si es
+          una parte de cada uno usar -e)
+        </p><pre class="programlisting">
+    doas fdisk -iy sd1
+    doas fdisk -iy sd2
+</pre><p>
+          Después en cada uno se crea una subpartición de tipo RAID con
+          disklabel, ambas deben quedar del mismo tamaño y se recomienda
+          inicializarlas en ceros:
+        </p><pre class="programlisting">
+    $ doas disklabel -E sd1
+    Label editor (enter '?' for help at any prompt)
+    &gt; a a
+    offset: [64]
+    size: [39825135] *
+    FS type: [4.2BSD] RAID
+    &gt; w
+    &gt; q
+    $ doas dd if=/dev/zero of=/dev/rsd1a bs=1m count=1
+</pre><p>
+          En el ejemplo anterior se presentó el caso de creación de
+          sd1a, debe repetirse lo mismo para sd2 para contar con sd2a.
+        </p><p>
+          A continuación debe ensamblarse el arreglo RAID con algo como:
+        </p><pre class="programlisting">
+    doas bioctl -v -c 1 -l sd1a,sd2a softraid0
+</pre><p>
+          Que creará otro dispositivo, digamos sd3 (aún si necesita
+          hacer varios arreglos RAID emplee siempre softraid0). Puede
+          verificar que sd3 es el arreglo RAID con:
+        </p><pre class="programlisting">
+    $ doas bioctl sd3
+    Volume Status Size Device 
+    softraid0 0 Online 3298542608896 sd3 RAID1 
+    0 Online 3298542608896 0:0.0 noencl 
+    1 Online 3298542608896 0:1.0 noencl
+</pre><p>
+          Con el arreglo ensamblado en sd3, usted puede operar con ese
+          dispositivo como si fuera un disco más, es recomendable que
+          inicialice sus primeros sectores en 0:
+        </p><pre class="programlisting">
+    doas dd if=/dev/zero of=/dev/rsd3c bs=1m count=1
+</pre><p>
+          Y proceda a crear partición, subpartición(es) e inicializar
+          cada subpartición. En el siguiente ejemplo se creará una sola
+          subpartición, se inicializará y se montará en /var/raid1:
+        </p><pre class="programlisting">
+    $ doas fdisk -iy /dev/rsd3c
+    $ doas disklabel -E /dev/sd3c
+    &gt; a a
+    offset: [64]
+    size: [3999992128] *
+    FS type: [4.2BSD] 
+    &gt; w
+    &gt; q
+    $ doas newfs /dev/rsd3a
+    $ doas mkdir /var/raid1
+    $ doas mount /dev/sd3a /var/raid1
+</pre><p>
+          Con el ejemplo presentado ya habrían disponibles 2T con
+          redundancia RAID 1 en el punto de montaje /var/raid1.
+        </p><p>
+          Para hacer el cambio permanente es recomendable que en
+          /etc/fstab agregue el duid del arreglo (pues al agregar discos
+          físicos podría cambiar el sd3 por ejemplo por sd4). Examina el
+          duid con disklabel /dev/sd3c
+        </p><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="operaci%C3%B3n-y-recuperaci%C3%B3n-en-caso-de-falla-de-uno-de-los-discos"></a>6.3.4.1.1. Operación y recuperación en caso de falla de uno de los
+          discos</h6></div></div></div><p>
+            Es importante revisar con periodicidad el estado del arreglo
+            con:
+          </p><pre class="programlisting">
+    $ doas bioctl sd3
+</pre><p>
+            Allí podría verse si alguno de los discos está fallando
+            (Offline) y en tal caso, debe remplazarse el disco defectuso
+            (digamos sd2). En el nuevo disco debe crearse partición y
+            subpartición con las mismas características del que funciona
+            bien y entonces debe reconstruirse el espejo. Por ejemplo
+            para reconstruir y unir un nuevo /dev/sd2a:
+          </p><pre class="programlisting">
+    $ doas bioctl -R /dev/sd2a sd3
+</pre></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="lecturas-recomendadas-y-referencias"></a>6.3.4.2. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+              Página del manual de <code class="literal">softraid</code>
+            </p></li><li><p>
+              Página del manual de <code class="literal">bioctl</code>
+            </p></li><li><p>
+              <a href="https://www.openbsd.org/faq/faq14.html" target="_top">https://www.openbsd.org/faq/faq14.html</a>
+            </p></li></ul></div></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="disquetes-e-imagenes-de-disquetes"></a>6.4. Disquetes e imágenes de disquetes</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mtools"></a>6.4.1. Programas del paquete <code class="literal">mtools</code></h4></div></div></div><p>
         El usuario root podrá leer disquetes con las herramientas del
         paquete mtools, por ejemplo para ver el contenido de un disquete
         y después copiar del disquete al directorio actual el archivo
@@ -559,14 +689,14 @@ lp|local line printer:\
 </pre><p>
         Si no desea cambiar permisos de dispositivos, ni manejar el
         grupo <code class="literal">operator</code> ni cambiar variables del
-        kernel puede configurar y emplear <code class="literal">sudo</code> (ver
-        <a href="configuracion-de-componentes-basicos.html#sudo" title="4.3.1. sudo">sudo</a>):
+        kernel puede configurar y emplear <code class="literal">doas</code> (ver
+        <a href="configuracion-de-componentes-basicos.html#doas" title="4.3. doas">doas</a>):
       </p><pre class="programlisting">
     doas mcopy *tgz a: 
 </pre><p>
-        o incluso con <code class="literal">sudo</code> y un alias hacer
+        o incluso con <code class="literal">doas</code> y un alias hacer
         transparente la restricción para los usuarios que puedan emplear
-        <code class="literal">sudo</code>:
+        <code class="literal">doas</code>:
       </p><pre class="programlisting">
     alias mcopy='doas mcopy' 
 </pre></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-disquettes"></a>6.4.2. Montar disquettes en jerarquía de directorios</h4></div></div></div><p>
@@ -635,9 +765,10 @@ lp|local line printer:\
     vnconfig -c vnd0 /home/pablo/micd.iso 
     mount /dev/vnd0a /mnt/tmp
     
-</pre></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-cd-y-quemadoras"></a>6.5.3. Referencias</h4></div></div></div><p>
-        Más sobre montaje de archivos con <code class="literal">man fstab</code>.
-      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="quemadora"></a>6.6. Quemadora de CD-R y CD-RW</h3></div></div></div><p>
+</pre></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-cd-y-quemadoras"></a>6.5.3. Lecturas recomendadas y referencias</h4></div></div></div><div class="itemizedlist"><ul type="disc" compact><li><p>
+            Más sobre montaje de archivos con
+            <code class="literal">man fstab</code>.
+          </p></li></ul></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="quemadora"></a>6.6. Quemadora de CD-R y CD-RW</h3></div></div></div><p>
       Una quemadora de CD-R y CD-RW se puede comportar como un lector de
       CDs y usarse como se explica en la sección sobre unidades de CD
       (ver <a href="conf-dispositivos.html#cd" title="6.5. Unidad de CD-ROM">Sección 6.5, “Unidad de CD-ROM”</a>.
@@ -739,7 +870,7 @@ lp|local line printer:\
           </p></li><li><p>
             Las imágenes de sesiones posteriores deben crearse empleando
             la opción <code class="literal">-C</code> de
-            <code class="literal">mkisofs</code> <sup>[<a name="idp2676577832" href="#ftn.idp2676577832">18</a>]</sup>. Los datos precisos que debe pasar a la opción
+            <code class="literal">mkisofs</code> <sup>[<a name="idp701279912" href="#ftn.idp701279912">18</a>]</sup>. Los datos precisos que debe pasar a la opción
             -C los examina con:
           </p><pre class="programlisting">
     doas cdrecord dev=/dev/cd0c -msinfo
@@ -759,24 +890,23 @@ lp|local line printer:\
         <code class="literal">cdrecord</code> en lugar de la opción
         <code class="literal">-data</code> debe emplearse
         <code class="literal">-audio</code>.
-      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-quemadoras"></a>6.6.4. Referencias</h4></div></div></div><p>
-        Puede consultar más sobre creación de imágenes para CDs con
-        <code class="literal">man mkisofs</code> (tras haber instalado
-        <code class="literal">cdrtools</code>)).
-      </p><p>
-        Para conocer más sobre el quemado de CDs puede consultar
-        <code class="literal">man cdrecord</code> (también después de instalar el
-        paquete <code class="literal">cdrtools</code>). En foros de usuarios
-        pueden verse mensajes como
-        <a href="http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html" target="_top">http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html</a>,
-        <a href="http://www.deadly.org/article.php3?sid=20031105030127&amp;mode=flat" target="_top">http://www.deadly.org/article.php3?sid=20031105030127&amp;mode=flat</a>
-        y
-        <a href="http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html" target="_top">http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html</a>
-      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="dvd"></a>6.7. Operaciones con DVD</h3></div></div></div><p>
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-quemadoras"></a>6.6.4. Lecturas recomendadas y referencias</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+            Puede consultar más sobre creación de imágenes para CDs con
+            <code class="literal">man mkisofs</code> (tras haber instalado
+            <code class="literal">cdrtools</code>)).
+          </p></li><li><p>
+            Para conocer más sobre el quemado de CDs puede consultar
+            <code class="literal">man cdrecord</code> (también después de instalar
+            el paquete <code class="literal">cdrtools</code>). En foros de
+            usuarios pueden verse mensajes como
+            <a href="http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html" target="_top">http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html</a>,
+            <a href="http://www.deadly.org/article.php3?sid=20031105030127&amp;mode=flat" target="_top">http://www.deadly.org/article.php3?sid=20031105030127&amp;mode=flat</a>
+            y
+            <a href="http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html" target="_top">http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html</a>
+          </p></li></ul></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="dvd"></a>6.7. Operaciones con DVD</h3></div></div></div><p>
       El sistema de archivos de los DVD es UDF, que es diferente al de
       los CDs (ISO9660). Desde la versión 4.0, OpenBSD soporta las
-      versiones 1.02 y 1.50 de UDF en modos plain y VAT (ver
-      <a href="" target="_top"></a>
+      versiones 1.02 y 1.50 de UDF en modos plain y VAT (ver &lt;&gt;
     </p><p>
       Las operaciones de montaje de DVDs, montaje de imagenes y copia de
       DVDs a disco son como las de CDs remplazando el tipo
@@ -801,13 +931,13 @@ lp|local line printer:\
           <code class="literal">dvd.iso</code>
         </p><pre class="programlisting">
     doas growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
-</pre></li></ol></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-dvd"></a>6.7.1. Referencias</h4></div></div></div><p>
-        <code class="literal">man mount_udf</code> y
-        <code class="literal">man growisofs</code>.
-      </p><p>
-        Universal Disk Format:
-        <a href="http://en.wikipedia.org/wiki/Universal_Disk_Format" target="_top">http://en.wikipedia.org/wiki/Universal_Disk_Format</a>
-      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="memoria-usb"></a>6.8. Memoria USB</h3></div></div></div><p>
+</pre></li></ol></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-dvd"></a>6.7.1. Lecturas recomendadas y referencias</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+            <code class="literal">man mount_udf</code> y
+            <code class="literal">man growisofs</code>.
+          </p></li><li><p>
+            Universal Disk Format:
+            <a href="http://en.wikipedia.org/wiki/Universal_Disk_Format" target="_top">http://en.wikipedia.org/wiki/Universal_Disk_Format</a>
+          </p></li></ul></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="memoria-usb"></a>6.8. Memoria USB</h3></div></div></div><p>
       Para emplear una memoria USB después de conectarse debe:
     </p><div class="orderedlist"><ol type="1"><li><p>
           Examinar el dispositivo con el cual fue reconocida su memoria
@@ -871,7 +1001,7 @@ mount /dev/vnd0c /var/postgresql
 </pre><p>
         y recuerde otorgar permiso de ejecución del mismo:
       </p><pre class="programlisting">
-    sudo chmod +x /usr/local/sbin/montapost.sh
+    doas chmod +x /usr/local/sbin/montapost.sh
     
 </pre><p>
         Notará que este ejemplo es para montar una partición en la que
@@ -881,8 +1011,8 @@ mount /dev/vnd0c /var/postgresql
         <code class="literal">chmod a+w /var/postgresql</code> y después de que
         haya instalado PostgreSQL:
       </p><pre class="programlisting">
-    sudo chown _postgresql:_postgresql /var/postgresql
-    sudo chmod o-w /var/postgresql
+    doas chown _postgresql:_postgresql /var/postgresql
+    doas chmod o-w /var/postgresql
     
 </pre></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="montar-arranque"></a>6.9.3. Montar en el arranque</h4></div></div></div><p>
         Este script debe ejecutarse en el momento del arranque y antes
@@ -890,12 +1020,12 @@ mount /dev/vnd0c /var/postgresql
         <code class="literal">/etc/rc.local</code> (antes de la inicialización de
         PostgreSQL):
       </p><pre class="programlisting">
-    sudo /usr/local/sbin/montapost.sh
+    doas /usr/local/sbin/montapost.sh
         
 </pre><p>
         De forma que en cada arranque el script le solicitará la clave
         antes de continuar.
-      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-imagen-cifrada"></a>6.9.4. Referencias</h4></div></div></div><p>
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-imagen-cifrada"></a>6.9.4. Lecturas recomendadas y referencias</h4></div></div></div><p>
         Página <code class="literal">man vnconfig</code>.
       </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="teclado-en-espanol"></a>6.10. Teclado en español</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="consolas"></a>6.10.1. En las consolas tipo texto</h4></div></div></div><p>
         Si su teclado es español o latinoamericano puede configurarlo
@@ -945,7 +1075,7 @@ mount /dev/vnd0c /var/postgresql
           </span></dt><dd><p>
               Como tecla de composición
             </p></dd></dl></div><p>
-        La tecla de composición<sup>[<a name="idp1314463912" href="#ftn.idp1314463912">19</a>]</sup> le permitirá generar un carácter empleando una
+        La tecla de composición<sup>[<a name="idp2184014760" href="#ftn.idp2184014760">19</a>]</sup> le permitirá generar un carácter empleando una
         secuencia de dos teclas. Por ejemplo si presiona la tecla de
         composición (i.e Shift+Alt izquierdo con la configuración
         presentada), y después presiona ? seguido de ? obtendrá el
@@ -981,36 +1111,36 @@ mount /dev/vnd0c /var/postgresql
         y asegurarse de ejecutar <code class="literal">xmodmap ~/.Xmodmap</code>
         durante el arranque de su sesión X (podría ser por ejemplo
         agregándolo a <code class="literal">~/.xsession</code>)
-      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1497873064" href="#idp1497873064">12</a>] </sup>
+      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1038185640" href="#idp1038185640">12</a>] </sup>
             En el caso de LPD el directorio con la cola de trabajos de
             una impresora se configura en
             <code xmlns="" class="literal">/etc/printcap</code>, en el caso de
             <code xmlns="" class="literal">lp</code> el directorio por defecto es
             <code xmlns="" class="literal">/var/spool/outputlpd/lp</code>.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp813106600" href="#idp813106600">13</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm298457688" href="#idm298457688">13</a>] </sup>
             Normalmente puede configurar otro nombre para la impresora
             por defecto en la variable de ambiente PRINTER.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2595588264" href="#idp2595588264">14</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2294629544" href="#idp2294629544">14</a>] </sup>
             Hay algunas impresoras que pueden imprimir PostScript
             directamente, pero en general para hacer la traducción de
             PostScript al lenguaje de una impresora se requiere un
             filtro que el administrador del sistema debe configurar.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2595586600" href="#idp2595586600">15</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm334572760" href="#idm334572760">15</a>] </sup>
             PDF (<span xmlns="" class="emphasis"><em>Portable Document Format</em></span> es otro
             lenguaje para impresión, de documentos con gráficas y
             diversos tipos de letras, basado en PostScript (de la misma
             compañía ---Adobe).
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1925872680" href="#idp1925872680">16</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1051419944" href="#idp1051419944">16</a>] </sup>
             De acuerdo a Printig-HOWTO estas herramientas ofrecen la
             funcionalidad de las herramientas
             "<span xmlns="" class="emphasis"><em>distiller</em></span>" de Adobe.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp375549992" href="#idp375549992">17</a>] </sup>
+          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1296153128" href="#idp1296153128">17</a>] </sup>
                 Los parámetros del hardware mantenidos ayudan a
                 localizar bloques libres de forma óptima.
-              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2676577832" href="#idp2676577832">18</a>] </sup>
+              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp701279912" href="#idp701279912">18</a>] </sup>
                 Si la sesión previa tenia -T esta también con mismo
                 nombre de tablas (especificable con -table-name TN).
-              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1314463912" href="#idp1314463912">19</a>] </sup>
+              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2184014760" href="#idp2184014760">19</a>] </sup>
             Tecla de composición: en inglés <span xmlns="" class="emphasis"><em>compose
             key</em></span>
           </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="conf-programas.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">5. Configuracioń y uso de algunos programas </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 7. Instalaciones duales</td></tr></table></div></body></html>
