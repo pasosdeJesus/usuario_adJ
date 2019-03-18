@@ -49,7 +49,7 @@ Grub2-1.99 (incluido en Ubuntu 12.04), debe agregar en
 remplazando msdos3 por la partición primaria donde instaló. Después
 ejecute:
 
-        doas update-grub2
+        sudo update-grub2
 
 y reinicie.
 
@@ -66,8 +66,8 @@ la opción 44bsd. Si una partición para OpenBSD está dividida en slices
 Linux los detectará durante el arranque y asignará dispositivos
 apropiados (busque los nombres entre los mensajes de `dmesg`):
 
-        doas mkdir -p /mnt/openbsd
-        doas mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd 
+        sudo mkdir -p /mnt/openbsd
+        sudo mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd 
 
 ## Dual con Windows XP o NT {#con-windows-xp}
 
