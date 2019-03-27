@@ -190,8 +190,11 @@ Herramientas UNIX
 ## Instalación y configuración del sistema base {#instalacion-y-configuracion-del-sistema-base}
 
 Arranque por el medio de instalación, su prompt será algo como
+
 		boot>
+		
 Si no arranca de inmediato el medio de instalación intente con
+
 		boot> boot bsd.rd
 
 Una vez pueda iniciar un medio con un instalador, el sistema reconocerá
