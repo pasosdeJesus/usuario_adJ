@@ -78,7 +78,7 @@ Si no logra configurar algún dispositivo y esto hace que el sistema
 completo se congele durante el arranque, puede requerir deshabilitar el
 dispositivo (situación que es muy inusual).
 
-### Lecturas recomendadas y referencias {#hardware-arranque-lecturas}
+### Lecturas recomendadas y referencias (hardware-arranque) {#hardware-arranque-lecturas}
 
 -   Página del manual unix de autoconf8. `autoconf` determina el orden y
     los controladores que se usan para la detección automática de

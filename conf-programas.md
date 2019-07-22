@@ -122,10 +122,6 @@ inicia con `simpress` desde un terminal) y el programa para diagrama
 `draw` (que puede iniciar con `sdraw`). Puede aprender más sobre este
 procesador en [libreoffice-basico](#bibliografia)
 
-Además el DVD de adJ incluye &p-abiword; como procesador de texto capaz de
-abrir y escribir tanto en el formato de Microsoft Office como en
-OpenDocument (que es el formato de LibreOffice y OpenOffice).
-
 Para operar con hojas de cálculo incluye &p-gnumeric;, que también puede
 abrir y guardar en OpenDocument y en formatos de Microsoft Office.
 
