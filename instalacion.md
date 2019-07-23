@@ -3,38 +3,38 @@
 ## Prerequisitos para la instalación {#prerequisitos-para-la-instalacion}
 
 1.  Un computador con procesador de 64 bits de la familia x86 (hay
-    imagenes de versiones anteriores a la 4.9 para procesadores de 32
+    imágenes de versiones anteriores a la 4.9 para procesadores de 32
     bits).
 
 2.  Componentes básicos para la instalación en un medio que pueda
     acceder. Es decir en uno de los siguientes:
 
     -   DVD: Puede descargarlo de
-        [](ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus) por
+        [estas fuentes]ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus) por
         ejemplo con el programa `ftp` de OpenBSD:
 
                 ftp -C ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesusVER-ADJ-amd64.iso
-                                  
+
 
         o bien con el programa `wget`:
 
                 wget -c ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesusVER-ADJ-amd64.iso 
-                                  
+
 
         Usando estas formas podrá reanudar la transferencia en caso de
         que se interrumpa. Otra posibilidad que tiene que puede acelerar
         la descarga, pero sin posibilidad de reanudar en caso de que se
         interrumpa, es emplear el programa `rsync`:
 
-                rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/AprendiendoDeJesusVER-ADJ-amd64.iso .  
-                                  
+                rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/AprendiendoDeJesusVER-ADJ-amd64.iso.
+
 
         Note que hay un punto al final, que indica que el destino de la
         copia es el directorio actual. Si desea ver que otros archivos
         hay en el mismo directorio de esa imagen ISO utilice:
 
                 rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/
-                                  
+
 
     -   O bien partición ext2 (de Linux), ffs (de OpenBSD) o FAT (de DOS
         y Windows) con juegos de instalación.
@@ -44,14 +44,14 @@
         servidor FTP o HTTP que se pueda acceder rapidamente desde su
         computador.
 
-    Aunque es posible realizar la descarga de imagenes ISO, recomendamos
+    Aunque es posible realizar la descarga de imágenes ISO, recomendamos
     comprar[^pre.1] los CDs oficiales de instalación para apoyar los
     proyectos OpenBSD y adJ. La estructura del CD oficial de OpenBSD
     tiene derechos de reproducción restrictivos ---sólo la estructura,
     las fuentes son de libre redistribución en su mayoría cubiertas por
-    la licencia BSD. Por esto en caso de comprar CDs oficiales comprelos
+    la licencia BSD. Por esto en caso de comprar CDs oficiales cómprelos
     sólo a los desarrolladores o a redistribuidores autorizados. En el
-    caso de OpenBSD ver <http://www.openbsd.org/orders.html> y en el
+    caso de OpenBSD ver <http://www.openbsd.org> y en el
     caso de adJ ver <https://aprendiendo.pasosdeJesus.org>.
 
 3.  Contar con hardware soportado. La mayoría de componentes típicos son
@@ -149,7 +149,7 @@ Particiones
 
 :   OpenBSD puede dividir la partición que haya destinado para este
     sistema en "subparticiones". Tenga en cuenta no transpasar los
-    límites de la partición que reservó para OpenBSD al definir esta
+    límites de la partición que reservó para OpenBSD al definir estas
     subparticiones con el programa `disklabel` (el mismo programa le
     ayudará a evitarlo). Los componentes básicos del sistema estarán
     especialmente en `/usr`, mientras que los paquetes emplearán
@@ -159,7 +159,7 @@ Particiones
     partición para OpenBSD en: `/` (al menos con 3G o si desea instalar
     los paquetes incluidos en el DVD y para compilar fuentes al menos
     con 50G), `/home` (con tanto espacio como desee para los usuarios) y
-    `/var` (al menos con 1.2G si planea sacar respaldos de imagenes
+    `/var` (al menos con 1.2G si planea sacar respaldos de imágenes
     cifradas en CD o de 8G si planea sacarlas en DVD).
 
 Interprete de ordenes
@@ -199,7 +199,7 @@ Si no arranca de inmediato el medio de instalación intente con
 
 Una vez pueda iniciar un medio con un instalador, el sistema reconocerá
 las partes de su computador y esperará algunas respuestas de su parte,
-como si desea instalar, actualizar o iniciar un interprete de ordenes
+como si desea instalar, actualizar o iniciar un intérprete de órdenes
 para rescatar un sistema: 
 
 ![](img/instala1.png)
@@ -223,7 +223,7 @@ En las capturas de pantalla de ejemplo hay un sólo disco duro que se
 usará completo para OpenBSD, es decir tendrá una sóla partición del BIOS
 que abarca todo el disco. De no usarse completo el instalador ingresará
 al programa `fdisk` que le permitirá especificar la partición del BIOS
-ue destinará para OpenBSD (en `fdisk` la orden 'h' le presentará una
+que destinará para OpenBSD (en `fdisk` la orden 'h' le presentará una
 breve ayuda). 
 
 ![](img/instala3.png)
@@ -262,7 +262,7 @@ aproximadamente 10GB, la partición de intercambio es de 500MB, /home de
 Después de elegir subparticiones el instalador formateará las subparticiones. 
 Después podrá especificar la ruta donde están los juegos de instalación 
 (en el caso de la distribución Aprendiendo de Jesús es `/`) y elegir los que 
-instalará.  Podrá elegir entre:
+instalará. Podrá elegir entre:
 
 bsd
 
@@ -365,8 +365,7 @@ permitir elegir OpenBSD o el otro o los otros sistemas que tenga (e.g
 GRUB o LILO si también usa Linux ver [xref](#con-linux),
 [XOSL](http://www.ranish.com/part/xosl.htm) si usa Windows 95/98/ME. Si
 usa Windows NT o XP puede ser con el manejador de arranque de ese
-sistema ver [xref](#con-windows-xp), si usa Windows Vista o 7 puede ser
-con EasyBCD).
+sistema ver [xref](#con-windows-xp), si usa Windows Vista, 7, 8, 8.1 y 10 puede ser con EasyBCD).
 
 Una vez ingrese verá `xdm` como se presenta a continuación (siempre y
 cuando haya elegido iniciarlo durante la instalación y mientras su
@@ -405,10 +404,10 @@ como se presenta en las siguientes capturas de pantalla de ejemplo:
 
 ![](img/insadJ3.png)
 
-adJ puede configurar por defecto 2 imagenes cifradas, una para almacenar
+adJ puede configurar por defecto 2 imágenes cifradas, una para almacenar
 bases de datos de PostgreSQL (directorio `/var/postgresql`) y otra para
 almacenar copias de respaldo de la base de datos y otros datos que usted
-requiera (directorio `/var/www/resbase`). Cada una de estas imagenes
+requiera (directorio `/var/www/resbase`). Cada una de estas imágenes
 tienen asociadas claves para cifrar y descifrar, estas claves debe
 suministrarlas típicamente durante el arranque o posteriormente
 ejecutando:
@@ -429,7 +428,7 @@ pantalla.
 ![](img/insadJ7.png)
 
 Después es recomendable que consulte `man afterboot` que incluye una
-lista de chequeo de cosas por hacer después de la instalación.
+lista de chequeo de cosas por hacer después de la instalación https://man.openbsd.org/afterboot.
 
 ## Inicio del sistema {#inicio-del-sistema}
 
@@ -442,7 +441,7 @@ conexiones o requerimientos de programas o de otros servicios para
 atenderlos, por ejemplo un servidor web es un servicio (que responde a
 requerimientos de páginas web en cualquier momento que un usuario las
 realice). `/etc/rc` también iniciará los servicios típicos del sistema y
-algunos proveidos por paquetes y después ejecutará `/etc/rc.local`.
+algunos proveídos por paquetes y después ejecutará `/etc/rc.local`.
 
 En el archivo `/etc/rc.conf.local` pueden definirse variables asociadas
 a servicios (puede verse el listado de variables posibles para el
@@ -523,10 +522,10 @@ Veamos ejemplos de su uso:
 `doas rcctl set cupsd flags "-c /etc/cupsd2.conf"`
 
 :   Establece la variable `flags` de servicio cupsd en `-c /etc/cupsd2.conf`
-    es decir opciones especiales para el arranque.   La variable
+    es decir opciones especiales para el arranque. La variable
     `status` es especial porque sólo permite los valores on y off para
-    habilitar o deshabiltiar el servicio respectivamente (agregandolo
-    o quitandolo de pkg_scripts en `/etc/rc.conf.local`).
+    habilitar o deshabiltiar el servicio respectivamente (agregándolo
+    o quitándolo de pkg_scripts en `/etc/rc.conf.local`).
 
 `doas rcctl ls on`
 
@@ -582,14 +581,14 @@ servidor X-Window con:
 
 y edite el archivo de configuración, siguiendo las instrucciones de
 
-        man xorg.conf   
+        man xorg.conf 
 
 hasta lograr que opere, puede editar por ejemplo con:
 
         doas mg /root/xorg.conf.new
 
 Una vez le funciona (entra a modo gráfico del cual puede salir con
-Ctrl-Alt-BackSpace) copielo al sitio donde debe quedar :
+Ctrl-Alt-BackSpace) cópielo al sitio donde debe quedar:
 
         doas cp /root/xorg.conf.new /etc/X11/xorg.conf
         
@@ -765,7 +764,7 @@ el servidor X como con `fontconfig` así:
     sección `Files` de `/etc/X11/xorg.conf`. Por ejemplo si sus fuentes
     TTF están en `/usr/local/lib/X11/fonts/MisTTF/`:
 
-            FontPath     "/usr/local/lib/X11/fonts/MisTTF/"
+            FontPath "/usr/local/lib/X11/fonts/MisTTF/"
             
 
 2.  Genere archivos `fonts.dir` y `scale` en el directorio donde está la

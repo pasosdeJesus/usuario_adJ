@@ -32,19 +32,18 @@ Entre sus características:
 -   Con Alt+\[Boton izquierdo\] permite cambiar ubicación de la ventana
     sobre la que está el curso, y con Alt+\[Botono derecho\] el tamaño.
 
-El menú que presenta se configura en un archivo texto con una sintaxis
+-   El menú que presenta se configura en un archivo texto con una sintaxis
 sencilla, puede cambiarse editando en `~/.fluxbox/menu`.
 
-Los programas que se inician con el escritorio pueden configurarse en
+-   Los programas que se inician con el escritorio pueden configurarse en
 `~/.fluxbox/startup`. Por ejemplo en este archivo puede configurar el
 locale que usará agregando o cambiando la línea:
 
     export LANG=es_CO.UTF-8
         
+-   La apariencia en general puede configurarse en `~/.fluxbox/init`
 
-La apariencia en general puede configurarse en `~/.fluxbox/init`
-
-Puede configurar teclas rápidas en el archivo `~/.fluxbox/keys`
+-   Puede configurar teclas rápidas en el archivo `~/.fluxbox/keys`
 
 #### Lecturas recomendadas y referencias {#lecturas-conf-fluxbox}
 
@@ -278,7 +277,7 @@ jadetex
 
 #### XML 4.4 con XSL {#xml-4-4-con-xsl}
 
-Cómo parte del paquete `` se instalará el DTD de DocBook XML 4.4 en el
+Como parte del paquete `` se instalará el DTD de DocBook XML 4.4 en el
 directorio `/usr/local/share/xml/docbook`. Es recomendable que cree el
 archivo `/usr/local/share/xml/catalog` inicialmente con:
 ```
@@ -512,7 +511,7 @@ necesita emplear el `sendmail` de otro computador puede:
 ```
 
 
--   Asegurese de ejecutar `mutt` junto con el agente de autenticación de
+-   Asegúrese de ejecutar `mutt` junto con el agente de autenticación de
     `ssh`. Por ejemplo con:
 ```
             ssh-agent /bin/ksh
@@ -571,7 +570,7 @@ directamente como gemas.
 Asegúrese de tener instalados los paquetes &p-ruby; y &p-node;,
 incluidos en el DVD de adJ &VER-ADJ;
 
-Asegúrese de tener enlaces al interprete de ruby y herramientas (como
+Asegúrese de tener enlaces al intérprete de ruby y herramientas (como
 describe el paquete ruby):
 
 ```
@@ -708,7 +707,7 @@ proyecto es típico emplear ```bundler``` que instala con:
     } fi
 ```
 
-Configurelo para que instale gemas localmente 
+Configúrelo para que instale gemas localmente 
 en ```/var/www/bundler/ruby/2.5``` con:
 ```
 	bundle config path /var/www/bundler/ruby/2.5
@@ -737,7 +736,7 @@ E instale con
 ```
 
 Si eventualmente no logra instalar algunas --por problemas de permisos 
-tipicamente-- puede instalar con 
+típicamente-- puede instalar con 
 
 ```
 	doas gem install --install-dir /var/www/bundler/ruby/2.5 json -v '2.0'
@@ -758,14 +757,14 @@ dinámicos.
 
 Para instalarla globalmente (en `/usr/local/bin` y
 `/usr/local/lib/ruby/gems/`) la versión estable más reciente de Rails
-(5.1.2 en el momento de este escrito), ejecute
+(5.2.3 en el momento de este escrito), ejecute
 
 ```
 	doas gem install rails
 ```
 
-Rails requiere en el servidor un interprete de JavaScript, por lo que
-recomendamos ```node.js``` (ver {1}) incluido en el DVD de adJ &VER-ADJ; 
+Rails requiere en el servidor un intérprete de JavaScript, por lo que
+recomendamos ```node.js``` (ver {1}) incluído en el DVD de adJ &VER-ADJ; 
 y que se configurará automáticamente.
 
 La gran mayoría de gemas usadas por rails instalarán de la misma forma
@@ -785,8 +784,8 @@ que se explicó. Algunos casos especiales son:
 ##### Coffescript
 
 Si su aplicación rails emplea coffescript necesitará un programa que pueda 
-ejecutar javascript al lado del servidor, recomendamos node.js incluido en 
-adJ.  Actualice a la versión más reciente de npm con:
+ejecutar javascript al lado del servidor, recomendamos node.js incluído en 
+adJ. Actualice a la versión más reciente de npm con:
 ``` 
 	doas npm install npm -g
 ``` 
@@ -811,7 +810,7 @@ y si no tiene archivo \~/.vimrc ejecutar:
 ``` 
 	cp /usr/local/share/vim/vim74/vimrc_example.vi ~/.vimrc
 ``` 
-asi como agregar el archivo `~/.vim/ftplugin/ruby.vim` las siguientes
+así como agregar el archivo `~/.vim/ftplugin/ruby.vim` las siguientes
 líneas:
 
 ``` 
@@ -832,7 +831,7 @@ Puede aprender por ejemplo con los tutoriales interactivos de
 En Internet puede ver la referencia oficial de las clases en:
 <http://ruby-doc.org/core-2.1.5/Integer.html>
 
-Y es buena referencia para Ruby, Rails y Rspec (incluidos cambios entre
+Y es buena referencia para Ruby, Rails y Rspec (incluídos cambios entre
 una versión y otra y comentarios) es: <http://apidock.com/>
 
 Podrá consultar documentación del núcleo, librería estándar y gemas
@@ -868,7 +867,7 @@ Genere una nueva aplicación:
 ``` 
 Esto creará una nueva aplicación de ejemplo e instalará todas sus
 dependencias. Las gemas que no logre instalar por falta de permisos,
-como se explicó anteriormente instalelas con `doas gem install` y la
+como se explicó anteriormente instálelas con `doas gem install` y la
 opción `--install-dir /var/www/bundler/`
 
 Una vez haya logrado que `bundle install` se ejecute completo puede
@@ -893,8 +892,8 @@ Gemfile                                             Gemas requeridas
 Gemfile.lock                                        Versiones de las gemas requeridas
 app/assets/javascripts/application.js               Plantilla de Javascript para aplicación
 app/assets/stylesheets/application.css              Plantilla de CSS para aplicación
-app/controllers/application_controller.rb          Plantilla del controlador de la aplicación
-app/helpers/application_helper.rb                  Ayudas para construir vistas (sin lógica del modelos).
+app/controllers/application_controller.rb           Plantilla del controlador de la aplicación
+app/helpers/application_helper.rb                   Ayudas para construir vistas (sin lógica del modelos).
 app/views/layouts/application.html.erb              Plantilla por defecto para el sitio
 app/assets/                                         Datos estáticos de la página
 app/assets/images/                                  Gráficos de la aplicación (tipicamente que no se sirven estáticos)
@@ -917,13 +916,13 @@ config/environments/development.rb                  Configuración ambiente de d
 config/environments/production.rb                   Configuración ambiente de producción
 config/environments/test.rb                         Configuración ambiente de pruebas
 config/initializers/assets.rb                       Configura recursos
-config/initializers/backtrace_silencers.rb         Inhibe trazas de algunas librerías
-config/initializers/cookies_serializer.rb          Configura como serializar galletas
-config/initializers/filter_parameter_logging.rb   Parametros por filtrar (no dejar) en bitácoras
+config/initializers/backtrace_silencers.rb          Inhibe trazas de algunas librerías
+config/initializers/cookies_serializer.rb           Configura como serializar galletas
+config/initializers/filter_parameter_logging.rb     Parametros por filtrar (no dejar) en bitácoras
 config/initializers/inflections.rb                  Inflecciones singular/plural
-config/initializers/mime_types.rb                  Registra tipos MIME
-config/initializers/session_store.rb               Configura donde se almacena sesión
-config/initializers/wrap_parameters.rb             Configuración para ActionController::ParamsWrapper
+config/initializers/mime_types.rb                   Registra tipos MIME
+config/initializers/session_store.rb                Configura donde se almacena sesión
+config/initializers/wrap_parameters.rb              Configuración para ActionController::ParamsWrapper
 config/locales/en.yml                               Localización en inglés
 config/boot.rb                                      Prepara rutas para encontrar gemas
 config/database.yml                                 Configuración de base de datos
@@ -944,7 +943,7 @@ test/mailers                                        Pruebas a controladores de e
 test/models                                         Pruebas a modelos
 test/helpers                                        Pruebas a funciones para ayudar a construir vistas
 test/integration                                    Pruebas de integración
-test/test_helper.rb                                Pruebas funciones auxiliares
+test/test_helper.rb                                 Pruebas funciones auxiliares
 tmp/                                                Temporales y cache
 vendor/assets/javascripts                           Fuentes Javascript para código de terceros
 vendor/assets/stylesheets                           Hojas de estilo para código de terceros
@@ -1111,7 +1110,7 @@ volviendola a crear con `-E UTF8` y restaurando los datos).
                     
 
 -   A manera de prueba de su configuración intente ingresar a un
-    interprete de ordenes para su base de datos con:
+    intérprete de ordenes para su base de datos con:
 ```
         rails dbconsole
 ```                    
