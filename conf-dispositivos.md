@@ -672,7 +672,7 @@ Por ejemplo para reconstruir y unir un nuevo /dev/sd2a:
 		$ doas bioctl -R /dev/sd2a sd3
 
 
-#### Lecturas recomendadas y referencias
+#### Lecturas recomendadas y referencias RAID
 
 -  Página del manual de `softraid`
 
@@ -787,7 +787,7 @@ la represente, por ejemplo:
         mount /dev/vnd0a /mnt/tmp
         
 
-### Lecturas recomendadas y referencias {#referencias-cd-y-quemadoras}
+### Lecturas recomendadas y referencias CD y Quemadoras {#referencias-cd-y-quemadoras}
 
 -   Más sobre montaje de archivos con `man fstab`.
 
@@ -907,7 +907,7 @@ formatos `.wav` o `.au`) con información de 16 bits en estéreo a 44100
 muestras/s, codificación PCM. Al quemar con `cdrecord` en lugar de la
 opción `-data` debe emplearse `-audio`.
 
-### Lecturas recomendadas y referencias {#referencias-quemadoras}
+### Lecturas recomendadas y referencias Quemadoras {#referencias-quemadoras}
 
 - Puede consultar más sobre creación de imágenes para CDs con
 `man mkisofs` (tras haber instalado `cdrtools`)).
@@ -950,7 +950,7 @@ formas:
             doas growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
                           
 
-### Lecturas recomendadas y referencias {#referencias-dvd}
+### Lecturas recomendadas y referencias DVD {#referencias-dvd}
 
 - `man mount_udf` y `man growisofs`.
 
@@ -1052,7 +1052,7 @@ la inicialización de PostgreSQL):
 De forma que en cada arranque el script le solicitará la clave antes de
 continuar.
 
-### Lecturas recomendadas y referencias {#referencias-imagen-cifrada}
+### Lecturas recomendadas y referencias Imagen Cifrada {#referencias-imagen-cifrada}
 
 Página `man vnconfig`.
 

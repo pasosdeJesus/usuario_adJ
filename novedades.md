@@ -1,3 +1,7 @@
+Versión 6.5
+
+:   - Mejorada ortografía, agradecimientos a Luis Alejandro Cruz 
+
 Versión 6.4
 
 :   - Nueva sección sobre arreglos Raid [xref](#raid)
@@ -64,7 +68,7 @@ Versión 5.1
 
 :   -   Nueva [xref](#syslog).
 
-        [xref](#instalacion-y-configuracion-del-sistema-basico) renovada.
+        [xref](#instalacion-y-configuracion-del-sistema-base) renovada.
 
     -   [xref](#instalacion-del-resto) renovada.
 
