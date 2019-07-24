@@ -1,26 +1,12 @@
 
-La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio
+La distribuciÃ³n Aprendiendo de JesÃºs de OpenBSD como Sistema de Escritorio
 
-Vladimir Támara Patiño (vtamara@pasosdeJesus.org)
+Vladimir TÃ¡mara PatiÃ±o (vtamara@pasosdeJesus.org)
 
-   Este documento, sus fuentes y actualizaciones se ceden al dominio
-   público desde el 2002. Esta es la versión 4.4 de este documento,
-   actualizada por última vez en 20/08/2009 para que corresponda a la
-   distribución adJ de OpenBSD 4.4. No se ofrece garantía alguna, por el
-   contrario se aprecia que se envíen correcciones y sugerencias al autor.
-   Este escrito se dedica a Dios: 'Grandes y Maravillosas son Tus Obras'.
+Este documento, sus fuentes y actualizaciones se ceden al dominio pÃºblico desde
+el 2002. Esta es la versiÃ³n 6.5 de este documento, actualizada por Ãºltima vez
+en 22/07/2019 para que corresponda a la distribuciÃ³n adJ de OpenBSD 6.5. No se
+ofrece garantÃ­a alguna, por el contrario se aprecia que se envÃ­en correcciones
+y sugerencias al autor. Este escrito se dedica a Dios: 'Grandes y Maravillosas
+son Tus Obras'.
 
-   Expresamos agradecimiento especiales por las correcciones de Jaime
-   Carvajal, Hernan Quishpe y los aportes de Christian Llanos y Alvaron
-   Pinzón.
-
-   La versión publicada más reciente está disponible en HTML y HTML
-   comprimido. También están publicadas sus fuentes en DocBook
-   comprimidas. La versión de desarrollo está en el repositorio CVS de
-   Structio.
-
-   Resumen
-
-   Estas notas presentan algunas de las posibilidades de un computador con
-   el sistema operativo OpenBSD como sistema de escritorio. Las hemos
-   revisado para que concuerden con la versión 4.4 de OpenBSD.
