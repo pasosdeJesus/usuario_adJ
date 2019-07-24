@@ -28,10 +28,14 @@ Diferencias entre OpenBSD y Linux
     mejorar su usabilidad en el escritorio, como se presenta en este
     escrito.
 
-    En particular la distribución [Aprendiendo de
-    Jesús](http://aprendiendo.pasosdeJesus.org) busca personalizar
-    OpenBSD como plataforma de comunicaciones y sistema de escritorio
-    completo y usable.
+-   OpenBSD es un sistema completo, pensado para mantenerse sincronizado.
+    No es un "kernel más utilidades" (GNU/Linux) que puede ser actualizado
+    por separado uno de otro. Si no se mantiene el sistema en correcta sincronía
+    (kernel, utilidades y aplicaciones) cosas malas sucederán.
+
+-   En particular la distribución [Aprendiendo de Jesús](http://aprendiendo.pasosdeJesus.org)
+    busca personalizar OpenBSD como plataforma de comunicaciones y 
+    sistema de escritorio completo y usable.
 
 -   Las fuentes de OpenBSD son en la humilde opinión del autor de este
     escrito más legibles y mejor documentadas, los mismos

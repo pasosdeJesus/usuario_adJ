@@ -3,8 +3,8 @@
 
 ## pdksh (ksh) {#pdksh}
 
-Es un intérprete de ordenes similar a `bash`. Este intérprete de
-ordenes al iniciarse como intérprete de login lee los archivos
+Es un intérprete de órdenes similar a `bash`. Este intérprete de
+órdenes al iniciarse como intérprete de login lee los archivos
 `/etc/profile` y `$HOME/.profile`, pero no lo hace si es iniciado como
 intérprete interactivo. Puede iniciarse explícitamente como intérprete
 de login con `ksh -l`. Esto puede resultar útil para iniciarlo por
@@ -12,7 +12,7 @@ ejemplo dentro de `xterm`:
 
         xterm -en utf8 -e /bin/ksh -l 
 
-El método de edición (`vi`,`emacs` o `gmacs`) se configura en la
+El método de edición (`vi`, `emacs` o `gmacs`) se configura en la
 variable `VISUAL`.
 
 
@@ -52,7 +52,7 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
     >         chmod og-r ~/.netrc
 
 -   Permite especificar el URL (iniciado con `http://` o `ftp://`) de un
-    archivo por descargar en la línea de ordenes (y realiza
+    archivo por descargar en la línea de órdenes (y realiza
     autenticación automática si es ftp:// y se ha configurado
     `~/.netrc`, o si el URL es análogo a
     `ftp://&EUSUARIO;:miclave@&ESERV;/pub/doc.txt`). En este caso si se
@@ -63,7 +63,7 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
 
 ## doas
 
-Este programa permite ejecutar ordenes privilegiadas a algunos
+Este programa permite ejecutar órdenes privilegiadas a algunos
 usuarios. A partir de adJ y OpenBSD 5.8 el sistema base incluye `doas`
 como remplazo del antiguo `sudo`. `doas` es más simple y fácil de
 auditar.
@@ -82,7 +82,7 @@ cuenta configurada con `doas orden`. Por ejemplo:
 
 ### sudo
 
-El programa `sudo` se mantiene como paquete, si lo requiere instalelo
+El programa `sudo` se mantiene como paquete, si lo requiere instálelo
 desde la cuenta `root` con:
 
         pkg_add sudo
@@ -102,7 +102,7 @@ Puede verse en <http://rr.sans.org/authentic/sudo.php> interacción entre
 ##`cron`: para programar tareas {#cron}
 
 El programa `cron` ejecuta tareas configuradas para correr en cierto(s)
-momento(s). Este servico debe correr permanentemente. Puede comprar que
+momento(s). Este servico debe correr permanentemente. Puede comprobar que
 opera con `pgrep cron` que debe responder con el número del proceso. Si
 no está corriendo debe ejecutarlo urgentemente bien reiniciando el
 servido o ejecutando `doas cron`.
@@ -149,7 +149,7 @@ requieren recompilación del kernel.
 ### Compilación del kernel {#compilacion-del-kernel}
 
 Puede sacar las fuentes del CD de instalación o de un repositorio FTP
-(`src.tgz`) descomprimiendolas en `/usr/src`, después puede
+(`src.tgz`) descomprimiéndolas en `/usr/src`, después puede
 actualizarlas con el CVS de OpenBSD con:
 
         cd /usr

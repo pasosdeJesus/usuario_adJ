@@ -87,19 +87,18 @@ descargarlas de un repositorio CVS como se presenta a continuación:
         export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
         cvs -z3 -q get -rOPENBSD_&VER-OPENBSD-U; -P ports 
 
-La vía para `CVSROOT` adaptela a su servidor más cercano, escogiendo
+La vía para `CVSROOT` adáptela a su servidor más cercano, escogiendo
 entre los disponibles en: <http://www.openbsd.org/anoncvs.html>.
 
-### Busquedas de portes {#busquedas-portes}
+### Búsquedas de portes {#busquedas-portes}
 
 Para buscar un programa en la colección de portes puede emplear:
 
         cd /usr/ports
         make search key=cadena
           
-
 Que presentará los portes que en su descripción tengan la cadena dada.
-Esta busqueda se realiza sobre el archivo `/usr/ports/INDEX`, el cual si
+Esta búsqueda se realiza sobre el archivo `/usr/ports/INDEX`, el cual si
 lo desea también puede explorar con un editor.
 
 ### Compilación de portes {#compilación-portes}

@@ -58,7 +58,7 @@ defecto usa la dirección base 0x300 pero la IRQ 10. Desde el prompt que
 
 puede ver otras ordenes disponibles con la orden `help`. Una vez
 complete la configuración salga del entorno interactivo con `quit`, tras
-esto el kernel continuara la detección pero usando los cambios que haya
+esto el kernel continuará la detección pero usando los cambios que haya
 hecho.
 
 Una vez haya configurado los recursos que un controlador emplea para que
@@ -376,7 +376,7 @@ posible emplearlos bien con `lpr` o bien con `cups`.
 
 #### Foomatic con LPR {#foomatic-lpr}
 
-Si la impresora está impresora está conectada a `/dev/lpt0` basta que
+Si la impresora está conectada a `/dev/lpt0` basta que
 agregue a `/etc/printcap` una entrada como:
 
     lp|local line printer:\
@@ -563,7 +563,7 @@ Las posibles disciplinas que soporta `softraid` son:
 * RAID 1: Copia cada dato en más de un "pedazo" para facilitar
   	recuperar información en caso de perdida de datos.  Si es
 	posible hacer volúmenes de arranque.
-* RAID 5: Divide los datos en varios pedazos pero proveed paridad
+* RAID 5: Divide los datos en varios pedazos pero proveen paridad
  	para prevenir perdida de datos.  No es posible hacer volumenes
 	de arranque.
 * CRYPTO: Cifra los datos en un sólo pedazo para proveer
@@ -826,7 +826,7 @@ orden:
 
 ### Crear una imagen nueva ISO 9660 {#crear-nueva-imagen-iso}
 
-Para crear una imágen ISO a partir de datos que usted elija, deje los
+Para crear una imagen ISO a partir de datos que usted elija, deje los
 archivos y directorios por incluir en un directorio (digamos
 `/home/&EUSUARIO;/imagen`), el cual después puede especificarse a
 `mkisofs` (programa que hace parte del paquete `cdrtools`). El formato
@@ -850,7 +850,7 @@ permite nombres largos (opción `-l`) y maneja enlaces simbólicos (opción
 
 Por otra parte en sistemas i386 o amd64 es posible arrancar un
 computador desde un CD, configurando el arranque del computador desde el
-BIOS para que sea por la unidad y cuando la imágen del CD se crea con la
+BIOS para que sea por la unidad y cuando la imagen del CD se crea con la
 extensión El Torito. La extensión El Torito permite incluir la imágen de
 un floppy que se usa para arrancar.
 
