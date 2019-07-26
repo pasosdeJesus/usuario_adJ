@@ -571,13 +571,13 @@ describe el paquete ruby):
 
 ```
     doas sh
-    ln -sf /usr/local/bin/ruby25 /usr/local/bin/ruby
-    ln -sf /usr/local/bin/erb25 /usr/local/bin/erb
-    ln -sf /usr/local/bin/irb25 /usr/local/bin/irb
-    ln -sf /usr/local/bin/rdoc25 /usr/local/bin/rdoc
-    ln -sf /usr/local/bin/ri25 /usr/local/bin/ri
-    ln -sf /usr/local/bin/rake25 /usr/local/bin/rake
-    ln -sf /usr/local/bin/gem25 /usr/local/bin/gem
+    ln -sf /usr/local/bin/ruby26 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb26 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb26 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc26 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri26 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake26 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem26 /usr/local/bin/gem
 ```
                   
 
@@ -698,8 +698,8 @@ Para facilitar el manejo de varias gemas (y sus interdependencias) en un
 proyecto es típico emplear ```bundler``` que instala con:
 ```
     doas gem install bundler
-    if (test -x /usr/lcoal/bin/bundle25) then { 
-       doas ln -sf /usr/local/bin/bundle25 /usr/local/bin/bundle; 
+    if (test -x /usr/lcoal/bin/bundle26) then { 
+       doas ln -sf /usr/local/bin/bundle26 /usr/local/bin/bundle; 
     } fi
 ```
 
