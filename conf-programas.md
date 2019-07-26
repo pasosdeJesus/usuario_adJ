@@ -645,10 +645,10 @@ El paquete `ruby` incluye `rubygems` que maneja gemas (es decir
 librerías) con el programa `gem`.
 
 El directorio donde se instalan las gemas globales 
-es ```/usr/local/lib/ruby/gems/2.5/``` donde sólo pueden 
+es ```/usr/local/lib/ruby/gems/2.6/``` donde sólo pueden 
 instalarse con ```doas```. 
 Recomendamos iniciar un directorio para instalar gemas como usuario normal 
-en  ```/var/www/bundler/ruby/2.5```, por 3 razones (1) evitar riesgos de 
+en  ```/var/www/bundler/ruby/2.6```, por 3 razones (1) evitar riesgos de 
 seguridad al instalar gemas como root, (2) evitar problemas de permisos 
 y la dificultad de programas como bundler para usar ```doas``` en lugar 
 de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones 
@@ -657,18 +657,18 @@ corran en una jaula chroot en ```/var/www```
 Prepare ese directorio con:
 
 ```
-	doas mkdir -p /var/www/bundler/ruby/2.5/
+	doas mkdir -p /var/www/bundler/ruby/2.6/
 	doas chown -R $USER:www /var/www/bundler
 ```
 
 Y cuando requiera instalar una gema allí emplee:
 ```
-	gem install --install-dir /var/www/bundler/ruby/2.5/ json -v '2.0'
+	gem install --install-dir /var/www/bundler/ruby/2.6/ json -v '2.0'
 ```
 
 O si llega a tener problemas de permisos con:
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.5/ bcrypt -v '3.1.11'
+	doas gem install --install-dir /var/www/bundler/ruby/2.6/ bcrypt -v '3.1.11'
 ```
 
 
@@ -678,10 +678,10 @@ por ejemplo cuando actualiza el sistema operativo) con:
 ```
     doas gem update --system
     QMAKE=qmake-qt5 make=gmake MAKE=gmake doas gem pristine --all
-    for i in `ls /var/www/bundler/ruby/2.5/extensions/x86_64-openbsd/2.5/`; do
+    for i in `ls /var/www/bundler/ruby/2.6/extensions/x86_64-openbsd/2.6/`; do
         v=`echo $i | sed -e 's/.*-\([0-9.]*\)/\1/g'` ; 
         n=`echo $i | sed -e 's/\(.*\)-[0-9.]*/\1/g'` ; 
-        doas gem install --install-dir /var/www/bundler/ruby/2.5/ $n -v $v; 
+        doas gem install --install-dir /var/www/bundler/ruby/2.6/ $n -v $v; 
     done
 ```
 
@@ -704,9 +704,9 @@ proyecto es típico emplear ```bundler``` que instala con:
 ```
 
 Configúrelo para que instale gemas localmente 
-en ```/var/www/bundler/ruby/2.5``` con:
+en ```/var/www/bundler/ruby/2.6``` con:
 ```
-	bundle config path /var/www/bundler/ruby/2.5
+	bundle config path /var/www/bundler/ruby/2.6
 ```
 
 Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
@@ -715,7 +715,7 @@ depende la aplicación y genera un archivo ```Gemfile.lock``` con las
 versiones precisas por instalar de cada gema.  
 
 Una vez tenga un proyecto asegure que este emplea las gemas de 
-```/var/www/bundler/ruby/2.5``` ejecutando dentro del directorio del 
+```/var/www/bundler/ruby/2.6``` ejecutando dentro del directorio del 
 proyecto:
 
 ```
@@ -735,7 +735,7 @@ Si eventualmente no logra instalar algunas --por problemas de permisos
 típicamente-- puede instalar con 
 
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.5 json -v '2.0'
+	doas gem install --install-dir /var/www/bundler/ruby/2.6 json -v '2.0'
 ```
 
 Cuando actualice la versión del sistema operativo al igual que con gemas 
@@ -768,7 +768,7 @@ que se explicó. Algunos casos especiales son:
 
 -   ```nokogiri``` que puede requerir
 ```
-        doas gem install --install-dir /var/www/bundler/ruby/2.5/ nokogiri -- --use-system-libraries 
+        doas gem install --install-dir /var/www/bundler/ruby/2.6/ nokogiri -- --use-system-libraries 
 ```
                     
 
