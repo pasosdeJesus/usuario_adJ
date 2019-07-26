@@ -1,12 +1,14 @@
 
-La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio
+La distribución Aprendiendo de Jesús de OpenBSD como Sistema de
+Escritorio
 
 Vladimir Támara Patiño (vtamara@pasosdeJesus.org)
 
-Este documento, sus fuentes y actualizaciones se ceden al dominio público desde
-el 2002. Esta es la versión 6.5 de este documento, actualizada por última vez
-en 22/07/2019 para que corresponda a la distribución adJ de OpenBSD 6.5. No se
-ofrece garantía alguna, por el contrario se aprecia que se envíen correcciones
-y sugerencias al autor. Este escrito se dedica a Dios: 'Grandes y Maravillosas
+Este documento, sus fuentes y actualizaciones se ceden al dominio
+público desde el 2002. Esta es la versión 6.5 de este documento,
+actualizada por última vez en 22/07/2019 para que corresponda a la
+distribución adJ de OpenBSD 6.5. No se ofrece garantía alguna, por
+el contrario se aprecia que se envíen correcciones y sugerencias
+al autor. Este escrito se dedica a Dios: 'Grandes y Maravillosas
 son Tus Obras'.
 
