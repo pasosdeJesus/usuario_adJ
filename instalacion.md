@@ -13,12 +13,12 @@
         [estas fuentes]ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus) por
         ejemplo con el programa `ftp` de OpenBSD:
 
-                ftp -C ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesusVER-ADJ-amd64.iso
+                ftp -C ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus&VER-ADJ;-amd64.iso
 
 
         o bien con el programa `wget`:
 
-                wget -c ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesusVER-ADJ-amd64.iso 
+                wget -c ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus&VER-ADJ;-amd64.iso 
 
 
         Usando estas formas podrá reanudar la transferencia en caso de
@@ -26,7 +26,7 @@
         la descarga, pero sin posibilidad de reanudar en caso de que se
         interrumpa, es emplear el programa `rsync`:
 
-                rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/AprendiendoDeJesusVER-ADJ-amd64.iso.
+                rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/AprendiendoDeJesus&VER-ADJ;-amd64.iso.
 
 
         Note que hay un punto al final, que indica que el destino de la
@@ -561,19 +561,6 @@ monitor, teclado y ratón del archivo `/etc/X11/xorg.conf`, por lo que
 este es el archivo que debe generar y configurar en caso de que la
 autodetección de Xorg no opere con su hardware.
 
-Para generar un archivo de configuración inicial ejecute:
-
-        su -
-        Xorg -configure
-        
-
-no siempre funciona, pero si en varios casos dejará un archivo de
-configuración en `/root/xorg.conf.new` que puede probar con:
-
-        su -
-        Xorg -config xorg.conf.new
-        
-
 Si no logra ingresar al modo gráfico revise la bitácora de errores del
 servidor X-Window con:
 
@@ -585,15 +572,11 @@ y edite el archivo de configuración, siguiendo las instrucciones de
 
 hasta lograr que opere, puede editar por ejemplo con:
 
-        doas mg /root/xorg.conf.new
+        doas mg /etc/X11/xorg.conf
 
 Una vez le funciona (entra a modo gráfico del cual puede salir con
-Ctrl-Alt-BackSpace) cópielo al sitio donde debe quedar:
-
-        doas cp /root/xorg.conf.new /etc/X11/xorg.conf
-        
-
-y termine ejecutando
+Ctrl-Alt-BackSpace) 
+ejecutando
 
         doas xdm
         
@@ -613,7 +596,7 @@ usuarios. Unos cambios que suelen funcionar son:
             machdep.allowaperture=1
             
 
-    en `/etc/sysctl.conf`, según lo recomendado en la bitácora.
+    hagalo en `/etc/sysctl.conf`, según lo recomendado en la bitácora.
 
     Elegir un monitor y editar el archivo para quitar el comentario que
     deja en la frecuencia horizontal --es decir el símbolo \# al
@@ -621,10 +604,10 @@ usuarios. Unos cambios que suelen funcionar son:
 
 2.  Escoger `vesa` como controlador y tarjeta de video.
 
-En casos extremos puede comenzar con un archivo de configuración típico
-como el que se presenta a continuación (para teclado en español, tarjeta
-de video que soporta VESA, y un monitor que no requiere especificar
-rangos):
+3. En casos extremos puede comenzar con un archivo de configuración típico
+  como el que se presenta a continuación (para teclado en español, tarjeta
+  de video que soporta VESA, y un monitor que no requiere especificar
+  rangos):
 
     Section "ServerLayout"
         Identifier     "X.org Configured"
@@ -739,7 +722,7 @@ Una vez logre configurar Xorg puede activar el administrador de vistas
 XDM permanentemente agregando la siguiente línea al archivo
 `/etc/rc.conf.local` (creélo si no existe):
 
-        xdm_flags="" 
+        xenodm_flags="" 
 
 ### Tipos de letra
 
@@ -806,7 +789,7 @@ estos archivos es la cantidad de tipos por lo que debe incrementarlo).
 -   Hay detalles sobre la configuración de Xorg en OpenBSD en el archivo
     `/usr/X11R6/README`
 
--   El servidor de X-Window incluido en OpenBSD VER-OPENBSD soporta
+-   El servidor de X-Window incluido en OpenBSD &VER-OPENBSD; soporta
     fuentes anti-aliasing y True Type. Puede consultar el procedimiento
     para instalar fuentes True Type en
     <http://www.openbsd.org/faq/truetype.html>.

@@ -8,7 +8,7 @@ include Make.inc
 
 EXT_DOCBOOK=xdbk
 
-FUENTESDB=introduccion.xdbk instalacion.xdbk paquetesyportes.xdbk conf-basicos.xdbk conf-programas.xdbk conf-dispositivos.xdbk duales.xdbk paquetes-adJ.xdbk openbsdsrc/tabcompose.xdbk novedades.xdbk biblio.xdbk 
+FUENTESDB=introduccion.xdbk instalacion.xdbk paquetesyportes.xdbk interprete-de-ordenes.xdbk conf-basicos.xdbk conf-programas.xdbk conf-dispositivos.xdbk duales.xdbk paquetes-adJ.xdbk openbsdsrc/tabcompose.xdbk novedades.xdbk biblio.xdbk 
 
 SOURCES=$(PROYECTO).$(EXT_DOCBOOK)  $(FUENTESDB)
 # Listado de fuentes XML. Preferiblmente en el orden de inclusión.

@@ -63,7 +63,7 @@ Y para actualizar todos los paquetes puede utilizar
 ## Portes
 
 Aunque NetBSD y FreeBSD tienen más programas portados que OpenBSD, la
-colección de portes de OpenBSD ya cuenta con casi 5000 programas
+colección de portes de OpenBSD ya cuenta con casi 10000 programas
 clasificados en las siguientes categorías empleadas por el sistema de
 portes: archivers, astro, audio, benchmarks, biology, books, cad,
 chinese, comms, converters, databases, devel, distfiles, editors,
@@ -133,7 +133,7 @@ Makefile
 
 distinfo
 
-:   Este archivo incluye diversas "firmas"[^cre.1] de cada fuente que debe
+:   Este archivo incluye diversos "condensados"[^cre.1] de cada fuente que debe
     descargarse para asegurar su integridad. Se genera automáticamente
     con `make makesum` y se verifica con `make checksum`
 
@@ -146,9 +146,8 @@ pkg/PLIST
 
 :   Indica los archivos que se instalan después de instalar el paquete.
     Se puede crear un candidato inicial de este archivo después de
-    compilar y hacer una instalación de prueba (`make
-                  fake`). Puede actualizarse de acuerdo a lo instalado
-    con `make plist`
+    compilar y hacer una instalación de prueba (`make fake`). 
+    Puede actualizarse de acuerdo a lo instalado con `make plist`
 
 patches/
 

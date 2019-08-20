@@ -1,6 +1,8 @@
 Versión 6.5
 
-:   - Mejorada ortografía, agradecimientos a Luis Alejandro Cruz 
+:   - Nueva capítulo de intrepete de ordenes con [xref](#archivos_y_permisos) basada en http://structio.sourceforge.net/guias/AA_Linux_colegio/exploracion-dos.html#archivos-y-permisos 
+    - Mejorada ortografía, agradecimientos a Luis Alejandro Cruz 
+    - Actualizada [xref](#configuracion-de-xorg)
 
 Versión 6.4
 
