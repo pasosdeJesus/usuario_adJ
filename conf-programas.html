@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>5. Configuracioń y uso de algunos programas</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="configuracion-de-componentes-basicos.html" title="4. Configuración y uso de programas y servicios básicos"><link rel="next" href="conf-dispositivos.html" title="6. Configuración y uso de algunos dispositivos y servicios"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">5. Configuracioń y uso de algunos programas</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="conf-dispositivos.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="conf-programas"></a>5. Configuracioń y uso de algunos programas</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="escritorio"></a>5.1. Escritorio y Archivos</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="fluxbox"></a>5.1.1. FluxBox</h4></div></div></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>6. Configuracioń y uso de algunos programas</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="configuracion-de-componentes-basicos.html" title="5. Configuración y uso de programas y servicios básicos"><link rel="next" href="conf-dispositivos.html" title="7. Configuración y uso de algunos dispositivos y servicios"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">6. Configuracioń y uso de algunos programas</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="conf-dispositivos.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="conf-programas"></a>6. Configuracioń y uso de algunos programas</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="escritorio"></a>6.1. Escritorio y Archivos</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="fluxbox"></a>6.1.1. FluxBox</h4></div></div></div><p>
         La operación básica de este liviano y estético administrador de
         ventanas se describe en
         <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>, aquí describimos
@@ -18,7 +18,7 @@
         estilos en <code class="literal">System Styles</code> y esconder/mostrar
         la barra de herramientas con
         <code class="literal">Configure -&gt; Toolbar -&gt; Visible</code> FluxBox
-      </p><div class="figure"><a name="idp2314446888"></a><p class="title"><b>Figura 14. </b></p><div class="mediaobject"><img src="img/fluxbox-xfig.png"></div></div><p>
+      </p><div class="figure"><a name="idm349266824"></a><p class="title"><b>Figura 15. </b></p><div class="mediaobject"><img src="img/fluxbox-xfig.png"></div></div><p>
         Entre sus características:
       </p><div class="itemizedlist"><ul type="disc"><li><p>
             Es altamente configurable (recursos, menús, decoración de
@@ -29,25 +29,24 @@
             Con Alt+[Boton izquierdo] permite cambiar ubicación de la
             ventana sobre la que está el curso, y con Alt+[Botono
             derecho] el tamaño.
-          </p></li></ul></div><p>
-        El menú que presenta se configura en un archivo texto con una
-        sintaxis sencilla, puede cambiarse editando en
-        <code class="literal">~/.fluxbox/menu</code>.
-      </p><p>
-        Los programas que se inician con el escritorio pueden
-        configurarse en <code class="literal">~/.fluxbox/startup</code>. Por
-        ejemplo en este archivo puede configurar el locale que usará
-        agregando o cambiando la línea:
-      </p><pre class="programlisting">
-export LANG=es_CO.UTF-8
-    
-</pre><p>
-        La apariencia en general puede configurarse en
-        <code class="literal">~/.fluxbox/init</code>
-      </p><p>
-        Puede configurar teclas rápidas en el archivo
-        <code class="literal">~/.fluxbox/keys</code>
-      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="lecturas-conf-fluxbox"></a>5.1.1.1. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+          </p></li><li><p>
+            El menú que presenta se configura en un archivo texto con
+            una sintaxis sencilla, puede cambiarse editando en
+            <code class="literal">~/.fluxbox/menu</code>.
+          </p></li><li><p>
+            Los programas que se inician con el escritorio pueden
+            configurarse en <code class="literal">~/.fluxbox/startup</code>. Por
+            ejemplo en este archivo puede configurar el locale que usará
+            agregando o cambiando la línea:
+          </p><p>
+            export LANG=es_CO.UTF-8
+          </p></li><li><p>
+            La apariencia en general puede configurarse en
+            <code class="literal">~/.fluxbox/init</code>
+          </p></li><li><p>
+            Puede configurar teclas rápidas en el archivo
+            <code class="literal">~/.fluxbox/keys</code>
+          </p></li></ul></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="lecturas-conf-fluxbox"></a>6.1.1.1. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
               Sitio oficial <a href="fluxbox.org" target="_top">fluxbox.org</a>.
             </p></li><li><p>
               Página sobre fluxbox de NetBSD
@@ -55,7 +54,7 @@ export LANG=es_CO.UTF-8
             </p></li><li><p>
               Página sobre fluxbox de Gentoo
               <a href="http://www.gentoo.org/doc/es/fluxbox-config.xml" target="_top">http://www.gentoo.org/doc/es/fluxbox-config.xml</a>
-            </p></li></ul></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="xfe"></a>5.1.2. <code class="literal">xfe</code></h4></div></div></div><p>
+            </p></li></ul></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="xfe"></a>6.1.2. <code class="literal">xfe</code></h4></div></div></div><p>
         La operación básica se describe en
         <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>, aquí describimos
         algunos detalles de configuración.
@@ -69,12 +68,12 @@ export LANG=es_CO.UTF-8
       </p><pre class="programlisting">
 uso_sudo=1
 sudo_nopasswd=1
-</pre></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="espiritualidad"></a>5.2. Espiritualidad</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="xiphos"></a>5.2.1. <code class="literal">xiphos</code></h4></div></div></div><p>
+</pre></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="espiritualidad"></a>6.2. Espiritualidad</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="xiphos"></a>6.2.1. <code class="literal">xiphos</code></h4></div></div></div><p>
         Como se describe en
         <a href="bibliografia.html" title="E. Bibliografía">xiphosmanual</a>, es una
         herramienta gráfica de estudio e investigación bíblica que se
         basa en las librerías del proyecto Sword.
-      </p><div class="figure"><a name="idp2224823720"></a><p class="title"><b>Figura 15. </b></p><div class="mediaobject"><img src="img/xiphos.png"></div></div><p>
+      </p><div class="figure"><a name="idp711061752"></a><p class="title"><b>Figura 16. </b></p><div class="mediaobject"><img src="img/xiphos.png"></div></div><p>
         Puede iniciarla desde el menu de fluxbox
         Espiritualidad-&gt;Xiphos o desde una terminal con
         <code class="literal">xiphos</code>. Deben instalarse módulos primero.
@@ -88,12 +87,12 @@ sudo_nopasswd=1
         varias traducciones en paralelo. Cada traducción puede contar
         con opciones como: Palabras de Cristo en Rojo, Números Strong,
         Etiquetas morfológicas, Notas al pie, encabezados.
-      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="documentos"></a>5.3. Preparación de Documentos y Aplicaciones de Oficina</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="msoffice"></a>5.3.1. Aplicaciones estilo MS-Office</h4></div></div></div><p>
+      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="documentos"></a>6.3. Preparación de Documentos y Aplicaciones de Oficina</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="msoffice"></a>6.3.1. Aplicaciones estilo MS-Office</h4></div></div></div><p>
         LibreOffice es un juego de aplicaciones de oficina que ofrece,
         prácticamente, la misma funcionalidad de MS-Office, un formato
         de documentos estándar (ISO) y facilidades para importar y
         exportar en formatos de MS-Office.
-      </p><div class="figure"><a name="idp1598159016"></a><p class="title"><b>Figura 16. </b></p><div class="mediaobject"><img src="img/gnumeric.png"></div></div><p>
+      </p><div class="figure"><a name="idm1654498184"></a><p class="title"><b>Figura 17. </b></p><div class="mediaobject"><img src="img/gnumeric.png"></div></div><p>
         Lo puede iniciar desde el escritorio con botón derecho Oficina
         &gt; LibreOffice o bien desde una terminal con
       </p><pre class="programlisting">
@@ -117,24 +116,19 @@ sudo_nopasswd=1
         procesador en
         <a href="bibliografia.html" title="E. Bibliografía">libreoffice-basico</a>
       </p><p>
-        Además el DVD de adJ incluye abiword-3.0.2p5 como procesador de
-        texto capaz de abrir y escribir tanto en el formato de Microsoft
-        Office como en OpenDocument (que es el formato de LibreOffice y
-        OpenOffice).
-      </p><p>
-        Para operar con hojas de cálculo incluye gnumeric-1.12.43, que
+        Para operar con hojas de cálculo incluye gnumeric-1.12.44, que
         también puede abrir y guardar en OpenDocument y en formatos de
         Microsoft Office.
       </p><p>
         La funcionalidad de un procesador de palabra, así como la básica
         para hacer presentaciones también las ofrece LaTeX (ver
-        <a href="conf-programas.html#latex" title="5.3.2.1. LaTeX">Sección 5.3.2.1, “LaTeX”</a>). Parte de la funcionalidad de
+        <a href="conf-programas.html#latex" title="6.3.2.1. LaTeX">Sección 6.3.2.1, “LaTeX”</a>). Parte de la funcionalidad de
         una hoja de cálculo la tiene desde una terminal
         <code class="literal">sc</code>. También puede usar
         <code class="literal">magicpoint</code> para hacer presentaciones. Sin
         embargo para usar estas herramientas se requiere aprender formas
         diferentes de operar.
-      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="conf-tex-gv"></a>5.3.2. TeX y Ghostview</h4></div></div></div><p>
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="conf-tex-gv"></a>6.3.2. TeX y Ghostview</h4></div></div></div><p>
         Para emplear TeX, LaTeX y asociados instale texlive y gv:
       </p><pre class="programlisting">
     doas pkg_add $PKG_PATH/&amp;p-texlive_base;.tgz 
@@ -147,8 +141,8 @@ sudo_nopasswd=1
         A continuación se incluye un mini-tutorial de LaTeX adaptado de
         AALinux, por otra parte puede consultar algo más sobre
         <code class="literal">gv</code> en la sección
-        <a href="conf-dispositivos.html#uso-impresora" title="6.2.1. Uso de una impresora ya configurada">Sección 6.2.1, “Uso de una impresora ya configurada”</a>.
-      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="latex"></a>5.3.2.1. LaTeX</h5></div></div></div><p>
+        <a href="conf-dispositivos.html#uso-impresora" title="7.2.1. Uso de una impresora ya configurada">Sección 7.2.1, “Uso de una impresora ya configurada”</a>.
+      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="latex"></a>6.3.2.1. LaTeX</h5></div></div></div><p>
           LaTeX es una extensión a un sistema llamado TeX, desarrollado
           para escribir documentos de matemáticas. A continuación se
           presenta un ejemplo de un documento LaTeX y el resultado que
@@ -211,7 +205,7 @@ LaTeX es un experto en esta materia:
           El archivo DVI es apropiado para imprimir, puede imprimirlo
           con una orden como <code class="literal">dvilj</code>,
           <code class="literal">dvidj</code> o un nombre análogo que corresponda a
-          su impresora <sup>[<a name="idp1891709224" href="#ftn.idp1891709224">10</a>]</sup>. Para visualizar un archivo DVI puede emplear la
+          su impresora <sup>[<a name="idp533810168" href="#ftn.idp533810168">10</a>]</sup>. Para visualizar un archivo DVI puede emplear la
           orden xdvi:
         </p><pre class="programlisting">
     xdvi documento.dvi
@@ -225,7 +219,7 @@ LaTeX es un experto en esta materia:
 </pre><p>
           A continuación se presenta como se ve el ejemplo de esta
           sección con el programa <code class="literal">xdvi</code>.
-        </p><div class="figure"><a name="idm135625048"></a><p class="title"><b>Figura 17. Visualización de DVI generado de fuente en
+        </p><div class="figure"><a name="idm1117241736"></a><p class="title"><b>Figura 18. Visualización de DVI generado de fuente en
           LaTeX</b></p><div class="mediaobject"><img src="img/ejlatex.png" alt="Visualización de DVI generado de fuente
             en LaTeX"></div></div><p>
           Existen además otros programas para convertir de LaTeX a HTML
@@ -234,16 +228,16 @@ LaTeX es un experto en esta materia:
           <a href="http://ctan.tug.org/ctan/tex-archive/support/latex2html/" target="_top">http://ctan.tug.org/ctan/tex-archive/support/latex2html/</a>
           y de HeVeA en
           <a href="http://pauillac.inria.fr/hevea/" target="_top">http://pauillac.inria.fr/hevea/</a>.
-        </p></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="docbook"></a>5.3.3. DocBook</h4></div></div></div><p>
+        </p></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="docbook"></a>6.3.3. DocBook</h4></div></div></div><p>
         Puede configurarse tanto DocBook SGML 4.4 y procesarse con las
         hojas de estilo DSSSL, o bien DocBook XML 4.4 y procesarse con
         <code class="literal">xsltproc</code>.
-      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="sgml-4-4-con-dsssl"></a>5.3.3.1. SGML 4.4 con DSSSL</h5></div></div></div><p>
+      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="sgml-4-4-con-dsssl"></a>6.3.3.1. SGML 4.4 con DSSSL</h5></div></div></div><p>
           Instale los paquetes openjade, docbook y docbook-dsssl:
         </p><pre class="programlisting">
         doas pkg_add $PKG_PATH/docbook-4.5p2.tgz
         doas pkg_add $PKG_PATH/docbook-dsssl-1.79.tgz
-        doas pkg_add $PKG_PATH/openjade-1.3.3pre1p5.tgz 
+        doas pkg_add $PKG_PATH/openjade-1.3.3pre1p6.tgz 
 </pre><p>
           Esto bastará para hacer conversiones de DocBook SGML a HTML
           por ejemplo si su hoja de estílo DSSL es
@@ -254,10 +248,10 @@ LaTeX es un experto en esta materia:
 </pre><p>
           Para convertir a PostScript además de los paquetes anteriores
           requiere el paquete texlive (ver
-          <a href="conf-programas.html#conf-tex-gv" title="5.3.2. TeX y Ghostview">TeX y Ghostview</a>) y el
+          <a href="conf-programas.html#conf-tex-gv" title="6.3.2. TeX y Ghostview">TeX y Ghostview</a>) y el
           paquete jadetex
-        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="xml-4-4-con-xsl"></a>5.3.3.2. XML 4.4 con XSL</h5></div></div></div><p>
-          Cómo parte del paquete
+        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="xml-4-4-con-xsl"></a>6.3.3.2. XML 4.4 con XSL</h5></div></div></div><p>
+          Como parte del paquete
           `<code class="literal">se instalará el DTD de DocBook XML 4.4 en el directorio</code>/usr/local/share/xml/docbook<code class="literal">. Es recomendable que cree el archivo</code>/usr/local/share/xml/catalog`
           inicialmente con:
         </p><pre class="programlisting">
@@ -325,7 +319,7 @@ LaTeX es un experto en esta materia:
         </p><pre class="programlisting">
         export SGML_CATALOG_FILES="/usr/local/share/xml/catalog"
         xsltproc --catalogs --nonet /usr/local/share/xsl/docbook/html/chunk.xsl ejemplo.xdbk
-</pre></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="espanol"></a>5.4. Español</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="ispell"></a>5.4.1. ispell</h4></div></div></div><p>
+</pre></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="espanol"></a>6.4. Español</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="ispell"></a>6.4.1. ispell</h4></div></div></div><p>
         <code class="literal">ispell</code> permite revisar ortografía de textos
         planos o fuentes de documentos en diversos formatos (HTML, XML o
         TeX). Hay diccionarios disponibles para diversos idiomas. Al
@@ -336,7 +330,7 @@ LaTeX es un experto en esta materia:
         el paquete <code class="literal">ispell-spanish</code>, puede configurarlo
         como diccionario por defecto con
         <code class="literal">ispell-config</code>.
-      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="correccion-ortogr%C3%A1fica"></a>5.4.1.1. Corrección ortográfica</h5></div></div></div><p>
+      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="correccion-ortogr%C3%A1fica"></a>6.4.1.1. Corrección ortográfica</h5></div></div></div><p>
           Puede corregir interactivamente la ortografía de un texto
           plano (digamos <code class="literal">carta.txt</code>) usando el
           diccionario por defecto con:
@@ -349,11 +343,11 @@ LaTeX es un experto en esta materia:
 </pre><p>
           Al corregir interactivamente <code class="literal">ispell</code>
           mostrará palabras que no encuentre en el diccionario del
-          idioma ni en su diccionario personal<sup>[<a name="idp1528228008" href="#ftn.idp1528228008">11</a>]</sup> del idioma (e.g.
+          idioma ni en su diccionario personal<sup>[<a name="idp677020024" href="#ftn.idp677020024">11</a>]</sup> del idioma (e.g.
           <code class="literal">~/.ispell_spanish</code>), así como posibles
           remplazos. Podrá elegir uno de los remplazos tecleando el
           número que antecede al remplazo.
-        </p></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="multimedia"></a>5.5. Multimedia</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mplayer"></a>5.5.1. Mplayer</h4></div></div></div><p>
+        </p></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="multimedia"></a>6.5. Multimedia</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mplayer"></a>6.5.1. Mplayer</h4></div></div></div><p>
         Es un reproductor de audio y video que soporta gran variedad de
         formatos. Por ejemplo para ver video.flv:
       </p><pre class="programlisting">
@@ -376,15 +370,15 @@ LaTeX es un experto en esta materia:
 </pre><p>
         Se distribuye junto con <code class="literal">mencoder</code> que permite
         convertir de un formato a otro.
-      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="ediciongraficos"></a>5.5.2. Edición de gráficos</h4></div></div></div><p>
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="ediciongraficos"></a>6.5.2. Edición de gráficos</h4></div></div></div><p>
         Para ver una gráfica (sin editarla) prácticamente en cualquier
         formato, puede usar <code class="literal">display</code> incluido en
-        ImageMagick-6.9.10.10p1:
+        ImageMagick-6.9.10.36:
       </p><pre class="programlisting">
     display migrafica.png
 </pre><p>
         Otra opción que facilita ver un directorio con imagenes es
-        <code class="literal">xfi</code> incluido en el paquete xfe-1.42p2:
+        <code class="literal">xfi</code> incluido en el paquete xfe-1.43.1p0:
       </p><pre class="programlisting">
     xfi migrafica.png
 </pre><p>
@@ -396,26 +390,26 @@ LaTeX es un experto en esta materia:
       </p><p>
         Como editor de gráficos a nivel de pixels, el CD de adJ incluye
         gimp-2.8.22p3
-      </p><div class="figure"><a name="idp414243624"></a><p class="title"><b>Figura 18. </b></p><div class="mediaobject"><img src="img/gimp.png"></div></div><p>
-        Como editor vectorial incluye inkscape-0.92.3p3
-      </p><div class="figure"><a name="idm1215617496"></a><p class="title"><b>Figura 19. </b></p><div class="mediaobject"><img src="img/inkscape.png"></div></div><p>
+      </p><div class="figure"><a name="idm2685986056"></a><p class="title"><b>Figura 19. </b></p><div class="mediaobject"><img src="img/gimp.png"></div></div><p>
+        Como editor vectorial incluye inkscape-0.92.4
+      </p><div class="figure"><a name="idm1824425864"></a><p class="title"><b>Figura 20. </b></p><div class="mediaobject"><img src="img/inkscape.png"></div></div><p>
         OpenOffice incluye otro editor vectorial llamado
         <code class="literal">draw</code>.
       </p><p>
         Para la generación de gráficos de barras y estadísticos resulta
-        más apropiado el graficador de gnumeric-1.12.43 o de calc --la
+        más apropiado el graficador de gnumeric-1.12.44 o de calc --la
         hoja de cálculo de OpenOffice--, ver
-        <a href="conf-programas.html#msoffice" title="5.3.1. Aplicaciones estilo MS-Office">Sección 5.3.1, “Aplicaciones estilo MS-Office”</a>
-      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="edicionaudio"></a>5.5.3. Edición de audio</h4></div></div></div><p>
+        <a href="conf-programas.html#msoffice" title="6.3.1. Aplicaciones estilo MS-Office">Sección 6.3.1, “Aplicaciones estilo MS-Office”</a>
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="edicionaudio"></a>6.5.3. Edición de audio</h4></div></div></div><p>
         Para reproducir una pista de audio en diversos formatos
         (incluyendo el libre ogg, el común wav y el patentado mp3) puede
         usar <code class="literal">mplayer</code> (ver
-        <a href="conf-programas.html#mplayer" title="5.5.1. Mplayer">Sección 5.5.1, “Mplayer”</a>), o bien
+        <a href="conf-programas.html#mplayer" title="6.5.1. Mplayer">Sección 6.5.1, “Mplayer”</a>), o bien
         <code class="literal">audacious</code> (incluido en el paquete
         audacious-3.9p2):
-      </p><div class="figure"><a name="idm1215612248"></a><p class="title"><b>Figura 20. </b></p><div class="mediaobject"><img src="img/audacious.png"></div></div><p>
+      </p><div class="figure"><a name="idp1138841848"></a><p class="title"><b>Figura 21. </b></p><div class="mediaobject"><img src="img/audacious.png"></div></div><p>
         El programa <code class="literal">play</code> incluido en el paquete
-        sox-14.4.2p3 también le permitirá escuchar diversos formatos.
+        sox-14.4.2p5 también le permitirá escuchar diversos formatos.
       </p><p>
         Desde la línea de ordenes podrá recortar, cambiar volumen y
         aplicar otros efectos empleando el programa
@@ -423,11 +417,11 @@ LaTeX es un experto en esta materia:
       </p><p>
         Si prefiere un editor gráfico que le permite recortar y aplicar
         algunos efectos a pistas de audio en prácticamente cualquier
-        formato de audio utilice el programa audacity-1.3.9p12:
-      </p><div class="figure"><a name="idp2140714280"></a><p class="title"><b>Figura 21. </b></p><div class="mediaobject"><img src="img/audacity.png"></div></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="operaci%C3%B3n-en-red"></a>5.6. Operación en red</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mutt"></a>5.6.1. <code class="literal">mutt</code></h4></div></div></div><p>
+        formato de audio utilice el programa audacity-2.3.1p4:
+      </p><div class="figure"><a name="idp1138840824"></a><p class="title"><b>Figura 22. </b></p><div class="mediaobject"><img src="img/audacity.png"></div></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="operaci%C3%B3n-en-red"></a>6.6. Operación en red</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mutt"></a>6.6.1. <code class="literal">mutt</code></h4></div></div></div><p>
         El uso básico de mutt puede consultarlo en
         <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>
-      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="otro-smtp"></a>5.6.1.1. Enviado correo con <code class="literal">sendmail</code> de otro
+      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="otro-smtp"></a>6.6.1.1. Enviado correo con <code class="literal">sendmail</code> de otro
         computador</h5></div></div></div><p>
           Para enviar correos <code class="literal">mutt</code> corre por defecto
           el programa <code class="literal">sendmail</code> (por defecto con
@@ -461,7 +455,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
             </p><pre class="programlisting">
         set sendmail=/home/pablo/scripts/envia.sh
 </pre></li><li><p>
-              Asegurese de ejecutar <code class="literal">mutt</code> junto con el
+              Asegúrese de ejecutar <code class="literal">mutt</code> junto con el
               agente de autenticación de <code class="literal">ssh</code>. Por
               ejemplo con:
             </p><pre class="programlisting">
@@ -472,13 +466,13 @@ agente de autenticación de ssh (i.e `ssh-agent`).
               o si emplea XWindow es posible que pueda configurar su
               manejador de escritorio o su administrador de ventanas
               para que toda la sesión emplee el agente (ver un ejemplo
-              en <a href="conf-programas.html#fluxbox" title="5.1.1. FluxBox">Sección 5.1.1, “FluxBox”</a>).
-            </p></li></ul></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="lecturas-mutt"></a>5.6.1.2. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+              en <a href="conf-programas.html#fluxbox" title="6.1.1. FluxBox">Sección 6.1.1, “FluxBox”</a>).
+            </p></li></ul></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="lecturas-mutt"></a>6.6.1.2. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
               Página man de <code class="literal">mutt</code>
             </p></li><li><p>
               Sección sobre <code class="literal">mutt</code> de
               <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>
-            </p></li></ul></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="chromium"></a>5.6.2. Chromium</h4></div></div></div><p>
+            </p></li></ul></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="chromium"></a>6.6.2. Chromium</h4></div></div></div><p>
         Puede iniciarlo desde el menú de fluxbox o desde una terminal
         con <code class="literal">chromium</code>.
       </p><p>
@@ -497,26 +491,26 @@ agente de autenticación de ssh (i.e `ssh-agent`).
 </pre><p>
         Tras esto ya podrá ingresar direcciones de la intranet desde el
         navegador.
-      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="ambiente-de-desarrollo"></a>5.7. Ambiente de Desarrollo</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="ruby"></a>5.7.1. Ruby</h4></div></div></div><p>
-        En adJ 6.4 es sencillo usar ruby-2.6.1 con Ruby on
+      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="ambiente-de-desarrollo"></a>6.7. Ambiente de Desarrollo</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="ruby"></a>6.7.1. Ruby</h4></div></div></div><p>
+        En adJ 6.5 es sencillo usar ruby-2.5.5 con Ruby on
         Rails 5. Lo básico se instala de paquetes de OpenBSD y lo más
         reciente de Ruby directamente como gemas.
-      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="instalaci%C3%B3n-y-configuraci%C3%B3n"></a>5.7.1.1. Instalación y configuración</h5></div></div></div><p>
-          Asegúrese de tener instalados los paquetes ruby-2.6.1 y
-          node-8.12.0, incluidos en el DVD de adJ 6.4
+      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="instalaci%C3%B3n-y-configuraci%C3%B3n"></a>6.7.1.1. Instalación y configuración</h5></div></div></div><p>
+          Asegúrese de tener instalados los paquetes ruby-2.5.5 y
+          node-10.15.0, incluidos en el DVD de adJ 6.5
         </p><p>
-          Asegúrese de tener enlaces al interprete de ruby y
+          Asegúrese de tener enlaces al intérprete de ruby y
           herramientas (como describe el paquete ruby):
         </p><pre class="programlisting">
     doas sh
-    ln -sf /usr/local/bin/ruby25 /usr/local/bin/ruby
-    ln -sf /usr/local/bin/erb25 /usr/local/bin/erb
-    ln -sf /usr/local/bin/irb25 /usr/local/bin/irb
-    ln -sf /usr/local/bin/rdoc25 /usr/local/bin/rdoc
-    ln -sf /usr/local/bin/ri25 /usr/local/bin/ri
-    ln -sf /usr/local/bin/rake25 /usr/local/bin/rake
-    ln -sf /usr/local/bin/gem25 /usr/local/bin/gem
-</pre><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="l%C3%ADmites-amplios"></a>5.7.1.1.1. Límites amplios</h6></div></div></div><p>
+    ln -sf /usr/local/bin/ruby26 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb26 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb26 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc26 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri26 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake26 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem26 /usr/local/bin/gem
+</pre><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="l%C3%ADmites-amplios"></a>6.7.1.1.1. Límites amplios</h6></div></div></div><p>
             Asegurarse de tener limites amplios del sistema operativo
             para abrir archivos y manejar memoria, por ejemplo
             superiores a los siguientes en
@@ -548,7 +542,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
             (Si modifica el archivo <code class="literal">/etc/login.conf</code>
             debe reconstruir su versión binaria con
             <code class="literal">doas cap_mkdb /etc/login.conf</code>).
-          </p></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="irb"></a>5.7.1.1.2. irb</h6></div></div></div><p>
+          </p></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="irb"></a>6.7.1.1.2. irb</h6></div></div></div><p>
             Para facilitar su exploración del lenguaje ruby, puede usar
             <code class="literal">irb</code> (ver {4}), pero antes verifique que
             su archivo <code class="literal">~/.irbrc</code> tenga las siguientes
@@ -569,16 +563,16 @@ agente de autenticación de ssh (i.e `ssh-agent`).
             A continuación ingrese a <code class="literal">irb</code> y escriba
             por ejemplo <code class="literal">4.</code> y presione la tecla [Tab]
             2 veces para ver los métodos de la clase Integer.
-          </p></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="gemas"></a>5.7.1.1.3. Gemas</h6></div></div></div><p>
+          </p></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="gemas"></a>6.7.1.1.3. Gemas</h6></div></div></div><p>
             El paquete <code class="literal">ruby</code> incluye
             <code class="literal">rubygems</code> que maneja gemas (es decir
             librerías) con el programa <code class="literal">gem</code>.
           </p><p>
             El directorio donde se instalan las gemas globales es
-            <code class="literal">/usr/local/lib/ruby/gems/2.5/</code> donde sólo
+            <code class="literal">/usr/local/lib/ruby/gems/2.6/</code> donde sólo
             pueden instalarse con <code class="literal">doas</code>. Recomendamos
             iniciar un directorio para instalar gemas como usuario
-            normal en <code class="literal">/var/www/bundler/ruby/2.5</code>, por
+            normal en <code class="literal">/var/www/bundler/ruby/2.6</code>, por
             3 razones (1) evitar riesgos de seguridad al instalar gemas
             como root, (2) evitar problemas de permisos y la dificultad
             de programas como bundler para usar <code class="literal">doas</code>
@@ -588,16 +582,16 @@ agente de autenticación de ssh (i.e `ssh-agent`).
           </p><p>
             Prepare ese directorio con:
           </p><pre class="programlisting">
-    doas mkdir -p /var/www/bundler/ruby/2.5/
+    doas mkdir -p /var/www/bundler/ruby/2.6/
     doas chown -R $USER:www /var/www/bundler
 </pre><p>
             Y cuando requiera instalar una gema allí emplee:
           </p><pre class="programlisting">
-    gem install --install-dir /var/www/bundler/ruby/2.5/ json -v '2.0'
+    gem install --install-dir /var/www/bundler/ruby/2.6/ json -v '2.0'
 </pre><p>
             O si llega a tener problemas de permisos con:
           </p><pre class="programlisting">
-    doas gem install --install-dir /var/www/bundler/ruby/2.5/ bcrypt -v '3.1.11'
+    doas gem install --install-dir /var/www/bundler/ruby/2.6/ bcrypt -v '3.1.11'
 </pre><p>
             Puede actualizar a la versión más reciente las gemas
             globales (necesario por ejemplo cuando actualiza el sistema
@@ -605,30 +599,30 @@ agente de autenticación de ssh (i.e `ssh-agent`).
           </p><pre class="programlisting">
     doas gem update --system
     QMAKE=qmake-qt5 make=gmake MAKE=gmake doas gem pristine --all
-    for i in `ls /var/www/bundler/ruby/2.5/extensions/x86_64-openbsd/2.5/`; do
+    for i in `ls /var/www/bundler/ruby/2.6/extensions/x86_64-openbsd/2.6/`; do
         v=`echo $i | sed -e 's/.*-\([0-9.]*\)/\1/g'` ; 
         n=`echo $i | sed -e 's/\(.*\)-[0-9.]*/\1/g'` ; 
-        doas gem install --install-dir /var/www/bundler/ruby/2.5/ $n -v $v; 
+        doas gem install --install-dir /var/www/bundler/ruby/2.6/ $n -v $v; 
     done
 </pre><p>
             Para facilitar compilación de algunas extensiones (como las
             de nokogiri) se recomienda instalar globalmente:
           </p><pre class="programlisting">
     doas gem install pkg-config 
-</pre></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="bundler"></a>5.7.1.1.4. Bundler</h6></div></div></div><p>
+</pre></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="bundler"></a>6.7.1.1.4. Bundler</h6></div></div></div><p>
             Para facilitar el manejo de varias gemas (y sus
             interdependencias) en un proyecto es típico emplear
             <code class="literal">bundler</code> que instala con:
           </p><pre class="programlisting">
     doas gem install bundler
-    if (test -x /usr/lcoal/bin/bundle25) then { 
-       doas ln -sf /usr/local/bin/bundle25 /usr/local/bin/bundle; 
+    if (test -x /usr/lcoal/bin/bundle26) then { 
+       doas ln -sf /usr/local/bin/bundle26 /usr/local/bin/bundle; 
     } fi
 </pre><p>
-            Configurelo para que instale gemas localmente en
-            <code class="literal">/var/www/bundler/ruby/2.5</code> con:
+            Configúrelo para que instale gemas localmente en
+            <code class="literal">/var/www/bundler/ruby/2.6</code> con:
           </p><pre class="programlisting">
-    bundle config path /var/www/bundler/ruby/2.5
+    bundle config path /var/www/bundler/ruby/2.6
 </pre><p>
             Puede experimentar descargando un proyecto para ruby ya
             hecho, seguramente verá un archivo
@@ -638,7 +632,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
             precisas por instalar de cada gema.
           </p><p>
             Una vez tenga un proyecto asegure que este emplea las gemas
-            de <code class="literal">/var/www/bundler/ruby/2.5</code> ejecutando
+            de <code class="literal">/var/www/bundler/ruby/2.6</code> ejecutando
             dentro del directorio del proyecto:
           </p><pre class="programlisting">
     mkdir .bundle
@@ -653,9 +647,9 @@ agente de autenticación de ssh (i.e `ssh-agent`).
     bundle install
 </pre><p>
             Si eventualmente no logra instalar algunas --por problemas
-            de permisos tipicamente-- puede instalar con
+            de permisos típicamente-- puede instalar con
           </p><pre class="programlisting">
-    doas gem install --install-dir /var/www/bundler/ruby/2.5 json -v '2.0'
+    doas gem install --install-dir /var/www/bundler/ruby/2.6 json -v '2.0'
 </pre><p>
             Cuando actualice la versión del sistema operativo al igual
             que con gemas es importante reinstalar las gemas de las que
@@ -664,21 +658,21 @@ agente de autenticación de ssh (i.e `ssh-agent`).
             posteriores a la 1.15.4:
           </p><pre class="programlisting">
     bundle pristine
-</pre></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="rails"></a>5.7.1.1.5. Rails</h6></div></div></div><p>
+</pre></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="rails"></a>6.7.1.1.5. Rails</h6></div></div></div><p>
             Se trata de una popular gema que facilita mucho la creación
             de sitios dinámicos.
           </p><p>
             Para instalarla globalmente (en
             <code class="literal">/usr/local/bin</code> y
             <code class="literal">/usr/local/lib/ruby/gems/</code>) la versión
-            estable más reciente de Rails (5.1.2 en el momento de este
+            estable más reciente de Rails (5.2.3 en el momento de este
             escrito), ejecute
           </p><pre class="programlisting">
     doas gem install rails
 </pre><p>
-            Rails requiere en el servidor un interprete de JavaScript,
+            Rails requiere en el servidor un intérprete de JavaScript,
             por lo que recomendamos <code class="literal">node.js</code> (ver {1})
-            incluido en el DVD de adJ 6.4 y que se configurará
+            incluído en el DVD de adJ 6.5 y que se configurará
             automáticamente.
           </p><p>
             La gran mayoría de gemas usadas por rails instalarán de la
@@ -686,15 +680,15 @@ agente de autenticación de ssh (i.e `ssh-agent`).
           </p><div class="itemizedlist"><ul type="disc"><li><p>
                 <code class="literal">nokogiri</code> que puede requerir
               </p><pre class="programlisting">
-    doas gem install --install-dir /var/www/bundler/ruby/2.5/ nokogiri -- --use-system-libraries 
+    doas gem install --install-dir /var/www/bundler/ruby/2.6/ nokogiri -- --use-system-libraries 
 </pre></li><li><p>
                 <code class="literal">capybara-webkit</code> que podría requerir
               </p><pre class="programlisting">
     QMAKE=qmake-qt5 MAKE=gmake doas gem install capybara-webkit
-</pre></li></ul></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="coffescript"></a>5.7.1.1.6. Coffescript</h6></div></div></div><p>
+</pre></li></ul></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="coffescript"></a>6.7.1.1.6. Coffescript</h6></div></div></div><p>
             Si su aplicación rails emplea coffescript necesitará un
             programa que pueda ejecutar javascript al lado del servidor,
-            recomendamos node.js incluido en adJ. Actualice a la versión
+            recomendamos node.js incluído en adJ. Actualice a la versión
             más reciente de npm con:
           </p><pre class="programlisting">
     doas npm install npm -g
@@ -702,7 +696,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
             Instale coffeescript con:
           </p><pre class="programlisting">
     doas npm install -g coffee-script
-</pre></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="editor-vim"></a>5.7.1.1.7. Editor vim</h6></div></div></div><p>
+</pre></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="editor-vim"></a>6.7.1.1.7. Editor vim</h6></div></div></div><p>
             Para emplear <code class="literal">vim</code> como editor se
             recomienda asegurarse de haber ejecutado:
           </p><pre class="programlisting">
@@ -715,14 +709,14 @@ agente de autenticación de ssh (i.e `ssh-agent`).
           </p><pre class="programlisting">
     cp /usr/local/share/vim/vim74/vimrc_example.vi ~/.vimrc
 </pre><p>
-            asi como agregar el archivo
+            así como agregar el archivo
             <code class="literal">~/.vim/ftplugin/ruby.vim</code> las siguientes
             líneas:
           </p><pre class="programlisting">
     setlocal shiftwidth=2
     setlocal tabstop=2
     set expandtab   
-</pre></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="documentaci%C3%B3n"></a>5.7.1.2. Documentación</h5></div></div></div><p>
+</pre></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="documentaci%C3%B3n"></a>6.7.1.2. Documentación</h5></div></div></div><p>
           Para aprender lo básico de Ruby puede comenzar con el tutorial
           en español disponible en
           <a href="http://rubytutorial.wikidot.com/" target="_top">http://rubytutorial.wikidot.com/</a>
@@ -733,7 +727,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
           En Internet puede ver la referencia oficial de las clases en:
           <a href="http://ruby-doc.org/core-2.1.5/Integer.html" target="_top">http://ruby-doc.org/core-2.1.5/Integer.html</a>
         </p><p>
-          Y es buena referencia para Ruby, Rails y Rspec (incluidos
+          Y es buena referencia para Ruby, Rails y Rspec (incluídos
           cambios entre una versión y otra y comentarios) es:
           <a href="http://apidock.com/" target="_top">http://apidock.com/</a>
         </p><p>
@@ -752,7 +746,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
 </pre><p>
           y con un navegador consultando
           <a href="http://localhost:8808" target="_top">http://localhost:8808</a>
-        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="uso"></a>5.7.1.3. Uso</h5></div></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="nueva-aplicaci%C3%B3n-usando-sqlite"></a>5.7.1.3.1. Nueva aplicación usando SQLite</h6></div></div></div><p>
+        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="uso"></a>6.7.1.3. Uso</h5></div></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="nueva-aplicaci%C3%B3n-usando-sqlite"></a>6.7.1.3.1. Nueva aplicación usando SQLite</h6></div></div></div><p>
             Genere una nueva aplicación:
           </p><pre class="programlisting">
     rails new aplicacion
@@ -767,7 +761,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
 </pre><p>
             Esto creará una nueva aplicación de ejemplo e instalará
             todas sus dependencias. Las gemas que no logre instalar por
-            falta de permisos, como se explicó anteriormente instalelas
+            falta de permisos, como se explicó anteriormente instálelas
             con <code class="literal">doas gem install</code> y la opción
             <code class="literal">--install-dir /var/www/bundler/</code>
           </p><p>
@@ -781,7 +775,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
             <a href="http://127.0.0.1:3000/" target="_top">http://127.0.0.1:3000/</a>
           </p><p>
             Notará que se generan los siguientes directorios y archivos:
-          </p><div class="table"><a name="idp298953384"></a><p class="title"><b>Tabla 2. 
+          </p><div class="table"><a name="idm132854664"></a><p class="title"><b>Tabla 2. 
               Archivos generados
             </b></p><table summary="
               Archivos generados
@@ -824,13 +818,13 @@ agente de autenticación de ssh (i.e `ssh-agent`).
                   </td><td align="left">
                     Plantilla de CSS para aplicación
                   </td></tr><tr><td align="left">
-                    app/controllers/application_controller.rb P
+                    app/controllers/application_controller.rb
                   </td><td align="left">
-                    lantilla del controlador de la aplicación
+                    Plantilla del controlador de la aplicación
                   </td></tr><tr><td align="left">
-                    app/helpers/application_helper.rb A
+                    app/helpers/application_helper.rb
                   </td><td align="left">
-                    yudas para construir vistas (sin lógica del
+                    Ayudas para construir vistas (sin lógica del
                     modelos).
                   </td></tr><tr><td align="left">
                     app/views/layouts/application.html.erb
@@ -924,33 +918,33 @@ agente de autenticación de ssh (i.e `ssh-agent`).
                   </td><td align="left">
                     Configura recursos
                   </td></tr><tr><td align="left">
-                    config/initializers/backtrace_silencers.rb I
+                    config/initializers/backtrace_silencers.rb
                   </td><td align="left">
-                    nhibe trazas de algunas librerías
+                    Inhibe trazas de algunas librerías
                   </td></tr><tr><td align="left">
-                    config/initializers/cookies_serializer.rb C
+                    config/initializers/cookies_serializer.rb
                   </td><td align="left">
-                    onfigura como serializar galletas
+                    Configura como serializar galletas
                   </td></tr><tr><td align="left">
-                    config/initializers/filter_parameter_logging.rb Pa
+                    config/initializers/filter_parameter_logging.rb
                   </td><td align="left">
-                    rametros por filtrar (no dejar) en bitácoras
+                    Parametros por filtrar (no dejar) en bitácoras
                   </td></tr><tr><td align="left">
                     config/initializers/inflections.rb
                   </td><td align="left">
                     Inflecciones singular/plural
                   </td></tr><tr><td align="left">
-                    config/initializers/mime_types.rb R
+                    config/initializers/mime_types.rb
                   </td><td align="left">
-                    egistra tipos MIME
+                    Registra tipos MIME
                   </td></tr><tr><td align="left">
-                    config/initializers/session_store.rb C
+                    config/initializers/session_store.rb
                   </td><td align="left">
-                    onfigura donde se almacena sesión
+                    Configura donde se almacena sesión
                   </td></tr><tr><td align="left">
-                    config/initializers/wrap_parameters.rb C
+                    config/initializers/wrap_parameters.rb
                   </td><td align="left">
-                    onfiguración para ActionController::ParamsWrapper
+                    Configuración para ActionController::ParamsWrapper
                   </td></tr><tr><td align="left">
                     config/locales/en.yml
                   </td><td align="left">
@@ -1034,9 +1028,9 @@ agente de autenticación de ssh (i.e `ssh-agent`).
                   </td><td align="left">
                     Pruebas de integración
                   </td></tr><tr><td align="left">
-                    test/test_helper.rb P
+                    test/test_helper.rb
                   </td><td align="left">
-                    ruebas funciones auxiliares
+                    Pruebas funciones auxiliares
                   </td></tr><tr><td align="left">
                     tmp/
                   </td><td align="left">
@@ -1049,7 +1043,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
                     vendor/assets/stylesheets
                   </td><td align="left">
                     Hojas de estilo para código de terceros
-                  </td></tr></tbody></table></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="generar-un-recurso"></a>5.7.1.3.2. Generar un recurso</h6></div></div></div><p>
+                  </td></tr></tbody></table></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="generar-un-recurso"></a>6.7.1.3.2. Generar un recurso</h6></div></div></div><p>
             Puede crear un primer recurso (digamos
             <code class="literal">Departamento</code>) con modelo, controlador
             simple y vistas para operaciones CRUD y RESTful con:
@@ -1069,7 +1063,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
             editar existentes y eliminar.
           </p><p>
             Los archivos generados son:
-          </p><div class="table"><a name="idp884737192"></a><p class="title"><b>Tabla 3. 
+          </p><div class="table"><a name="idm286751624"></a><p class="title"><b>Tabla 3. 
               Archivos generados con scaffold
             </b></p><table summary="
               Archivos generados con scaffold
@@ -1172,7 +1166,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
                 de las migraciones ya aplicadas se lleva en una tabla
                 <code class="literal">schema_migrations</code> creada
                 automáticamente en la base de datos.
-              </p></li></ul></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="p%C3%A1gina-de-inicio"></a>5.7.1.3.3. Página de inicio</h6></div></div></div><p>
+              </p></li></ul></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="p%C3%A1gina-de-inicio"></a>6.7.1.3.3. Página de inicio</h6></div></div></div><p>
             La página inicial de su aplicación puede crearla generando
             un controlador con vista, modificando la vista y
             especificando la ruta:
@@ -1180,7 +1174,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
     rails g controller hogar
 </pre><p>
             Que genera:
-          </p><div class="table"><a name="idm1854620376"></a><p class="title"><b>Tabla 4. 
+          </p><div class="table"><a name="idm310688904"></a><p class="title"><b>Tabla 4. 
               Archivos generados con
               <code class="literal">g controller hogar</code>
             </b></p><table summary="
@@ -1249,7 +1243,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
             <code class="literal">app/views/hogar/index.html.erb</code> en el
             ambiente HTML que tenga diseñado en
             <code class="literal">app/views/layouts/application.html.erb</code>.
-          </p></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="interacci%C3%B3n-con-la-base-de-datos"></a>5.7.1.3.4. Interacción con la base de datos</h6></div></div></div><p>
+          </p></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="interacci%C3%B3n-con-la-base-de-datos"></a>6.7.1.3.4. Interacción con la base de datos</h6></div></div></div><p>
             Puede examinar la tabla creada e interactuar con la base de
             datos con la interfaz texto de SQLite como se ejemplifca a
             continuación:
@@ -1261,7 +1255,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
     CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
     CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version"
     );
-</pre></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="ayudas-para-usar-una-base-de-datos-postgresql-existente"></a>5.7.1.3.5. Ayudas para usar una base de datos PostgreSQL
+</pre></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="ayudas-para-usar-una-base-de-datos-postgresql-existente"></a>6.7.1.3.5. Ayudas para usar una base de datos PostgreSQL
           existente:</h6></div></div></div><p>
             Se recomienda emplear UTF8 como codificación de PostgreSQL
             (si emplea otra codificación convierta sacando un respaldo
@@ -1297,7 +1291,7 @@ agente de autenticación de ssh (i.e `ssh-agent`).
                 bases de datos: <code class="literal">host: /var/www/tmp/</code>
               </p></li><li><p>
                 A manera de prueba de su configuración intente ingresar
-                a un interprete de ordenes para su base de datos con:
+                a un intérprete de ordenes para su base de datos con:
               </p><pre class="programlisting">
     rails dbconsole
 </pre></li><li><p>
@@ -1363,7 +1357,7 @@ scaffold
                 para ver las instrucciones que debe dar a rails para
                 generar modelos, controladores y vistas para las tablas
                 de la base de datos.
-              </p></li></ul></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="detalles-para-tener-en-cuenta-al-migrar-aplicaciones"></a>5.7.1.3.6. Detalles para tener en cuenta al migrar
+              </p></li></ul></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="detalles-para-tener-en-cuenta-al-migrar-aplicaciones"></a>6.7.1.3.6. Detalles para tener en cuenta al migrar
           aplicaciones</h6></div></div></div><p>
             RoR tiene sus propias convenciones respecto a SQL, nombres
             de tablas y demás, en ocasiones puede ser mejor intercambiar
@@ -1423,7 +1417,7 @@ updated_at:datetime
               </p><pre class="programlisting">
     connection = ActiveRecord::Base.connection()
     connection.execute("INSERT INTO mitabla(id, nombre) VALUES ('id1', 'nom1')")
-</pre></li></ul></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="localizaci%C3%B3n"></a>5.7.1.3.7. 4.3 Localización</h6></div></div></div><p>
+</pre></li></ul></div></div><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="localizaci%C3%B3n"></a>6.7.1.3.7. 4.3 Localización</h6></div></div></div><p>
             Si su público objetivo habla principalmente español puede:
           </p><div class="itemizedlist"><ul type="disc"><li><p>
                 Instalar la gema <code class="literal">rails-i18n</code> que
@@ -1449,7 +1443,7 @@ updated_at:datetime
     ActiveSupport::Inflector.inflections do |inflect|
       inflect.irregular 'pais', 'paises'
     end
-</pre></li></ul></div></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="depuraci%C3%B3n"></a>5.7.1.4. Depuración</h5></div></div></div><p>
+</pre></li></ul></div></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="depuraci%C3%B3n"></a>6.7.1.4. Depuración</h5></div></div></div><p>
           Como se explica en {5}, desde la aplicación en rails puede
           entrar a depurar:
         </p><div class="itemizedlist"><ul type="disc"><li><p>
@@ -1469,7 +1463,7 @@ byebug
 </pre></li></ul></div><p>
           Ruby también ofrece facilidades para medir tiempos como se
           resume en {4}.
-        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="lecturas-recomendadas-y-referencias"></a>5.7.1.5. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc" compact><li><p>
+        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="lecturas-recomendadas-y-referencias"></a>6.7.1.5. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc" compact><li><p>
               {1} http://guides.rubyonrails.org/getting_started.html
             </p></li><li><p>
               {2}
@@ -1494,13 +1488,13 @@ byebug
             </p></li><li><p>
               {9}
               http://stackoverflow.com/questions/4613574/how-do-i-explicitly-specify-a-models-table-name-mapping-in-rails
-            </p></li></ul></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="java"></a>5.7.2. Java</h4></div></div></div><p>
+            </p></li></ul></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="java"></a>6.7.2. Java</h4></div></div></div><p>
         Desde OpenBSD 4.7 se incluyó un porte oficial de Java de fuentes
         abiertas, se trata del <code class="literal">jdk-1.7</code>.
       </p><p>
         Si requiere versiones anteriores de Java o si requiere el plugin
         para Firefox deberá compilar una versión anterior.
-      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="compilacion"></a>5.7.2.1. Compilación de JDKs de fuentes cerradas</h5></div></div></div><p>
+      </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="compilacion"></a>6.7.2.1. Compilación de JDKs de fuentes cerradas</h5></div></div></div><p>
           Las versiones anteriores a la 1.7, deben compilarse como
           portes (de subdirectorios de
           <code class="literal">/usr/ports/devel/jdk/</code>), pues las licencias
@@ -1519,7 +1513,7 @@ byebug
           es recomendable que agregue tal ruta a su variable
           <code class="literal">PATH</code> por ejemplo en su archivo
           <code class="literal">~/.profile</code> o el equivalente.
-        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="plugin-java"></a>5.7.2.2. Plugin de Java para Mozilla y Firefox</h5></div></div></div><p>
+        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="plugin-java"></a>6.7.2.2. Plugin de Java para Mozilla y Firefox</h5></div></div></div><p>
           El <code class="literal">jdk-1.4</code> incluye un plugin que puede
           emplearse con <code class="literal">mozilla</code> o
           <code class="literal">mozilla-firefox</code>. Basta ejecutar:
@@ -1540,13 +1534,13 @@ byebug
 </pre><p>
           que de requerirse puede ejecutarse desde la cuenta root (cuyo
           límite máximo es mayor que el de cuentas de usuario).
-        </p></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1891709224" href="#idp1891709224">10</a>] </sup>
+        </p></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp533810168" href="#idp533810168">10</a>] </sup>
               Si usa <code xmlns="" class="literal">ksh</code> puede ver una lista de
               posibles programas que le permitan imprimir, tecleando
               <code xmlns="" class="literal">dvi</code> desde un intérprete de ordenes y
               presionando Tab dos veces.
-            </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1528228008" href="#idp1528228008">11</a>] </sup>
+            </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp677020024" href="#idp677020024">11</a>] </sup>
               Puede cambiar el diccionario personal que
               <code xmlns="" class="literal">ispell</code> debe emplear con la opción
               <code xmlns="" class="literal">-p archivo</code>
-            </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="conf-dispositivos.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">4. Configuración y uso de programas y servicios básicos </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 6. Configuración y uso de algunos dispositivos y servicios</td></tr></table></div></body></html>
+            </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="conf-dispositivos.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">5. Configuración y uso de programas y servicios básicos </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 7. Configuración y uso de algunos dispositivos y servicios</td></tr></table></div></body></html>
