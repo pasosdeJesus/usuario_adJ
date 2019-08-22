@@ -3,28 +3,24 @@
 ## Archivos y permisos {#archivos_y_permisos}
 
 En esta sección se introducen diveras ordenes para administrar
-archivos y permisos. Si bien estas operaciones pueden hacerse con una
-herramienta gráfica como Nautilus o el administrador de archivos de
-Gnome (gmc), resulta más rápido emplear el interprete de ordenes 
-algunas situaciones es la única opción (por ejemplo si el modo gráfico
-falla o si emplea un sistema que no tenga X-Window).
+archivos y permisos desde un interprete de ordenes.
 
-Un orden usualmente recibe opciones y parametros que especifican que
+Una orden usualmente recibe opciones y parametros que especifican que
 operación realizar; algunos parametros son indispensables mientras que
-las opciones modifican el comportamiento por defecto de un orden (y
-por tanto son opcionales). En la ayuda presentada por el orden `man` y
+las opciones modifican el comportamiento por defecto de una orden (y
+por tanto son opcionales). En la ayuda presentada por la orden `man` y
 en estas guías emplemos como notación los paréntesis cuadrados `[ ]`
 para encerrar parametros opcionales y opciones. Por ejemplo
 
      ls [-l] [ruta] 
 
-indica que el orden `ls` puede recibir la opción `-l` y una ruta como
+indica que la orden `ls` puede recibir la opción `-l` y una ruta como
 parámetro (las opciones suelen comenzar con uno o dos guiones). Puede
 descubrir que hace tal opción y el parámetro tecleando `ls /
       -l` y comparando con `ls -l`, `ls /`, y `ls`.
 
 [//]: # "opciones"
-[//]: # "Alteran el comportamiento por defecto de un orden, suelen comenzar con uno o dos guiones."
+[//]: # "Alteran el comportamiento por defecto de una orden, suelen comenzar con uno o dos guiones."
 
 ### Administración de archivos, directorios y enlaces {#administracion-de-archivos-directorios-y-enlaces}
 
@@ -32,10 +28,10 @@ El programa `ls` por defecto presenta los nombres de archivos que no
 comienzan con el caracter '.' y que están en el directorio de trabajo
 del usuaurio. Los archivos cuyos nombres comienzan con el caracter punto
 suelen llamarse archivos de configuración, si desea verlos también al
-usar el orden `ls`, puede emplear la opción `-a` (i.e. teclear
+usar la orden `ls`, puede emplear la opción `-a` (i.e. teclear
 `ls -a`). Si desea ver los archivos de un directorio diferente puede dar
 como argumento el nombre del directorio, por ejemplo `ls
-      /usr/bin`. Además de `-a` y `-l`, el orden `ls` tiene muchas
+      /usr/bin`. Además de `-a` y `-l`, la orden `ls` tiene muchas
 otras opciones que le permiten especificar que mostrar y como mostrarlo.
 
 ![Sesión en la que se examinan archivoos y permisos](perm.eps)
@@ -174,7 +170,7 @@ directorio. [^3].
 Desde un administrador de archivos, puede ver los permisos de un archivo
 con el botón derecho del mouse cuando el puntero está sobre el archivo,
 escogiendo la opción apropiada del menú que aparece. Desde un interprete
-de ordenes puede emplear el orden `ls` con la opción `-l`. Un ejemplo
+de ordenes puede emplear la orden `ls` con la opción `-l`. Un ejemplo
 del resultado de este orden se presenta a continuación:
 
     drwxr-xr-x    5 pepe   users        4096 Feb 21 06:31 graficas
@@ -200,7 +196,7 @@ archivo `/usr/bin/awk` y que su tamaño y permisos reales los heredará de
 `/usr/bin/awk`.
 
 Los permisos de un archivo pueden ser modificados por el dueño o por el
-administrador del sistema con el orden `chmod` que espera dos
+administrador del sistema con la orden `chmod` que espera dos
 parámetros: cambio por realizar al permiso y nombre del archivo por
 cambiar. Los permisos se pueden especificar en octal o con una o más
 letras para identificar al usuario (u para el usuario, g para el grupo,
@@ -217,7 +213,7 @@ letras para identificar los permisos (r, w o x). Por ejemplo
 
 :   Quita el permiso de escritura en el archivo `deu.txt` tanto al
     dueño, como al grupo, como a los demás usuarios. Este mismo
-    resultado puede obtenerse con el orden `chmod -w deu.txt`. Cuando
+    resultado puede obtenerse con la orden `chmod -w deu.txt`. Cuando
     no se especifican usuarios `chmod` toma por defecto todos los
     usuarios.
 
@@ -270,7 +266,7 @@ afirmativo cite algunos.
 2. Estando en un intérprete de ordenes vaya al directorio
 `/usr/share/pixmaps` y liste con `ls` y caracteres comodín todos los
 archivos con extensión `.xpm`. Desde bash, copie uno de esos archivos a
-su directorio con el orden `cp`. (Ayuda: busque ayuda sobre el orden
+su directorio con la orden `cp`. (Ayuda: busque ayuda sobre la orden
 `cp` y emplee `~` para referirse a su directorio).
 
 [//]: # "**R:**   cd /usr/share/pixmaps
