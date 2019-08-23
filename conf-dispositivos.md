@@ -418,6 +418,16 @@ configuración con:
 
 ## Discos duros
 
+En la actualidad hay discos de estado sólido y discos electromecánicos.  
+
+Los discos SSD mantienen información de manera permanente mediante circuitos integrados.
+
+Los discos electromecánicos constan de varias placas circulares sobre las que se almacena información magneticamente. La organización o geometría de un disco suele especificarse como cantidad de cilindros [167], cantidad de cabezas [168] y cantidad de sectores. Para poder emplear un disco en Linux, se requiere un controlador que lo maneje, el disco debe estar formateado a bajo nivel, debe estar particionado, una o más particiones deben ser para Linux (tipo 83), una puede ser para swap (tipo 82) y las particiones para Linux deben tener un sistema de archivos apropiado para montarlo (ver Montaje y desmontaje de sistemas de archivos), como ext2 (ver Sistema de archivos ext2).
+
+Además de esto para iniciar un computador con un disco duro, debe tener una partición marcada como iniciable en la tabla de particiones o debe emplear un cargador de arranque (e.g LILO o GRUB).
+
+Todo disco duro cuya interfaz sea soportada por Linux debe funcionar sin requerir configuración manual. Debian 2.2 incluye estaticamente controladores para interfaces de discos RLL, MFM diversos IDE/EIDE y tiene módulos para diversos discos SCSI, así como módulos para discos conectados a puerto paralelo (ver Puerto paralelo) y controladores para arreglos de de discos RAID (0,1,4/5) ---para respaldar información [169].
+
 ### Particiones {#particiones-slices}
 
 Hay dos niveles de particiones: (1) del BIOS y (2) particulares de
