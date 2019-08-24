@@ -416,43 +416,82 @@ configuración con:
 [^imp.5]: De acuerdo a Printig-HOWTO estas herramientas ofrecen la
     funcionalidad de las herramientas "*distiller*" de Adobe.
 
-## Discos duros
+## Discos duros {#discos-duros}
 
-En la actualidad hay discos de estado sólido y discos electromecánicos.  
+En la actualidad hay discos duros de estado sólido y discos electromecánicos.  
 
-Los discos SSD mantienen información de manera permanente mediante circuitos integrados.
+Los discos de estado sólido o SSD (del inglés *solid state disk*) mantienen 
+información de manera permanente mediante circuitos integrados, pero ante
+el sistema operativo se presentan como si fuesen discos electromecánicos SCSI.
 
-Los discos electromecánicos constan de varias placas circulares sobre las que se almacena información magneticamente. La organización o geometría de un disco suele especificarse como cantidad de cilindros (del ingleś *cylinder*), cantidad de cabezas (del inglés *head*) y cantidad de sectores. 
-Para poder emplear un disco se requiere un controlador que lo maneje, el disco debe estar formateado a bajo nivel, debe estar particionado, una o más particiones deben tener tipo para adJ/OpenBSD (tipo A6), y esas particiones deben tener etiquetas con subparticiones (del inglés *disklabels*) con el sistema de archivos FFS para poder montarlas.
+Los discos electromecánicos constan de varias placas circulares sobre las 
+que se almacena información magneticamente. La organización o geometría 
+de un disco suele especificarse como cantidad de cilindros (del ingleś 
+*cylinder*), cantidad de cabezas (del inglés *head*) y cantidad de sectores. 
 
-Además de esto para iniciar un computador con un disco duro, debe estar configurado como disco de arranque en la BIOS (o durante el arranue indicarle a la BIOS por cual disco arrancar). debe tener una partición marcada como iniciable en la tabla de particiones o debe emplear un cargador de arranque (e.g LILO o GRUB).
+Para emplear un disco en OpenBSD se requiere:
 
-Todo disco duro cuya interfaz sea soportada por Linux debe funcionar sin requerir configuración manual. Debian 2.2 incluye estaticamente controladores para interfaces de discos RLL, MFM diversos IDE/EIDE y tiene módulos para diversos discos SCSI, así como módulos para discos conectados a puerto paralelo (ver Puerto paralelo) y controladores para arreglos de de discos RAID (0,1,4/5) ---para respaldar información [169].
+* que sea manejado por un controlador que lo asocie con un dispostivo 
+(e.g /dev/wd0c para un primer disco IDE o /dev/sd1c para un segundo 
+disco SCSI)
+* el disco debe estar formateado a bajo nivel, debe tener subparticiones
+o etiquetas (del inglés *disklabel*) en particiones, debe haber
+subparticiones con sistemas de archivos soportados (e.g FFS que es
+el nativo de adJ/OpenBSD, FAT o msdos, ext2 de Linux o NTFS de sólo
+lectura de Windows) que sean montadas en el sistema de archivos
+ comenzando por una que debe estar montada como directorio raiz / 
+(digamos /dev/sd0a sería primera partición de un disco SCSI) .
 
+Además de esto para iniciar un computador con un disco duro
+
+* debe estar configurado como disco de arranque en la BIOS (o durante el 
+  arranque el usuario debe indicarle a la BIOS por cual disco arrancar)
+* debe tener una partición marcada como iniciable en la tabla de particiones 
+  y/o emplear un cargador de arranque (e.g GRUB si tiene Linux y adJ/OpenBSD 
+  en el mismo disco).
+* Debe tener al menos una partición para OpenBSD (tipo A6) con subparticiones 
+  entre las cuales haya una con sistema de archivos FFS que se monte como 
+  raiz.
+  
 ### Particiones {#particiones-slices}
 
-Una partición es una porción de un disco duro destinada para un sistema de archivos. Un disco duro puede particionarese para:
+Una partición es una porción de un disco duro destinada para un sistema de 
+archivos. Un disco duro puede particionarese para:
+* Mantener varios sistemas operativos.
+* Destinar varias particiones a adJ/OpenBSD montando cada partición como un 
+  directorio (y limitando así el espacio de esos directorios), por ejemplo 
+  /var (donde está la cola de correo), /usr donde se ubican programas, 
+  /home donde cada usuario tiene su espacio personal (ver Ubicación de 
+  archivos y directorios).
+* Destinar alguna partición como zona de intercambio (swap) para emplear 
+  espacio de disco como si fuera memoria RAM.
+* Si se usa partición GTP destinar una partición para el arranque 
+  (1G bastará)
 
-Mantener varios sistemas operativos.
+El disco comienza con una tabla de particiones que entre otras puede
+ser tipo MBR o tipo GPT.  Las tablas tipo MBR son reconocidas por 
+BIOS antiguos y recientes (en modo *Legacy*) soporta discos de 
+hasta 2T, y hasta 4 particiones primarias, si se requieren más particiones 
+una de las primarias debe definirse como extendida y dentro de esta se podrán
+dividir otras particiones que se llamaran lógicas. Por su parte
+las particiones GPT son reconocidas por BIOS (UEFI) recientes, requieren
+que una partición se destine a un arranque EFI y cada partición puede
+tener cualquier tamaño y puede haber tantas particiones como se requiera.
 
-Destinar varias particiones a Linux montando cada partición como un directorio (y limitando así el espacio de esos directorios), por ejemplo /var (donde está la cola de correo), /usr donde se ubican programas, /home donde cada usuario tiene su espacio personal (ver Ubicación de archivos y directorios).
 
-Destinar alguna partición como zona de intercambio (swap) para emplear espacio de disco como si fuera memoria RAM.
+Para cambiar la tabla de particiones de un disco en OpenBSD/adJ
+puede emplearse el programas `fdisk`. Se inicia pasando como
+parámetro el dispositivo del disco que desea editar (e.g /dev/rsd0c), 
+le permiten modificar la partición hasta que este satisfecho con la 
+distribución y finalmente permiten salvar la partición configurada en el disco.
 
-Destinar alguna partición al directorio /boot para facilitar el arranque de Linux en algunos computadores con discos duros de más de 1024 cilindros, como se explica a continuación.
+> ![](img/warning.png) **Advertencia**
+>
+> Al modificar una partición el sistema de archivos que en ella 
+> hubiera no podrá usarse
 
-La división en particiones de un disco duro se mantiene en una tabla de particiones que está en el primer sector físico, que además puede tener un cargador de arranque (ver Inicialización del sistema).
+### Subparticiones o etiquetas {#subparticiones}
 
-Linux en un PC puede manejar a lo sumo 4 particiones primarias (en el caso de un disco IDE las particiones primarias están asociadas a los dispositivos /dev/hda1, /dev/hda2, /dev/hda3 y /dev/hda4). Dado que pueden requerirse más de 4, una de las particones primarias puede remplazarse por una partición extendida, y tal partición extendida puede entonces dividirse en una o más particiones lógicas (que en el caso de un disco IDE primario se referencian como /dev/hda5, /dev/hda6, y así sucesivamente).
-
-Para la operación de Debian se requiere al menos una partición de 300MB (o de 800MB para un sistema básico o 2GB para una instalación completa), aunque consideramos recomendable al menos una partición más para swap (memoria virtual [170]) de un tamaño cercano a la cantidad de RAM del computador. En los casos de un servidor o un cliente para una red en un colegio lo invitamos a consultar nuestra sugerencia para la división del espacio en particiones Ver Plataforma de referencia.
-
-Aunque en un mismo disco duro pueden dejarse diversos sistemas operativos, por razones históricas, con diversas BIOS (previas a 1998 o que no soporten LBA32) es indispensable dejar el arranque de cada sistema operativo en los primeros 1024 cilindros. Para facilitar esto, en caso de requerirse, el arranque básico de Linux (directorio /boot) puede dejarse en una partición pequeña (e.g 10MB) en los primeros 1024 cilindros o incluso como un directorio en DOS, mientras que el resto del sistema puede estar en una o más particiones en cualquier ubicación del disco.
-
-Para cambiar la tabla de particiones de un disco en Linux pueden emplearse los programas cfdisk o fdisk [171]. Ambos se inician pasando como parámetro el dispositivo del disco que desea editar (e.g /dev/hda o /dev/sda), le permiten modificar la partición hasta que este satisfecho con la distribución y finalmente permiten salvar la partición configurada en el disco.
-
-[Warning]	Aviso
-Al modificar una partición el sistema de archivos que en ella hubiera no podrá usarse, es muy recomendable que mantenga en un escrito la tabla de particiones de su disco incluyendo tipo, inicio y fin de cada una para recuperarla de requerirse.
 Hay dos niveles de particiones: (1) del BIOS y (2) particulares de
 OpenBSD. Las primeras se configuran con `fdisk` y las segundas se crean
 dentro de las primeras con `disklabel`.
@@ -705,13 +744,15 @@ Por ejemplo para reconstruir y unir un nuevo /dev/sd2a:
 		$ doas bioctl -R /dev/sd2a sd3
 
 
-#### Lecturas recomendadas y referencias RAID
+### Lecturas recomendadas y referencias Discos Duros
+
+- https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/
 
 -  Página del manual de `softraid`
 
 -  Página del manual de `bioctl`
 
--  <https://www.openbsd.org/faq/faq14.html>
+-  Particiones MBR y GPT: <https://www.openbsd.org/faq/faq14.html>
 
 
 ## Disquetes e imágenes de disquetes {#disquetes-e-imagenes-de-disquetes}

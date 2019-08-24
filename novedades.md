@@ -1,6 +1,10 @@
+Versión 6.6
+
+:   - Ampliada [xref](#discos-duros) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/dispositivos-y-linux.html#discos-duroshttp://structio.sourceforge.net/guias/AA_Linux_colegio/dispositivos-y-linux.html#discos-duros>
+
 Versión 6.5
 
-:   - Nueva capítulo de intrepete de ordenes con [xref](#archivos_y_permisos) basada en http://structio.sourceforge.net/guias/AA_Linux_colegio/exploracion-dos.html#archivos-y-permisos 
+:   - Nueva capítulo de intrepete de ordenes con [xref](#archivos_y_permisos) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/exploracion-dos.html#archivos-y-permisos>
     - Mejorada ortografía, agradecimientos a Luis Alejandro Cruz 
     - Actualizada [xref](#configuracion-de-xorg)
 
