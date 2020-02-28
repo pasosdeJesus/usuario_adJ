@@ -557,7 +557,7 @@ navegador.
 
 ### Ruby
 
-En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 5. 
+En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 6. 
 Lo básico se instala de paquetes de OpenBSD y lo más reciente de Ruby 
 directamente como gemas.
 
@@ -571,13 +571,15 @@ describe el paquete ruby):
 
 ```
     doas sh
-    ln -sf /usr/local/bin/ruby26 /usr/local/bin/ruby
-    ln -sf /usr/local/bin/erb26 /usr/local/bin/erb
-    ln -sf /usr/local/bin/irb26 /usr/local/bin/irb
-    ln -sf /usr/local/bin/rdoc26 /usr/local/bin/rdoc
-    ln -sf /usr/local/bin/ri26 /usr/local/bin/ri
-    ln -sf /usr/local/bin/rake26 /usr/local/bin/rake
-    ln -sf /usr/local/bin/gem26 /usr/local/bin/gem
+    ln -sf /usr/local/bin/ruby27 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb27 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb27 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc27 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri27 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake27 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem27 /usr/local/bin/gem
+    ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler27 /usr/local/bin/bundler
 ```
                   
 
@@ -645,10 +647,10 @@ El paquete `ruby` incluye `rubygems` que maneja gemas (es decir
 librerías) con el programa `gem`.
 
 El directorio donde se instalan las gemas globales 
-es ```/usr/local/lib/ruby/gems/2.6/``` donde sólo pueden 
+es `/usr/local/lib/ruby/gems/2.7/` donde sólo pueden 
 instalarse con ```doas```. 
 Recomendamos iniciar un directorio para instalar gemas como usuario normal 
-en  ```/var/www/bundler/ruby/2.6```, por 3 razones (1) evitar riesgos de 
+en  ```/var/www/bundler/ruby/2.7```, por 3 razones (1) evitar riesgos de 
 seguridad al instalar gemas como root, (2) evitar problemas de permisos 
 y la dificultad de programas como bundler para usar ```doas``` en lugar 
 de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones 
@@ -657,18 +659,18 @@ corran en una jaula chroot en ```/var/www```
 Prepare ese directorio con:
 
 ```
-	doas mkdir -p /var/www/bundler/ruby/2.6/
+	doas mkdir -p /var/www/bundler/ruby/2.7/
 	doas chown -R $USER:www /var/www/bundler
 ```
 
 Y cuando requiera instalar una gema allí emplee:
 ```
-	gem install --install-dir /var/www/bundler/ruby/2.6/ json -v '2.0'
+	gem install --install-dir /var/www/bundler/ruby/2.7/ json -v '2.0'
 ```
 
 O si llega a tener problemas de permisos con:
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.6/ bcrypt -v '3.1.11'
+	doas gem install --install-dir /var/www/bundler/ruby/2.7/ bcrypt -v '3.1.11'
 ```
 
 
@@ -681,7 +683,7 @@ por ejemplo cuando actualiza el sistema operativo) con:
     for i in `ls /var/www/bundler/ruby/2.6/extensions/x86_64-openbsd/2.6/`; do
         v=`echo $i | sed -e 's/.*-\([0-9.]*\)/\1/g'` ; 
         n=`echo $i | sed -e 's/\(.*\)-[0-9.]*/\1/g'` ; 
-        doas gem install --install-dir /var/www/bundler/ruby/2.6/ $n -v $v; 
+        doas gem install --install-dir /var/www/bundler/ruby/2.7/ $n -v $v; 
     done
 ```
 
@@ -698,15 +700,15 @@ Para facilitar el manejo de varias gemas (y sus interdependencias) en un
 proyecto es típico emplear ```bundler``` que instala con:
 ```
     doas gem install bundler
-    if (test -x /usr/lcoal/bin/bundle26) then { 
-       doas ln -sf /usr/local/bin/bundle26 /usr/local/bin/bundle; 
+    if (test -x /usr/lcoal/bin/bundle27) then { 
+       doas ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle; 
     } fi
 ```
 
 Configúrelo para que instale gemas localmente 
-en ```/var/www/bundler/ruby/2.6``` con:
+en ```/var/www/bundler/ruby/2.7``` con:
 ```
-	bundle config path /var/www/bundler/ruby/2.6
+	bundle config path /var/www/bundler/ruby/2.7
 ```
 
 Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
@@ -715,7 +717,7 @@ depende la aplicación y genera un archivo ```Gemfile.lock``` con las
 versiones precisas por instalar de cada gema.  
 
 Una vez tenga un proyecto asegure que este emplea las gemas de 
-```/var/www/bundler/ruby/2.6``` ejecutando dentro del directorio del 
+```/var/www/bundler/ruby/2.7``` ejecutando dentro del directorio del 
 proyecto:
 
 ```
@@ -735,7 +737,7 @@ Si eventualmente no logra instalar algunas --por problemas de permisos
 típicamente-- puede instalar con 
 
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.6 json -v '2.0'
+	doas gem install --install-dir /var/www/bundler/ruby/2.7 json -v '2.0'
 ```
 
 Cuando actualice la versión del sistema operativo al igual que con gemas 
@@ -753,14 +755,14 @@ dinámicos.
 
 Para instalarla globalmente (en `/usr/local/bin` y
 `/usr/local/lib/ruby/gems/`) la versión estable más reciente de Rails
-(5.2.3 en el momento de este escrito), ejecute
+ejecute
 
 ```
 	doas gem install rails
 ```
 
 Rails requiere en el servidor un intérprete de JavaScript, por lo que
-recomendamos ```node.js``` (ver {1}) incluído en el DVD de adJ &VER-ADJ; 
+recomendamos ```node.js``` (ver {1}) incluído en adJ &VER-ADJ; 
 y que se configurará automáticamente.
 
 La gran mayoría de gemas usadas por rails instalarán de la misma forma
@@ -768,7 +770,7 @@ que se explicó. Algunos casos especiales son:
 
 -   ```nokogiri``` que puede requerir
 ```
-        doas gem install --install-dir /var/www/bundler/ruby/2.6/ nokogiri -- --use-system-libraries 
+        doas gem install --install-dir /var/www/bundler/ruby/2.7/ nokogiri -- --use-system-libraries 
 ```
                     
 
@@ -790,6 +792,14 @@ Instale coffeescript con:
 ``` 
 	doas npm install -g coffee-script
 ``` 
+##### yarn
+
+Las aplicaciones Ruby on Rails posteriores a 6.0 requieren el manejador de
+paquetes Javascript yarn. Lo puede instalar más fácil con bash y con:
+```sh
+doas pkg_add bash
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+```
 
 ##### Editor vim
 
@@ -800,11 +810,11 @@ ejecutado:
 	cd ~
 	mkdir -p .vim
 	cd .vim
-	cp -rf /usr/local/share/vim/vim74/* .
+	cp -rf /usr/local/share/vim/vim83/* .
 ``` 
 y si no tiene archivo \~/.vimrc ejecutar:
 ``` 
-	cp /usr/local/share/vim/vim74/vimrc_example.vi ~/.vimrc
+	cp /usr/local/share/vim/vim83/vimrc_example.vi ~/.vimrc
 ``` 
 así como agregar el archivo `~/.vim/ftplugin/ruby.vim` las siguientes
 líneas:
@@ -886,13 +896,14 @@ config.ru                                           Configurar servidor web por 
 .gitignore                                          Archivos por ignorar en control de versiones
 Gemfile                                             Gemas requeridas
 Gemfile.lock                                        Versiones de las gemas requeridas
-app/assets/javascripts/application.js               Plantilla de Javascript para aplicación
+app/javascript/packs/application.js               Plantilla de Javascript que usa modulos
 app/assets/stylesheets/application.css              Plantilla de CSS para aplicación
 app/controllers/application_controller.rb           Plantilla del controlador de la aplicación
 app/helpers/application_helper.rb                   Ayudas para construir vistas (sin lógica del modelos).
 app/views/layouts/application.html.erb              Plantilla por defecto para el sitio
 app/assets/                                         Datos estáticos de la página
 app/assets/images/                                  Gráficos de la aplicación (tipicamente que no se sirven estáticos)
+app/assets/config/manifest.js			    Configura datos estatícos por exportar
 app/mailers/                                        Controlador para enviar correos
 app/models/                                         Modelos
 app/channel/                                        Controlador de websockets
@@ -904,6 +915,7 @@ bin/bundle                                          Maneja dependencias con el a
 bin/rails                                           Maneja posibilidades de generación y controles Rails
 bin/rake                                            Maneja tareas definidas en `Rakefile` y `lib/tasks`
 bin/setup                                           Plantilla de un configurador de la aplicación
+bin/yarn					    Gestor de paquetes javascript
 config/routes.rb                                    Rutas
 config/application.rb                               Configura aplicación
 config/environment.rb                               Configura ambiente
@@ -927,12 +939,14 @@ db/seeds.rb                                         Datos iniciales para base de
 lib/tasks/                                          Tareas para `rake`
 lib/assets/                                         "Activos" comunes para librerías
 log/                                                Bitácoras
+package.json					    Paquetes javascript requeridos
 public                                              Archivos estáticos
 public/404.html                                     Mensaje por defecto para páginas no encontradas
 public/422.html                                     Mensaje por defecto para rechazar cambios
 public/500.html                                     Mensaje por defecto cuando ocurren errores en servidor
 public/favicon.ico                                  Icono
 public/robots.txt                                   Puede evitar indexación por parte de motores de búsqueda
+storage/
 test/fixtures                                       Datos para pruebas
 test/controllers                                    Pruebas a controladores
 test/mailers                                        Pruebas a controladores de envio de correo
