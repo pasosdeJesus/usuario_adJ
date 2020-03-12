@@ -4,7 +4,7 @@ Versión 6.6
 
 Versión 6.5
 
-:   - Nueva capítulo de intrepete de ordenes con [xref](#archivos_y_permisos) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/exploracion-dos.html#archivos-y-permisos>
+:   - Nueva capítulo de interprete de ordenes con [xref](#archivos_y_permisos) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/exploracion-dos.html#archivos-y-permisos>
     - Mejorada ortografía, agradecimientos a Luis Alejandro Cruz 
     - Actualizada [xref](#configuracion-de-xorg)
 
@@ -41,7 +41,7 @@ Versión 5.8
 
 Versión 5.7
 
-:   -   Guia migrada a <http://pasosdeJesus.github.io/usuario_adJ/> y
+:   -   Guía migrada a <http://pasosdeJesus.github.io/usuario_adJ/> y
         fuentes a <https://github.com/pasosdeJesus/usuario_adJ>
 
 Versión 5.6
@@ -94,7 +94,7 @@ Versión 4.8
 
 :   -   Nueva sección [xref](#ediciongraficos)
 
-    -   Precisada sección sobre Ofimatica, [xref](#msoffice)
+    -   Precisada sección sobre Ofimática, [xref](#msoffice)
 
     -   Cubre Aprendiendo de Jesús 4.8
 

@@ -36,7 +36,7 @@ está actualizando un paquete).
 Podrá ver los paquetes disponibles para instalar en
 [http://www.openbsd.org/&VER-OPENBSD;\_packages/amd64.html](http://www.openbsd.org/&&VER-OPENBSD;;_packages/amd64.html).
 
-En el [Ápendice Paquetes de adJ](#paquetes-adJ) destacamos algunos que 
+En el [Apéndice Paquetes de adJ](#paquetes-adJ) destacamos algunos que 
 permiten tener un ambiente para producir contenidos, programar, escuchar 
 música y ver vídeos (se incluyen en la distribución 
 [adJ](http://aprendiendo.pasosdeJesus.org)).
@@ -127,7 +127,7 @@ Makefile
 :   El cual incluye descripción corta, nombre del paquete, versión, URL
     del cual descargar fuentes, el correo de quien mantiene el porte,
     URL de parches si los hay, información sobre posibilidad de
-    redistribución, foma de configurar, compilar e instalar. Este
+    redistribución, forma de configurar, compilar e instalar. Este
     archivo normalmente es muy corto pues se basa en la infraestructura
     para portes de `/usr/ports/infrastructure/mk/bsd.ports.mk`.
 

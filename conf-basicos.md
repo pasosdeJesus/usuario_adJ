@@ -73,7 +73,7 @@ Se configura en `/etc/doas.conf`. Un ejemplo mínimo es:
         permit nopass keepenv :wheel
 
 que permitirá su uso sin requerir clave a todos los usuarios del grupo
-`wheel` manteniendo las varibles de ambiente.
+`wheel` manteniendo las variables de ambiente.
 
 Una vez configurado, puede ejecutar una orden privilegiada desde una
 cuenta configurada con `doas orden`. Por ejemplo:
@@ -102,7 +102,7 @@ Puede verse en <http://rr.sans.org/authentic/sudo.php> interacción entre
 ##`cron`: para programar tareas {#cron}
 
 El programa `cron` ejecuta tareas configuradas para correr en cierto(s)
-momento(s). Este servico debe correr permanentemente. Puede comprobar que
+momento(s). Este servicio debe correr permanentemente. Puede comprobar que
 opera con `pgrep cron` que debe responder con el número del proceso. Si
 no está corriendo debe ejecutarlo urgentemente bien reiniciando el
 servido o ejecutando `doas cron`.
@@ -123,7 +123,7 @@ requiere, por ejemplo:
         ldd /usr/bin/less
         
 
-Cuando se agregan librerías compartidas o se requiere que las librerias
+Cuando se agregan librerías compartidas o se requiere que las librerías
 de nuevos directorios sean referenciados en `/var/run/ld.so.hints` puede
 ejecutar `ldconfig` (que por defecto busca nuevas librerías en
 `/usr/lib`). Por ejemplo durante el arranque en un sistema con X-Window
@@ -137,7 +137,7 @@ arranque definiendo la variable `shlib_dirs` en `/etc/rc.conf.local`
 (ver [xref](#inicio-del-sistema))
 
 Incluso un usuario puede establecer otros directorios donde buscar
-librerías compartidas especificandolos en la variable de entorno
+librerías compartidas especificándolos en la variable de entorno
 `LD_LIBRARY_PATH` (separar un directorio de otro con ':' ).
 
 

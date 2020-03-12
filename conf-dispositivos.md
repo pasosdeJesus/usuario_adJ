@@ -308,7 +308,7 @@ El siguiente es un ejemplo del archivo `/etc/printcap`:
 
 que configura una impresora local para textos llamada `lp` o
 `local line printer`. Está conectada a `/dev/lpt0`, la cola de impresión
-la mantiene en `/var/spool/output` y envia errores a
+la mantiene en `/var/spool/output` y envía errores a
 `/var/log/lpd-errs`. Para configurar impresoras que puedan imprimir
 gráficas (así como PostScript con diversos tipos de letra) debe emplear
 un filtro del programa Ghostscript.
@@ -425,13 +425,13 @@ información de manera permanente mediante circuitos integrados, pero ante
 el sistema operativo se presentan como si fuesen discos electromecánicos SCSI.
 
 Los discos electromecánicos constan de varias placas circulares sobre las 
-que se almacena información magneticamente. La organización o geometría 
+que se almacena información magnéticamente. La organización o geometría 
 de un disco suele especificarse como cantidad de cilindros (del ingleś 
 *cylinder*), cantidad de cabezas (del inglés *head*) y cantidad de sectores. 
 
 Para emplear un disco en OpenBSD se requiere:
 
-* que sea manejado por un controlador que lo asocie con un dispostivo 
+* que sea manejado por un controlador que lo asocie con un dispositivo 
 (e.g /dev/wd0c para un primer disco IDE o /dev/sd1c para un segundo 
 disco SCSI)
 * el disco debe estar formateado a bajo nivel, debe tener subparticiones
@@ -456,7 +456,7 @@ Además de esto para iniciar un computador con un disco duro
 ### Particiones {#particiones-slices}
 
 Una partición es una porción de un disco duro destinada para un sistema de 
-archivos. Un disco duro puede particionarese para:
+archivos. Un disco duro puede particionarse para:
 * Mantener varios sistemas operativos.
 * Destinar varias particiones a adJ/OpenBSD montando cada partición como un 
   directorio (y limitando así el espacio de esos directorios), por ejemplo 
@@ -736,7 +736,7 @@ Es importante revisar con periodicidad el estado del arreglo con:
 		$ doas bioctl sd3
 
 Allí podría verse si alguno de los discos está fallando (Offline) y en
-tal caso, debe remplazarse el disco defectuso (digamos sd2).  En el nuevo 
+tal caso, debe remplazarse el disco defectuoso (digamos sd2).  En el nuevo 
 disco debe crearse partición y subpartición con las mismas características 
 del que funciona bien y entonces debe reconstruirse el espejo.
 Por ejemplo para reconstruir y unir un nuevo /dev/sd2a:
@@ -790,11 +790,11 @@ los usuarios que puedan emplear `doas`:
 
         alias mcopy='doas mcopy' 
 
-### Montar disquettes en jerarquía de directorios {#montar-disquettes}
+### Montar disquetes en jerarquía de directorios {#montar-disquetes}
 
-Desde la cuenta `root` podrá montar disquettes de manera directa.
+Desde la cuenta `root` podrá montar disquetes de manera directa.
 
-Para montar disquettes desde cuentas de usuarios que pertenezcan al
+Para montar disquetes desde cuentas de usuarios que pertenezcan al
 grupo `operator` puede cambiar la variable de configuración del kernel
 `kern.usermount`, bien de forma permanente en `/etc/sysctl.conf` o bien
 en una sesión con:
@@ -816,12 +816,12 @@ tras lo cual basta:
         mount /mnt/floppy 
 
 Tenga en cuenta que después de terminar todas las operaciones con el
-disquette debe desmontarlo con:
+disquete debe desmontarlo con:
 
         umount /mnt/floppy
         
 
-### Montar imagenes de disquettes {#montar-imagenes-disquettes}
+### Montar imágenes de disquetes {#montar-imagenes-disquetes}
 
 Puede montar imágenes de disquetes creando primero un dispositivo con
 `vnconfing` asociado con la imagen y después montar tal dispositivo en
@@ -836,7 +836,7 @@ el directorio deseado. Vea la forma análoga de lograrlo con CDs en
 Cómo en el caso de disquetes, por defecto, sólo root puede montar CDs.
 Puede permitir que se haga desde una cuenta diferente, agregando tal
 cuenta al grupo `operator` y cambiando la variable del kernel
-`kern.usermount` como se presentó en la sección sobre disquettes. Por
+`kern.usermount` como se presentó en la sección sobre disquetes. Por
 ejemplo para montar el CD que está en la primera unidad (después de
 haber creado el directorio `/mnt/cdrom`):
 
@@ -853,7 +853,7 @@ Para desmontar un CD se emplea:
 
 ### Montar imagen ISO 9660 {#montar-imagen-iso}
 
-Para montar una imágen ISO (i.e un archivo con información de un CD con
+Para montar una imagen ISO (i.e un archivo con información de un CD con
 el sistema de archivos ISO 9660), primero debe crear un dispositivo que
 la represente, por ejemplo:
 
@@ -925,11 +925,11 @@ permite nombres largos (opción `-l`) y maneja enlaces simbólicos (opción
 Por otra parte en sistemas i386 o amd64 es posible arrancar un
 computador desde un CD, configurando el arranque del computador desde el
 BIOS para que sea por la unidad y cuando la imagen del CD se crea con la
-extensión El Torito. La extensión El Torito permite incluir la imágen de
+extensión El Torito. La extensión El Torito permite incluir la imagen de
 un floppy que se usa para arrancar.
 
-Para crear una imágen ISO que use extensión Rock Ridge, con una tabla de
-contenido de cada directorio (`TRANS.TBL`), que emplee la imágen de
+Para crear una imagen ISO que use extensión Rock Ridge, con una tabla de
+contenido de cada directorio (`TRANS.TBL`), que emplee la imagen de
 disquete `floppy.img` para arrancar, con información de derechos de
 reproducción del archivo `/home/&EUSUARIO;/Derechos.txt`, siguiendo
 enlaces simbólicos y con la jerarquía de directorios y archivos de
@@ -943,7 +943,7 @@ enlaces simbólicos y con la jerarquía de directorios y archivos de
 
 ### Quemado de una imagen ISO 9660 en un CD-R o en un CD-RW {#quemar-imagen-iso}
 
-Para escribir una imágen ISO (`micd.iso`) con datos en un CD-R, puede
+Para escribir una imagen ISO (`micd.iso`) con datos en un CD-R, puede
 emplear el programa `cdrecord`, el cual puede emplear como dispositivo
 uno de la forma `/dev/cd0c` o bien `/dev/rcd0c:0,0,0`, por ejemplo:
 
@@ -959,7 +959,7 @@ la opción `blank=fast`:
 Si desea emplear varias sesiones en un mismo CD-R (o CD-RW) tenga en
 cuenta:
 
--   La primera sesión se hace creando una imágen ISO usual y al quemar
+-   La primera sesión se hace creando una imagen ISO usual y al quemar
     con cdrecord agregue la opción `-multi`.
 
 -   Las imágenes de sesiones posteriores deben crearse empleando la
@@ -1003,7 +1003,7 @@ El sistema de archivos de los DVD es UDF, que es diferente al de los CDs
 (ISO9660). Desde la versión 4.0, OpenBSD soporta las versiones 1.02 y
 1.50 de UDF en modos plain y VAT (ver <>
 
-Las operaciones de montaje de DVDs, montaje de imagenes y copia de DVDs
+Las operaciones de montaje de DVDs, montaje de imágenes y copia de DVDs
 a disco son como las de CDs remplazando el tipo `cd9660` por `udf` (ver
 [xref](#montar-cd), [xref](#montar-imagen-iso) y
 [xref](#crear-imagen-de-cd)).
@@ -1090,7 +1090,7 @@ siguiente archivo de ordenes (ubíquelo por ejemplo en
 `/usr/local/sbin/montapost.sh`):
 
     #!/bin/sh
-    # Monta imagenes cifradas en OpenBSD. Dominio público. 2006.
+    # Monta imágenes cifradas en OpenBSD. Dominio público. 2006.
 
     if (test ! -d /var/postgresql) then {
         mkdir /var/postgresql
@@ -1182,7 +1182,7 @@ Shift+Alt izquierdo
 La tecla de composición[^tec.1] le permitirá generar un carácter empleando
 una secuencia de dos teclas. Por ejemplo si presiona la tecla de
 composición (i.e Shift+Alt izquierdo con la configuración presentada), y
-después presiona ? seguido de ? obtendrá el carácter ¿. En el apendice
+después presiona ? seguido de ? obtendrá el carácter ¿. En el apéndice
 [Caracteres que pueden generarse](#caracteres-que-pueden-generarse)
 encontrará una tabla con todas las combinaciones de teclas que pueden
 usarse con la tecla compose y con teclas muertas.

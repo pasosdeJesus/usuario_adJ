@@ -1,4 +1,4 @@
-# Configuracioń y uso de algunos programas {#conf-programas}
+# Configuración y uso de algunos programas {#conf-programas}
 
 ## Escritorio y Archivos {#escritorio}
 
@@ -29,8 +29,8 @@ Entre sus características:
 
 -   Es muy liviano, requiere alrededor de 4MB en RAM.
 
--   Con Alt+\[Boton izquierdo\] permite cambiar ubicación de la ventana
-    sobre la que está el curso, y con Alt+\[Botono derecho\] el tamaño.
+-   Con Alt+\[Botón izquierdo\] permite cambiar ubicación de la ventana
+    sobre la que está el curso, y con Alt+\[Botón derecho\] el tamaño.
 
 -   El menú que presenta se configura en un archivo texto con una sintaxis
 sencilla, puede cambiarse editando en `~/.fluxbox/menu`.
@@ -261,7 +261,7 @@ Instale los paquetes openjade, docbook y docbook-dsssl:
 ```
 
 Esto bastará para hacer conversiones de DocBook SGML a HTML por ejemplo
-si su hoja de estílo DSSL es "marcos.dsl" y va a convertir el documento
+si su hoja de estilo DSSL es "marcos.dsl" y va a convertir el documento
 DocBook marcos.xml:
 ```
         openjade  -t sgml -ihtml -d marcos.dsl#html marcos.xml 
@@ -419,7 +419,7 @@ puede usar `display` incluido en &p-ImageMagick;:
 ```
               
 
-Otra opción que facilita ver un directorio con imagenes es `xfi`
+Otra opción que facilita ver un directorio con imágenes es `xfi`
 incluido en el paquete &p-xfe;:
 
 ```
@@ -700,7 +700,7 @@ Para facilitar el manejo de varias gemas (y sus interdependencias) en un
 proyecto es típico emplear ```bundler``` que instala con:
 ```
     doas gem install bundler
-    if (test -x /usr/lcoal/bin/bundle27) then { 
+    if (test -x /usr/local/bin/bundle27) then { 
        doas ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle; 
     } fi
 ```
@@ -762,7 +762,7 @@ ejecute
 ```
 
 Rails requiere en el servidor un intérprete de JavaScript, por lo que
-recomendamos ```node.js``` (ver {1}) incluído en adJ &VER-ADJ; 
+recomendamos ```node.js``` (ver {1}) incluido en adJ &VER-ADJ; 
 y que se configurará automáticamente.
 
 La gran mayoría de gemas usadas por rails instalarán de la misma forma
@@ -782,7 +782,7 @@ que se explicó. Algunos casos especiales son:
 ##### Coffescript
 
 Si su aplicación rails emplea coffescript necesitará un programa que pueda 
-ejecutar javascript al lado del servidor, recomendamos node.js incluído en 
+ejecutar javascript al lado del servidor, recomendamos node.js incluido en 
 adJ. Actualice a la versión más reciente de npm con:
 ``` 
 	doas npm install npm -g
@@ -837,7 +837,7 @@ Puede aprender por ejemplo con los tutoriales interactivos de
 En Internet puede ver la referencia oficial de las clases en:
 <http://ruby-doc.org/core-2.1.5/Integer.html>
 
-Y es buena referencia para Ruby, Rails y Rspec (incluídos cambios entre
+Y es buena referencia para Ruby, Rails y Rspec (incluidos cambios entre
 una versión y otra y comentarios) es: <http://apidock.com/>
 
 Podrá consultar documentación del núcleo, librería estándar y gemas
@@ -896,14 +896,14 @@ config.ru                                           Configurar servidor web por 
 .gitignore                                          Archivos por ignorar en control de versiones
 Gemfile                                             Gemas requeridas
 Gemfile.lock                                        Versiones de las gemas requeridas
-app/javascript/packs/application.js               Plantilla de Javascript que usa modulos
+app/javascript/packs/application.js                 Plantilla de Javascript que usa módulos
 app/assets/stylesheets/application.css              Plantilla de CSS para aplicación
 app/controllers/application_controller.rb           Plantilla del controlador de la aplicación
 app/helpers/application_helper.rb                   Ayudas para construir vistas (sin lógica del modelos).
 app/views/layouts/application.html.erb              Plantilla por defecto para el sitio
 app/assets/                                         Datos estáticos de la página
-app/assets/images/                                  Gráficos de la aplicación (tipicamente que no se sirven estáticos)
-app/assets/config/manifest.js			    Configura datos estatícos por exportar
+app/assets/images/                                  Gráficos de la aplicación (típicamente que no se sirven estáticos)
+app/assets/config/manifest.js                       Configura datos estáticos por exportar
 app/mailers/                                        Controlador para enviar correos
 app/models/                                         Modelos
 app/channel/                                        Controlador de websockets
@@ -915,7 +915,7 @@ bin/bundle                                          Maneja dependencias con el a
 bin/rails                                           Maneja posibilidades de generación y controles Rails
 bin/rake                                            Maneja tareas definidas en `Rakefile` y `lib/tasks`
 bin/setup                                           Plantilla de un configurador de la aplicación
-bin/yarn					    Gestor de paquetes javascript
+bin/yarn                                            Gestor de paquetes javascript
 config/routes.rb                                    Rutas
 config/application.rb                               Configura aplicación
 config/environment.rb                               Configura ambiente
@@ -926,7 +926,7 @@ config/environments/test.rb                         Configuración ambiente de p
 config/initializers/assets.rb                       Configura recursos
 config/initializers/backtrace_silencers.rb          Inhibe trazas de algunas librerías
 config/initializers/cookies_serializer.rb           Configura como serializar galletas
-config/initializers/filter_parameter_logging.rb     Parametros por filtrar (no dejar) en bitácoras
+config/initializers/filter_parameter_logging.rb     Parámetros por filtrar (no dejar) en bitácoras
 config/initializers/inflections.rb                  Inflecciones singular/plural
 config/initializers/mime_types.rb                   Registra tipos MIME
 config/initializers/session_store.rb                Configura donde se almacena sesión
@@ -939,7 +939,7 @@ db/seeds.rb                                         Datos iniciales para base de
 lib/tasks/                                          Tareas para `rake`
 lib/assets/                                         "Activos" comunes para librerías
 log/                                                Bitácoras
-package.json					    Paquetes javascript requeridos
+package.json                                        Paquetes javascript requeridos
 public                                              Archivos estáticos
 public/404.html                                     Mensaje por defecto para páginas no encontradas
 public/422.html                                     Mensaje por defecto para rechazar cambios
@@ -1007,8 +1007,8 @@ Archivo/Directorio                                    Descripción
 
 Por convención de Ruby on Rails:
 
--   Las fuentes del módelo quedan en `app/models/departamento.rb`
--   El nombre de la tabla será la forma plural del nombre del módelo
+-   Las fuentes del modelo quedan en `app/models/departamento.rb`
+-   El nombre de la tabla será la forma plural del nombre del modelo
     (e.g ```departamentos```)
 -   La tabla incluirá automáticamente un campo id de tipo entero que se
     autoincrementa
@@ -1073,7 +1073,7 @@ tenga diseñado en `app/views/layouts/application.html.erb`.
 ##### Interacción con la base de datos
 
 Puede examinar la tabla creada e interactuar con la base de datos con la
-interfaz texto de SQLite como se ejemplifca a continuación:
+interfaz texto de SQLite como se ejemplifica a continuación:
 ```             
     $ rails dbconsole
     sqlite> .schema
@@ -1088,7 +1088,7 @@ interfaz texto de SQLite como se ejemplifca a continuación:
 
 Se recomienda emplear UTF8 como codificación de PostgreSQL (si emplea
 otra codificación convierta sacando un respaldo eliminando la base,
-volviendola a crear con `-E UTF8` y restaurando los datos).
+volviéndola a crear con `-E UTF8` y restaurando los datos).
 
 -   Arregle la aplicación recién creada para que emplee PostgreSQL,
     modificando parámetros de base de datos en
@@ -1149,7 +1149,7 @@ volviendola a crear con `-E UTF8` y restaurando los datos).
         rake db:structure:dump
 ```                    
 
--   Genere clases (módelos) en blanco en el directorio ```app/models```
+-   Genere clases (modelos) en blanco en el directorio ```app/models```
     para cada una de las tablas de su aplicación, por ejemplo para la
     tabla ```mitabla``` :
 ```
@@ -1171,7 +1171,7 @@ volviendola a crear con `-E UTF8` y restaurando los datos).
 
 -   Si desea ayuda en la generación de controladores y vistas para sus
     tablas, instale `doas gem install `schema_to_scaffold``, 
-    genere (puede ser momentaneamente) el archivo `db/schema.rb`
+    genere (puede ser momentáneamente) el archivo `db/schema.rb`
     con
 ```
 	rake db:schema:dump
@@ -1275,7 +1275,7 @@ depurar:
     gem install byebug
 ```
 -   Para activar el depurador en sitios en producción debe además
-    inicar el servidor web con
+    iniciar el servidor web con
 ```
     rails s --debugger
 ```

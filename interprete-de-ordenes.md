@@ -2,15 +2,15 @@
 
 ## Archivos y permisos {#archivos_y_permisos}
 
-En esta sección se introducen diveras ordenes para administrar
+En esta sección se introducen diversas ordenes para administrar
 archivos y permisos desde un interprete de ordenes.
 
-Una orden usualmente recibe opciones y parametros que especifican que
-operación realizar; algunos parametros son indispensables mientras que
+Una orden usualmente recibe opciones y parámetros que especifican que
+operación realizar; algunos parámetros son indispensables mientras que
 las opciones modifican el comportamiento por defecto de una orden (y
 por tanto son opcionales). En la ayuda presentada por la orden `man` y
-en estas guías emplemos como notación los paréntesis cuadrados `[ ]`
-para encerrar parametros opcionales y opciones. Por ejemplo
+en estas guías empleamos como notación los paréntesis cuadrados `[ ]`
+para encerrar parámetros opcionales y opciones. Por ejemplo
 
      ls [-l] [ruta] 
 
@@ -26,7 +26,7 @@ descubrir que hace tal opción y el parámetro tecleando `ls /
 
 El programa `ls` por defecto presenta los nombres de archivos que no
 comienzan con el caracter '.' y que están en el directorio de trabajo
-del usuaurio. Los archivos cuyos nombres comienzan con el caracter punto
+del usuario. Los archivos cuyos nombres comienzan con el caracter punto
 suelen llamarse archivos de configuración, si desea verlos también al
 usar la orden `ls`, puede emplear la opción `-a` (i.e. teclear
 `ls -a`). Si desea ver los archivos de un directorio diferente puede dar
@@ -34,7 +34,7 @@ como argumento el nombre del directorio, por ejemplo `ls
       /usr/bin`. Además de `-a` y `-l`, la orden `ls` tiene muchas
 otras opciones que le permiten especificar que mostrar y como mostrarlo.
 
-![Sesión en la que se examinan archivoos y permisos](perm.eps)
+![Sesión en la que se examinan archivos y permisos](perm.eps)
 
 A continuación se presentan algunos programas para administrar archivos,
 junto con una breve descripción y unas pocas opciones ---Puede consultar
@@ -73,7 +73,7 @@ nombre de un archivo."
 
     Después de hacerlo tanto `carta.txt` como `diario.txt` serán nombres
     que enlazarán la misma información. La opción `-s` indica que el
-    enlace debe ser símbolico, lo cual en general es más flexible que la
+    enlace debe ser simbólico, lo cual en general es más flexible que la
     opción por defecto [^1].
 
 `mkdir` `[-p]` ruta
@@ -100,7 +100,7 @@ nombre de un archivo."
 
     La opción `-i` confirma antes de borrar cada archivo, las opciones
     `-rf` permiten borrar directorios enteros junto con todos los
-    subdirectorios que contengan (la opción `-r` por si sóla borra en
+    subdirectorios que contengan (la opción `-r` por si sola borra en
     subdirectorios, la opción `-f` borra sin preguntar al usuario y sin
     producir fallas cuando no haya archivos por borrar).
 
@@ -124,7 +124,7 @@ nombre de un archivo."
 :   Para examinar espacio empleado por cada una de las ruta y sus
     archivos y subdirectorios. Si no se especifica ruta alguna, este
     orden da información sobre el directorio de trabajo. La opción
-    `-s` presnta totales de cada ruta (sin incluir los detalles de cada
+    `-s` presenta totales de cada ruta (sin incluir los detalles de cada
     archivo o subdirectorio).
 
 Al usar la opción `-a` con `ls`, por lo menos verá dos directorios más:
@@ -135,7 +135,7 @@ abrevia `/home/pepe` mientras que `..` abrevia `/home`.
 
 En la mayoría de programas y en el intérprete de ordenes podrá emplear
 tanto `.` como `..` para referenciar archivos y subdirectorios relativos
-al directorio de trabajo. Así mismo los archivos y directorios que esten
+al directorio de trabajo. Así mismo los archivos y directorios que estén
 en su directorio de trabajo puede referenciarlo sin prefijo alguno, por
 ejemplo `du` es equivalente a `du` porque muestra la utilización de disco
 del directorio de trabajo. Si en su directorio de trabajo tiene un
@@ -189,7 +189,7 @@ los tres siguientes `r-x` indican los permisos para el grupo y los tres
 siguientes `r-x` indican los permisos para el resto de usuarios. Como el
 orden de estos permisos es siempre el mismo (primero lectura `r`,
 después escritura `w` y después ejecución `x`), resulta que el archivo
-`x.tar.gz` no es ejecutable, que puede ser leido por el dueño y el grupo
+`x.tar.gz` no es ejecutable, que puede ser leído por el dueño y el grupo
 pero no por los demás usuarios, además puede ser escrito sólo por
 `pepe`. Del enlace podemos destacar que se llama `a`, que enlaza al
 archivo `/usr/bin/awk` y que su tamaño y permisos reales los heredará de
@@ -229,7 +229,7 @@ letras para identificar los permisos (r, w o x). Por ejemplo
 El dueño de un archivo pueden ser modificados sólo por el administrador
 del sistema con el programa `chown`. Un usuario que pertenezca a varios
 grupos puede cambiar el grupo de uno de sus archivos a alguno de los
-grupos a los que perteneza con el program `chgrp`, por ejemplo
+grupos a los que pertenezca con el programa `chgrp`, por ejemplo
 
     chgrp estudiantes tarea1.txt
 
@@ -246,7 +246,7 @@ los cuales un usuario pertenece son mostrados por el programa `groups`.
     consultar las páginas `man` de cada uno de ellos.
 
 -   La jerarquía de directorios, los archivos y los permisos se
-    organizan en las particiones de un disco duro o en un disquette
+    organizan en las particiones de un disco duro o en un disquete
     empleando un sistema de archivo. Puede conocer algo más sobre el
     tema en la guía [Administración de
     archivos](#administracion-de-archivos) o con `man fs`.

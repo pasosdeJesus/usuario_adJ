@@ -11,7 +11,7 @@ algunos detalles de estas configuraciones.
 Si deja en su computador tanto Linux como OpenBSD podrá configurar LILO
 o GRUB para arrancar cualquiera de los dos sistemas. En caso de usar
 LILO, desde Linux edite `/etc/lilo.conf` para dejar una entrada que
-identifique su sistema Linux y otra para openBSD. En el siguiente
+identifique su sistema Linux y otra para OpenBSD. En el siguiente
 ejemplo Linux está en `/dev/hda2` mientras que OpenBSD en `/dev/hda1`:
 
     #Instalar LILO en MBR
@@ -75,9 +75,9 @@ apropiados (busque los nombres entre los mensajes de `dmesg`):
 
 El arranque múltiple puede administrarse con NTLDR el gestor de arranque
 de Windows XP/NT. La herramienta Bootpart le facilitará configurar el
-menu de arranque que NTLDR puede presentar, descarguelo bien del CD adJ
+menu de arranque que NTLDR puede presentar, descárguelo bien del CD adJ
 del subdirectorio `util/bootpart` o de
-<http://www.winimage.com/bootpart.htm>, descomprimalo y copie
+<http://www.winimage.com/bootpart.htm>, descomprímalo y copie
 `bootpart.exe` al directorio `C:\`. Inicie un interprete de ordenes
 (Inicio-&gt;Ejecutar-&gt;cmd) y después:
 

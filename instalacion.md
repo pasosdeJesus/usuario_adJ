@@ -41,7 +41,7 @@
 
     -   O bien conexión a Internet o una Intranet con una tarjeta de red
         (el disco de instalación NO soporta PPP ni SLIP) y un espejo del
-        servidor FTP o HTTP que se pueda acceder rapidamente desde su
+        servidor FTP o HTTP que se pueda acceder rápidamente desde su
         computador.
 
     Aunque es posible realizar la descarga de imágenes ISO, recomendamos
@@ -81,7 +81,7 @@
     desea redimensionar tiene formato ext2fs (Linux) puede usar `parted`
     o `resize2fs`. En el caso de particiones NTFS (Windows Vista o 7)
     puede usar `ntfsresize` desde un sistema Linux o arrancando con un
-    disquette como [PAUD](http://paud.sourceforge.net/), o bien si
+    disquete como [PAUD](http://paud.sourceforge.net/), o bien si
     prefiere utilidades gráficas para reparticionar puede arrancar desde
     un pequeño CD de rescate como
     [RIP](http://www.tux.org/pub/people/kent-robotti/looplinux/rip/) o
@@ -179,9 +179,9 @@ Herramientas UNIX
     instalación y TFTP para que pueda servirle el archivo de arranque
     `boot` y un kernel como `bsd`
 
-[^ayu.2]: En discos, DVDs y disquettes las particiones se indican con a, b,
+[^ayu.2]: En discos, DVDs y disquetes las particiones se indican con a, b,
     d y letras que se usan como postfijo. El postfijo c representa el
-    disco/DVD/disquette completo. Por ejemplo en el caso del primer
+    disco/DVD/disquete completo. Por ejemplo en el caso del primer
     disco IDE las particiones pueden ser: `/dev/wd0a`, `/dev/wd0b`,
     `/dev/wd0d` y así sucesivamente, mientras que `/dev/wd0c` representa
     el disco completo. Pueden verse las particiones precisas que se usan
@@ -220,7 +220,7 @@ programa que tras iniciar el entorno gráfico le permite autenticarse).
 ![](img/instala2.png)
 
 En las capturas de pantalla de ejemplo hay un sólo disco duro que se
-usará completo para OpenBSD, es decir tendrá una sóla partición del BIOS
+usará completo para OpenBSD, es decir tendrá una sola partición del BIOS
 que abarca todo el disco. De no usarse completo el instalador ingresará
 al programa `fdisk` que le permitirá especificar la partición del BIOS
 que destinará para OpenBSD (en `fdisk` la orden 'h' le presentará una
@@ -454,7 +454,7 @@ XDM en cada arranque:
         xdm_flags=""
         
 
-Los servicios proveidos por paquetes que son iniciados se especifican en
+Los servicios proveídos por paquetes que son iniciados se especifican en
 la variable `pkg_scripts`, que se define en el archivo
 `/etc/rc.conf.local`. Los servicios tanto del sistema base como de
 paquetes típicamente tiene un archivo en el directorio `/etc/rc.d`.
@@ -506,7 +506,7 @@ Veamos ejemplos de su uso:
 
 :   Reinicia servicio cupsd presentado errores en la terminal si los hay, 
     en lugar `restart` también pueden usarse las acciones explicadas
-    antes para archivos de ordenes del dirctorio `/etc/rc.d`.
+    antes para archivos de ordenes del directorio `/etc/rc.d`.
 
 `doas rcctl get cupsd`
 
@@ -524,14 +524,14 @@ Veamos ejemplos de su uso:
 :   Establece la variable `flags` de servicio cupsd en `-c /etc/cupsd2.conf`
     es decir opciones especiales para el arranque. La variable
     `status` es especial porque sólo permite los valores on y off para
-    habilitar o deshabiltiar el servicio respectivamente (agregándolo
+    habilitar o deshabilitar el servicio respectivamente (agregándolo
     o quitándolo de pkg_scripts en `/etc/rc.conf.local`).
 
 `doas rcctl ls on`
 
 :   Presenta los servicios que están habilitados. En lugar de on
     también puede usarse `all` (todos), `failed` (los que fallaron),
-    `off` (deshabiltiados), `started` (que están corriendo), 
+    `off` (deshabilitados), `started` (que están corriendo), 
     `stopped` (detenidos).
  
 `doas rcctl order cupsd postgresql`
@@ -596,7 +596,7 @@ usuarios. Unos cambios que suelen funcionar son:
             machdep.allowaperture=1
             
 
-    hagalo en `/etc/sysctl.conf`, según lo recomendado en la bitácora.
+    hágalo en `/etc/sysctl.conf`, según lo recomendado en la bitácora.
 
     Elegir un monitor y editar el archivo para quitar el comentario que
     deja en la frecuencia horizontal --es decir el símbolo \# al
@@ -720,7 +720,7 @@ uno de los dispositivos seriales `/dev/tty00` o `/dev/tty01`.
 
 Una vez logre configurar Xorg puede activar el administrador de vistas
 XDM permanentemente agregando la siguiente línea al archivo
-`/etc/rc.conf.local` (creélo si no existe):
+`/etc/rc.conf.local` (créelo si no existe):
 
         xenodm_flags="" 
 

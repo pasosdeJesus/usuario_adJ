@@ -217,6 +217,10 @@ W3M_OPT=""
 # Opciones para visualizador HTML como texto
 #
 
+ASPELL=""
+# Corrector ortográfico.
+# 
+
 ISPELL=""
 # Corrector ortográfico internacional.
 # http://fmg-www.cs.ucla.edu/fmg-members/geoff/ispell.html

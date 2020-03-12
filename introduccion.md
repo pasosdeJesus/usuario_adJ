@@ -7,7 +7,7 @@ Unix desarrollados en la Universidad de Berkeley i.e. BSD[^2]. Sus
 puntos más fuertes son estandarización (cumplir POSIX), seguridad y
 criptografía. Para lograr seguridad los desarrolladores de OpenBSD 
 continuamente examinan detalladamente (auditan) y mejoran el código 
-fuente para descrubir fallas de seguridad[^3]. Este trabajo ha
+fuente para descubrir fallas de seguridad[^3]. Este trabajo ha
 permitido liberar varias versiones de OpenBSD desde hace más de 10 años
 con tan sólo dos fallas de seguridad conocidas en los componentes
 básicos, en la instalación por defecto (apropiada para un servidor
