@@ -41,7 +41,7 @@
               rápidamente desde su computador.
             </p></li></ul></div><p>
           Aunque es posible realizar la descarga de imágenes ISO,
-          recomendamos comprar<sup>[<a name="idp281653240" href="#ftn.idp281653240">4</a>]</sup> los CDs oficiales de instalación para apoyar los
+          recomendamos comprar<sup>[<a name="idm220380936" href="#ftn.idm220380936">4</a>]</sup> los CDs oficiales de instalación para apoyar los
           proyectos OpenBSD y adJ. La estructura del CD oficial de
           OpenBSD tiene derechos de reproducción restrictivos ---sólo la
           estructura, las fuentes son de libre redistribución en su
@@ -102,7 +102,7 @@
       instalación de OpenBSD</a>.
     </p><p>
       Si tiene el DVD oficial, configure su BIOS para que arranque por
-      este y reinicie<sup>[<a name="idm274566408" href="#ftn.idm274566408">5</a>]</sup>. Este DVD contiene un sistema OpenBSD mínimo que
+      este y reinicie<sup>[<a name="idm2329658632" href="#ftn.idm2329658632">5</a>]</sup>. Este DVD contiene un sistema OpenBSD mínimo que
       detectará automáticamente el hardware y lo guiará en el proceso de
       instalación. Si había creado con anterioridad la partición
       primaria para OpenBSD seguramente no tendrá inconveniente en esta
@@ -110,7 +110,7 @@
       Linux y OpenBSD:
     </p><div class="variablelist"><dl><dt><span class="term">
           Nombres y manejo de dispositivos
-        </span></dt><dd><div class="table"><a name="idm1066038152"></a><p class="title"><b>Tabla 1. 
+        </span></dt><dd><div class="table"><a name="idm1512739336"></a><p class="title"><b>Tabla 1. 
               Nombres de dispositivos
             </b></p><table summary="
               Nombres de dispositivos
@@ -155,7 +155,7 @@
                   </td><td align="left">
                     <code class="literal">/dev/fd0</code>
                   </td><td align="left">
-                    <code class="literal">/dev/fd0c</code><sup>[<a name="idp1172573048" href="#ftn.idp1172573048">a</a>]</sup>
+                    <code class="literal">/dev/fd0c</code><sup>[<a name="idm4209873928" href="#ftn.idm4209873928">a</a>]</sup>
                   </td></tr><tr><td align="left">
                     Primera unidad de DVD
                   </td><td align="left">
@@ -163,7 +163,7 @@
                     es SCSI algo como <code class="literal">/dev/sda</code>
                   </td><td align="left">
                     <code class="literal">/dev/cd0c</code>
-                  </td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1172573048" href="#idp1172573048">a</a>] </sup>
+                  </td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm4209873928" href="#idm4209873928">a</a>] </sup>
                         En discos, DVDs y disquetes las particiones se
                         indican con a, b, d y letras que se usan como
                         postfijo. El postfijo c representa el
@@ -255,7 +255,7 @@
       reconocerá las partes de su computador y esperará algunas
       respuestas de su parte, como si desea instalar, actualizar o
       iniciar un intérprete de órdenes para rescatar un sistema:
-    </p><div class="figure"><a name="idp404946040"></a><p class="title"><b>Figura 1. </b></p><div class="mediaobject"><img src="img/instala1.png"></div></div><p>
+    </p><div class="figure"><a name="idm3694147464"></a><p class="title"><b>Figura 1. </b></p><div class="mediaobject"><img src="img/instala1.png"></div></div><p>
       También podrá elegir distribución del teclado, por ejemplo el
       teclado típico con 'ñ' y junto a esta un '{' corresponde a 'es'.
       El instalador a continuación le permitirá configurar dispositivo
@@ -270,7 +270,7 @@
       con servidores para esto, X-Window es el entorno gráfico,
       <code class="literal">xdm</code> es el programa que tras iniciar el entorno
       gráfico le permite autenticarse).
-    </p><div class="figure"><a name="idm389443976"></a><p class="title"><b>Figura 2. </b></p><div class="mediaobject"><img src="img/instala2.png"></div></div><p>
+    </p><div class="figure"><a name="idm3711387912"></a><p class="title"><b>Figura 2. </b></p><div class="mediaobject"><img src="img/instala2.png"></div></div><p>
       En las capturas de pantalla de ejemplo hay un sólo disco duro que
       se usará completo para OpenBSD, es decir tendrá una sola partición
       del BIOS que abarca todo el disco. De no usarse completo el
@@ -278,7 +278,7 @@
       permitirá especificar la partición del BIOS que destinará para
       OpenBSD (en <code class="literal">fdisk</code> la orden 'h' le presentará
       una breve ayuda).
-    </p><div class="figure"><a name="idm1351058312"></a><p class="title"><b>Figura 3. </b></p><div class="mediaobject"><img src="img/instala3.png"></div></div><p>
+    </p><div class="figure"><a name="idm3711388808"></a><p class="title"><b>Figura 3. </b></p><div class="mediaobject"><img src="img/instala3.png"></div></div><p>
       Tras definir el área del disco dedicada a OpenBSD podrá definir
       etiquetas o subparticiones para el área de OpenBSD con el programa
       <code class="literal">disklabel</code>. Aunque hay un modo de
@@ -295,7 +295,7 @@
       partición <code class="literal">c</code> representa la partición del BIOS
       completa y no debe tocarse, la tercera (<code class="literal">d</code>)
       corresponderá a <code class="literal">/home</code> y la cuarta
-      (<code class="literal">e</code>) a <code class="literal">/var</code><sup>[<a name="idm1615600264" href="#ftn.idm1615600264">6</a>]</sup>. Note que con este esquema los programas y sus datos
+      (<code class="literal">e</code>) a <code class="literal">/var</code><sup>[<a name="idm858214920" href="#ftn.idm858214920">6</a>]</sup>. Note que con este esquema los programas y sus datos
       estáticos (típicos de los directorios <code class="literal">/bin</code>,
       <code class="literal">/sbin</code> y <code class="literal">/usr</code> quedarán en la
       subpartición <code class="literal">a</code>. Los datos de usuario
@@ -304,7 +304,7 @@
       programas (e.g páginas web, bases de datos, bitácoras) típicos de
       <code class="literal">/var</code> quedarán en la subpartición
       <code class="literal">e</code>.
-    </p><div class="figure"><a name="idm1207377544"></a><p class="title"><b>Figura 4. </b></p><div class="mediaobject"><img src="img/instala4.png"></div></div><p>
+    </p><div class="figure"><a name="idm367696648"></a><p class="title"><b>Figura 4. </b></p><div class="mediaobject"><img src="img/instala4.png"></div></div><p>
       Note que de cada subpartición debe especificar desplazamiento (i.e
       sector en el que comienza) y tamaño (i.e cantidad de sectores que
       ocupa). Tenga en cuenta que un sector es de 512bytes, así que
@@ -312,7 +312,7 @@
       ejemplo anterior / es de aproximadamente 10GB, la partición de
       intercambio es de 500MB, /home de 1GB y /var aproximadamente de
       2.1GB.
-    </p><div class="figure"><a name="idm1207377160"></a><p class="title"><b>Figura 5. </b></p><div class="mediaobject"><img src="img/instala5.png"></div></div><p>
+    </p><div class="figure"><a name="idm858213896"></a><p class="title"><b>Figura 5. </b></p><div class="mediaobject"><img src="img/instala5.png"></div></div><p>
       Después de elegir subparticiones el instalador formateará las
       subparticiones. Después podrá especificar la ruta donde están los
       juegos de instalación (en el caso de la distribución Aprendiendo
@@ -415,7 +415,7 @@
       los componentes que eligió el instalador preparará el directorio
       <code class="literal">/dev</code> de dispositivos y cambiará la partición de
       OpenBSD para que pueda arrancar el sistema en caso de que sea la
-      partición activa<sup>[<a name="idm600335112" href="#ftn.idm600335112">7</a>]</sup>. Puede entonces apagar con la orden
+      partición activa<sup>[<a name="idm205329032" href="#ftn.idm205329032">7</a>]</sup>. Puede entonces apagar con la orden
       <code class="literal">halt -p</code>, retirar el CD y volver a iniciar para
       entrar al sistema instalado. Si tienes problemas para ingresar a
       OpenBSD puede arrancar con el CD de instalación y cuando este
@@ -441,7 +441,7 @@
       continuación (siempre y cuando haya elegido iniciarlo durante la
       instalación y mientras su tarjeta gráfico y monitor sean
       autodetectados).
-    </p><div class="figure"><a name="idp946438392"></a><p class="title"><b>Figura 6. </b></p><div class="mediaobject"><img src="img/instala6.png"></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="instalacion-del-resto"></a>2.4. Instalación del resto de adJ</h3></div></div></div><p>
+    </p><div class="figure"><a name="idm205328648"></a><p class="title"><b>Figura 6. </b></p><div class="mediaobject"><img src="img/instala6.png"></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="instalacion-del-resto"></a>2.4. Instalación del resto de adJ</h3></div></div></div><p>
       Tras instalar el sistema base y reiniciar su computador, puede
       ingresar a la cuenta del usuario administrador que creó y puede
       completar la instalación ejecutando desde una terminal:
@@ -457,7 +457,7 @@
       <code class="literal">/inst-adJ.sh</code> lo guiará en la instalación del
       resto del sistema con preguntas típicamente de si o no, como se
       presenta en las siguientes capturas de pantalla de ejemplo:
-    </p><div class="figure"><a name="idm338851976"></a><p class="title"><b>Figura 7. </b></p><div class="mediaobject"><img src="img/insadJ1.png"></div></div><div class="figure"><a name="idm309065352"></a><p class="title"><b>Figura 8. </b></p><div class="mediaobject"><img src="img/insadJ2.png"></div></div><div class="figure"><a name="idm309067144"></a><p class="title"><b>Figura 9. </b></p><div class="mediaobject"><img src="img/insadJ3.png"></div></div><p>
+    </p><div class="figure"><a name="idm105176584"></a><p class="title"><b>Figura 7. </b></p><div class="mediaobject"><img src="img/insadJ1.png"></div></div><div class="figure"><a name="idm1987724680"></a><p class="title"><b>Figura 8. </b></p><div class="mediaobject"><img src="img/insadJ2.png"></div></div><div class="figure"><a name="idm1987728520"></a><p class="title"><b>Figura 9. </b></p><div class="mediaobject"><img src="img/insadJ3.png"></div></div><p>
       adJ puede configurar por defecto 2 imágenes cifradas, una para
       almacenar bases de datos de PostgreSQL (directorio
       <code class="literal">/var/postgresql</code>) y otra para almacenar copias
@@ -469,11 +469,11 @@
     </p><pre class="programlisting">
     /etc/init.d/montaencpos
     /etc/init.d/montaencres
-</pre><div class="figure"><a name="idm778509320"></a><p class="title"><b>Figura 10. </b></p><div class="mediaobject"><img src="img/insadJ4.png"></div></div><div class="figure"><a name="idp1416670584"></a><p class="title"><b>Figura 11. </b></p><div class="mediaobject"><img src="img/insadJ5.png"></div></div><p>
+</pre><div class="figure"><a name="idm2882432904"></a><p class="title"><b>Figura 10. </b></p><div class="mediaobject"><img src="img/insadJ4.png"></div></div><div class="figure"><a name="idm3036185224"></a><p class="title"><b>Figura 11. </b></p><div class="mediaobject"><img src="img/insadJ5.png"></div></div><p>
       El servidor web nginx será configurado con SSL por lo que debe dar
       detalles para el certificado como se presenta en la siguiente
       captura de pantalla.
-    </p><div class="figure"><a name="idm1053933704"></a><p class="title"><b>Figura 12. </b></p><div class="mediaobject"><img src="img/insadJ6.png"></div></div><div class="figure"><a name="idm1053934472"></a><p class="title"><b>Figura 13. </b></p><div class="mediaobject"><img src="img/insadJ7.png"></div></div><p>
+    </p><div class="figure"><a name="idm3036184456"></a><p class="title"><b>Figura 12. </b></p><div class="mediaobject"><img src="img/insadJ6.png"></div></div><div class="figure"><a name="idm2904920200"></a><p class="title"><b>Figura 13. </b></p><div class="mediaobject"><img src="img/insadJ7.png"></div></div><p>
       Después es recomendable que consulte
       <code class="literal">man afterboot</code> que incluye una lista de chequeo
       de cosas por hacer después de la instalación
@@ -826,21 +826,21 @@ Identifier "Screen0" Device "Card0" Monitor "Monitor0" DefaultDepth 16 S
             Puede consultar el procedimiento para instalar fuentes True
             Type en
             <a href="http://www.openbsd.org/faq/truetype.html" target="_top">http://www.openbsd.org/faq/truetype.html</a>.
-          </p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp281653240" href="#idp281653240">4</a>] </sup>
+          </p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm220380936" href="#idm220380936">4</a>] </sup>
               Los CDs de OpenBSD ordenados por la página web de OpenBSD
               si llegan a Colombia.
-            </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm274566408" href="#idm274566408">5</a>] </sup>
+            </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2329658632" href="#idm2329658632">5</a>] </sup>
           El método de instalación por red PXE requiere que configure
           otro servidor con los servicios DHCP para asignarle dirección
           durante la instalación y TFTP para que pueda servirle el
           archivo de arranque <code xmlns="" class="literal">boot</code> y un kernel como
           <code xmlns="" class="literal">bsd</code>
-        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1615600264" href="#idm1615600264">6</a>] </sup>
+        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm858214920" href="#idm858214920">6</a>] </sup>
           Si el disco tiene otras particiones del BIOS para otros
           sistemas, estos se verán con otras etiquetas (típicamente i
           para la primera partición Windows, m para la primera partición
           Linux).
-        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm600335112" href="#idm600335112">7</a>] </sup>
+        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm205329032" href="#idm205329032">7</a>] </sup>
           Si no tiene un manejador de arranque, puede determinar cual de
           las 4 particiones primarias es la activa con el programa
           <code xmlns="" class="literal">fdisk</code>.

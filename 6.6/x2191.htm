@@ -13,7 +13,7 @@ TITLE="Configuración y uso de algunos programas"
 HREF="x1147.htm"><LINK
 REL="NEXT"
 TITLE="Instalaciones duales"
-HREF="x2886.htm"></HEAD
+HREF="x2893.htm"></HEAD
 ><BODY
 CLASS="sect1"
 BGCOLOR="#FFFFFF"
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="x2886.htm"
+HREF="x2893.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
@@ -1198,18 +1198,30 @@ NAME="particiones-slices"
 ></H3
 ><P
 >&#13;        Una partición es una porción de un disco duro destinada para un
-        sistema de archivos. Un disco duro puede particionarse para: *
-        Mantener varios sistemas operativos. * Destinar varias
-        particiones a adJ/OpenBSD montando cada partición como un
-        directorio (y limitando así el espacio de esos directorios), por
-        ejemplo /var (donde está la cola de correo), /usr donde se
-        ubican programas, /home donde cada usuario tiene su espacio
-        personal (ver Ubicación de archivos y directorios). * Destinar
-        alguna partición como zona de intercambio (swap) para emplear
-        espacio de disco como si fuera memoria RAM. * Si se usa
-        partición GTP destinar una partición para el arranque (1G
-        bastará)
+        sistema de archivos. Un disco duro puede particionarse para:
       </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            Mantener varios sistemas operativos.
+          </P
+></LI
+><LI
+><P
+>&#13;            Organizar diversos espacios para un mismo sistema operativo,
+            aunque en OpenBSD esto suele hacerse con subparticiones .
+          </P
+></LI
+><LI
+><P
+>&#13;            Si se usa partición GPT destinar una partición para el
+            arranque (1G bastará)
+          </P
+></LI
+></UL
 ><P
 >&#13;        El disco comienza con una tabla de particiones que entre otras
         puede ser tipo MBR o tipo GPT. Las tablas tipo MBR son
@@ -1241,7 +1253,7 @@ CLASS="literal"
         la partición configurada en el disco.
       </P
 ><A
-NAME="AEN2467"
+NAME="AEN2474"
 ></A
 ><BLOCKQUOTE
 CLASS="BLOCKQUOTE"
@@ -1311,8 +1323,8 @@ CLASS="literal"
             archivos (e.g tamaño de cada bloque, lista de grupos de
             cilindros) y con los parámetros del hardware que afectan el
             desempeño<A
-NAME="AEN2486"
-HREF="#FTN.AEN2486"
+NAME="AEN2493"
+HREF="#FTN.AEN2493"
 ><SPAN
 CLASS="footnote"
 >[6]</SPAN
@@ -1447,7 +1459,7 @@ CLASS="programlisting"
 >&#13;    doas newfs -t ffs /dev/wd1j
 </PRE
 ><A
-NAME="AEN2516"
+NAME="AEN2523"
 ></A
 ><BLOCKQUOTE
 CLASS="BLOCKQUOTE"
@@ -1538,7 +1550,7 @@ CLASS="literal"
             dispositivo para intercambio), y la ubicación.
           </P
 ><A
-NAME="AEN2540"
+NAME="AEN2547"
 ></A
 ><BLOCKQUOTE
 CLASS="BLOCKQUOTE"
@@ -2259,8 +2271,8 @@ CLASS="literal"
 CLASS="literal"
 >mkisofs</TT
 > <A
-NAME="AEN2712"
-HREF="#FTN.AEN2712"
+NAME="AEN2719"
+HREF="#FTN.AEN2719"
 ><SPAN
 CLASS="footnote"
 >[7]</SPAN
@@ -2835,8 +2847,8 @@ CLASS="variablelist"
 ></DIV
 ><P
 >&#13;        La tecla de composición<A
-NAME="AEN2865"
-HREF="#FTN.AEN2865"
+NAME="AEN2872"
+HREF="#FTN.AEN2872"
 ><SPAN
 CLASS="footnote"
 >[8]</SPAN
@@ -2847,7 +2859,7 @@ CLASS="footnote"
         presentada), y después presiona ? seguido de ? obtendrá el
         carácter ¿. En el apéndice
         <A
-HREF="a3269.htm"
+HREF="a3276.htm"
 >Caracteres que
         pueden generarse</A
 > encontrará una tabla con todas las
@@ -3083,8 +3095,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2486"
-HREF="x2191.htm#AEN2486"
+NAME="FTN.AEN2493"
+HREF="x2191.htm#AEN2493"
 ><SPAN
 CLASS="footnote"
 >[6]</SPAN
@@ -3106,8 +3118,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2712"
-HREF="x2191.htm#AEN2712"
+NAME="FTN.AEN2719"
+HREF="x2191.htm#AEN2719"
 ><SPAN
 CLASS="footnote"
 >[7]</SPAN
@@ -3129,8 +3141,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2865"
-HREF="x2191.htm#AEN2865"
+NAME="FTN.AEN2872"
+HREF="x2191.htm#AEN2872"
 ><SPAN
 CLASS="footnote"
 >[8]</SPAN
@@ -3187,7 +3199,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="x2886.htm"
+HREF="x2893.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
