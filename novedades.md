@@ -1,6 +1,7 @@
 Versión 6.6
 
-:   - Ampliada [xref](#discos-duros) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/dispositivos-y-linux.html#discos-duroshttp://structio.sourceforge.net/guias/AA_Linux_colegio/dispositivos-y-linux.html#discos-duros>
+:   - Ampliada [xref](#discos-duros) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/dispositivos-y-linux.html#discos-duros>
+    - Eliminad sección sobre disquetes
 
 Versión 6.5
 
