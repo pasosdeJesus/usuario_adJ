@@ -457,15 +457,11 @@ Además de esto para iniciar un computador con un disco duro
 
 Una partición es una porción de un disco duro destinada para un sistema de 
 archivos. Un disco duro puede particionarse para:
+
 * Mantener varios sistemas operativos.
-* Destinar varias particiones a adJ/OpenBSD montando cada partición como un 
-  directorio (y limitando así el espacio de esos directorios), por ejemplo 
-  /var (donde está la cola de correo), /usr donde se ubican programas, 
-  /home donde cada usuario tiene su espacio personal (ver Ubicación de 
-  archivos y directorios).
-* Destinar alguna partición como zona de intercambio (swap) para emplear 
-  espacio de disco como si fuera memoria RAM.
-* Si se usa partición GTP destinar una partición para el arranque 
+* Organizar diversos espacios para un mismo sistema operativo, aunque en 
+  OpenBSD esto suele hacerse con subparticiones .
+* Si se usa partición GPT destinar una partición para el arranque 
   (1G bastará)
 
 El disco comienza con una tabla de particiones que entre otras puede
