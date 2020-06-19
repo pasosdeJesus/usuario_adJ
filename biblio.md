@@ -10,3 +10,7 @@
 [xiphosmanual] Manual de Xiphos <http://xiphos.org/manual/index> 2010
 
 [libreoffice-basico] Curso LibreOffice Básico <http://www.p2pu.org/general/libreoffice-basico> 2011
+
+[openbsd-FAQ] Frequently Asked Questions. OpenBSD. <https://www.openbsd.org/faq/index.html>
+
+[unixlandia-escser] OpenBSD como sistema de Escritorio o Servidor. John F. Arroyave. 2020. <https://docs.google.com/document/d/1tooUQJga6cVrFa94MeDOmGddMOTDzapwNrkksNivLUM/edit?usp=sharing>
