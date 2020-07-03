@@ -726,9 +726,12 @@ XDM permanentemente agregando la siguiente línea al archivo
 
 ### Tipos de letra
 
-Los tipos de letra para X-Window se mantienen en
+Los tipos de letra del sistema base para X-Window se mantienen en
 `/usr/X11R6/lib/X11/fonts` en diversos formatos (por ejemplo PCF, SNF,
-BDF, TTF). Podrá editar diversos formatos y crear nuevos tipos de letra
+BDF, TTF). 
+Y los paquetes suelen dejar tipos de letra en `/usr/local/share/fonts/`
+
+Podrá editar diversos formatos y crear nuevos tipos de letra
 con el excelente editor `fontforge`.
 
 Una secuencia típica para copiar una fuente PCF (tomada de la
@@ -740,38 +743,23 @@ documentación de Bochs 2.0.2) es:
         xset fp rehash
           
 
-Para emplear un nuevo tipo de letra TrueType deber registrarla tanto con
-el servidor X como con `fontconfig` así:
+Para emplear un nuevo tipo de letra TrueType basta:
 
-1.  Asegurar que la ruta de la fuente está en un `FontPath` de la
-    sección `Files` de `/etc/X11/xorg.conf`. Por ejemplo si sus fuentes
-    TTF están en `/usr/local/lib/X11/fonts/MisTTF/`:
-
-            FontPath "/usr/local/lib/X11/fonts/MisTTF/"
-            
+1.  Ubiquela en una carpeta de `/usr/local/share/fonts/`. Por ejemplo 
+    `/usr/local/share/fonts/MisTTF/`
 
 2.  Genere archivos `fonts.dir` y `scale` en el directorio donde está la
     fuente:
 
-            cd /usr/local/lib/X11/fonts/MisTTF
+            cd /usr/local/share/fonts/MisTTF
             /usr/X11R6/bin/mkfontscale
             /usr/X11R6/bin/mkfontdir
                           
-
 3.  Aplicar cambios a sesión actual
 
             xset fp rehash
                           
-
-4.  Editar `/etc/fonts/local.conf` para que sea de la forma:
-
-        <?xml version="1.0"?>
-        <!DOCTYPE fontconfig SYSTEM "/etc/fonts/fonts.dtd">
-        <fontconfig>
-          <dir>/usr/local/lib/X11/fonts/MisTTF</dir>
-        </fontconfig> 
-
-5.  Regenerar cache de tipos de letra, ejecutando como usuario `root`:
+4.  Regenerar cache de tipos de letra, ejecutando como usuario `root`:
 
             cd /usr/local/lib/X11/fonts/MisTTF
             /usr/X11R6/bin/fc-cache -v
