@@ -3,16 +3,16 @@
 
 ## pdksh (ksh) {#pdksh}
 
-Es un interprete de comandos similar a `bash`. Este interprete de
-comandos al iniciarse como interprete de login lee los archivos
+Es un intérprete de órdenes similar a `bash`. Este intérprete de
+órdenes al iniciarse como intérprete de login lee los archivos
 `/etc/profile` y `$HOME/.profile`, pero no lo hace si es iniciado como
-interprete interactivo. Puede iniciarse explícitamente como interprete
+intérprete interactivo. Puede iniciarse explícitamente como intérprete
 de login con `ksh -l`. Esto puede resultar útil para iniciarlo por
 ejemplo dentro de `xterm`:
 
         xterm -en utf8 -e /bin/ksh -l 
 
-El método de edición (`vi`,`emacs` o `gmacs`) se configura en la
+El método de edición (`vi`, `emacs` o `gmacs`) se configura en la
 variable `VISUAL`.
 
 
@@ -33,13 +33,13 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
     tener comentarios (líneas iniciadas con el caracter '\#') o líneas
     como:
 
-            machine ESERV login EUSUARIO
-            machine rt.fm login anonymous passwd EUSUARIO@EDOMINIO
+            machine &ESERV; login &EUSUARIO;
+            machine rt.fm login anonymous passwd &EUSUARIO;@&EDOMINIO;
                 
 
-    que indican emplear el usuario EUSUARIO al conectarse a ESERV
+    que indican emplear el usuario &EUSUARIO; al conectarse a &ESERV;
     (pedirá la clave al hacer la conexión) y emplear el usuario
-    `anonymous`, con clave `EUSUARIO@EDOMINIO` al hacer conexiones con
+    `anonymous`, con clave `&EUSUARIO;@&EDOMINIO;` al hacer conexiones con
     `rt.fm`.
 
     > ![Aviso](img/warning.png) **Advertencia**
@@ -52,10 +52,10 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
     >         chmod og-r ~/.netrc
 
 -   Permite especificar el URL (iniciado con `http://` o `ftp://`) de un
-    archivo por descargar en la línea de comandos (y realiza
+    archivo por descargar en la línea de órdenes (y realiza
     autenticación automática si es ftp:// y se ha configurado
     `~/.netrc`, o si el URL es análogo a
-    `ftp://EUSUARIO:miclave@ESERV/pub/doc.txt`). En este caso si se
+    `ftp://&EUSUARIO;:miclave@&ESERV;/pub/doc.txt`). En este caso si se
     requiere puede emplearse la opción `-o` seguida del nombre del
     archivo con el que se desea salvar el archivo transmitido. También
     puede emplearse `*` para indicar transmisión de varios archivos.
@@ -63,7 +63,7 @@ extendido en RFC 1123), el cliente `ftp` de OpenBSD:
 
 ## doas
 
-Este programa permite ejecutar comandos privilegiados a algunos
+Este programa permite ejecutar órdenes privilegiadas a algunos
 usuarios. A partir de adJ y OpenBSD 5.8 el sistema base incluye `doas`
 como remplazo del antiguo `sudo`. `doas` es más simple y fácil de
 auditar.
@@ -73,16 +73,16 @@ Se configura en `/etc/doas.conf`. Un ejemplo mínimo es:
         permit nopass keepenv :wheel
 
 que permitirá su uso sin requerir clave a todos los usuarios del grupo
-`wheel` manteniendo las varibles de ambiente.
+`wheel` manteniendo las variables de ambiente.
 
-Una vez configurado, puede ejecutar un comando privilegiado desde una
-cuenta configurada con `doas comando`. Por ejemplo:
+Una vez configurado, puede ejecutar una orden privilegiada desde una
+cuenta configurada con `doas orden`. Por ejemplo:
 
         doas vi /etc/rc.conf.local 
 
 ### sudo
 
-El programa `sudo` se mantiene como paquete, si lo requiere instalelo
+El programa `sudo` se mantiene como paquete, si lo requiere instálelo
 desde la cuenta `root` con:
 
         pkg_add sudo
@@ -102,7 +102,7 @@ Puede verse en <http://rr.sans.org/authentic/sudo.php> interacción entre
 ##`cron`: para programar tareas {#cron}
 
 El programa `cron` ejecuta tareas configuradas para correr en cierto(s)
-momento(s). Este servico debe correr permanentemente. Puede comprar que
+momento(s). Este servicio debe correr permanentemente. Puede comprobar que
 opera con `pgrep cron` que debe responder con el número del proceso. Si
 no está corriendo debe ejecutarlo urgentemente bien reiniciando el
 servido o ejecutando `doas cron`.
@@ -123,7 +123,7 @@ requiere, por ejemplo:
         ldd /usr/bin/less
         
 
-Cuando se agregan librerías compartidas o se requiere que las librerias
+Cuando se agregan librerías compartidas o se requiere que las librerías
 de nuevos directorios sean referenciados en `/var/run/ld.so.hints` puede
 ejecutar `ldconfig` (que por defecto busca nuevas librerías en
 `/usr/lib`). Por ejemplo durante el arranque en un sistema con X-Window
@@ -137,7 +137,7 @@ arranque definiendo la variable `shlib_dirs` en `/etc/rc.conf.local`
 (ver [xref](#inicio-del-sistema))
 
 Incluso un usuario puede establecer otros directorios donde buscar
-librerías compartidas especificandolos en la variable de entorno
+librerías compartidas especificándolos en la variable de entorno
 `LD_LIBRARY_PATH` (separar un directorio de otro con ':' ).
 
 
@@ -149,20 +149,20 @@ requieren recompilación del kernel.
 ### Compilación del kernel {#compilacion-del-kernel}
 
 Puede sacar las fuentes del CD de instalación o de un repositorio FTP
-(`src.tgz`) descomprimiendolas en `/usr/src`, después puede
+(`src.tgz`) descomprimiéndolas en `/usr/src`, después puede
 actualizarlas con el CVS de OpenBSD con:
 
         cd /usr
         export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-        cvs -z3 co -rOPENBSD_VER-OPENBSD-U -P src 
+        cvs -z3 co -r&VER-OPENBSD;_&VER-OPENBSD-U; -P src 
 
 empleando un espejo más cercano a su computador y cambiado
-OPENBSD\_VER-OPENBSD-U por la versión que desea actualizar, o si las
+&VER-OPENBSD;\_&VER-OPENBSD-U; por la versión que desea actualizar, o si las
 fuentes que tiene son la versión que desea puede emplear:
 
         cd /usr/src
         export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-        cvs -z3 update -r OPENBSD_VER-OPENBSD-U -Pd 
+        cvs -z3 update -r&VER-OPENBSD;_&VER-OPENBSD-U; -Pd 
 
 Tal como se describe en `man afterboot`, para compilar basta editar el
 archivo de configuración del kernel que se desea, después ejecutar

@@ -1,3 +1,25 @@
+Versión 6.6
+
+:   - Ampliada [xref](#discos-duros) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/dispositivos-y-linux.html#discos-duros>
+    - Eliminada sección sobre disquetes
+
+Versión 6.5
+
+:   - Nueva capítulo de interprete de ordenes con [xref](#archivos_y_permisos) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/exploracion-dos.html#archivos-y-permisos>
+    - Mejorada ortografía, agradecimientos a Luis Alejandro Cruz 
+    - Actualizada [xref](#configuracion-de-xorg)
+
+Versión 6.4
+
+:   - Nueva sección sobre arreglos Raid [xref](#raid)
+    - Mejorado el formato
+
+Versión 6.2
+
+:   -   Mejorada [xref](#inicio-del-sistema)
+    - Diversos renombramientos para mejorar español (e.g orden en lugar de 
+      comando)
+
 Versión 6.1
 
 :   -   Mejorada  sección de Ruby on Rails [xref](#ruby)
@@ -20,7 +42,7 @@ Versión 5.8
 
 Versión 5.7
 
-:   -   Guia migrada a <http://pasosdeJesus.github.io/usuario_adJ/> y
+:   -   Guía migrada a <http://pasosdeJesus.github.io/usuario_adJ/> y
         fuentes a <https://github.com/pasosdeJesus/usuario_adJ>
 
 Versión 5.6
@@ -53,7 +75,7 @@ Versión 5.1
 
 :   -   Nueva [xref](#syslog).
 
-        [xref](#instalacion-y-configuracion-del-sistema-basico) renovada.
+        [xref](#instalacion-y-configuracion-del-sistema-base) renovada.
 
     -   [xref](#instalacion-del-resto) renovada.
 
@@ -73,7 +95,7 @@ Versión 4.8
 
 :   -   Nueva sección [xref](#ediciongraficos)
 
-    -   Precisada sección sobre Ofimatica, [xref](#msoffice)
+    -   Precisada sección sobre Ofimática, [xref](#msoffice)
 
     -   Cubre Aprendiendo de Jesús 4.8
 

@@ -13,7 +13,7 @@ PROYECTO=usuario_adJ
 # Nombre del proyecto
 #
 
-PRY_VERSION=6.2
+PRY_VERSION=6.6
 # Versión
 #
 
@@ -78,7 +78,7 @@ JADETEX=""
 # Instale jadetex (fuentes disponibles en http://openjade.sourceforge.net)
 
 MAKE=""
-# Ejecuta comandos requeridos
+# Ejecuta ordenes requeridos
 # Herramienta estándar en sistemas Unix
 
 MKDIR=""
@@ -162,11 +162,11 @@ COLLATEINDEX=""
 #
 
 NCFTPPUT=""
-# Programa para transferir archivos desde línea de comandos usando el protocolo FTP
+# Programa para transferir archivos desde línea de ordenes usando el protocolo FTP
 # Es una herramienta del paquete ncftp cliente http://www.ncftpd.com/
 
 SCP=""
-# Programa para transferir archivos desde la línea de comandos usando SSH
+# Programa para transferir archivos desde la línea de ordenes usando SSH
 # Es una herramienta del paquete ssh  http://www.openssh.org
 
 SED=""
@@ -216,6 +216,10 @@ W3M=""
 W3M_OPT=""
 # Opciones para visualizador HTML como texto
 #
+
+ASPELL=""
+# Corrector ortográfico.
+# 
 
 ISPELL=""
 # Corrector ortográfico internacional.

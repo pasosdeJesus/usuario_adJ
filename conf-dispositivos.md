@@ -31,7 +31,7 @@ extremo puede tener que deshabilitar el dispositivo):
 -   Arranque con __`boot -c`__ y cambie parámetros usados por los
     controladores antes de continuar con la detección automática de
     hardware. El cambio sólo durará mientras no reinicie el sistema,
-    puede hacer el cambio durable por ejemplo con el comando:
+    puede hacer el cambio durable por ejemplo con la orden:
     __`config -u`__.
 
 -   Después de que su sistema haya iniciado modifique los recursos
@@ -56,9 +56,9 @@ defecto usa la dirección base 0x300 pero la IRQ 10. Desde el prompt que
             UKC> change ne1
           
 
-puede ver otros comandos disponibles con el comando `help`. Una vez
+puede ver otras ordenes disponibles con la orden `help`. Una vez
 complete la configuración salga del entorno interactivo con `quit`, tras
-esto el kernel continuara la detección pero usando los cambios que haya
+esto el kernel continuará la detección pero usando los cambios que haya
 hecho.
 
 Una vez haya configurado los recursos que un controlador emplea para que
@@ -78,18 +78,18 @@ Si no logra configurar algún dispositivo y esto hace que el sistema
 completo se congele durante el arranque, puede requerir deshabilitar el
 dispositivo (situación que es muy inusual).
 
-### Lecturas recomendadas {#hardware-arranque-lecturas}
+### Lecturas recomendadas y referencias (hardware-arranque) {#hardware-arranque-lecturas}
 
 -   Página del manual unix de autoconf8. `autoconf` determina el orden y
     los controladores que se usan para la detección automática de
     hardware.
 
--   Página del manual unix de boot\_config y de 8 donde se describen los
-    comandos aceptados por el entorno interactivo de configuración de
+-   Página del manual unix de boot\_config y de 8 donde se describen las
+    ordenes aceptados por el entorno interactivo de configuración de
     dispositivos.
 
 -   Puede encontrar más sobre la secuencia de arranque de OpenBSD por
-    ejemplo en [](http://dhobsd.pasosdeJesus.org/pres21abr2005/)
+    ejemplo en <http://dhobsd.pasosdeJesus.org/pres21abr2005/>
 
 
 ## Impresión {#impresion}
@@ -210,7 +210,7 @@ transformaciones a un Postcript.
 Además de los programas `a2ps` y del paquete `psutils` es posible
 modificar directamente un archivo PostScript. Por ejemplo siguiendo las
 indicaciones de
-[](http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html),
+<http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html>,
 resulta posible rotar una página, editando el archivo y en la sección
 `%%%BeginPageSetup` agregando después de establecer tamaño de página,
 e.g. `595 842 /a4 setpagesize`:
@@ -308,7 +308,7 @@ El siguiente es un ejemplo del archivo `/etc/printcap`:
 
 que configura una impresora local para textos llamada `lp` o
 `local line printer`. Está conectada a `/dev/lpt0`, la cola de impresión
-la mantiene en `/var/spool/output` y envia errores a
+la mantiene en `/var/spool/output` y envía errores a
 `/var/log/lpd-errs`. Para configurar impresoras que puedan imprimir
 gráficas (así como PostScript con diversos tipos de letra) debe emplear
 un filtro del programa Ghostscript.
@@ -352,12 +352,12 @@ También es recomendable que cree un directorio:
         
 
 Si tiene problemas al instalar/usar una impresora puede consultar el
-archivo de errores de `cups` en: `/usr/local/var/log/cups/error_log`.
+archivo de errores de `cups` en: `/var/log/cups/error_log`.
 
 #### Utilización de CUPS {#uso-cups}
 
 El paquete de `cups` cuenta con programas análogos a los de LPD, pero
-ubicados en `/usr/local/bin`. Diversos programas emplearan el comandos
+ubicados en `/usr/local/bin`. Diversos programas emplearan la orden
 `lpr` para hacer impresiones, así que tiene dos opciones:
 
 -   Ejecutar `cups-enable` que remplazará los ejecutables relacionados
@@ -371,12 +371,12 @@ ubicados en `/usr/local/bin`. Diversos programas emplearan el comandos
 
 `foomatic` ofrece gran cantidad de controladores para una variada gama
 de impresoras, estos controladores e instrucciones para impresoras
-particulares están disponibles en [](http://www.openprinting.org) Es
+particulares están disponibles en <http://www.openprinting.org> Es
 posible emplearlos bien con `lpr` o bien con `cups`.
 
 #### Foomatic con LPR {#foomatic-lpr}
 
-Si la impresora está impresora está conectada a `/dev/lpt0` basta que
+Si la impresora está conectada a `/dev/lpt0` basta que
 agregue a `/etc/printcap` una entrada como:
 
     lp|local line printer:\
@@ -416,9 +416,77 @@ configuración con:
 [^imp.5]: De acuerdo a Printig-HOWTO estas herramientas ofrecen la
     funcionalidad de las herramientas "*distiller*" de Adobe.
 
-## Discos duros
+## Discos duros {#discos-duros}
 
+En la actualidad hay discos duros de estado sólido y discos electromecánicos.  
+
+Los discos de estado sólido o SSD (del inglés *solid state disk*) mantienen 
+información de manera permanente mediante circuitos integrados, pero ante
+el sistema operativo se presentan como si fuesen discos electromecánicos SCSI.
+
+Los discos electromecánicos constan de varias placas circulares sobre las 
+que se almacena información magnéticamente. La organización o geometría 
+de un disco suele especificarse como cantidad de cilindros (del ingleś 
+*cylinder*), cantidad de cabezas (del inglés *head*) y cantidad de sectores. 
+
+Para emplear un disco en OpenBSD se requiere:
+
+* que sea manejado por un controlador que lo asocie con un dispositivo 
+(e.g /dev/wd0c para un primer disco IDE o /dev/sd1c para un segundo 
+disco SCSI)
+* el disco debe estar formateado a bajo nivel, debe tener subparticiones
+o etiquetas (del inglés *disklabel*) en particiones, debe haber
+subparticiones con sistemas de archivos soportados (e.g FFS que es
+el nativo de adJ/OpenBSD, FAT o msdos, ext2 de Linux o NTFS de sólo
+lectura de Windows) que sean montadas en el sistema de archivos
+ comenzando por una que debe estar montada como directorio raiz / 
+(digamos /dev/sd0a sería primera partición de un disco SCSI) .
+
+Además de esto para iniciar un computador con un disco duro
+
+* debe estar configurado como disco de arranque en la BIOS (o durante el 
+  arranque el usuario debe indicarle a la BIOS por cual disco arrancar)
+* debe tener una partición marcada como iniciable en la tabla de particiones 
+  y/o emplear un cargador de arranque (e.g GRUB si tiene Linux y adJ/OpenBSD 
+  en el mismo disco).
+* Debe tener al menos una partición para OpenBSD (tipo A6) con subparticiones 
+  entre las cuales haya una con sistema de archivos FFS que se monte como 
+  raiz.
+  
 ### Particiones {#particiones-slices}
+
+Una partición es una porción de un disco duro destinada para un sistema de 
+archivos. Un disco duro puede particionarse para:
+
+* Mantener varios sistemas operativos.
+* Organizar diversos espacios para un mismo sistema operativo, aunque en 
+  OpenBSD esto suele hacerse con subparticiones .
+* Si se usa partición GPT destinar una partición para el arranque 
+  (1G bastará)
+
+El disco comienza con una tabla de particiones que entre otras puede
+ser tipo MBR o tipo GPT.  Las tablas tipo MBR son reconocidas por 
+BIOS antiguos y recientes (en modo *Legacy*) soporta discos de 
+hasta 2T, y hasta 4 particiones primarias, si se requieren más particiones 
+una de las primarias debe definirse como extendida y dentro de esta se podrán
+dividir otras particiones que se llamaran lógicas. Por su parte
+las particiones GPT son reconocidas por BIOS (UEFI) recientes, requieren
+que una partición se destine a un arranque EFI y cada partición puede
+tener cualquier tamaño y puede haber tantas particiones como se requiera.
+
+
+Para cambiar la tabla de particiones de un disco en OpenBSD/adJ
+puede emplearse el programas `fdisk`. Se inicia pasando como
+parámetro el dispositivo del disco que desea editar (e.g /dev/rsd0c), 
+le permiten modificar la partición hasta que este satisfecho con la 
+distribución y finalmente permiten salvar la partición configurada en el disco.
+
+> ![](img/warning.png) **Advertencia**
+>
+> Al modificar una partición el sistema de archivos que en ella 
+> hubiera no podrá usarse
+
+### Subparticiones o etiquetas {#subparticiones}
 
 Hay dos niveles de particiones: (1) del BIOS y (2) particulares de
 OpenBSD. Las primeras se configuran con `fdisk` y las segundas se crean
@@ -504,7 +572,7 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
     `disklabel`. Por ejemplo puede emplear el modo interactivo de este
     programa:
 
-            sudo disklabel -E /dev/wd1c 
+            doas disklabel -E /dev/wd1c 
 
     en este modo puede examinar las particiones y divisiones del disco
     con p, puede ver una ayuda abreviada con h. Con m le será posible
@@ -530,95 +598,157 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
 3.  Intente agregar el dispositivo como zona de intercambio sin
     reiniciar con:
 
-            sudo swapon -a 
+            doas swapon -a 
 
     o con:
 
-            sudo swapctl -A -t blk 
+            doas swapctl -A -t blk 
 
-    Ambos comandos intentarán montar como zonas de intercambio todos
+    Ambas ordenes intentarán montar como zonas de intercambio todos
     dispositivos por bloques de `/etc/fstab` que tengan la opción `sw`.
     Puede verificar la adición listando todas las zonas de intercambio
     con:
 
-            sudo swapctl -l 
+            doas swapctl -l 
 
 [^dis.1]: Los parámetros del hardware mantenidos ayudan a localizar bloques
     libres de forma óptima.
 
+### Arreglo de discos RAID por software {#raid}
 
-## Disquetes e imágenes de disquetes {#disquetes-e-imagenes-de-disquetes}
+Cómo se explica en la página del manual de `softraid`, OpenBSD incluye 
+el dispositivo `softraid` que puede proveer RAID y otros 
+servicios relacionados con entrada/salida.  
+Un volumen es un disco virtual que consta de varios "pedazos", cada "pedazo" 
+(del inglés __chunk__) es una subpartición del disco de tipo RAID (el
+tipo se establece con `disklabel`).
 
-### Programas del paquete `mtools` {#mtools}
+Las posibles disciplinas que soporta `softraid` son:
 
-El usuario root podrá leer disquetes con las herramientas del paquete
-mtools, por ejemplo para ver el contenido de un disquete y después
-copiar del disquete al directorio actual el archivo `cart.txt`:
+* RAID 0:  Que segmenta los datos sobre un número de "pedazos" para
+	aumentar el desempeño (aunque no provee redundancia).  No
+	es posible hacer volumenes de arranque.
+* RAID 1: Copia cada dato en más de un "pedazo" para facilitar
+  	recuperar información en caso de perdida de datos.  Si es
+	posible hacer volúmenes de arranque.
+* RAID 5: Divide los datos en varios pedazos pero proveen paridad
+ 	para prevenir perdida de datos.  No es posible hacer volumenes
+	de arranque.
+* CRYPTO: Cifra los datos en un sólo pedazo para proveer
+	confidencialidad (aunque no redundancia). Si es posible hacer
+	volumenes de arranque.
+* CONCAT: Que concatena varios pedazos, aunque no provee redundancia ni
+	permite hacer volumenes de arranque.
 
-        mdir
-        mcopy a:cart.txt .  
+Hemos notado en la práctica que cada "pedazo" debe ser máximo de 2T.
 
-Para escribir todos los archivos con extensión `tgz` en el disquete de
-la primera unidad:
+#### RAID 1 sin arranque
 
-        mcopy *tgz a: 
+La disciplina RAID 1 provee redundancia, pues cada dato lo escribe en 
+todos los pedazos que conforman el arreglo.  Así que cada pedazo es 
+como una copia de cada uno de los otros. 
 
-En OpenBSD por omisión sólo `root` puede montar y escribir disquetes.
-Puede lograrse que las herramientas de mtools escriban en disquetes
-cuando son ejecutadas desde una cuenta que pertenezca al grupo
-`operator` cambiando permisos de algunos archivos:
+Para el caso típico de 2 "pedazos" que se configurarán en RAID 1 pero no
+como volumen de arranque, se recomienda usar 3 discos duros.
+Uno para arrancar (digamos sd0) y 2 de las mismas dimensiones que se 
+configuraran en RAID 1 (digamos sd1 y sd2 cada uno de 2T).
 
-        chmod g+xwr /dev/rfd* /dev/fd*
-            
+sd0 debe tener un sistema OpenBSD/adJ típico para (1) configurar
+el RAID 1 para sd1 y sd2 y (2) montar el arreglo resultante
+en un directorio de su sistema de archivos.
 
-Si no desea cambiar permisos de dispositivos, ni manejar el grupo
-`operator` ni cambiar variables del kernel puede configurar y emplear
-`sudo` (ver [sudo](#sudo)):
+Primero se preparan sd1 y sd2 completos para OpenBSD (o si es una parte de
+cada uno usar -e)
 
-        doas mcopy *tgz a: 
+		doas fdisk -iy sd1
+		doas fdisk -iy sd2
 
-o incluso con `sudo` y un alias hacer transparente la restricción para
-los usuarios que puedan emplear `sudo`:
+Después en cada uno se crea una subpartición de tipo RAID con disklabel, 
+ambas deben quedar del mismo tamaño y se recomienda inicializarlas
+en ceros:
 
-        alias mcopy='doas mcopy' 
+		$ doas disklabel -E sd1
+		Label editor (enter '?' for help at any prompt)
+		> a a
+		offset: [64]
+		size: [39825135] *
+		FS type: [4.2BSD] RAID
+		> w
+		> q
+		$ doas dd if=/dev/zero of=/dev/rsd1a bs=1m count=1
 
-### Montar disquettes en jerarquía de directorios {#montar-disquettes}
+En el ejemplo anterior se presentó el caso de creación de sd1a, debe repetirse 
+lo mismo para sd2 para contar con sd2a.
 
-Desde la cuenta `root` podrá montar disquettes de manera directa.
+A continuación debe ensamblarse el arreglo RAID con algo como:
 
-Para montar disquettes desde cuentas de usuarios que pertenezcan al
-grupo `operator` puede cambiar la variable de configuración del kernel
-`kern.usermount`, bien de forma permanente en `/etc/sysctl.conf` o bien
-en una sesión con:
+		doas bioctl -v -c 1 -l sd1a,sd2a softraid0
 
-        sysctl -w kern.usermount=1          
-            
+Que creará otro dispositivo, digamos sd3 (aún si necesita hacer varios 
+arreglos RAID emplee siempre softraid0).  Puede verificar que sd3 es el 
+arreglo RAID con:
+	
+		$ doas bioctl sd3
+		Volume Status Size Device 
+		softraid0 0 Online 3298542608896 sd3 RAID1 
+		0 Online 3298542608896 0:0.0 noencl 
+		1 Online 3298542608896 0:1.0 noencl
 
-Por ejemplo para montar el disquete de la primera unidad en el
-directorio `/mnt/floppy` (el cual debió crear antes):
+Con el arreglo ensamblado en sd3, usted puede operar con ese dispositivo 
+como si fuera un disco más, es recomendable que inicialice sus primeros 
+sectores en 0:
 
-        mount -t msdos /dev/fd0c /mnt/floppy 
+		doas dd if=/dev/zero of=/dev/rsd3c bs=1m count=1
 
-o cree una entrada apropiada en `/etc/fstab`:
+Y proceda a crear partición,  subpartición(es) e inicializar cada 
+subpartición. En el siguiente ejemplo se creará una sola subpartición,
+se inicializará y se montará en /var/raid1:
 
-        /dev/fd0c /mnt/floppy msdos rw,noauto 0 0 
+		$ doas fdisk -iy /dev/rsd3c
+		$ doas disklabel -E /dev/sd3c
+		> a a
+		offset: [64]
+		size: [3999992128] *
+		FS type: [4.2BSD] 
+		> w
+		> q
+		$ doas newfs /dev/rsd3a
+		$ doas mkdir /var/raid1
+		$ doas mount /dev/sd3a /var/raid1
 
-tras lo cual basta:
+Con el ejemplo presentado ya habrían disponibles 2T con redundancia RAID 1 
+en el punto de montaje /var/raid1.
 
-        mount /mnt/floppy 
+Para hacer el cambio permanente es recomendable que en /etc/fstab
+agregue el duid del arreglo (pues al agregar discos físicos podría
+cambiar el sd3 por ejemplo por sd4).  Examina el duid con 
+		disklabel /dev/sd3c
 
-Tenga en cuenta que después de terminar todas las operaciones con el
-disquette debe desmontarlo con:
 
-        umount /mnt/floppy
-        
+##### Operación y recuperación en caso de falla de uno de los discos
 
-### Montar imagenes de disquettes {#montar-imagenes-disquettes}
+Es importante revisar con periodicidad el estado del arreglo con:
 
-Puede montar imágenes de disquetes creando primero un dispositivo con
-`vnconfing` asociado con la imagen y después montar tal dispositivo en
-el directorio deseado. Vea la forma análoga de lograrlo con CDs en
-[xref](#cd).
+		$ doas bioctl sd3
+
+Allí podría verse si alguno de los discos está fallando (Offline) y en
+tal caso, debe remplazarse el disco defectuoso (digamos sd2).  En el nuevo 
+disco debe crearse partición y subpartición con las mismas características 
+del que funciona bien y entonces debe reconstruirse el espejo.
+Por ejemplo para reconstruir y unir un nuevo /dev/sd2a:
+
+		$ doas bioctl -R /dev/sd2a sd3
+
+
+### Lecturas recomendadas y referencias Discos Duros
+
+- https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/
+
+-  Página del manual de `softraid`
+
+-  Página del manual de `bioctl`
+
+-  Particiones MBR y GPT: <https://www.openbsd.org/faq/faq14.html>
 
 
 ## Unidad de CD-ROM {#cd}
@@ -628,7 +758,7 @@ el directorio deseado. Vea la forma análoga de lograrlo con CDs en
 Cómo en el caso de disquetes, por defecto, sólo root puede montar CDs.
 Puede permitir que se haga desde una cuenta diferente, agregando tal
 cuenta al grupo `operator` y cambiando la variable del kernel
-`kern.usermount` como se presentó en la sección sobre disquettes. Por
+`kern.usermount` como se presentó en la sección sobre disquetes. Por
 ejemplo para montar el CD que está en la primera unidad (después de
 haber creado el directorio `/mnt/cdrom`):
 
@@ -645,17 +775,17 @@ Para desmontar un CD se emplea:
 
 ### Montar imagen ISO 9660 {#montar-imagen-iso}
 
-Para montar una imágen ISO (i.e un archivo con información de un CD con
+Para montar una imagen ISO (i.e un archivo con información de un CD con
 el sistema de archivos ISO 9660), primero debe crear un dispositivo que
 la represente, por ejemplo:
 
-        vnconfig -c vnd0 /home/EUSUARIO/micd.iso 
+        vnconfig -c vnd0 /home/&EUSUARIO;/micd.iso 
         mount /dev/vnd0a /mnt/tmp
         
 
-### Referencias {#referencias-cd-y-quemadoras}
+### Lecturas recomendadas y referencias CD y Quemadoras {#referencias-cd-y-quemadoras}
 
-Más sobre montaje de archivos con `man fstab`.
+-   Más sobre montaje de archivos con `man fstab`.
 
 
 ## Quemadora de CD-R y CD-RW {#quemadora}
@@ -684,17 +814,17 @@ de sectores de los que consta con
           
 
 Suponiendo que cada sector tenga 2048 bytes y el total de sectores fuera
-112120 puede crear la imagen (`/home/imagen/micd.iso`) empleando el
-comando:
+112120 puede crear la imagen (`/home/imagen/micd.iso`) empleando la
+orden:
 
         doas dd if=/dev/rcd0c of=/home/imagen/micd.iso bs=2048 count=112120
           
 
 ### Crear una imagen nueva ISO 9660 {#crear-nueva-imagen-iso}
 
-Para crear una imágen ISO a partir de datos que usted elija, deje los
+Para crear una imagen ISO a partir de datos que usted elija, deje los
 archivos y directorios por incluir en un directorio (digamos
-`/home/EUSUARIO/imagen`), el cual después puede especificarse a
+`/home/&EUSUARIO;/imagen`), el cual después puede especificarse a
 `mkisofs` (programa que hace parte del paquete `cdrtools`). El formato
 estándar para salvar información en CD-ROMs (ISO9660) sólo permite
 nombres de archivos con 8 caracteres, extensiones de 3 y restricciones
@@ -702,12 +832,12 @@ en la codificación de caracteres, hay algunas extensiones que permiten
 aumentar este margen, una de estas que es algo portable es Rock Ridge
 (funciona al menos en sistemas Unix y en Windows).
 
-Para crear una imagen ISO con nombre `/home/EUSUARIO/micd.iso` a partir
-de la información disponible en `/home/EUSUARIO/imagen` puede ejecutar
+Para crear una imagen ISO con nombre `/home/&EUSUARIO;/micd.iso` a partir
+de la información disponible en `/home/&EUSUARIO;/imagen` puede ejecutar
 como usuario `root`:
 
-        cd /home/EUSUARIO/imagen
-        doas mkisofs -r -l -f -o /home/EUSUARIO/micd.iso  .
+        cd /home/&EUSUARIO;/imagen
+        doas mkisofs -r -l -f -o /home/&EUSUARIO;/micd.iso  .
         
 
 Note que la imagen creada emplea la extensión Rock Ridge (opción `-r`),
@@ -716,42 +846,42 @@ permite nombres largos (opción `-l`) y maneja enlaces simbólicos (opción
 
 Por otra parte en sistemas i386 o amd64 es posible arrancar un
 computador desde un CD, configurando el arranque del computador desde el
-BIOS para que sea por la unidad y cuando la imágen del CD se crea con la
-extensión El Torito. La extensión El Torito permite incluir la imágen de
+BIOS para que sea por la unidad y cuando la imagen del CD se crea con la
+extensión El Torito. La extensión El Torito permite incluir la imagen de
 un floppy que se usa para arrancar.
 
-Para crear una imágen ISO que use extensión Rock Ridge, con una tabla de
-contenido de cada directorio (`TRANS.TBL`), que emplee la imágen de
+Para crear una imagen ISO que use extensión Rock Ridge, con una tabla de
+contenido de cada directorio (`TRANS.TBL`), que emplee la imagen de
 disquete `floppy.img` para arrancar, con información de derechos de
-reproducción del archivo `/home/EUSUARIO/Derechos.txt`, siguiendo
+reproducción del archivo `/home/&EUSUARIO;/Derechos.txt`, siguiendo
 enlaces simbólicos y con la jerarquía de directorios y archivos de
-`/home/EUSUARIO/imagen/` (en la que no debe existir el archivo
+`/home/&EUSUARIO;/imagen/` (en la que no debe existir el archivo
 `boot.catalog`) use:
 
-        cd /home/EUSUARIO/imagen
-        doas mkisofs -b floppy.img -c boot.catalog -copyright /home/EUSUARIO/Derechos.txt \
-          -r -l -f -o /home/EUSUARIO/micd.iso  .
+        cd /home/&EUSUARIO;/imagen
+        doas mkisofs -b floppy.img -c boot.catalog -copyright /home/&EUSUARIO;/Derechos.txt \
+          -r -l -f -o /home/&EUSUARIO;/micd.iso  .
         
 
 ### Quemado de una imagen ISO 9660 en un CD-R o en un CD-RW {#quemar-imagen-iso}
 
-Para escribir una imágen ISO (`micd.iso`) con datos en un CD-R, puede
+Para escribir una imagen ISO (`micd.iso`) con datos en un CD-R, puede
 emplear el programa `cdrecord`, el cual puede emplear como dispositivo
 uno de la forma `/dev/cd0c` o bien `/dev/rcd0c:0,0,0`, por ejemplo:
 
-        doas cdrecord dev=/dev/cd0c -data speed=16 /home/EUSUARIO/micd.iso
+        doas cdrecord dev=/dev/cd0c -data speed=16 /home/&EUSUARIO;/micd.iso
         
 
 Si emplea un CD-RW tenga en cuenta blanquearlo antes de escribir usando
 la opción `blank=fast`:
 
-        doas cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/EUSUARIO/micd.iso
+        doas cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/&EUSUARIO;/micd.iso
         
 
 Si desea emplear varias sesiones en un mismo CD-R (o CD-RW) tenga en
 cuenta:
 
--   La primera sesión se hace creando una imágen ISO usual y al quemar
+-   La primera sesión se hace creando una imagen ISO usual y al quemar
     con cdrecord agregue la opción `-multi`.
 
 -   Las imágenes de sesiones posteriores deben crearse empleando la
@@ -773,18 +903,17 @@ formatos `.wav` o `.au`) con información de 16 bits en estéreo a 44100
 muestras/s, codificación PCM. Al quemar con `cdrecord` en lugar de la
 opción `-data` debe emplearse `-audio`.
 
-### Referencias {#referencias-quemadoras}
+### Lecturas recomendadas y referencias Quemadoras {#referencias-quemadoras}
 
-Puede consultar más sobre creación de imágenes para CDs con
+- Puede consultar más sobre creación de imágenes para CDs con
 `man mkisofs` (tras haber instalado `cdrtools`)).
 
-Para conocer más sobre el quemado de CDs puede consultar `man cdrecord`
+- Para conocer más sobre el quemado de CDs puede consultar `man cdrecord`
 (también después de instalar el paquete `cdrtools`). En foros de
 usuarios pueden verse mensajes como
-[](http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html
-    ),
-[](http://www.deadly.org/article.php3?sid=20031105030127&mode=flat) y
-[](http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html)
+<http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html>,
+<http://www.deadly.org/article.php3?sid=20031105030127&mode=flat> y
+<http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html>
 
 [^que.1]: Si la sesión previa tenia -T esta también con mismo nombre de
     tablas (especificable con -table-name TN).
@@ -794,9 +923,9 @@ usuarios pueden verse mensajes como
 
 El sistema de archivos de los DVD es UDF, que es diferente al de los CDs
 (ISO9660). Desde la versión 4.0, OpenBSD soporta las versiones 1.02 y
-1.50 de UDF en modos plain y VAT (ver []()
+1.50 de UDF en modos plain y VAT (ver <>
 
-Las operaciones de montaje de DVDs, montaje de imagenes y copia de DVDs
+Las operaciones de montaje de DVDs, montaje de imágenes y copia de DVDs
 a disco son como las de CDs remplazando el tipo `cd9660` por `udf` (ver
 [xref](#montar-cd), [xref](#montar-imagen-iso) y
 [xref](#crear-imagen-de-cd)).
@@ -817,12 +946,12 @@ formas:
             doas growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
                           
 
-### Referencias {#referencias-dvd}
+### Lecturas recomendadas y referencias DVD {#referencias-dvd}
 
-`man mount_udf` y `man growisofs`.
+- `man mount_udf` y `man growisofs`.
 
-Universal Disk Format:
-[](http://en.wikipedia.org/wiki/Universal_Disk_Format)
+- Universal Disk Format:
+<http://en.wikipedia.org/wiki/Universal_Disk_Format>
 
 
 ## Memoria USB
@@ -879,11 +1008,11 @@ requerirá posteriormente para usar la imagen.
 ### Montar imagen
 
 Esta imagen puede ser montadas (por ejemplo en `/var/postgresql`) con el
-siguiente archivo de comandos (ubíquelo por ejemplo en
+siguiente archivo de ordenes (ubíquelo por ejemplo en
 `/usr/local/sbin/montapost.sh`):
 
     #!/bin/sh
-    # Monta imagenes cifradas en OpenBSD. Dominio público. 2006.
+    # Monta imágenes cifradas en OpenBSD. Dominio público. 2006.
 
     if (test ! -d /var/postgresql) then {
         mkdir /var/postgresql
@@ -895,16 +1024,16 @@ siguiente archivo de comandos (ubíquelo por ejemplo en
 
 y recuerde otorgar permiso de ejecución del mismo:
 
-        sudo chmod +x /usr/local/sbin/montapost.sh
+        doas chmod +x /usr/local/sbin/montapost.sh
         
 
 Notará que este ejemplo es para montar una partición en la que
 funcionará una base de datos PostgreSQL, si no existiera el usuario
-`_postgresql` antes de ejecutar este archivo de comandos ejecute
+`_postgresql` antes de ejecutar este archivo de ordenes ejecute
 `chmod a+w /var/postgresql` y después de que haya instalado PostgreSQL:
 
-        sudo chown _postgresql:_postgresql /var/postgresql
-        sudo chmod o-w /var/postgresql
+        doas chown _postgresql:_postgresql /var/postgresql
+        doas chmod o-w /var/postgresql
         
 
 ### Montar en el arranque {#montar-arranque}
@@ -913,13 +1042,13 @@ Este script debe ejecutarse en el momento del arranque y antes de
 iniciar la base de datos, agregue a su archivo `/etc/rc.local` (antes de
 la inicialización de PostgreSQL):
 
-        sudo /usr/local/sbin/montapost.sh
+        doas /usr/local/sbin/montapost.sh
             
 
 De forma que en cada arranque el script le solicitará la clave antes de
 continuar.
 
-### Referencias {#referencias-imagen-cifrada}
+### Lecturas recomendadas y referencias Imagen Cifrada {#referencias-imagen-cifrada}
 
 Página `man vnconfig`.
 
@@ -932,7 +1061,7 @@ instalación. Después de instalado puede elegir otra configuración con
 `keyb la` o `keyb es`
 
 Si tiene un teclado US y desea emplear teclas muertas en la consola
-puede usar desde la línea de comandos:
+puede usar desde la línea de ordenes:
 
         doas wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
         doas wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"
@@ -975,7 +1104,7 @@ Shift+Alt izquierdo
 La tecla de composición[^tec.1] le permitirá generar un carácter empleando
 una secuencia de dos teclas. Por ejemplo si presiona la tecla de
 composición (i.e Shift+Alt izquierdo con la configuración presentada), y
-después presiona ? seguido de ? obtendrá el carácter ¿. En el apendice
+después presiona ? seguido de ? obtendrá el carácter ¿. En el apéndice
 [Caracteres que pueden generarse](#caracteres-que-pueden-generarse)
 encontrará una tabla con todas las combinaciones de teclas que pueden
 usarse con la tecla compose y con teclas muertas.

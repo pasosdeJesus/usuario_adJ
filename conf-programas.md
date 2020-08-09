@@ -1,4 +1,4 @@
-# Configuracioń y uso de algunos programas {#conf-programas}
+# Configuración y uso de algunos programas {#conf-programas}
 
 ## Escritorio y Archivos {#escritorio}
 
@@ -29,31 +29,30 @@ Entre sus características:
 
 -   Es muy liviano, requiere alrededor de 4MB en RAM.
 
--   Con Alt+\[Boton izquierdo\] permite cambiar ubicación de la ventana
-    sobre la que está el curso, y con Alt+\[Botono derecho\] el tamaño.
+-   Con Alt+\[Botón izquierdo\] permite cambiar ubicación de la ventana
+    sobre la que está el curso, y con Alt+\[Botón derecho\] el tamaño.
 
-El menú que presenta se configura en un archivo texto con una sintaxis
+-   El menú que presenta se configura en un archivo texto con una sintaxis
 sencilla, puede cambiarse editando en `~/.fluxbox/menu`.
 
-Los programas que se inician con el escritorio pueden configurarse en
+-   Los programas que se inician con el escritorio pueden configurarse en
 `~/.fluxbox/startup`. Por ejemplo en este archivo puede configurar el
 locale que usará agregando o cambiando la línea:
 
     export LANG=es_CO.UTF-8
         
+-   La apariencia en general puede configurarse en `~/.fluxbox/init`
 
-La apariencia en general puede configurarse en `~/.fluxbox/init`
+-   Puede configurar teclas rápidas en el archivo `~/.fluxbox/keys`
 
-Puede configurar teclas rápidas en el archivo `~/.fluxbox/keys`
-
-#### Lecturas recomendadas {#lecturas-conf-fluxbox}
+#### Lecturas recomendadas y referencias {#lecturas-conf-fluxbox}
 
 -   Sitio oficial [](fluxbox.org).
 
--   Página sobre fluxbox de NetBSD [](http://wiki.netbsd.org/fluxbox/)
+-   Página sobre fluxbox de NetBSD <http://wiki.netbsd.org/fluxbox/>
 
 -   Página sobre fluxbox de Gentoo
-    [](http://www.gentoo.org/doc/es/fluxbox-config.xml)
+    <http://www.gentoo.org/doc/es/fluxbox-config.xml>
 
 
 ### `xfe`
@@ -121,10 +120,6 @@ terminal con `scalc`), el creador de presentaciones `impress` (que
 inicia con `simpress` desde un terminal) y el programa para diagrama
 `draw` (que puede iniciar con `sdraw`). Puede aprender más sobre este
 procesador en [libreoffice-basico](#bibliografia)
-
-Además el DVD de adJ incluye &p-abiword; como procesador de texto capaz de
-abrir y escribir tanto en el formato de Microsoft Office como en
-OpenDocument (que es el formato de LibreOffice y OpenOffice).
 
 Para operar con hojas de cálculo incluye &p-gnumeric;, que también puede
 abrir y guardar en OpenDocument y en formatos de Microsoft Office.
@@ -221,9 +216,9 @@ Programa que convierte un archivo LaTeX a DVI.
 xdvi
 Programa para ver un archivo DVI en pantalla.
 
-El archivo DVI es apropiado para imprimir, puede imprimirlo con un
-comando como `dvilj`, `dvidj` o un nombre análogo que corresponda a su
-impresora [^lat.1]. Para visualizar un archivo DVI puede emplear el comando
+El archivo DVI es apropiado para imprimir, puede imprimirlo con una
+orden como `dvilj`, `dvidj` o un nombre análogo que corresponda a su
+impresora [^lat.1]. Para visualizar un archivo DVI puede emplear la orden
 xdvi:
 
         xdvi documento.dvi
@@ -243,11 +238,11 @@ programa `xdvi`.
 
 Existen además otros programas para convertir de LaTeX a HTML como
 latex2html y HeVeA. Puede encontrar más información de latex2html en
-[](http://ctan.tug.org/ctan/tex-archive/support/latex2html/) y de HeVeA
-en [](http://pauillac.inria.fr/hevea/).
+<http://ctan.tug.org/ctan/tex-archive/support/latex2html/> y de HeVeA
+en <http://pauillac.inria.fr/hevea/>.
 
 [^lat.1]: Si usa `ksh` puede ver una lista de posibles programas que le
-    permitan imprimir, tecleando `dvi` desde un intérprete de comandos y
+    permitan imprimir, tecleando `dvi` desde un intérprete de ordenes y
     presionando Tab dos veces.
 
 
@@ -266,7 +261,7 @@ Instale los paquetes openjade, docbook y docbook-dsssl:
 ```
 
 Esto bastará para hacer conversiones de DocBook SGML a HTML por ejemplo
-si su hoja de estílo DSSL es "marcos.dsl" y va a convertir el documento
+si su hoja de estilo DSSL es "marcos.dsl" y va a convertir el documento
 DocBook marcos.xml:
 ```
         openjade  -t sgml -ihtml -d marcos.dsl#html marcos.xml 
@@ -278,7 +273,7 @@ jadetex
 
 #### XML 4.4 con XSL {#xml-4-4-con-xsl}
 
-Cómo parte del paquete `` se instalará el DTD de DocBook XML 4.4 en el
+Como parte del paquete `` se instalará el DTD de DocBook XML 4.4 en el
 directorio `/usr/local/share/xml/docbook`. Es recomendable que cree el
 archivo `/usr/local/share/xml/catalog` inicialmente con:
 ```
@@ -424,7 +419,7 @@ puede usar `display` incluido en &p-ImageMagick;:
 ```
               
 
-Otra opción que facilita ver un directorio con imagenes es `xfi`
+Otra opción que facilita ver un directorio con imágenes es `xfi`
 incluido en el paquete &p-xfe;:
 
 ```
@@ -464,7 +459,7 @@ libre ogg, el común wav y el patentado mp3) puede usar `mplayer` (ver
  El programa `play` incluido en el paquete &p-sox; también le
 permitirá escuchar diversos formatos.
 
-Desde la línea de comandos podrá recortar, cambiar volumen y aplicar
+Desde la línea de ordenes podrá recortar, cambiar volumen y aplicar
 otros efectos empleando el programa `sox`.
 
 Si prefiere un editor gráfico que le permite recortar y aplicar algunos
@@ -485,7 +480,7 @@ Para enviar correos `mutt` corre por defecto el programa `sendmail` (por
 defecto con parámetros: `sendmail -oem -oi`), si usted prefiere o
 necesita emplear el `sendmail` de otro computador puede:
 
--   Hacer un script (digamos `/home/EUSUARIO/scripts/envia.sh`) que
+-   Hacer un script (digamos `/home/&EUSUARIO;/scripts/envia.sh`) que
     llame al `sendmail` remoto (por ejemplo con `ssh`) y le pase lo que
     recibe por entrada estándar:
 
@@ -498,7 +493,7 @@ necesita emplear el `sendmail` de otro computador puede:
             exit 2;
         } fi;
 
-        cat - | ssh EUSUARIO@ECLIENTE /usr/sbin/sendmail -oem -oi
+        cat - | ssh &EUSUARIO;@&ECLIENTE; /usr/sbin/sendmail -oem -oi
 ```
 
     Note que este script está hecho para ser ejecutado junto con el
@@ -508,11 +503,11 @@ necesita emplear el `sendmail` de otro computador puede:
     `sendmail`, la cual puede establecer en su archivo `~/.muttrc` con
     algo como:
 ```
-            set sendmail=/home/EUSUARIO/scripts/envia.sh
+            set sendmail=/home/&EUSUARIO;/scripts/envia.sh
 ```
 
 
--   Asegurese de ejecutar `mutt` junto con el agente de autenticación de
+-   Asegúrese de ejecutar `mutt` junto con el agente de autenticación de
     `ssh`. Por ejemplo con:
 ```
             ssh-agent /bin/ksh
@@ -525,7 +520,7 @@ necesita emplear el `sendmail` de otro computador puede:
     escritorio o su administrador de ventanas para que toda la sesión
     emplee el agente (ver un ejemplo en [xref](#fluxbox)).
 
-#### Lecturas recomendadas {#lecturas-mutt}
+#### Lecturas recomendadas y referencias {#lecturas-mutt}
 
 -   Página man de `mutt`
 
@@ -562,7 +557,7 @@ navegador.
 
 ### Ruby
 
-En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 5. 
+En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 6. 
 Lo básico se instala de paquetes de OpenBSD y lo más reciente de Ruby 
 directamente como gemas.
 
@@ -571,18 +566,20 @@ directamente como gemas.
 Asegúrese de tener instalados los paquetes &p-ruby; y &p-node;,
 incluidos en el DVD de adJ &VER-ADJ;
 
-Asegúrese de tener enlaces al interprete de ruby y herramientas (como
+Asegúrese de tener enlaces al intérprete de ruby y herramientas (como
 describe el paquete ruby):
 
 ```
     doas sh
-    ln -sf /usr/local/bin/ruby25 /usr/local/bin/ruby
-    ln -sf /usr/local/bin/erb25 /usr/local/bin/erb
-    ln -sf /usr/local/bin/irb25 /usr/local/bin/irb
-    ln -sf /usr/local/bin/rdoc25 /usr/local/bin/rdoc
-    ln -sf /usr/local/bin/ri25 /usr/local/bin/ri
-    ln -sf /usr/local/bin/rake25 /usr/local/bin/rake
-    ln -sf /usr/local/bin/gem25 /usr/local/bin/gem
+    ln -sf /usr/local/bin/ruby27 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb27 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb27 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc27 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri27 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake27 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem27 /usr/local/bin/gem
+    ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler27 /usr/local/bin/bundler
 ```
                   
 
@@ -630,7 +627,7 @@ administrador):
 
 ```
     # Configuración de irb
-    # Basado en archivo de comandos disponible en <http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/>
+    # Basado en archivo de ordenes disponible en <http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/>
     require 'irb/completion'
     require 'pp'
     IRB.conf[:AUTO_INDENT] = true
@@ -650,10 +647,10 @@ El paquete `ruby` incluye `rubygems` que maneja gemas (es decir
 librerías) con el programa `gem`.
 
 El directorio donde se instalan las gemas globales 
-es ```/usr/local/lib/ruby/gems/2.5/``` donde sólo pueden 
+es `/usr/local/lib/ruby/gems/2.7/` donde sólo pueden 
 instalarse con ```doas```. 
 Recomendamos iniciar un directorio para instalar gemas como usuario normal 
-en  ```/var/www/bundler/ruby/2.5```, por 3 razones (1) evitar riesgos de 
+en  ```/var/www/bundler/ruby/2.7```, por 3 razones (1) evitar riesgos de 
 seguridad al instalar gemas como root, (2) evitar problemas de permisos 
 y la dificultad de programas como bundler para usar ```doas``` en lugar 
 de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones 
@@ -662,18 +659,18 @@ corran en una jaula chroot en ```/var/www```
 Prepare ese directorio con:
 
 ```
-	doas mkdir -p /var/www/bundler/ruby/2.5/
+	doas mkdir -p /var/www/bundler/ruby/2.7/
 	doas chown -R $USER:www /var/www/bundler
 ```
 
 Y cuando requiera instalar una gema allí emplee:
 ```
-	gem install --install-dir /var/www/bundler/ruby/2.5/ json -v '2.0'
+	gem install --install-dir /var/www/bundler/ruby/2.7/ json -v '2.0'
 ```
 
 O si llega a tener problemas de permisos con:
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.5/ bcrypt -v '3.1.11'
+	doas gem install --install-dir /var/www/bundler/ruby/2.7/ bcrypt -v '3.1.11'
 ```
 
 
@@ -683,10 +680,10 @@ por ejemplo cuando actualiza el sistema operativo) con:
 ```
     doas gem update --system
     QMAKE=qmake-qt5 make=gmake MAKE=gmake doas gem pristine --all
-    for i in `ls /var/www/bundler/ruby/2.5/extensions/x86_64-openbsd/2.5/`; do
+    for i in `ls /var/www/bundler/ruby/2.6/extensions/x86_64-openbsd/2.6/`; do
         v=`echo $i | sed -e 's/.*-\([0-9.]*\)/\1/g'` ; 
         n=`echo $i | sed -e 's/\(.*\)-[0-9.]*/\1/g'` ; 
-        doas gem install --install-dir /var/www/bundler/ruby/2.5/ $n -v $v; 
+        doas gem install --install-dir /var/www/bundler/ruby/2.7/ $n -v $v; 
     done
 ```
 
@@ -703,15 +700,15 @@ Para facilitar el manejo de varias gemas (y sus interdependencias) en un
 proyecto es típico emplear ```bundler``` que instala con:
 ```
     doas gem install bundler
-    if (test -x /usr/lcoal/bin/bundle25) then { 
-       doas ln -sf /usr/local/bin/bundle25 /usr/local/bin/bundle; 
+    if (test -x /usr/local/bin/bundle27) then { 
+       doas ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle; 
     } fi
 ```
 
-Configurelo para que instale gemas localmente 
-en ```/var/www/bundler/ruby/2.5``` con:
+Configúrelo para que instale gemas localmente 
+en ```/var/www/bundler/ruby/2.7``` con:
 ```
-	bundle config path /var/www/bundler/ruby/2.5
+	bundle config path /var/www/bundler/ruby/2.7
 ```
 
 Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
@@ -720,7 +717,7 @@ depende la aplicación y genera un archivo ```Gemfile.lock``` con las
 versiones precisas por instalar de cada gema.  
 
 Una vez tenga un proyecto asegure que este emplea las gemas de 
-```/var/www/bundler/ruby/2.5``` ejecutando dentro del directorio del 
+```/var/www/bundler/ruby/2.7``` ejecutando dentro del directorio del 
 proyecto:
 
 ```
@@ -737,10 +734,10 @@ E instale con
 ```
 
 Si eventualmente no logra instalar algunas --por problemas de permisos 
-tipicamente-- puede instalar con 
+típicamente-- puede instalar con 
 
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.5 json -v '2.0'
+	doas gem install --install-dir /var/www/bundler/ruby/2.7 json -v '2.0'
 ```
 
 Cuando actualice la versión del sistema operativo al igual que con gemas 
@@ -758,14 +755,14 @@ dinámicos.
 
 Para instalarla globalmente (en `/usr/local/bin` y
 `/usr/local/lib/ruby/gems/`) la versión estable más reciente de Rails
-(5.1.2 en el momento de este escrito), ejecute
+ejecute
 
 ```
 	doas gem install rails
 ```
 
-Rails requiere en el servidor un interprete de JavaScript, por lo que
-recomendamos ```node.js``` (ver {1}) incluido en el DVD de adJ &VER-ADJ; 
+Rails requiere en el servidor un intérprete de JavaScript, por lo que
+recomendamos ```node.js``` (ver {1}) incluido en adJ &VER-ADJ; 
 y que se configurará automáticamente.
 
 La gran mayoría de gemas usadas por rails instalarán de la misma forma
@@ -773,7 +770,7 @@ que se explicó. Algunos casos especiales son:
 
 -   ```nokogiri``` que puede requerir
 ```
-        doas gem install --install-dir /var/www/bundler/ruby/2.5/ nokogiri -- --use-system-libraries 
+        doas gem install --install-dir /var/www/bundler/ruby/2.7/ nokogiri -- --use-system-libraries 
 ```
                     
 
@@ -786,15 +783,23 @@ que se explicó. Algunos casos especiales son:
 
 Si su aplicación rails emplea coffescript necesitará un programa que pueda 
 ejecutar javascript al lado del servidor, recomendamos node.js incluido en 
-adJ.  Actualice a la versión más reciente de npm con:
+adJ. Actualice a la versión más reciente de npm con:
 ``` 
 	doas npm install npm -g
 ``` 
 Instale coffeescript con:
 
 ``` 
-	Doas npm install -g coffee-script
+	doas npm install -g coffee-script
 ``` 
+##### yarn
+
+Las aplicaciones Ruby on Rails posteriores a 6.0 requieren el manejador de
+paquetes Javascript yarn. Lo puede instalar más fácil con bash y con:
+```sh
+doas pkg_add bash
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+```
 
 ##### Editor vim
 
@@ -805,13 +810,13 @@ ejecutado:
 	cd ~
 	mkdir -p .vim
 	cd .vim
-	cp -rf /usr/local/share/vim/vim74/* .
+	cp -rf /usr/local/share/vim/vim83/* .
 ``` 
 y si no tiene archivo \~/.vimrc ejecutar:
 ``` 
-	cp /usr/local/share/vim/vim74/vimrc_example.vi ~/.vimrc
+	cp /usr/local/share/vim/vim83/vimrc_example.vi ~/.vimrc
 ``` 
-asi como agregar el archivo `~/.vim/ftplugin/ruby.vim` las siguientes
+así como agregar el archivo `~/.vim/ftplugin/ruby.vim` las siguientes
 líneas:
 
 ``` 
@@ -868,7 +873,7 @@ Genere una nueva aplicación:
 ``` 
 Esto creará una nueva aplicación de ejemplo e instalará todas sus
 dependencias. Las gemas que no logre instalar por falta de permisos,
-como se explicó anteriormente instalelas con `doas gem install` y la
+como se explicó anteriormente instálelas con `doas gem install` y la
 opción `--install-dir /var/www/bundler/`
 
 Una vez haya logrado que `bundle install` se ejecute completo puede
@@ -891,13 +896,14 @@ config.ru                                           Configurar servidor web por 
 .gitignore                                          Archivos por ignorar en control de versiones
 Gemfile                                             Gemas requeridas
 Gemfile.lock                                        Versiones de las gemas requeridas
-app/assets/javascripts/application.js               Plantilla de Javascript para aplicación
+app/javascript/packs/application.js                 Plantilla de Javascript que usa módulos
 app/assets/stylesheets/application.css              Plantilla de CSS para aplicación
-app/controllers/application_controller.rb          Plantilla del controlador de la aplicación
-app/helpers/application_helper.rb                  Ayudas para construir vistas (sin lógica del modelos).
+app/controllers/application_controller.rb           Plantilla del controlador de la aplicación
+app/helpers/application_helper.rb                   Ayudas para construir vistas (sin lógica del modelos).
 app/views/layouts/application.html.erb              Plantilla por defecto para el sitio
 app/assets/                                         Datos estáticos de la página
-app/assets/images/                                  Gráficos de la aplicación (tipicamente que no se sirven estáticos)
+app/assets/images/                                  Gráficos de la aplicación (típicamente que no se sirven estáticos)
+app/assets/config/manifest.js                       Configura datos estáticos por exportar
 app/mailers/                                        Controlador para enviar correos
 app/models/                                         Modelos
 app/channel/                                        Controlador de websockets
@@ -909,6 +915,7 @@ bin/bundle                                          Maneja dependencias con el a
 bin/rails                                           Maneja posibilidades de generación y controles Rails
 bin/rake                                            Maneja tareas definidas en `Rakefile` y `lib/tasks`
 bin/setup                                           Plantilla de un configurador de la aplicación
+bin/yarn                                            Gestor de paquetes javascript
 config/routes.rb                                    Rutas
 config/application.rb                               Configura aplicación
 config/environment.rb                               Configura ambiente
@@ -917,13 +924,13 @@ config/environments/development.rb                  Configuración ambiente de d
 config/environments/production.rb                   Configuración ambiente de producción
 config/environments/test.rb                         Configuración ambiente de pruebas
 config/initializers/assets.rb                       Configura recursos
-config/initializers/backtrace_silencers.rb         Inhibe trazas de algunas librerías
-config/initializers/cookies_serializer.rb          Configura como serializar galletas
-config/initializers/filter_parameter_logging.rb   Parametros por filtrar (no dejar) en bitácoras
+config/initializers/backtrace_silencers.rb          Inhibe trazas de algunas librerías
+config/initializers/cookies_serializer.rb           Configura como serializar galletas
+config/initializers/filter_parameter_logging.rb     Parámetros por filtrar (no dejar) en bitácoras
 config/initializers/inflections.rb                  Inflecciones singular/plural
-config/initializers/mime_types.rb                  Registra tipos MIME
-config/initializers/session_store.rb               Configura donde se almacena sesión
-config/initializers/wrap_parameters.rb             Configuración para ActionController::ParamsWrapper
+config/initializers/mime_types.rb                   Registra tipos MIME
+config/initializers/session_store.rb                Configura donde se almacena sesión
+config/initializers/wrap_parameters.rb              Configuración para ActionController::ParamsWrapper
 config/locales/en.yml                               Localización en inglés
 config/boot.rb                                      Prepara rutas para encontrar gemas
 config/database.yml                                 Configuración de base de datos
@@ -932,19 +939,21 @@ db/seeds.rb                                         Datos iniciales para base de
 lib/tasks/                                          Tareas para `rake`
 lib/assets/                                         "Activos" comunes para librerías
 log/                                                Bitácoras
+package.json                                        Paquetes javascript requeridos
 public                                              Archivos estáticos
 public/404.html                                     Mensaje por defecto para páginas no encontradas
 public/422.html                                     Mensaje por defecto para rechazar cambios
 public/500.html                                     Mensaje por defecto cuando ocurren errores en servidor
 public/favicon.ico                                  Icono
 public/robots.txt                                   Puede evitar indexación por parte de motores de búsqueda
+storage/
 test/fixtures                                       Datos para pruebas
 test/controllers                                    Pruebas a controladores
 test/mailers                                        Pruebas a controladores de envio de correo
 test/models                                         Pruebas a modelos
 test/helpers                                        Pruebas a funciones para ayudar a construir vistas
 test/integration                                    Pruebas de integración
-test/test_helper.rb                                Pruebas funciones auxiliares
+test/test_helper.rb                                 Pruebas funciones auxiliares
 tmp/                                                Temporales y cache
 vendor/assets/javascripts                           Fuentes Javascript para código de terceros
 vendor/assets/stylesheets                           Hojas de estilo para código de terceros
@@ -998,8 +1007,8 @@ Archivo/Directorio                                    Descripción
 
 Por convención de Ruby on Rails:
 
--   Las fuentes del módelo quedan en `app/models/departamento.rb`
--   El nombre de la tabla será la forma plural del nombre del módelo
+-   Las fuentes del modelo quedan en `app/models/departamento.rb`
+-   El nombre de la tabla será la forma plural del nombre del modelo
     (e.g ```departamentos```)
 -   La tabla incluirá automáticamente un campo id de tipo entero que se
     autoincrementa
@@ -1064,7 +1073,7 @@ tenga diseñado en `app/views/layouts/application.html.erb`.
 ##### Interacción con la base de datos
 
 Puede examinar la tabla creada e interactuar con la base de datos con la
-interfaz texto de SQLite como se ejemplifca a continuación:
+interfaz texto de SQLite como se ejemplifica a continuación:
 ```             
     $ rails dbconsole
     sqlite> .schema
@@ -1079,7 +1088,7 @@ interfaz texto de SQLite como se ejemplifca a continuación:
 
 Se recomienda emplear UTF8 como codificación de PostgreSQL (si emplea
 otra codificación convierta sacando un respaldo eliminando la base,
-volviendola a crear con `-E UTF8` y restaurando los datos).
+volviéndola a crear con `-E UTF8` y restaurando los datos).
 
 -   Arregle la aplicación recién creada para que emplee PostgreSQL,
     modificando parámetros de base de datos en
@@ -1111,7 +1120,7 @@ volviendola a crear con `-E UTF8` y restaurando los datos).
                     
 
 -   A manera de prueba de su configuración intente ingresar a un
-    interprete de comandos para su base de datos con:
+    intérprete de ordenes para su base de datos con:
 ```
         rails dbconsole
 ```                    
@@ -1140,7 +1149,7 @@ volviendola a crear con `-E UTF8` y restaurando los datos).
         rake db:structure:dump
 ```                    
 
--   Genere clases (módelos) en blanco en el directorio ```app/models```
+-   Genere clases (modelos) en blanco en el directorio ```app/models```
     para cada una de las tablas de su aplicación, por ejemplo para la
     tabla ```mitabla``` :
 ```
@@ -1162,7 +1171,7 @@ volviendola a crear con `-E UTF8` y restaurando los datos).
 
 -   Si desea ayuda en la generación de controladores y vistas para sus
     tablas, instale `doas gem install `schema_to_scaffold``, 
-    genere (puede ser momentaneamente) el archivo `db/schema.rb`
+    genere (puede ser momentáneamente) el archivo `db/schema.rb`
     con
 ```
 	rake db:schema:dump
@@ -1266,7 +1275,7 @@ depurar:
     gem install byebug
 ```
 -   Para activar el depurador en sitios en producción debe además
-    inicar el servidor web con
+    iniciar el servidor web con
 ```
     rails s --debugger
 ```
@@ -1279,7 +1288,7 @@ depurar:
 Ruby también ofrece facilidades para medir tiempos como se resume en
 {4}.
 
-#### Referencias
+#### Lecturas recomendadas y referencias
 
 -   {1}
     http://guides.rubyonrails.org/getting_started.html

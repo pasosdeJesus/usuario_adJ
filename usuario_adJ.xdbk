@@ -10,6 +10,7 @@
 <!ENTITY introduccion SYSTEM "introduccion.xdbk">
 <!ENTITY instalacion SYSTEM "instalacion.xdbk">
 <!ENTITY paquetesyportes SYSTEM "paquetesyportes.xdbk">
+<!ENTITY interprete-de-ordenes SYSTEM "interprete-de-ordenes.xdbk">
 <!ENTITY conf-basicos SYSTEM "conf-basicos.xdbk">
 <!ENTITY conf-programas SYSTEM "conf-programas.xdbk">
 <!ENTITY conf-dispositivos SYSTEM "conf-dispositivos.xdbk">
@@ -53,8 +54,8 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
 	envíen correcciones y sugerencias al autor.  Este escrito se 
 	dedica a Dios: 'Grandes y Maravillosas son Tus Obras'.</para>
       <para>Expresamos agradecimiento especiales por las correcciones
-	      de Jaime Carvajal, Hernan Quishpe y los aportes de 
-          Christian Llanos (christian.sanchez@gmail.com) 
+	      de Jaime Carvajal, Hernan Quishpe, Luis Alejandro Cruz y 
+	      los aportes de Christian Llanos (christian.sanchez@gmail.com) 
           y Alvaron Pinzón.</para>
   <para>
 	La versión publicada más reciente está tanto
@@ -74,6 +75,7 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
 
   &introduccion;
   &instalacion;
+  &interprete-de-ordenes;
   &paquetesyportes;
   &conf-basicos;
   &conf-programas;
