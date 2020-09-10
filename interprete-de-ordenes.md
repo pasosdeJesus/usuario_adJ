@@ -248,8 +248,8 @@ los cuales un usuario pertenece son mostrados por el programa `groups`.
 -   La jerarquía de directorios, los archivos y los permisos se
     organizan en las particiones de un disco duro o en un disquete
     empleando un sistema de archivo. Puede conocer algo más sobre el
-    tema en la guía [Administración de
-    archivos](#administracion-de-archivos) o con `man fs`.
+    tema en [Administración de archivos](#administracion-de-archivos) 
+    o con `man fs`.
 
 -   Como complemento a esta lectura, puede consultar varias secciones de
     la documentación de fileutils con `info

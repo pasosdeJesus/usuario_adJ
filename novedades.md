@@ -1,3 +1,7 @@
+Versión 6.7
+
+:   - Reestructura [xref](#imagen-cifrada) con nueva [xref](#imagen-cifrada-con-softraid)
+
 Versión 6.6
 
 :   - Ampliada [xref](#discos-duros) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/dispositivos-y-linux.html#discos-duros>

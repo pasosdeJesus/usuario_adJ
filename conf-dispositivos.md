@@ -985,12 +985,195 @@ Para emplear una memoria USB después de conectarse debe:
             doas umount /mnt/usb
                 
 
-## Imagen cifrada
+## Imagen cifrada {#imagen-cifrada}
 
 Es posible tener particiones cifradas, estas requieren que se ingrese
 una clave antes de montarlas ---por ejemplo en el momento del arranque.
 
-### Creación de la imagen {#crear-imagen}
+Las dos formas de configurarlas son con softraid y con vnconfig.
+Tuvimos muy buena experiencia con vnconfig desde OpenBSD 3.6, pero 
+a partir de OpenBSD 6.6 empezamos a experimentar bloqueos extraños
+en algunos computadores (si responía ping pero no ssh) que dejaban
+de presentarse cuando no se usaba vnconfig.  No todos los computadores
+con vnconfig presentaron ese inconveniente. El problema podría relacionarse
+con: <https://marc.info/?l=openbsd-bugs&m=159181442320329&w=2>
+ 
+### Método 1: Imagen cifrada con softraid {#imagen-cifrada-con-softraid}
+
+Esté método requiere más planeación en el momento de la instalación
+porque por cada imagen cifrada se requiere una subparticíon o etiqueta.
+
+#### Prepare una subpartición tipo RAID para la partición cifrada
+
+Supongamos que requiere una imagen cifrada de 2.2 gigas.
+
+Examine un disco donde la partición de OpenBSD tenga espacio extra,
+algo como:
+```
+$ doas disklabel -E /dev/sd0c
+/dev/sd0c> p
+OpenBSD area: 409601660-1953525135; size: 1543923475; free: 10000015
+#                size           offset  fstype [fsize bsize   cpg]
+  a:        799999940        409601660  4.2BSD   4096 32768 26062 # /home
+  c:       1953525168                0  unused                    
+  d:        140000000       1209601600  4.2BSD   2048 16384 12958 # /compila
+  e:        150000000       1359601600  4.2BSD   2048 16384 12958 # /usr/local
+  f:        443923520       1509601600  4.2BSD   4096 32768 26062 # /var
+  i:        409599610             2048  ext2fs                    
+```
+
+En este ejemplo vemos que el área para OpenBSD está entre los sectores
+409'601.660 y 1953'525.135 y poniendo en otra notación las subparticiones (
+calculando el final de cada subpartición como desplazamiento más tamaño menos
+uno) podemos ver que si hay espacio disponible:
+
+| etiqueta | inicio | fin |
+|--|--|--|
+| a | 409'601.660 | 1209'601.599 |
+| d | 1209'601.600 | 1349'601.599 |
+| e | 1359'601.600 | 1509'601.599 |
+| f | 1509'601.600 | 1953'525.119 | 
+
+Hay espacio disponible entre los sectores 1349'601.600 y 1359'601.599,
+es decir 10'000.000 disponibles.
+
+Agregue en el espacio disponible una subpartición nueva tipo RAID, por ejemplo:
+```
+/dev/sd0c> a g
+offset: [1349601600] 
+size: [10000000] 5000000
+FS type: [4.2BSD] RAID
+/dev/sd0c*> w
+/dev/sd0c> q
+```
+
+#### Presentar la subpartición como un nuevo volumen cifrado
+
+Asocie al dispositivo con tipo RAID (en el ejemplo `sd0g`) un volumen 
+softraid con disciplina cifrada usando `bioctl`:
+``` 
+$ doas /sbin/bioctl -c C -l /dev/sd0g softraid0
+New passphrase:
+Re-type passphrase: 
+softraid0: CRYPTO volume attached as sd2
+```
+La contraseña que suministre debe suminitrarla igual cada vez que vuelva
+a asociar el dispositivo con el volumen softraid.
+
+Ahora es tiempo de inicializar ese volumen softraid como si fuera un nuevo 
+dispositivo, primero limpie el comienzo:
+
+```
+doas dd if=/dev/zero of=/dev/sd2c count=1024 bs=1024
+1024+0 records in
+1024+0 records out
+1048576 bytes transferred in 0.101 secs (10302430 bytes/sec)
+```
+
+Después subparticionando como se requiera, debe bastar una sola 
+subpartición o etiqueta (note que en el siguiente ejemplo se ajusta el 
+límite del área de OpenBSD para que coincida con el tamaño del 
+dispositivo RAID y por precaución no se usan los primeros 64 bloques 
+y tras intentos y errores se determina que no se debe usar los últimos
+512):
+```
+$ doas disklabel -E sd2
+Label editor (enter '?' for help at any prompt)
+sd2> p
+OpenBSD area: 0-9999472; size: 9999472; free: 9999472
+#                size           offset  fstype [fsize bsize   cpg]
+  c:          9999472                0  unused                    
+sd2> b
+Starting sector: [0] 
+Size ('*' for entire disk): [9999472] 4999999
+sd2*> p
+OpenBSD area: 0-4999999; size: 4999999; free: 4999999
+#                size           offset  fstype [fsize bsize   cpg]
+  c:          9999472                0  unused                    
+sd2*> w
+sd2> a a
+offset: [0] 64
+size: [4999935] 4999423
+FS type: [4.2BSD] 
+sd2*> w
+sd2> q
+No label changes.
+```
+
+Después puede formatear la subpartición que creó:
+```
+$ doas newfs /dev/rsd2a
+/dev/rsd2a: 2441.1MB in 4999392 sectors of 512 bytes
+13 cylinder groups of 202.47MB, 12958 blocks, 25984 inodes each
+super-block backups (for fsck -b #) at:
+ 32, 414688, 829344, 1244000, 1658656, 2073312, 2487968, 2902624, 3317280, 3731936, 4146592, 4561248, 4975904,
+```
+
+Y usarla:
+```
+$ doas fsck -y /dev/rsd2a
+** /dev/rsd2a
+** File system is clean; not checking
+$ doas mkdir /mnt/tmp       
+$ doas mount /dev/sd2a /mnt/tmp/
+$ df -h
+Filesystem     Size    Used   Avail Capacity  Mounted on
+...
+/dev/sd2a      2.3G    2.0K    2.2G     0%    /mnt/tmp
+
+```
+
+#### Montar el volumen cifrado en cada arranque
+
+Note que el volumen softraid es `sd2` pero para evitar que se confunda 
+con otros dispositivo (por ejemplo al insertar una USB) es recomendable
+utilizar el UUID en lugar de ese nombre de dispositivo.
+
+Puede revisar el UUID asignado con `sysctl hw.disknames`, por ejemplo:
+```
+$ sysctl hw.disknames
+hw.disknames=sd0:3c9be252c1607a88,sd1:b0dc1d64ba942c13,vnd2:953c2509f76c14eb,sd2:235a066b691f538c,sd3:d60a4c86bc6a923c
+```
+muestra que en lugar de `sd0` puede usar el UUID `3c9be252c1607a88` y
+en lugar  de `sd2` puede emplear el UUID `235a066b691f538c`.
+
+Esos UUID los puede usar en un script de arranque, digamos `/etc/rc.d/srpos`
+pensando en poner base PostgreSQL allí:
+```
+#!/bin/sh
+
+servicio="/sbin/mount"
+
+. /etc/rc.d/rc.subr
+
+rc_check() {
+        /sbin/mount | grep "/var/postgresql" > /dev/null
+}
+
+rc_stop() {
+        umount /var/postgresql
+        bioctl -d 235a066b691f538c
+}
+
+rc_start() {
+        disklabel 3c9be252c1607a88 | grep RAID
+        if (test "$?" = "0") then {
+                /sbin/bioctl -c C -l 3c9be252c1607a88.g softraid0
+                echo " " > /dev/tty
+                /sbin/fsck_ffs -y 235a066b691f538c.a
+                /sbin/mount 235a066b691f538c.a /var/postgresql
+        } fi;
+}
+
+rc_cmd $1
+```
+
+Aún si fuese a configurar varios volumes softraid cifrados, con `bioctl`
+siempre debe usar `softraid0`
+
+
+### Método 2: Imagen cifrada con vnconfig {#imagen-cifrada-con-vnconfig}
+#### Creación de la imagen {#crear-imagen}
 
 Para crear una imagen de aprox. 500MB en el archivo `/var/post.img`
 puede usar:
@@ -1005,7 +1188,7 @@ puede usar:
 La clave que ingrese tras `vnconfig -ckv vnd0 /var/post.img`, la
 requerirá posteriormente para usar la imagen.
 
-### Montar imagen
+#### Montar imagen
 
 Esta imagen puede ser montadas (por ejemplo en `/var/postgresql`) con el
 siguiente archivo de ordenes (ubíquelo por ejemplo en
@@ -1036,7 +1219,7 @@ funcionará una base de datos PostgreSQL, si no existiera el usuario
         doas chmod o-w /var/postgresql
         
 
-### Montar en el arranque {#montar-arranque}
+#### Montar en el arranque {#montar-arranque}
 
 Este script debe ejecutarse en el momento del arranque y antes de
 iniciar la base de datos, agregue a su archivo `/etc/rc.local` (antes de
