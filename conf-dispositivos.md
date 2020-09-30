@@ -987,21 +987,23 @@ Para emplear una memoria USB después de conectarse debe:
 
 ## Imagen cifrada {#imagen-cifrada}
 
-Es posible tener particiones cifradas, estas requieren que se ingrese
+Es posible tener particiones cifradas que que exigen 
 una clave antes de montarlas ---por ejemplo en el momento del arranque.
 
 Las dos formas de configurarlas son con softraid y con vnconfig.
+
 Tuvimos muy buena experiencia con vnconfig desde OpenBSD 3.6, pero 
 a partir de OpenBSD 6.6 empezamos a experimentar bloqueos extraños
-en algunos computadores (si responía ping pero no ssh) que dejaban
-de presentarse cuando no se usaba vnconfig.  No todos los computadores
-con vnconfig presentaron ese inconveniente. El problema podría relacionarse
-con: <https://marc.info/?l=openbsd-bugs&m=159181442320329&w=2>
+en algunos computadores (si respondía ping pero no ssh ni ordenes en 
+terminal) que dejaban de presentarse cuando no se usaba vnconfig.
+No todos los computadores con vnconfig presentaron ese inconveniente. 
+El problema podría relacionarse con: 
+<https://marc.info/?l=openbsd-bugs&m=159181442320329&w=2>
  
 ### Método 1: Imagen cifrada con softraid {#imagen-cifrada-con-softraid}
 
 Esté método requiere más planeación en el momento de la instalación
-porque por cada imagen cifrada se requiere una subparticíon o etiqueta.
+porque por cada imagen cifrada se requiere una subpartición o etiqueta.
 
 #### Prepare una subpartición tipo RAID para la partición cifrada
 
