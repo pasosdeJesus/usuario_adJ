@@ -13,7 +13,7 @@ TITLE="Configuración y uso de algunos programas"
 HREF="x1169.htm"><LINK
 REL="NEXT"
 TITLE="Instalaciones duales"
-HREF="x2998.htm"></HEAD
+HREF="x2999.htm"></HEAD
 ><BODY
 CLASS="section"
 BGCOLOR="#FFFFFF"
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="x2998.htm"
+HREF="x2999.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
@@ -2561,18 +2561,19 @@ NAME="AEN2830"
 >Imagen cifrada</A
 ></H2
 ><P
->&#13;      Es posible tener particiones cifradas, estas requieren que se
-      ingrese una clave antes de montarlas —por ejemplo en el momento
-      del arranque.
+>&#13;      Es posible tener particiones cifradas que que exigen una clave
+      antes de montarlas —por ejemplo en el momento del arranque.
     </P
 ><P
 >&#13;      Las dos formas de configurarlas son con softraid y con vnconfig.
-      Tuvimos muy buena experiencia con vnconfig desde OpenBSD 3.6, pero
+    </P
+><P
+>&#13;      Tuvimos muy buena experiencia con vnconfig desde OpenBSD 3.6, pero
       a partir de OpenBSD 6.6 empezamos a experimentar bloqueos extraños
-      en algunos computadores (si responía ping pero no ssh) que dejaban
-      de presentarse cuando no se usaba vnconfig. No todos los
-      computadores con vnconfig presentaron ese inconveniente. El
-      problema podría relacionarse con:
+      en algunos computadores (si respondía ping pero no ssh ni ordenes
+      en terminal) que dejaban de presentarse cuando no se usaba
+      vnconfig. No todos los computadores con vnconfig presentaron ese
+      inconveniente. El problema podría relacionarse con:
       https://marc.info/?l=openbsd-bugs&#38;m=159181442320329&#38;w=2
     </P
 ><DIV
@@ -2580,20 +2581,20 @@ CLASS="section"
 ><H3
 CLASS="section"
 ><A
-NAME="AEN2835"
+NAME="AEN2836"
 >Método 1: Imagen cifrada con softraid</A
 ></H3
 ><P
 >&#13;        Esté método requiere más planeación en el momento de la
         instalación porque por cada imagen cifrada se requiere una
-        subparticíon o etiqueta.
+        subpartición o etiqueta.
       </P
 ><DIV
 CLASS="section"
 ><H4
 CLASS="section"
 ><A
-NAME="AEN2838"
+NAME="AEN2839"
 >Prepare una subpartición tipo RAID para la partición
         cifrada</A
 ></H4
@@ -2629,7 +2630,7 @@ CLASS="informaltable"
 ><P
 ></P
 ><A
-NAME="AEN2844"
+NAME="AEN2845"
 ></A
 ><TABLE
 BORDER="1"
@@ -2726,7 +2727,7 @@ CLASS="section"
 ><H4
 CLASS="section"
 ><A
-NAME="AEN2874"
+NAME="AEN2875"
 >Presentar la subpartición como un nuevo volumen
         cifrado</A
 ></H4
@@ -2827,7 +2828,7 @@ CLASS="section"
 ><H4
 CLASS="section"
 ><A
-NAME="AEN2889"
+NAME="AEN2890"
 >Montar el volumen cifrado en cada arranque</A
 ></H4
 ><P
@@ -2924,7 +2925,7 @@ CLASS="section"
 ><H3
 CLASS="section"
 ><A
-NAME="AEN2907"
+NAME="AEN2908"
 >Método 2: Imagen cifrada con vnconfig</A
 ></H3
 ><DIV
@@ -2932,7 +2933,7 @@ CLASS="section"
 ><H4
 CLASS="section"
 ><A
-NAME="AEN2909"
+NAME="AEN2910"
 >Creación de la imagen</A
 ></H4
 ><P
@@ -2964,7 +2965,7 @@ CLASS="section"
 ><H4
 CLASS="section"
 ><A
-NAME="AEN2916"
+NAME="AEN2917"
 >Montar imagen</A
 ></H4
 ><P
@@ -3026,7 +3027,7 @@ CLASS="section"
 ><H4
 CLASS="section"
 ><A
-NAME="AEN2928"
+NAME="AEN2929"
 >Montar en el arranque</A
 ></H4
 ><P
@@ -3054,7 +3055,7 @@ CLASS="section"
 ><H3
 CLASS="section"
 ><A
-NAME="AEN2934"
+NAME="AEN2935"
 >Lecturas recomendadas y referencias Imagen Cifrada</A
 ></H3
 ><P
@@ -3070,7 +3071,7 @@ CLASS="section"
 ><H2
 CLASS="section"
 ><A
-NAME="AEN2938"
+NAME="AEN2939"
 >Teclado en español</A
 ></H2
 ><DIV
@@ -3078,7 +3079,7 @@ CLASS="section"
 ><H3
 CLASS="section"
 ><A
-NAME="AEN2940"
+NAME="AEN2941"
 >En las consolas tipo texto</A
 ></H3
 ><P
@@ -3173,8 +3174,8 @@ CLASS="variablelist"
 ></DIV
 ><P
 >&#13;        La tecla de composición<A
-NAME="AEN2977"
-HREF="#FTN.AEN2977"
+NAME="AEN2978"
+HREF="#FTN.AEN2978"
 ><SPAN
 CLASS="footnote"
 >[8]</SPAN
@@ -3185,7 +3186,7 @@ CLASS="footnote"
         presentada), y después presiona ? seguido de ? obtendrá el
         carácter ¿. En el apéndice
         <A
-HREF="a3393.htm"
+HREF="a3394.htm"
 >Caracteres que
         pueden generarse</A
 > encontrará una tabla con todas las
@@ -3198,7 +3199,7 @@ CLASS="section"
 ><H3
 CLASS="section"
 ><A
-NAME="AEN2981"
+NAME="AEN2982"
 >X-Window</A
 ></H3
 ><P
@@ -3470,8 +3471,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2977"
-HREF="x2213.htm#AEN2977"
+NAME="FTN.AEN2978"
+HREF="x2213.htm#AEN2978"
 ><SPAN
 CLASS="footnote"
 >[8]</SPAN
@@ -3528,7 +3529,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="x2998.htm"
+HREF="x2999.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
