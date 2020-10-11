@@ -581,7 +581,7 @@ describe el paquete ruby):
     ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle
     ln -sf /usr/local/bin/bundler27 /usr/local/bin/bundler
 ```
-                  
+
 
 ##### Límites amplios
 
@@ -673,22 +673,8 @@ O si llega a tener problemas de permisos con:
 	doas gem install --install-dir /var/www/bundler/ruby/2.7/ bcrypt -v '3.1.11'
 ```
 
-
-Puede actualizar a la versión más reciente las gemas globales (necesario 
-por ejemplo cuando actualiza el sistema operativo) con:
-
-```
-    doas gem update --system
-    QMAKE=qmake-qt5 make=gmake MAKE=gmake doas gem pristine --all
-    for i in `ls /var/www/bundler/ruby/2.6/extensions/x86_64-openbsd/2.6/`; do
-        v=`echo $i | sed -e 's/.*-\([0-9.]*\)/\1/g'` ; 
-        n=`echo $i | sed -e 's/\(.*\)-[0-9.]*/\1/g'` ; 
-        doas gem install --install-dir /var/www/bundler/ruby/2.7/ $n -v $v; 
-    done
-```
-
 Para facilitar compilación de algunas extensiones (como las de nokogiri) se 
-recomienda instalar globalmente:
+recomienda instalar  `pkg-config` globalmente:
 
 ```
 	doas gem install pkg-config 
@@ -706,12 +692,21 @@ proyecto es típico emplear ```bundler``` que instala con:
 ```
 
 Configúrelo para que instale gemas localmente 
-en ```/var/www/bundler/ruby/2.7``` con:
+en `/var/www/bundler/ruby/2.7` con:
+
 ```
-	bundle config path /var/www/bundler/ruby/2.7
+  bundle config path /var/www/bundler/
 ```
 
-Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
+Esto creará el directorio `~/.bundler/` y dentro de este el archivo
+`~/bundle/config` con el siguiente contenido:
+
+```
+---
+BUNDLE_PATH: "/var/www/bundler/"
+```
+
+Puede experimentar descargando un proyecto para ruby ya hechos, seguramente 
 verá un archivo ```Gemfile```, donde ```bundler``` examina de que librerías 
 depende la aplicación y genera un archivo ```Gemfile.lock``` con las 
 versiones precisas por instalar de cada gema.  
@@ -746,6 +741,10 @@ es importante reinstalar las gemas de las que depende una aplicación
 con versiones de bundler posteriores a la 1.15.4:
 ```
 	bundle pristine
+```
+y después instalando una a una las gemas que sean extensiones con
+```
+	doas gem install --install-dir /var/www/bundler/ruby/2.7 nokogiri -v '2.0'
 ```
 
 ##### Rails
