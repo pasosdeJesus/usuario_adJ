@@ -706,7 +706,7 @@ Esto creará el directorio `~/.bundler/` y dentro de este el archivo
 BUNDLE_PATH: "/var/www/bundler/"
 ```
 
-Puede experimentar descargando un proyecto para ruby ya hechos, seguramente 
+Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
 verá un archivo ```Gemfile```, donde ```bundler``` examina de que librerías 
 depende la aplicación y genera un archivo ```Gemfile.lock``` con las 
 versiones precisas por instalar de cada gema.  
@@ -742,7 +742,7 @@ con versiones de bundler posteriores a la 1.15.4:
 ```
 	bundle pristine
 ```
-y después instalando una a una las gemas que sean extensiones con
+y después instalando una a una las gemas que sean extensiones, por ejemplo
 ```
 	doas gem install --install-dir /var/www/bundler/ruby/2.7 nokogiri -v '2.0'
 ```
@@ -795,10 +795,25 @@ Instale coffeescript con:
 
 Las aplicaciones Ruby on Rails posteriores a 6.0 requieren el manejador de
 paquetes Javascript yarn. Lo puede instalar más fácil con bash y con:
+
 ```sh
 doas pkg_add bash
 curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 ```
+
+Si durante la ejecución de yarn ve fallas del estilo:
+
+```
+/tmp/yarn--1602506143839-0.91595986516731/node[3]:
+/tmp/yarn--1602506143839-0.91595986516731/../node: not found
+```
+que hemos visto por ejemplo con @fortawesome/fontawesome-free,
+se recomienda enlazar el binario de node en /tmp:
+
+```
+doas ln -s /usr/local/bin/node /tmp/
+```
+
 
 ##### Editor vim
 
