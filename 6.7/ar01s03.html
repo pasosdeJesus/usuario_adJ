@@ -1,1358 +1,1589 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>3. Configuración y uso de algunos dispositivos y servicios</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="conf-programas.html" title="4. Configuración y uso de algunos programas"><link rel="next" href="duales.html" title="5. Instalaciones duales"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">3. Configuración y uso de algunos dispositivos y servicios</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="conf-programas.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr></table><hr></div><div class="section" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="idp2813120256"></a>3. Configuración y uso de algunos dispositivos y servicios</h2></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp1232167424"></a>3.1. Reconocimiento de hardware durante el arranque</h3></div></div></div><p>
-      Durante el arranque el kernel detecta hardware usando diversos
-      controladores en cierto orden. El orden y los controladores que se
-      usen dependen de la configuración que se haya dado al kernel al
-      compilarlo. El orden típico configurado en el kernel genérico es:
-    </p><div class="itemizedlist"><ul type="disc"><li><p>
-          Procesador, Memoria, BIOS
-        </p></li><li><p>
-          Discos duros, CDROM y unidades de disquete
-        </p></li><li><p>
-          Buses, Teclado, Dispositivos ISA
-        </p></li><li><p>
-          Puertos paralelos y seriales
-        </p></li><li><p>
-          Dispositivos ISA plug and play
-        </p></li></ul></div><p>
-      La configuración de la mayoría de estos dispositivos puede ser
-      determinada por el controlador, pero con algunos dispositivos (e.g
-      ISA, ciertos teclados) el kernel incluye valores predeterminados
-      que en algunos casos pueden no corresponder al hardware o que por
-      la forma de detectar congelan el sistema completo. En tal caso,
-      determine los recursos que el dispositivo tiene configurados con
-      jumpers o con software (e.g IRQ, dirección de entrada salida base,
-      DMA) y modifique los valores que emplea el kernel de una de estas
-      formas (en un caso extremo puede tener que deshabilitar el
-      dispositivo):
-    </p><div class="itemizedlist"><ul type="disc"><li><p>
-          Arranque con
-          <span class="strong"><strong><code class="literal">boot -c</code></strong></span>
-          y cambie parámetros usados por los controladores antes de
-          continuar con la detección automática de hardware. El cambio
-          sólo durará mientras no reinicie el sistema, puede hacer el
-          cambio durable por ejemplo con la orden:
-          <span class="strong"><strong><code class="literal">config -u</code></strong></span>.
-        </p></li><li><p>
-          Después de que su sistema haya iniciado modifique los recursos
-          asignados por defecto del kernel con
-          <span class="strong"><strong><code class="literal">config -e -o /bsd.new /bsd</code></strong></span>
-        </p></li><li><p>
-          Recompile el kernel con una configuración apropiada.
-        </p></li></ul></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp935699456"></a>3.1.1. Modificación antes de arrancar</h4></div></div></div><p>
-        Al arrancar, cuando esté en el prompt
-        <code class="literal">boot&gt;</code>, inicie con:
-      </p><pre class="programlisting">
-        boot&gt; boot -c
-      
-</pre><p>
-        Así entrará a un entorno interactivo, que le permite cambiar la
-        asignación de recursos predeterminada para algunos dispositivos.
-        Por ejemplo si tiene una tarjeta de red compatible NE2000 con
-        dirección base 0x300 e IRQ 3, el controlador
-        <code class="literal">ne</code> la asignará la interfaz
-        <code class="literal">ne1</code> que por defecto usa la dirección base
-        0x300 pero la IRQ 10. Desde el prompt que
-        <code class="literal">boot -c</code> produce ingrese:
-      </p><pre class="programlisting">
-        UKC&gt; change ne1
-      
-</pre><p>
-        puede ver otras ordenes disponibles con la orden
-        <code class="literal">help</code>. Una vez complete la configuración salga
-        del entorno interactivo con <code class="literal">quit</code>, tras esto
-        el kernel continuará la detección pero usando los cambios que
-        haya hecho.
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>3. Configuración y uso de algunos programas</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="configuracion-de-componentes-basicos.html" title="3. Configuración y uso de programas y servicios básicos"><link rel="next" href="ar01s04.html" title="4. Configuración y uso de algunos dispositivos y servicios"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">3. Configuración y uso de algunos programas</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ar01s04.html">Siguiente</a></td></tr></table><hr></div><div class="section" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="idm1568630784"></a>3. Configuración y uso de algunos programas</h2></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idm1419227648"></a>3.1. Escritorio y Archivos</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm1135462784"></a>3.1.1. FluxBox</h4></div></div></div><p>
+        La operación básica de este liviano y estético administrador de
+        ventanas se describe en
+        <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>, aquí describimos
+        algunos detalles de configuración.
       </p><p>
-        Una vez haya configurado los recursos que un controlador emplea
-        para que correspondan a los de un dispositivo y que su sistema
-        esté operando, puede hacer el cambio permanente usando:
+        Para emplearlo como administrador de ventanas por defecto debe
+        modificarse <code class="literal">~/.xsession</code>, así como en
+        <code class="literal">~/.xinitrc</code> y agregar al final:
       </p><pre class="programlisting">
-    doas config -e -o /bsd.ne1 -u /bsd
-      
+    if (test -x /usr/local/bin/startfluxbox) then {
+        /usr/local/bin/startfluxbox
+    } fi; 
 </pre><p>
-        que le permitirá al mismo entorno interactivo, que procurará
-        detectar los cambios que usted haya podido hacer durante el
-        arranque, le permitirá completarlos y cuando salga (con
-        <code class="literal">quit</code>) escribirá un nuevo kernel
-        <code class="literal">/bsd.ne1</code> con la misma configuración de
-        <code class="literal">/bsd</code> pero con sus cambios aplicados.
+        Una vez en operación podrá realizar diversas configuraciones
+        oprimiendo el botón derecho sobre el escritorio en el menú
+        <code class="literal">fluxbox menu</code>. Por ejemplo podrá cambiar
+        estilos en <code class="literal">System Styles</code> y esconder/mostrar
+        la barra de herramientas con
+        <code class="literal">Configure -&gt; Toolbar -&gt; Visible</code> FluxBox
       </p><p>
-        Si no logra configurar algún dispositivo y esto hace que el
-        sistema completo se congele durante el arranque, puede requerir
-        deshabilitar el dispositivo (situación que es muy inusual).
-      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp1795279744"></a>3.1.2. Lecturas recomendadas y referencias
-      (hardware-arranque)</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
-            Página del manual unix de autoconf8.
-            <code class="literal">autoconf</code> determina el orden y los
-            controladores que se usan para la detección automática de
-            hardware.
-          </p></li><li><p>
-            Página del manual unix de boot_config y de 8 donde se
-            describen las ordenes aceptados por el entorno interactivo
-            de configuración de dispositivos.
-          </p></li><li><p>
-            Puede encontrar más sobre la secuencia de arranque de
-            OpenBSD por ejemplo en
-            <a href="">http://dhobsd.pasosdeJesus.org/pres21abr2005/</a>
-          </p></li></ul></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp1795282176"></a>3.2. Impresión</h3></div></div></div><p>
-      Para atender trabajos de impresión hay disponibles para Unix
-      varios sistemas: lpd, LPRng, CUPS, QPD. El más popular y el
-      incluido en la distribución básica de OpenBSD es
-      <code class="literal">lpd</code> que además de poder llevar cuentas de cada
-      usuario, permite a varios computadores en red compartir una misma
-      impresora.
-    </p><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp2236671872"></a>3.2.1. Uso de una impresora ya configurada</h4></div></div></div><p>
-        Aun cuando algunos programas ofrecen menús con una opción para
-        imprimir, prácticamente todos usan en últimas el programa
-        <code class="literal">lpr</code> (o <code class="literal">/usr/local/bin/lpr</code>
-        si está usando CUPS) que se encarga de poner la información que
-        debe enviarse a la impresora en una cola de trabajos pendientes
-        <sup>[<a name="idp1238451328" href="#ftn.idp1238451328">12</a>]</sup>, que es atendida automáticamente (i.e de ella se
-        envían trabajos pendientes cuando la impresora está disponible)
-        por un programa.
+        <span class="inlinemediaobject"><img src="img/fluxbox-xfig.png"></span>
       </p><p>
-        Cada impresora configurada tiene un nombre, la impresora por
-        defecto se llama <code class="literal">lp</code> <sup>[<a name="idm16761472" href="#ftn.idm16761472">13</a>]</sup>.
-      </p><p>
-        Posiblemente su sistema esté configurado para permitir a
-        <code class="literal">lpr</code> la impresión de textos planos y
-        documentos PostScript o PDF. Para programar la impresión de un
-        texto plano con nombre <code class="literal">tarea.txt</code> en la
-        impresora por defecto, puede emplear:
-      </p><pre class="programlisting">
-      lpr tarea.txt
-    
-</pre><p>
-        o eventualmente para especificar una impresora diferente a
-        <code class="literal">lp</code>, digamos <code class="literal">imp2</code> use la
-        opción <code class="literal">-P</code>:
-      </p><pre class="programlisting">
-      lpr -Pimp2 tarea.txt
-    
-</pre><p>
-        Puede examinar la cola de sus impresiones pendientes con
-        <code class="literal">lpq</code> que junto con los nombres de las
-        impresiones pendientes presentará un número que la identifica.
-        Tal número le permitirá cancelar una de sus tareas de impresión
-        pendiente, usándolo como parámetro de <code class="literal">lprm</code>.
-      </p><p>
-        Para imprimir gráficas y documentos con diversos tipos de letra
-        o colores, primero debe convertirse la información a secuencias
-        de control particulares de su impresora. Cómo de una impresora a
-        otra varían los secuencias de control, en sistemas tipo Unix con
-        LPD suele emplearse PostScript (que es un lenguaje apropiado
-        para documentos por imprimir) como formato común y se usan los
-        filtros del programa Ghostscript para traducir de PostScript al
-        formato particular de su impresora <sup>[<a name="idp1361979136" href="#ftn.idp1361979136">14</a>]</sup>. Si se usa CUPS es posible emplear controladores
-        particulares para su impresora y no depender de Ghostscript.
-      </p><p>
-        Ghostscript es un programa que puede leer documentos PostScript
-        y PDF <sup>[<a name="idp1361978240" href="#ftn.idp1361978240">15</a>]</sup> y presentarlos en una ventana de X-Window o
-        transformarlos al lenguaje particular de algunas impresoras. Por
-        ejemplo para generar a partir de un documento PostScript
-        <code class="literal">s2.ps</code> la secuencia de caracteres apropiada
-        para una impresora LaserJet en el archivo
-        <code class="literal">s2.lj</code> se usaría:
-      </p><pre class="programlisting">
-    gs -sDEVICE=laserjet -sOutputFile=s2.lj s2.ps -c quit       
-      
-</pre><p>
-        O para imprimir directamente usando <code class="literal">lpr</code>, en
-        lugar de <code class="literal">s2.lj</code> puede usar
-        <code class="literal">-sOutputFile=\|lpr</code>. Puede experimentar con
-        este intérprete tecleando <code class="literal">gs</code> y por ejemplo
-        ingresando la siguiente secuencia de instrucciones en lenguaje
-        PostScript:
-      </p><pre class="programlisting">
-    100 100
-    moveto
-    200 200
-    lineto
-    stroke
-      
-</pre><p>
-        gs Nombre del programa con el que se inicia Ghostscript
-        —intérprete de PostScript.
-      </p><p>
-        Para visualizar un documento PostScript o PDF puede emplear el
-        programa <code class="literal">gv</code> —el cual se apoya en Ghostscript—
-        por ejemplo:
-      </p><pre class="programlisting">
-    gv micarta.ps
-    
-</pre><p>
-        mostrará el documento PostScript <code class="literal">micarta.ps</code>
-        en una ventana de X-Window y con menús le permitirá consultarlo
-        e imprimirlo.
-      </p><p>
-        gv Programa empleado para visualizar documentos Postcript o PDF.
-      </p><p>
-        Para imprimir y hacer transformaciones a un PostScript (por
-        ejemplo 2 páginas en una sola), o para convertir de otros
-        formatos a PostScript puede emplear el programa
-        <code class="literal">a2ps</code>:
-      </p><pre class="programlisting">
-    a2ps --columns=2 -o micarta-2.ps micarta.ps
-      
-</pre><p>
-        o <code class="literal">mpage</code>:
-      </p><pre class="programlisting">
-    mpage -2 micarta.ps &gt; micarta-2.ps
-      
-</pre><p>
-        a2ps Programa para transformar de diversos formatos a PostScript
-        o para hacer transformaciones a un Postcript.
-      </p><p>
-        Además de los programas <code class="literal">a2ps</code> y del paquete
-        <code class="literal">psutils</code> es posible modificar directamente un
-        archivo PostScript. Por ejemplo siguiendo las indicaciones de
-        <a href="">http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html</a>,
-        resulta posible rotar una página, editando el archivo y en la
-        sección <code class="literal">%%%BeginPageSetup</code> agregando después
-        de establecer tamaño de página,
-        e.g. <code class="literal">595 842 /a4 setpagesize</code>:
-      </p><pre class="programlisting">
-    currentpagedevice /PageSize get aload pop translate
-    180 rotate
-    
-</pre><p>
-        Tanto PostScript como PDF requieren bastante espacio para
-        describir un documento, usualmente los documentos PDF requieren
-        menos porque mantienen la información comprimida. Para convertir
-        entre PostScript y PDF se emplean <code class="literal">ps2pdf</code> y
-        <code class="literal">pdf2ps</code> <sup>[<a name="idp2862855296" href="#ftn.idp2862855296">16</a>]</sup>. Para visualizar e imprimir un PDF, además de
-        <code class="literal">gv</code>, puede emplear <code class="literal">xpdf</code> o
-        el programa Acrobat Reader (<code class="literal">acroread</code>).
-      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp2962232832"></a>3.2.2. Configuración de una impresora local con
-      <code class="literal">lpd</code></h4></div></div></div><p>
-        lpd (también llamado <span class="emphasis"><em>Berkeley line printer spooling
-        system</em></span>) es un sistema que maneja una cola de
-        impresión por cada impresora configurada, filtros para convertir
-        información de diversos tipos (e.g PostScript y PDF) al lenguaje
-        particular de cada impresora así como filtros de cuentas que
-        permiten monitorear y controlar el uso de cada impresora por
-        parte de cada usuario. LPD recibe y procesa solicitudes de
-        impresión realizadas por programas cliente e imprime la
-        información de las colas en los dispositivo configurados para
-        cada cola (e.g <code class="literal">/dev/lpt0</code> o enviando por red a
-        una impresora remota).
-      </p><p>
-        En OpenBSD lpd debe activarse durante el arranque, agregando en
-        <code class="literal">/etc/rc.conf.local</code> la línea:
-      </p><pre class="programlisting">
-    lpd_flags="" 
-</pre><p>
-        su archivo de configuración principal es
-        <code class="literal">/etc/printcap</code> el cual es leído cada vez que
-        lpd inicia y donde se configura cada cola de impresión, el
-        dispositivo asociado a cada una y sus parámetros, los filtros
-        para los diversos tipos de información que puede imprimir y
-        filtros de cuentas.
-      </p><p>
-        lpd es un servidor TCP/IP que imprime trabajos pendientes en las
-        colas de impresoras locales (sólo modificables con programas
-        clientes) y que atiende conexiones de clientes que emplean el
-        protocolo LPD en el puerto TCP 515. La conexión normalmente la
-        realiza un programa cliente como <code class="literal">lpr</code>,
-        <code class="literal">lpq</code>, <code class="literal">lprm</code> o
-        <code class="literal">lpc</code> que pueden solicitar una de las
-        siguientes operaciones:
+        Entre sus características:
       </p><div class="itemizedlist"><ul type="disc"><li><p>
-            Revisar trabajos en cola de una impresora.
+            Es altamente configurable (recursos, menús, decoración de
+            ventanas y estilos).
           </p></li><li><p>
-            Recibir y poner en cola de una impresora un trabajo de otra
-            máquina.
+            Es muy liviano, requiere alrededor de 4MB en RAM.
           </p></li><li><p>
-            Listado corto del estado de los trabajos de un usuario en la
-            cola de una impresora.
+            Con Alt+[Botón izquierdo] permite cambiar ubicación de la
+            ventana sobre la que está el curso, y con Alt+[Botón
+            derecho] el tamaño.
           </p></li><li><p>
-            Listado largo del estado de los trabajos de un usuario en la
-            cola de una impresora.
+            El menú que presenta se configura en un archivo texto con
+            una sintaxis sencilla, puede cambiarse editando en
+            <code class="literal">~/.fluxbox/menu</code>.
           </p></li><li><p>
-            Eliminar trabajos de un usuario de la cola de una impresora
-          </p></li></ul></div><p>
-        <code class="literal">lpd</code> envía errores a la bitácora
-        <code class="literal">/var/log/lpd-errs</code>.
-      </p><p>
-        lpd Nombre del servidor de impresión disponible por defecto en
-        OpenBSD. Permite manejar colas, dispositivos de impresión,
-        filtros y puede llevar cuentas.
-      </p><p>
-        Además de esta documentación puede consultar más sobre la
-        configuración de <code class="literal">lpd</code> en FreeBSDHandBook y
-        OpenBSDlpd
-      </p><p>
-        /dev/lpt0 Dispositivo que representa el primero puerto paralelo.
-      </p><p>
-        La mayoría de impresoras se conectan al puerto paralelo (por
-        ejemplo utilizables con dispositivos
-        <code class="literal">/dev/lpt0</code> o <code class="literal">/dev/lpt1</code>).
-        Puede probar que su impresora funciona enviando una cadena
-        sencilla al puerto apropiado por ejemplo
-        <code class="literal">echo "Hola"       &gt;/dev/lpt0</code> o
-        <code class="literal">lptest &gt;       /dev/lpt0</code>.
-      </p><p>
-        /etc/printcap Archivo donde se configuran impresoras para el
-        sistema <code class="literal">lpd</code>.
-      </p><p>
-        El siguiente es un ejemplo del archivo
-        <code class="literal">/etc/printcap</code>:
-      </p><pre class="programlisting">
-      lp|local line printer:\
-      :lp=/dev/lpt0:sd=/var/spool/output:lf=/var/log/lpd-errs:
-    
-</pre><p>
-        que configura una impresora local para textos llamada
-        <code class="literal">lp</code> o <code class="literal">local line printer</code>.
-        Está conectada a <code class="literal">/dev/lpt0</code>, la cola de
-        impresión la mantiene en <code class="literal">/var/spool/output</code> y
-        envía errores a <code class="literal">/var/log/lpd-errs</code>. Para
-        configurar impresoras que puedan imprimir gráficas (así como
-        PostScript con diversos tipos de letra) debe emplear un filtro
-        del programa Ghostscript.
-      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp1243736192"></a>3.2.3. CUPS</h4></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp404304128"></a>3.2.3.1. Instalación</h5></div></div></div><p>
-          Hay un paquete de CUPS entre los portes oficiales de OpenBSD
-          6.7. Una vez instalado puede ejecutarlo con
-        </p><pre class="programlisting">
-    doas cupsd
-    
-</pre><p>
-          Para que en cada arranque se ejecute automáticamente, se
-          recomienda agregar en <code class="literal">rc.local</code>:
-        </p><pre class="programlisting">
-    if (test -x /usr/local/sbin/cupsd) then {
-        echo -n ' cupsd';
-        /usr/local/sbin/cupsd;
-    } fi;
-    
-</pre><p>
-          La distribución estándar de cups incluye unos pocos archivos
-          <code class="literal">ppd</code>, así que posiblemente tendrá que
-          generar o conseguir los apropiados para su impresora con
-          <code class="literal">foomatic</code> (ver
-          <a href="ar01s03.html#idp1570335360" title="3.2.4. foomatic">foomatic</a>).
-        </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp2656899712"></a>3.2.3.2. Configuración</h5></div></div></div><p>
-          La configuración de CUPS (por ejemplo para añadir una
-          impresora) puede hacerse con facilidad una vez esté
-          ejecutándose el servidor, usando un navegador y abriendo en la
-          máquina donde corre CUPS el puerto 631, por ejemplo
-          <code class="literal">http://127.0.0.1:631</code>. Para hacer labores
-          administrativas ingrese con la identificación y la clave de un
-          usuario que esté en el grupo <code class="literal">sys</code> o por la
-          cuenta <code class="literal">root</code>.
-        </p><p>
-          También es recomendable que cree un directorio:
-        </p><pre class="programlisting">
-    doas mkdir /var/spool/cups/tmp
-    doas chown _cups:_cups /var/spool/cups/tmp/
-    
-</pre><p>
-          Si tiene problemas al instalar/usar una impresora puede
-          consultar el archivo de errores de <code class="literal">cups</code> en:
-          <code class="literal">/var/log/cups/error_log</code>.
-        </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp2656901632"></a>3.2.3.3. Utilización de CUPS</h5></div></div></div><p>
-          El paquete de <code class="literal">cups</code> cuenta con programas
-          análogos a los de LPD, pero ubicados en
-          <code class="literal">/usr/local/bin</code>. Diversos programas
-          emplearan la orden <code class="literal">lpr</code> para hacer
-          impresiones, así que tiene dos opciones:
-        </p><div class="itemizedlist"><ul type="disc"><li><p>
-              Ejecutar <code class="literal">cups-enable</code> que remplazará los
-              ejecutables relacionados con impresión de
-              <code class="literal">/usr/</code> con los de CUPS disponibles en
-              <code class="literal">/usr/local/</code>.
+            Los programas que se inician con el escritorio pueden
+            configurarse en <code class="literal">~/.fluxbox/startup</code>. Por
+            ejemplo en este archivo puede configurar el locale que usará
+            agregando o cambiando la línea:
+          </p><p>
+            export LANG=es_CO.UTF-8
+          </p></li><li><p>
+            La apariencia en general puede configurarse en
+            <code class="literal">~/.fluxbox/init</code>
+          </p></li><li><p>
+            Puede configurar teclas rápidas en el archivo
+            <code class="literal">~/.fluxbox/keys</code>
+          </p></li></ul></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm3492543744"></a>3.1.1.1. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+              Sitio oficial <a href="">???</a>.
             </p></li><li><p>
-              Configurar cada programa para que en lugar de emplear
-              <code class="literal">/usr/bin/lpr</code> utilice
-              <code class="literal">/usr/local/bin/lpr</code>. Por ejemplo así
-              debe configurar xpdf.
-            </p></li></ul></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp1570335360"></a>3.2.4. foomatic</h4></div></div></div><p>
-        <code class="literal">foomatic</code> ofrece gran cantidad de
-        controladores para una variada gama de impresoras, estos
-        controladores e instrucciones para impresoras particulares están
-        disponibles en
-        <a href="">http://www.openprinting.org</a>
-        Es posible emplearlos bien con <code class="literal">lpr</code> o bien con
-        <code class="literal">cups</code>.
-      </p><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp2663727104"></a>3.2.4.1. Foomatic con LPR</h5></div></div></div><p>
-          Si la impresora está conectada a <code class="literal">/dev/lpt0</code>
-          basta que agregue a <code class="literal">/etc/printcap</code> una
-          entrada como:
-        </p><pre class="programlisting">
-lp|local line printer:\
-    :lp=/dev/lpt0:\
-        :af=/etc/foomatic/laserjet6p.ppd:\
-        :if=/usr/local/bin/foomatic-rip:\
-        :sd=/var/spool/lpd:\
-        :lf=/var/log/lpd-errs:\
-        :mx#0:sh:
-</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm335535616"></a>3.2.4.2. Foomatic con CUPS</h5></div></div></div><p>
-          Cada archivo <code class="literal">ppd</code> que descargue debe
-          ubicarlo en: <code class="literal">/usr/local/share/cups/model/</code>.
-          Después de agregar archivos en ese directorio reinicie CUPS
-          para que lea nuevamente sus archivos de configuración con:
-        </p><pre class="programlisting">
-# pkill -HUP cupsd
-              
-</pre></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp1341200640"></a>3.3. Discos duros</h3></div></div></div><p>
-      En la actualidad hay discos duros de estado sólido y discos
-      electromecánicos.
-    </p><p>
-      Los discos de estado sólido o SSD (del inglés <span class="emphasis"><em>solid
-      state disk</em></span>) mantienen información de manera permanente
-      mediante circuitos integrados, pero ante el sistema operativo se
-      presentan como si fuesen discos electromecánicos SCSI.
-    </p><p>
-      Los discos electromecánicos constan de varias placas circulares
-      sobre las que se almacena información magnéticamente. La
-      organización o geometría de un disco suele especificarse como
-      cantidad de cilindros (del ingleś <span class="emphasis"><em>cylinder</em></span>),
-      cantidad de cabezas (del inglés <span class="emphasis"><em>head</em></span>) y
-      cantidad de sectores.
-    </p><p>
-      Para emplear un disco en OpenBSD se requiere:
-    </p><div class="itemizedlist"><ul type="disc" compact><li><p>
-          que sea manejado por un controlador que lo asocie con un
-          dispositivo (e.g /dev/wd0c para un primer disco IDE o
-          /dev/sd1c para un segundo disco SCSI)
-        </p></li><li><p>
-          el disco debe estar formateado a bajo nivel, debe tener
-          subparticiones o etiquetas (del inglés
-          <span class="emphasis"><em>disklabel</em></span>) en particiones, debe haber
-          subparticiones con sistemas de archivos soportados (e.g FFS
-          que es el nativo de adJ/OpenBSD, FAT o msdos, ext2 de Linux o
-          NTFS de sólo lectura de Windows) que sean montadas en el
-          sistema de archivos comenzando por una que debe estar montada
-          como directorio raiz / (digamos /dev/sd0a sería primera
-          partición de un disco SCSI) .
-        </p></li></ul></div><p>
-      Además de esto para iniciar un computador con un disco duro
-    </p><div class="itemizedlist"><ul type="disc" compact><li><p>
-          debe estar configurado como disco de arranque en la BIOS (o
-          durante el arranque el usuario debe indicarle a la BIOS por
-          cual disco arrancar)
-        </p></li><li><p>
-          debe tener una partición marcada como iniciable en la tabla de
-          particiones y/o emplear un cargador de arranque (e.g GRUB si
-          tiene Linux y adJ/OpenBSD en el mismo disco).
-        </p></li><li><p>
-          Debe tener al menos una partición para OpenBSD (tipo A6) con
-          subparticiones entre las cuales haya una con sistema de
-          archivos FFS que se monte como raiz.
-        </p></li></ul></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp2514827904"></a>3.3.1. Particiones</h4></div></div></div><p>
-        Una partición es una porción de un disco duro destinada para un
-        sistema de archivos. Un disco duro puede particionarse para:
-      </p><div class="itemizedlist"><ul type="disc" compact><li><p>
-            Mantener varios sistemas operativos.
-          </p></li><li><p>
-            Organizar diversos espacios para un mismo sistema operativo,
-            aunque en OpenBSD esto suele hacerse con subparticiones .
-          </p></li><li><p>
-            Si se usa partición GPT destinar una partición para el
-            arranque (1G bastará)
-          </p></li></ul></div><p>
-        El disco comienza con una tabla de particiones que entre otras
-        puede ser tipo MBR o tipo GPT. Las tablas tipo MBR son
-        reconocidas por BIOS antiguos y recientes (en modo
-        <span class="emphasis"><em>Legacy</em></span>) soporta discos de hasta 2T, y hasta
-        4 particiones primarias, si se requieren más particiones una de
-        las primarias debe definirse como extendida y dentro de esta se
-        podrán dividir otras particiones que se llamaran lógicas. Por su
-        parte las particiones GPT son reconocidas por BIOS (UEFI)
-        recientes, requieren que una partición se destine a un arranque
-        EFI y cada partición puede tener cualquier tamaño y puede haber
-        tantas particiones como se requiera.
+              Página sobre fluxbox de NetBSD
+              <a href="">http://wiki.netbsd.org/fluxbox/</a>
+            </p></li><li><p>
+              Página sobre fluxbox de Gentoo
+              <a href="">http://www.gentoo.org/doc/es/fluxbox-config.xml</a>
+            </p></li></ul></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm393248768"></a>3.1.2. <code class="literal">xfe</code></h4></div></div></div><p>
+        La operación básica se describe en
+        <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>, aquí describimos
+        algunos detalles de configuración.
       </p><p>
-        Para cambiar la tabla de particiones de un disco en OpenBSD/adJ
-        puede emplearse el programas <code class="literal">fdisk</code>. Se inicia
-        pasando como parámetro el dispositivo del disco que desea editar
-        (e.g /dev/rsd0c), le permiten modificar la partición hasta que
-        este satisfecho con la distribución y finalmente permiten salvar
-        la partición configurada en el disco.
-      </p><div class="blockquote"><blockquote class="blockquote"><p>
-          <span class="inlinemediaobject"><img src="img/warning.png"></span>
-          <span class="strong"><strong>Advertencia</strong></span>
-        </p><p>
-          Al modificar una partición el sistema de archivos que en ella
-          hubiera no podrá usarse
-        </p></blockquote></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm481298688"></a>3.3.2. Subparticiones o etiquetas</h4></div></div></div><p>
-        Hay dos niveles de particiones: (1) del BIOS y (2) particulares
-        de OpenBSD. Las primeras se configuran con
-        <code class="literal">fdisk</code> y las segundas se crean dentro de las
-        primeras con <code class="literal">disklabel</code>.
-      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm481301632"></a>3.3.3. Sistema de archivos ffs</h4></div></div></div><p>
-        Un sistema de archivos ffs sólo puede crearse en una partición
-        identificada con <code class="literal">disklabel</code>. Como se explica
-        en FFS, consta de:
-      </p><div class="itemizedlist"><ul type="disc"><li><p>
-            Un superbloque con los parámetros básicos del sistema de
-            archivos (e.g tamaño de cada bloque, lista de grupos de
-            cilindros) y con los parámetros del hardware que afectan el
-            desempeño<sup>[<a name="idp1107011328" href="#ftn.idp1107011328">17</a>]</sup> (tipo de transferencia de disco a memoria,
-            tiempo esperado por transferencia, bloques por pista,
-            velocidad de rotación).
-          </p></li><li><p>
-            Copias de seguridad del superbloque en diversos bloques del
-            disco.
-          </p></li><li><p>
-            Archivos, algunos de los cuales pueden ser directorios. Todo
-            archivo tiene asociado un nodo-i, que mantiene información
-            del archivo (dueño, tiempo de última modificación y de
-            creación, algunos de los bloques que emplea el archivo y
-            referencia a otros nodos-i con el resto de bloques).
-          </p></li></ul></div><p>
-        Los bloques pueden fragmentarse para aprovechar espacio cuando
-        se mantienen archivos pequeños. Cada grupo de cilindros tiene
-        una tabla de fragmentos libres en los bloques del grupo e
-        información sobre bloques libres de acuerdo a las diversas
-        posiciones rotacionales (para optimizar ubicación de información
-        de acuerdo al hardware disponible).
+        El archivo de configuración se ubica en
+        <code class="literal">~/.config/xfe/xferc</code>. La mayoría de
+        posibilidades se configuran desde Editar &gt; Preferencias, sin
+        embargo para que opere bien Herramientas &gt; Ventana
+        superusuario nueva en adJ el archivo de configuración en la
+        sección <code class="literal">OPTIONS</code> debe incluir:
+      </p><pre class="programlisting">
+uso_sudo=1
+sudo_nopasswd=1
+</pre></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idm2794453248"></a>3.2. Espiritualidad</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm2794456064"></a>3.2.1. <code class="literal">xiphos</code></h4></div></div></div><p>
+        Como se describe en
+        <a href="bibliografia.html" title="E. Bibliografía">xiphosmanual</a>, es una
+        herramienta gráfica de estudio e investigación bíblica que se
+        basa en las librerías del proyecto Sword.
       </p><p>
-        Algunos bloques se reservan para que sólo puedan ser usados por
-        el administrador (reserva de espacio libre). En OpenBSD por
-        defecto es 5% del espacio total.
+        <span class="inlinemediaobject"><img src="img/xiphos.png"></span>
       </p><p>
-        Entre las características soportadas por FFS están:
-      </p><div class="itemizedlist"><ul type="disc" compact><li><p>
-            Enlaces duros dentro de una misma partición o enlaces
-            simbólicos. Candados, nombres largos para archivos,
-            validaciones y cuotas (para limitar espacio utilizable por
-            los usuarios).
-          </p></li></ul></div><p>
-        Para revisar un sistema de archivos <code class="literal">ffs</code>
-        (digamos que esté en la partición <code class="literal">/dev/wd1j</code>)
-        ejecute:
-      </p><pre class="programlisting">
-    doas fsck_ffs /dev/rwd1j
-      
-</pre><p>
-        note la <code class="literal">r</code> antes de <code class="literal">wd1j</code>
-        que indica que la partición debe tratarse en modo puro (del
-        inglés <span class="emphasis"><em>raw</em></span>). Puede agregar la opción
-        <code class="literal">-y</code> antes del dispositivo para responder si
-        por defecto a toda pregunta (intentado que solucione
-        automáticamente todos los problemas). En algunos casos cuando un
-        disco está bastante inconsistente en su estructura, puede
-        perderse información que <code class="literal">fsck_ffs</code> intentará
-        recuperar y dejar en archivos cuyos nombres son números en el
-        directorio <code class="literal">lost+found</code>. En los casos que se
-        dañe el superbloque de la partición que desea revisar
-        <code class="literal">fsck_ffs</code> se negará a realizar el chequeo, en
-        tales casos puede intentar con un superbloque de respaldo
-        –típicamente hay uno en el bloque 32:
-      </p><pre class="programlisting">
-    doas fsck_ffs -b 32 /dev/rwd1j
-      
-</pre><p>
-        Para crear un sistema de archivos <code class="literal">ffs</code> en un
-        disco ya particionado con <code class="literal">disklabel</code> puede
-        emplearse <code class="literal">newfs</code>, por ejemplo:
-      </p><pre class="programlisting">
-    doas newfs -t ffs /dev/wd1j
-</pre><div class="blockquote"><blockquote class="blockquote"><p>
-          <span class="inlinemediaobject"><img src="img/warning.png"></span>
-          <span class="strong"><strong>Advertencia</strong></span>
-        </p><p>
-          Al crear un nuevo sistema de archivos se borra la información
-          que pudiera haber existido.
-        </p></blockquote></div><p>
-        Para detectar particiones ffs en un disco, puede emplearse
-        <code class="literal">scan_ffs</code>.
+        Puede iniciarla desde el menu de fluxbox
+        Espiritualidad-&gt;Xiphos o desde una terminal con
+        <code class="literal">xiphos</code>. Deben instalarse módulos primero.
+        Cada módulo puede ser una traducción, comentario, diccionario.
+        Hay traducciones a muchos idiomas (incluyendo manuscritos
+        griegos y hebreo). En español entre otras se encuentra parte de
+        la traducción de dominio público de los evangelios que
+        típicamente se ha incluido con adJ.
       </p><p>
-        Para examinar la estructura de una partición con ffs, se emplea
-        <code class="literal">dumpfs</code>. Puede afinarse un sistema ffs con
-        <code class="literal">tunefs</code>
-      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp2193787392"></a>3.3.4. Zonas de intercambio (swap)</h4></div></div></div><p>
-        Son porciones de un disco duro que pueden emplearse como si
-        fuera memoria RAM (aunque es mucho más lenta). Si por ejemplo
-        desea agregar como dispositivo de intercambio el disco
-        <code class="literal">/dev/wd1l</code> debe:
-      </p><div class="orderedlist"><ol type="1"><li><p>
-            Asegurarse de poner tipo swap a la partición. Puede emplear
-            <code class="literal">disklabel</code>. Por ejemplo puede emplear el
-            modo interactivo de este programa:
-          </p><pre class="programlisting">
-    doas disklabel -E /dev/wd1c 
-</pre><p>
-            en este modo puede examinar las particiones y divisiones del
-            disco con p, puede ver una ayuda abreviada con h. Con m le
-            será posible cambiar el tipo de una partición (por ejemplo
-            puede ser <code class="literal">4.2BSD</code> si se trata de un
-            sistema ffs o <code class="literal">swap</code> si se trata de un
-            dispositivo para intercambio), y la ubicación.
-          </p><div class="blockquote"><blockquote class="blockquote"><p>
-              <span class="inlinemediaobject"><img src="img/caution.png"></span>
-              <span class="strong"><strong>Cuidado</strong></span>
-            </p><p>
-              El sitio donde reubique una partición NO debe estar
-              traslapado sobre una partición ya existente. Si traslapa
-              una partición sobre otra, la información que hubiera en la
-              partición sobre la que traslapa puede perderse de manera
-              irreversible.
-            </p></blockquote></div></li><li><p>
-            Agregue una línea a su archivo <code class="literal">/etc/fstab</code>
-            con el dispositivo de intercambio, punto de montaje
-            <code class="literal">none</code>, tipo <code class="literal">swap</code> y
-            opción <code class="literal">sw</code>:
-          </p><pre class="programlisting">
-    /dev/wd1l none  swap sw 0 0 
-</pre><p>
-            Con este cambio, el dispositivo será montado como zona de
-            intercambio cada vez que el sistema inicie (está en
-            <code class="literal">/etc/rc</code>).
-          </p></li><li><p>
-            Intente agregar el dispositivo como zona de intercambio sin
-            reiniciar con:
-          </p><pre class="programlisting">
-    doas swapon -a 
-</pre><p>
-            o con:
-          </p><pre class="programlisting">
-    doas swapctl -A -t blk 
-</pre><p>
-            Ambas ordenes intentarán montar como zonas de intercambio
-            todos dispositivos por bloques de
-            <code class="literal">/etc/fstab</code> que tengan la opción
-            <code class="literal">sw</code>. Puede verificar la adición listando
-            todas las zonas de intercambio con:
-          </p><pre class="programlisting">
-    doas swapctl -l 
-</pre></li></ol></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp2087470720"></a>3.3.5. Arreglo de discos RAID por software</h4></div></div></div><div class="literallayout"><p>Cómo se explica en la página del manual de <code class="literal">softraid</code>, OpenBSD incluye el dispositivo <code class="literal">softraid</code> que puede proveer RAID y otros servicios relacionados con entrada/salida.<br>
-Un volumen es un disco virtual que consta de varios “<span class="quote">pedazos</span>”, cada “<span class="quote">pedazo</span>” (del inglés <span class="strong"><strong>chunk</strong></span>) es una subpartición del disco de tipo RAID (el tipo se establece con <code class="literal">disklabel</code>).</p></div><p>
-        Las posibles disciplinas que soporta <code class="literal">softraid</code>
-        son:
-      </p><div class="itemizedlist"><ul type="disc" compact><li><p>
-            RAID 0: Que segmenta los datos sobre un número de
-            “<span class="quote">pedazos</span>” para aumentar el desempeño (aunque no
-            provee redundancia). No es posible hacer volumenes de
-            arranque.
-          </p></li><li><p>
-            RAID 1: Copia cada dato en más de un “<span class="quote">pedazo</span>”
-            para facilitar recuperar información en caso de perdida de
-            datos. Si es posible hacer volúmenes de arranque.
-          </p></li><li><p>
-            RAID 5: Divide los datos en varios pedazos pero proveen
-            paridad para prevenir perdida de datos. No es posible hacer
-            volumenes de arranque.
-          </p></li><li><p>
-            CRYPTO: Cifra los datos en un sólo pedazo para proveer
-            confidencialidad (aunque no redundancia). Si es posible
-            hacer volumenes de arranque.
-          </p></li><li><p>
-            CONCAT: Que concatena varios pedazos, aunque no provee
-            redundancia ni permite hacer volumenes de arranque.
-          </p></li></ul></div><p>
-        Hemos notado en la práctica que cada “<span class="quote">pedazo</span>” debe
-        ser máximo de 2T.
-      </p><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp139008640"></a>3.3.5.1. RAID 1 sin arranque</h5></div></div></div><p>
-          La disciplina RAID 1 provee redundancia, pues cada dato lo
-          escribe en todos los pedazos que conforman el arreglo. Así que
-          cada pedazo es como una copia de cada uno de los otros.
-        </p><p>
-          Para el caso típico de 2 “<span class="quote">pedazos</span>” que se
-          configurarán en RAID 1 pero no como volumen de arranque, se
-          recomienda usar 3 discos duros. Uno para arrancar (digamos
-          sd0) y 2 de las mismas dimensiones que se configuraran en RAID
-          1 (digamos sd1 y sd2 cada uno de 2T).
-        </p><p>
-          sd0 debe tener un sistema OpenBSD/adJ típico para (1)
-          configurar el RAID 1 para sd1 y sd2 y (2) montar el arreglo
-          resultante en un directorio de su sistema de archivos.
-        </p><p>
-          Primero se preparan sd1 y sd2 completos para OpenBSD (o si es
-          una parte de cada uno usar -e)
-        </p><pre class="programlisting">
-    doas fdisk -iy sd1
-    doas fdisk -iy sd2
-</pre><p>
-          Después en cada uno se crea una subpartición de tipo RAID con
-          disklabel, ambas deben quedar del mismo tamaño y se recomienda
-          inicializarlas en ceros:
-        </p><pre class="programlisting">
-    $ doas disklabel -E sd1
-    Label editor (enter '?' for help at any prompt)
-    &gt; a a
-    offset: [64]
-    size: [39825135] *
-    FS type: [4.2BSD] RAID
-    &gt; w
-    &gt; q
-    $ doas dd if=/dev/zero of=/dev/rsd1a bs=1m count=1
-</pre><p>
-          En el ejemplo anterior se presentó el caso de creación de
-          sd1a, debe repetirse lo mismo para sd2 para contar con sd2a.
-        </p><p>
-          A continuación debe ensamblarse el arreglo RAID con algo como:
-        </p><pre class="programlisting">
-    doas bioctl -v -c 1 -l sd1a,sd2a softraid0
-</pre><p>
-          Que creará otro dispositivo, digamos sd3 (aún si necesita
-          hacer varios arreglos RAID emplee siempre softraid0). Puede
-          verificar que sd3 es el arreglo RAID con:
-        </p><pre class="programlisting">
-    $ doas bioctl sd3
-    Volume Status Size Device 
-    softraid0 0 Online 3298542608896 sd3 RAID1 
-    0 Online 3298542608896 0:0.0 noencl 
-    1 Online 3298542608896 0:1.0 noencl
-</pre><p>
-          Con el arreglo ensamblado en sd3, usted puede operar con ese
-          dispositivo como si fuera un disco más, es recomendable que
-          inicialice sus primeros sectores en 0:
-        </p><pre class="programlisting">
-    doas dd if=/dev/zero of=/dev/rsd3c bs=1m count=1
-</pre><p>
-          Y proceda a crear partición, subpartición(es) e inicializar
-          cada subpartición. En el siguiente ejemplo se creará una sola
-          subpartición, se inicializará y se montará en /var/raid1:
-        </p><pre class="programlisting">
-    $ doas fdisk -iy /dev/rsd3c
-    $ doas disklabel -E /dev/sd3c
-    &gt; a a
-    offset: [64]
-    size: [3999992128] *
-    FS type: [4.2BSD] 
-    &gt; w
-    &gt; q
-    $ doas newfs /dev/rsd3a
-    $ doas mkdir /var/raid1
-    $ doas mount /dev/sd3a /var/raid1
-</pre><p>
-          Con el ejemplo presentado ya habrían disponibles 2T con
-          redundancia RAID 1 en el punto de montaje /var/raid1.
-        </p><p>
-          Para hacer el cambio permanente es recomendable que en
-          /etc/fstab agregue el duid del arreglo (pues al agregar discos
-          físicos podría cambiar el sd3 por ejemplo por sd4). Examina el
-          duid con disklabel /dev/sd3c
-        </p><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idp507387776"></a>3.3.5.1.1. Operación y recuperación en caso de falla de uno de los
-          discos</h6></div></div></div><p>
-            Es importante revisar con periodicidad el estado del arreglo
-            con:
-          </p><pre class="programlisting">
-    $ doas bioctl sd3
-</pre><p>
-            Allí podría verse si alguno de los discos está fallando
-            (Offline) y en tal caso, debe remplazarse el disco
-            defectuoso (digamos sd2). En el nuevo disco debe crearse
-            partición y subpartición con las mismas características del
-            que funciona bien y entonces debe reconstruirse el espejo.
-            Por ejemplo para reconstruir y unir un nuevo /dev/sd2a:
-          </p><pre class="programlisting">
-    $ doas bioctl -R /dev/sd2a sd3
-</pre></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp507387136"></a>3.3.6. Lecturas recomendadas y referencias Discos Duros</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
-            https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/
-          </p></li><li><p>
-            Página del manual de <code class="literal">softraid</code>
-          </p></li><li><p>
-            Página del manual de <code class="literal">bioctl</code>
-          </p></li><li><p>
-            Particiones MBR y GPT:
-            <a href="">https://www.openbsd.org/faq/faq14.html</a>
-          </p></li></ul></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp960512256"></a>3.4. Unidad de CD-ROM</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp960514048"></a>3.4.1. Montar un CD</h4></div></div></div><p>
-        Cómo en el caso de disquetes, por defecto, sólo root puede
-        montar CDs. Puede permitir que se haga desde una cuenta
-        diferente, agregando tal cuenta al grupo
-        <code class="literal">operator</code> y cambiando la variable del kernel
-        <code class="literal">kern.usermount</code> como se presentó en la sección
-        sobre disquetes. Por ejemplo para montar el CD que está en la
-        primera unidad (después de haber creado el directorio
-        <code class="literal">/mnt/cdrom</code>):
-      </p><pre class="programlisting">
-    mount -t cd9660 /dev/cd0c /mnt/cdrom 
-</pre><p>
-        o para lograrlo con sólo <code class="literal">mount /mnt/cdrom</code> se
-        agregaría en <code class="literal">/etc/fstab</code>:
-      </p><pre class="programlisting">
-    /dev/cd0c /mnt/cdrom cd9660 ro,noauto 0 0 
-</pre><p>
-        Para desmontar un CD se emplea:
-      </p><pre class="programlisting">
-    umount /mnt/cdrom
-</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp803552896"></a>3.4.2. Montar imagen ISO 9660</h4></div></div></div><p>
-        Para montar una imagen ISO (i.e un archivo con información de un
-        CD con el sistema de archivos ISO 9660), primero debe crear un
-        dispositivo que la represente, por ejemplo:
-      </p><pre class="programlisting">
-    vnconfig -c vnd0 /home/pablo/micd.iso 
-    mount /dev/vnd0a /mnt/tmp
-    
-</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp2715485568"></a>3.4.3. Lecturas recomendadas y referencias CD y Quemadoras</h4></div></div></div><div class="itemizedlist"><ul type="disc" compact><li><p>
-            Más sobre montaje de archivos con
-            <code class="literal">man fstab</code>.
-          </p></li></ul></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp3261883776"></a>3.5. Quemadora de CD-R y CD-RW</h3></div></div></div><p>
-      Una quemadora de CD-R y CD-RW se puede comportar como un lector de
-      CDs y usarse como se explica en la sección sobre unidades de CD
-      (ver <a href="ar01s03.html#idp960512256" title="3.4. Unidad de CD-ROM">Sección 3.4, “Unidad de CD-ROM”</a>.
-    </p><p>
-      Para quemar una imagen de un CD con datos que usted elija se debe:
-    </p><div class="itemizedlist"><ul type="disc"><li><p>
-          Contar con una imagen ISO del CD que desea quemar. Es decir un
-          archivo con la información que irá en el CD en formato
-          ISO9660. Tal imagen la puede crear a partir de un CD que tenga
-          o crearla con archivos y directorios que usted elija.
-        </p></li><li><p>
-          Grabar (o quemar) la imagen ISO en un CD-R o un CD-RW.
-        </p></li></ul></div><p>
-      Cada uno de estos pasos se describe en detalle a continuación.
-    </p><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp1069522688"></a>3.5.1. Crear una imagen ISO a partir de un CD existente</h4></div></div></div><p>
-        Para crear una imagen ISO de un CD existente primero examine la
-        cantidad de sectores de los que consta con
-      </p><pre class="programlisting">
-    doas disklabel /dev/rcd0c
-      
-</pre><p>
-        Suponiendo que cada sector tenga 2048 bytes y el total de
-        sectores fuera 112120 puede crear la imagen
-        (<code class="literal">/home/imagen/micd.iso</code>) empleando la orden:
-      </p><pre class="programlisting">
-    doas dd if=/dev/rcd0c of=/home/imagen/micd.iso bs=2048 count=112120
-      
-</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp110017280"></a>3.5.2. Crear una imagen nueva ISO 9660</h4></div></div></div><p>
-        Para crear una imagen ISO a partir de datos que usted elija,
-        deje los archivos y directorios por incluir en un directorio
-        (digamos <code class="literal">/home/pablo/imagen</code>), el
-        cual después puede especificarse a <code class="literal">mkisofs</code>
-        (programa que hace parte del paquete
-        <code class="literal">cdrtools</code>). El formato estándar para salvar
-        información en CD-ROMs (ISO9660) sólo permite nombres de
-        archivos con 8 caracteres, extensiones de 3 y restricciones en
-        la codificación de caracteres, hay algunas extensiones que
-        permiten aumentar este margen, una de estas que es algo portable
-        es Rock Ridge (funciona al menos en sistemas Unix y en Windows).
+        Una vez instale los módulos que desea usar, es posible ver
+        varias traducciones en paralelo. Cada traducción puede contar
+        con opciones como: Palabras de Cristo en Rojo, Números Strong,
+        Etiquetas morfológicas, Notas al pie, encabezados.
+      </p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idm2794453888"></a>3.3. Preparación de Documentos y Aplicaciones de Oficina</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm2794456192"></a>3.3.1. Aplicaciones estilo MS-Office</h4></div></div></div><p>
+        LibreOffice es un juego de aplicaciones de oficina que ofrece,
+        prácticamente, la misma funcionalidad de MS-Office, un formato
+        de documentos estándar (ISO) y facilidades para importar y
+        exportar en formatos de MS-Office.
       </p><p>
-        Para crear una imagen ISO con nombre
-        <code class="literal">/home/pablo/micd.iso</code> a partir de la
-        información disponible en
-        <code class="literal">/home/pablo/imagen</code> puede ejecutar
-        como usuario <code class="literal">root</code>:
-      </p><pre class="programlisting">
-    cd /home/pablo/imagen
-    doas mkisofs -r -l -f -o /home/pablo/micd.iso  .
-    
-</pre><p>
-        Note que la imagen creada emplea la extensión Rock Ridge (opción
-        <code class="literal">-r</code>), permite nombres largos (opción
-        <code class="literal">-l</code>) y maneja enlaces simbólicos (opción
-        <code class="literal">-f</code>).
+        <span class="inlinemediaobject"><img src="img/gnumeric.png"></span>
       </p><p>
-        Por otra parte en sistemas i386 o amd64 es posible arrancar un
-        computador desde un CD, configurando el arranque del computador
-        desde el BIOS para que sea por la unidad y cuando la imagen del
-        CD se crea con la extensión El Torito. La extensión El Torito
-        permite incluir la imagen de un floppy que se usa para arrancar.
-      </p><p>
-        Para crear una imagen ISO que use extensión Rock Ridge, con una
-        tabla de contenido de cada directorio
-        (<code class="literal">TRANS.TBL</code>), que emplee la imagen de disquete
-        <code class="literal">floppy.img</code> para arrancar, con información de
-        derechos de reproducción del archivo
-        <code class="literal">/home/pablo/Derechos.txt</code>, siguiendo
-        enlaces simbólicos y con la jerarquía de directorios y archivos
-        de <code class="literal">/home/pablo/imagen/</code> (en la que no
-        debe existir el archivo <code class="literal">boot.catalog</code>) use:
+        Lo puede iniciar desde el escritorio con botón derecho Oficina
+        &gt; LibreOffice o bien desde una terminal con
       </p><pre class="programlisting">
-    cd /home/pablo/imagen
-    doas mkisofs -b floppy.img -c boot.catalog -copyright /home/pablo/Derechos.txt \
-      -r -l -f -o /home/pablo/micd.iso  .
-    
-</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp3225005312"></a>3.5.3. Quemado de una imagen ISO 9660 en un CD-R o en un
-      CD-RW</h4></div></div></div><p>
-        Para escribir una imagen ISO (<code class="literal">micd.iso</code>) con
-        datos en un CD-R, puede emplear el programa
-        <code class="literal">cdrecord</code>, el cual puede emplear como
-        dispositivo uno de la forma <code class="literal">/dev/cd0c</code> o bien
-        <code class="literal">/dev/rcd0c:0,0,0</code>, por ejemplo:
-      </p><pre class="programlisting">
-    doas cdrecord dev=/dev/cd0c -data speed=16 /home/pablo/micd.iso
-    
-</pre><p>
-        Si emplea un CD-RW tenga en cuenta blanquearlo antes de escribir
-        usando la opción <code class="literal">blank=fast</code>:
-      </p><pre class="programlisting">
-    doas cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/pablo/micd.iso
-    
-</pre><p>
-        Si desea emplear varias sesiones en un mismo CD-R (o CD-RW)
-        tenga en cuenta:
-      </p><div class="itemizedlist"><ul type="disc"><li><p>
-            La primera sesión se hace creando una imagen ISO usual y al
-            quemar con cdrecord agregue la opción
-            <code class="literal">-multi</code>.
-          </p></li><li><p>
-            Las imágenes de sesiones posteriores deben crearse empleando
-            la opción <code class="literal">-C</code> de
-            <code class="literal">mkisofs</code> <sup>[<a name="idp868266112" href="#ftn.idp868266112">18</a>]</sup>. Los datos precisos que debe pasar a la opción
-            -C los examina con:
-          </p><pre class="programlisting">
-    doas cdrecord dev=/dev/cd0c -msinfo
-</pre><p>
-            Que retorna un par de números (supongamos que 18904,26106),
-            los cuales debe usar con mkisofs, por ejemplo:
-          </p><pre class="programlisting">
-    doas mkisofs -r -l -f -C 18904,26106 -o ../micd.iso .
-</pre><p>
-            Y nuevamente debe pasar la opción <code class="literal">-multi</code>
-            a <code class="literal">cdrecord</code> en el momento de quemar.
-          </p></li></ul></div><p>
-        Para crear CDs de audio deben emplearse archivos de sonido (por
-        ejemplo formatos <code class="literal">.wav</code> o
-        <code class="literal">.au</code>) con información de 16 bits en estéreo a
-        44100 muestras/s, codificación PCM. Al quemar con
-        <code class="literal">cdrecord</code> en lugar de la opción
-        <code class="literal">-data</code> debe emplearse
-        <code class="literal">-audio</code>.
-      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp2885838720"></a>3.5.4. Lecturas recomendadas y referencias Quemadoras</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
-            Puede consultar más sobre creación de imágenes para CDs con
-            <code class="literal">man mkisofs</code> (tras haber instalado
-            <code class="literal">cdrtools</code>)).
-          </p></li><li><p>
-            Para conocer más sobre el quemado de CDs puede consultar
-            <code class="literal">man cdrecord</code> (también después de instalar
-            el paquete <code class="literal">cdrtools</code>). En foros de
-            usuarios pueden verse mensajes como
-            <a href="">http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html</a>,
-            <a href="">http://www.deadly.org/article.php3?sid=20031105030127&amp;mode=flat</a>
-            y
-            <a href="">http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html</a>
-          </p></li></ul></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp1127446528"></a>3.6. Operaciones con DVD</h3></div></div></div><p>
-      El sistema de archivos de los DVD es UDF, que es diferente al de
-      los CDs (ISO9660). Desde la versión 4.0, OpenBSD soporta las
-      versiones 1.02 y 1.50 de UDF en modos plain y VAT (ver &lt;&gt;
-    </p><p>
-      Las operaciones de montaje de DVDs, montaje de imágenes y copia de
-      DVDs a disco son como las de CDs remplazando el tipo
-      <code class="literal">cd9660</code> por <code class="literal">udf</code> (ver
-      <a href="ar01s03.html#idp960514048" title="3.4.1. Montar un CD">Sección 3.4.1, “Montar un CD”</a>,
-      <a href="ar01s03.html#idp803552896" title="3.4.2. Montar imagen ISO 9660">Sección 3.4.2, “Montar imagen ISO 9660”</a> y
-      <a href="ar01s03.html#idp1069522688" title="3.5.1. Crear una imagen ISO a partir de un CD existente">Sección 3.5.1, “Crear una imagen ISO a partir de un CD existente”</a>).
-    </p><p>
-      Para quemar DVDs es necesario instalar el paquete
-      <code class="literal">cdrtools</code>, el cual incluye el programa
-      <code class="literal">growisofs</code> que permite quemar DVDs al menos de
-      dos formas:
-    </p><div class="orderedlist"><ol type="1"><li><p>
-          Incluir una serie de archivos sin necesidad de preparar
-          previamente una imagen del DVD. Por ejemplo para quemar un DVD
-          que tenga los archivos <code class="literal">/home/copia/a</code> y
-          <code class="literal">/home/copia/b</code>:
-        </p><pre class="programlisting">
-    doas growisofs -Z /dev/rcd0c -R /home/copia/a /home/copia/b
-</pre></li><li><p>
-          Para quemar un DVD con la imagen ISO
-          <code class="literal">dvd.iso</code>
-        </p><pre class="programlisting">
-    doas growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
-</pre></li></ol></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp519112320"></a>3.6.1. Lecturas recomendadas y referencias DVD</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
-            <code class="literal">man mount_udf</code> y
-            <code class="literal">man growisofs</code>.
-          </p></li><li><p>
-            Universal Disk Format:
-            <a href="">http://en.wikipedia.org/wiki/Universal_Disk_Format</a>
-          </p></li></ul></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp1461101440"></a>3.7. Memoria USB</h3></div></div></div><p>
-      Para emplear una memoria USB después de conectarse debe:
-    </p><div class="orderedlist"><ol type="1"><li><p>
-          Examinar el dispositivo con el cual fue reconocida su memoria
-          tras conectarla. Vea los últimos mensajes presentados por
-          <code class="literal">dmesg</code>, típicamente será
-          <code class="literal">sd0</code>.
-        </p></li><li><p>
-          Examinar la partición por montar con
-        </p><pre class="programlisting">
-    doas disklabel /dev/rsd0c
-</pre><p>
-          la partición que deberá montar podría ser
-          <code class="literal">/dev/sd0c</code> o por ejemplo
-          <code class="literal">/dev/sd0i</code>.
-        </p></li><li><p>
-          Montar la partición apropiada en un punto del sistema de
-          archivos, por ejemplo con:
-        </p><pre class="programlisting">
-    doas mkdir /mnt/usb
-    doas mount /dev/sd0i /mnt/usb
-</pre></li><li><p>
-          Usar su memoria para leer/escribir (recordando que sólo podría
-          escribir el usuario que sea dueño del punto de montaje)
-        </p></li><li><p>
-          Cuando termine su utilización desmontar por ejemplo con:
-        </p><pre class="programlisting">
-    doas umount /mnt/usb
-</pre></li></ol></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp1238575488"></a>3.8. Imagen cifrada</h3></div></div></div><p>
-      Es posible tener particiones cifradas que que exigen una clave
-      antes de montarlas —por ejemplo en el momento del arranque.
-    </p><p>
-      Las dos formas de configurarlas son con softraid y con vnconfig.
-    </p><p>
-      Tuvimos muy buena experiencia con vnconfig desde OpenBSD 3.6, pero
-      a partir de OpenBSD 6.6 empezamos a experimentar bloqueos extraños
-      en algunos computadores (si respondía ping pero no ssh ni ordenes
-      en terminal) que dejaban de presentarse cuando no se usaba
-      vnconfig. No todos los computadores con vnconfig presentaron ese
-      inconveniente. El problema podría relacionarse con:
-      <a href="">https://marc.info/?l=openbsd-bugs&amp;m=159181442320329&amp;w=2</a>
-    </p><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp654583424"></a>3.8.1. Método 1: Imagen cifrada con softraid</h4></div></div></div><p>
-        Esté método requiere más planeación en el momento de la
-        instalación porque por cada imagen cifrada se requiere una
-        subpartición o etiqueta.
-      </p><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp654583552"></a>3.8.1.1. Prepare una subpartición tipo RAID para la partición
-        cifrada</h5></div></div></div><p>
-          Supongamos que requiere una imagen cifrada de 2.2 gigas.
-        </p><p>
-          Examine un disco donde la partición de OpenBSD tenga espacio
-          extra, algo como:
-        </p><pre class="programlisting">
-$ doas disklabel -E /dev/sd0c
-/dev/sd0c&gt; p
-OpenBSD area: 409601660-1953525135; size: 1543923475; free: 10000015
-#                size           offset  fstype [fsize bsize   cpg]
-  a:        799999940        409601660  4.2BSD   4096 32768 26062 # /home
-  c:       1953525168                0  unused                    
-  d:        140000000       1209601600  4.2BSD   2048 16384 12958 # /compila
-  e:        150000000       1359601600  4.2BSD   2048 16384 12958 # /usr/local
-  f:        443923520       1509601600  4.2BSD   4096 32768 26062 # /var
-  i:        409599610             2048  ext2fs                    
-</pre><p>
-          En este ejemplo vemos que el área para OpenBSD está entre los
-          sectores 409’601.660 y 1953’525.135 y poniendo en otra
-          notación las subparticiones ( calculando el final de cada
-          subpartición como desplazamiento más tamaño menos uno) podemos
-          ver que si hay espacio disponible:
-        </p><div class="informaltable"><table border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
-                  etiqueta
-                </th><th align="left">
-                  inicio
-                </th><th align="left">
-                  fin
-                </th></tr></thead><tbody><tr><td align="left">
-                  a
-                </td><td align="left">
-                  409’601.660
-                </td><td align="left">
-                  1209’601.599
-                </td></tr><tr><td align="left">
-                  d
-                </td><td align="left">
-                  1209’601.600
-                </td><td align="left">
-                  1349’601.599
-                </td></tr><tr><td align="left">
-                  e
-                </td><td align="left">
-                  1359’601.600
-                </td><td align="left">
-                  1509’601.599
-                </td></tr><tr><td align="left">
-                  f
-                </td><td align="left">
-                  1509’601.600
-                </td><td align="left">
-                  1953’525.119
-                </td></tr></tbody></table></div><p>
-          Hay espacio disponible entre los sectores 1349’601.600 y
-          1359’601.599, es decir 10’000.000 disponibles.
-        </p><p>
-          Agregue en el espacio disponible una subpartición nueva tipo
-          RAID, por ejemplo:
-        </p><pre class="programlisting">
-/dev/sd0c&gt; a g
-offset: [1349601600] 
-size: [10000000] 5000000
-FS type: [4.2BSD] RAID
-/dev/sd0c*&gt; w
-/dev/sd0c&gt; q
-</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp993686400"></a>3.8.1.2. Presentar la subpartición como un nuevo volumen
-        cifrado</h5></div></div></div><p>
-          Asocie al dispositivo con tipo RAID (en el ejemplo
-          <code class="literal">sd0g</code>) un volumen softraid con disciplina
-          cifrada usando <code class="literal">bioctl</code>:
-        </p><pre class="programlisting">
-$ doas /sbin/bioctl -c C -l /dev/sd0g softraid0
-New passphrase:
-Re-type passphrase: 
-softraid0: CRYPTO volume attached as sd2
-</pre><p>
-          La contraseña que suministre debe suminitrarla igual cada vez
-          que vuelva a asociar el dispositivo con el volumen softraid.
-        </p><p>
-          Ahora es tiempo de inicializar ese volumen softraid como si
-          fuera un nuevo dispositivo, primero limpie el comienzo:
-        </p><pre class="programlisting">
-doas dd if=/dev/zero of=/dev/sd2c count=1024 bs=1024
-1024+0 records in
-1024+0 records out
-1048576 bytes transferred in 0.101 secs (10302430 bytes/sec)
-</pre><p>
-          Después subparticionando como se requiera, debe bastar una
-          sola subpartición o etiqueta (note que en el siguiente ejemplo
-          se ajusta el límite del área de OpenBSD para que coincida con
-          el tamaño del dispositivo RAID y por precaución no se usan los
-          primeros 64 bloques y tras intentos y errores se determina que
-          no se debe usar los últimos 512):
-        </p><pre class="programlisting">
-$ doas disklabel -E sd2
-Label editor (enter '?' for help at any prompt)
-sd2&gt; p
-OpenBSD area: 0-9999472; size: 9999472; free: 9999472
-#                size           offset  fstype [fsize bsize   cpg]
-  c:          9999472                0  unused                    
-sd2&gt; b
-Starting sector: [0] 
-Size ('*' for entire disk): [9999472] 4999999
-sd2*&gt; p
-OpenBSD area: 0-4999999; size: 4999999; free: 4999999
-#                size           offset  fstype [fsize bsize   cpg]
-  c:          9999472                0  unused                    
-sd2*&gt; w
-sd2&gt; a a
-offset: [0] 64
-size: [4999935] 4999423
-FS type: [4.2BSD] 
-sd2*&gt; w
-sd2&gt; q
-No label changes.
-</pre><p>
-          Después puede formatear la subpartición que creó:
-        </p><pre class="programlisting">
-$ doas newfs /dev/rsd2a
-/dev/rsd2a: 2441.1MB in 4999392 sectors of 512 bytes
-13 cylinder groups of 202.47MB, 12958 blocks, 25984 inodes each
-super-block backups (for fsck -b #) at:
- 32, 414688, 829344, 1244000, 1658656, 2073312, 2487968, 2902624, 3317280, 3731936, 4146592, 4561248, 4975904,
-</pre><p>
-          Y usarla:
-        </p><pre class="programlisting">
-$ doas fsck -y /dev/rsd2a
-** /dev/rsd2a
-** File system is clean; not checking
-$ doas mkdir /mnt/tmp       
-$ doas mount /dev/sd2a /mnt/tmp/
-$ df -h
-Filesystem     Size    Used   Avail Capacity  Mounted on
-...
-/dev/sd2a      2.3G    2.0K    2.2G     0%    /mnt/tmp
-</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp498533632"></a>3.8.1.3. Montar el volumen cifrado en cada arranque</h5></div></div></div><p>
-          Note que el volumen softraid es <code class="literal">sd2</code> pero
-          para evitar que se confunda con otros dispositivo (por ejemplo
-          al insertar una USB) es recomendable utilizar el UUID en lugar
-          de ese nombre de dispositivo.
-        </p><p>
-          Puede revisar el UUID asignado con
-          <code class="literal">sysctl hw.disknames</code>, por ejemplo:
-        </p><pre class="programlisting">
-$ sysctl hw.disknames
-hw.disknames=sd0:3c9be252c1607a88,sd1:b0dc1d64ba942c13,vnd2:953c2509f76c14eb,sd2:235a066b691f538c,sd3:d60a4c86bc6a923c
-</pre><p>
-          muestra que en lugar de <code class="literal">sd0</code> puede usar el
-          UUID <code class="literal">3c9be252c1607a88</code> y en lugar de
-          <code class="literal">sd2</code> puede emplear el UUID
-          <code class="literal">235a066b691f538c</code>.
-        </p><p>
-          Esos UUID los puede usar en un script de arranque, digamos
-          <code class="literal">/etc/rc.d/srpos</code> pensando en poner base
-          PostgreSQL allí:
-        </p><pre class="programlisting">
-#!/bin/sh
-
-servicio="/sbin/mount"
-
-. /etc/rc.d/rc.subr
-
-rc_check() {
-        /sbin/mount | grep "/var/postgresql" &gt; /dev/null
-}
-
-rc_stop() {
-        umount /var/postgresql
-        bioctl -d 235a066b691f538c
-}
-
-rc_start() {
-        disklabel 3c9be252c1607a88 | grep RAID
-        if (test "$?" = "0") then {
-                /sbin/bioctl -c C -l 3c9be252c1607a88.g softraid0
-                echo " " &gt; /dev/tty
-                /sbin/fsck_ffs -y 235a066b691f538c.a
-                /sbin/mount 235a066b691f538c.a /var/postgresql
-        } fi;
-}
-
-rc_cmd $1
-</pre><p>
-          Aún si fuese a configurar varios volumes softraid cifrados,
-          con <code class="literal">bioctl</code> siempre debe usar
-          <code class="literal">softraid0</code>
-        </p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp2665664512"></a>3.8.2. Método 2: Imagen cifrada con vnconfig</h4></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp3086076928"></a>3.8.2.1. Creación de la imagen</h5></div></div></div><p>
-          Para crear una imagen de aprox. 500MB en el archivo
-          <code class="literal">/var/post.img</code> puede usar:
-        </p><pre class="programlisting">
-    doas dd if=/dev/zero of=/var/post.img bs=1024 count=500000
-    doas vnconfig -ckv vnd0 /var/post.img
-    doas newfs /dev/vnd0c
-    doas vnconfig -u vnd0
+    soffice
           
 </pre><p>
-          La clave que ingrese tras
-          <code class="literal">vnconfig -ckv vnd0 /var/post.img</code>, la
-          requerirá posteriormente para usar la imagen.
-        </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp3013816448"></a>3.8.2.2. Montar imagen</h5></div></div></div><p>
-          Esta imagen puede ser montadas (por ejemplo en
-          <code class="literal">/var/postgresql</code>) con el siguiente archivo
-          de ordenes (ubíquelo por ejemplo en
-          <code class="literal">/usr/local/sbin/montapost.sh</code>):
+        Después de instalarlo y ejecutarlo por primera vez arrancará en
+        inglés, para configurarlo en español vaya al menú Tools &gt;
+        Options &gt; Language y elija Español y Español/Colombia en las
+        casillas de idioma que aparecen al lado derecho.
+      </p><p>
+        Incluye el procesador de texto <code class="literal">writer</code> (que
+        puede iniciar desde una terminal con
+        <code class="literal">swriter</code>), la hoja de cálculo
+        <code class="literal">calc</code> (que inicia desde una terminal con
+        <code class="literal">scalc</code>), el creador de presentaciones
+        <code class="literal">impress</code> (que inicia con
+        <code class="literal">simpress</code> desde un terminal) y el programa
+        para diagrama <code class="literal">draw</code> (que puede iniciar con
+        <code class="literal">sdraw</code>). Puede aprender más sobre este
+        procesador en
+        <a href="bibliografia.html" title="E. Bibliografía">libreoffice-basico</a>
+      </p><p>
+        Para operar con hojas de cálculo incluye gnumeric-1.12.46p0, que
+        también puede abrir y guardar en OpenDocument y en formatos de
+        Microsoft Office.
+      </p><p>
+        La funcionalidad de un procesador de palabra, así como la básica
+        para hacer presentaciones también las ofrece LaTeX (ver
+        <a href="ar01s03.html#idm177841152" title="3.3.2.1. LaTeX">Sección 3.3.2.1, “LaTeX”</a>). Parte de la funcionalidad de
+        una hoja de cálculo la tiene desde una terminal
+        <code class="literal">sc</code>. También puede usar
+        <code class="literal">magicpoint</code> para hacer presentaciones. Sin
+        embargo para usar estas herramientas se requiere aprender formas
+        diferentes de operar.
+      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm2089924608"></a>3.3.2. TeX y Ghostview</h4></div></div></div><p>
+        Para emplear TeX, LaTeX y asociados instale texlive y gv:
+      </p><pre class="programlisting">
+    doas pkg_add $PKG_PATH/&amp;p-texlive_base;.tgz 
+    doas pkg_add $PKG_PATH/&amp;p-texlive_texmf-full;.tgz 
+    doas pkg_add $PKG_PATH/gv-3.7.4p0.tgz 
+</pre><p>
+        Puede configurar tamaño del papel, separado en sílabas y otros
+        detalles con <code class="literal">texconfig</code>.
+      </p><p>
+        A continuación se incluye un mini-tutorial de LaTeX adaptado de
+        AALinux, por otra parte puede consultar algo más sobre
+        <code class="literal">gv</code> en la sección
+        <a href="ar01s04.html#idp683284480" title="4.2.1. Uso de una impresora ya configurada">Sección 4.2.1, “Uso de una impresora ya configurada”</a>.
+      </p><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm177841152"></a>3.3.2.1. LaTeX</h5></div></div></div><p>
+          LaTeX es una extensión a un sistema llamado TeX, desarrollado
+          para escribir documentos de matemáticas. A continuación se
+          presenta un ejemplo de un documento LaTeX y el resultado que
+          se obtiene tras procesarlo.
         </p><pre class="programlisting">
-#!/bin/sh
-# Monta imágenes cifradas en OpenBSD. Dominio público. 2006.
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\begin{document}
+\author{Rupertino Gonzales}
+\title{Algunas posibilidades de LaTeX}
+\maketitle
 
-if (test ! -d /var/postgresql) then {
-    mkdir /var/postgresql
-    chown _postgresql:_postgresql /var/postgresql
-} fi;
-vnconfig -ckv vnd0 /var/post.img
-mount /dev/vnd0c /var/postgresql
-    
+\section{Elementos}
+Puede estructurar el documento en capítulos, secciones, etc.
+Este texto es el contenido de la primera sección de este ejemplo, 
+puede escribir cada párrafo en líneas consecutivas.
+
+\subsection{Ayudas}
+Puede lograr efectos como \emph{Itálicas}, \textbf{negrillas} o 
+cambios en el \textsf{tipo o {\small tamaño} de letra} (note 
+como se anidaron ambientes en este ejemplo).
+
+Puede crear listas:
+\begin{itemize}
+\item Primer elemento de lista.
+\item Segundo elemento de lista.
+\end{itemize}
+o tablas
+\\
+\begin{tabular}{|l|r|} \hline
+Título 1 &amp; Título 2 \\\hline
+elemento 1 &amp; elemento 2 \\\hline
+\end{tabular}
+\subsection{Ecuaciones}
+LaTeX es un experto en esta materia:
+\[ \int_{x=-\infty}^{\infty}e^{-|x|} \]
+\end{document}
 </pre><p>
-          y recuerde otorgar permiso de ejecución del mismo:
+          LaTeX ofrece plantillas para varios tipos de documentos:
+          artículo, reporte, libro y ofrece el concepto de ambiente para
+          indicar como presentar cierta información de acuerdo a la
+          plantilla. En el ejemplo presentado, el tipo de documento es
+          artículo (lo indica la línea
+          <code class="literal">documentclass{article}</code>), y uno de los
+          ambientes empleados es <code class="literal">tabular</code>, que genera
+          una tabla.
+        </p><p>
+          Una vez edite un documento puede procesarlo con LaTeX para
+          obtener un archivo DVI, por ejemplo para generar el archivo
+          <code class="literal">documento.dvi</code> a partir de
+          <code class="literal">documento.tex</code>:
         </p><pre class="programlisting">
-    doas chmod +x /usr/local/sbin/montapost.sh
-    
+    latex documento.tex
 </pre><p>
-          Notará que este ejemplo es para montar una partición en la que
-          funcionará una base de datos PostgreSQL, si no existiera el
-          usuario <code class="literal">_postgresql</code> antes de ejecutar este
-          archivo de ordenes ejecute
-          <code class="literal">chmod a+w /var/postgresql</code> y después de que
-          haya instalado PostgreSQL:
+          latex Programa que convierte un archivo LaTeX a DVI.
+        </p><p>
+          xdvi Programa para ver un archivo DVI en pantalla.
+        </p><p>
+          El archivo DVI es apropiado para imprimir, puede imprimirlo
+          con una orden como <code class="literal">dvilj</code>,
+          <code class="literal">dvidj</code> o un nombre análogo que corresponda a
+          su impresora <sup>[<a name="idm177840128" href="#ftn.idm177840128">10</a>]</sup>. Para visualizar un archivo DVI puede emplear la
+          orden xdvi:
         </p><pre class="programlisting">
-    doas chown _postgresql:_postgresql /var/postgresql
-    doas chmod o-w /var/postgresql
-    
-</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm517383936"></a>3.8.2.3. Montar en el arranque</h5></div></div></div><p>
-          Este script debe ejecutarse en el momento del arranque y antes
-          de iniciar la base de datos, agregue a su archivo
-          <code class="literal">/etc/rc.local</code> (antes de la inicialización
-          de PostgreSQL):
+    xdvi documento.dvi
+</pre><p>
+          dvi2ps Programa para convertir un DVI en PostScript.
+        </p><p>
+          y para convertirlo a PostScript puede emplear
+          <code class="literal">dvi2ps</code>:
         </p><pre class="programlisting">
-    doas /usr/local/sbin/montapost.sh
+    dvi2ps -c documento.ps documento.dvi
+</pre><p>
+          A continuación se presenta como se ve el ejemplo de esta
+          sección con el programa <code class="literal">xdvi</code>.
+        </p><div class="figure"><a name="idm928197504"></a><p class="title"><b>Figura 2. Visualización de DVI generado de fuente en
+          LaTeX</b></p><div class="mediaobject"><img src="img/ejlatex.png" alt="Visualización de DVI generado de fuente
+            en LaTeX"></div></div><p>
+          Existen además otros programas para convertir de LaTeX a HTML
+          como latex2html y HeVeA. Puede encontrar más información de
+          latex2html en
+          <a href="">http://ctan.tug.org/ctan/tex-archive/support/latex2html/</a>
+          y de HeVeA en
+          <a href="">http://pauillac.inria.fr/hevea/</a>.
+        </p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm928197376"></a>3.3.3. DocBook</h4></div></div></div><p>
+        Puede configurarse tanto DocBook SGML 4.4 y procesarse con las
+        hojas de estilo DSSSL, o bien DocBook XML 4.4 y procesarse con
+        <code class="literal">xsltproc</code>.
+      </p><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm928199808"></a>3.3.3.1. SGML 4.4 con DSSSL</h5></div></div></div><p>
+          Instale los paquetes openjade, docbook y docbook-dsssl:
+        </p><pre class="programlisting">
+        doas pkg_add $PKG_PATH/docbook-4.5p3.tgz
+        doas pkg_add $PKG_PATH/docbook-dsssl-1.79.tgz
+        doas pkg_add $PKG_PATH/openjade-1.3.3pre1p6.tgz 
+</pre><p>
+          Esto bastará para hacer conversiones de DocBook SGML a HTML
+          por ejemplo si su hoja de estilo DSSL es
+          “<span class="quote">marcos.dsl</span>” y va a convertir el documento
+          DocBook marcos.xml:
+        </p><pre class="programlisting">
+        openjade  -t sgml -ihtml -d marcos.dsl#html marcos.xml 
+</pre><p>
+          Para convertir a PostScript además de los paquetes anteriores
+          requiere el paquete texlive (ver
+          <a href="ar01s03.html#idm2089924608" title="3.3.2. TeX y Ghostview">TeX y Ghostview</a>) y el
+          paquete jadetex
+        </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm2096013952"></a>3.3.3.2. XML 4.4 con XSL</h5></div></div></div><p>
+          Como parte del paquete
+          `<code class="literal">se instalará el DTD de DocBook XML 4.4 en el directorio</code>/usr/local/share/xml/docbook<code class="literal">. Es recomendable que cree el archivo</code>/usr/local/share/xml/catalog`
+          inicialmente con:
+        </p><pre class="programlisting">
+        CATALOG "docbook/catalog" 
+</pre><p>
+          y que agregue en este archivo la ruta de otros catálogos XML o
+          de DTDs.
+        </p><p>
+          Para transformar documentos XML con hojas de estilo XSL puede
+          emplear un procesador como <code class="literal">xsltproc</code>, que
+          está incluido en el paquete <code class="literal">libxslt</code>. Esta
+          herramienta recibe el nombre del archivo XSL y el nombre del
+          archivo XML por transformar. También puede recibir la opción
+          <code class="literal">--catalogs</code> que indica usar los catálogos de
+          la variable <code class="literal">SGML_CATALOG_FILES</code> (se separan
+          unos catálogos de otros con el carácter “<span class="quote">:</span>”), o
+          la opción <code class="literal">--nonet</code> que indica no descargar
+          DTDs de Internet (los catálogos deben resolver todos los
+          identificadores públicos).
+        </p><p>
+          Las hojas de estilo XSL para transformar DocBook XML en HTML y
+          en XML-FO (Formatting objects, apropiado para imprimir con un
+          procesador FO) se instalan con el paquete
+          `<code class="literal">y quedan en</code>/usr/local/share/xsl/docbook`.
+        </p><p>
+          Una vez instalados todas las partes puede procesar el archivo
+          <code class="literal">ejemplo.xdbk</code>:
+        </p><pre class="programlisting">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"  "/usr/local/share/xml/docbook/4.4/docbookx.dtd" &gt; 
+
+    &lt;article lang="es"&gt;
+        &lt;title&gt;articulo&lt;/title&gt;
+      &lt;articleinfo&gt;
+        &lt;authorgroup&gt;
+          &lt;author&gt;
+        &lt;firstname&gt;Nombres&lt;/firstname&gt;
+        &lt;surname&gt;Apellidos&lt;/surname&gt;
+        &lt;authorblurb&gt;
+              &lt;para&gt;&lt;address&gt;
+              &lt;email&gt;micorreo@pasosdeJesus.org&lt;/email&gt;
+               &lt;/address&gt;&lt;/para&gt;
+        &lt;/authorblurb&gt;
+          &lt;/author&gt; 
+        &lt;/authorgroup&gt;
         
+        &lt;abstract&gt;
+            &lt;para&gt;Resumen&lt;/para&gt;
+        &lt;/abstract&gt;
+
+        &lt;legalnotice&gt;
+            &lt;para&gt;nota legal&lt;/para&gt;
+        &lt;/legalnotice&gt;
+
+      &lt;/articleinfo&gt;
+
+      &lt;sect1 id="s1"&gt;
+        &lt;title&gt;Primera sección&lt;/title&gt;
+
+        &lt;para&gt;Parrafo&lt;/para&gt;
+      &lt;/sect1&gt;
+    &lt;/article&gt;
 </pre><p>
-          De forma que en cada arranque el script le solicitará la clave
-          antes de continuar.
-        </p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp2660643200"></a>3.8.3. Lecturas recomendadas y referencias Imagen Cifrada</h4></div></div></div><p>
-        Página <code class="literal">man vnconfig</code>.
-      </p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp3559676544"></a>3.9. Teclado en español</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp1714734208"></a>3.9.1. En las consolas tipo texto</h4></div></div></div><p>
-        Si su teclado es español o latinoamericano puede configurarlo
-        durante la instalación. Después de instalado puede elegir otra
-        configuración con <code class="literal">keyb la</code> o
-        <code class="literal">keyb es</code>
-      </p><p>
-        Si tiene un teclado US y desea emplear teclas muertas en la
-        consola puede usar desde la línea de ordenes:
+          con una hoja XSLT de DocBook con:
+        </p><pre class="programlisting">
+        export SGML_CATALOG_FILES="/usr/local/share/xml/catalog"
+        xsltproc --catalogs --nonet /usr/local/share/xsl/docbook/html/chunk.xsl ejemplo.xdbk
+</pre></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idm2719744128"></a>3.4. Español</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm2719742080"></a>3.4.1. ispell</h4></div></div></div><p>
+        <code class="literal">ispell</code> permite revisar ortografía de textos
+        planos o fuentes de documentos en diversos formatos (HTML, XML o
+        TeX). Hay diccionarios disponibles para diversos idiomas. Al
+        instalar el paquete <code class="literal">ispell</code> se instalarán dos
+        diccionarios: inglés de EUA (<code class="literal">american</code>) e
+        inglés de Inglaterra (<code class="literal">british</code>). Para emplear
+        el diccionario en español (<code class="literal">spanish</code>) instale
+        el paquete <code class="literal">ispell-spanish</code>, puede configurarlo
+        como diccionario por defecto con
+        <code class="literal">ispell-config</code>.
+      </p><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm3190774272"></a>3.4.1.1. Corrección ortográfica</h5></div></div></div><p>
+          Puede corregir interactivamente la ortografía de un texto
+          plano (digamos <code class="literal">carta.txt</code>) usando el
+          diccionario por defecto con:
+        </p><pre class="programlisting">
+        ispell carta.txt
+</pre><p>
+          o si desea emplear el diccionario de un idioma particular:
+        </p><pre class="programlisting">
+        ispell -d spanish carta.txt
+</pre><p>
+          Al corregir interactivamente <code class="literal">ispell</code>
+          mostrará palabras que no encuentre en el diccionario del
+          idioma ni en su diccionario personal<sup>[<a name="idm2719743744" href="#ftn.idm2719743744">11</a>]</sup> del idioma
+          (e.g. <code class="literal">~/.ispell_spanish</code>), así como posibles
+          remplazos. Podrá elegir uno de los remplazos tecleando el
+          número que antecede al remplazo.
+        </p></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idm1379276800"></a>3.5. Multimedia</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm3190769664"></a>3.5.1. Mplayer</h4></div></div></div><p>
+        Es un reproductor de audio y video que soporta gran variedad de
+        formatos. Por ejemplo para ver video.flv:
       </p><pre class="programlisting">
-    doas wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
-    doas wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"
-    doas wsconsctl -w keyboard.map+="keycode 56=Cmd2 Multi_key" 
+        mplayer video.flv
 </pre><p>
-        o para que esta configuración siempre sea realizada durante el
-        arranque agregue estas líneas al final de
-        <code class="literal">/etc/rc.local</code> (puede agregar al final de cada
-        línea <code class="literal">&gt; /dev/null</code>).
+        Se distribuye con codecs que pueden distribuirse libremente.
+        Para que soporte codecs de Windows es importante instalar
+        también el paquete <code class="literal">win32-codecs</code>
       </p><p>
-        Estas líneas configuran entre otros:
-      </p><div class="variablelist"><dl><dt><span class="term">
-            ’
-          </span></dt><dd><p>
-              como tecla muerta para la tilde (seguido de un espacio
-              producirá el apostrofe)
-            </p></dd><dt><span class="term">
-            "
-          </span></dt><dd><p>
-              como tecla muerta para la diéresis (seguido de un espacio
-              producirá las comillas)
-            </p></dd><dt><span class="term">
-            `
-          </span></dt><dd><p>
-              como tecla muerta para el acento grave (seguido de un
-              espacio produce el apostrofe izquierdo)
-            </p></dd><dt><span class="term">
-            ~
-          </span></dt><dd><p>
-              como tecla muerta para la virgulilla (seguido de un
-              espacio produce ~)
-            </p></dd><dt><span class="term">
-            ^
-          </span></dt><dd><p>
-              como tecla muerta para el acento circunflejo
-            </p></dd><dt><span class="term">
-            Shift+Alt izquierdo
-          </span></dt><dd><p>
-              Como tecla de composición
-            </p></dd></dl></div><p>
-        La tecla de composición<sup>[<a name="idp1771833472" href="#ftn.idp1771833472">19</a>]</sup> le permitirá generar un carácter empleando una
-        secuencia de dos teclas. Por ejemplo si presiona la tecla de
-        composición (i.e Shift+Alt izquierdo con la configuración
-        presentada), y después presiona ? seguido de ? obtendrá el
-        carácter ¿. En el apéndice
-        <a href="caracteres-que-pueden-generarse.html" title="B. Caracteres que pueden generarse">Caracteres que
-        pueden generarse</a> encontrará una tabla con todas las
-        combinaciones de teclas que pueden usarse con la tecla compose y
-        con teclas muertas.
-      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp1886070144"></a>3.9.2. X-Window</h4></div></div></div><p>
-        Dado que X-Window emplea el teclado en modo crudo la
-        configuración que haga para las consolas virtuales no quedará
-        disponible.
-      </p><p>
-        Si tiene un teclado en español puede configurarlo con
-        <code class="literal">xorgcfg</code> o bien con
-        <code class="literal">xorgcfg -textmode</code>, o bien editando el archivo
-        <code class="literal">/etc/X11/xorg.conf</code> para que en la sección del
-        teclado quede la línea:
+        También permite hacer conversiones y extraer partes. Por ejemplo
+        para extraer pista de audio de un video descargado de youtube, y
+        dejarla en formato WAV:
       </p><pre class="programlisting">
-    Option  "XkbLayout" "es"
-    
+        mplayer -vo null -ao "pcm:file=pista.wav" -af resample=44100 "video.flv"
 </pre><p>
-        o si su teclado es latinoamericano remplace
-        <code class="literal">es</code> por <code class="literal">latam</code>.
-      </p><p>
-        Si tiene un teclado en inglés puede agregar las siguientes
-        líneas a su archivo <code class="literal">~/.Xmodmap</code>
+        Para reproducir 10 segundos de un DVD comenzando en el segundo
+        240:
       </p><pre class="programlisting">
-    keycode 64=Alt_L Multi_key
-    keycode 48=dead_acute dead_diaeresis
-    keycode 49=dead_grave dead_tilde 
+        mplayer -ss 240 -endpos 10 dvd://1
 </pre><p>
-        y asegurarse de ejecutar <code class="literal">xmodmap ~/.Xmodmap</code>
-        durante el arranque de su sesión X (podría ser por ejemplo
-        agregándolo a <code class="literal">~/.xsession</code>)
-      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1238451328" href="#idp1238451328">12</a>] </sup>
-            En el caso de LPD el directorio con la cola de trabajos de
-            una impresora se configura en
-            <code xmlns="" class="literal">/etc/printcap</code>, en el caso de
-            <code xmlns="" class="literal">lp</code> el directorio por defecto es
-            <code xmlns="" class="literal">/var/spool/outputlpd/lp</code>.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm16761472" href="#idm16761472">13</a>] </sup>
-            Normalmente puede configurar otro nombre para la impresora
-            por defecto en la variable de ambiente PRINTER.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1361979136" href="#idp1361979136">14</a>] </sup>
-            Hay algunas impresoras que pueden imprimir PostScript
-            directamente, pero en general para hacer la traducción de
-            PostScript al lenguaje de una impresora se requiere un
-            filtro que el administrador del sistema debe configurar.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1361978240" href="#idp1361978240">15</a>] </sup>
-            PDF (<span xmlns="" class="emphasis"><em>Portable Document Format</em></span> es otro
-            lenguaje para impresión, de documentos con gráficas y
-            diversos tipos de letras, basado en PostScript (de la misma
-            compañía —Adobe).
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp2862855296" href="#idp2862855296">16</a>] </sup>
-            De acuerdo a Printig-HOWTO estas herramientas ofrecen la
-            funcionalidad de las herramientas
-            “<span xmlns="" class="quote"><span class="emphasis"><em>distiller</em></span></span>” de Adobe.
-          </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1107011328" href="#idp1107011328">17</a>] </sup>
-                Los parámetros del hardware mantenidos ayudan a
-                localizar bloques libres de forma óptima.
-              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp868266112" href="#idp868266112">18</a>] </sup>
-                Si la sesión previa tenia -T esta también con mismo
-                nombre de tablas (especificable con -table-name TN).
-              </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1771833472" href="#idp1771833472">19</a>] </sup>
-            Tecla de composición: en inglés <span xmlns="" class="emphasis"><em>compose
-            key</em></span>
-          </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="conf-programas.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">4. Configuración y uso de algunos programas </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 5. Instalaciones duales</td></tr></table></div></body></html>
+        Se distribuye junto con <code class="literal">mencoder</code> que permite
+        convertir de un formato a otro.
+      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm612976640"></a>3.5.2. Edición de gráficos</h4></div></div></div><p>
+        Para ver una gráfica (sin editarla) prácticamente en cualquier
+        formato, puede usar <code class="literal">display</code> incluido en
+        ImageMagick-6.9.10.86p0:
+      </p><pre class="programlisting">
+    display migrafica.png
+</pre><p>
+        Otra opción que facilita ver un directorio con imágenes es
+        <code class="literal">xfi</code> incluido en el paquete xfe-1.43.2:
+      </p><pre class="programlisting">
+    xfi migrafica.png
+</pre><p>
+        Las operaciones típicas con gráficos son el retoque de fotos y
+        la creación de diagramas. Para retocar fotografías se emplean
+        editores gráficos a nivel de pixels, mientras que para creación
+        de diagramas resultan más convenientes editores de gráficos
+        vectoriales.
+      </p><p>
+        Como editor de gráficos a nivel de pixels, el CD de adJ incluye
+        gimp-2.10.18p1
+      </p><p>
+        <span class="inlinemediaobject"><img src="img/gimp.png"></span>
+      </p><p>
+        Como editor vectorial incluye inkscape-0.92.4p2
+      </p><p>
+        <span class="inlinemediaobject"><img src="img/inkscape.png"></span>
+      </p><p>
+        OpenOffice incluye otro editor vectorial llamado
+        <code class="literal">draw</code>.
+      </p><p>
+        Para la generación de gráficos de barras y estadísticos resulta
+        más apropiado el graficador de gnumeric-1.12.46p0 o de calc –la
+        hoja de cálculo de OpenOffice–, ver
+        <a href="ar01s03.html#idm2794456192" title="3.3.1. Aplicaciones estilo MS-Office">Sección 3.3.1, “Aplicaciones estilo MS-Office”</a>
+      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm943362176"></a>3.5.3. Edición de audio</h4></div></div></div><p>
+        Para reproducir una pista de audio en diversos formatos
+        (incluyendo el libre ogg, el común wav y el patentado mp3) puede
+        usar <code class="literal">mplayer</code> (ver
+        <a href="ar01s03.html#idm3190769664" title="3.5.1. Mplayer">Sección 3.5.1, “Mplayer”</a>), o bien
+        <code class="literal">audacious</code> (incluido en el paquete
+        audacious-3.10.1):
+      </p><p>
+        <span class="inlinemediaobject"><img src="img/audacious.png"></span>
+      </p><p>
+        El programa <code class="literal">play</code> incluido en el paquete
+        sox-14.4.2p5 también le permitirá escuchar diversos formatos.
+      </p><p>
+        Desde la línea de ordenes podrá recortar, cambiar volumen y
+        aplicar otros efectos empleando el programa
+        <code class="literal">sox</code>.
+      </p><p>
+        Si prefiere un editor gráfico que le permite recortar y aplicar
+        algunos efectos a pistas de audio en prácticamente cualquier
+        formato de audio utilice el programa audacity-2.3.3:
+      </p><p>
+        <span class="inlinemediaobject"><img src="img/audacity.png"></span>
+      </p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idm1426183424"></a>3.6. Operación en red</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm943361536"></a>3.6.1. <code class="literal">mutt</code></h4></div></div></div><p>
+        El uso básico de mutt puede consultarlo en
+        <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>
+      </p><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm943363712"></a>3.6.1.1. Enviado correo con <code class="literal">sendmail</code> de otro
+        computador</h5></div></div></div><p>
+          Para enviar correos <code class="literal">mutt</code> corre por defecto
+          el programa <code class="literal">sendmail</code> (por defecto con
+          parámetros: <code class="literal">sendmail -oem -oi</code>), si usted
+          prefiere o necesita emplear el <code class="literal">sendmail</code> de
+          otro computador puede:
+        </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Hacer un script (digamos
+              <code class="literal">/home/pablo/scripts/envia.sh</code>)
+              que llame al <code class="literal">sendmail</code> remoto (por
+              ejemplo con <code class="literal">ssh</code>) y le pase lo que
+              recibe por entrada estándar:
+            </p></li></ul></div><pre class="programlisting">
+        #!/bin/sh
+        # envia.sh Dominio público
+
+        if (test "$SSH_AUTH_SOCK" = "") then {
+            echo "Usar con ssh-agent";
+            exit 2;
+        } fi;
+
+        cat - | ssh pablo@amor.miescuela.edu.co /usr/sbin/sendmail -oem -oi
+</pre><pre class="programlisting">
+Note que este script está hecho para ser ejecutado junto con el
+agente de autenticación de ssh (i.e `ssh-agent`).
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Configure <code class="literal">mutt</code> para que emplee su
+              script con la variable <code class="literal">sendmail</code>, la
+              cual puede establecer en su archivo
+              <code class="literal">~/.muttrc</code> con algo como:
+            </p></li></ul></div><pre class="programlisting">
+            set sendmail=/home/pablo/scripts/envia.sh
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Asegúrese de ejecutar <code class="literal">mutt</code> junto con el
+              agente de autenticación de <code class="literal">ssh</code>. Por
+              ejemplo con:
+            </p></li></ul></div><pre class="programlisting">
+            ssh-agent /bin/ksh
+            ssh-add
+            mutt
+</pre><pre class="programlisting">
+o si emplea XWindow es posible que pueda configurar su manejador de
+escritorio o su administrador de ventanas para que toda la sesión
+emplee el agente (ver un ejemplo en [xref](#fluxbox)).
+</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm438561280"></a>3.6.1.2. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+              Página man de <code class="literal">mutt</code>
+            </p></li><li><p>
+              Sección sobre <code class="literal">mutt</code> de
+              <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>
+            </p></li></ul></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm1090049152"></a>3.6.2. Chromium</h4></div></div></div><p>
+        Puede iniciarlo desde el menú de fluxbox o desde una terminal
+        con <code class="literal">chromium</code>.
+      </p><p>
+        Es posible que chrome use como proxy un tunel SOCKS creado con
+        ssh. Esto es útil por ejemplo para ingresar a sitios web que
+        están en intranets. Primero cree el tunel ingresando al
+        cortafuegos/enrutador de la Intranet, por ejemplo en el puerto
+        9080 con:
+      </p><pre class="programlisting">
+    ssh -D9080 miusuario@micortafuegos 
+</pre><p>
+        A continuación inicie chromium indicando que debe usarse el
+        proxy socks del puerto 9080:
+      </p><pre class="programlisting">
+    chromium --proxy-server=socks://127.0.0.1:9080
+</pre><p>
+        Tras esto ya podrá ingresar direcciones de la intranet desde el
+        navegador.
+      </p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idm1090037120"></a>3.7. Ambiente de Desarrollo</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm943358592"></a>3.7.1. Ruby</h4></div></div></div><p>
+        En adJ 6.7 es sencillo usar ruby-2.7.1 con Ruby on
+        Rails 6. Lo básico se instala de paquetes de OpenBSD y lo más
+        reciente de Ruby directamente como gemas.
+      </p><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm943357440"></a>3.7.1.1. Instalación y configuración</h5></div></div></div><p>
+          Asegúrese de tener instalados los paquetes ruby-2.7.1 y
+          node-12.16.1, incluidos en el DVD de adJ 6.7
+        </p><p>
+          Asegúrese de tener enlaces al intérprete de ruby y
+          herramientas (como describe el paquete ruby):
+        </p><pre class="programlisting">
+    doas sh
+    ln -sf /usr/local/bin/ruby27 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb27 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb27 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc27 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri27 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake27 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem27 /usr/local/bin/gem
+    ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler27 /usr/local/bin/bundler
+</pre><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm1090036992"></a>3.7.1.1.1. Límites amplios</h6></div></div></div><p>
+            Asegurarse de tener limites amplios del sistema operativo
+            para abrir archivos y manejar memoria, por ejemplo
+            superiores a los siguientes en
+            <code class="literal">/etc/systctl.conf</code>
+          </p><pre class="programlisting">
+    kern.shminfo.shmmni=1024
+    kern.seminfo.semmns=2048
+    kern.shminfo.shmmax=50331648
+    kern.shminfo.shmall=51200
+    kern.maxfiles=20000
+</pre><p>
+            El usuario desde el cual desarrollará o ejecutará
+            aplicaciones también debe tener límites amplios, en
+            particular su clase de login (por ejemplo
+            <code class="literal">staff</code>). Debe tener al menos los
+            siguientes en <code class="literal">/etc/login.conf</code>
+          </p><pre class="programlisting">
+    staff:\
+            :datasize-cur=1536M:\
+            :datasize-max=infinity:\
+            :maxproc-max=4096:\
+            :maxproc-cur=4096:\
+            :openfiles-max=8090:\
+            :openfiles-cur=8090:\
+            :ignorenologin:\
+            :requirehome@:\
+            :tc=default:
+</pre><p>
+            (Si modifica el archivo <code class="literal">/etc/login.conf</code>
+            debe reconstruir su versión binaria con
+            <code class="literal">doas cap_mkdb /etc/login.conf</code>).
+          </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm850184704"></a>3.7.1.1.2. irb</h6></div></div></div><p>
+            Para facilitar su exploración del lenguaje ruby, puede usar
+            <code class="literal">irb</code> (ver {4}), pero antes verifique que
+            su archivo <code class="literal">~/.irbrc</code> tenga las siguientes
+            líneas (añadidas por defecto en adJ a la cuenta de
+            administrador):
+          </p><pre class="programlisting">
+    # Configuración de irb
+    # Basado en archivo de ordenes disponible en &lt;http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/&gt;
+    require 'irb/completion'
+    require 'pp'
+    IRB.conf[:AUTO_INDENT] = true
+    IRB.conf[:USE_READLINE] = true
+
+    def clear
+        system('clear')
+    end
+</pre><p>
+            A continuación ingrese a <code class="literal">irb</code> y escriba
+            por ejemplo <code class="literal">4.</code> y presione la tecla [Tab]
+            2 veces para ver los métodos de la clase Integer.
+          </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm850185088"></a>3.7.1.1.3. Gemas</h6></div></div></div><p>
+            El paquete <code class="literal">ruby</code> incluye
+            <code class="literal">rubygems</code> que maneja gemas (es decir
+            librerías) con el programa <code class="literal">gem</code>.
+          </p><p>
+            El directorio donde se instalan las gemas globales es
+            <code class="literal">/usr/local/lib/ruby/gems/2.7/</code> donde sólo
+            pueden instalarse con <code class="literal">doas</code>. Recomendamos
+            iniciar un directorio para instalar gemas como usuario
+            normal en <code class="literal">/var/www/bundler/ruby/2.7</code>, por
+            3 razones (1) evitar riesgos de seguridad al instalar gemas
+            como root, (2) evitar problemas de permisos y la dificultad
+            de programas como bundler para usar <code class="literal">doas</code>
+            en lugar de <code class="literal">sudo</code> y (3) alistar
+            infraestructura para que sus aplicaciones corran en una
+            jaula chroot en <code class="literal">/var/www</code>
+          </p><p>
+            Prepare ese directorio con:
+          </p><pre class="programlisting">
+    doas mkdir -p /var/www/bundler/ruby/2.7/
+    doas chown -R $USER:www /var/www/bundler
+</pre><p>
+            Y cuando requiera instalar una gema allí emplee:
+          </p><pre class="programlisting">
+    gem install --install-dir /var/www/bundler/ruby/2.7/ json -v '2.0'
+</pre><p>
+            O si llega a tener problemas de permisos con:
+          </p><pre class="programlisting">
+    doas gem install --install-dir /var/www/bundler/ruby/2.7/ bcrypt -v '3.1.11'
+</pre><p>
+            Para facilitar compilación de algunas extensiones (como las
+            de nokogiri) se recomienda instalar
+            <code class="literal">pkg-config</code> globalmente:
+          </p><pre class="programlisting">
+    doas gem install pkg-config 
+</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm2224425600"></a>3.7.1.1.4. Bundler</h6></div></div></div><p>
+            Para facilitar el manejo de varias gemas (y sus
+            interdependencias) en un proyecto es típico emplear
+            <code class="literal">bundler</code> que instala con:
+          </p><pre class="programlisting">
+    doas gem install bundler
+    if (test -x /usr/local/bin/bundle27) then { 
+       doas ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle; 
+    } fi
+</pre><p>
+            Configúrelo para que instale gemas localmente en
+            <code class="literal">/var/www/bundler/ruby/2.7</code> con:
+          </p><pre class="programlisting">
+  bundle config path /var/www/bundler/
+</pre><p>
+            Esto creará el directorio <code class="literal">~/.bundler/</code> y
+            dentro de este el archivo <code class="literal">~/bundle/config</code>
+            con el siguiente contenido:
+          </p><pre class="programlisting">
+---
+BUNDLE_PATH: "/var/www/bundler/"
+</pre><p>
+            Puede experimentar descargando un proyecto para ruby ya
+            hecho, seguramente verá un archivo
+            <code class="literal">Gemfile</code>, donde <code class="literal">bundler</code>
+            examina de que librerías depende la aplicación y genera un
+            archivo <code class="literal">Gemfile.lock</code> con las versiones
+            precisas por instalar de cada gema.
+          </p><p>
+            Una vez tenga un proyecto asegure que este emplea las gemas
+            de <code class="literal">/var/www/bundler/ruby/2.7</code> ejecutando
+            dentro del directorio del proyecto:
+          </p><pre class="programlisting">
+    mkdir .bundle
+    cat &gt; .bundle/config &lt;&lt;EOF
+    ---
+    BUNDLE_PATH: "/var/www/bundler"
+    BUNDLE_DISABLE_SHARED_GEMS: "true"
+    EOF
+</pre><p>
+            E instale con
+          </p><pre class="programlisting">
+    bundle install
+</pre><p>
+            Si eventualmente no logra instalar algunas –por problemas de
+            permisos típicamente– puede instalar con
+          </p><pre class="programlisting">
+    doas gem install --install-dir /var/www/bundler/ruby/2.7 json -v '2.0'
+</pre><p>
+            Cuando actualice la versión del sistema operativo al igual
+            que con gemas es importante reinstalar las gemas de las que
+            depende una aplicación –necesariamente las que tengan
+            extensiones en C. Esto es sencillo con versiones de bundler
+            posteriores a la 1.15.4:
+          </p><pre class="programlisting">
+    bundle pristine
+</pre><p>
+            y después instalando una a una las gemas que sean
+            extensiones, por ejemplo
+          </p><pre class="programlisting">
+    doas gem install --install-dir /var/www/bundler/ruby/2.7 nokogiri -v '2.0'
+</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm2537631488"></a>3.7.1.1.5. Rails</h6></div></div></div><p>
+            Se trata de una popular gema que facilita mucho la creación
+            de sitios dinámicos.
+          </p><p>
+            Para instalarla globalmente (en
+            <code class="literal">/usr/local/bin</code> y
+            <code class="literal">/usr/local/lib/ruby/gems/</code>) la versión
+            estable más reciente de Rails ejecute
+          </p><pre class="programlisting">
+    doas gem install rails
+</pre><p>
+            Rails requiere en el servidor un intérprete de JavaScript,
+            por lo que recomendamos <code class="literal">node.js</code> (ver {1})
+            incluido en adJ 6.7 y que se configurará
+            automáticamente.
+          </p><p>
+            La gran mayoría de gemas usadas por rails instalarán de la
+            misma forma que se explicó. Algunos casos especiales son:
+          </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+                <code class="literal">nokogiri</code> que puede requerir
+              </p></li></ul></div><pre class="programlisting">
+        doas gem install --install-dir /var/www/bundler/ruby/2.7/ nokogiri -- --use-system-libraries 
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                <code class="literal">capybara-webkit</code> que podría requerir
+              </p></li></ul></div><pre class="programlisting">
+        QMAKE=qmake-qt5 MAKE=gmake doas gem install capybara-webkit
+</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm2050808064"></a>3.7.1.1.6. Coffescript</h6></div></div></div><p>
+            Si su aplicación rails emplea coffescript necesitará un
+            programa que pueda ejecutar javascript al lado del servidor,
+            recomendamos node.js incluido en adJ. Actualice a la versión
+            más reciente de npm con:
+          </p><pre class="programlisting">
+    doas npm install npm -g
+</pre><p>
+            Instale coffeescript con:
+          </p><pre class="programlisting">
+    doas npm install -g coffee-script
+</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm2050808192"></a>3.7.1.1.7. yarn</h6></div></div></div><p>
+            Las aplicaciones Ruby on Rails posteriores a 6.0 requieren
+            el manejador de paquetes Javascript yarn. Lo puede instalar
+            más fácil con bash y con:
+          </p><pre class="programlisting">
+doas pkg_add bash
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+</pre><p>
+            Si durante la ejecución de yarn ve fallas del estilo:
+          </p><pre class="programlisting">
+/tmp/yarn--1602506143839-0.91595986516731/node[3]:
+/tmp/yarn--1602506143839-0.91595986516731/../node: not found
+</pre><p>
+            que hemos visto por ejemplo con
+            @fortawesome/fontawesome-free, se recomienda enlazar el
+            binario de node en /tmp:
+          </p><pre class="programlisting">
+doas ln -s /usr/local/bin/node /tmp/
+</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm1435919232"></a>3.7.1.1.8. Editor vim</h6></div></div></div><p>
+            Para emplear <code class="literal">vim</code> como editor se
+            recomienda asegurarse de haber ejecutado:
+          </p><pre class="programlisting">
+    cd ~
+    mkdir -p .vim
+    cd .vim
+    cp -rf /usr/local/share/vim/vim83/* .
+</pre><p>
+            y si no tiene archivo ~/.vimrc ejecutar:
+          </p><pre class="programlisting">
+    cp /usr/local/share/vim/vim83/vimrc_example.vi ~/.vimrc
+</pre><p>
+            así como agregar el archivo
+            <code class="literal">~/.vim/ftplugin/ruby.vim</code> las siguientes
+            líneas:
+          </p><pre class="programlisting">
+    setlocal shiftwidth=2
+    setlocal tabstop=2
+    set expandtab   
+</pre></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm1435916288"></a>3.7.1.2. Documentación</h5></div></div></div><p>
+          Para aprender lo básico de Ruby puede comenzar con el tutorial
+          en español disponible en
+          <a href="">http://rubytutorial.wikidot.com/</a>
+        </p><p>
+          Puede aprender por ejemplo con los tutoriales interactivos de
+          <a href="">https://rubymonk.com</a>
+        </p><p>
+          En Internet puede ver la referencia oficial de las clases en:
+          <a href="">http://ruby-doc.org/core-2.1.5/Integer.html</a>
+        </p><p>
+          Y es buena referencia para Ruby, Rails y Rspec (incluidos
+          cambios entre una versión y otra y comentarios) es:
+          <a href="">http://apidock.com/</a>
+        </p><p>
+          Podrá consultar documentación del núcleo, librería estándar y
+          gemas instalando el paquete <code class="literal">ruby-ri_docs</code> y
+          ejecutando <code class="literal">ri</code> seguido de la clase (por
+          ejemplo <code class="literal">ri Float</code>) o sin parámetro ingresa a
+          una consola que da la posibilidad de autocompletar presionando
+          Tab (por ejemplo pruebe tecleando <code class="literal">Float</code> y
+          después Tab dos veces).
+        </p><p>
+          También podrá ver la documentación de las gemas en formato
+          Rdoc ejecutando:
+        </p><pre class="programlisting">
+    gem server
+</pre><p>
+          y con un navegador consultando
+          <a href="">http://localhost:8808</a>
+        </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm324288128"></a>3.7.1.3. Uso</h5></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm1514696448"></a>3.7.1.3.1. Nueva aplicación usando SQLite</h6></div></div></div><p>
+            Genere una nueva aplicación:
+          </p><pre class="programlisting">
+    rails new aplicacion
+    cd aplicacion
+    mkdir .bundle
+    cat &gt; .bundle/config &lt;&lt;EOF
+    ---
+    BUNDLE_PATH: "/var/www/bundler"
+    BUNDLE_DISABLE_SHARED_GEMS: "true"
+    EOF
+    bundle install
+</pre><p>
+            Esto creará una nueva aplicación de ejemplo e instalará
+            todas sus dependencias. Las gemas que no logre instalar por
+            falta de permisos, como se explicó anteriormente instálelas
+            con <code class="literal">doas gem install</code> y la opción
+            <code class="literal">--install-dir /var/www/bundler/</code>
+          </p><p>
+            Una vez haya logrado que <code class="literal">bundle install</code>
+            se ejecute completo puede ejecutar:
+          </p><pre class="programlisting">
+    rails server
+</pre><p>
+            Tras esto puede ver con un navegador la aplicación en el
+            puerto 3000 del computador donde instaló:
+            <a href="">http://127.0.0.1:3000/</a>
+          </p><p>
+            Notará que se generan los siguientes directorios y archivos:
+          </p><div class="table"><a name="idp1696000"></a><p class="title"><b>Tabla 2. 
+              Archivos generados
+            </b></p><table summary="
+              Archivos generados
+            " border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+                    Archivo/Directorio
+                  </th><th align="left">
+                    Descripción
+                  </th></tr></thead><tbody><tr><td align="left">
+                    README.md
+                  </td><td align="left">
+                    Documentación en formato Markdown (puede cambiarse
+                    por README.rdoc en formato RDoc)
+                  </td></tr><tr><td align="left">
+                    Rakefile
+                  </td><td align="left">
+                    Tareas para <code class="literal">rake</code> (algo análogo a
+                    <code class="literal">make</code>)
+                  </td></tr><tr><td align="left">
+                    config.ru
+                  </td><td align="left">
+                    Configurar servidor web por usar
+                  </td></tr><tr><td align="left">
+                    .gitignore
+                  </td><td align="left">
+                    Archivos por ignorar en control de versiones
+                  </td></tr><tr><td align="left">
+                    Gemfile
+                  </td><td align="left">
+                    Gemas requeridas
+                  </td></tr><tr><td align="left">
+                    Gemfile.lock
+                  </td><td align="left">
+                    Versiones de las gemas requeridas
+                  </td></tr><tr><td align="left">
+                    app/javascript/packs/application.js
+                  </td><td align="left">
+                    Plantilla de Javascript que usa módulos
+                  </td></tr><tr><td align="left">
+                    app/assets/stylesheets/application.css
+                  </td><td align="left">
+                    Plantilla de CSS para aplicación
+                  </td></tr><tr><td align="left">
+                    app/controllers/application_controller.rb
+                  </td><td align="left">
+                    Plantilla del controlador de la aplicación
+                  </td></tr><tr><td align="left">
+                    app/helpers/application_helper.rb
+                  </td><td align="left">
+                    Ayudas para construir vistas (sin lógica del
+                    modelos).
+                  </td></tr><tr><td align="left">
+                    app/views/layouts/application.html.erb
+                  </td><td align="left">
+                    Plantilla por defecto para el sitio
+                  </td></tr><tr><td align="left">
+                    app/assets/
+                  </td><td align="left">
+                    Datos estáticos de la página
+                  </td></tr><tr><td align="left">
+                    app/assets/images/
+                  </td><td align="left">
+                    Gráficos de la aplicación (típicamente que no se
+                    sirven estáticos)
+                  </td></tr><tr><td align="left">
+                    app/assets/config/manifest.js
+                  </td><td align="left">
+                    Configura datos estáticos por exportar
+                  </td></tr><tr><td align="left">
+                    app/mailers/
+                  </td><td align="left">
+                    Controlador para enviar correos
+                  </td></tr><tr><td align="left">
+                    app/models/
+                  </td><td align="left">
+                    Modelos
+                  </td></tr><tr><td align="left">
+                    app/channel/
+                  </td><td align="left">
+                    Controlador de websockets
+                  </td></tr><tr><td align="left">
+                    app/jobs/
+                  </td><td align="left">
+                    Maneja cola de tareas programadas
+                  </td></tr><tr><td align="left">
+                    app/mailer/
+                  </td><td align="left">
+                    Facilita envío y recepción de correos
+                  </td></tr><tr><td align="left">
+                    app/controllers/concerns/
+                  </td><td align="left">
+                    Código que se repite en controladores
+                  </td></tr><tr><td align="left">
+                    app/models/concerns/
+                  </td><td align="left">
+                    Código que se repite en modelos
+                  </td></tr><tr><td align="left">
+                    bin/bundle
+                  </td><td align="left">
+                    Maneja dependencias con el ambiente de la aplicación
+                  </td></tr><tr><td align="left">
+                    bin/rails
+                  </td><td align="left">
+                    Maneja posibilidades de generación y controles Rails
+                  </td></tr><tr><td align="left">
+                    bin/rake
+                  </td><td align="left">
+                    Maneja tareas definidas en
+                    <code class="literal">Rakefile</code> y
+                    <code class="literal">lib/tasks</code>
+                  </td></tr><tr><td align="left">
+                    bin/setup
+                  </td><td align="left">
+                    Plantilla de un configurador de la aplicación
+                  </td></tr><tr><td align="left">
+                    bin/yarn
+                  </td><td align="left">
+                    Gestor de paquetes javascript
+                  </td></tr><tr><td align="left">
+                    config/routes.rb
+                  </td><td align="left">
+                    Rutas
+                  </td></tr><tr><td align="left">
+                    config/application.rb
+                  </td><td align="left">
+                    Configura aplicación
+                  </td></tr><tr><td align="left">
+                    config/environment.rb
+                  </td><td align="left">
+                    Configura ambiente
+                  </td></tr><tr><td align="left">
+                    config/secrets.yml
+                  </td><td align="left">
+                    Para verificar integridad de galletas firmadas
+                  </td></tr><tr><td align="left">
+                    config/environments/development.rb
+                  </td><td align="left">
+                    Configuración ambiente de desarrollo
+                  </td></tr><tr><td align="left">
+                    config/environments/production.rb
+                  </td><td align="left">
+                    Configuración ambiente de producción
+                  </td></tr><tr><td align="left">
+                    config/environments/test.rb
+                  </td><td align="left">
+                    Configuración ambiente de pruebas
+                  </td></tr><tr><td align="left">
+                    config/initializers/assets.rb
+                  </td><td align="left">
+                    Configura recursos
+                  </td></tr><tr><td align="left">
+                    config/initializers/backtrace_silencers.rb
+                  </td><td align="left">
+                    Inhibe trazas de algunas librerías
+                  </td></tr><tr><td align="left">
+                    config/initializers/cookies_serializer.rb
+                  </td><td align="left">
+                    Configura como serializar galletas
+                  </td></tr><tr><td align="left">
+                    config/initializers/filter_parameter_logging.rb
+                  </td><td align="left">
+                    Parámetros por filtrar (no dejar) en bitácoras
+                  </td></tr><tr><td align="left">
+                    config/initializers/inflections.rb
+                  </td><td align="left">
+                    Inflecciones singular/plural
+                  </td></tr><tr><td align="left">
+                    config/initializers/mime_types.rb
+                  </td><td align="left">
+                    Registra tipos MIME
+                  </td></tr><tr><td align="left">
+                    config/initializers/session_store.rb
+                  </td><td align="left">
+                    Configura donde se almacena sesión
+                  </td></tr><tr><td align="left">
+                    config/initializers/wrap_parameters.rb
+                  </td><td align="left">
+                    Configuración para ActionController::ParamsWrapper
+                  </td></tr><tr><td align="left">
+                    config/locales/en.yml
+                  </td><td align="left">
+                    Localización en inglés
+                  </td></tr><tr><td align="left">
+                    config/boot.rb
+                  </td><td align="left">
+                    Prepara rutas para encontrar gemas
+                  </td></tr><tr><td align="left">
+                    config/database.yml
+                  </td><td align="left">
+                    Configuración de base de datos
+                  </td></tr><tr><td align="left">
+                    config/puma.rb
+                  </td><td align="left">
+                    Configuración de servidor web puma
+                  </td></tr><tr><td align="left">
+                    db/seeds.rb
+                  </td><td align="left">
+                    Datos iniciales para base de datos
+                  </td></tr><tr><td align="left">
+                    lib/tasks/
+                  </td><td align="left">
+                    Tareas para <code class="literal">rake</code>
+                  </td></tr><tr><td align="left">
+                    lib/assets/
+                  </td><td align="left">
+                    “<span class="quote">Activos</span>” comunes para librerías
+                  </td></tr><tr><td align="left">
+                    log/
+                  </td><td align="left">
+                    Bitácoras
+                  </td></tr><tr><td align="left">
+                    package.json
+                  </td><td align="left">
+                    Paquetes javascript requeridos
+                  </td></tr><tr><td align="left">
+                    public
+                  </td><td align="left">
+                    Archivos estáticos
+                  </td></tr><tr><td align="left">
+                    public/404.html
+                  </td><td align="left">
+                    Mensaje por defecto para páginas no encontradas
+                  </td></tr><tr><td align="left">
+                    public/422.html
+                  </td><td align="left">
+                    Mensaje por defecto para rechazar cambios
+                  </td></tr><tr><td align="left">
+                    public/500.html
+                  </td><td align="left">
+                    Mensaje por defecto cuando ocurren errores en
+                    servidor
+                  </td></tr><tr><td align="left">
+                    public/favicon.ico
+                  </td><td align="left">
+                    Icono
+                  </td></tr><tr><td align="left">
+                    public/robots.txt
+                  </td><td align="left">
+                    Puede evitar indexación por parte de motores de
+                    búsqueda
+                  </td></tr><tr><td align="left">
+                    storage/
+                  </td><td align="left">
+                  </td></tr><tr><td align="left">
+                    test/fixtures
+                  </td><td align="left">
+                    Datos para pruebas
+                  </td></tr><tr><td align="left">
+                    test/controllers
+                  </td><td align="left">
+                    Pruebas a controladores
+                  </td></tr><tr><td align="left">
+                    test/mailers
+                  </td><td align="left">
+                    Pruebas a controladores de envio de correo
+                  </td></tr><tr><td align="left">
+                    test/models
+                  </td><td align="left">
+                    Pruebas a modelos
+                  </td></tr><tr><td align="left">
+                    test/helpers
+                  </td><td align="left">
+                    Pruebas a funciones para ayudar a construir vistas
+                  </td></tr><tr><td align="left">
+                    test/integration
+                  </td><td align="left">
+                    Pruebas de integración
+                  </td></tr><tr><td align="left">
+                    test/test_helper.rb
+                  </td><td align="left">
+                    Pruebas funciones auxiliares
+                  </td></tr><tr><td align="left">
+                    tmp/
+                  </td><td align="left">
+                    Temporales y cache
+                  </td></tr><tr><td align="left">
+                    vendor/assets/javascripts
+                  </td><td align="left">
+                    Fuentes Javascript para código de terceros
+                  </td></tr><tr><td align="left">
+                    vendor/assets/stylesheets
+                  </td><td align="left">
+                    Hojas de estilo para código de terceros
+                  </td></tr></tbody></table></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm2700627328"></a>3.7.1.3.2. Generar un recurso</h6></div></div></div><p>
+            Puede crear un primer recurso (digamos
+            <code class="literal">Departamento</code>) con modelo, controlador
+            simple y vistas para operaciones CRUD y RESTful con:
+          </p><pre class="programlisting">
+    rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
+    rake db:migrate
+</pre><p>
+            Tras esto y volver a iniciar el servidor (más breve con
+            <code class="literal">rails s</code>) podrá realizar las operaciones
+            básicas sobre departamentos desde:
+            <a href="">http://127.0.0.1:3000/departamentos/</a>
+          </p><p>
+            El <code class="literal">scaffold</code> genera tablas (con una
+            migración), modelo, controlador, vistas y rutas iniciales
+            que con una interfaz muy simple le permitirán listar
+            departamentos, ver detalles de cada uno, crear nuevos,
+            editar existentes y eliminar.
+          </p><p>
+            Los archivos generados son:
+          </p><div class="table"><a name="idm2103010432"></a><p class="title"><b>Tabla 3. 
+              Archivos generados con scaffold
+            </b></p><table summary="
+              Archivos generados con scaffold
+            " border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+                    Archivo/Directorio
+                  </th><th align="left">
+                    Descripción
+                  </th></tr></thead><tbody><tr><td align="left">
+                    <code class="literal">db/migrate/20160320131555_create_departamentos.rb</code>
+                  </td><td align="left">
+                    Migración para crear tabla
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/models/departamento.rb</code>
+                  </td><td align="left">
+                    Modelo
+                  </td></tr><tr><td align="left">
+                    <code class="literal">test/models/departamento_test.rb</code>
+                  </td><td align="left">
+                    Prueba al modelo
+                  </td></tr><tr><td align="left">
+                    <code class="literal">test/fixtures/departamentos.yml</code>
+                  </td><td align="left">
+                    Datos para pruebas
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/controllers/departamentos_controller.rb</code>
+                  </td><td align="left">
+                    Controlador
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/views/departamentos</code>
+                  </td><td align="left">
+                    Vistas
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/views/departamentos/index.html.erb</code>
+                  </td><td align="left">
+                    Lista de departamentos
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/views/departamentos/edit.html.erb</code>
+                  </td><td align="left">
+                    Formulario para editar
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/views/departamentos/show.html.erb</code>
+                  </td><td align="left">
+                    Muestra un departamento
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/views/departamentos/new.html.erb</code>
+                  </td><td align="left">
+                    Nuevo departamento
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/views/departamentos/_form.html.erb</code>
+                  </td><td align="left">
+                    Formulario usado por <code class="literal">edit</code> y
+                    <code class="literal">new</code>
+                  </td></tr><tr><td align="left">
+                    <code class="literal">test/controllers/departamentos_controller_test.rb</code>
+                  </td><td align="left">
+                    Pruebas al controlador
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/helpers/departamentos_helper.rb</code>
+                  </td><td align="left">
+                    Funciones auxiliares para construir vistas
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/views/departamentos/index.json.jbuilder</code>
+                  </td><td align="left">
+                    Lista en JSON
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/views/departamentos/show.json.jbuilder</code>
+                  </td><td align="left">
+                    Muestra un departamento en JSON
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/assets/javascripts/departamentos.coffee</code>
+                  </td><td align="left">
+                    Donde agregar código Coffescript para vistas
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/assets/stylesheets/departamentos.scss</code>
+                  </td><td align="left">
+                    Para poner CSS de las vistas
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/assets/stylesheets/scaffolds.scss</code>
+                  </td><td align="left">
+                    Para poner CSS de las vistas
+                  </td></tr></tbody></table></div><p>
+            Por convención de Ruby on Rails:
+          </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Las fuentes del modelo quedan en
+                <code class="literal">app/models/departamento.rb</code>
+              </p></li><li><p>
+                El nombre de la tabla será la forma plural del nombre
+                del modelo (e.g <code class="literal">departamentos</code>)
+              </p></li><li><p>
+                La tabla incluirá automáticamente un campo id de tipo
+                entero que se autoincrementa
+              </p></li><li><p>
+                La tabla incluirá automáticamente los campos
+                <code class="literal">created_at</code> y
+                <code class="literal">updated_at</code> de tipo
+                <code class="literal">datetime</code>.
+              </p></li><li><p>
+                La tabla será creada con una migración (cuya fuente
+                quedará en <code class="literal">db/migrate/</code>) y el registro
+                de las migraciones ya aplicadas se lleva en una tabla
+                <code class="literal">schema_migrations</code> creada
+                automáticamente en la base de datos.
+              </p></li></ul></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm600554112"></a>3.7.1.3.3. Página de inicio</h6></div></div></div><p>
+            La página inicial de su aplicación puede crearla generando
+            un controlador con vista, modificando la vista y
+            especificando la ruta:
+          </p><pre class="programlisting">
+    rails g controller hogar
+</pre><p>
+            Que genera:
+          </p><div class="table"><a name="idm1366390528"></a><p class="title"><b>Tabla 4. 
+              Archivos generados con
+              <code class="literal">g controller hogar</code>
+            </b></p><table summary="
+              Archivos generados con
+              g controller hogar
+            " border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+                    Archivo/Directorio
+                  </th><th align="left">
+                    Descripción
+                  </th></tr></thead><tbody><tr><td align="left">
+                    <code class="literal">app/controllers/hogar_controller.rb</code>
+                  </td><td align="left">
+                    Controlador
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/views/hogar</code>
+                  </td><td align="left">
+                    Vistas relacionadas con el controlador
+                  </td></tr><tr><td align="left">
+                    <code class="literal">test/controllers/hogar_controller_test.rb</code>
+                  </td><td align="left">
+                    Pruebas
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/helpers/hogar_helper.rb</code>
+                  </td><td align="left">
+                    Funciones auxiliares para vistas
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/assets/javascripts/hogar.coffee</code>
+                  </td><td align="left">
+                    Coffescript para vistas
+                  </td></tr><tr><td align="left">
+                    <code class="literal">app/assets/stylesheets/hogar.scss</code>
+                  </td><td align="left">
+                    CSS para vistas
+                  </td></tr></tbody></table></div><p>
+            Modifique el controlador
+            <code class="literal">app/controllers/hogar_controller.rb</code> para
+            indicar que tendrá un vista <code class="literal">index</code>:
+          </p><pre class="programlisting">
+    class HogarController &lt; ApplicationController
+        def index
+        end
+    end
+</pre><p>
+            Cree la vista
+            <code class="literal">app/views/hogar/index.html.erb</code>:
+          </p><pre class="programlisting">
+    &lt;article&gt;
+      &lt;h1&gt;Mi aplicación&lt;/h1&gt;
+      &lt;para&gt; Manejar &lt;a href="/departamentos"&gt;Departamentos&lt;/a&gt;&lt;/para&gt;
+    &lt;/article&gt;
+</pre><p>
+            Y en el archivo de configuración de rutas
+            <code class="literal">config/routes.rb</code> añada:
+          </p><pre class="programlisting">
+    root "hogar#index"
+</pre><p>
+            Al modificar fuentes en general no necesita volver a lanzar
+            el servidor de rails, pero si modifica
+            <code class="literal">config/routes.rb</code> o cualquier archivo
+            fuera del directorio <code class="literal">app</code> debe reiniciar
+            el servicio.
+          </p><p>
+            Examine desde un navegador
+            <a href="">http://127.0.0.1:3000/</a>.
+            Verá lo que escribió en
+            <code class="literal">app/views/hogar/index.html.erb</code> en el
+            ambiente HTML que tenga diseñado en
+            <code class="literal">app/views/layouts/application.html.erb</code>.
+          </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm1484800896"></a>3.7.1.3.4. Interacción con la base de datos</h6></div></div></div><p>
+            Puede examinar la tabla creada e interactuar con la base de
+            datos con la interfaz texto de SQLite como se ejemplifica a
+            continuación:
+          </p><pre class="programlisting">
+    $ rails dbconsole
+    sqlite&gt; .schema
+    CREATE TABLE "departamentos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre"
+    varchar(500), "latitud" float, "longitud" float, "created_at" datetime, "updated_at" datetime);
+    CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
+    CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version"
+    );
+</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm2078152192"></a>3.7.1.3.5. Ayudas para usar una base de datos PostgreSQL
+          existente:</h6></div></div></div><p>
+            Se recomienda emplear UTF8 como codificación de PostgreSQL
+            (si emplea otra codificación convierta sacando un respaldo
+            eliminando la base, volviéndola a crear con
+            <code class="literal">-E UTF8</code> y restaurando los datos).
+          </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Arregle la aplicación recién creada para que emplee
+                PostgreSQL, modificando parámetros de base de datos en
+                <code class="literal">config/database.yml</code>. Si crea una
+                nueva aplicación:
+              </p></li></ul></div><pre class="programlisting">
+        cd ..
+        rails new prueba1 --database=postgresql
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Si lo requiere en otra terminal cree un usuario para la
+                base de datos que será el que empleará desde su
+                aplicación ruby:
+              </p></li></ul></div><pre class="programlisting">
+         doas su - _postgresql 
+        $ createuser -Upostgres -h/var/www/tmp prueba
+        Shall the new role be a superuser? (y/n) n 
+        Shall the new role be allowed to create databases? (y/n) y
+        Shall the new role be allowed to create more new roles? (y/n) n 
+        $ psql -h/var/www/tmp -Upostgres psql (9.3.6) Type "help" for help.
+        postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
+</pre><div class="itemizedlist"><ul type="disc"><li><p>
+                Vuelva a las fuentes de la aplicación y modifique los
+                parámetros de la base de datos editando
+                <code class="literal">conf/database.ym</code>l Ponga el usuario
+                recién creado, la clave y en la especificación de cada
+                una de las 3 bases de datos (desarrollo, pruebas y
+                producción) agregue la ruta de la conexión al motor de
+                bases de datos: <code class="literal">host: /var/www/tmp/</code>
+              </p></li><li><p>
+                A manera de prueba de su configuración intente ingresar
+                a un intérprete de ordenes para su base de datos con:
+              </p></li></ul></div><pre class="programlisting">
+        rails dbconsole
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Si las tablas de la base de datos no emplean la
+                convención para nomenclatura de Ruby on Rails (nombres
+                de tabla en plural, clases en singular) agregue al
+                archivo <code class="literal">config/environment.rb</code>:
+              </p></li></ul></div><pre class="programlisting">
+        ActiveRecord::Base.pluralize_table_names=false
+</pre><pre class="programlisting">
+Además de esto para que las pruebas puedan operar seguramente deberá
+renombrar los archivos con datos de prueba del directorio ```tests/fixtures```
+, y en lugar de dejar forma plural dejar forma singular. Si el
+nombre de tabla es muy diferente en el modelo puede usar ```self.table_name = "cc"```
+como se indica en {8}.
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Para generar un volcado inicial de la base de datos en
+                <code class="literal">db/structure.sql</code> (incluyendo
+                características no portables de PostgreSQL a otros
+                motores de bases de datos), agregue al archivo
+                <code class="literal">config/application.rb</code> la línea
+              </p></li></ul></div><pre class="programlisting">
+       config.active_record.schema_format=:sql
+</pre><pre class="programlisting">
+y después ejecute la tarea rake apropiada (ver {4}):
+</pre><pre class="programlisting">
+        rake db:structure:dump
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Genere clases (modelos) en blanco en el directorio
+                <code class="literal">app/models</code> para cada una de las
+                tablas de su aplicación, por ejemplo para la tabla
+                <code class="literal">mitabla</code> :
+              </p></li></ul></div><pre class="programlisting">
+        rails generate model mitabla --migration=false --timestamp=false
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Cuando la aplicación esté en operación ActiveRecord
+                tomará la estructura directamente de la base de datos,
+                no de los modelos en sus fuentes. Sin embargo puede ser
+                útil poner comentarios en esos modelos con los campos de
+                cada tabla. Esto puede hacerse instalando la gema
+                <code class="literal">annotate</code> con:
+              </p></li></ul></div><pre class="programlisting">
+    doas gem install annotate
+</pre><pre class="programlisting">
+y ejecute:
+</pre><pre class="programlisting">
+        annotate
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Si desea ayuda en la generación de controladores y
+                vistas para sus tablas, instale
+                <code class="literal">doas gem install</code>schema_to_scaffold`<code class="literal">,      genere (puede ser momentáneamente) el archivo</code>db/schema.rb`
+                con
+              </p></li></ul></div><pre class="programlisting">
+    rake db:schema:dump
+</pre><pre class="programlisting">
+y ejecute
+</pre><pre class="programlisting">
+    scaffold
+</pre><p>
+            para ver las instrucciones que debe dar a rails para generar
+            modelos, controladores y vistas para las tablas de la base
+            de datos.
+          </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm2194010240"></a>3.7.1.3.6. Detalles para tener en cuenta al migrar
+          aplicaciones</h6></div></div></div><p>
+            RoR tiene sus propias convenciones respecto a SQL, nombres
+            de tablas y demás, en ocasiones puede ser mejor intercambiar
+            datos JSON con una aplicación ya existente que interactúe
+            con la base de datos. Sin embargo si desea emplear RoR tanto
+            como pueda para interactuar con la base de datos, tenga en
+            cuenta:
+          </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Toda tabla creada y maneja por RoR se espera que tenga
+                los campos <code class="literal">created_at</code> y
+                <code class="literal">updated_at</code> de tipo
+                <code class="literal">datetime</code> . Puede generar una
+                migración que agregue estos campos digamos para la tabla
+                <code class="literal">intervalo</code> con
+              </p></li></ul></div><pre class="programlisting">
+    rails g migration addTiempoToIntervalo created_at:datetime
+    updated_at:datetime
+</pre><pre class="programlisting">
+tras lo cual debe editar la migración creada para asegurar que queda
+bien (por ejemplo pasando a singular la tabla si ese es su caso).
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Por defecto cada tabla debe tener una única llave
+                primaria de nombre <code class="literal">id</code> y tipo entero
+                autoincremental. Esto puede cambiarse un poco –pero no
+                del todo según {6}– la sugerencia allí dada es definir
+                la llave primaria en SQL en la migración, la cual debe
+                incluir <code class="literal">id:false</code> y en el modelo
+                agregar
+                <code class="literal">self.primary_key=:campo_llave_primaria</code>.
+                Por ejemplo si la llave primaria de una tabla usuario
+                debe ser <code class="literal">id</code> pero de tipo
+                <code class="literal">string</code> , la migración será:
+              </p></li></ul></div><pre class="programlisting">
+        create_table "usuario", id: false, force: true do |t| 
+          t.string "id", limit: 15, null: false 
+          t.string "nombre", limit: 50 ... 
+          t.datetime "created_at" 
+          t.datetime "updated_at" 
+        end
+        add_index "usuario", ["id"], name: "index_usuario_on_id", 
+        unique: true, using: :btree
+</pre><pre class="programlisting">
+Y en el modelo `app/models/usuario.rb` debe quedar:
+</pre><pre class="programlisting">
+        class Usuario &lt; ActiveRecord::Base
+          ...
+          self.primary_key=:id
+        end
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Aunque es posible insertar datos iniciales para algunas
+                tablas en <code class="literal">db/seeds.rb</code>, los métodos
+                por defecto de RoR emplearán un campo autoincremental
+                para la identificación, puede insertarse directamente en
+                SQL, como se explica en {7}, con:
+              </p></li></ul></div><pre class="programlisting">
+        connection = ActiveRecord::Base.connection()
+        connection.execute("INSERT INTO mitabla(id, nombre) VALUES ('id1', 'nom1')")
+</pre></div><div class="section" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="idm2005496448"></a>3.7.1.3.7. 4.3 Localización</h6></div></div></div><p>
+            Si su público objetivo habla principalmente español puede:
+          </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Instalar la gema <code class="literal">rails-i18n</code> que
+                incluye traducción a español y otros idiomas de varias
+                cadenas de Ruby on Rails
+              </p></li></ul></div><pre class="programlisting">
+       doas gem install rails-i18n
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Agregar <code class="literal">gem "rails-i18n"</code> en
+                su archivo <code class="literal">Gemfile</code> y ejecutar
+              </p></li></ul></div><pre class="programlisting">
+        bundle update
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Configurar en <code class="literal">config/application.rb</code> :
+              </p></li></ul></div><pre class="programlisting">
+        config.time_zone = 'America/Bogota'
+        config.i18n.default_locale = :es
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+                Eventualmente corregir inflexiones singular/plural en
+                <code class="literal">config/initializers/inflections.rb</code>,
+                por ejemplo (ver {3}):
+              </p></li></ul></div><pre class="programlisting">
+        ActiveSupport::Inflector.inflections do |inflect|
+          inflect.irregular 'pais', 'paises'
+        end
+</pre></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp294146560"></a>3.7.1.4. Depuración</h5></div></div></div><p>
+          Como se explica en {5}, desde la aplicación en rails puede
+          entrar a depurar:
+        </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Instale la gema
+            </p></li></ul></div><pre class="programlisting">
+    gem install byebug
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Para activar el depurador en sitios en producción debe
+              además iniciar el servidor web con
+            </p></li></ul></div><pre class="programlisting">
+    rails s --debugger
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              En el sitio de las fuentes donde quiere comenzar a depurar
+              llamando la función
+            </p></li></ul></div><pre class="programlisting">
+    byebug
+</pre><p>
+          Ruby también ofrece facilidades para medir tiempos como se
+          resume en {4}.
+        </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idp132539392"></a>3.7.1.5. Lecturas recomendadas y referencias</h5></div></div></div><div class="itemizedlist"><ul type="disc" compact><li><p>
+              {1} http://guides.rubyonrails.org/getting_started.html
+            </p></li><li><p>
+              {2}
+              http://stackoverflow.com/questions/7092107/rails-3-1-error-could-not-find-a-javascript-runtime
+            </p></li><li><p>
+              {3}
+              http://stackoverflow.com/questions/5285048/rails-3-routing-singular-option
+            </p></li><li><p>
+              {4} http://www.caliban.org/ruby/rubyguide.shtml
+            </p></li><li><p>
+              {5}
+              http://guides.rubyonrails.org/debugging_rails_applications.html
+            </p></li><li><p>
+              {6}
+              http://stackoverflow.com/questions/1200568/using-rails-how-can-i-set-my-primary-key-to-not-be-an-integer-typed-column
+            </p></li><li><p>
+              {7}
+              http://stackoverflow.com/questions/6223803/execute-sql-script-inside-seed-rb-in-rails3
+            </p></li><li><p>
+              {8}
+              http://stackoverflow.com/questions/7542976/add-timestamps-to-an-existing-table
+            </p></li><li><p>
+              {9}
+              http://stackoverflow.com/questions/4613574/how-do-i-explicitly-specify-a-models-table-name-mapping-in-rails
+            </p></li></ul></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm1452562688"></a>3.7.2. Java</h4></div></div></div><p>
+        Desde OpenBSD 4.7 se incluyó un porte oficial de Java de fuentes
+        abiertas, se trata del <code class="literal">jdk-1.7</code>.
+      </p><p>
+        Si requiere versiones anteriores de Java o si requiere el plugin
+        para Firefox deberá compilar una versión anterior.
+      </p><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm2884138624"></a>3.7.2.1. Compilación de JDKs de fuentes cerradas</h5></div></div></div><p>
+          Las versiones anteriores a la 1.7, deben compilarse como
+          portes (de subdirectorios de
+          <code class="literal">/usr/ports/devel/jdk/</code>), pues las licencias
+          de las fuente exigen que al descargar de las mismas las haga
+          directamente de los sitios de distribución. Al intentar
+          compilar cada uno podrá ver instrucciones que le indican de
+          donde descargar las fuentes para ubicarlas en
+          <code class="literal">/usr/ports/distfiles</code>.
+        </p><p>
+          Tras descargar manualmente las fuentes, la compilación e
+          instalación son directas (i.e con <code class="literal">make</code> y
+          <code class="literal">make install</code> respectivamente).
+        </p><p>
+          Si por ejemplo instala <code class="literal">jdk-1.4</code> los binarios
+          quedarán en <code class="literal">/usr/local/jdk1.4/bin/</code> así que
+          es recomendable que agregue tal ruta a su variable
+          <code class="literal">PATH</code> por ejemplo en su archivo
+          <code class="literal">~/.profile</code> o el equivalente.
+        </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="idm1373881216"></a>3.7.2.2. Plugin de Java para Mozilla y Firefox</h5></div></div></div><p>
+          El <code class="literal">jdk-1.4</code> incluye un plugin que puede
+          emplearse con <code class="literal">mozilla</code> o
+          <code class="literal">mozilla-firefox</code>. Basta ejecutar:
+        </p><pre class="programlisting">
+    cd  ~/.mozilla
+    mkdir plugins
+    cd plugins
+    ln -s /usr/local/jdk-1.4.2/jre/plugin/i386/ns610/libjavaplugin_oji.so .
+</pre><p>
+          después reiniciar <code class="literal">mozilla-firefox</code> y
+          verificar que el plugin esté operando abriendo el URL
+          <code class="literal">about:plugins</code>. Como se indica en
+          http://archives.neohapsis.com/archives/openbsd/2005-09/2253.html,
+          para que puedan cargarse applets es necesario aumentar el
+          límite de memoria para datos con algo como:
+        </p><pre class="programlisting">
+    ulimit -d 2000000
+</pre><p>
+          que de requerirse puede ejecutarse desde la cuenta root (cuyo
+          límite máximo es mayor que el de cuentas de usuario).
+        </p></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm177840128" href="#idm177840128">10</a>] </sup>
+              Si usa <code xmlns="" class="literal">ksh</code> puede ver una lista de
+              posibles programas que le permitan imprimir, tecleando
+              <code xmlns="" class="literal">dvi</code> desde un intérprete de ordenes y
+              presionando Tab dos veces.
+            </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2719743744" href="#idm2719743744">11</a>] </sup>
+              Puede cambiar el diccionario personal que
+              <code xmlns="" class="literal">ispell</code> debe emplear con la opción
+              <code xmlns="" class="literal">-p archivo</code>
+            </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ar01s04.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">3. Configuración y uso de programas y servicios básicos </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 4. Configuración y uso de algunos dispositivos y servicios</td></tr></table></div></body></html>
