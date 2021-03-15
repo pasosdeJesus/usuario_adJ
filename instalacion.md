@@ -9,25 +9,22 @@
 2.  Componentes básicos para la instalación en un medio que pueda
     acceder. Es decir en uno de los siguientes:
 
-    -   DVD: Puede descargarlo de
-        [estas fuentes]ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus) por
+    -   USB: Puede descargar una imagen de
+        [https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus](https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus) por
         ejemplo con el programa `ftp` de OpenBSD:
 
-                ftp -C ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus&VER-ADJ;-amd64.iso
-
+                ftp -C https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus&VER-ADJ;-amd64.usb
 
         o bien con el programa `wget`:
 
-                wget -c ftp://ftp.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus&VER-ADJ;-amd64.iso 
-
+                wget -c https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus&VER-ADJ;-amd64.usb
 
         Usando estas formas podrá reanudar la transferencia en caso de
         que se interrumpa. Otra posibilidad que tiene que puede acelerar
         la descarga, pero sin posibilidad de reanudar en caso de que se
         interrumpa, es emplear el programa `rsync`:
 
-                rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/AprendiendoDeJesus&VER-ADJ;-amd64.iso.
-
+                rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/AprendiendoDeJesus&VER-ADJ;-amd64.usb .
 
         Note que hay un punto al final, que indica que el destino de la
         copia es el directorio actual. Si desea ver que otros archivos
@@ -35,6 +32,25 @@
 
                 rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/
 
+        Utilice la imagen descargada para grabarla en una memoria
+        USB y arrancar con esta. Para grabar la imagen en una memoria
+        desde adJ o desde Linux utilice `dd`. Si por ejemplo
+        en adJ la USB es `/dev/sd2c` (verifique dispositivo con `dmesg` 
+        y remplace):
+
+          doas dd if=AprendiendoDeJesus-&VER-ADJ;-amd64.usb of=/dev/sd2c bs=1M
+
+        Este proceso puede ser demorado, puede ver el progreso con 
+
+          doas pkill -SIGINFO dd
+
+    -  Imagen CDROM.  Aunque con esta no podrá instalar en modo UEFI, sino
+    únicamente en modo CSM (que desde varias configuraciones UEFI se llama
+    modo *Legacy*).  También la encuentra en 
+    [https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus](https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus) 
+    y puede quemarla en un DVD con algún programa que soporte
+    quemar imágenes ISO de otros sistemas operativos (por ejemplo con
+    Brasero desde Linux).
 
     -   O bien partición ext2 (de Linux), ffs (de OpenBSD) o FAT (de DOS
         y Windows) con juegos de instalación.
@@ -44,9 +60,9 @@
         servidor FTP o HTTP que se pueda acceder rápidamente desde su
         computador.
 
-    Aunque es posible realizar la descarga de imágenes ISO, recomendamos
-    comprar[^pre.1] los CDs oficiales de instalación para apoyar los
-    proyectos OpenBSD y adJ. La estructura del CD oficial de OpenBSD
+    Aunque es posible realizar la descarga de los medios de instalación
+    recomendamos donar para apoyar los proyectos OpenBSD y adJ. 
+    La estructura del CD oficial de OpenBSD
     tiene derechos de reproducción restrictivos ---sólo la estructura,
     las fuentes son de libre redistribución en su mayoría cubiertas por
     la licencia BSD. Por esto en caso de comprar CDs oficiales cómprelos
@@ -55,31 +71,31 @@
     caso de adJ ver <https://aprendiendo.pasosdeJesus.org>.
 
 3.  Contar con hardware soportado. La mayoría de componentes típicos son
-    soportados, aunque hay excepciones por lo que antes de comprar se
+    soportados, aunque hay excepciones (especialmente hay dificultad 
+    con varias tarjetas de red inalámbrica) por lo que antes de comprar se
     recomienda consultar la lista completa de los dispositivos para
     procesadores amd64 que son soportados en:
     <http://www.openbsd.org/amd64.html>.
 
-4.  Una partición primaria de al menos 13GB en un disco duro, que
-    comience en un cilindro arbitrario, pero en la cabeza 1 ---en lugar
-    de la cabeza 0. Si planea comprar un computador con otro sistema
+4.  Una partición primaria de al menos 13GB en un disco duro,
+    Si planea comprar un computador con otro sistema
     operativo puede solicitarle al vendedor que le deje disponible una
     partición con estas características. Durante la instalación podrá
     asignar a esta partición el tipo OpenBSD (A6), podrá dividirla en
     etiquetas que son como subparticiones lógicas sólo visibles en
     OpenBSD (e.g para `/`, `/home` y `/var`) sobre cada una de las
-    cuales podrá emplear el sistema de archivos de OpenBSD (Fast File
-    System o `ufs` en terminología Linux). También podrá montar
-    particiones de otros sistemas operativos, por ejemplo `ext2` está
-    bien soportado, o tener un sistema dual (ver [xref](#duales)).
+    cuales podrá emplear el sistema de archivos de OpenBSD (FFS2 -
+    Enhanced Fast File System o `ufs` en terminología Linux). También 
+    podrá montar particiones de otros sistemas operativos, por ejemplo 
+    `ext2` está bien soportado, o tener un sistema dual (ver [xref](#duales)).
 
     Si en su computador no tiene una partición disponible, puede
     intentar cambiar el tamaño de una existente para liberar espacio y
     crear una nueva (sacando copia de respaldo antes de estas
     operaciones). Si una de las particiones tiene sistema FAT o FAT32
-    (e.g con Windows 9x o XP) puede usar `fips`. Si la partición que
-    desea redimensionar tiene formato ext2fs (Linux) puede usar `parted`
-    o `resize2fs`. En el caso de particiones NTFS (Windows Vista o 7)
+    puede usar `fips`. Si la partición que desea redimensionar tiene formato 
+    ext2fs (Linux) puede usar `parted` o `resize2fs`. En el caso de 
+    particiones NTFS (Windows recientes)
     puede usar `ntfsresize` desde un sistema Linux o arrancando con un
     disquete como [PAUD](http://paud.sourceforge.net/), o bien si
     prefiere utilidades gráficas para reparticionar puede arrancar desde
@@ -87,21 +103,38 @@
     [RIP](http://www.tux.org/pub/people/kent-robotti/looplinux/rip/) o
     por ejemplo con un CD instalador de Ubuntu.
 
-5.  Leer la fe de erratas que incluye solucionas a eventuales problemas
+5.  Leer la fe de erratas que incluye soluciones a eventuales problemas
     que tendrá durante la instalación o cuando concluya junto con
     soluciones:
     <http://aprendiendo.pasosdejesus.org/?id=AdJ+&VER-ADJ;+-+Aprendiendo+de+Jesus+&VER-ADJ;>
 
-[^pre.1]: Los CDs de OpenBSD ordenados por la página web de OpenBSD si
-    llegan a Colombia.
 
 ## Ayudas para la instalación {#ayudas-para-la-instalacion}
 
 Es muy recomendable consultar [guía de instalación de
 OpenBSD](http://www.openbsd.org/faq/faq4.html#4.1).
 
-Si tiene el DVD oficial, configure su BIOS para que arranque por este y
-reinicie[^ayu.1]. Este DVD contiene un sistema OpenBSD mínimo que detectará
+Si tiene la USB o el DVD oficial, configure su UEFI para que arranque por 
+este y reinicie[^ayu.1]. 
+
+Recuerde que si usará el DVD debe dejar
+su UEFI en modo CSM o Legacy.
+Tenga en cuenta que aún con USB de arranque el modo UEFI de algunos 
+computadores no permite el arranque de OpenBSD/adJ en modo seguro 
+-- Secure Boot (ver por ejemplo <https://dhobsd.defensor.info/instalar-adj-6-8b1-en-un-portatil-lenovo-e490.html>) 
+en tal caso puede deshabilitar ese modo desde la configuración 
+UEFI (puede intentar rehabilitarlo después de que este operando su 
+OpenBSD/adJ siguiendo las instrucciones de 
+<http://daemonforums.org/showthread.php?t=9559>).
+También podría encontrar UEFIs que no permiten el arranque de OpenBSD/adJ 
+desde USB (por ejemplo si está virtualizando con QEMU y el UEFI OVMF o como
+se reporta con algunos computadores en 
+<https://marc.info/?l=openbsd-misc&m=159039904132502&w=2>) y en tales 
+casos configure el UEFI en modo CSM o Legacy (esto será posible
+siempre que no haya otros sistemas operativos ya instalados que
+tengan modo UEFI). 
+
+La USB contiene un sistema OpenBSD mínimo que detectará
 automáticamente el hardware y lo guiará en el proceso de instalación. Si
 había creado con anterioridad la partición primaria para OpenBSD
 seguramente no tendrá inconveniente en esta instalación, basta que tenga

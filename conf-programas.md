@@ -4,8 +4,8 @@
 
 ### FluxBox
 
-La operación básica de este liviano y estético administrador de 
-ventanas se describe en [basico_adJ](#bibliografia), aquí describimos algunos 
+La operación básica de este liviano y estético administrador de
+ventanas se describe en [basico_adJ](#bibliografia), aquí describimos algunos
 detalles de configuración.
 
 Para emplearlo como administrador de ventanas por defecto debe
@@ -13,7 +13,7 @@ modificarse `~/.xsession`, así como en `~/.xinitrc` y agregar al final:
 
         if (test -x /usr/local/bin/startfluxbox) then {
             /usr/local/bin/startfluxbox
-        } fi; 
+        } fi;
 
 Una vez en operación podrá realizar diversas configuraciones oprimiendo
 el botón derecho sobre el escritorio en el menú `fluxbox menu`. Por
@@ -40,7 +40,7 @@ sencilla, puede cambiarse editando en `~/.fluxbox/menu`.
 locale que usará agregando o cambiando la línea:
 
     export LANG=es_CO.UTF-8
-        
+
 -   La apariencia en general puede configurarse en `~/.fluxbox/init`
 
 -   Puede configurar teclas rápidas en el archivo `~/.fluxbox/keys`
@@ -71,7 +71,7 @@ archivo de configuración en la sección `OPTIONS` debe incluir:
 
 
 ## Espiritualidad {#espiritualidad}
-            
+
 ### `xiphos`
 
 Como se describe en [xiphosmanual](#bibliografia), es una herramienta gráfica de
@@ -107,7 +107,7 @@ Lo puede iniciar desde el escritorio con botón derecho [Oficina &gt;
 LibreOffice]{.menuchoice} o bien desde una terminal con
 
         soffice
-              
+
 
 Después de instalarlo y ejecutarlo por primera vez arrancará en inglés,
 para configurarlo en español vaya al menú [Tools &gt; Options &gt;
@@ -136,9 +136,9 @@ diferentes de operar.
 
 Para emplear TeX, LaTeX y asociados instale texlive y gv:
 
-        doas pkg_add $PKG_PATH/&p-texlive_base;.tgz 
-        doas pkg_add $PKG_PATH/&p-texlive_texmf-full;.tgz 
-        doas pkg_add $PKG_PATH/&p-gv;.tgz 
+        doas pkg_add $PKG_PATH/&p-texlive_base;.tgz
+        doas pkg_add $PKG_PATH/&p-texlive_texmf-full;.tgz
+        doas pkg_add $PKG_PATH/&p-gv;.tgz
 
 Puede configurar tamaño del papel, separado en sílabas y otros detalles
 con `texconfig`.
@@ -164,12 +164,12 @@ procesarlo.
 
     \section{Elementos}
     Puede estructurar el documento en capítulos, secciones, etc.
-    Este texto es el contenido de la primera sección de este ejemplo, 
+    Este texto es el contenido de la primera sección de este ejemplo,
     puede escribir cada párrafo en líneas consecutivas.
 
     \subsection{Ayudas}
-    Puede lograr efectos como \emph{Itálicas}, \textbf{negrillas} o 
-    cambios en el \textsf{tipo o {\small tamaño} de letra} (note 
+    Puede lograr efectos como \emph{Itálicas}, \textbf{negrillas} o
+    cambios en el \textsf{tipo o {\small tamaño} de letra} (note
     como se anidaron ambientes en este ejemplo).
 
     Puede crear listas:
@@ -257,14 +257,14 @@ Instale los paquetes openjade, docbook y docbook-dsssl:
 ```
         doas pkg_add $PKG_PATH/&p-docbook;.tgz
         doas pkg_add $PKG_PATH/&p-docbook-dsssl;.tgz
-        doas pkg_add $PKG_PATH/&p-openjade;.tgz 
+        doas pkg_add $PKG_PATH/&p-openjade;.tgz
 ```
 
 Esto bastará para hacer conversiones de DocBook SGML a HTML por ejemplo
 si su hoja de estilo DSSL es "marcos.dsl" y va a convertir el documento
 DocBook marcos.xml:
 ```
-        openjade  -t sgml -ihtml -d marcos.dsl#html marcos.xml 
+        openjade  -t sgml -ihtml -d marcos.dsl#html marcos.xml
 ```
 
 Para convertir a PostScript además de los paquetes anteriores requiere
@@ -277,7 +277,7 @@ Como parte del paquete `` se instalará el DTD de DocBook XML 4.4 en el
 directorio `/usr/local/share/xml/docbook`. Es recomendable que cree el
 archivo `/usr/local/share/xml/catalog` inicialmente con:
 ```
-        CATALOG "docbook/catalog" 
+        CATALOG "docbook/catalog"
 ```
 
 y que agregue en este archivo la ruta de otros catálogos XML o de DTDs.
@@ -300,7 +300,7 @@ Una vez instalados todas las partes puede procesar el archivo
 
 ```
     <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"  "/usr/local/share/xml/docbook/4.4/docbookx.dtd" > 
+    <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"  "/usr/local/share/xml/docbook/4.4/docbookx.dtd" >
 
     <article lang="es">
         <title>articulo</title>
@@ -314,9 +314,9 @@ Una vez instalados todas las partes puede procesar el archivo
               <email>micorreo@pasosdeJesus.org</email>
                </address></para>
         </authorblurb>
-          </author> 
+          </author>
         </authorgroup>
-        
+
         <abstract>
             <para>Resumen</para>
         </abstract>
@@ -360,13 +360,13 @@ Puede corregir interactivamente la ortografía de un texto plano (digamos
 ```
         ispell carta.txt
 ```
-                
+
 
 o si desea emplear el diccionario de un idioma particular:
 ```
         ispell -d spanish carta.txt
 ```
-                
+
 
 Al corregir interactivamente `ispell` mostrará palabras que no encuentre
 en el diccionario del idioma ni en su diccionario personal[^corr.1] del
@@ -386,7 +386,7 @@ formatos. Por ejemplo para ver video.flv:
 ```
         mplayer video.flv
 ```
-              
+
 
 Se distribuye con codecs que pueden distribuirse libremente. Para que
 soporte codecs de Windows es importante instalar también el paquete
@@ -399,13 +399,13 @@ formato WAV:
         mplayer -vo null -ao "pcm:file=pista.wav" -af resample=44100 "video.flv"
 ```
 
-        
+
 
 Para reproducir 10 segundos de un DVD comenzando en el segundo 240:
 ```
         mplayer -ss 240 -endpos 10 dvd://1
 ```
-        
+
 
 Se distribuye junto con `mencoder` que permite convertir de un formato a
 otro.
@@ -417,7 +417,7 @@ puede usar `display` incluido en &p-ImageMagick;:
 ```
     display migrafica.png
 ```
-              
+
 
 Otra opción que facilita ver un directorio con imágenes es `xfi`
 incluido en el paquete &p-xfe;:
@@ -425,7 +425,7 @@ incluido en el paquete &p-xfe;:
 ```
     xfi migrafica.png
 ```
-              
+
 
 Las operaciones típicas con gráficos son el retoque de fotos y la
 creación de diagramas. Para retocar fotografías se emplean editores
@@ -495,7 +495,6 @@ necesita emplear el `sendmail` de otro computador puede:
 
         cat - | ssh &EUSUARIO;@&ECLIENTE; /usr/sbin/sendmail -oem -oi
 ```
-
     Note que este script está hecho para ser ejecutado junto con el
     agente de autenticación de ssh (i.e `ssh-agent`).
 
@@ -514,8 +513,6 @@ necesita emplear el `sendmail` de otro computador puede:
             ssh-add
             mutt
 ```
-                            
-
     o si emplea XWindow es posible que pueda configurar su manejador de
     escritorio o su administrador de ventanas para que toda la sesión
     emplee el agente (ver un ejemplo en [xref](#fluxbox)).
@@ -538,9 +535,9 @@ Primero cree el tunel ingresando al cortafuegos/enrutador de la
 Intranet, por ejemplo en el puerto 9080 con:
 
 ```
-    ssh -D9080 miusuario@micortafuegos 
+    ssh -D9080 miusuario@micortafuegos
 ```
-              
+
 
 A continuación inicie chromium indicando que debe usarse el proxy socks
 del puerto 9080:
@@ -548,7 +545,7 @@ del puerto 9080:
 ```
     chromium --proxy-server=socks://127.0.0.1:9080
 ```
-              
+
 
 Tras esto ya podrá ingresar direcciones de la intranet desde el
 navegador.
@@ -557,8 +554,8 @@ navegador.
 
 ### Ruby
 
-En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 6. 
-Lo básico se instala de paquetes de OpenBSD y lo más reciente de Ruby 
+En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 6.
+Lo básico se instala de paquetes de OpenBSD y lo más reciente de Ruby
 directamente como gemas.
 
 #### Instalación y configuración
@@ -646,53 +643,53 @@ tecla \[Tab\] 2 veces para ver los métodos de la clase Integer.
 El paquete `ruby` incluye `rubygems` que maneja gemas (es decir
 librerías) con el programa `gem`.
 
-El directorio donde se instalan las gemas globales 
-es `/usr/local/lib/ruby/gems/2.7/` donde sólo pueden 
-instalarse con ```doas```. 
-Recomendamos iniciar un directorio para instalar gemas como usuario normal 
-en  ```/var/www/bundler/ruby/2.7```, por 3 razones (1) evitar riesgos de 
-seguridad al instalar gemas como root, (2) evitar problemas de permisos 
-y la dificultad de programas como bundler para usar ```doas``` en lugar 
-de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones 
+El directorio donde se instalan las gemas globales
+es `/usr/local/lib/ruby/gems/3.0/` donde sólo pueden
+instalarse con ```doas```.
+Recomendamos iniciar un directorio para instalar gemas como usuario normal
+en  ```/var/www/bundler/ruby/3.0```, por 3 razones (1) evitar riesgos de
+seguridad al instalar gemas como root, (2) evitar problemas de permisos
+y la dificultad de programas como bundler para usar ```doas``` en lugar
+de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones
 corran en una jaula chroot en ```/var/www```
 
 Prepare ese directorio con:
 
 ```
-	doas mkdir -p /var/www/bundler/ruby/2.7/
+	doas mkdir -p /var/www/bundler/ruby/3.0/
 	doas chown -R $USER:www /var/www/bundler
 ```
 
 Y cuando requiera instalar una gema allí emplee:
 ```
-	gem install --install-dir /var/www/bundler/ruby/2.7/ json -v '2.0'
+	gem install --install-dir /var/www/bundler/ruby/3.0/ json -v '2.0'
 ```
 
 O si llega a tener problemas de permisos con:
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.7/ bcrypt -v '3.1.11'
+	doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt -v '3.1.11'
 ```
 
-Para facilitar compilación de algunas extensiones (como las de nokogiri) se 
+Para facilitar compilación de algunas extensiones (como las de nokogiri) se
 recomienda instalar  `pkg-config` globalmente:
 
 ```
-	doas gem install pkg-config 
+	doas gem install pkg-config
 ```
 
 ##### Bundler
 
-Para facilitar el manejo de varias gemas (y sus interdependencias) en un 
+Para facilitar el manejo de varias gemas (y sus interdependencias) en un
 proyecto es típico emplear ```bundler``` que instala con:
 ```
     doas gem install bundler
-    if (test -x /usr/local/bin/bundle27) then { 
-       doas ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle; 
+    if (test -x /usr/local/bin/bundle27) then {
+       doas ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle;
     } fi
 ```
 
-Configúrelo para que instale gemas localmente 
-en `/var/www/bundler/ruby/2.7` con:
+Configúrelo para que instale gemas localmente
+en `/var/www/bundler/ruby/3.0` con:
 
 ```
   bundle config path /var/www/bundler/
@@ -706,13 +703,13 @@ Esto creará el directorio `~/.bundler/` y dentro de este el archivo
 BUNDLE_PATH: "/var/www/bundler/"
 ```
 
-Puede experimentar descargando un proyecto para ruby ya hecho, seguramente 
-verá un archivo ```Gemfile```, donde ```bundler``` examina de que librerías 
-depende la aplicación y genera un archivo ```Gemfile.lock``` con las 
-versiones precisas por instalar de cada gema.  
+Puede experimentar descargando un proyecto para ruby ya hecho, seguramente
+verá un archivo ```Gemfile```, donde ```bundler``` examina de que librerías
+depende la aplicación y genera un archivo ```Gemfile.lock``` con las
+versiones precisas por instalar de cada gema.
 
-Una vez tenga un proyecto asegure que este emplea las gemas de 
-```/var/www/bundler/ruby/2.7``` ejecutando dentro del directorio del 
+Una vez tenga un proyecto asegure que este emplea las gemas de
+```/var/www/bundler/ruby/3.0``` ejecutando dentro del directorio del
 proyecto:
 
 ```
@@ -728,14 +725,14 @@ E instale con
 	bundle install
 ```
 
-Si eventualmente no logra instalar algunas --por problemas de permisos 
-típicamente-- puede instalar con 
+Si eventualmente no logra instalar algunas --por problemas de permisos
+típicamente-- puede instalar con
 
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.7 json -v '2.0'
+	doas gem install --install-dir /var/www/bundler/ruby/3.0 json -v '2.0'
 ```
 
-Cuando actualice la versión del sistema operativo al igual que con gemas 
+Cuando actualice la versión del sistema operativo al igual que con gemas
 es importante reinstalar las gemas de las que depende una aplicación
 --necesariamente las que tengan extensiones en C.  Esto es sencillo
 con versiones de bundler posteriores a la 1.15.4:
@@ -744,12 +741,12 @@ con versiones de bundler posteriores a la 1.15.4:
 ```
 y después instalando una a una las gemas que sean extensiones, por ejemplo
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/2.7 nokogiri -v '2.0'
+	doas gem install --install-dir /var/www/bundler/ruby/3.0 nokogiri -v '2.0'
 ```
 
 ##### Rails
 
-Se trata de una popular gema que facilita mucho la creación de sitios 
+Se trata de una popular gema que facilita mucho la creación de sitios
 dinámicos.
 
 Para instalarla globalmente (en `/usr/local/bin` y
@@ -761,7 +758,7 @@ ejecute
 ```
 
 Rails requiere en el servidor un intérprete de JavaScript, por lo que
-recomendamos ```node.js``` (ver {1}) incluido en adJ &VER-ADJ; 
+recomendamos ```node.js``` (ver {1}) incluido en adJ &VER-ADJ;
 y que se configurará automáticamente.
 
 La gran mayoría de gemas usadas por rails instalarán de la misma forma
@@ -769,9 +766,9 @@ que se explicó. Algunos casos especiales son:
 
 -   ```nokogiri``` que puede requerir
 ```
-        doas gem install --install-dir /var/www/bundler/ruby/2.7/ nokogiri -- --use-system-libraries 
+        doas gem install --install-dir /var/www/bundler/ruby/3.0/ nokogiri -- --use-system-libraries
 ```
-                    
+
 
 -   ```capybara-webkit``` que podría requerir
 ```
@@ -780,17 +777,17 @@ que se explicó. Algunos casos especiales son:
 
 ##### Coffescript
 
-Si su aplicación rails emplea coffescript necesitará un programa que pueda 
-ejecutar javascript al lado del servidor, recomendamos node.js incluido en 
+Si su aplicación rails emplea coffescript necesitará un programa que pueda
+ejecutar javascript al lado del servidor, recomendamos node.js incluido en
 adJ. Actualice a la versión más reciente de npm con:
-``` 
+```
 	doas npm install npm -g
-``` 
+```
 Instale coffeescript con:
 
-``` 
+```
 	doas npm install -g coffee-script
-``` 
+```
 ##### yarn
 
 Las aplicaciones Ruby on Rails posteriores a 6.0 requieren el manejador de
@@ -820,24 +817,24 @@ doas ln -s /usr/local/bin/node /tmp/
 Para emplear `vim` como editor se recomienda asegurarse de haber
 ejecutado:
 
-``` 
+```
 	cd ~
 	mkdir -p .vim
 	cd .vim
 	cp -rf /usr/local/share/vim/vim83/* .
-``` 
+```
 y si no tiene archivo \~/.vimrc ejecutar:
-``` 
+```
 	cp /usr/local/share/vim/vim83/vimrc_example.vi ~/.vimrc
-``` 
+```
 así como agregar el archivo `~/.vim/ftplugin/ruby.vim` las siguientes
 líneas:
 
-``` 
+```
 	setlocal shiftwidth=2
 	setlocal tabstop=2
-	set expandtab   
-``` 
+	set expandtab
+```
 
 
 #### Documentación
@@ -863,9 +860,9 @@ tecleando `Float` y después Tab dos veces).
 También podrá ver la documentación de las gemas en formato Rdoc
 ejecutando:
 
-``` 
+```
 	gem server
-``` 
+```
 y con un navegador consultando <http://localhost:8808>
 
 #### Uso
@@ -874,7 +871,7 @@ y con un navegador consultando <http://localhost:8808>
 
 Genere una nueva aplicación:
 
-``` 
+```
 	rails new aplicacion
 	cd aplicacion
 	mkdir .bundle
@@ -884,7 +881,7 @@ Genere una nueva aplicación:
 	BUNDLE_DISABLE_SHARED_GEMS: "true"
 	EOF
 	bundle install
-``` 
+```
 Esto creará una nueva aplicación de ejemplo e instalará todas sus
 dependencias. Las gemas que no logre instalar por falta de permisos,
 como se explicó anteriormente instálelas con `doas gem install` y la
@@ -893,9 +890,9 @@ opción `--install-dir /var/www/bundler/`
 Una vez haya logrado que `bundle install` se ejecute completo puede
 ejecutar:
 
-``` 
+```
 	rails server
-``` 
+```
 
 Tras esto puede ver con un navegador la aplicación en el puerto 3000 del
 computador donde instaló: <http://127.0.0.1:3000/>
@@ -979,10 +976,10 @@ vendor/assets/stylesheets                           Hojas de estilo para código
 Puede crear un primer recurso (digamos `Departamento`) con modelo,
 controlador simple y vistas para operaciones CRUD y RESTful con:
 
-``` 
+```
 	rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
 	rake db:migrate
-``` 
+```
 
 
 Tras esto y volver a iniciar el servidor (más breve con `rails s`) podrá
@@ -1026,11 +1023,11 @@ Por convención de Ruby on Rails:
     (e.g ```departamentos```)
 -   La tabla incluirá automáticamente un campo id de tipo entero que se
     autoincrementa
--   La tabla incluirá automáticamente los campos `created_at` y `updated_at` 
+-   La tabla incluirá automáticamente los campos `created_at` y `updated_at`
     de tipo `datetime`.
--   La tabla será creada con una migración (cuya fuente quedará en 
-    `db/migrate/`) y el registro de las migraciones ya aplicadas se 
-    lleva en una tabla `schema_migrations` creada automáticamente en 
+-   La tabla será creada con una migración (cuya fuente quedará en
+    `db/migrate/`) y el registro de las migraciones ya aplicadas se
+    lleva en una tabla `schema_migrations` creada automáticamente en
     la base de datos.
 
 ##### Página de inicio
@@ -1039,7 +1036,7 @@ La página inicial de su aplicación puede crearla generando un
 controlador con vista, modificando la vista y especificando la ruta:
 ```
 	rails g controller hogar
-```             
+```
 
 Que genera:
 
@@ -1056,25 +1053,25 @@ Archivo/Directorio                            Descripción
 
 Modifique el controlador `app/controllers/hogar_controller.rb` para
 indicar que tendrá un vista `index`:
-```             
+```
 	class HogarController < ApplicationController
 	    def index
 	    end
 	end
-```             
+```
 
 Cree la vista `app/views/hogar/index.html.erb`:
-```             
+```
 	<article>
 	  <h1>Mi aplicación</h1>
 	  <para> Manejar <a href="/departamentos">Departamentos</a></para>
 	</article>
-```                             
+```
 
 Y en el archivo de configuración de rutas `config/routes.rb` añada:
-```             
+```
     root "hogar#index"
-```                             
+```
 
 Al modificar fuentes en general no necesita volver a lanzar el servidor
 de rails, pero si modifica `config/routes.rb` o cualquier archivo fuera
@@ -1088,7 +1085,7 @@ tenga diseñado en `app/views/layouts/application.html.erb`.
 
 Puede examinar la tabla creada e interactuar con la base de datos con la
 interfaz texto de SQLite como se ejemplifica a continuación:
-```             
+```
     $ rails dbconsole
     sqlite> .schema
     CREATE TABLE "departamentos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre"
@@ -1096,7 +1093,7 @@ interfaz texto de SQLite como se ejemplifica a continuación:
     CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
     CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version"
     );
-```             
+```
 
 ##### Ayudas para usar una base de datos PostgreSQL existente:
 
@@ -1107,22 +1104,22 @@ volviéndola a crear con `-E UTF8` y restaurando los datos).
 -   Arregle la aplicación recién creada para que emplee PostgreSQL,
     modificando parámetros de base de datos en
     `config/database.yml`. Si crea una nueva aplicación:
-```            
+```
         cd ..
         rails new prueba1 --database=postgresql
-```                                 
+```
 
 -   Si lo requiere en otra terminal cree un usuario para la base de
     datos que será el que empleará desde su aplicación ruby:
 ```
-         doas su - _postgresql 
+         doas su - _postgresql
         $ createuser -Upostgres -h/var/www/tmp prueba
-        Shall the new role be a superuser? (y/n) n 
+        Shall the new role be a superuser? (y/n) n
         Shall the new role be allowed to create databases? (y/n) y
-        Shall the new role be allowed to create more new roles? (y/n) n 
+        Shall the new role be allowed to create more new roles? (y/n) n
         $ psql -h/var/www/tmp -Upostgres psql (9.3.6) Type "help" for help.
         postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
-```                    
+```
 
 -   Vuelva a las fuentes de la aplicación y modifique los parámetros de
     la base de datos editando
@@ -1131,44 +1128,44 @@ volviéndola a crear con `-E UTF8` y restaurando los datos).
     cada una de las 3 bases de datos (desarrollo, pruebas y producción)
     agregue la ruta de la conexión al motor de bases de datos:
         ```host: /var/www/tmp/```
-                    
+
 
 -   A manera de prueba de su configuración intente ingresar a un
     intérprete de ordenes para su base de datos con:
 ```
         rails dbconsole
-```                    
+```
 
 -   Si las tablas de la base de datos no emplean la convención para
     nomenclatura de Ruby on Rails (nombres de tabla en plural, clases en
     singular) agregue al archivo ```config/environment.rb```:
 ```
         ActiveRecord::Base.pluralize_table_names=false
-```                        
+```
 
-    Además de esto para que las pruebas puedan operar seguramente deberá
-    renombrar los archivos con datos de prueba del directorio ```tests/fixtures```
-    , y en lugar de dejar forma plural dejar forma singular. Si el
-    nombre de tabla es muy diferente en el modelo puede usar ```self.table_name = "cc"```
-    como se indica en {8}.
+-   Además de esto para que las pruebas puedan operar seguramente deberá
+    renombrar los archivos con datos de prueba del directorio
+    ```tests/fixtures```, y en lugar de dejar forma plural dejar forma singular.
+    Si el nombre de tabla es muy diferente en el modelo puede usar
+    ```self.table_name = "cc"``` como se indica en {8}.
 -   Para generar un volcado inicial de la base de datos en ```db/structure.sql```
     (incluyendo características no portables de PostgreSQL a otros
     motores de bases de datos), agregue al archivo ```config/application.rb```
     la línea
-```    
+```
        config.active_record.schema_format=:sql
 ```
-    y después ejecute la tarea rake apropiada (ver {4}):
+-    Después ejecute la tarea rake apropiada (ver {4}):
 ```
         rake db:structure:dump
-```                    
+```
 
 -   Genere clases (modelos) en blanco en el directorio ```app/models```
     para cada una de las tablas de su aplicación, por ejemplo para la
     tabla ```mitabla``` :
 ```
         rails generate model mitabla --migration=false --timestamp=false
-```                    
+```
 
 -   Cuando la aplicación esté en operación ActiveRecord tomará la
     estructura directamente de la base de datos, no de los modelos en
@@ -1184,7 +1181,7 @@ volviéndola a crear con `-E UTF8` y restaurando los datos).
 ```
 
 -   Si desea ayuda en la generación de controladores y vistas para sus
-    tablas, instale `doas gem install `schema_to_scaffold``, 
+    tablas, instale `doas gem install `schema_to_scaffold``,
     genere (puede ser momentáneamente) el archivo `db/schema.rb`
     con
 ```
@@ -1215,22 +1212,22 @@ datos, tenga en cuenta:
 ```
     tras lo cual debe editar la migración creada para asegurar que queda
     bien (por ejemplo pasando a singular la tabla si ese es su caso).
--   Por defecto cada tabla debe tener una única llave primaria de nombre `id` 
+-   Por defecto cada tabla debe tener una única llave primaria de nombre `id`
     y tipo entero autoincremental. Esto puede cambiarse un poco --pero
     no del todo según {6}-- la sugerencia allí dada es definir la llave
     primaria en SQL en la migración, la cual debe incluir
-    `id:false` y en el modelo agregar 
-    `self.primary_key=:campo_llave_primaria`. Por ejemplo si la llave 
+    `id:false` y en el modelo agregar
+    `self.primary_key=:campo_llave_primaria`. Por ejemplo si la llave
     primaria de una tabla usuario debe ser `id` pero de tipo
     `string` , la migración será:
 ```
-        create_table "usuario", id: false, force: true do |t| 
-          t.string "id", limit: 15, null: false 
-          t.string "nombre", limit: 50 ... 
-          t.datetime "created_at" 
-          t.datetime "updated_at" 
+        create_table "usuario", id: false, force: true do |t|
+          t.string "id", limit: 15, null: false
+          t.string "nombre", limit: 50 ...
+          t.datetime "created_at"
+          t.datetime "updated_at"
         end
-        add_index "usuario", ["id"], name: "index_usuario_on_id", 
+        add_index "usuario", ["id"], name: "index_usuario_on_id",
 		unique: true, using: :btree
 ```
     Y en el modelo `app/models/usuario.rb` debe quedar:
@@ -1241,8 +1238,8 @@ datos, tenga en cuenta:
         end
 ```
 -   Aunque es posible insertar datos iniciales para algunas tablas en
-    `db/seeds.rb`, los métodos por defecto de RoR emplearán un campo 
-    autoincremental para la identificación, puede insertarse directamente en 
+    `db/seeds.rb`, los métodos por defecto de RoR emplearán un campo
+    autoincremental para la identificación, puede insertarse directamente en
     SQL, como se explica en {7}, con:
 ```
         connection = ActiveRecord::Base.connection()
@@ -1253,17 +1250,17 @@ datos, tenga en cuenta:
 
 Si su público objetivo habla principalmente español puede:
 
--   Instalar la gema `rails-i18n` que incluye traducción a 
+-   Instalar la gema `rails-i18n` que incluye traducción a
     español y otros idiomas de varias cadenas de Ruby on Rails
-``` 
+```
        doas gem install rails-i18n
-```                    
+```
 
 -   Agregar `gem "rails-i18n"` en su archivo `Gemfile`
     y ejecutar
 ```
         bundle update
-```                    
+```
 
 -   Configurar en `config/application.rb` :
 ```
@@ -1271,13 +1268,13 @@ Si su público objetivo habla principalmente español puede:
         config.i18n.default_locale = :es
 ```
 
--   Eventualmente corregir inflexiones singular/plural 
+-   Eventualmente corregir inflexiones singular/plural
     en `config/initializers/inflections.rb`, por ejemplo (ver {3}):
 ```
         ActiveSupport::Inflector.inflections do |inflect|
           inflect.irregular 'pais', 'paises'
         end
-```                   
+```
 
 #### Depuración
 

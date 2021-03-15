@@ -8,7 +8,7 @@ controladores en cierto orden. El orden y los controladores que se usen
 dependen de la configuración que se haya dado al kernel al compilarlo.
 El orden típico configurado en el kernel genérico es:
 
--   Procesador, Memoria, BIOS
+-   Procesador, Memoria, UEFI
 
 -   Discos duros, CDROM y unidades de disquete
 
@@ -436,7 +436,7 @@ Para emplear un disco en OpenBSD se requiere:
 disco SCSI)
 * el disco debe estar formateado a bajo nivel, debe tener subparticiones
 o etiquetas (del inglés *disklabel*) en particiones, debe haber
-subparticiones con sistemas de archivos soportados (e.g FFS que es
+subparticiones con sistemas de archivos soportados (e.g FFS2 que es
 el nativo de adJ/OpenBSD, FAT o msdos, ext2 de Linux o NTFS de sólo
 lectura de Windows) que sean montadas en el sistema de archivos
  comenzando por una que debe estar montada como directorio raiz / 
@@ -444,15 +444,15 @@ lectura de Windows) que sean montadas en el sistema de archivos
 
 Además de esto para iniciar un computador con un disco duro
 
-* debe estar configurado como disco de arranque en la BIOS (o durante el 
-  arranque el usuario debe indicarle a la BIOS por cual disco arrancar)
+* debe estar configurado como disco de arranque en la UEFI (o durante el 
+  arranque el usuario debe indicarle a la UEFI por cual disco arrancar)
 * debe tener una partición marcada como iniciable en la tabla de particiones 
   y/o emplear un cargador de arranque (e.g GRUB si tiene Linux y adJ/OpenBSD 
   en el mismo disco).
 * Debe tener al menos una partición para OpenBSD (tipo A6) con subparticiones 
-  entre las cuales haya una con sistema de archivos FFS que se monte como 
+  entre las cuales haya una con sistema de archivos FFS2 que se monte como 
   raiz.
-  
+
 ### Particiones {#particiones-slices}
 
 Una partición es una porción de un disco duro destinada para un sistema de 
@@ -461,25 +461,68 @@ archivos. Un disco duro puede particionarse para:
 * Mantener varios sistemas operativos.
 * Organizar diversos espacios para un mismo sistema operativo, aunque en 
   OpenBSD esto suele hacerse con subparticiones .
-* Si se usa partición GPT destinar una partición para el arranque 
-  (1G bastará)
+* Arrancar los sistemas operativos mediante aplicaciones UEFI en una
+  partición especial tipo EFI con sistema de archivos FAT32.
+  (su tamaño puede ser de 1G para los casos más comunes).
 
-El disco comienza con una tabla de particiones que entre otras puede
-ser tipo MBR o tipo GPT.  Las tablas tipo MBR son reconocidas por 
-BIOS antiguos y recientes (en modo *Legacy*) soporta discos de 
-hasta 2T, y hasta 4 particiones primarias, si se requieren más particiones 
-una de las primarias debe definirse como extendida y dentro de esta se podrán
+El disco comienza con una tabla de particiones tipo GPT (aunque si
+su computador tiene habilitado el modo de compatibilidad CSM 
+- Compatibility Support Mode) la tabla de particiones sería modo MBR.
+Las tablas tipo MBR son reconocidas por BIOS antiguos y recientes 
+(en modo *Legacy* o CSM) soportan discos de hasta 2T, y hasta 4 particiones 
+primarias, si se requieren más particiones una de las primarias debe 
+definirse como extendida y dentro de esta se podrán
 dividir otras particiones que se llamaran lógicas. Por su parte
-las particiones GPT son reconocidas por BIOS (UEFI) recientes, requieren
-que una partición se destine a un arranque EFI y cada partición puede
+las particiones GPT son reconocidas por BIOS (UEFI) posteriores al año 2011, 
+requieren que una partición se destine a un arranque EFI y cada partición puede
 tener cualquier tamaño y puede haber tantas particiones como se requiera.
 
+OpenBSD puede tener problemas para arrancar en algunos sistemas UEFI,
+como se describe en <https://marc.info/?l=openbsd-misc&m=159039904132502&w=2>.
+En tales casos debe activar el modo CSM e instalar con este.
 
 Para cambiar la tabla de particiones de un disco en OpenBSD/adJ
 puede emplearse el programas `fdisk`. Se inicia pasando como
 parámetro el dispositivo del disco que desea editar (e.g /dev/rsd0c), 
 le permiten modificar la partición hasta que este satisfecho con la 
 distribución y finalmente permiten salvar la partición configurada en el disco.
+
+En un OpenBSD/adJ que esté corriendo puede determinar si esta operando
+en modo UEFI o en modo CSM examinando el disco de arranque con `fdisk`.
+En modo UEFI se verá algo como:
+
+```
+% doas fdisk /dev/rsd0c
+Disk: /dev/rsd0c       Usable LBA: 34 to 468862094 [468862128 Sectors]
+   #: type                                 [       start:         size ]
+------------------------------------------------------------------------
+   0: EFI Sys                              [        2048:       204800 ]
+   1: e3c9e316-0b5c-4db8-817d-f92df00215ae [      206848:        32768 ]
+   2: FAT12                                [      239616:     97656250 ]
+   3: Win Recovery                         [   467798016: 1060864 ]
+   4: Linux files*                         [    97896448: 78125056 ]
+   5: Linux swap                           [   176021504: 31250432 ]
+   6: Linux files*                         [   207271936: 78125056 ]
+   7: OpenBSD                              [ 285396992:    183465103 ]
+```
+
+Mientras que en modo CSM se verá algo como
+
+```
+% doas fdisk /dev/rsd0c
+[27/19380]
+Disk: /dev/rsd0c        geometry: 121601/255/63 [1953525168 Sectors]
+Offset: 0       Signature: 0xAA55                                               
+            Starting         Ending         LBA Info:
+ #: id      C   H   S -      C   H   S [       start:        size ]
+-------------------------------------------------------------------------------
+*0: 07      0  32  33 -     12 223  19 [        2048:      204800 ] NTFS         
+ 1: A6     12 223  20 -  81237 215   2 [      206848:  1304879104 ] OpenBSD      
+ 2: 05  81237 247  33 - 121601  57  56 [  1305087998:   648435714 ] Extended DOS 
+ 3: 00      0   0   0 -      0   0   0 [           0:           0 ] unused       
+Disk: /dev/rsd0c        geometry: 121601/255/63 [1953525168 Sectors]
+...
+```
 
 > ![](img/warning.png) **Advertencia**
 >
@@ -488,14 +531,15 @@ distribución y finalmente permiten salvar la partición configurada en el disco
 
 ### Subparticiones o etiquetas {#subparticiones}
 
-Hay dos niveles de particiones: (1) del BIOS y (2) particulares de
+Hay dos niveles de particiones: (1) del UEFI/BIOS y (2) particulares de
 OpenBSD. Las primeras se configuran con `fdisk` y las segundas se crean
 dentro de las primeras con `disklabel`.
 
-### Sistema de archivos ffs
+### Sistema de archivos FFS2
 
-Un sistema de archivos ffs sólo puede crearse en una partición
-identificada con `disklabel`. Como se explica en FFS, consta de:
+Un sistema de archivos FFS2 sólo puede crearse en una subpartición
+identificada con `disklabel`. Como se explica en la página del
+manual `fs`, consta de:
 
 -   Un superbloque con los parámetros básicos del sistema de archivos
     (e.g tamaño de cada bloque, lista de grupos de cilindros) y con los
@@ -521,17 +565,25 @@ Algunos bloques se reservan para que sólo puedan ser usados por el
 administrador (reserva de espacio libre). En OpenBSD por defecto es 5%
 del espacio total.
 
-Entre las características soportadas por FFS están:
+Entre las características soportadas por FFS2 están:
 
--   Enlaces duros dentro de una misma partición o enlaces simbólicos.
-    Candados, nombres largos para archivos, validaciones y cuotas (para
-    limitar espacio utilizable por los usuarios).
+- Enlaces duros dentro de una misma partición o enlaces simbólicos.
+  Candados, nombres largos para archivos, validaciones y cuotas (para
+  limitar espacio utilizable por los usuarios).
+- Soporta particiones de más de 1TB (FFS1 solo soportaba 1T),
+- FFS2 es más rápido que FFS1 al crear y al chequear la particíon (con `fsck`)
+- FFS2 usa marcas de tiempo y bloques de 64 bits (a diferencia de FFS1), 
+  así que maneja fechas posteriores a 2038 y particiones mucho más grandes 
+  (aunque las particiones muy grandes requieren mucho tiempo en el chequeo).
+- No hay herramienta para convertir entre FFS1 y FFS2 --debe respaldar 
+  toda la información y formatear.
 
-Para revisar un sistema de archivos `ffs` (digamos que esté en la
+
+Para revisar un sistema de archivos FFS2 (digamos que esté en la
 partición `/dev/wd1j`) ejecute:
 
         doas fsck_ffs /dev/rwd1j
-          
+
 
 note la `r` antes de `wd1j` que indica que la partición debe tratarse en
 modo puro (del inglés *raw*). Puede agregar la opción `-y` antes del
@@ -545,12 +597,24 @@ negará a realizar el chequeo, en tales casos puede intentar con un
 superbloque de respaldo --típicamente hay uno en el bloque 32:
 
         doas fsck_ffs -b 32 /dev/rwd1j
-          
+
 
 Para crear un sistema de archivos `ffs` en un disco ya particionado con
 `disklabel` puede emplearse `newfs`, por ejemplo:
 
         doas newfs -t ffs /dev/wd1j
+
+Hasta OpenBSD/adJ 6.6 se empleaba FFS1, a partir de 6.7 las nuevas 
+particiones eran de tipo FFS2 de forma predeterminada y a partir de 6.8 
+se prefiere FFS2.  Con `newfs` podría crearse una partición tipo FFS1
+con la opción `-O 1`.
+
+Puede identificar si una subpartición (digamos `sd2a`) de 
+es FFS1 o FFS2 ejecutando:
+```
+dumpfs /dev/rsd2a | head -1
+```
+
 
 > ![](img/warning.png) **Advertencia**
 >
@@ -561,6 +625,7 @@ Para detectar particiones ffs en un disco, puede emplearse `scan_ffs`.
 
 Para examinar la estructura de una partición con ffs, se emplea
 `dumpfs`. Puede afinarse un sistema ffs con `tunefs`
+
 
 ### Zonas de intercambio (swap) {#zonas-de-intercambio}
 
@@ -744,12 +809,13 @@ Por ejemplo para reconstruir y unir un nuevo /dev/sd2a:
 
 - https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/
 
--  Página del manual de `softraid`
+- Página del manual de `softraid`
 
--  Página del manual de `bioctl`
+- Página del manual de `bioctl`
 
--  Particiones MBR y GPT: <https://www.openbsd.org/faq/faq14.html>
+- Particiones MBR y GPT: <https://www.openbsd.org/faq/faq14.html>
 
+- Modo UEFI: <https://wiki.osdev.org/UEFI>
 
 ## Unidad de CD-ROM {#cd}
 
@@ -844,9 +910,9 @@ Note que la imagen creada emplea la extensión Rock Ridge (opción `-r`),
 permite nombres largos (opción `-l`) y maneja enlaces simbólicos (opción
 `-f`).
 
-Por otra parte en sistemas i386 o amd64 es posible arrancar un
+Por otra parte en sistemas amd64 es posible arrancar un
 computador desde un CD, configurando el arranque del computador desde el
-BIOS para que sea por la unidad y cuando la imagen del CD se crea con la
+UEFI para que sea por la unidad y cuando la imagen del CD se crea con la
 extensión El Torito. La extensión El Torito permite incluir la imagen de
 un floppy que se usa para arrancar.
 

@@ -1,53 +1,30 @@
 # Instalaciones duales {#duales}
 
 Aunque no es recomendable, es posible tener en un mismo computador
-OpenBSD y otros sistemas operativos. En esta sección se describen
+OpenBSD/adJ y otros sistemas operativos. En esta sección se describen
 algunos detalles de estas configuraciones.
 
 ## Dual con Linux {#con-linux}
 
 ### Arranque múltiple {#arranque-multiple}
 
-Si deja en su computador tanto Linux como OpenBSD podrá configurar LILO
-o GRUB para arrancar cualquiera de los dos sistemas. En caso de usar
-LILO, desde Linux edite `/etc/lilo.conf` para dejar una entrada que
-identifique su sistema Linux y otra para OpenBSD. En el siguiente
-ejemplo Linux está en `/dev/hda2` mientras que OpenBSD en `/dev/hda1`:
+Si deja en su computador tanto Linux como adJ podrá configurar 
+GRUB para arrancar cualquiera de los dos sistemas.  Las instrucciones
+precisas dependen de la versión de Ubuntu y la forma como haya 
+instalado los sistemas, se sugiere leer 
+<https://dhobsd.defensor.info/grub2.html>. 
 
-    #Instalar LILO en MBR
-    boot=/dev/hda
-
-    # Linux, note que supone que el directorio raíz está en la segunda
-    # partición primaria del primer disco IDE (/dev/hda2)
-    image=/vmlinuz
-        root=/dev/hda2
-        label=Linux
-        read-only
-
-    # OpenBSD, note que supone que está en la primera partición primaria 
-    # del primer disco IDE (/dev/hda1)
-    other=/dev/hda1
-        label=OpenBSD
-        table=/dev/hda 
-
-Una vez efectúe el cambio recuerde ejecutar:
-
-        lilo
-
-En caso de usar GRUB las instrucciones dependen de la versión que
-emplee, puede ver opciones para diversas versiones en
-<http://dhobsd.pasosdejesus.org/index.php?id=Grub2>. Por ejemplo con
-Grub2-1.99 (incluido en Ubuntu 12.04), debe agregar en
-`/etc/grub.d/40_custom`:
+Por ejemplo con Ubuntu 20.04, y suponiendo que el particionado es 
+en modo EFI, debe agregar en `/etc/grub.d/40_custom`:
 
         menuentry "adJ" {
-          set root=(hd0,msdos3)
-          kopenbsd /bsd
-        }
+          set root=(hd0,gpt1)
+            chainloader /efi/Boot/bootx64.efi
+        } 
                
 
-remplazando msdos3 por la partición primaria donde instaló. Después
-ejecute:
+remplazando `gpt1` por la partición donde haya quedado el arranque EFI. 
+Después ejecute:
 
         sudo update-grub2
 
@@ -95,9 +72,9 @@ desde el mismo interprete teclee:
 tras esto reinicie Windows y al arranque debe poder ver un menú que le
 permite elegir con las flechas bien Windows XP o bien OpenBSD.
 
-### Montaje de particiones NTFS {#discos-xp}
+### Montaje de particiones NTFS {#discos-ntfs}
 
-Es posible montar particiones escritas por Windows NT o XP en formato
+Es posible montar particiones escritas por Windows en formato
 NTFS, pero sólo en modo lectura.
 
 Puede montar una partición (digamos `wd0i`) con:

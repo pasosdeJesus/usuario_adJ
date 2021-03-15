@@ -1,3 +1,8 @@
+Versión 6.8
+
+:   - Actualizada información de modo UEFI y FFS2 en secciones
+	[xref](#sobre-la-instalacion), [xref](#duales) y [xref](#discos-duros)
+
 Versión 6.7
 
 :   - Reestructura [xref](#imagen-cifrada) con nueva [xref](#imagen-cifrada-con-softraid)
