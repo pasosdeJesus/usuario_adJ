@@ -1,8 +1,8 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>5. Instalaciones duales</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="ar01s04.html" title="4. Configuración y uso de algunos dispositivos y servicios"><link rel="next" href="paquetes-adJ.html" title="A. Paquetes incluidos en adJ"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">5. Instalaciones duales</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ar01s04.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="paquetes-adJ.html">Siguiente</a></td></tr></table><hr></div><div class="section" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="idp335216000"></a>5. Instalaciones duales</h2></div></div></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>5. Instalaciones duales</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="ar01s04.html" title="4. Configuración y uso de algunos dispositivos y servicios"><link rel="next" href="paquetes-adJ.html" title="A. Paquetes incluidos en adJ"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">5. Instalaciones duales</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ar01s04.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="paquetes-adJ.html">Siguiente</a></td></tr></table><hr></div><div class="section" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="idp176038144"></a>5. Instalaciones duales</h2></div></div></div><p>
     Aunque no es recomendable, es posible tener en un mismo computador
     OpenBSD/adJ y otros sistemas operativos. En esta sección se
     describen algunos detalles de estas configuraciones.
-  </p><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idm734940416"></a>5.1. Dual con Linux</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm1787022080"></a>5.1.1. Arranque múltiple</h4></div></div></div><p>
+  </p><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp440114816"></a>5.1. Dual con Linux</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp440116224"></a>5.1.1. Arranque múltiple</h4></div></div></div><p>
         Si deja en su computador tanto Linux como adJ podrá configurar
         GRUB para arrancar cualquiera de los dos sistemas. Las
         instrucciones precisas dependen de la versión de Ubuntu y la
@@ -25,7 +25,7 @@
     sudo update-grub2
 </pre><p>
         y reinicie.
-      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp1351142016"></a>5.1.2. Montar directorios del otro sistema</h4></div></div></div><p>
+      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp440113792"></a>5.1.2. Montar directorios del otro sistema</h4></div></div></div><p>
         Desde OpenBSD podrá montar una partición ext2 de Linux (digamos
         <code class="literal">/dev/wd0i</code> que puede examinar con
         <code class="literal">disklabel</code>) con:
@@ -41,7 +41,7 @@
       </p><pre class="programlisting">
     sudo mkdir -p /mnt/openbsd
     sudo mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd 
-</pre></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idp1351141504"></a>5.2. Dual con Windows XP o NT</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idp1351141632"></a>5.2.1. Arranque múltiple</h4></div></div></div><p>
+</pre></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="idm2916507264"></a>5.2. Dual con Windows XP o NT</h3></div></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm595692160"></a>5.2.1. Arranque múltiple</h4></div></div></div><p>
         El arranque múltiple puede administrarse con NTLDR el gestor de
         arranque de Windows XP/NT. La herramienta Bootpart le facilitará
         configurar el menu de arranque que NTLDR puede presentar,
@@ -67,7 +67,7 @@
         tras esto reinicie Windows y al arranque debe poder ver un menú
         que le permite elegir con las flechas bien Windows XP o bien
         OpenBSD.
-      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm2438599936"></a>5.2.2. Montaje de particiones NTFS</h4></div></div></div><p>
+      </p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="idm2916506880"></a>5.2.2. Montaje de particiones NTFS</h4></div></div></div><p>
         Es posible montar particiones escritas por Windows en formato
         NTFS, pero sólo en modo lectura.
       </p><p>
