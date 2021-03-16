@@ -1,7 +1,7 @@
 Versión 6.8
 
-:   - Actualizada información de modo UEFI y FFS2 en secciones
-	[xref](#sobre-la-instalacion), [xref](#duales) y [xref](#discos-duros)
+:   - Actualizada información de modo UEFI y FFS2 en 
+	[xref](#sobre-la-instalacion), [xref](#discos-duros) y [xref](#duales).
 
 Versión 6.7
 
