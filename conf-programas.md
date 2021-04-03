@@ -662,12 +662,12 @@ Prepare ese directorio con:
 
 Y cuando requiera instalar una gema allí emplee:
 ```
-	gem install --install-dir /var/www/bundler/ruby/3.0/ json -v '2.0'
+	gem install --install-dir /var/www/bundler/ruby/3.0/ json 
 ```
 
 O si llega a tener problemas de permisos con:
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt -v '3.1.11'
+	doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt 
 ```
 
 Para facilitar compilación de algunas extensiones (como las de nokogiri) se
@@ -729,7 +729,7 @@ Si eventualmente no logra instalar algunas --por problemas de permisos
 típicamente-- puede instalar con
 
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.0 json -v '2.0'
+	doas gem install --install-dir /var/www/bundler/ruby/3.0 json 
 ```
 
 Cuando actualice la versión del sistema operativo al igual que con gemas
