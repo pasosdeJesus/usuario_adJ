@@ -568,15 +568,15 @@ describe el paquete ruby):
 
 ```
     doas sh
-    ln -sf /usr/local/bin/ruby27 /usr/local/bin/ruby
-    ln -sf /usr/local/bin/erb27 /usr/local/bin/erb
-    ln -sf /usr/local/bin/irb27 /usr/local/bin/irb
-    ln -sf /usr/local/bin/rdoc27 /usr/local/bin/rdoc
-    ln -sf /usr/local/bin/ri27 /usr/local/bin/ri
-    ln -sf /usr/local/bin/rake27 /usr/local/bin/rake
-    ln -sf /usr/local/bin/gem27 /usr/local/bin/gem
-    ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle
-    ln -sf /usr/local/bin/bundler27 /usr/local/bin/bundler
+    ln -sf /usr/local/bin/ruby30 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb30 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb30 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc30 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri30 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake30 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem30 /usr/local/bin/gem
+    ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler30 /usr/local/bin/bundler
 ```
 
 
@@ -683,8 +683,8 @@ Para facilitar el manejo de varias gemas (y sus interdependencias) en un
 proyecto es típico emplear ```bundler``` que instala con:
 ```
     doas gem install bundler
-    if (test -x /usr/local/bin/bundle27) then {
-       doas ln -sf /usr/local/bin/bundle27 /usr/local/bin/bundle;
+    if (test -x /usr/local/bin/bundle30) then {
+       doas ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle;
     } fi
 ```
 
