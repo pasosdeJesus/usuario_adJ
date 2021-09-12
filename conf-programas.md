@@ -1,4 +1,4 @@
-          # Configuración y uso de algunos programas {#conf-programas}
+# Configuración y uso de algunos programas {#conf-programas}
 
 ## Escritorio y Archivos {#escritorio}
 
