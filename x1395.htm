@@ -1,0 +1,325 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Multimedia</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Español"
+HREF="x1369.htm"><LINK
+REL="NEXT"
+TITLE="Operación en red"
+HREF="x1451.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1369.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1451.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="multimedia"
+>Multimedia</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="mplayer"
+>Mplayer</A
+></H2
+><P
+>&#13;      Es un reproductor de audio y video que soporta gran variedad de
+      formatos. Por ejemplo para ver video.flv:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;        mplayer video.flv
+</PRE
+><P
+>&#13;      Se distribuye con codecs que pueden distribuirse libremente. Para
+      que soporte codecs de Windows es importante instalar también el
+      paquete <TT
+CLASS="literal"
+>win32-codecs</TT
+>
+    </P
+><P
+>&#13;      También permite hacer conversiones y extraer partes. Por ejemplo
+      para extraer pista de audio de un video descargado de youtube, y
+      dejarla en formato WAV:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;        mplayer -vo null -ao "pcm:file=pista.wav" -af resample=44100 "video.flv"
+</PRE
+><P
+>&#13;      Para reproducir 10 segundos de un DVD comenzando en el segundo
+      240:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;        mplayer -ss 240 -endpos 10 dvd://1
+</PRE
+><P
+>&#13;      Se distribuye junto con <TT
+CLASS="literal"
+>mencoder</TT
+> que permite
+      convertir de un formato a otro.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="ediciongraficos"
+>Edición de gráficos</A
+></H2
+><P
+>&#13;      Para ver una gráfica (sin editarla) prácticamente en cualquier
+      formato, puede usar <TT
+CLASS="literal"
+>display</TT
+> incluido en
+      ImageMagick-6.9.12.2:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    display migrafica.png
+</PRE
+><P
+>&#13;      Otra opción que facilita ver un directorio con imágenes es
+      <TT
+CLASS="literal"
+>xfi</TT
+> incluido en el paquete xfe-1.43.2p0:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    xfi migrafica.png
+</PRE
+><P
+>&#13;      Las operaciones típicas con gráficos son el retoque de fotos y la
+      creación de diagramas. Para retocar fotografías se emplean
+      editores gráficos a nivel de pixels, mientras que para creación de
+      diagramas resultan más convenientes editores de gráficos
+      vectoriales.
+    </P
+><P
+>&#13;      Como editor de gráficos a nivel de pixels, el CD de adJ incluye
+      gimp-2.10.24
+    </P
+><P
+>&#13;      <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/gimp.png"></SPAN
+>
+    </P
+><P
+>&#13;      Como editor vectorial incluye inkscape-1.0.2
+    </P
+><P
+>&#13;      <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/inkscape.png"></SPAN
+>
+    </P
+><P
+>&#13;      OpenOffice incluye otro editor vectorial llamado
+      <TT
+CLASS="literal"
+>draw</TT
+>.
+    </P
+><P
+>&#13;      Para la generación de gráficos de barras y estadísticos resulta
+      más apropiado el graficador de gnumeric-1.12.49 o de calc –la hoja
+      de cálculo de OpenOffice–, ver
+      <A
+HREF="x1262.htm#msoffice"
+>la sección de nombre <I
+>Aplicaciones estilo MS-Office</I
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="edicionaudio"
+>Edición de audio</A
+></H2
+><P
+>&#13;      Para reproducir una pista de audio en diversos formatos
+      (incluyendo el libre ogg, el común wav y el patentado mp3) puede
+      usar <TT
+CLASS="literal"
+>mplayer</TT
+> (ver
+      <A
+HREF="x1395.htm#mplayer"
+>la sección de nombre <I
+>Mplayer</I
+></A
+>), o bien
+      <TT
+CLASS="literal"
+>audacious</TT
+> (incluido en el paquete
+      audacious-4.1p0):
+    </P
+><P
+>&#13;      <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/audacious.png"></SPAN
+>
+    </P
+><P
+>&#13;      El programa <TT
+CLASS="literal"
+>play</TT
+> incluido en el paquete
+      sox-14.4.2p5 también le permitirá escuchar diversos formatos.
+    </P
+><P
+>&#13;      Desde la línea de órdenes podrá recortar, cambiar volumen y
+      aplicar otros efectos empleando el programa
+      <TT
+CLASS="literal"
+>sox</TT
+>.
+    </P
+><P
+>&#13;      Si prefiere un editor gráfico que le permite recortar y aplicar
+      algunos efectos a pistas de audio en prácticamente cualquier
+      formato de audio utilice el programa audacity-2.4.2:
+    </P
+><P
+>&#13;      <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/audacity.png"></SPAN
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1369.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1451.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Español</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Operación en red</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,1064 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>12. Ambiente de Desarrollo</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="operaci%C3%B3n-en-red.html" title="11. Operación en red"><link rel="next" href="conf-dispositivos.html" title="13. Configuración y uso de algunos dispositivos y servicios"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">12. Ambiente de Desarrollo</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="operaci%C3%B3n-en-red.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="conf-dispositivos.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="ambiente-de-desarrollo"></a>12. Ambiente de Desarrollo</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="ruby"></a>12.1. Ruby</h3></div></div></div><p>
+      En adJ 6.9 es sencillo usar ruby-2.7.3 con Ruby on
+      Rails 6. Lo básico se instala de paquetes de OpenBSD y lo más
+      reciente de Ruby directamente como gemas.
+    </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="instalaci%C3%B3n-y-configuraci%C3%B3n"></a>12.1.1. Instalación y configuración</h4></div></div></div><p>
+        Asegúrese de tener instalados los paquetes ruby-2.7.3 y
+        node-12.16.1p1, incluidos en el DVD de adJ 6.9
+      </p><p>
+        Asegúrese de tener enlaces al intérprete de ruby y herramientas
+        (como describe el paquete ruby):
+      </p><pre class="programlisting">
+    doas sh
+    ln -sf /usr/local/bin/ruby30 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb30 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb30 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc30 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri30 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake30 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem30 /usr/local/bin/gem
+    ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler30 /usr/local/bin/bundler
+</pre><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="l%C3%ADmites-amplios"></a>12.1.1.1. Límites amplios</h5></div></div></div><p>
+          Asegurarse de tener limites amplios del sistema operativo para
+          abrir archivos y manejar memoria, por ejemplo superiores a los
+          siguientes en <code class="literal">/etc/systctl.conf</code>
+        </p><pre class="programlisting">
+    kern.shminfo.shmmni=1024
+    kern.seminfo.semmns=2048
+    kern.shminfo.shmmax=50331648
+    kern.shminfo.shmall=51200
+    kern.maxfiles=20000
+</pre><p>
+          El usuario desde el cual desarrollará o ejecutará aplicaciones
+          también debe tener límites amplios, en particular su clase de
+          login (por ejemplo <code class="literal">staff</code>). Debe tener al
+          menos los siguientes en <code class="literal">/etc/login.conf</code>
+        </p><pre class="programlisting">
+    staff:\
+            :datasize-cur=1536M:\
+            :datasize-max=infinity:\
+            :maxproc-max=4096:\
+            :maxproc-cur=4096:\
+            :openfiles-max=8090:\
+            :openfiles-cur=8090:\
+            :ignorenologin:\
+            :requirehome@:\
+            :tc=default:
+</pre><p>
+          (Si modifica el archivo <code class="literal">/etc/login.conf</code>
+          debe reconstruir su versión binaria con
+          <code class="literal">doas cap_mkdb /etc/login.conf</code>).
+        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="irb"></a>12.1.1.2. irb</h5></div></div></div><p>
+          Para facilitar su exploración del lenguaje ruby, puede usar
+          <code class="literal">irb</code> (ver {4}), pero antes verifique que su
+          archivo <code class="literal">~/.irbrc</code> tenga las siguientes
+          líneas (añadidas por defecto en adJ a la cuenta de
+          administrador):
+        </p><pre class="programlisting">
+    # Configuración de irb
+    # Basado en archivo de órdenes disponible en &lt;http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/&gt;
+    require 'irb/completion'
+    require 'pp'
+    IRB.conf[:AUTO_INDENT] = true
+    IRB.conf[:USE_READLINE] = true
+
+    def clear
+        system('clear')
+    end
+</pre><p>
+          A continuación ingrese a <code class="literal">irb</code> y escriba por
+          ejemplo <code class="literal">4.</code> y presione la tecla [Tab] 2
+          veces para ver los métodos de la clase Integer.
+        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="gemas"></a>12.1.1.3. Gemas</h5></div></div></div><p>
+          El paquete <code class="literal">ruby</code> incluye
+          <code class="literal">rubygems</code> que maneja gemas (es decir
+          librerías) con el programa <code class="literal">gem</code>.
+        </p><p>
+          El directorio donde se instalan las gemas globales es
+          <code class="literal">/usr/local/lib/ruby/gems/3.0/</code> donde sólo
+          pueden instalarse con <code class="literal">doas</code>. Recomendamos
+          iniciar un directorio para instalar gemas como usuario normal
+          en <code class="literal">/var/www/bundler/ruby/3.0</code>, por 3 razones
+          (1) evitar riesgos de seguridad al instalar gemas como root,
+          (2) evitar problemas de permisos y la dificultad de programas
+          como bundler para usar <code class="literal">doas</code> en lugar de
+          <code class="literal">sudo</code> y (3) alistar infraestructura para que
+          sus aplicaciones corran en una jaula chroot en
+          <code class="literal">/var/www</code>
+        </p><p>
+          Prepare ese directorio con:
+        </p><pre class="programlisting">
+    doas mkdir -p /var/www/bundler/ruby/3.0/
+    doas chown -R $USER:www /var/www/bundler
+</pre><p>
+          Y cuando requiera instalar una gema allí emplee:
+        </p><pre class="programlisting">
+    gem install --install-dir /var/www/bundler/ruby/3.0/ json 
+</pre><p>
+          O si llega a tener problemas de permisos con:
+        </p><pre class="programlisting">
+    doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt 
+</pre><p>
+          Para facilitar compilación de algunas extensiones (como las de
+          nokogiri) se recomienda instalar <code class="literal">pkg-config</code>
+          globalmente:
+        </p><pre class="programlisting">
+    doas gem install pkg-config
+</pre></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="bundler"></a>12.1.1.4. Bundler</h5></div></div></div><p>
+          Para facilitar el manejo de varias gemas (y sus
+          interdependencias) en un proyecto es típico emplear
+          <code class="literal">bundler</code> que instala con:
+        </p><pre class="programlisting">
+    doas gem install bundler
+    if (test -x /usr/local/bin/bundle30) then {
+       doas ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle;
+    } fi
+</pre><p>
+          Configúrelo para que instale gemas localmente en
+          <code class="literal">/var/www/bundler/ruby/3.0</code> con:
+        </p><pre class="programlisting">
+  bundle config path /var/www/bundler/
+</pre><p>
+          Esto creará el directorio <code class="literal">~/.bundler/</code> y
+          dentro de este el archivo <code class="literal">~/bundle/config</code>
+          con el siguiente contenido:
+        </p><pre class="programlisting">
+---
+BUNDLE_PATH: "/var/www/bundler/"
+</pre><p>
+          Puede experimentar descargando un proyecto para ruby ya hecho,
+          seguramente verá un archivo <code class="literal">Gemfile</code>, donde
+          <code class="literal">bundler</code> examina de que librerías depende la
+          aplicación y genera un archivo <code class="literal">Gemfile.lock</code>
+          con las versiones precisas por instalar de cada gema.
+        </p><p>
+          Una vez tenga un proyecto asegure que este emplea las gemas de
+          <code class="literal">/var/www/bundler/ruby/3.0</code> ejecutando dentro
+          del directorio del proyecto:
+        </p><pre class="programlisting">
+    mkdir .bundle
+    cat &gt; .bundle/config &lt;&lt;EOF
+    ---
+    BUNDLE_PATH: "/var/www/bundler"
+    BUNDLE_DISABLE_SHARED_GEMS: "true"
+    EOF
+</pre><p>
+          E instale con
+        </p><pre class="programlisting">
+    bundle install
+</pre><p>
+          Si eventualmente no logra instalar algunas –por problemas de
+          permisos típicamente– puede instalar con
+        </p><pre class="programlisting">
+    doas gem install --install-dir /var/www/bundler/ruby/3.0 json 
+</pre><p>
+          Cuando actualice la versión del sistema operativo al igual que
+          con gemas es importante reinstalar las gemas de las que
+          depende una aplicación –necesariamente las que tengan
+          extensiones en C. Esto es sencillo con versiones de bundler
+          posteriores a la 1.15.4:
+        </p><pre class="programlisting">
+    bundle pristine
+</pre><p>
+          y después instalando una a una las gemas que sean extensiones,
+          por ejemplo
+        </p><pre class="programlisting">
+    doas gem install --install-dir /var/www/bundler/ruby/3.0 nokogiri -v '2.0'
+</pre></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="rails"></a>12.1.1.5. Rails</h5></div></div></div><p>
+          Se trata de una popular gema que facilita mucho la creación de
+          sitios dinámicos.
+        </p><p>
+          Para instalarla globalmente (en
+          <code class="literal">/usr/local/bin</code> y
+          <code class="literal">/usr/local/lib/ruby/gems/</code>) la versión
+          estable más reciente de Rails ejecute
+        </p><pre class="programlisting">
+    doas gem install rails
+</pre><p>
+          Rails requiere en el servidor un intérprete de JavaScript, por
+          lo que recomendamos <code class="literal">node.js</code> (ver {1})
+          incluido en adJ 6.9 y que se configurará
+          automáticamente.
+        </p><p>
+          La gran mayoría de gemas usadas por rails instalarán de la
+          misma forma que se explicó. Algunos casos especiales son:
+        </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+              <code class="literal">nokogiri</code> que puede requerir
+            </p></li></ul></div><pre class="programlisting">
+        doas gem install --install-dir /var/www/bundler/ruby/3.0/ nokogiri -- --use-system-libraries
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              <code class="literal">capybara-webkit</code> que podría requerir
+            </p></li></ul></div><pre class="programlisting">
+        QMAKE=qmake-qt5 MAKE=gmake doas gem install capybara-webkit
+</pre></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="coffescript"></a>12.1.1.6. Coffescript</h5></div></div></div><p>
+          Si su aplicación rails emplea coffescript necesitará un
+          programa que pueda ejecutar javascript al lado del servidor,
+          recomendamos node.js incluido en adJ. Actualice a la versión
+          más reciente de npm con:
+        </p><pre class="programlisting">
+    doas npm install npm -g
+</pre><p>
+          Instale coffeescript con:
+        </p><pre class="programlisting">
+    doas npm install -g coffee-script
+</pre></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="yarn"></a>12.1.1.7. yarn</h5></div></div></div><p>
+          Las aplicaciones Ruby on Rails posteriores a 6.0 requieren el
+          manejador de paquetes Javascript yarn. Lo puede instalar más
+          fácil con bash y con:
+        </p><pre class="programlisting">
+doas pkg_add bash
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+</pre><p>
+          Si durante la ejecución de yarn ve fallas del estilo:
+        </p><pre class="programlisting">
+/tmp/yarn--1602506143839-0.91595986516731/node[3]:
+/tmp/yarn--1602506143839-0.91595986516731/../node: not found
+</pre><p>
+          que hemos visto por ejemplo con @fortawesome/fontawesome-free,
+          se recomienda enlazar el binario de node en /tmp:
+        </p><pre class="programlisting">
+doas ln -s /usr/local/bin/node /tmp/
+</pre></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="editor-vim"></a>12.1.1.8. Editor vim</h5></div></div></div><p>
+          Para emplear <code class="literal">vim</code> como editor se recomienda
+          asegurarse de haber ejecutado:
+        </p><pre class="programlisting">
+    cd ~
+    mkdir -p .vim
+    cd .vim
+    cp -rf /usr/local/share/vim/vim83/* .
+</pre><p>
+          y si no tiene archivo ~/.vimrc ejecutar:
+        </p><pre class="programlisting">
+    cp /usr/local/share/vim/vim83/vimrc_example.vi ~/.vimrc
+</pre><p>
+          así como agregar el archivo
+          <code class="literal">~/.vim/ftplugin/ruby.vim</code> las siguientes
+          líneas:
+        </p><pre class="programlisting">
+    setlocal shiftwidth=2
+    setlocal tabstop=2
+    set expandtab
+</pre></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="documentaci%C3%B3n"></a>12.1.2. Documentación</h4></div></div></div><p>
+        Para aprender lo básico de Ruby puede comenzar con el tutorial
+        en español disponible en
+        <a href="http://rubytutorial.wikidot.com/" target="_top">http://rubytutorial.wikidot.com/</a>
+      </p><p>
+        Puede aprender por ejemplo con los tutoriales interactivos de
+        <a href="https://rubymonk.com" target="_top">https://rubymonk.com</a>
+      </p><p>
+        En Internet puede ver la referencia oficial de las clases en:
+        <a href="http://ruby-doc.org/core-2.1.5/Integer.html" target="_top">http://ruby-doc.org/core-2.1.5/Integer.html</a>
+      </p><p>
+        Y es buena referencia para Ruby, Rails y Rspec (incluidos
+        cambios entre una versión y otra y comentarios) es:
+        <a href="http://apidock.com/" target="_top">http://apidock.com/</a>
+      </p><p>
+        Podrá consultar documentación del núcleo, librería estándar y
+        gemas instalando el paquete <code class="literal">ruby-ri_docs</code> y
+        ejecutando <code class="literal">ri</code> seguido de la clase (por
+        ejemplo <code class="literal">ri Float</code>) o sin parámetro ingresa a
+        una consola que da la posibilidad de autocompletar presionando
+        Tab (por ejemplo pruebe tecleando <code class="literal">Float</code> y
+        después Tab dos veces).
+      </p><p>
+        También podrá ver la documentación de las gemas en formato Rdoc
+        ejecutando:
+      </p><pre class="programlisting">
+    gem server
+</pre><p>
+        y con un navegador consultando
+        <a href="http://localhost:8808" target="_top">http://localhost:8808</a>
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="uso"></a>12.1.3. Uso</h4></div></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="nueva-aplicaci%C3%B3n-usando-sqlite"></a>12.1.3.1. Nueva aplicación usando SQLite</h5></div></div></div><p>
+          Genere una nueva aplicación:
+        </p><pre class="programlisting">
+    rails new aplicacion
+    cd aplicacion
+    mkdir .bundle
+    cat &gt; .bundle/config &lt;&lt;EOF
+    ---
+    BUNDLE_PATH: "/var/www/bundler"
+    BUNDLE_DISABLE_SHARED_GEMS: "true"
+    EOF
+    bundle install
+</pre><p>
+          Esto creará una nueva aplicación de ejemplo e instalará todas
+          sus dependencias. Las gemas que no logre instalar por falta de
+          permisos, como se explicó anteriormente instálelas con
+          <code class="literal">doas gem install</code> y la opción
+          <code class="literal">--install-dir /var/www/bundler/</code>
+        </p><p>
+          Una vez haya logrado que <code class="literal">bundle install</code> se
+          ejecute completo puede ejecutar:
+        </p><pre class="programlisting">
+    rails server
+</pre><p>
+          Tras esto puede ver con un navegador la aplicación en el
+          puerto 3000 del computador donde instaló:
+          <a href="http://127.0.0.1:3000/" target="_top">http://127.0.0.1:3000/</a>
+        </p><p>
+          Notará que se generan los siguientes directorios y archivos:
+        </p><div class="table"><a name="idp1003437552"></a><p class="title"><b>Tabla 2. 
+            Archivos generados
+          </b></p><table summary="
+            Archivos generados
+          " border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+                  Archivo/Directorio
+                </th><th align="left">
+                  Descripción
+                </th></tr></thead><tbody><tr><td align="left">
+                  README.md
+                </td><td align="left">
+                  Documentación en formato Markdown (puede cambiarse por
+                  README.rdoc en formato RDoc)
+                </td></tr><tr><td align="left">
+                  Rakefile
+                </td><td align="left">
+                  Tareas para <code class="literal">rake</code> (algo análogo a
+                  <code class="literal">make</code>)
+                </td></tr><tr><td align="left">
+                  config.ru
+                </td><td align="left">
+                  Configurar servidor web por usar
+                </td></tr><tr><td align="left">
+                  .gitignore
+                </td><td align="left">
+                  Archivos por ignorar en control de versiones
+                </td></tr><tr><td align="left">
+                  Gemfile
+                </td><td align="left">
+                  Gemas requeridas
+                </td></tr><tr><td align="left">
+                  Gemfile.lock
+                </td><td align="left">
+                  Versiones de las gemas requeridas
+                </td></tr><tr><td align="left">
+                  app/javascript/packs/application.js
+                </td><td align="left">
+                  Plantilla de Javascript que usa módulos
+                </td></tr><tr><td align="left">
+                  app/assets/stylesheets/application.css
+                </td><td align="left">
+                  Plantilla de CSS para aplicación
+                </td></tr><tr><td align="left">
+                  app/controllers/application_controller.rb
+                </td><td align="left">
+                  Plantilla del controlador de la aplicación
+                </td></tr><tr><td align="left">
+                  app/helpers/application_helper.rb
+                </td><td align="left">
+                  Ayudas para construir vistas (sin lógica del modelos).
+                </td></tr><tr><td align="left">
+                  app/views/layouts/application.html.erb
+                </td><td align="left">
+                  Plantilla por defecto para el sitio
+                </td></tr><tr><td align="left">
+                  app/assets/
+                </td><td align="left">
+                  Datos estáticos de la página
+                </td></tr><tr><td align="left">
+                  app/assets/images/
+                </td><td align="left">
+                  Gráficos de la aplicación (típicamente que no se
+                  sirven estáticos)
+                </td></tr><tr><td align="left">
+                  app/assets/config/manifest.js
+                </td><td align="left">
+                  Configura datos estáticos por exportar
+                </td></tr><tr><td align="left">
+                  app/mailers/
+                </td><td align="left">
+                  Controlador para enviar correos
+                </td></tr><tr><td align="left">
+                  app/models/
+                </td><td align="left">
+                  Modelos
+                </td></tr><tr><td align="left">
+                  app/channel/
+                </td><td align="left">
+                  Controlador de websockets
+                </td></tr><tr><td align="left">
+                  app/jobs/
+                </td><td align="left">
+                  Maneja cola de tareas programadas
+                </td></tr><tr><td align="left">
+                  app/mailer/
+                </td><td align="left">
+                  Facilita envío y recepción de correos
+                </td></tr><tr><td align="left">
+                  app/controllers/concerns/
+                </td><td align="left">
+                  Código que se repite en controladores
+                </td></tr><tr><td align="left">
+                  app/models/concerns/
+                </td><td align="left">
+                  Código que se repite en modelos
+                </td></tr><tr><td align="left">
+                  bin/bundle
+                </td><td align="left">
+                  Maneja dependencias con el ambiente de la aplicación
+                </td></tr><tr><td align="left">
+                  bin/rails
+                </td><td align="left">
+                  Maneja posibilidades de generación y controles Rails
+                </td></tr><tr><td align="left">
+                  bin/rake
+                </td><td align="left">
+                  Maneja tareas definidas en <code class="literal">Rakefile</code>
+                  y <code class="literal">lib/tasks</code>
+                </td></tr><tr><td align="left">
+                  bin/setup
+                </td><td align="left">
+                  Plantilla de un configurador de la aplicación
+                </td></tr><tr><td align="left">
+                  bin/yarn
+                </td><td align="left">
+                  Gestor de paquetes javascript
+                </td></tr><tr><td align="left">
+                  config/routes.rb
+                </td><td align="left">
+                  Rutas
+                </td></tr><tr><td align="left">
+                  config/application.rb
+                </td><td align="left">
+                  Configura aplicación
+                </td></tr><tr><td align="left">
+                  config/environment.rb
+                </td><td align="left">
+                  Configura ambiente
+                </td></tr><tr><td align="left">
+                  config/secrets.yml
+                </td><td align="left">
+                  Para verificar integridad de galletas firmadas
+                </td></tr><tr><td align="left">
+                  config/environments/development.rb
+                </td><td align="left">
+                  Configuración ambiente de desarrollo
+                </td></tr><tr><td align="left">
+                  config/environments/production.rb
+                </td><td align="left">
+                  Configuración ambiente de producción
+                </td></tr><tr><td align="left">
+                  config/environments/test.rb
+                </td><td align="left">
+                  Configuración ambiente de pruebas
+                </td></tr><tr><td align="left">
+                  config/initializers/assets.rb
+                </td><td align="left">
+                  Configura recursos
+                </td></tr><tr><td align="left">
+                  config/initializers/backtrace_silencers.rb
+                </td><td align="left">
+                  Inhibe trazas de algunas librerías
+                </td></tr><tr><td align="left">
+                  config/initializers/cookies_serializer.rb
+                </td><td align="left">
+                  Configura como serializar galletas
+                </td></tr><tr><td align="left">
+                  config/initializers/filter_parameter_logging.rb
+                </td><td align="left">
+                  Parámetros por filtrar (no dejar) en bitácoras
+                </td></tr><tr><td align="left">
+                  config/initializers/inflections.rb
+                </td><td align="left">
+                  Inflecciones singular/plural
+                </td></tr><tr><td align="left">
+                  config/initializers/mime_types.rb
+                </td><td align="left">
+                  Registra tipos MIME
+                </td></tr><tr><td align="left">
+                  config/initializers/session_store.rb
+                </td><td align="left">
+                  Configura donde se almacena sesión
+                </td></tr><tr><td align="left">
+                  config/initializers/wrap_parameters.rb
+                </td><td align="left">
+                  Configuración para ActionController::ParamsWrapper
+                </td></tr><tr><td align="left">
+                  config/locales/en.yml
+                </td><td align="left">
+                  Localización en inglés
+                </td></tr><tr><td align="left">
+                  config/boot.rb
+                </td><td align="left">
+                  Prepara rutas para encontrar gemas
+                </td></tr><tr><td align="left">
+                  config/database.yml
+                </td><td align="left">
+                  Configuración de base de datos
+                </td></tr><tr><td align="left">
+                  config/puma.rb
+                </td><td align="left">
+                  Configuración de servidor web puma
+                </td></tr><tr><td align="left">
+                  db/seeds.rb
+                </td><td align="left">
+                  Datos iniciales para base de datos
+                </td></tr><tr><td align="left">
+                  lib/tasks/
+                </td><td align="left">
+                  Tareas para <code class="literal">rake</code>
+                </td></tr><tr><td align="left">
+                  lib/assets/
+                </td><td align="left">
+                  “<span class="quote">Activos</span>” comunes para librerías
+                </td></tr><tr><td align="left">
+                  log/
+                </td><td align="left">
+                  Bitácoras
+                </td></tr><tr><td align="left">
+                  package.json
+                </td><td align="left">
+                  Paquetes javascript requeridos
+                </td></tr><tr><td align="left">
+                  public
+                </td><td align="left">
+                  Archivos estáticos
+                </td></tr><tr><td align="left">
+                  public/404.html
+                </td><td align="left">
+                  Mensaje por defecto para páginas no encontradas
+                </td></tr><tr><td align="left">
+                  public/422.html
+                </td><td align="left">
+                  Mensaje por defecto para rechazar cambios
+                </td></tr><tr><td align="left">
+                  public/500.html
+                </td><td align="left">
+                  Mensaje por defecto cuando ocurren errores en servidor
+                </td></tr><tr><td align="left">
+                  public/favicon.ico
+                </td><td align="left">
+                  Icono
+                </td></tr><tr><td align="left">
+                  public/robots.txt
+                </td><td align="left">
+                  Puede evitar indexación por parte de motores de
+                  búsqueda
+                </td></tr><tr><td align="left">
+                  storage/
+                </td><td align="left">
+                </td></tr><tr><td align="left">
+                  test/fixtures
+                </td><td align="left">
+                  Datos para pruebas
+                </td></tr><tr><td align="left">
+                  test/controllers
+                </td><td align="left">
+                  Pruebas a controladores
+                </td></tr><tr><td align="left">
+                  test/mailers
+                </td><td align="left">
+                  Pruebas a controladores de envio de correo
+                </td></tr><tr><td align="left">
+                  test/models
+                </td><td align="left">
+                  Pruebas a modelos
+                </td></tr><tr><td align="left">
+                  test/helpers
+                </td><td align="left">
+                  Pruebas a funciones para ayudar a construir vistas
+                </td></tr><tr><td align="left">
+                  test/integration
+                </td><td align="left">
+                  Pruebas de integración
+                </td></tr><tr><td align="left">
+                  test/test_helper.rb
+                </td><td align="left">
+                  Pruebas funciones auxiliares
+                </td></tr><tr><td align="left">
+                  tmp/
+                </td><td align="left">
+                  Temporales y cache
+                </td></tr><tr><td align="left">
+                  vendor/assets/javascripts
+                </td><td align="left">
+                  Fuentes Javascript para código de terceros
+                </td></tr><tr><td align="left">
+                  vendor/assets/stylesheets
+                </td><td align="left">
+                  Hojas de estilo para código de terceros
+                </td></tr></tbody></table></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="generar-un-recurso"></a>12.1.3.2. Generar un recurso</h5></div></div></div><p>
+          Puede crear un primer recurso (digamos
+          <code class="literal">Departamento</code>) con modelo, controlador
+          simple y vistas para operaciones CRUD y RESTful con:
+        </p><pre class="programlisting">
+    rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
+    rake db:migrate
+</pre><p>
+          Tras esto y volver a iniciar el servidor (más breve con
+          <code class="literal">rails s</code>) podrá realizar las operaciones
+          básicas sobre departamentos desde:
+          <a href="http://127.0.0.1:3000/departamentos/" target="_top">http://127.0.0.1:3000/departamentos/</a>
+        </p><p>
+          El <code class="literal">scaffold</code> genera tablas (con una
+          migración), modelo, controlador, vistas y rutas iniciales que
+          con una interfaz muy simple le permitirán listar
+          departamentos, ver detalles de cada uno, crear nuevos, editar
+          existentes y eliminar.
+        </p><p>
+          Los archivos generados son:
+        </p><div class="table"><a name="idp1003432816"></a><p class="title"><b>Tabla 3. 
+            Archivos generados con scaffold
+          </b></p><table summary="
+            Archivos generados con scaffold
+          " border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+                  Archivo/Directorio
+                </th><th align="left">
+                  Descripción
+                </th></tr></thead><tbody><tr><td align="left">
+                  <code class="literal">db/migrate/20160320131555_create_departamentos.rb</code>
+                </td><td align="left">
+                  Migración para crear tabla
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/models/departamento.rb</code>
+                </td><td align="left">
+                  Modelo
+                </td></tr><tr><td align="left">
+                  <code class="literal">test/models/departamento_test.rb</code>
+                </td><td align="left">
+                  Prueba al modelo
+                </td></tr><tr><td align="left">
+                  <code class="literal">test/fixtures/departamentos.yml</code>
+                </td><td align="left">
+                  Datos para pruebas
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/controllers/departamentos_controller.rb</code>
+                </td><td align="left">
+                  Controlador
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/views/departamentos</code>
+                </td><td align="left">
+                  Vistas
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/views/departamentos/index.html.erb</code>
+                </td><td align="left">
+                  Lista de departamentos
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/views/departamentos/edit.html.erb</code>
+                </td><td align="left">
+                  Formulario para editar
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/views/departamentos/show.html.erb</code>
+                </td><td align="left">
+                  Muestra un departamento
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/views/departamentos/new.html.erb</code>
+                </td><td align="left">
+                  Nuevo departamento
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/views/departamentos/_form.html.erb</code>
+                </td><td align="left">
+                  Formulario usado por <code class="literal">edit</code> y
+                  <code class="literal">new</code>
+                </td></tr><tr><td align="left">
+                  <code class="literal">test/controllers/departamentos_controller_test.rb</code>
+                </td><td align="left">
+                  Pruebas al controlador
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/helpers/departamentos_helper.rb</code>
+                </td><td align="left">
+                  Funciones auxiliares para construir vistas
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/views/departamentos/index.json.jbuilder</code>
+                </td><td align="left">
+                  Lista en JSON
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/views/departamentos/show.json.jbuilder</code>
+                </td><td align="left">
+                  Muestra un departamento en JSON
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/assets/javascripts/departamentos.coffee</code>
+                </td><td align="left">
+                  Donde agregar código Coffescript para vistas
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/assets/stylesheets/departamentos.scss</code>
+                </td><td align="left">
+                  Para poner CSS de las vistas
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/assets/stylesheets/scaffolds.scss</code>
+                </td><td align="left">
+                  Para poner CSS de las vistas
+                </td></tr></tbody></table></div><p>
+          Por convención de Ruby on Rails:
+        </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Las fuentes del modelo quedan en
+              <code class="literal">app/models/departamento.rb</code>
+            </p></li><li><p>
+              El nombre de la tabla será la forma plural del nombre del
+              modelo (e.g <code class="literal">departamentos</code>)
+            </p></li><li><p>
+              La tabla incluirá automáticamente un campo id de tipo
+              entero que se autoincrementa
+            </p></li><li><p>
+              La tabla incluirá automáticamente los campos
+              <code class="literal">created_at</code> y
+              <code class="literal">updated_at</code> de tipo
+              <code class="literal">datetime</code>.
+            </p></li><li><p>
+              La tabla será creada con una migración (cuya fuente
+              quedará en <code class="literal">db/migrate/</code>) y el registro
+              de las migraciones ya aplicadas se lleva en una tabla
+              <code class="literal">schema_migrations</code> creada
+              automáticamente en la base de datos.
+            </p></li></ul></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="p%C3%A1gina-de-inicio"></a>12.1.3.3. Página de inicio</h5></div></div></div><p>
+          La página inicial de su aplicación puede crearla generando un
+          controlador con vista, modificando la vista y especificando la
+          ruta:
+        </p><pre class="programlisting">
+    rails g controller hogar
+</pre><p>
+          Que genera:
+        </p><div class="table"><a name="idp1003464048"></a><p class="title"><b>Tabla 4. 
+            Archivos generados con <code class="literal">g controller hogar</code>
+          </b></p><table summary="
+            Archivos generados con g controller hogar
+          " border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+                  Archivo/Directorio
+                </th><th align="left">
+                  Descripción
+                </th></tr></thead><tbody><tr><td align="left">
+                  <code class="literal">app/controllers/hogar_controller.rb</code>
+                </td><td align="left">
+                  Controlador
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/views/hogar</code>
+                </td><td align="left">
+                  Vistas relacionadas con el controlador
+                </td></tr><tr><td align="left">
+                  <code class="literal">test/controllers/hogar_controller_test.rb</code>
+                </td><td align="left">
+                  Pruebas
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/helpers/hogar_helper.rb</code>
+                </td><td align="left">
+                  Funciones auxiliares para vistas
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/assets/javascripts/hogar.coffee</code>
+                </td><td align="left">
+                  Coffescript para vistas
+                </td></tr><tr><td align="left">
+                  <code class="literal">app/assets/stylesheets/hogar.scss</code>
+                </td><td align="left">
+                  CSS para vistas
+                </td></tr></tbody></table></div><p>
+          Modifique el controlador
+          <code class="literal">app/controllers/hogar_controller.rb</code> para
+          indicar que tendrá un vista <code class="literal">index</code>:
+        </p><pre class="programlisting">
+    class HogarController &lt; ApplicationController
+        def index
+        end
+    end
+</pre><p>
+          Cree la vista
+          <code class="literal">app/views/hogar/index.html.erb</code>:
+        </p><pre class="programlisting">
+    &lt;article&gt;
+      &lt;h1&gt;Mi aplicación&lt;/h1&gt;
+      &lt;para&gt; Manejar &lt;a href="/departamentos"&gt;Departamentos&lt;/a&gt;&lt;/para&gt;
+    &lt;/article&gt;
+</pre><p>
+          Y en el archivo de configuración de rutas
+          <code class="literal">config/routes.rb</code> añada:
+        </p><pre class="programlisting">
+    root "hogar#index"
+</pre><p>
+          Al modificar fuentes en general no necesita volver a lanzar el
+          servidor de rails, pero si modifica
+          <code class="literal">config/routes.rb</code> o cualquier archivo fuera
+          del directorio <code class="literal">app</code> debe reiniciar el
+          servicio.
+        </p><p>
+          Examine desde un navegador
+          <a href="http://127.0.0.1:3000/" target="_top">http://127.0.0.1:3000/</a>.
+          Verá lo que escribió en
+          <code class="literal">app/views/hogar/index.html.erb</code> en el
+          ambiente HTML que tenga diseñado en
+          <code class="literal">app/views/layouts/application.html.erb</code>.
+        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="interacci%C3%B3n-con-la-base-de-datos"></a>12.1.3.4. Interacción con la base de datos</h5></div></div></div><p>
+          Puede examinar la tabla creada e interactuar con la base de
+          datos con la interfaz texto de SQLite como se ejemplifica a
+          continuación:
+        </p><pre class="programlisting">
+    $ rails dbconsole
+    sqlite&gt; .schema
+    CREATE TABLE "departamentos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre"
+    varchar(500), "latitud" float, "longitud" float, "created_at" datetime, "updated_at" datetime);
+    CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
+    CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version"
+    );
+</pre></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="ayudas-para-usar-una-base-de-datos-postgresql-existente"></a>12.1.3.5. Ayudas para usar una base de datos PostgreSQL
+        existente:</h5></div></div></div><p>
+          Se recomienda emplear UTF8 como codificación de PostgreSQL (si
+          emplea otra codificación convierta sacando un respaldo
+          eliminando la base, volviéndola a crear con
+          <code class="literal">-E UTF8</code> y restaurando los datos).
+        </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Arregle la aplicación recién creada para que emplee
+              PostgreSQL, modificando parámetros de base de datos en
+              <code class="literal">config/database.yml</code>. Si crea una nueva
+              aplicación:
+            </p></li></ul></div><pre class="programlisting">
+        cd ..
+        rails new prueba1 --database=postgresql
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Si lo requiere en otra terminal cree un usuario para la
+              base de datos que será el que empleará desde su aplicación
+              ruby:
+            </p></li></ul></div><pre class="programlisting">
+         doas su - _postgresql
+        $ createuser -Upostgres -h/var/www/tmp prueba
+        Shall the new role be a superuser? (y/n) n
+        Shall the new role be allowed to create databases? (y/n) y
+        Shall the new role be allowed to create more new roles? (y/n) n
+        $ psql -h/var/www/tmp -Upostgres psql (9.3.6) Type "help" for help.
+        postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
+</pre><div class="itemizedlist"><ul type="disc"><li><p>
+              Vuelva a las fuentes de la aplicación y modifique los
+              parámetros de la base de datos editando
+              <code class="literal">conf/database.ym</code>l Ponga el usuario
+              recién creado, la clave y en la especificación de cada una
+              de las 3 bases de datos (desarrollo, pruebas y producción)
+              agregue la ruta de la conexión al motor de bases de datos:
+              <code class="literal">host: /var/www/tmp/</code>
+            </p></li><li><p>
+              A manera de prueba de su configuración intente ingresar a
+              un intérprete de órdenes para su base de datos con:
+            </p></li></ul></div><pre class="programlisting">
+        rails dbconsole
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Si las tablas de la base de datos no emplean la convención
+              para nomenclatura de Ruby on Rails (nombres de tabla en
+              plural, clases en singular) agregue al archivo
+              <code class="literal">config/environment.rb</code>:
+            </p></li></ul></div><pre class="programlisting">
+        ActiveRecord::Base.pluralize_table_names=false
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Además de esto para que las pruebas puedan operar
+              seguramente deberá renombrar los archivos con datos de
+              prueba del directorio <code class="literal">tests/fixtures</code>, y
+              en lugar de dejar forma plural dejar forma singular. Si el
+              nombre de tabla es muy diferente en el modelo puede usar
+              <code class="literal">self.table_name = "cc"</code> como
+              se indica en {8}.
+            </p></li><li><p>
+              Para generar un volcado inicial de la base de datos en
+              <code class="literal">db/structure.sql</code> (incluyendo
+              características no portables de PostgreSQL a otros motores
+              de bases de datos), agregue al archivo
+              <code class="literal">config/application.rb</code> la línea
+            </p></li></ul></div><pre class="programlisting">
+       config.active_record.schema_format=:sql
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Después ejecute la tarea rake apropiada (ver {4}):
+            </p></li></ul></div><pre class="programlisting">
+        rake db:structure:dump
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Genere clases (modelos) en blanco en el directorio
+              <code class="literal">app/models</code> para cada una de las tablas
+              de su aplicación, por ejemplo para la tabla
+              <code class="literal">mitabla</code> :
+            </p></li></ul></div><pre class="programlisting">
+        rails generate model mitabla --migration=false --timestamp=false
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Cuando la aplicación esté en operación ActiveRecord tomará
+              la estructura directamente de la base de datos, no de los
+              modelos en sus fuentes. Sin embargo puede ser útil poner
+              comentarios en esos modelos con los campos de cada tabla.
+              Esto puede hacerse instalando la gema
+              <code class="literal">annotate</code> con:
+            </p></li></ul></div><pre class="programlisting">
+    doas gem install annotate
+</pre><pre class="programlisting">
+y ejecute:
+</pre><pre class="programlisting">
+        annotate
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Si desea ayuda en la generación de controladores y vistas
+              para sus tablas, instale
+              <code class="literal">doas gem install</code>schema_to_scaffold`<code class="literal">,     genere (puede ser momentáneamente) el archivo</code>db/schema.rb`
+              con
+            </p></li></ul></div><pre class="programlisting">
+    rake db:schema:dump
+</pre><pre class="programlisting">
+y ejecute
+</pre><pre class="programlisting">
+    scaffold
+</pre><p>
+          para ver las instrucciones que debe dar a rails para generar
+          modelos, controladores y vistas para las tablas de la base de
+          datos.
+        </p></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="detalles-para-tener-en-cuenta-al-migrar-aplicaciones"></a>12.1.3.6. Detalles para tener en cuenta al migrar
+        aplicaciones</h5></div></div></div><p>
+          RoR tiene sus propias convenciones respecto a SQL, nombres de
+          tablas y demás, en ocasiones puede ser mejor intercambiar
+          datos JSON con una aplicación ya existente que interactúe con
+          la base de datos. Sin embargo si desea emplear RoR tanto como
+          pueda para interactuar con la base de datos, tenga en cuenta:
+        </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Toda tabla creada y maneja por RoR se espera que tenga los
+              campos <code class="literal">created_at</code> y
+              <code class="literal">updated_at</code> de tipo
+              <code class="literal">datetime</code> . Puede generar una migración
+              que agregue estos campos digamos para la tabla
+              <code class="literal">intervalo</code> con
+            </p></li></ul></div><pre class="programlisting">
+    rails g migration addTiempoToIntervalo created_at:datetime
+    updated_at:datetime
+</pre><pre class="programlisting">
+tras lo cual debe editar la migración creada para asegurar que queda
+bien (por ejemplo pasando a singular la tabla si ese es su caso).
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Por defecto cada tabla debe tener una única llave primaria
+              de nombre <code class="literal">id</code> y tipo entero
+              autoincremental. Esto puede cambiarse un poco –pero no del
+              todo según {6}– la sugerencia allí dada es definir la
+              llave primaria en SQL en la migración, la cual debe
+              incluir <code class="literal">id:false</code> y en el modelo agregar
+              <code class="literal">self.primary_key=:campo_llave_primaria</code>.
+              Por ejemplo si la llave primaria de una tabla usuario debe
+              ser <code class="literal">id</code> pero de tipo
+              <code class="literal">string</code> , la migración será:
+            </p></li></ul></div><pre class="programlisting">
+        create_table "usuario", id: false, force: true do |t|
+          t.string "id", limit: 15, null: false
+          t.string "nombre", limit: 50 ...
+          t.datetime "created_at"
+          t.datetime "updated_at"
+        end
+        add_index "usuario", ["id"], name: "index_usuario_on_id",
+        unique: true, using: :btree
+</pre><pre class="programlisting">
+Y en el modelo `app/models/usuario.rb` debe quedar:
+</pre><pre class="programlisting">
+        class Usuario &lt; ActiveRecord::Base
+          ...
+          self.primary_key=:id
+        end
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Aunque es posible insertar datos iniciales para algunas
+              tablas en <code class="literal">db/seeds.rb</code>, los métodos por
+              defecto de RoR emplearán un campo autoincremental para la
+              identificación, puede insertarse directamente en SQL, como
+              se explica en {7}, con:
+            </p></li></ul></div><pre class="programlisting">
+        connection = ActiveRecord::Base.connection()
+        connection.execute("INSERT INTO mitabla(id, nombre) VALUES ('id1', 'nom1')")
+</pre></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="localizaci%C3%B3n"></a>12.1.3.7. 4.3 Localización</h5></div></div></div><p>
+          Si su público objetivo habla principalmente español puede:
+        </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Instalar la gema <code class="literal">rails-i18n</code> que incluye
+              traducción a español y otros idiomas de varias cadenas de
+              Ruby on Rails
+            </p></li></ul></div><pre class="programlisting">
+       doas gem install rails-i18n
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Agregar <code class="literal">gem "rails-i18n"</code> en
+              su archivo <code class="literal">Gemfile</code> y ejecutar
+            </p></li></ul></div><pre class="programlisting">
+        bundle update
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Configurar en <code class="literal">config/application.rb</code> :
+            </p></li></ul></div><pre class="programlisting">
+        config.time_zone = 'America/Bogota'
+        config.i18n.default_locale = :es
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Eventualmente corregir inflexiones singular/plural en
+              <code class="literal">config/initializers/inflections.rb</code>, por
+              ejemplo (ver {3}):
+            </p></li></ul></div><pre class="programlisting">
+        ActiveSupport::Inflector.inflections do |inflect|
+          inflect.irregular 'pais', 'paises'
+        end
+</pre></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="depuraci%C3%B3n"></a>12.1.4. Depuración</h4></div></div></div><p>
+        Como se explica en {5}, desde la aplicación en rails puede
+        entrar a depurar:
+      </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+            Instale la gema
+          </p></li></ul></div><pre class="programlisting">
+    gem install byebug
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+            Para activar el depurador en sitios en producción debe
+            además iniciar el servidor web con
+          </p></li></ul></div><pre class="programlisting">
+    rails s --debugger
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+            En el sitio de las fuentes donde quiere comenzar a depurar
+            llamando la función
+          </p></li></ul></div><pre class="programlisting">
+    byebug
+</pre><p>
+        Ruby también ofrece facilidades para medir tiempos como se
+        resume en {4}.
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lecturas-recomendadas-y-referencias"></a>12.1.5. Lecturas recomendadas y referencias</h4></div></div></div><div class="itemizedlist"><ul type="disc" compact><li><p>
+            {1} http://guides.rubyonrails.org/getting_started.html
+          </p></li><li><p>
+            {2}
+            http://stackoverflow.com/questions/7092107/rails-3-1-error-could-not-find-a-javascript-runtime
+          </p></li><li><p>
+            {3}
+            http://stackoverflow.com/questions/5285048/rails-3-routing-singular-option
+          </p></li><li><p>
+            {4} http://www.caliban.org/ruby/rubyguide.shtml
+          </p></li><li><p>
+            {5}
+            http://guides.rubyonrails.org/debugging_rails_applications.html
+          </p></li><li><p>
+            {6}
+            http://stackoverflow.com/questions/1200568/using-rails-how-can-i-set-my-primary-key-to-not-be-an-integer-typed-column
+          </p></li><li><p>
+            {7}
+            http://stackoverflow.com/questions/6223803/execute-sql-script-inside-seed-rb-in-rails3
+          </p></li><li><p>
+            {8}
+            http://stackoverflow.com/questions/7542976/add-timestamps-to-an-existing-table
+          </p></li><li><p>
+            {9}
+            http://stackoverflow.com/questions/4613574/how-do-i-explicitly-specify-a-models-table-name-mapping-in-rails
+          </p></li></ul></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="java"></a>12.2. Java</h3></div></div></div><p>
+      Desde OpenBSD 4.7 se incluyó un porte oficial de Java de fuentes
+      abiertas, se trata del <code class="literal">jdk-1.7</code>.
+    </p><p>
+      Si requiere versiones anteriores de Java o si requiere el plugin
+      para Firefox deberá compilar una versión anterior.
+    </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="compilacion"></a>12.2.1. Compilación de JDKs de fuentes cerradas</h4></div></div></div><p>
+        Las versiones anteriores a la 1.7, deben compilarse como portes
+        (de subdirectorios de <code class="literal">/usr/ports/devel/jdk/</code>),
+        pues las licencias de las fuente exigen que al descargar de las
+        mismas las haga directamente de los sitios de distribución. Al
+        intentar compilar cada uno podrá ver instrucciones que le
+        indican de donde descargar las fuentes para ubicarlas en
+        <code class="literal">/usr/ports/distfiles</code>.
+      </p><p>
+        Tras descargar manualmente las fuentes, la compilación e
+        instalación son directas (i.e con <code class="literal">make</code> y
+        <code class="literal">make install</code> respectivamente).
+      </p><p>
+        Si por ejemplo instala <code class="literal">jdk-1.4</code> los binarios
+        quedarán en <code class="literal">/usr/local/jdk1.4/bin/</code> así que es
+        recomendable que agregue tal ruta a su variable
+        <code class="literal">PATH</code> por ejemplo en su archivo
+        <code class="literal">~/.profile</code> o el equivalente.
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="plugin-java"></a>12.2.2. Plugin de Java para Mozilla y Firefox</h4></div></div></div><p>
+        El <code class="literal">jdk-1.4</code> incluye un plugin que puede
+        emplearse con <code class="literal">mozilla</code> o
+        <code class="literal">mozilla-firefox</code>. Basta ejecutar:
+      </p><pre class="programlisting">
+    cd  ~/.mozilla
+    mkdir plugins
+    cd plugins
+    ln -s /usr/local/jdk-1.4.2/jre/plugin/i386/ns610/libjavaplugin_oji.so .
+</pre><p>
+        después reiniciar <code class="literal">mozilla-firefox</code> y verificar
+        que el plugin esté operando abriendo el URL
+        <code class="literal">about:plugins</code>. Como se indica en
+        http://archives.neohapsis.com/archives/openbsd/2005-09/2253.html,
+        para que puedan cargarse applets es necesario aumentar el límite
+        de memoria para datos con algo como:
+      </p><pre class="programlisting">
+    ulimit -d 2000000
+</pre><p>
+        que de requerirse puede ejecutarse desde la cuenta root (cuyo
+        límite máximo es mayor que el de cuentas de usuario).
+      </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="operaci%C3%B3n-en-red.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="conf-dispositivos.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">11. Operación en red </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 13. Configuración y uso de algunos dispositivos y servicios</td></tr></table></div></body></html>

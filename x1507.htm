@@ -1,0 +1,2715 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Ambiente de Desarrollo</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Operación en red"
+HREF="x1451.htm"><LINK
+REL="NEXT"
+TITLE="Configuración y uso de algunos dispositivos y servicios"
+HREF="x2238.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1451.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x2238.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ambiente-de-desarrollo"
+>Ambiente de Desarrollo</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="ruby"
+>Ruby</A
+></H2
+><P
+>&#13;      En adJ 6.9 es sencillo usar ruby-2.7.3 con Ruby on
+      Rails 6. Lo básico se instala de paquetes de OpenBSD y lo más
+      reciente de Ruby directamente como gemas.
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="instalación-y-configuración"
+>Instalación y configuración</A
+></H3
+><P
+>&#13;        Asegúrese de tener instalados los paquetes ruby-2.7.3 y
+        node-12.16.1p1, incluidos en el DVD de adJ 6.9
+      </P
+><P
+>&#13;        Asegúrese de tener enlaces al intérprete de ruby y herramientas
+        (como describe el paquete ruby):
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas sh
+    ln -sf /usr/local/bin/ruby30 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb30 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb30 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc30 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri30 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake30 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem30 /usr/local/bin/gem
+    ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler30 /usr/local/bin/bundler
+</PRE
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="límites-amplios"
+>Límites amplios</A
+></H4
+><P
+>&#13;          Asegurarse de tener limites amplios del sistema operativo para
+          abrir archivos y manejar memoria, por ejemplo superiores a los
+          siguientes en <TT
+CLASS="literal"
+>/etc/systctl.conf</TT
+>
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    kern.shminfo.shmmni=1024
+    kern.seminfo.semmns=2048
+    kern.shminfo.shmmax=50331648
+    kern.shminfo.shmall=51200
+    kern.maxfiles=20000
+</PRE
+><P
+>&#13;          El usuario desde el cual desarrollará o ejecutará aplicaciones
+          también debe tener límites amplios, en particular su clase de
+          login (por ejemplo <TT
+CLASS="literal"
+>staff</TT
+>). Debe tener al
+          menos los siguientes en <TT
+CLASS="literal"
+>/etc/login.conf</TT
+>
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    staff:\
+            :datasize-cur=1536M:\
+            :datasize-max=infinity:\
+            :maxproc-max=4096:\
+            :maxproc-cur=4096:\
+            :openfiles-max=8090:\
+            :openfiles-cur=8090:\
+            :ignorenologin:\
+            :requirehome@:\
+            :tc=default:
+</PRE
+><P
+>&#13;          (Si modifica el archivo <TT
+CLASS="literal"
+>/etc/login.conf</TT
+>
+          debe reconstruir su versión binaria con
+          <TT
+CLASS="literal"
+>doas cap_mkdb /etc/login.conf</TT
+>).
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="irb"
+>irb</A
+></H4
+><P
+>&#13;          Para facilitar su exploración del lenguaje ruby, puede usar
+          <TT
+CLASS="literal"
+>irb</TT
+> (ver {4}), pero antes verifique que su
+          archivo <TT
+CLASS="literal"
+>~/.irbrc</TT
+> tenga las siguientes
+          líneas (añadidas por defecto en adJ a la cuenta de
+          administrador):
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    # Configuración de irb
+    # Basado en archivo de órdenes disponible en &#60;http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/&#62;
+    require 'irb/completion'
+    require 'pp'
+    IRB.conf[:AUTO_INDENT] = true
+    IRB.conf[:USE_READLINE] = true
+
+    def clear
+        system('clear')
+    end
+</PRE
+><P
+>&#13;          A continuación ingrese a <TT
+CLASS="literal"
+>irb</TT
+> y escriba por
+          ejemplo <TT
+CLASS="literal"
+>4.</TT
+> y presione la tecla [Tab] 2
+          veces para ver los métodos de la clase Integer.
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="gemas"
+>Gemas</A
+></H4
+><P
+>&#13;          El paquete <TT
+CLASS="literal"
+>ruby</TT
+> incluye
+          <TT
+CLASS="literal"
+>rubygems</TT
+> que maneja gemas (es decir
+          librerías) con el programa <TT
+CLASS="literal"
+>gem</TT
+>.
+        </P
+><P
+>&#13;          El directorio donde se instalan las gemas globales es
+          <TT
+CLASS="literal"
+>/usr/local/lib/ruby/gems/3.0/</TT
+> donde sólo
+          pueden instalarse con <TT
+CLASS="literal"
+>doas</TT
+>. Recomendamos
+          iniciar un directorio para instalar gemas como usuario normal
+          en <TT
+CLASS="literal"
+>/var/www/bundler/ruby/3.0</TT
+>, por 3 razones
+          (1) evitar riesgos de seguridad al instalar gemas como root,
+          (2) evitar problemas de permisos y la dificultad de programas
+          como bundler para usar <TT
+CLASS="literal"
+>doas</TT
+> en lugar de
+          <TT
+CLASS="literal"
+>sudo</TT
+> y (3) alistar infraestructura para que
+          sus aplicaciones corran en una jaula chroot en
+          <TT
+CLASS="literal"
+>/var/www</TT
+>
+        </P
+><P
+>&#13;          Prepare ese directorio con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas mkdir -p /var/www/bundler/ruby/3.0/
+    doas chown -R $USER:www /var/www/bundler
+</PRE
+><P
+>&#13;          Y cuando requiera instalar una gema allí emplee:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    gem install --install-dir /var/www/bundler/ruby/3.0/ json 
+</PRE
+><P
+>&#13;          O si llega a tener problemas de permisos con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt 
+</PRE
+><P
+>&#13;          Para facilitar compilación de algunas extensiones (como las de
+          nokogiri) se recomienda instalar <TT
+CLASS="literal"
+>pkg-config</TT
+>
+          globalmente:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install pkg-config
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="bundler"
+>Bundler</A
+></H4
+><P
+>&#13;          Para facilitar el manejo de varias gemas (y sus
+          interdependencias) en un proyecto es típico emplear
+          <TT
+CLASS="literal"
+>bundler</TT
+> que instala con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install bundler
+    if (test -x /usr/local/bin/bundle30) then {
+       doas ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle;
+    } fi
+</PRE
+><P
+>&#13;          Configúrelo para que instale gemas localmente en
+          <TT
+CLASS="literal"
+>/var/www/bundler/ruby/3.0</TT
+> con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;  bundle config path /var/www/bundler/
+</PRE
+><P
+>&#13;          Esto creará el directorio <TT
+CLASS="literal"
+>~/.bundler/</TT
+> y
+          dentro de este el archivo <TT
+CLASS="literal"
+>~/bundle/config</TT
+>
+          con el siguiente contenido:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;---
+BUNDLE_PATH: "/var/www/bundler/"
+</PRE
+><P
+>&#13;          Puede experimentar descargando un proyecto para ruby ya hecho,
+          seguramente verá un archivo <TT
+CLASS="literal"
+>Gemfile</TT
+>, donde
+          <TT
+CLASS="literal"
+>bundler</TT
+> examina de que librerías depende la
+          aplicación y genera un archivo <TT
+CLASS="literal"
+>Gemfile.lock</TT
+>
+          con las versiones precisas por instalar de cada gema.
+        </P
+><P
+>&#13;          Una vez tenga un proyecto asegure que este emplea las gemas de
+          <TT
+CLASS="literal"
+>/var/www/bundler/ruby/3.0</TT
+> ejecutando dentro
+          del directorio del proyecto:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    mkdir .bundle
+    cat &#62; .bundle/config &#60;&#60;EOF
+    ---
+    BUNDLE_PATH: "/var/www/bundler"
+    BUNDLE_DISABLE_SHARED_GEMS: "true"
+    EOF
+</PRE
+><P
+>&#13;          E instale con
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    bundle install
+</PRE
+><P
+>&#13;          Si eventualmente no logra instalar algunas –por problemas de
+          permisos típicamente– puede instalar con
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0 json 
+</PRE
+><P
+>&#13;          Cuando actualice la versión del sistema operativo al igual que
+          con gemas es importante reinstalar las gemas de las que
+          depende una aplicación –necesariamente las que tengan
+          extensiones en C. Esto es sencillo con versiones de bundler
+          posteriores a la 1.15.4:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    bundle pristine
+</PRE
+><P
+>&#13;          y después instalando una a una las gemas que sean extensiones,
+          por ejemplo
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0 nokogiri -v '2.0'
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="rails"
+>Rails</A
+></H4
+><P
+>&#13;          Se trata de una popular gema que facilita mucho la creación de
+          sitios dinámicos.
+        </P
+><P
+>&#13;          Para instalarla globalmente (en
+          <TT
+CLASS="literal"
+>/usr/local/bin</TT
+> y
+          <TT
+CLASS="literal"
+>/usr/local/lib/ruby/gems/</TT
+>) la versión
+          estable más reciente de Rails ejecute
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install rails
+</PRE
+><P
+>&#13;          Rails requiere en el servidor un intérprete de JavaScript, por
+          lo que recomendamos <TT
+CLASS="literal"
+>node.js</TT
+> (ver {1})
+          incluido en adJ 6.9 y que se configurará
+          automáticamente.
+        </P
+><P
+>&#13;          La gran mayoría de gemas usadas por rails instalarán de la
+          misma forma que se explicó. Algunos casos especiales son:
+        </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              <TT
+CLASS="literal"
+>nokogiri</TT
+> que puede requerir
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        doas gem install --install-dir /var/www/bundler/ruby/3.0/ nokogiri -- --use-system-libraries
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              <TT
+CLASS="literal"
+>capybara-webkit</TT
+> que podría requerir
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        QMAKE=qmake-qt5 MAKE=gmake doas gem install capybara-webkit
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="coffescript"
+>Coffescript</A
+></H4
+><P
+>&#13;          Si su aplicación rails emplea coffescript necesitará un
+          programa que pueda ejecutar javascript al lado del servidor,
+          recomendamos node.js incluido en adJ. Actualice a la versión
+          más reciente de npm con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas npm install npm -g
+</PRE
+><P
+>&#13;          Instale coffeescript con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas npm install -g coffee-script
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="yarn"
+>yarn</A
+></H4
+><P
+>&#13;          Las aplicaciones Ruby on Rails posteriores a 6.0 requieren el
+          manejador de paquetes Javascript yarn. Lo puede instalar más
+          fácil con bash y con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;doas pkg_add bash
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+</PRE
+><P
+>&#13;          Si durante la ejecución de yarn ve fallas del estilo:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;/tmp/yarn--1602506143839-0.91595986516731/node[3]:
+/tmp/yarn--1602506143839-0.91595986516731/../node: not found
+</PRE
+><P
+>&#13;          que hemos visto por ejemplo con @fortawesome/fontawesome-free,
+          se recomienda enlazar el binario de node en /tmp:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;doas ln -s /usr/local/bin/node /tmp/
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="editor-vim"
+>Editor vim</A
+></H4
+><P
+>&#13;          Para emplear <TT
+CLASS="literal"
+>vim</TT
+> como editor se recomienda
+          asegurarse de haber ejecutado:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd ~
+    mkdir -p .vim
+    cd .vim
+    cp -rf /usr/local/share/vim/vim83/* .
+</PRE
+><P
+>&#13;          y si no tiene archivo ~/.vimrc ejecutar:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    cp /usr/local/share/vim/vim83/vimrc_example.vi ~/.vimrc
+</PRE
+><P
+>&#13;          así como agregar el archivo
+          <TT
+CLASS="literal"
+>~/.vim/ftplugin/ruby.vim</TT
+> las siguientes
+          líneas:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    setlocal shiftwidth=2
+    setlocal tabstop=2
+    set expandtab
+</PRE
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="documentación"
+>Documentación</A
+></H3
+><P
+>&#13;        Para aprender lo básico de Ruby puede comenzar con el tutorial
+        en español disponible en
+        <A
+HREF="http://rubytutorial.wikidot.com/"
+TARGET="_top"
+>http://rubytutorial.wikidot.com/</A
+>
+      </P
+><P
+>&#13;        Puede aprender por ejemplo con los tutoriales interactivos de
+        <A
+HREF="https://rubymonk.com"
+TARGET="_top"
+>https://rubymonk.com</A
+>
+      </P
+><P
+>&#13;        En Internet puede ver la referencia oficial de las clases en:
+        <A
+HREF="http://ruby-doc.org/core-2.1.5/Integer.html"
+TARGET="_top"
+>http://ruby-doc.org/core-2.1.5/Integer.html</A
+>
+      </P
+><P
+>&#13;        Y es buena referencia para Ruby, Rails y Rspec (incluidos
+        cambios entre una versión y otra y comentarios) es:
+        <A
+HREF="http://apidock.com/"
+TARGET="_top"
+>http://apidock.com/</A
+>
+      </P
+><P
+>&#13;        Podrá consultar documentación del núcleo, librería estándar y
+        gemas instalando el paquete <TT
+CLASS="literal"
+>ruby-ri_docs</TT
+> y
+        ejecutando <TT
+CLASS="literal"
+>ri</TT
+> seguido de la clase (por
+        ejemplo <TT
+CLASS="literal"
+>ri Float</TT
+>) o sin parámetro ingresa a
+        una consola que da la posibilidad de autocompletar presionando
+        Tab (por ejemplo pruebe tecleando <TT
+CLASS="literal"
+>Float</TT
+> y
+        después Tab dos veces).
+      </P
+><P
+>&#13;        También podrá ver la documentación de las gemas en formato Rdoc
+        ejecutando:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    gem server
+</PRE
+><P
+>&#13;        y con un navegador consultando
+        <A
+HREF="http://localhost:8808"
+TARGET="_top"
+>http://localhost:8808</A
+>
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="uso"
+>Uso</A
+></H3
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="nueva-aplicación-usando-sqlite"
+>Nueva aplicación usando SQLite</A
+></H4
+><P
+>&#13;          Genere una nueva aplicación:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    rails new aplicacion
+    cd aplicacion
+    mkdir .bundle
+    cat &#62; .bundle/config &#60;&#60;EOF
+    ---
+    BUNDLE_PATH: "/var/www/bundler"
+    BUNDLE_DISABLE_SHARED_GEMS: "true"
+    EOF
+    bundle install
+</PRE
+><P
+>&#13;          Esto creará una nueva aplicación de ejemplo e instalará todas
+          sus dependencias. Las gemas que no logre instalar por falta de
+          permisos, como se explicó anteriormente instálelas con
+          <TT
+CLASS="literal"
+>doas gem install</TT
+> y la opción
+          <TT
+CLASS="literal"
+>--install-dir /var/www/bundler/</TT
+>
+        </P
+><P
+>&#13;          Una vez haya logrado que <TT
+CLASS="literal"
+>bundle install</TT
+> se
+          ejecute completo puede ejecutar:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    rails server
+</PRE
+><P
+>&#13;          Tras esto puede ver con un navegador la aplicación en el
+          puerto 3000 del computador donde instaló:
+          <A
+HREF="http://127.0.0.1:3000/"
+TARGET="_top"
+>http://127.0.0.1:3000/</A
+>
+        </P
+><P
+>&#13;          Notará que se generan los siguientes directorios y archivos:
+        </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN1665"
+></A
+><P
+><B
+>Tabla 2. 
+            Archivos generados
+          </B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"><COL
+WIDTH="1*"
+ALIGN="left"><THEAD
+><TR
+><TH
+>&#13;                  Archivo/Directorio
+                </TH
+><TH
+>&#13;                  Descripción
+                </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                  README.md
+                </TD
+><TD
+>&#13;                  Documentación en formato Markdown (puede cambiarse por
+                  README.rdoc en formato RDoc)
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  Rakefile
+                </TD
+><TD
+>&#13;                  Tareas para <TT
+CLASS="literal"
+>rake</TT
+> (algo análogo a
+                  <TT
+CLASS="literal"
+>make</TT
+>)
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config.ru
+                </TD
+><TD
+>&#13;                  Configurar servidor web por usar
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  .gitignore
+                </TD
+><TD
+>&#13;                  Archivos por ignorar en control de versiones
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  Gemfile
+                </TD
+><TD
+>&#13;                  Gemas requeridas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  Gemfile.lock
+                </TD
+><TD
+>&#13;                  Versiones de las gemas requeridas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/javascript/packs/application.js
+                </TD
+><TD
+>&#13;                  Plantilla de Javascript que usa módulos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/assets/stylesheets/application.css
+                </TD
+><TD
+>&#13;                  Plantilla de CSS para aplicación
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/controllers/application_controller.rb
+                </TD
+><TD
+>&#13;                  Plantilla del controlador de la aplicación
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/helpers/application_helper.rb
+                </TD
+><TD
+>&#13;                  Ayudas para construir vistas (sin lógica del modelos).
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/views/layouts/application.html.erb
+                </TD
+><TD
+>&#13;                  Plantilla por defecto para el sitio
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/assets/
+                </TD
+><TD
+>&#13;                  Datos estáticos de la página
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/assets/images/
+                </TD
+><TD
+>&#13;                  Gráficos de la aplicación (típicamente que no se
+                  sirven estáticos)
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/assets/config/manifest.js
+                </TD
+><TD
+>&#13;                  Configura datos estáticos por exportar
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/mailers/
+                </TD
+><TD
+>&#13;                  Controlador para enviar correos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/models/
+                </TD
+><TD
+>&#13;                  Modelos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/channel/
+                </TD
+><TD
+>&#13;                  Controlador de websockets
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/jobs/
+                </TD
+><TD
+>&#13;                  Maneja cola de tareas programadas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/mailer/
+                </TD
+><TD
+>&#13;                  Facilita envío y recepción de correos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/controllers/concerns/
+                </TD
+><TD
+>&#13;                  Código que se repite en controladores
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  app/models/concerns/
+                </TD
+><TD
+>&#13;                  Código que se repite en modelos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  bin/bundle
+                </TD
+><TD
+>&#13;                  Maneja dependencias con el ambiente de la aplicación
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  bin/rails
+                </TD
+><TD
+>&#13;                  Maneja posibilidades de generación y controles Rails
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  bin/rake
+                </TD
+><TD
+>&#13;                  Maneja tareas definidas en <TT
+CLASS="literal"
+>Rakefile</TT
+>
+                  y <TT
+CLASS="literal"
+>lib/tasks</TT
+>
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  bin/setup
+                </TD
+><TD
+>&#13;                  Plantilla de un configurador de la aplicación
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  bin/yarn
+                </TD
+><TD
+>&#13;                  Gestor de paquetes javascript
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/routes.rb
+                </TD
+><TD
+>&#13;                  Rutas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/application.rb
+                </TD
+><TD
+>&#13;                  Configura aplicación
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/environment.rb
+                </TD
+><TD
+>&#13;                  Configura ambiente
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/secrets.yml
+                </TD
+><TD
+>&#13;                  Para verificar integridad de galletas firmadas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/environments/development.rb
+                </TD
+><TD
+>&#13;                  Configuración ambiente de desarrollo
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/environments/production.rb
+                </TD
+><TD
+>&#13;                  Configuración ambiente de producción
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/environments/test.rb
+                </TD
+><TD
+>&#13;                  Configuración ambiente de pruebas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/initializers/assets.rb
+                </TD
+><TD
+>&#13;                  Configura recursos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/initializers/backtrace_silencers.rb
+                </TD
+><TD
+>&#13;                  Inhibe trazas de algunas librerías
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/initializers/cookies_serializer.rb
+                </TD
+><TD
+>&#13;                  Configura como serializar galletas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/initializers/filter_parameter_logging.rb
+                </TD
+><TD
+>&#13;                  Parámetros por filtrar (no dejar) en bitácoras
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/initializers/inflections.rb
+                </TD
+><TD
+>&#13;                  Inflecciones singular/plural
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/initializers/mime_types.rb
+                </TD
+><TD
+>&#13;                  Registra tipos MIME
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/initializers/session_store.rb
+                </TD
+><TD
+>&#13;                  Configura donde se almacena sesión
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/initializers/wrap_parameters.rb
+                </TD
+><TD
+>&#13;                  Configuración para ActionController::ParamsWrapper
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/locales/en.yml
+                </TD
+><TD
+>&#13;                  Localización en inglés
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/boot.rb
+                </TD
+><TD
+>&#13;                  Prepara rutas para encontrar gemas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/database.yml
+                </TD
+><TD
+>&#13;                  Configuración de base de datos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  config/puma.rb
+                </TD
+><TD
+>&#13;                  Configuración de servidor web puma
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  db/seeds.rb
+                </TD
+><TD
+>&#13;                  Datos iniciales para base de datos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  lib/tasks/
+                </TD
+><TD
+>&#13;                  Tareas para <TT
+CLASS="literal"
+>rake</TT
+>
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  lib/assets/
+                </TD
+><TD
+>&#13;                  <SPAN
+CLASS="QUOTE"
+>"Activos"</SPAN
+> comunes para librerías
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  log/
+                </TD
+><TD
+>&#13;                  Bitácoras
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  package.json
+                </TD
+><TD
+>&#13;                  Paquetes javascript requeridos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  public
+                </TD
+><TD
+>&#13;                  Archivos estáticos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  public/404.html
+                </TD
+><TD
+>&#13;                  Mensaje por defecto para páginas no encontradas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  public/422.html
+                </TD
+><TD
+>&#13;                  Mensaje por defecto para rechazar cambios
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  public/500.html
+                </TD
+><TD
+>&#13;                  Mensaje por defecto cuando ocurren errores en servidor
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  public/favicon.ico
+                </TD
+><TD
+>&#13;                  Icono
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  public/robots.txt
+                </TD
+><TD
+>&#13;                  Puede evitar indexación por parte de motores de
+                  búsqueda
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  storage/
+                </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>&#13;                  test/fixtures
+                </TD
+><TD
+>&#13;                  Datos para pruebas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  test/controllers
+                </TD
+><TD
+>&#13;                  Pruebas a controladores
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  test/mailers
+                </TD
+><TD
+>&#13;                  Pruebas a controladores de envio de correo
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  test/models
+                </TD
+><TD
+>&#13;                  Pruebas a modelos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  test/helpers
+                </TD
+><TD
+>&#13;                  Pruebas a funciones para ayudar a construir vistas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  test/integration
+                </TD
+><TD
+>&#13;                  Pruebas de integración
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  test/test_helper.rb
+                </TD
+><TD
+>&#13;                  Pruebas funciones auxiliares
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  tmp/
+                </TD
+><TD
+>&#13;                  Temporales y cache
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  vendor/assets/javascripts
+                </TD
+><TD
+>&#13;                  Fuentes Javascript para código de terceros
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  vendor/assets/stylesheets
+                </TD
+><TD
+>&#13;                  Hojas de estilo para código de terceros
+                </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="generar-un-recurso"
+>Generar un recurso</A
+></H4
+><P
+>&#13;          Puede crear un primer recurso (digamos
+          <TT
+CLASS="literal"
+>Departamento</TT
+>) con modelo, controlador
+          simple y vistas para operaciones CRUD y RESTful con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
+    rake db:migrate
+</PRE
+><P
+>&#13;          Tras esto y volver a iniciar el servidor (más breve con
+          <TT
+CLASS="literal"
+>rails s</TT
+>) podrá realizar las operaciones
+          básicas sobre departamentos desde:
+          <A
+HREF="http://127.0.0.1:3000/departamentos/"
+TARGET="_top"
+>http://127.0.0.1:3000/departamentos/</A
+>
+        </P
+><P
+>&#13;          El <TT
+CLASS="literal"
+>scaffold</TT
+> genera tablas (con una
+          migración), modelo, controlador, vistas y rutas iniciales que
+          con una interfaz muy simple le permitirán listar
+          departamentos, ver detalles de cada uno, crear nuevos, editar
+          existentes y eliminar.
+        </P
+><P
+>&#13;          Los archivos generados son:
+        </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN1893"
+></A
+><P
+><B
+>Tabla 3. 
+            Archivos generados con scaffold
+          </B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"><COL
+WIDTH="1*"
+ALIGN="left"><THEAD
+><TR
+><TH
+>&#13;                  Archivo/Directorio
+                </TH
+><TH
+>&#13;                  Descripción
+                </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>db/migrate/20160320131555_create_departamentos.rb</TT
+>
+                </TD
+><TD
+>&#13;                  Migración para crear tabla
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/models/departamento.rb</TT
+>
+                </TD
+><TD
+>&#13;                  Modelo
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>test/models/departamento_test.rb</TT
+>
+                </TD
+><TD
+>&#13;                  Prueba al modelo
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>test/fixtures/departamentos.yml</TT
+>
+                </TD
+><TD
+>&#13;                  Datos para pruebas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/controllers/departamentos_controller.rb</TT
+>
+                </TD
+><TD
+>&#13;                  Controlador
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/views/departamentos</TT
+>
+                </TD
+><TD
+>&#13;                  Vistas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/views/departamentos/index.html.erb</TT
+>
+                </TD
+><TD
+>&#13;                  Lista de departamentos
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/views/departamentos/edit.html.erb</TT
+>
+                </TD
+><TD
+>&#13;                  Formulario para editar
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/views/departamentos/show.html.erb</TT
+>
+                </TD
+><TD
+>&#13;                  Muestra un departamento
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/views/departamentos/new.html.erb</TT
+>
+                </TD
+><TD
+>&#13;                  Nuevo departamento
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/views/departamentos/_form.html.erb</TT
+>
+                </TD
+><TD
+>&#13;                  Formulario usado por <TT
+CLASS="literal"
+>edit</TT
+> y
+                  <TT
+CLASS="literal"
+>new</TT
+>
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>test/controllers/departamentos_controller_test.rb</TT
+>
+                </TD
+><TD
+>&#13;                  Pruebas al controlador
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/helpers/departamentos_helper.rb</TT
+>
+                </TD
+><TD
+>&#13;                  Funciones auxiliares para construir vistas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/views/departamentos/index.json.jbuilder</TT
+>
+                </TD
+><TD
+>&#13;                  Lista en JSON
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/views/departamentos/show.json.jbuilder</TT
+>
+                </TD
+><TD
+>&#13;                  Muestra un departamento en JSON
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/assets/javascripts/departamentos.coffee</TT
+>
+                </TD
+><TD
+>&#13;                  Donde agregar código Coffescript para vistas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/assets/stylesheets/departamentos.scss</TT
+>
+                </TD
+><TD
+>&#13;                  Para poner CSS de las vistas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/assets/stylesheets/scaffolds.scss</TT
+>
+                </TD
+><TD
+>&#13;                  Para poner CSS de las vistas
+                </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;          Por convención de Ruby on Rails:
+        </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Las fuentes del modelo quedan en
+              <TT
+CLASS="literal"
+>app/models/departamento.rb</TT
+>
+            </P
+></LI
+><LI
+><P
+>&#13;              El nombre de la tabla será la forma plural del nombre del
+              modelo (e.g <TT
+CLASS="literal"
+>departamentos</TT
+>)
+            </P
+></LI
+><LI
+><P
+>&#13;              La tabla incluirá automáticamente un campo id de tipo
+              entero que se autoincrementa
+            </P
+></LI
+><LI
+><P
+>&#13;              La tabla incluirá automáticamente los campos
+              <TT
+CLASS="literal"
+>created_at</TT
+> y
+              <TT
+CLASS="literal"
+>updated_at</TT
+> de tipo
+              <TT
+CLASS="literal"
+>datetime</TT
+>.
+            </P
+></LI
+><LI
+><P
+>&#13;              La tabla será creada con una migración (cuya fuente
+              quedará en <TT
+CLASS="literal"
+>db/migrate/</TT
+>) y el registro
+              de las migraciones ya aplicadas se lleva en una tabla
+              <TT
+CLASS="literal"
+>schema_migrations</TT
+> creada
+              automáticamente en la base de datos.
+            </P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="página-de-inicio"
+>Página de inicio</A
+></H4
+><P
+>&#13;          La página inicial de su aplicación puede crearla generando un
+          controlador con vista, modificando la vista y especificando la
+          ruta:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    rails g controller hogar
+</PRE
+><P
+>&#13;          Que genera:
+        </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN2001"
+></A
+><P
+><B
+>Tabla 4. 
+            Archivos generados con <TT
+CLASS="literal"
+>g controller hogar</TT
+>
+          </B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"><COL
+WIDTH="1*"
+ALIGN="left"><THEAD
+><TR
+><TH
+>&#13;                  Archivo/Directorio
+                </TH
+><TH
+>&#13;                  Descripción
+                </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/controllers/hogar_controller.rb</TT
+>
+                </TD
+><TD
+>&#13;                  Controlador
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/views/hogar</TT
+>
+                </TD
+><TD
+>&#13;                  Vistas relacionadas con el controlador
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>test/controllers/hogar_controller_test.rb</TT
+>
+                </TD
+><TD
+>&#13;                  Pruebas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/helpers/hogar_helper.rb</TT
+>
+                </TD
+><TD
+>&#13;                  Funciones auxiliares para vistas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/assets/javascripts/hogar.coffee</TT
+>
+                </TD
+><TD
+>&#13;                  Coffescript para vistas
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  <TT
+CLASS="literal"
+>app/assets/stylesheets/hogar.scss</TT
+>
+                </TD
+><TD
+>&#13;                  CSS para vistas
+                </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;          Modifique el controlador
+          <TT
+CLASS="literal"
+>app/controllers/hogar_controller.rb</TT
+> para
+          indicar que tendrá un vista <TT
+CLASS="literal"
+>index</TT
+>:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    class HogarController &#60; ApplicationController
+        def index
+        end
+    end
+</PRE
+><P
+>&#13;          Cree la vista
+          <TT
+CLASS="literal"
+>app/views/hogar/index.html.erb</TT
+>:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    &#60;article&#62;
+      &#60;h1&#62;Mi aplicación&#60;/h1&#62;
+      &#60;para&#62; Manejar &#60;a href="/departamentos"&#62;Departamentos&#60;/a&#62;&#60;/para&#62;
+    &#60;/article&#62;
+</PRE
+><P
+>&#13;          Y en el archivo de configuración de rutas
+          <TT
+CLASS="literal"
+>config/routes.rb</TT
+> añada:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    root "hogar#index"
+</PRE
+><P
+>&#13;          Al modificar fuentes en general no necesita volver a lanzar el
+          servidor de rails, pero si modifica
+          <TT
+CLASS="literal"
+>config/routes.rb</TT
+> o cualquier archivo fuera
+          del directorio <TT
+CLASS="literal"
+>app</TT
+> debe reiniciar el
+          servicio.
+        </P
+><P
+>&#13;          Examine desde un navegador
+          <A
+HREF="http://127.0.0.1:3000/"
+TARGET="_top"
+>http://127.0.0.1:3000/</A
+>.
+          Verá lo que escribió en
+          <TT
+CLASS="literal"
+>app/views/hogar/index.html.erb</TT
+> en el
+          ambiente HTML que tenga diseñado en
+          <TT
+CLASS="literal"
+>app/views/layouts/application.html.erb</TT
+>.
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="interacción-con-la-base-de-datos"
+>Interacción con la base de datos</A
+></H4
+><P
+>&#13;          Puede examinar la tabla creada e interactuar con la base de
+          datos con la interfaz texto de SQLite como se ejemplifica a
+          continuación:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    $ rails dbconsole
+    sqlite&#62; .schema
+    CREATE TABLE "departamentos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre"
+    varchar(500), "latitud" float, "longitud" float, "created_at" datetime, "updated_at" datetime);
+    CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
+    CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version"
+    );
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="ayudas-para-usar-una-base-de-datos-postgresql-existente"
+>Ayudas para usar una base de datos PostgreSQL
+        existente:</A
+></H4
+><P
+>&#13;          Se recomienda emplear UTF8 como codificación de PostgreSQL (si
+          emplea otra codificación convierta sacando un respaldo
+          eliminando la base, volviéndola a crear con
+          <TT
+CLASS="literal"
+>-E UTF8</TT
+> y restaurando los datos).
+        </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Arregle la aplicación recién creada para que emplee
+              PostgreSQL, modificando parámetros de base de datos en
+              <TT
+CLASS="literal"
+>config/database.yml</TT
+>. Si crea una nueva
+              aplicación:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        cd ..
+        rails new prueba1 --database=postgresql
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Si lo requiere en otra terminal cree un usuario para la
+              base de datos que será el que empleará desde su aplicación
+              ruby:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;         doas su - _postgresql
+        $ createuser -Upostgres -h/var/www/tmp prueba
+        Shall the new role be a superuser? (y/n) n
+        Shall the new role be allowed to create databases? (y/n) y
+        Shall the new role be allowed to create more new roles? (y/n) n
+        $ psql -h/var/www/tmp -Upostgres psql (9.3.6) Type "help" for help.
+        postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
+</PRE
+><P
+></P
+><UL
+><LI
+><P
+>&#13;              Vuelva a las fuentes de la aplicación y modifique los
+              parámetros de la base de datos editando
+              <TT
+CLASS="literal"
+>conf/database.ym</TT
+>l Ponga el usuario
+              recién creado, la clave y en la especificación de cada una
+              de las 3 bases de datos (desarrollo, pruebas y producción)
+              agregue la ruta de la conexión al motor de bases de datos:
+              <TT
+CLASS="literal"
+>host: /var/www/tmp/</TT
+>
+            </P
+></LI
+><LI
+><P
+>&#13;              A manera de prueba de su configuración intente ingresar a
+              un intérprete de órdenes para su base de datos con:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        rails dbconsole
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Si las tablas de la base de datos no emplean la convención
+              para nomenclatura de Ruby on Rails (nombres de tabla en
+              plural, clases en singular) agregue al archivo
+              <TT
+CLASS="literal"
+>config/environment.rb</TT
+>:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        ActiveRecord::Base.pluralize_table_names=false
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Además de esto para que las pruebas puedan operar
+              seguramente deberá renombrar los archivos con datos de
+              prueba del directorio <TT
+CLASS="literal"
+>tests/fixtures</TT
+>, y
+              en lugar de dejar forma plural dejar forma singular. Si el
+              nombre de tabla es muy diferente en el modelo puede usar
+              <TT
+CLASS="literal"
+>self.table_name = "cc"</TT
+> como
+              se indica en {8}.
+            </P
+></LI
+><LI
+><P
+>&#13;              Para generar un volcado inicial de la base de datos en
+              <TT
+CLASS="literal"
+>db/structure.sql</TT
+> (incluyendo
+              características no portables de PostgreSQL a otros motores
+              de bases de datos), agregue al archivo
+              <TT
+CLASS="literal"
+>config/application.rb</TT
+> la línea
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;       config.active_record.schema_format=:sql
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Después ejecute la tarea rake apropiada (ver {4}):
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        rake db:structure:dump
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Genere clases (modelos) en blanco en el directorio
+              <TT
+CLASS="literal"
+>app/models</TT
+> para cada una de las tablas
+              de su aplicación, por ejemplo para la tabla
+              <TT
+CLASS="literal"
+>mitabla</TT
+> :
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        rails generate model mitabla --migration=false --timestamp=false
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Cuando la aplicación esté en operación ActiveRecord tomará
+              la estructura directamente de la base de datos, no de los
+              modelos en sus fuentes. Sin embargo puede ser útil poner
+              comentarios en esos modelos con los campos de cada tabla.
+              Esto puede hacerse instalando la gema
+              <TT
+CLASS="literal"
+>annotate</TT
+> con:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install annotate
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;y ejecute:
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;        annotate
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Si desea ayuda en la generación de controladores y vistas
+              para sus tablas, instale
+              <TT
+CLASS="literal"
+>doas gem install</TT
+>schema_to_scaffold`<TT
+CLASS="literal"
+>,     genere (puede ser momentáneamente) el archivo</TT
+>db/schema.rb`
+              con
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    rake db:schema:dump
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;y ejecute
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;    scaffold
+</PRE
+><P
+>&#13;          para ver las instrucciones que debe dar a rails para generar
+          modelos, controladores y vistas para las tablas de la base de
+          datos.
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="detalles-para-tener-en-cuenta-al-migrar-aplicaciones"
+>Detalles para tener en cuenta al migrar
+        aplicaciones</A
+></H4
+><P
+>&#13;          RoR tiene sus propias convenciones respecto a SQL, nombres de
+          tablas y demás, en ocasiones puede ser mejor intercambiar
+          datos JSON con una aplicación ya existente que interactúe con
+          la base de datos. Sin embargo si desea emplear RoR tanto como
+          pueda para interactuar con la base de datos, tenga en cuenta:
+        </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Toda tabla creada y maneja por RoR se espera que tenga los
+              campos <TT
+CLASS="literal"
+>created_at</TT
+> y
+              <TT
+CLASS="literal"
+>updated_at</TT
+> de tipo
+              <TT
+CLASS="literal"
+>datetime</TT
+> . Puede generar una migración
+              que agregue estos campos digamos para la tabla
+              <TT
+CLASS="literal"
+>intervalo</TT
+> con
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    rails g migration addTiempoToIntervalo created_at:datetime
+    updated_at:datetime
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;tras lo cual debe editar la migración creada para asegurar que queda
+bien (por ejemplo pasando a singular la tabla si ese es su caso).
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Por defecto cada tabla debe tener una única llave primaria
+              de nombre <TT
+CLASS="literal"
+>id</TT
+> y tipo entero
+              autoincremental. Esto puede cambiarse un poco –pero no del
+              todo según {6}– la sugerencia allí dada es definir la
+              llave primaria en SQL en la migración, la cual debe
+              incluir <TT
+CLASS="literal"
+>id:false</TT
+> y en el modelo agregar
+              <TT
+CLASS="literal"
+>self.primary_key=:campo_llave_primaria</TT
+>.
+              Por ejemplo si la llave primaria de una tabla usuario debe
+              ser <TT
+CLASS="literal"
+>id</TT
+> pero de tipo
+              <TT
+CLASS="literal"
+>string</TT
+> , la migración será:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        create_table "usuario", id: false, force: true do |t|
+          t.string "id", limit: 15, null: false
+          t.string "nombre", limit: 50 ...
+          t.datetime "created_at"
+          t.datetime "updated_at"
+        end
+        add_index "usuario", ["id"], name: "index_usuario_on_id",
+        unique: true, using: :btree
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;Y en el modelo `app/models/usuario.rb` debe quedar:
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;        class Usuario &#60; ActiveRecord::Base
+          ...
+          self.primary_key=:id
+        end
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Aunque es posible insertar datos iniciales para algunas
+              tablas en <TT
+CLASS="literal"
+>db/seeds.rb</TT
+>, los métodos por
+              defecto de RoR emplearán un campo autoincremental para la
+              identificación, puede insertarse directamente en SQL, como
+              se explica en {7}, con:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        connection = ActiveRecord::Base.connection()
+        connection.execute("INSERT INTO mitabla(id, nombre) VALUES ('id1', 'nom1')")
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="localización"
+>4.3 Localización</A
+></H4
+><P
+>&#13;          Si su público objetivo habla principalmente español puede:
+        </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Instalar la gema <TT
+CLASS="literal"
+>rails-i18n</TT
+> que incluye
+              traducción a español y otros idiomas de varias cadenas de
+              Ruby on Rails
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;       doas gem install rails-i18n
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Agregar <TT
+CLASS="literal"
+>gem "rails-i18n"</TT
+> en
+              su archivo <TT
+CLASS="literal"
+>Gemfile</TT
+> y ejecutar
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        bundle update
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Configurar en <TT
+CLASS="literal"
+>config/application.rb</TT
+> :
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        config.time_zone = 'America/Bogota'
+        config.i18n.default_locale = :es
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Eventualmente corregir inflexiones singular/plural en
+              <TT
+CLASS="literal"
+>config/initializers/inflections.rb</TT
+>, por
+              ejemplo (ver {3}):
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        ActiveSupport::Inflector.inflections do |inflect|
+          inflect.irregular 'pais', 'paises'
+        end
+</PRE
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="depuración"
+>Depuración</A
+></H3
+><P
+>&#13;        Como se explica en {5}, desde la aplicación en rails puede
+        entrar a depurar:
+      </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            Instale la gema
+          </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    gem install byebug
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            Para activar el depurador en sitios en producción debe
+            además iniciar el servidor web con
+          </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    rails s --debugger
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            En el sitio de las fuentes donde quiere comenzar a depurar
+            llamando la función
+          </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    byebug
+</PRE
+><P
+>&#13;        Ruby también ofrece facilidades para medir tiempos como se
+        resume en {4}.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="lecturas-recomendadas-y-referencias"
+>Lecturas recomendadas y referencias</A
+></H3
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            {1} http://guides.rubyonrails.org/getting_started.html
+          </P
+></LI
+><LI
+><P
+>&#13;            {2}
+            http://stackoverflow.com/questions/7092107/rails-3-1-error-could-not-find-a-javascript-runtime
+          </P
+></LI
+><LI
+><P
+>&#13;            {3}
+            http://stackoverflow.com/questions/5285048/rails-3-routing-singular-option
+          </P
+></LI
+><LI
+><P
+>&#13;            {4} http://www.caliban.org/ruby/rubyguide.shtml
+          </P
+></LI
+><LI
+><P
+>&#13;            {5}
+            http://guides.rubyonrails.org/debugging_rails_applications.html
+          </P
+></LI
+><LI
+><P
+>&#13;            {6}
+            http://stackoverflow.com/questions/1200568/using-rails-how-can-i-set-my-primary-key-to-not-be-an-integer-typed-column
+          </P
+></LI
+><LI
+><P
+>&#13;            {7}
+            http://stackoverflow.com/questions/6223803/execute-sql-script-inside-seed-rb-in-rails3
+          </P
+></LI
+><LI
+><P
+>&#13;            {8}
+            http://stackoverflow.com/questions/7542976/add-timestamps-to-an-existing-table
+          </P
+></LI
+><LI
+><P
+>&#13;            {9}
+            http://stackoverflow.com/questions/4613574/how-do-i-explicitly-specify-a-models-table-name-mapping-in-rails
+          </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="java"
+>Java</A
+></H2
+><P
+>&#13;      Desde OpenBSD 4.7 se incluyó un porte oficial de Java de fuentes
+      abiertas, se trata del <TT
+CLASS="literal"
+>jdk-1.7</TT
+>.
+    </P
+><P
+>&#13;      Si requiere versiones anteriores de Java o si requiere el plugin
+      para Firefox deberá compilar una versión anterior.
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="compilacion"
+>Compilación de JDKs de fuentes cerradas</A
+></H3
+><P
+>&#13;        Las versiones anteriores a la 1.7, deben compilarse como portes
+        (de subdirectorios de <TT
+CLASS="literal"
+>/usr/ports/devel/jdk/</TT
+>),
+        pues las licencias de las fuente exigen que al descargar de las
+        mismas las haga directamente de los sitios de distribución. Al
+        intentar compilar cada uno podrá ver instrucciones que le
+        indican de donde descargar las fuentes para ubicarlas en
+        <TT
+CLASS="literal"
+>/usr/ports/distfiles</TT
+>.
+      </P
+><P
+>&#13;        Tras descargar manualmente las fuentes, la compilación e
+        instalación son directas (i.e con <TT
+CLASS="literal"
+>make</TT
+> y
+        <TT
+CLASS="literal"
+>make install</TT
+> respectivamente).
+      </P
+><P
+>&#13;        Si por ejemplo instala <TT
+CLASS="literal"
+>jdk-1.4</TT
+> los binarios
+        quedarán en <TT
+CLASS="literal"
+>/usr/local/jdk1.4/bin/</TT
+> así que es
+        recomendable que agregue tal ruta a su variable
+        <TT
+CLASS="literal"
+>PATH</TT
+> por ejemplo en su archivo
+        <TT
+CLASS="literal"
+>~/.profile</TT
+> o el equivalente.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="plugin-java"
+>Plugin de Java para Mozilla y Firefox</A
+></H3
+><P
+>&#13;        El <TT
+CLASS="literal"
+>jdk-1.4</TT
+> incluye un plugin que puede
+        emplearse con <TT
+CLASS="literal"
+>mozilla</TT
+> o
+        <TT
+CLASS="literal"
+>mozilla-firefox</TT
+>. Basta ejecutar:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd  ~/.mozilla
+    mkdir plugins
+    cd plugins
+    ln -s /usr/local/jdk-1.4.2/jre/plugin/i386/ns610/libjavaplugin_oji.so .
+</PRE
+><P
+>&#13;        después reiniciar <TT
+CLASS="literal"
+>mozilla-firefox</TT
+> y verificar
+        que el plugin esté operando abriendo el URL
+        <TT
+CLASS="literal"
+>about:plugins</TT
+>. Como se indica en
+        http://archives.neohapsis.com/archives/openbsd/2005-09/2253.html,
+        para que puedan cargarse applets es necesario aumentar el límite
+        de memoria para datos con algo como:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    ulimit -d 2000000
+</PRE
+><P
+>&#13;        que de requerirse puede ejecutarse desde la cuenta root (cuyo
+        límite máximo es mayor que el de cuentas de usuario).
+      </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1451.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x2238.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Operación en red</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuración y uso de algunos dispositivos y servicios</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,73 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>11. Operación en red</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="multimedia.html" title="10. Multimedia"><link rel="next" href="ambiente-de-desarrollo.html" title="12. Ambiente de Desarrollo"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">11. Operación en red</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="multimedia.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ambiente-de-desarrollo.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="operaci%C3%B3n-en-red"></a>11. Operación en red</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="mutt"></a>11.1. <code class="literal">mutt</code></h3></div></div></div><p>
+      El uso básico de mutt puede consultarlo en
+      <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>
+    </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="otro-smtp"></a>11.1.1. Enviado correo con <code class="literal">sendmail</code> de otro
+      computador</h4></div></div></div><p>
+        Para enviar correos <code class="literal">mutt</code> corre por defecto el
+        programa <code class="literal">sendmail</code> (por defecto con
+        parámetros: <code class="literal">sendmail -oem -oi</code>), si usted
+        prefiere o necesita emplear el <code class="literal">sendmail</code> de
+        otro computador puede:
+      </p><div class="itemizedlist"><ul type="disc" compact><li><p>
+            Hacer un script (digamos
+            <code class="literal">/home/pablo/scripts/envia.sh</code>)
+            que llame al <code class="literal">sendmail</code> remoto (por ejemplo
+            con <code class="literal">ssh</code>) y le pase lo que recibe por
+            entrada estándar:
+          </p></li></ul></div><pre class="programlisting">
+        #!/bin/sh
+        # envia.sh Dominio público
+
+        if (test "$SSH_AUTH_SOCK" = "") then {
+            echo "Usar con ssh-agent";
+            exit 2;
+        } fi;
+
+        cat - | ssh pablo@amor.miescuela.edu.co /usr/sbin/sendmail -oem -oi
+</pre><pre class="programlisting">
+Note que este script está hecho para ser ejecutado junto con el
+agente de autenticación de ssh (i.e `ssh-agent`).
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+            Configure <code class="literal">mutt</code> para que emplee su script
+            con la variable <code class="literal">sendmail</code>, la cual puede
+            establecer en su archivo <code class="literal">~/.muttrc</code> con
+            algo como:
+          </p></li></ul></div><pre class="programlisting">
+            set sendmail=/home/pablo/scripts/envia.sh
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+            Asegúrese de ejecutar <code class="literal">mutt</code> junto con el
+            agente de autenticación de <code class="literal">ssh</code>. Por
+            ejemplo con:
+          </p></li></ul></div><pre class="programlisting">
+            ssh-agent /bin/ksh
+            ssh-add
+            mutt
+</pre><pre class="programlisting">
+o si emplea XWindow es posible que pueda configurar su manejador de
+escritorio o su administrador de ventanas para que toda la sesión
+emplee el agente (ver un ejemplo en [xref](#fluxbox)).
+</pre></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lecturas-mutt"></a>11.1.2. Lecturas recomendadas y referencias</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+            Página man de <code class="literal">mutt</code>
+          </p></li><li><p>
+            Sección sobre <code class="literal">mutt</code> de
+            <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>
+          </p></li></ul></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="chromium"></a>11.2. Chromium</h3></div></div></div><p>
+      Puede iniciarlo desde el menú de fluxbox o desde una terminal con
+      <code class="literal">chromium</code>.
+    </p><p>
+      Es posible que chrome use como proxy un tunel SOCKS creado con
+      ssh. Esto es útil por ejemplo para ingresar a sitios web que están
+      en intranets. Primero cree el tunel ingresando al
+      cortafuegos/enrutador de la Intranet, por ejemplo en el puerto
+      9080 con:
+    </p><pre class="programlisting">
+    ssh -D9080 miusuario@micortafuegos
+</pre><p>
+      A continuación inicie chromium indicando que debe usarse el proxy
+      socks del puerto 9080:
+    </p><pre class="programlisting">
+    chromium --proxy-server=socks://127.0.0.1:9080
+</pre><p>
+      Tras esto ya podrá ingresar direcciones de la intranet desde el
+      navegador.
+    </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="multimedia.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ambiente-de-desarrollo.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">10. Multimedia </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 12. Ambiente de Desarrollo</td></tr></table></div></body></html>

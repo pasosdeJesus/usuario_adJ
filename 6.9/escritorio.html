@@ -1,0 +1,73 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>6. Escritorio y Archivos</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="configuracion-de-componentes-basicos.html" title="5. Configuración y uso de programas y servicios básicos"><link rel="next" href="espiritualidad.html" title="7. Espiritualidad"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">6. Escritorio y Archivos</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="espiritualidad.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="escritorio"></a>6. Escritorio y Archivos</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="fluxbox"></a>6.1. FluxBox</h3></div></div></div><p>
+      La operación básica de este liviano y estético administrador de
+      ventanas se describe en
+      <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>, aquí describimos
+      algunos detalles de configuración.
+    </p><p>
+      Para emplearlo como administrador de ventanas por defecto debe
+      modificarse <code class="literal">~/.xsession</code>, así como en
+      <code class="literal">~/.xinitrc</code> y agregar al final:
+    </p><pre class="programlisting">
+    if (test -x /usr/local/bin/startfluxbox) then {
+        /usr/local/bin/startfluxbox
+    } fi;
+</pre><p>
+      Una vez en operación podrá realizar diversas configuraciones
+      oprimiendo el botón derecho sobre el escritorio en el menú
+      <code class="literal">fluxbox menu</code>. Por ejemplo podrá cambiar estilos
+      en <code class="literal">System Styles</code> y esconder/mostrar la barra de
+      herramientas con
+      <code class="literal">Configure -&gt; Toolbar -&gt; Visible</code> FluxBox
+    </p><p>
+      <span class="inlinemediaobject"><img src="img/fluxbox-xfig.png"></span>
+    </p><p>
+      Entre sus características:
+    </p><div class="itemizedlist"><ul type="disc"><li><p>
+          Es altamente configurable (recursos, menús, decoración de
+          ventanas y estilos).
+        </p></li><li><p>
+          Es muy liviano, requiere alrededor de 4MB en RAM.
+        </p></li><li><p>
+          Con Alt+[Botón izquierdo] permite cambiar ubicación de la
+          ventana sobre la que está el curso, y con Alt+[Botón derecho]
+          el tamaño.
+        </p></li><li><p>
+          El menú que presenta se configura en un archivo texto con una
+          sintaxis sencilla, puede cambiarse editando en
+          <code class="literal">~/.fluxbox/menu</code>.
+        </p></li><li><p>
+          Los programas que se inician con el escritorio pueden
+          configurarse en <code class="literal">~/.fluxbox/startup</code>. Por
+          ejemplo en este archivo puede configurar el locale que usará
+          agregando o cambiando la línea:
+        </p><p>
+          export LANG=es_CO.UTF-8
+        </p></li><li><p>
+          La apariencia en general puede configurarse en
+          <code class="literal">~/.fluxbox/init</code>
+        </p></li><li><p>
+          Puede configurar teclas rápidas en el archivo
+          <code class="literal">~/.fluxbox/keys</code>
+        </p></li></ul></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="lecturas-conf-fluxbox"></a>6.1.1. Lecturas recomendadas y referencias</h4></div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+            Sitio oficial <a href="fluxbox.org" target="_top">fluxbox.org</a>.
+          </p></li><li><p>
+            Página sobre fluxbox de NetBSD
+            <a href="http://wiki.netbsd.org/fluxbox/" target="_top">http://wiki.netbsd.org/fluxbox/</a>
+          </p></li><li><p>
+            Página sobre fluxbox de Gentoo
+            <a href="http://www.gentoo.org/doc/es/fluxbox-config.xml" target="_top">http://www.gentoo.org/doc/es/fluxbox-config.xml</a>
+          </p></li></ul></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="xfe"></a>6.2. <code class="literal">xfe</code></h3></div></div></div><p>
+      La operación básica se describe en
+      <a href="bibliografia.html" title="E. Bibliografía">basico_adJ</a>, aquí describimos
+      algunos detalles de configuración.
+    </p><p>
+      El archivo de configuración se ubica en
+      <code class="literal">~/.config/xfe/xferc</code>. La mayoría de
+      posibilidades se configuran desde Editar &gt; Preferencias, sin
+      embargo para que opere bien Herramientas &gt; Ventana superusuario
+      nueva en adJ el archivo de configuración en la sección
+      <code class="literal">OPTIONS</code> debe incluir:
+    </p><pre class="programlisting">
+uso_sudo=1
+sudo_nopasswd=1
+</pre></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="configuracion-de-componentes-basicos.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="espiritualidad.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">5. Configuración y uso de programas y servicios básicos </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 7. Espiritualidad</td></tr></table></div></body></html>

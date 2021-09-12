@@ -1,0 +1,622 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Paquetes y portes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Interprete de órdenes"
+HREF="x704.htm"><LINK
+REL="NEXT"
+TITLE="Configuración y uso de programas y servicios básicos"
+HREF="x1037.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x704.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1037.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="paquetesyportes"
+>Paquetes y portes</A
+></H1
+><P
+>&#13;    Diversos programas han sido portados a OpenBSD; a las fuentes
+    portadas se les llama portes y a los binarios de alguno de los
+    portes compilados para alguna plataforma se les llama paquetes.
+  </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="paquetes"
+>Paquetes</A
+></H2
+><P
+>&#13;      Cada paquete es un archivo con extensión <TT
+CLASS="literal"
+>.tgz</TT
+>
+      que incluye información de dependencias y scripts para instalar y
+      desinstalar. Para manejarlos se emplean los programas
+      <TT
+CLASS="literal"
+>pkg_add</TT
+>, <TT
+CLASS="literal"
+>pkg_delete</TT
+>,
+      <TT
+CLASS="literal"
+>pkg_info</TT
+> y <TT
+CLASS="literal"
+>pkg_create</TT
+>. El
+      programa <TT
+CLASS="literal"
+>pkg_add</TT
+> instala un paquete y todos los
+      que este requiera, usando para descargarlos lo(s) repositorio(s)
+      especificada(s) en la variable de ambiente
+      <TT
+CLASS="literal"
+>PKG_PATH</TT
+>, por esto en el archivo
+      <TT
+CLASS="literal"
+>~/.profile</TT
+> o en <TT
+CLASS="literal"
+>~/.xsession</TT
+>
+      vale la pena agregar:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    export PKG_PATH=ftp://ftp.pasosdeJesus.org/pub/OpenBSD/6.9/packages/amd64
+</PRE
+><P
+>&#13;      o la vía del CD-ROM 1 o una vía de un espejo más rápido para su
+      caso<A
+NAME="AEN944"
+HREF="#FTN.AEN944"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+>. Una vez establecida esta variable, para agregar por
+      ejemplo el paquete <TT
+CLASS="literal"
+>vim-8.2.2580-gtk3.tgz</TT
+>:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    pkg_add $PKG_PATH/vim-8.2.2580-gtk3.tgz 
+</PRE
+><P
+>&#13;      Puede ver la lista de paquetes instalados en su sistema con
+      <TT
+CLASS="literal"
+>pkg_info</TT
+> o con
+      <TT
+CLASS="literal"
+>ls -l /var/db/pkg</TT
+>, podrá desinstalar uno con
+      <TT
+CLASS="literal"
+>pkg_delete</TT
+> seguido del nombre del paquete (con
+      la opción <TT
+CLASS="literal"
+>-f dependencies</TT
+> se eliminarán también
+      paquetes que dependan del que está quitando –que es útil si está
+      actualizando un paquete).
+    </P
+><P
+>&#13;      Podrá ver los paquetes disponibles para instalar en
+      <A
+HREF="http://www.openbsd.org/&#38;6.9;_packages/amd64.html"
+TARGET="_top"
+>http://www.openbsd.org/6.9_packages/amd64.html</A
+>.
+    </P
+><P
+>&#13;      En el <A
+HREF="a3097.htm"
+>Apéndice Paquetes de adJ</A
+>
+      destacamos algunos que permiten tener un ambiente para producir
+      contenidos, programar, escuchar música y ver vídeos (se incluyen
+      en la distribución
+      <A
+HREF="http://aprendiendo.pasosdeJesus.org"
+TARGET="_top"
+>adJ</A
+>).
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="actualizacion-paquetes"
+>Actualización de paquetes</A
+></H3
+><P
+>&#13;        Podrá actualizar un paquete con
+        <TT
+CLASS="literal"
+>pkg_add -r -D update paquete.tgz</TT
+>
+      </P
+><P
+>&#13;        Si configura <TT
+CLASS="literal"
+>PKG_PATH</TT
+> podrá buscar
+        dependencias que debe actualizar para actualizar un paquete con
+        <TT
+CLASS="literal"
+>pkg_add -u paquete</TT
+>.
+      </P
+><P
+>&#13;        Cada paquete instalado crea un directorio con el nombre del
+        paquete en <TT
+CLASS="literal"
+>/var/db/pkg</TT
+> por lo que además de
+        <TT
+CLASS="literal"
+>pkg_info -L</TT
+> puede usar
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    ls /var/db/pkg
+        
+</PRE
+><P
+>&#13;        Y para actualizar todos los paquetes puede utilizar
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas pkg_add -u 
+        
+</PRE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="portes"
+>Portes</A
+></H2
+><P
+>&#13;      Aunque NetBSD y FreeBSD tienen más programas portados que OpenBSD,
+      la colección de portes de OpenBSD ya cuenta con casi 10000
+      programas clasificados en las siguientes categorías empleadas por
+      el sistema de portes: archivers, astro, audio, benchmarks,
+      biology, books, cad, chinese, comms, converters, databases, devel,
+      distfiles, editors, education, emulators, games, graphics,
+      infrastructure, japanese, java, korean, lang, mail, math, mbone,
+      misc, multimedia, net, news, palm, plan9, print, productivity,
+      russian, security, shells, sysutils, telephony textproc, www, x11.
+    </P
+><P
+>&#13;      Puede ver el desarrollo de los portes en:
+      <A
+HREF="http://openports.se/"
+TARGET="_top"
+>http://openports.se</A
+> y
+      más información sobre portes y paquetes en:
+      <A
+HREF="http://www.openbsd.org/ports.html"
+TARGET="_top"
+>http://www.openbsd.org/ports.html</A
+>
+    </P
+><P
+>&#13;      Si prefiere compilar los paquetes que va a instalar o desea ayudar
+      a portar aplicaciones a OpenBSD debe tener las fuentes de los
+      portes (parches, makefiles y scripts), que normalmente se ubican
+      en <TT
+CLASS="literal"
+>/usr/ports</TT
+>. Puede bien descomprimirlas de un
+      CD oficial, o de un servidor FTP y después actualizarlas de un
+      repositorio CVS o bien descargarlas de un repositorio CVS como se
+      presenta a continuación:
+    </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd /usr
+    export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+    cvs -z3 -q get -rOPENBSD_6_9 -P ports 
+</PRE
+><P
+>&#13;      La vía para <TT
+CLASS="literal"
+>CVSROOT</TT
+> adáptela a su servidor más
+      cercano, escogiendo entre los disponibles en:
+      <A
+HREF="http://www.openbsd.org/anoncvs.html"
+TARGET="_top"
+>http://www.openbsd.org/anoncvs.html</A
+>.
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="busquedas-portes"
+>Búsquedas de portes</A
+></H3
+><P
+>&#13;        Para buscar un programa en la colección de portes puede emplear:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd /usr/ports
+    make search key=cadena
+      
+</PRE
+><P
+>&#13;        Que presentará los portes que en su descripción tengan la cadena
+        dada. Esta búsqueda se realiza sobre el archivo
+        <TT
+CLASS="literal"
+>/usr/ports/INDEX</TT
+>, el cual si lo desea también
+        puede explorar con un editor.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="compilación-portes"
+>Compilación de portes</A
+></H3
+><P
+>&#13;        Para compilar e instalar un porte (tras la compilación
+        normalmente se crea un paquete), basta pasar al directorio del
+        porte y como usuario root ejecutar:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    make install 
+</PRE
+><P
+>&#13;        El respectivo <TT
+CLASS="literal"
+>Makefile</TT
+> obtendrá las fuentes
+        originales de la red, aplicará los cambios necesarios,
+        compilará, creará un paquete y lo instalará (posteriormente
+        podrá eliminar el paquete con <TT
+CLASS="literal"
+>pkg_delete</TT
+> ver
+        <A
+HREF="x927.htm#paquetes"
+>Paquetes</A
+>). Si el porte tiene
+        otros portes como prerequisitos los compilará e instalará antes.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="creación-de-un-porte"
+>Creación de un porte</A
+></H3
+><P
+>&#13;        Elija una categoría para su porte (i.e un directorio en
+        <TT
+CLASS="literal"
+>/usr/ports</TT
+>), puede copiar el directorio de un
+        porte similar al que desea hacer y modificarlo. Emplee como
+        nombre de directorio el nombre del paquete (sin versión). Debe
+        tener al menos estos archivos:
+      </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>Makefile</DT
+><DD
+><P
+>&#13;              El cual incluye descripción corta, nombre del paquete,
+              versión, URL del cual descargar fuentes, el correo de
+              quien mantiene el porte, URL de parches si los hay,
+              información sobre posibilidad de redistribución, forma de
+              configurar, compilar e instalar. Este archivo normalmente
+              es muy corto pues se basa en la infraestructura para
+              portes de
+              <TT
+CLASS="literal"
+>/usr/ports/infrastructure/mk/bsd.ports.mk</TT
+>.
+            </P
+></DD
+><DT
+>distinfo</DT
+><DD
+><P
+>&#13;              Este archivo incluye diversos
+              <SPAN
+CLASS="QUOTE"
+>"condensados"</SPAN
+><A
+NAME="AEN1015"
+HREF="#FTN.AEN1015"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+> de cada fuente que debe descargarse para
+              asegurar su integridad. Se genera automáticamente con
+              <TT
+CLASS="literal"
+>make makesum</TT
+> y se verifica con
+              <TT
+CLASS="literal"
+>make checksum</TT
+>
+            </P
+></DD
+><DT
+>pkg/DESCR</DT
+><DD
+><P
+>&#13;              Este archivo incluye una descripción un poco más larga del
+              paquete (la que presenta <TT
+CLASS="literal"
+>pkg_info</TT
+>
+              cuando se corre sin opciones).
+            </P
+></DD
+><DT
+>pkg/PLIST</DT
+><DD
+><P
+>&#13;              Indica los archivos que se instalan después de instalar el
+              paquete. Se puede crear un candidato inicial de este
+              archivo después de compilar y hacer una instalación de
+              prueba (<TT
+CLASS="literal"
+>make fake</TT
+>). Puede actualizarse
+              de acuerdo a lo instalado con
+              <TT
+CLASS="literal"
+>make plist</TT
+>
+            </P
+></DD
+><DT
+>patches/</DT
+><DD
+><P
+>&#13;              En este directorio se mantienen parches que deben
+              aplicarse a las fuentes descargadas. Puede generarlos
+              automáticamente (con <TT
+CLASS="literal"
+>make patches</TT
+>), si
+              en el directorio donde se descomprimen las fuentes, saca
+              una copia de cada archivo que vaya a modificar y le agrega
+              el sufijo <TT
+CLASS="literal"
+>.orig</TT
+>
+            </P
+></DD
+></DL
+></DIV
+><P
+>&#13;        Crear un porte es un proceso iterativo, en cada iteración debe
+        refinarse el porte para asegurar que cumple con todos los
+        lineamientos que espera el equipo de portes de OpenBSD. Puede
+        consultar más en porting-checklist porting.
+      </P
+></DIV
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notas</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN944"
+HREF="x927.htm#AEN944"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;          Para determinarlo puede ver la velocidad de cada espejo con
+          algo como <TT
+CLASS="literal"
+>ping ftp.pasosdeJesus.org</TT
+> o
+          emplear el script <TT
+CLASS="literal"
+>pos.sh</TT
+> que hará la prueba
+          para los espejos oficiales de OpenBSD. Está en el directorio
+          <TT
+CLASS="literal"
+>herram</TT
+> de las fuentes de este escrito.
+        </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN1015"
+HREF="x927.htm#AEN1015"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;                  Resultados de pasar archivos por funciones de hashing.
+                </P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x704.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1037.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Interprete de órdenes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuración y uso de programas y servicios básicos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,32 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>9. Español</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="documentos.html" title="8. Preparación de Documentos y Aplicaciones de Oficina"><link rel="next" href="multimedia.html" title="10. Multimedia"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">9. Español</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="documentos.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="multimedia.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="espanol"></a>9. Español</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="ispell"></a>9.1. ispell</h3></div></div></div><p>
+      <code class="literal">ispell</code> permite revisar ortografía de textos
+      planos o fuentes de documentos en diversos formatos (HTML, XML o
+      TeX). Hay diccionarios disponibles para diversos idiomas. Al
+      instalar el paquete <code class="literal">ispell</code> se instalarán dos
+      diccionarios: inglés de EUA (<code class="literal">american</code>) e inglés
+      de Inglaterra (<code class="literal">british</code>). Para emplear el
+      diccionario en español (<code class="literal">spanish</code>) instale el
+      paquete <code class="literal">ispell-spanish</code>, puede configurarlo como
+      diccionario por defecto con <code class="literal">ispell-config</code>.
+    </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="correccion-ortogr%C3%A1fica"></a>9.1.1. Corrección ortográfica</h4></div></div></div><p>
+        Puede corregir interactivamente la ortografía de un texto plano
+        (digamos <code class="literal">carta.txt</code>) usando el diccionario por
+        defecto con:
+      </p><pre class="programlisting">
+        ispell carta.txt
+</pre><p>
+        o si desea emplear el diccionario de un idioma particular:
+      </p><pre class="programlisting">
+        ispell -d spanish carta.txt
+</pre><p>
+        Al corregir interactivamente <code class="literal">ispell</code> mostrará
+        palabras que no encuentre en el diccionario del idioma ni en su
+        diccionario personal<sup>[<a name="idm190790672" href="#ftn.idm190790672">10</a>]</sup> del idioma
+        (e.g. <code class="literal">~/.ispell_spanish</code>), así como posibles
+        remplazos. Podrá elegir uno de los remplazos tecleando el número
+        que antecede al remplazo.
+      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm190790672" href="#idm190790672">10</a>] </sup>
+            Puede cambiar el diccionario personal que
+            <code xmlns="" class="literal">ispell</code> debe emplear con la opción
+            <code xmlns="" class="literal">-p archivo</code>
+          </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="documentos.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="multimedia.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">8. Preparación de Documentos y Aplicaciones de Oficina </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 10. Multimedia</td></tr></table></div></body></html>

@@ -1,0 +1,235 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>8. Preparación de Documentos y Aplicaciones de Oficina</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="espiritualidad.html" title="7. Espiritualidad"><link rel="next" href="espanol.html" title="9. Español"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">8. Preparación de Documentos y Aplicaciones de Oficina</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="espiritualidad.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="espanol.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="documentos"></a>8. Preparación de Documentos y Aplicaciones de Oficina</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="msoffice"></a>8.1. Aplicaciones estilo MS-Office</h3></div></div></div><p>
+      LibreOffice es un juego de aplicaciones de oficina que ofrece,
+      prácticamente, la misma funcionalidad de MS-Office, un formato de
+      documentos estándar (ISO) y facilidades para importar y exportar
+      en formatos de MS-Office.
+    </p><p>
+      <span class="inlinemediaobject"><img src="img/gnumeric.png"></span>
+    </p><p>
+      Lo puede iniciar desde el escritorio con botón derecho Oficina
+      &gt; LibreOffice o bien desde una terminal con
+    </p><pre class="programlisting">
+    soffice
+</pre><p>
+      Después de instalarlo y ejecutarlo por primera vez arrancará en
+      inglés, para configurarlo en español vaya al menú Tools &gt;
+      Options &gt; Language y elija Español y Español/Colombia en las
+      casillas de idioma que aparecen al lado derecho.
+    </p><p>
+      Incluye el procesador de texto <code class="literal">writer</code> (que
+      puede iniciar desde una terminal con <code class="literal">swriter</code>),
+      la hoja de cálculo <code class="literal">calc</code> (que inicia desde una
+      terminal con <code class="literal">scalc</code>), el creador de
+      presentaciones <code class="literal">impress</code> (que inicia con
+      <code class="literal">simpress</code> desde un terminal) y el programa para
+      diagrama <code class="literal">draw</code> (que puede iniciar con
+      <code class="literal">sdraw</code>). Puede aprender más sobre este
+      procesador en
+      <a href="bibliografia.html" title="E. Bibliografía">libreoffice-basico</a>
+    </p><p>
+      Para operar con hojas de cálculo incluye gnumeric-1.12.49, que
+      también puede abrir y guardar en OpenDocument y en formatos de
+      Microsoft Office.
+    </p><p>
+      La funcionalidad de un procesador de palabra, así como la básica
+      para hacer presentaciones también las ofrece LaTeX (ver
+      <a href="documentos.html#latex" title="8.2.1. LaTeX">Sección 8.2.1, “LaTeX”</a>). Parte de la funcionalidad de
+      una hoja de cálculo la tiene desde una terminal
+      <code class="literal">sc</code>. También puede usar
+      <code class="literal">magicpoint</code> para hacer presentaciones. Sin
+      embargo para usar estas herramientas se requiere aprender formas
+      diferentes de operar.
+    </p></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="conf-tex-gv"></a>8.2. TeX y Ghostview</h3></div></div></div><p>
+      Para emplear TeX, LaTeX y asociados instale texlive y gv:
+    </p><pre class="programlisting">
+    doas pkg_add $PKG_PATH/&amp;p-texlive_base;.tgz
+    doas pkg_add $PKG_PATH/&amp;p-texlive_texmf-full;.tgz
+    doas pkg_add $PKG_PATH/gv-3.7.4p0.tgz
+</pre><p>
+      Puede configurar tamaño del papel, separado en sílabas y otros
+      detalles con <code class="literal">texconfig</code>.
+    </p><p>
+      A continuación se incluye un mini-tutorial de LaTeX adaptado de
+      AALinux, por otra parte puede consultar algo más sobre
+      <code class="literal">gv</code> en la sección
+      <a href="conf-dispositivos.html#uso-impresora" title="13.2.1. Uso de una impresora ya configurada">Sección 13.2.1, “Uso de una impresora ya configurada”</a>.
+    </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="latex"></a>8.2.1. LaTeX</h4></div></div></div><p>
+        LaTeX es una extensión a un sistema llamado TeX, desarrollado
+        para escribir documentos de matemáticas. A continuación se
+        presenta un ejemplo de un documento LaTeX y el resultado que se
+        obtiene tras procesarlo.
+      </p><pre class="programlisting">
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\begin{document}
+\author{Rupertino Gonzales}
+\title{Algunas posibilidades de LaTeX}
+\maketitle
+
+\section{Elementos}
+Puede estructurar el documento en capítulos, secciones, etc.
+Este texto es el contenido de la primera sección de este ejemplo,
+puede escribir cada párrafo en líneas consecutivas.
+
+\subsection{Ayudas}
+Puede lograr efectos como \emph{Itálicas}, \textbf{negrillas} o
+cambios en el \textsf{tipo o {\small tamaño} de letra} (note
+como se anidaron ambientes en este ejemplo).
+
+Puede crear listas:
+\begin{itemize}
+\item Primer elemento de lista.
+\item Segundo elemento de lista.
+\end{itemize}
+o tablas
+\\
+\begin{tabular}{|l|r|} \hline
+Título 1 &amp; Título 2 \\\hline
+elemento 1 &amp; elemento 2 \\\hline
+\end{tabular}
+\subsection{Ecuaciones}
+LaTeX es un experto en esta materia:
+\[ \int_{x=-\infty}^{\infty}e^{-|x|} \]
+\end{document}
+</pre><p>
+        LaTeX ofrece plantillas para varios tipos de documentos:
+        artículo, reporte, libro y ofrece el concepto de ambiente para
+        indicar como presentar cierta información de acuerdo a la
+        plantilla. En el ejemplo presentado, el tipo de documento es
+        artículo (lo indica la línea
+        <code class="literal">documentclass{article}</code>), y uno de los
+        ambientes empleados es <code class="literal">tabular</code>, que genera
+        una tabla.
+      </p><p>
+        Una vez edite un documento puede procesarlo con LaTeX para
+        obtener un archivo DVI, por ejemplo para generar el archivo
+        <code class="literal">documento.dvi</code> a partir de
+        <code class="literal">documento.tex</code>:
+      </p><pre class="programlisting">
+    latex documento.tex
+</pre><p>
+        latex Programa que convierte un archivo LaTeX a DVI.
+      </p><p>
+        xdvi Programa para ver un archivo DVI en pantalla.
+      </p><p>
+        El archivo DVI es apropiado para imprimir, puede imprimirlo con
+        una orden como <code class="literal">dvilj</code>,
+        <code class="literal">dvidj</code> o un nombre análogo que corresponda a
+        su impresora <sup>[<a name="idm190604176" href="#ftn.idm190604176">9</a>]</sup>. Para visualizar un archivo DVI puede emplear la
+        orden xdvi:
+      </p><pre class="programlisting">
+    xdvi documento.dvi
+</pre><p>
+        dvi2ps Programa para convertir un DVI en PostScript.
+      </p><p>
+        y para convertirlo a PostScript puede emplear
+        <code class="literal">dvi2ps</code>:
+      </p><pre class="programlisting">
+    dvi2ps -c documento.ps documento.dvi
+</pre><p>
+        A continuación se presenta como se ve el ejemplo de esta sección
+        con el programa <code class="literal">xdvi</code>.
+      </p><div class="figure"><a name="idm190718224"></a><p class="title"><b>Figura 2. Visualización de DVI generado de fuente en LaTeX</b></p><div class="mediaobject"><img src="img/ejlatex.png" alt="Visualización de DVI generado de fuente en
+          LaTeX"></div></div><p>
+        Existen además otros programas para convertir de LaTeX a HTML
+        como latex2html y HeVeA. Puede encontrar más información de
+        latex2html en
+        <a href="http://ctan.tug.org/ctan/tex-archive/support/latex2html/" target="_top">http://ctan.tug.org/ctan/tex-archive/support/latex2html/</a>
+        y de HeVeA en
+        <a href="http://pauillac.inria.fr/hevea/" target="_top">http://pauillac.inria.fr/hevea/</a>.
+      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="docbook"></a>8.3. DocBook</h3></div></div></div><p>
+      Puede configurarse tanto DocBook SGML 4.4 y procesarse con las
+      hojas de estilo DSSSL, o bien DocBook XML 4.4 y procesarse con
+      <code class="literal">xsltproc</code>.
+    </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="sgml-4-4-con-dsssl"></a>8.3.1. SGML 4.4 con DSSSL</h4></div></div></div><p>
+        Instale los paquetes openjade, docbook y docbook-dsssl:
+      </p><pre class="programlisting">
+        doas pkg_add $PKG_PATH/docbook-4.5p3.tgz
+        doas pkg_add $PKG_PATH/docbook-dsssl-1.79.tgz
+        doas pkg_add $PKG_PATH/openjade-1.3.3pre1p6.tgz
+</pre><p>
+        Esto bastará para hacer conversiones de DocBook SGML a HTML por
+        ejemplo si su hoja de estilo DSSL es “<span class="quote">marcos.dsl</span>” y
+        va a convertir el documento DocBook marcos.xml:
+      </p><pre class="programlisting">
+        openjade  -t sgml -ihtml -d marcos.dsl#html marcos.xml
+</pre><p>
+        Para convertir a PostScript además de los paquetes anteriores
+        requiere el paquete texlive (ver <a href="documentos.html#conf-tex-gv" title="8.2. TeX y Ghostview">TeX
+        y Ghostview</a>) y el paquete jadetex
+      </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="xml-4-4-con-xsl"></a>8.3.2. XML 4.4 con XSL</h4></div></div></div><p>
+        Como parte del paquete
+        `<code class="literal">se instalará el DTD de DocBook XML 4.4 en el directorio</code>/usr/local/share/xml/docbook<code class="literal">. Es recomendable que cree el archivo</code>/usr/local/share/xml/catalog`
+        inicialmente con:
+      </p><pre class="programlisting">
+        CATALOG "docbook/catalog"
+</pre><p>
+        y que agregue en este archivo la ruta de otros catálogos XML o
+        de DTDs.
+      </p><p>
+        Para transformar documentos XML con hojas de estilo XSL puede
+        emplear un procesador como <code class="literal">xsltproc</code>, que está
+        incluido en el paquete <code class="literal">libxslt</code>. Esta
+        herramienta recibe el nombre del archivo XSL y el nombre del
+        archivo XML por transformar. También puede recibir la opción
+        <code class="literal">--catalogs</code> que indica usar los catálogos de
+        la variable <code class="literal">SGML_CATALOG_FILES</code> (se separan
+        unos catálogos de otros con el carácter “<span class="quote">:</span>”), o la
+        opción <code class="literal">--nonet</code> que indica no descargar DTDs
+        de Internet (los catálogos deben resolver todos los
+        identificadores públicos).
+      </p><p>
+        Las hojas de estilo XSL para transformar DocBook XML en HTML y
+        en XML-FO (Formatting objects, apropiado para imprimir con un
+        procesador FO) se instalan con el paquete
+        `<code class="literal">y quedan en</code>/usr/local/share/xsl/docbook`.
+      </p><p>
+        Una vez instalados todas las partes puede procesar el archivo
+        <code class="literal">ejemplo.xdbk</code>:
+      </p><pre class="programlisting">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"  "/usr/local/share/xml/docbook/4.4/docbookx.dtd" &gt;
+
+    &lt;article lang="es"&gt;
+        &lt;title&gt;articulo&lt;/title&gt;
+      &lt;articleinfo&gt;
+        &lt;authorgroup&gt;
+          &lt;author&gt;
+        &lt;firstname&gt;Nombres&lt;/firstname&gt;
+        &lt;surname&gt;Apellidos&lt;/surname&gt;
+        &lt;authorblurb&gt;
+              &lt;para&gt;&lt;address&gt;
+              &lt;email&gt;micorreo@pasosdeJesus.org&lt;/email&gt;
+               &lt;/address&gt;&lt;/para&gt;
+        &lt;/authorblurb&gt;
+          &lt;/author&gt;
+        &lt;/authorgroup&gt;
+
+        &lt;abstract&gt;
+            &lt;para&gt;Resumen&lt;/para&gt;
+        &lt;/abstract&gt;
+
+        &lt;legalnotice&gt;
+            &lt;para&gt;nota legal&lt;/para&gt;
+        &lt;/legalnotice&gt;
+
+      &lt;/articleinfo&gt;
+
+      &lt;sect1 id="s1"&gt;
+        &lt;title&gt;Primera sección&lt;/title&gt;
+
+        &lt;para&gt;Parrafo&lt;/para&gt;
+      &lt;/sect1&gt;
+    &lt;/article&gt;
+</pre><p>
+        con una hoja XSLT de DocBook con:
+      </p><pre class="programlisting">
+        export SGML_CATALOG_FILES="/usr/local/share/xml/catalog"
+        xsltproc --catalogs --nonet /usr/local/share/xsl/docbook/html/chunk.xsl ejemplo.xdbk
+</pre></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm190604176" href="#idm190604176">9</a>] </sup>
+            Si usa <code xmlns="" class="literal">ksh</code> puede ver una lista de
+            posibles programas que le permitan imprimir, tecleando
+            <code xmlns="" class="literal">dvi</code> desde un intérprete de órdenes y
+            presionando Tab dos veces.
+          </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="espiritualidad.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="espanol.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">7. Espiritualidad </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 9. Español</td></tr></table></div></body></html>
