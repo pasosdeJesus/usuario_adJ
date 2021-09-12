@@ -1,3 +1,7 @@
+Versión 6.9
+:   - Ortografía
+    - Usa `pandoc` reciente de portes de OpenBSD
+
 Versión 6.8
 
 :   - Actualizada información de modo UEFI y FFS2 en 
@@ -14,7 +18,7 @@ Versión 6.6
 
 Versión 6.5
 
-:   - Nueva capítulo de interprete de ordenes con [xref](#archivos_y_permisos) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/exploracion-dos.html#archivos-y-permisos>
+:   - Nueva capítulo de interprete de órdenes con [xref](#archivos_y_permisos) basada en <http://structio.sourceforge.net/guias/AA_Linux_colegio/exploracion-dos.html#archivos-y-permisos>
     - Mejorada ortografía, agradecimientos a Luis Alejandro Cruz 
     - Actualizada [xref](#configuracion-de-xorg)
 

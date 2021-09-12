@@ -3,7 +3,7 @@
 # Cedido al dominio público vtamara@informatik.uni-kl.de
 
 if (test ! -f "/usr/src/sys/dev/wscons/wsksymdef.h") then {
-	echo "Las fuentes de OpenBSD 3.2 deben estar en /usr/src/";
+	echo "Las fuentes de OpenBSD deben estar en /usr/src/";
 	exit 1;
 } fi;
 grep "^#define.*KS_[^ 	]*[ 	]*" /usr/src/sys/dev/wscons/wsksymdef.h | \

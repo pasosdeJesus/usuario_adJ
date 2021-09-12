@@ -167,7 +167,7 @@ Nombres y manejo de dispositivos
 Sistema básico y portes
 
 :   Notará que la instalación es muy corta porque sólo se instala un
-    sistema básico, que consta del kernel, ordenes básicas (de `/bin` y
+    sistema básico, que consta del kernel, órdenes básicas (de `/bin` y
     `/sbin` y `/usr/lib`), archivos de configuración (de `/etc`) y
     eventualmente, si los escoge al instalar, compilador, documentación
     y el servidor X-Window. Estos componentes conforman OpenBSD y han
@@ -195,7 +195,7 @@ Particiones
     `/var` (al menos con 1.2G si planea sacar respaldos de imágenes
     cifradas en CD o de 8G si planea sacarlas en DVD).
 
-Interprete de ordenes
+Interprete de órdenes
 
 :   Por defecto emplea `ksh` que es muy parecido a `bash`. Hay también
     un paquete de `bash` que podría instalar después de tener en
@@ -370,7 +370,7 @@ xshare&VER-OPENBSD-S;
 site&VER-OPENBSD-S;
 
 :   Requerido para continuar la instalación y configuración de
-    Aprendiendo de Jesús. En particular archivo de ordenes
+    Aprendiendo de Jesús. En particular archivo de órdenes
     `/usr/local/adJ/inst-adJ.sh` que deberá ejecutar como usuario
     administrador cuando haya reiniciado.
 
@@ -427,7 +427,7 @@ archivos y programas son sensibles a la capitalización).
 
 Este procedimiento permite instalar y actualizar adJ, así que puede
 ejecutarlo cuantas veces lo requiera para completar la instalación o una
-actualización. El archivo de ordenes `/inst-adJ.sh` lo guiará en la
+actualización. El archivo de órdenes `/inst-adJ.sh` lo guiará en la
 instalación del resto del sistema con preguntas típicamente de si o no,
 como se presenta en las siguientes capturas de pantalla de ejemplo: 
 
@@ -491,7 +491,7 @@ Los servicios proveídos por paquetes que son iniciados se especifican en
 la variable `pkg_scripts`, que se define en el archivo
 `/etc/rc.conf.local`. Los servicios tanto del sistema base como de
 paquetes típicamente tiene un archivo en el directorio `/etc/rc.d`.
-Estos archivos de ordenes pueden ejecutarse con una de las siguientes
+Estos archivos de órdenes pueden ejecutarse con una de las siguientes
 opciones (llamadas acciones):
 
 `start`
@@ -539,7 +539,7 @@ Veamos ejemplos de su uso:
 
 :   Reinicia servicio cupsd presentado errores en la terminal si los hay, 
     en lugar `restart` también pueden usarse las acciones explicadas
-    antes para archivos de ordenes del directorio `/etc/rc.d`.
+    antes para archivos de órdenes del directorio `/etc/rc.d`.
 
 `doas rcctl get cupsd`
 
@@ -573,10 +573,10 @@ Veamos ejemplos de su uso:
     de forma que serán los primeros servicios en iniciar.
  
 
-En adJ el archivo de ordenes `/etc/rc.local` además de poder contener
+En adJ el archivo de órdenes `/etc/rc.local` además de poder contener
 acciones por realizar en el arranque, permite reiniciar servicios que se
 hayan detenido. Por esto tras detener un servicio (bien intencionalmente
-o por error) puede ejecutar este archivo de ordenes para reiniciarlo
+o por error) puede ejecutar este archivo de órdenes para reiniciarlo
 con:
 
         doas sh /etc/rc.local

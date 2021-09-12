@@ -105,6 +105,7 @@ limpiamas: limpia
 limpia:
 	rm -f *.bak *~ *.tmp confaux.tmp $(PROYECTO)-$(PRY_VERSION)_html.tar.gz
 	rm -f $(PROYECTO)-4.1.*
+	rm -f $(FUENTESDB)
 
 
 Derechos.txt: $(PROYECTO).$(EXT_DOCBOOK)
@@ -132,4 +133,5 @@ infoversion.ent:
 		cp ../servidor_adJ/infoversion.ent .; \
 	} fi;
 
-
+openbsdsrc/tabcompose.xdbk:
+	(cd openbsdsrc; ./gensym.sh)

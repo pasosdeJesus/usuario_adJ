@@ -56,7 +56,7 @@ defecto usa la dirección base 0x300 pero la IRQ 10. Desde el prompt que
             UKC> change ne1
           
 
-puede ver otras ordenes disponibles con la orden `help`. Una vez
+puede ver otras órdenes disponibles con la orden `help`. Una vez
 complete la configuración salga del entorno interactivo con `quit`, tras
 esto el kernel continuará la detección pero usando los cambios que haya
 hecho.
@@ -85,7 +85,7 @@ dispositivo (situación que es muy inusual).
     hardware.
 
 -   Página del manual unix de boot\_config y de 8 donde se describen las
-    ordenes aceptados por el entorno interactivo de configuración de
+    órdenes aceptados por el entorno interactivo de configuración de
     dispositivos.
 
 -   Puede encontrar más sobre la secuencia de arranque de OpenBSD por
@@ -669,7 +669,7 @@ como dispositivo de intercambio el disco `/dev/wd1l` debe:
 
             doas swapctl -A -t blk 
 
-    Ambas ordenes intentarán montar como zonas de intercambio todos
+    Ambas órdenes intentarán montar como zonas de intercambio todos
     dispositivos por bloques de `/etc/fstab` que tengan la opción `sw`.
     Puede verificar la adición listando todas las zonas de intercambio
     con:
@@ -1060,7 +1060,7 @@ Las dos formas de configurarlas son con softraid y con vnconfig.
 
 Tuvimos muy buena experiencia con vnconfig desde OpenBSD 3.6, pero 
 a partir de OpenBSD 6.6 empezamos a experimentar bloqueos extraños
-en algunos computadores (si respondía ping pero no ssh ni ordenes en 
+en algunos computadores (si respondía ping pero no ssh ni órdenes en 
 terminal) que dejaban de presentarse cuando no se usaba vnconfig.
 No todos los computadores con vnconfig presentaron ese inconveniente. 
 El problema podría relacionarse con: 
@@ -1259,7 +1259,7 @@ requerirá posteriormente para usar la imagen.
 #### Montar imagen
 
 Esta imagen puede ser montadas (por ejemplo en `/var/postgresql`) con el
-siguiente archivo de ordenes (ubíquelo por ejemplo en
+siguiente archivo de órdenes (ubíquelo por ejemplo en
 `/usr/local/sbin/montapost.sh`):
 
     #!/bin/sh
@@ -1280,7 +1280,7 @@ y recuerde otorgar permiso de ejecución del mismo:
 
 Notará que este ejemplo es para montar una partición en la que
 funcionará una base de datos PostgreSQL, si no existiera el usuario
-`_postgresql` antes de ejecutar este archivo de ordenes ejecute
+`_postgresql` antes de ejecutar este archivo de órdenes ejecute
 `chmod a+w /var/postgresql` y después de que haya instalado PostgreSQL:
 
         doas chown _postgresql:_postgresql /var/postgresql
@@ -1312,7 +1312,7 @@ instalación. Después de instalado puede elegir otra configuración con
 `keyb la` o `keyb es`
 
 Si tiene un teclado US y desea emplear teclas muertas en la consola
-puede usar desde la línea de ordenes:
+puede usar desde la línea de órdenes:
 
         doas wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
         doas wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"

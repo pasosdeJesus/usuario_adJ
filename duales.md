@@ -55,7 +55,7 @@ de Windows XP/NT. La herramienta Bootpart le facilitará configurar el
 menu de arranque que NTLDR puede presentar, descárguelo bien del CD adJ
 del subdirectorio `util/bootpart` o de
 <http://www.winimage.com/bootpart.htm>, descomprímalo y copie
-`bootpart.exe` al directorio `C:\`. Inicie un interprete de ordenes
+`bootpart.exe` al directorio `C:\`. Inicie un interprete de órdenes
 (Inicio-&gt;Ejecutar-&gt;cmd) y después:
 
         cd \

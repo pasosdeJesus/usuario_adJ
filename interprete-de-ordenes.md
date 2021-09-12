@@ -1,9 +1,9 @@
-# Interprete de ordenes {#interprete_de_ordenes}
+# Interprete de órdenes {#interprete_de_ordenes}
 
 ## Archivos y permisos {#archivos_y_permisos}
 
-En esta sección se introducen diversas ordenes para administrar
-archivos y permisos desde un interprete de ordenes.
+En esta sección se introducen diversas órdenes para administrar
+archivos y permisos desde un interprete de órdenes.
 
 Una orden usualmente recibe opciones y parámetros que especifican que
 operación realizar; algunos parámetros son indispensables mientras que
@@ -22,7 +22,7 @@ descubrir que hace tal opción y el parámetro tecleando `ls /
 [//]: # "opciones"
 [//]: # "Alteran el comportamiento por defecto de una orden, suelen comenzar con uno o dos guiones."
 
-### Administración de archivos, directorios y enlaces {#administracion-de-archivos-directorios-y-enlaces}
+### Administración de archivos, directorios y enlaces {#administracion-de-archivos}
 
 El programa `ls` por defecto presenta los nombres de archivos que no
 comienzan con el caracter '.' y que están en el directorio de trabajo
@@ -133,7 +133,7 @@ denota el directorio en el cual está el directorio examinado. Por
 ejemplo si su directorio de trabajo es `/home/pepe` el caracter `.`
 abrevia `/home/pepe` mientras que `..` abrevia `/home`.
 
-En la mayoría de programas y en el intérprete de ordenes podrá emplear
+En la mayoría de programas y en el intérprete de órdenes podrá emplear
 tanto `.` como `..` para referenciar archivos y subdirectorios relativos
 al directorio de trabajo. Así mismo los archivos y directorios que estén
 en su directorio de trabajo puede referenciarlo sin prefijo alguno, por
@@ -143,11 +143,11 @@ directorio notas que tiene un archivo `2000.txt` puede verlo con el
 orden `less notas/2000.txt`.
 
 También podrá emplear `~` que abrevia su directorio personal (i.e
-`/home/sulogin`). Por ejemplo si desde un intérprete de ordenes teclea
+`/home/sulogin`). Por ejemplo si desde un intérprete de órdenes teclea
 `cd ~`, después `cd ../..` y después `pwd` verá que estará ubicado en el
 directorio raíz.
 
-Otra facilidad que brinda el interprete de ordenes es la expansión de
+Otra facilidad que brinda el interprete de órdenes es la expansión de
 nombres de archivos con los comodines \* y ?. ? indica una letra
 mientras que \* indica una cantidad cualquiera de letras. Por ejemplo
 `ls /var/lo?` lista todos los archivos del directorio `var` de tres
@@ -170,7 +170,7 @@ directorio. [^3].
 Desde un administrador de archivos, puede ver los permisos de un archivo
 con el botón derecho del mouse cuando el puntero está sobre el archivo,
 escogiendo la opción apropiada del menú que aparece. Desde un interprete
-de ordenes puede emplear la orden `ls` con la opción `-l`. Un ejemplo
+de órdenes puede emplear la orden `ls` con la opción `-l`. Un ejemplo
 del resultado de este orden se presenta a continuación:
 
     drwxr-xr-x    5 pepe   users        4096 Feb 21 06:31 graficas
@@ -241,7 +241,7 @@ los cuales un usuario pertenece son mostrados por el programa `groups`.
 -   En estas guías puede consultar más sobre permisos y administración,
     ver [Administración de usuarios](#administracion-de-usuarios).
 
--   Cada uno de los ordenes para administrar archivos es muy flexible y
+-   Cada uno de los órdenes para administrar archivos es muy flexible y
     configurable por medio de opciones, recomendamos de forma especial
     consultar las páginas `man` de cada uno de ellos.
 
@@ -263,7 +263,7 @@ afirmativo cite algunos.
 
 [//]: # "**R:** `~/.bashrc`"
 
-2. Estando en un intérprete de ordenes vaya al directorio
+2. Estando en un intérprete de órdenes vaya al directorio
 `/usr/share/pixmaps` y liste con `ls` y caracteres comodín todos los
 archivos con extensión `.xpm`. Desde bash, copie uno de esos archivos a
 su directorio con la orden `cp`. (Ayuda: busque ayuda sobre la orden

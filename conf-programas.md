@@ -1,4 +1,4 @@
-# Configuración y uso de algunos programas {#conf-programas}
+          # Configuración y uso de algunos programas {#conf-programas}
 
 ## Escritorio y Archivos {#escritorio}
 
@@ -242,7 +242,7 @@ latex2html y HeVeA. Puede encontrar más información de latex2html en
 en <http://pauillac.inria.fr/hevea/>.
 
 [^lat.1]: Si usa `ksh` puede ver una lista de posibles programas que le
-    permitan imprimir, tecleando `dvi` desde un intérprete de ordenes y
+    permitan imprimir, tecleando `dvi` desde un intérprete de órdenes y
     presionando Tab dos veces.
 
 
@@ -459,7 +459,7 @@ libre ogg, el común wav y el patentado mp3) puede usar `mplayer` (ver
  El programa `play` incluido en el paquete &p-sox; también le
 permitirá escuchar diversos formatos.
 
-Desde la línea de ordenes podrá recortar, cambiar volumen y aplicar
+Desde la línea de órdenes podrá recortar, cambiar volumen y aplicar
 otros efectos empleando el programa `sox`.
 
 Si prefiere un editor gráfico que le permite recortar y aplicar algunos
@@ -624,7 +624,7 @@ administrador):
 
 ```
     # Configuración de irb
-    # Basado en archivo de ordenes disponible en <http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/>
+    # Basado en archivo de órdenes disponible en <http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/>
     require 'irb/completion'
     require 'pp'
     IRB.conf[:AUTO_INDENT] = true
@@ -793,7 +793,7 @@ Instale coffeescript con:
 Las aplicaciones Ruby on Rails posteriores a 6.0 requieren el manejador de
 paquetes Javascript yarn. Lo puede instalar más fácil con bash y con:
 
-```sh
+```
 doas pkg_add bash
 curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 ```
@@ -1131,7 +1131,7 @@ volviéndola a crear con `-E UTF8` y restaurando los datos).
 
 
 -   A manera de prueba de su configuración intente ingresar a un
-    intérprete de ordenes para su base de datos con:
+    intérprete de órdenes para su base de datos con:
 ```
         rails dbconsole
 ```
