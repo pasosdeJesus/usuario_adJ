@@ -1,0 +1,4097 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Configuración y uso de algunos programas</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Configuración y uso de programas y servicios básicos"
+HREF="x1037.htm"><LINK
+REL="NEXT"
+TITLE="Configuración y uso de algunos dispositivos y servicios"
+HREF="x2239.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1037.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x2239.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="conf-programas"
+>Configuración y uso de algunos programas</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="escritorio"
+>Escritorio y Archivos</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="fluxbox"
+>FluxBox</A
+></H3
+><P
+>&#13;        La operación básica de este liviano y estético administrador de
+        ventanas se describe en
+        <A
+HREF="a4015.htm"
+>basico_adJ</A
+>, aquí describimos
+        algunos detalles de configuración.
+      </P
+><P
+>&#13;        Para emplearlo como administrador de ventanas por defecto debe
+        modificarse <TT
+CLASS="literal"
+>~/.xsession</TT
+>, así como en
+        <TT
+CLASS="literal"
+>~/.xinitrc</TT
+> y agregar al final:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    if (test -x /usr/local/bin/startfluxbox) then {
+        /usr/local/bin/startfluxbox
+    } fi;
+</PRE
+><P
+>&#13;        Una vez en operación podrá realizar diversas configuraciones
+        oprimiendo el botón derecho sobre el escritorio en el menú
+        <TT
+CLASS="literal"
+>fluxbox menu</TT
+>. Por ejemplo podrá cambiar
+        estilos en <TT
+CLASS="literal"
+>System Styles</TT
+> y esconder/mostrar
+        la barra de herramientas con
+        <TT
+CLASS="literal"
+>Configure -&#62; Toolbar -&#62; Visible</TT
+> FluxBox
+      </P
+><P
+>&#13;        <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/fluxbox-xfig.png"></SPAN
+>
+      </P
+><P
+>&#13;        Entre sus características:
+      </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;            Es altamente configurable (recursos, menús, decoración de
+            ventanas y estilos).
+          </P
+></LI
+><LI
+><P
+>&#13;            Es muy liviano, requiere alrededor de 4MB en RAM.
+          </P
+></LI
+><LI
+><P
+>&#13;            Con Alt+[Botón izquierdo] permite cambiar ubicación de la
+            ventana sobre la que está el curso, y con Alt+[Botón
+            derecho] el tamaño.
+          </P
+></LI
+><LI
+><P
+>&#13;            El menú que presenta se configura en un archivo texto con
+            una sintaxis sencilla, puede cambiarse editando en
+            <TT
+CLASS="literal"
+>~/.fluxbox/menu</TT
+>.
+          </P
+></LI
+><LI
+><P
+>&#13;            Los programas que se inician con el escritorio pueden
+            configurarse en <TT
+CLASS="literal"
+>~/.fluxbox/startup</TT
+>. Por
+            ejemplo en este archivo puede configurar el locale que usará
+            agregando o cambiando la línea:
+          </P
+><P
+>&#13;            export LANG=es_CO.UTF-8
+          </P
+></LI
+><LI
+><P
+>&#13;            La apariencia en general puede configurarse en
+            <TT
+CLASS="literal"
+>~/.fluxbox/init</TT
+>
+          </P
+></LI
+><LI
+><P
+>&#13;            Puede configurar teclas rápidas en el archivo
+            <TT
+CLASS="literal"
+>~/.fluxbox/keys</TT
+>
+          </P
+></LI
+></UL
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="lecturas-conf-fluxbox"
+>Lecturas recomendadas y referencias</A
+></H4
+><P
+></P
+><UL
+><LI
+><P
+>&#13;              Sitio oficial <A
+HREF="fluxbox.org"
+TARGET="_top"
+>fluxbox.org</A
+>.
+            </P
+></LI
+><LI
+><P
+>&#13;              Página sobre fluxbox de NetBSD
+              <A
+HREF="http://wiki.netbsd.org/fluxbox/"
+TARGET="_top"
+>http://wiki.netbsd.org/fluxbox/</A
+>
+            </P
+></LI
+><LI
+><P
+>&#13;              Página sobre fluxbox de Gentoo
+              <A
+HREF="http://www.gentoo.org/doc/es/fluxbox-config.xml"
+TARGET="_top"
+>http://www.gentoo.org/doc/es/fluxbox-config.xml</A
+>
+            </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="xfe"
+><TT
+CLASS="literal"
+>xfe</TT
+></A
+></H3
+><P
+>&#13;        La operación básica se describe en
+        <A
+HREF="a4015.htm"
+>basico_adJ</A
+>, aquí describimos
+        algunos detalles de configuración.
+      </P
+><P
+>&#13;        El archivo de configuración se ubica en
+        <TT
+CLASS="literal"
+>~/.config/xfe/xferc</TT
+>. La mayoría de
+        posibilidades se configuran desde Editar &#62; Preferencias, sin
+        embargo para que opere bien Herramientas &#62; Ventana
+        superusuario nueva en adJ el archivo de configuración en la
+        sección <TT
+CLASS="literal"
+>OPTIONS</TT
+> debe incluir:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;uso_sudo=1
+sudo_nopasswd=1
+</PRE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="espiritualidad"
+>Espiritualidad</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="xiphos"
+><TT
+CLASS="literal"
+>xiphos</TT
+></A
+></H3
+><P
+>&#13;        Como se describe en
+        <A
+HREF="a4015.htm"
+>xiphosmanual</A
+>, es una
+        herramienta gráfica de estudio e investigación bíblica que se
+        basa en las librerías del proyecto Sword.
+      </P
+><P
+>&#13;        <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/xiphos.png"></SPAN
+>
+      </P
+><P
+>&#13;        Puede iniciarla desde el menu de fluxbox
+        Espiritualidad-&#62;Xiphos o desde una terminal con
+        <TT
+CLASS="literal"
+>xiphos</TT
+>. Deben instalarse módulos primero.
+        Cada módulo puede ser una traducción, comentario, diccionario.
+        Hay traducciones a muchos idiomas (incluyendo manuscritos
+        griegos y hebreo). En español entre otras se encuentra parte de
+        la traducción de dominio público de los evangelios que
+        típicamente se ha incluido con adJ.
+      </P
+><P
+>&#13;        Una vez instale los módulos que desea usar, es posible ver
+        varias traducciones en paralelo. Cada traducción puede contar
+        con opciones como: Palabras de Cristo en Rojo, Números Strong,
+        Etiquetas morfológicas, Notas al pie, encabezados.
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="documentos"
+>Preparación de Documentos y Aplicaciones de Oficina</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="msoffice"
+>Aplicaciones estilo MS-Office</A
+></H3
+><P
+>&#13;        LibreOffice es un juego de aplicaciones de oficina que ofrece,
+        prácticamente, la misma funcionalidad de MS-Office, un formato
+        de documentos estándar (ISO) y facilidades para importar y
+        exportar en formatos de MS-Office.
+      </P
+><P
+>&#13;        <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/gnumeric.png"></SPAN
+>
+      </P
+><P
+>&#13;        Lo puede iniciar desde el escritorio con botón derecho Oficina
+        &#62; LibreOffice o bien desde una terminal con
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    soffice
+</PRE
+><P
+>&#13;        Después de instalarlo y ejecutarlo por primera vez arrancará en
+        inglés, para configurarlo en español vaya al menú Tools &#62;
+        Options &#62; Language y elija Español y Español/Colombia en las
+        casillas de idioma que aparecen al lado derecho.
+      </P
+><P
+>&#13;        Incluye el procesador de texto <TT
+CLASS="literal"
+>writer</TT
+> (que
+        puede iniciar desde una terminal con
+        <TT
+CLASS="literal"
+>swriter</TT
+>), la hoja de cálculo
+        <TT
+CLASS="literal"
+>calc</TT
+> (que inicia desde una terminal con
+        <TT
+CLASS="literal"
+>scalc</TT
+>), el creador de presentaciones
+        <TT
+CLASS="literal"
+>impress</TT
+> (que inicia con
+        <TT
+CLASS="literal"
+>simpress</TT
+> desde un terminal) y el programa
+        para diagrama <TT
+CLASS="literal"
+>draw</TT
+> (que puede iniciar con
+        <TT
+CLASS="literal"
+>sdraw</TT
+>). Puede aprender más sobre este
+        procesador en
+        <A
+HREF="a4015.htm"
+>libreoffice-basico</A
+>
+      </P
+><P
+>&#13;        Para operar con hojas de cálculo incluye gnumeric-1.12.49, que
+        también puede abrir y guardar en OpenDocument y en formatos de
+        Microsoft Office.
+      </P
+><P
+>&#13;        La funcionalidad de un procesador de palabra, así como la básica
+        para hacer presentaciones también las ofrece LaTeX (ver
+        <A
+HREF="x1187.htm#latex"
+>la sección de nombre <I
+>LaTeX</I
+></A
+>). Parte de la funcionalidad de
+        una hoja de cálculo la tiene desde una terminal
+        <TT
+CLASS="literal"
+>sc</TT
+>. También puede usar
+        <TT
+CLASS="literal"
+>magicpoint</TT
+> para hacer presentaciones. Sin
+        embargo para usar estas herramientas se requiere aprender formas
+        diferentes de operar.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="conf-tex-gv"
+>TeX y Ghostview</A
+></H3
+><P
+>&#13;        Para emplear TeX, LaTeX y asociados instale texlive y gv:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas pkg_add $PKG_PATH/&#38;p-texlive_base;.tgz
+    doas pkg_add $PKG_PATH/&#38;p-texlive_texmf-full;.tgz
+    doas pkg_add $PKG_PATH/gv-3.7.4p0.tgz
+</PRE
+><P
+>&#13;        Puede configurar tamaño del papel, separado en sílabas y otros
+        detalles con <TT
+CLASS="literal"
+>texconfig</TT
+>.
+      </P
+><P
+>&#13;        A continuación se incluye un mini-tutorial de LaTeX adaptado de
+        AALinux, por otra parte puede consultar algo más sobre
+        <TT
+CLASS="literal"
+>gv</TT
+> en la sección
+        <A
+HREF="x2239.htm#uso-impresora"
+>la sección de nombre <I
+>Uso de una impresora ya configurada</I
+></A
+>.
+      </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="latex"
+>LaTeX</A
+></H4
+><P
+>&#13;          LaTeX es una extensión a un sistema llamado TeX, desarrollado
+          para escribir documentos de matemáticas. A continuación se
+          presenta un ejemplo de un documento LaTeX y el resultado que
+          se obtiene tras procesarlo.
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\begin{document}
+\author{Rupertino Gonzales}
+\title{Algunas posibilidades de LaTeX}
+\maketitle
+
+\section{Elementos}
+Puede estructurar el documento en capítulos, secciones, etc.
+Este texto es el contenido de la primera sección de este ejemplo,
+puede escribir cada párrafo en líneas consecutivas.
+
+\subsection{Ayudas}
+Puede lograr efectos como \emph{Itálicas}, \textbf{negrillas} o
+cambios en el \textsf{tipo o {\small tamaño} de letra} (note
+como se anidaron ambientes en este ejemplo).
+
+Puede crear listas:
+\begin{itemize}
+\item Primer elemento de lista.
+\item Segundo elemento de lista.
+\end{itemize}
+o tablas
+\\
+\begin{tabular}{|l|r|} \hline
+Título 1 &#38; Título 2 \\\hline
+elemento 1 &#38; elemento 2 \\\hline
+\end{tabular}
+\subsection{Ecuaciones}
+LaTeX es un experto en esta materia:
+\[ \int_{x=-\infty}^{\infty}e^{-|x|} \]
+\end{document}
+</PRE
+><P
+>&#13;          LaTeX ofrece plantillas para varios tipos de documentos:
+          artículo, reporte, libro y ofrece el concepto de ambiente para
+          indicar como presentar cierta información de acuerdo a la
+          plantilla. En el ejemplo presentado, el tipo de documento es
+          artículo (lo indica la línea
+          <TT
+CLASS="literal"
+>documentclass{article}</TT
+>), y uno de los
+          ambientes empleados es <TT
+CLASS="literal"
+>tabular</TT
+>, que genera
+          una tabla.
+        </P
+><P
+>&#13;          Una vez edite un documento puede procesarlo con LaTeX para
+          obtener un archivo DVI, por ejemplo para generar el archivo
+          <TT
+CLASS="literal"
+>documento.dvi</TT
+> a partir de
+          <TT
+CLASS="literal"
+>documento.tex</TT
+>:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    latex documento.tex
+</PRE
+><P
+>&#13;          latex Programa que convierte un archivo LaTeX a DVI.
+        </P
+><P
+>&#13;          xdvi Programa para ver un archivo DVI en pantalla.
+        </P
+><P
+>&#13;          El archivo DVI es apropiado para imprimir, puede imprimirlo
+          con una orden como <TT
+CLASS="literal"
+>dvilj</TT
+>,
+          <TT
+CLASS="literal"
+>dvidj</TT
+> o un nombre análogo que corresponda a
+          su impresora <A
+NAME="AEN1315"
+HREF="#FTN.AEN1315"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+>. Para visualizar un archivo DVI puede emplear la
+          orden xdvi:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    xdvi documento.dvi
+</PRE
+><P
+>&#13;          dvi2ps Programa para convertir un DVI en PostScript.
+        </P
+><P
+>&#13;          y para convertirlo a PostScript puede emplear
+          <TT
+CLASS="literal"
+>dvi2ps</TT
+>:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    dvi2ps -c documento.ps documento.dvi
+</PRE
+><P
+>&#13;          A continuación se presenta como se ve el ejemplo de esta
+          sección con el programa <TT
+CLASS="literal"
+>xdvi</TT
+>.
+        </P
+><DIV
+CLASS="figure"
+><A
+NAME="AEN1326"
+></A
+><P
+><B
+>Figura 2. Visualización de DVI generado de fuente en
+          LaTeX</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="img/ejlatex.png"></P
+></DIV
+></DIV
+><P
+>&#13;          Existen además otros programas para convertir de LaTeX a HTML
+          como latex2html y HeVeA. Puede encontrar más información de
+          latex2html en
+          <A
+HREF="http://ctan.tug.org/ctan/tex-archive/support/latex2html/"
+TARGET="_top"
+>http://ctan.tug.org/ctan/tex-archive/support/latex2html/</A
+>
+          y de HeVeA en
+          <A
+HREF="http://pauillac.inria.fr/hevea/"
+TARGET="_top"
+>http://pauillac.inria.fr/hevea/</A
+>.
+        </P
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="docbook"
+>DocBook</A
+></H3
+><P
+>&#13;        Puede configurarse tanto DocBook SGML 4.4 y procesarse con las
+        hojas de estilo DSSSL, o bien DocBook XML 4.4 y procesarse con
+        <TT
+CLASS="literal"
+>xsltproc</TT
+>.
+      </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="sgml-4-4-con-dsssl"
+>SGML 4.4 con DSSSL</A
+></H4
+><P
+>&#13;          Instale los paquetes openjade, docbook y docbook-dsssl:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;        doas pkg_add $PKG_PATH/docbook-4.5p3.tgz
+        doas pkg_add $PKG_PATH/docbook-dsssl-1.79.tgz
+        doas pkg_add $PKG_PATH/openjade-1.3.3pre1p6.tgz
+</PRE
+><P
+>&#13;          Esto bastará para hacer conversiones de DocBook SGML a HTML
+          por ejemplo si su hoja de estilo DSSL es
+          <SPAN
+CLASS="QUOTE"
+>"marcos.dsl"</SPAN
+> y va a convertir el documento
+          DocBook marcos.xml:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;        openjade  -t sgml -ihtml -d marcos.dsl#html marcos.xml
+</PRE
+><P
+>&#13;          Para convertir a PostScript además de los paquetes anteriores
+          requiere el paquete texlive (ver
+          <A
+HREF="x1187.htm#conf-tex-gv"
+>TeX y Ghostview</A
+>) y el
+          paquete jadetex
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="xml-4-4-con-xsl"
+>XML 4.4 con XSL</A
+></H4
+><P
+>&#13;          Como parte del paquete
+          `<TT
+CLASS="literal"
+>se instalará el DTD de DocBook XML 4.4 en el directorio</TT
+>/usr/local/share/xml/docbook<TT
+CLASS="literal"
+>. Es recomendable que cree el archivo</TT
+>/usr/local/share/xml/catalog`
+          inicialmente con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;        CATALOG "docbook/catalog"
+</PRE
+><P
+>&#13;          y que agregue en este archivo la ruta de otros catálogos XML o
+          de DTDs.
+        </P
+><P
+>&#13;          Para transformar documentos XML con hojas de estilo XSL puede
+          emplear un procesador como <TT
+CLASS="literal"
+>xsltproc</TT
+>, que
+          está incluido en el paquete <TT
+CLASS="literal"
+>libxslt</TT
+>. Esta
+          herramienta recibe el nombre del archivo XSL y el nombre del
+          archivo XML por transformar. También puede recibir la opción
+          <TT
+CLASS="literal"
+>--catalogs</TT
+> que indica usar los catálogos de
+          la variable <TT
+CLASS="literal"
+>SGML_CATALOG_FILES</TT
+> (se separan
+          unos catálogos de otros con el carácter <SPAN
+CLASS="QUOTE"
+>":"</SPAN
+>), o
+          la opción <TT
+CLASS="literal"
+>--nonet</TT
+> que indica no descargar
+          DTDs de Internet (los catálogos deben resolver todos los
+          identificadores públicos).
+        </P
+><P
+>&#13;          Las hojas de estilo XSL para transformar DocBook XML en HTML y
+          en XML-FO (Formatting objects, apropiado para imprimir con un
+          procesador FO) se instalan con el paquete
+          `<TT
+CLASS="literal"
+>y quedan en</TT
+>/usr/local/share/xsl/docbook`.
+        </P
+><P
+>&#13;          Una vez instalados todas las partes puede procesar el archivo
+          <TT
+CLASS="literal"
+>ejemplo.xdbk</TT
+>:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    &#60;?xml version="1.0" encoding="UTF-8"?&#62;
+    &#60;!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"  "/usr/local/share/xml/docbook/4.4/docbookx.dtd" &#62;
+
+    &#60;article lang="es"&#62;
+        &#60;title&#62;articulo&#60;/title&#62;
+      &#60;articleinfo&#62;
+        &#60;authorgroup&#62;
+          &#60;author&#62;
+        &#60;firstname&#62;Nombres&#60;/firstname&#62;
+        &#60;surname&#62;Apellidos&#60;/surname&#62;
+        &#60;authorblurb&#62;
+              &#60;para&#62;&#60;address&#62;
+              &#60;email&#62;micorreo@pasosdeJesus.org&#60;/email&#62;
+               &#60;/address&#62;&#60;/para&#62;
+        &#60;/authorblurb&#62;
+          &#60;/author&#62;
+        &#60;/authorgroup&#62;
+
+        &#60;abstract&#62;
+            &#60;para&#62;Resumen&#60;/para&#62;
+        &#60;/abstract&#62;
+
+        &#60;legalnotice&#62;
+            &#60;para&#62;nota legal&#60;/para&#62;
+        &#60;/legalnotice&#62;
+
+      &#60;/articleinfo&#62;
+
+      &#60;sect1 id="s1"&#62;
+        &#60;title&#62;Primera sección&#60;/title&#62;
+
+        &#60;para&#62;Parrafo&#60;/para&#62;
+      &#60;/sect1&#62;
+    &#60;/article&#62;
+</PRE
+><P
+>&#13;          con una hoja XSLT de DocBook con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;        export SGML_CATALOG_FILES="/usr/local/share/xml/catalog"
+        xsltproc --catalogs --nonet /usr/local/share/xsl/docbook/html/chunk.xsl ejemplo.xdbk
+</PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="espanol"
+>Español</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="ispell"
+>ispell</A
+></H3
+><P
+>&#13;        <TT
+CLASS="literal"
+>ispell</TT
+> permite revisar ortografía de textos
+        planos o fuentes de documentos en diversos formatos (HTML, XML o
+        TeX). Hay diccionarios disponibles para diversos idiomas. Al
+        instalar el paquete <TT
+CLASS="literal"
+>ispell</TT
+> se instalarán dos
+        diccionarios: inglés de EUA (<TT
+CLASS="literal"
+>american</TT
+>) e
+        inglés de Inglaterra (<TT
+CLASS="literal"
+>british</TT
+>). Para emplear
+        el diccionario en español (<TT
+CLASS="literal"
+>spanish</TT
+>) instale
+        el paquete <TT
+CLASS="literal"
+>ispell-spanish</TT
+>, puede configurarlo
+        como diccionario por defecto con
+        <TT
+CLASS="literal"
+>ispell-config</TT
+>.
+      </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="correccion-ortográfica"
+>Corrección ortográfica</A
+></H4
+><P
+>&#13;          Puede corregir interactivamente la ortografía de un texto
+          plano (digamos <TT
+CLASS="literal"
+>carta.txt</TT
+>) usando el
+          diccionario por defecto con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;        ispell carta.txt
+</PRE
+><P
+>&#13;          o si desea emplear el diccionario de un idioma particular:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;        ispell -d spanish carta.txt
+</PRE
+><P
+>&#13;          Al corregir interactivamente <TT
+CLASS="literal"
+>ispell</TT
+>
+          mostrará palabras que no encuentre en el diccionario del
+          idioma ni en su diccionario personal<A
+NAME="AEN1391"
+HREF="#FTN.AEN1391"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+> del idioma
+          (e.g. <TT
+CLASS="literal"
+>~/.ispell_spanish</TT
+>), así como posibles
+          remplazos. Podrá elegir uno de los remplazos tecleando el
+          número que antecede al remplazo.
+        </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="multimedia"
+>Multimedia</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="mplayer"
+>Mplayer</A
+></H3
+><P
+>&#13;        Es un reproductor de audio y video que soporta gran variedad de
+        formatos. Por ejemplo para ver video.flv:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;        mplayer video.flv
+</PRE
+><P
+>&#13;        Se distribuye con codecs que pueden distribuirse libremente.
+        Para que soporte codecs de Windows es importante instalar
+        también el paquete <TT
+CLASS="literal"
+>win32-codecs</TT
+>
+      </P
+><P
+>&#13;        También permite hacer conversiones y extraer partes. Por ejemplo
+        para extraer pista de audio de un video descargado de youtube, y
+        dejarla en formato WAV:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;        mplayer -vo null -ao "pcm:file=pista.wav" -af resample=44100 "video.flv"
+</PRE
+><P
+>&#13;        Para reproducir 10 segundos de un DVD comenzando en el segundo
+        240:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;        mplayer -ss 240 -endpos 10 dvd://1
+</PRE
+><P
+>&#13;        Se distribuye junto con <TT
+CLASS="literal"
+>mencoder</TT
+> que permite
+        convertir de un formato a otro.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="ediciongraficos"
+>Edición de gráficos</A
+></H3
+><P
+>&#13;        Para ver una gráfica (sin editarla) prácticamente en cualquier
+        formato, puede usar <TT
+CLASS="literal"
+>display</TT
+> incluido en
+        ImageMagick-6.9.12.2:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    display migrafica.png
+</PRE
+><P
+>&#13;        Otra opción que facilita ver un directorio con imágenes es
+        <TT
+CLASS="literal"
+>xfi</TT
+> incluido en el paquete xfe-1.43.2p0:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    xfi migrafica.png
+</PRE
+><P
+>&#13;        Las operaciones típicas con gráficos son el retoque de fotos y
+        la creación de diagramas. Para retocar fotografías se emplean
+        editores gráficos a nivel de pixels, mientras que para creación
+        de diagramas resultan más convenientes editores de gráficos
+        vectoriales.
+      </P
+><P
+>&#13;        Como editor de gráficos a nivel de pixels, el CD de adJ incluye
+        gimp-2.10.24
+      </P
+><P
+>&#13;        <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/gimp.png"></SPAN
+>
+      </P
+><P
+>&#13;        Como editor vectorial incluye inkscape-1.0.2
+      </P
+><P
+>&#13;        <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/inkscape.png"></SPAN
+>
+      </P
+><P
+>&#13;        OpenOffice incluye otro editor vectorial llamado
+        <TT
+CLASS="literal"
+>draw</TT
+>.
+      </P
+><P
+>&#13;        Para la generación de gráficos de barras y estadísticos resulta
+        más apropiado el graficador de gnumeric-1.12.49 o de calc –la
+        hoja de cálculo de OpenOffice–, ver
+        <A
+HREF="x1187.htm#msoffice"
+>la sección de nombre <I
+>Aplicaciones estilo MS-Office</I
+></A
+>
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="edicionaudio"
+>Edición de audio</A
+></H3
+><P
+>&#13;        Para reproducir una pista de audio en diversos formatos
+        (incluyendo el libre ogg, el común wav y el patentado mp3) puede
+        usar <TT
+CLASS="literal"
+>mplayer</TT
+> (ver
+        <A
+HREF="x1187.htm#mplayer"
+>la sección de nombre <I
+>Mplayer</I
+></A
+>), o bien
+        <TT
+CLASS="literal"
+>audacious</TT
+> (incluido en el paquete
+        audacious-4.1p0):
+      </P
+><P
+>&#13;        <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/audacious.png"></SPAN
+>
+      </P
+><P
+>&#13;        El programa <TT
+CLASS="literal"
+>play</TT
+> incluido en el paquete
+        sox-14.4.2p5 también le permitirá escuchar diversos formatos.
+      </P
+><P
+>&#13;        Desde la línea de órdenes podrá recortar, cambiar volumen y
+        aplicar otros efectos empleando el programa
+        <TT
+CLASS="literal"
+>sox</TT
+>.
+      </P
+><P
+>&#13;        Si prefiere un editor gráfico que le permite recortar y aplicar
+        algunos efectos a pistas de audio en prácticamente cualquier
+        formato de audio utilice el programa audacity-2.4.2:
+      </P
+><P
+>&#13;        <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/audacity.png"></SPAN
+>
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="operación-en-red"
+>Operación en red</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="mutt"
+><TT
+CLASS="literal"
+>mutt</TT
+></A
+></H3
+><P
+>&#13;        El uso básico de mutt puede consultarlo en
+        <A
+HREF="a4015.htm"
+>basico_adJ</A
+>
+      </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="otro-smtp"
+>Enviado correo con <TT
+CLASS="literal"
+>sendmail</TT
+> de otro
+        computador</A
+></H4
+><P
+>&#13;          Para enviar correos <TT
+CLASS="literal"
+>mutt</TT
+> corre por defecto
+          el programa <TT
+CLASS="literal"
+>sendmail</TT
+> (por defecto con
+          parámetros: <TT
+CLASS="literal"
+>sendmail -oem -oi</TT
+>), si usted
+          prefiere o necesita emplear el <TT
+CLASS="literal"
+>sendmail</TT
+> de
+          otro computador puede:
+        </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Hacer un script (digamos
+              <TT
+CLASS="literal"
+>/home/pablo/scripts/envia.sh</TT
+>)
+              que llame al <TT
+CLASS="literal"
+>sendmail</TT
+> remoto (por
+              ejemplo con <TT
+CLASS="literal"
+>ssh</TT
+>) y le pase lo que
+              recibe por entrada estándar:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        #!/bin/sh
+        # envia.sh Dominio público
+
+        if (test "$SSH_AUTH_SOCK" = "") then {
+            echo "Usar con ssh-agent";
+            exit 2;
+        } fi;
+
+        cat - | ssh pablo@amor.miescuela.edu.co /usr/sbin/sendmail -oem -oi
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;Note que este script está hecho para ser ejecutado junto con el
+agente de autenticación de ssh (i.e `ssh-agent`).
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Configure <TT
+CLASS="literal"
+>mutt</TT
+> para que emplee su
+              script con la variable <TT
+CLASS="literal"
+>sendmail</TT
+>, la
+              cual puede establecer en su archivo
+              <TT
+CLASS="literal"
+>~/.muttrc</TT
+> con algo como:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;            set sendmail=/home/pablo/scripts/envia.sh
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Asegúrese de ejecutar <TT
+CLASS="literal"
+>mutt</TT
+> junto con el
+              agente de autenticación de <TT
+CLASS="literal"
+>ssh</TT
+>. Por
+              ejemplo con:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;            ssh-agent /bin/ksh
+            ssh-add
+            mutt
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;o si emplea XWindow es posible que pueda configurar su manejador de
+escritorio o su administrador de ventanas para que toda la sesión
+emplee el agente (ver un ejemplo en [xref](#fluxbox)).
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="lecturas-mutt"
+>Lecturas recomendadas y referencias</A
+></H4
+><P
+></P
+><UL
+><LI
+><P
+>&#13;              Página man de <TT
+CLASS="literal"
+>mutt</TT
+>
+            </P
+></LI
+><LI
+><P
+>&#13;              Sección sobre <TT
+CLASS="literal"
+>mutt</TT
+> de
+              <A
+HREF="a4015.htm"
+>basico_adJ</A
+>
+            </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="chromium"
+>Chromium</A
+></H3
+><P
+>&#13;        Puede iniciarlo desde el menú de fluxbox o desde una terminal
+        con <TT
+CLASS="literal"
+>chromium</TT
+>.
+      </P
+><P
+>&#13;        Es posible que chrome use como proxy un tunel SOCKS creado con
+        ssh. Esto es útil por ejemplo para ingresar a sitios web que
+        están en intranets. Primero cree el tunel ingresando al
+        cortafuegos/enrutador de la Intranet, por ejemplo en el puerto
+        9080 con:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    ssh -D9080 miusuario@micortafuegos
+</PRE
+><P
+>&#13;        A continuación inicie chromium indicando que debe usarse el
+        proxy socks del puerto 9080:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    chromium --proxy-server=socks://127.0.0.1:9080
+</PRE
+><P
+>&#13;        Tras esto ya podrá ingresar direcciones de la intranet desde el
+        navegador.
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="ambiente-de-desarrollo"
+>Ambiente de Desarrollo</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="ruby"
+>Ruby</A
+></H3
+><P
+>&#13;        En adJ 6.9 es sencillo usar ruby-2.7.3 con Ruby on
+        Rails 6. Lo básico se instala de paquetes de OpenBSD y lo más
+        reciente de Ruby directamente como gemas.
+      </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="instalación-y-configuración"
+>Instalación y configuración</A
+></H4
+><P
+>&#13;          Asegúrese de tener instalados los paquetes ruby-2.7.3 y
+          node-12.16.1p1, incluidos en el DVD de adJ 6.9
+        </P
+><P
+>&#13;          Asegúrese de tener enlaces al intérprete de ruby y
+          herramientas (como describe el paquete ruby):
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas sh
+    ln -sf /usr/local/bin/ruby30 /usr/local/bin/ruby
+    ln -sf /usr/local/bin/erb30 /usr/local/bin/erb
+    ln -sf /usr/local/bin/irb30 /usr/local/bin/irb
+    ln -sf /usr/local/bin/rdoc30 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri30 /usr/local/bin/ri
+    ln -sf /usr/local/bin/rake30 /usr/local/bin/rake
+    ln -sf /usr/local/bin/gem30 /usr/local/bin/gem
+    ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler30 /usr/local/bin/bundler
+</PRE
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="límites-amplios"
+>Límites amplios</A
+></H5
+><P
+>&#13;            Asegurarse de tener limites amplios del sistema operativo
+            para abrir archivos y manejar memoria, por ejemplo
+            superiores a los siguientes en
+            <TT
+CLASS="literal"
+>/etc/systctl.conf</TT
+>
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    kern.shminfo.shmmni=1024
+    kern.seminfo.semmns=2048
+    kern.shminfo.shmmax=50331648
+    kern.shminfo.shmall=51200
+    kern.maxfiles=20000
+</PRE
+><P
+>&#13;            El usuario desde el cual desarrollará o ejecutará
+            aplicaciones también debe tener límites amplios, en
+            particular su clase de login (por ejemplo
+            <TT
+CLASS="literal"
+>staff</TT
+>). Debe tener al menos los
+            siguientes en <TT
+CLASS="literal"
+>/etc/login.conf</TT
+>
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    staff:\
+            :datasize-cur=1536M:\
+            :datasize-max=infinity:\
+            :maxproc-max=4096:\
+            :maxproc-cur=4096:\
+            :openfiles-max=8090:\
+            :openfiles-cur=8090:\
+            :ignorenologin:\
+            :requirehome@:\
+            :tc=default:
+</PRE
+><P
+>&#13;            (Si modifica el archivo <TT
+CLASS="literal"
+>/etc/login.conf</TT
+>
+            debe reconstruir su versión binaria con
+            <TT
+CLASS="literal"
+>doas cap_mkdb /etc/login.conf</TT
+>).
+          </P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="irb"
+>irb</A
+></H5
+><P
+>&#13;            Para facilitar su exploración del lenguaje ruby, puede usar
+            <TT
+CLASS="literal"
+>irb</TT
+> (ver {4}), pero antes verifique que
+            su archivo <TT
+CLASS="literal"
+>~/.irbrc</TT
+> tenga las siguientes
+            líneas (añadidas por defecto en adJ a la cuenta de
+            administrador):
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    # Configuración de irb
+    # Basado en archivo de órdenes disponible en &#60;http://girliemangalo.wordpress.com/2009/02/20/using-irbrc-file-to-configure-your-irb/&#62;
+    require 'irb/completion'
+    require 'pp'
+    IRB.conf[:AUTO_INDENT] = true
+    IRB.conf[:USE_READLINE] = true
+
+    def clear
+        system('clear')
+    end
+</PRE
+><P
+>&#13;            A continuación ingrese a <TT
+CLASS="literal"
+>irb</TT
+> y escriba
+            por ejemplo <TT
+CLASS="literal"
+>4.</TT
+> y presione la tecla [Tab]
+            2 veces para ver los métodos de la clase Integer.
+          </P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="gemas"
+>Gemas</A
+></H5
+><P
+>&#13;            El paquete <TT
+CLASS="literal"
+>ruby</TT
+> incluye
+            <TT
+CLASS="literal"
+>rubygems</TT
+> que maneja gemas (es decir
+            librerías) con el programa <TT
+CLASS="literal"
+>gem</TT
+>.
+          </P
+><P
+>&#13;            El directorio donde se instalan las gemas globales es
+            <TT
+CLASS="literal"
+>/usr/local/lib/ruby/gems/3.0/</TT
+> donde sólo
+            pueden instalarse con <TT
+CLASS="literal"
+>doas</TT
+>. Recomendamos
+            iniciar un directorio para instalar gemas como usuario
+            normal en <TT
+CLASS="literal"
+>/var/www/bundler/ruby/3.0</TT
+>, por
+            3 razones (1) evitar riesgos de seguridad al instalar gemas
+            como root, (2) evitar problemas de permisos y la dificultad
+            de programas como bundler para usar <TT
+CLASS="literal"
+>doas</TT
+>
+            en lugar de <TT
+CLASS="literal"
+>sudo</TT
+> y (3) alistar
+            infraestructura para que sus aplicaciones corran en una
+            jaula chroot en <TT
+CLASS="literal"
+>/var/www</TT
+>
+          </P
+><P
+>&#13;            Prepare ese directorio con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas mkdir -p /var/www/bundler/ruby/3.0/
+    doas chown -R $USER:www /var/www/bundler
+</PRE
+><P
+>&#13;            Y cuando requiera instalar una gema allí emplee:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    gem install --install-dir /var/www/bundler/ruby/3.0/ json 
+</PRE
+><P
+>&#13;            O si llega a tener problemas de permisos con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt 
+</PRE
+><P
+>&#13;            Para facilitar compilación de algunas extensiones (como las
+            de nokogiri) se recomienda instalar
+            <TT
+CLASS="literal"
+>pkg-config</TT
+> globalmente:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install pkg-config
+</PRE
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="bundler"
+>Bundler</A
+></H5
+><P
+>&#13;            Para facilitar el manejo de varias gemas (y sus
+            interdependencias) en un proyecto es típico emplear
+            <TT
+CLASS="literal"
+>bundler</TT
+> que instala con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install bundler
+    if (test -x /usr/local/bin/bundle30) then {
+       doas ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle;
+    } fi
+</PRE
+><P
+>&#13;            Configúrelo para que instale gemas localmente en
+            <TT
+CLASS="literal"
+>/var/www/bundler/ruby/3.0</TT
+> con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;  bundle config path /var/www/bundler/
+</PRE
+><P
+>&#13;            Esto creará el directorio <TT
+CLASS="literal"
+>~/.bundler/</TT
+> y
+            dentro de este el archivo <TT
+CLASS="literal"
+>~/bundle/config</TT
+>
+            con el siguiente contenido:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;---
+BUNDLE_PATH: "/var/www/bundler/"
+</PRE
+><P
+>&#13;            Puede experimentar descargando un proyecto para ruby ya
+            hecho, seguramente verá un archivo
+            <TT
+CLASS="literal"
+>Gemfile</TT
+>, donde <TT
+CLASS="literal"
+>bundler</TT
+>
+            examina de que librerías depende la aplicación y genera un
+            archivo <TT
+CLASS="literal"
+>Gemfile.lock</TT
+> con las versiones
+            precisas por instalar de cada gema.
+          </P
+><P
+>&#13;            Una vez tenga un proyecto asegure que este emplea las gemas
+            de <TT
+CLASS="literal"
+>/var/www/bundler/ruby/3.0</TT
+> ejecutando
+            dentro del directorio del proyecto:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    mkdir .bundle
+    cat &#62; .bundle/config &#60;&#60;EOF
+    ---
+    BUNDLE_PATH: "/var/www/bundler"
+    BUNDLE_DISABLE_SHARED_GEMS: "true"
+    EOF
+</PRE
+><P
+>&#13;            E instale con
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    bundle install
+</PRE
+><P
+>&#13;            Si eventualmente no logra instalar algunas –por problemas de
+            permisos típicamente– puede instalar con
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0 json 
+</PRE
+><P
+>&#13;            Cuando actualice la versión del sistema operativo al igual
+            que con gemas es importante reinstalar las gemas de las que
+            depende una aplicación –necesariamente las que tengan
+            extensiones en C. Esto es sencillo con versiones de bundler
+            posteriores a la 1.15.4:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    bundle pristine
+</PRE
+><P
+>&#13;            y después instalando una a una las gemas que sean
+            extensiones, por ejemplo
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0 nokogiri -v '2.0'
+</PRE
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="rails"
+>Rails</A
+></H5
+><P
+>&#13;            Se trata de una popular gema que facilita mucho la creación
+            de sitios dinámicos.
+          </P
+><P
+>&#13;            Para instalarla globalmente (en
+            <TT
+CLASS="literal"
+>/usr/local/bin</TT
+> y
+            <TT
+CLASS="literal"
+>/usr/local/lib/ruby/gems/</TT
+>) la versión
+            estable más reciente de Rails ejecute
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install rails
+</PRE
+><P
+>&#13;            Rails requiere en el servidor un intérprete de JavaScript,
+            por lo que recomendamos <TT
+CLASS="literal"
+>node.js</TT
+> (ver {1})
+            incluido en adJ 6.9 y que se configurará
+            automáticamente.
+          </P
+><P
+>&#13;            La gran mayoría de gemas usadas por rails instalarán de la
+            misma forma que se explicó. Algunos casos especiales son:
+          </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                <TT
+CLASS="literal"
+>nokogiri</TT
+> que puede requerir
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        doas gem install --install-dir /var/www/bundler/ruby/3.0/ nokogiri -- --use-system-libraries
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                <TT
+CLASS="literal"
+>capybara-webkit</TT
+> que podría requerir
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        QMAKE=qmake-qt5 MAKE=gmake doas gem install capybara-webkit
+</PRE
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="coffescript"
+>Coffescript</A
+></H5
+><P
+>&#13;            Si su aplicación rails emplea coffescript necesitará un
+            programa que pueda ejecutar javascript al lado del servidor,
+            recomendamos node.js incluido en adJ. Actualice a la versión
+            más reciente de npm con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas npm install npm -g
+</PRE
+><P
+>&#13;            Instale coffeescript con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas npm install -g coffee-script
+</PRE
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="yarn"
+>yarn</A
+></H5
+><P
+>&#13;            Las aplicaciones Ruby on Rails posteriores a 6.0 requieren
+            el manejador de paquetes Javascript yarn. Lo puede instalar
+            más fácil con bash y con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;doas pkg_add bash
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+</PRE
+><P
+>&#13;            Si durante la ejecución de yarn ve fallas del estilo:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;/tmp/yarn--1602506143839-0.91595986516731/node[3]:
+/tmp/yarn--1602506143839-0.91595986516731/../node: not found
+</PRE
+><P
+>&#13;            que hemos visto por ejemplo con
+            @fortawesome/fontawesome-free, se recomienda enlazar el
+            binario de node en /tmp:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;doas ln -s /usr/local/bin/node /tmp/
+</PRE
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="editor-vim"
+>Editor vim</A
+></H5
+><P
+>&#13;            Para emplear <TT
+CLASS="literal"
+>vim</TT
+> como editor se
+            recomienda asegurarse de haber ejecutado:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd ~
+    mkdir -p .vim
+    cd .vim
+    cp -rf /usr/local/share/vim/vim83/* .
+</PRE
+><P
+>&#13;            y si no tiene archivo ~/.vimrc ejecutar:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    cp /usr/local/share/vim/vim83/vimrc_example.vi ~/.vimrc
+</PRE
+><P
+>&#13;            así como agregar el archivo
+            <TT
+CLASS="literal"
+>~/.vim/ftplugin/ruby.vim</TT
+> las siguientes
+            líneas:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    setlocal shiftwidth=2
+    setlocal tabstop=2
+    set expandtab
+</PRE
+></DIV
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="documentación"
+>Documentación</A
+></H4
+><P
+>&#13;          Para aprender lo básico de Ruby puede comenzar con el tutorial
+          en español disponible en
+          <A
+HREF="http://rubytutorial.wikidot.com/"
+TARGET="_top"
+>http://rubytutorial.wikidot.com/</A
+>
+        </P
+><P
+>&#13;          Puede aprender por ejemplo con los tutoriales interactivos de
+          <A
+HREF="https://rubymonk.com"
+TARGET="_top"
+>https://rubymonk.com</A
+>
+        </P
+><P
+>&#13;          En Internet puede ver la referencia oficial de las clases en:
+          <A
+HREF="http://ruby-doc.org/core-2.1.5/Integer.html"
+TARGET="_top"
+>http://ruby-doc.org/core-2.1.5/Integer.html</A
+>
+        </P
+><P
+>&#13;          Y es buena referencia para Ruby, Rails y Rspec (incluidos
+          cambios entre una versión y otra y comentarios) es:
+          <A
+HREF="http://apidock.com/"
+TARGET="_top"
+>http://apidock.com/</A
+>
+        </P
+><P
+>&#13;          Podrá consultar documentación del núcleo, librería estándar y
+          gemas instalando el paquete <TT
+CLASS="literal"
+>ruby-ri_docs</TT
+> y
+          ejecutando <TT
+CLASS="literal"
+>ri</TT
+> seguido de la clase (por
+          ejemplo <TT
+CLASS="literal"
+>ri Float</TT
+>) o sin parámetro ingresa a
+          una consola que da la posibilidad de autocompletar presionando
+          Tab (por ejemplo pruebe tecleando <TT
+CLASS="literal"
+>Float</TT
+> y
+          después Tab dos veces).
+        </P
+><P
+>&#13;          También podrá ver la documentación de las gemas en formato
+          Rdoc ejecutando:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    gem server
+</PRE
+><P
+>&#13;          y con un navegador consultando
+          <A
+HREF="http://localhost:8808"
+TARGET="_top"
+>http://localhost:8808</A
+>
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="uso"
+>Uso</A
+></H4
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="nueva-aplicación-usando-sqlite"
+>Nueva aplicación usando SQLite</A
+></H5
+><P
+>&#13;            Genere una nueva aplicación:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    rails new aplicacion
+    cd aplicacion
+    mkdir .bundle
+    cat &#62; .bundle/config &#60;&#60;EOF
+    ---
+    BUNDLE_PATH: "/var/www/bundler"
+    BUNDLE_DISABLE_SHARED_GEMS: "true"
+    EOF
+    bundle install
+</PRE
+><P
+>&#13;            Esto creará una nueva aplicación de ejemplo e instalará
+            todas sus dependencias. Las gemas que no logre instalar por
+            falta de permisos, como se explicó anteriormente instálelas
+            con <TT
+CLASS="literal"
+>doas gem install</TT
+> y la opción
+            <TT
+CLASS="literal"
+>--install-dir /var/www/bundler/</TT
+>
+          </P
+><P
+>&#13;            Una vez haya logrado que <TT
+CLASS="literal"
+>bundle install</TT
+>
+            se ejecute completo puede ejecutar:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    rails server
+</PRE
+><P
+>&#13;            Tras esto puede ver con un navegador la aplicación en el
+            puerto 3000 del computador donde instaló:
+            <A
+HREF="http://127.0.0.1:3000/"
+TARGET="_top"
+>http://127.0.0.1:3000/</A
+>
+          </P
+><P
+>&#13;            Notará que se generan los siguientes directorios y archivos:
+          </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN1666"
+></A
+><P
+><B
+>Tabla 2. 
+              Archivos generados
+            </B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"><COL
+WIDTH="1*"
+ALIGN="left"><THEAD
+><TR
+><TH
+>&#13;                    Archivo/Directorio
+                  </TH
+><TH
+>&#13;                    Descripción
+                  </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                    README.md
+                  </TD
+><TD
+>&#13;                    Documentación en formato Markdown (puede cambiarse
+                    por README.rdoc en formato RDoc)
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    Rakefile
+                  </TD
+><TD
+>&#13;                    Tareas para <TT
+CLASS="literal"
+>rake</TT
+> (algo análogo a
+                    <TT
+CLASS="literal"
+>make</TT
+>)
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config.ru
+                  </TD
+><TD
+>&#13;                    Configurar servidor web por usar
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    .gitignore
+                  </TD
+><TD
+>&#13;                    Archivos por ignorar en control de versiones
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    Gemfile
+                  </TD
+><TD
+>&#13;                    Gemas requeridas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    Gemfile.lock
+                  </TD
+><TD
+>&#13;                    Versiones de las gemas requeridas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/javascript/packs/application.js
+                  </TD
+><TD
+>&#13;                    Plantilla de Javascript que usa módulos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/assets/stylesheets/application.css
+                  </TD
+><TD
+>&#13;                    Plantilla de CSS para aplicación
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/controllers/application_controller.rb
+                  </TD
+><TD
+>&#13;                    Plantilla del controlador de la aplicación
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/helpers/application_helper.rb
+                  </TD
+><TD
+>&#13;                    Ayudas para construir vistas (sin lógica del
+                    modelos).
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/views/layouts/application.html.erb
+                  </TD
+><TD
+>&#13;                    Plantilla por defecto para el sitio
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/assets/
+                  </TD
+><TD
+>&#13;                    Datos estáticos de la página
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/assets/images/
+                  </TD
+><TD
+>&#13;                    Gráficos de la aplicación (típicamente que no se
+                    sirven estáticos)
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/assets/config/manifest.js
+                  </TD
+><TD
+>&#13;                    Configura datos estáticos por exportar
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/mailers/
+                  </TD
+><TD
+>&#13;                    Controlador para enviar correos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/models/
+                  </TD
+><TD
+>&#13;                    Modelos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/channel/
+                  </TD
+><TD
+>&#13;                    Controlador de websockets
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/jobs/
+                  </TD
+><TD
+>&#13;                    Maneja cola de tareas programadas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/mailer/
+                  </TD
+><TD
+>&#13;                    Facilita envío y recepción de correos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/controllers/concerns/
+                  </TD
+><TD
+>&#13;                    Código que se repite en controladores
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    app/models/concerns/
+                  </TD
+><TD
+>&#13;                    Código que se repite en modelos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    bin/bundle
+                  </TD
+><TD
+>&#13;                    Maneja dependencias con el ambiente de la aplicación
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    bin/rails
+                  </TD
+><TD
+>&#13;                    Maneja posibilidades de generación y controles Rails
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    bin/rake
+                  </TD
+><TD
+>&#13;                    Maneja tareas definidas en
+                    <TT
+CLASS="literal"
+>Rakefile</TT
+> y
+                    <TT
+CLASS="literal"
+>lib/tasks</TT
+>
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    bin/setup
+                  </TD
+><TD
+>&#13;                    Plantilla de un configurador de la aplicación
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    bin/yarn
+                  </TD
+><TD
+>&#13;                    Gestor de paquetes javascript
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/routes.rb
+                  </TD
+><TD
+>&#13;                    Rutas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/application.rb
+                  </TD
+><TD
+>&#13;                    Configura aplicación
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/environment.rb
+                  </TD
+><TD
+>&#13;                    Configura ambiente
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/secrets.yml
+                  </TD
+><TD
+>&#13;                    Para verificar integridad de galletas firmadas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/environments/development.rb
+                  </TD
+><TD
+>&#13;                    Configuración ambiente de desarrollo
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/environments/production.rb
+                  </TD
+><TD
+>&#13;                    Configuración ambiente de producción
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/environments/test.rb
+                  </TD
+><TD
+>&#13;                    Configuración ambiente de pruebas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/initializers/assets.rb
+                  </TD
+><TD
+>&#13;                    Configura recursos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/initializers/backtrace_silencers.rb
+                  </TD
+><TD
+>&#13;                    Inhibe trazas de algunas librerías
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/initializers/cookies_serializer.rb
+                  </TD
+><TD
+>&#13;                    Configura como serializar galletas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/initializers/filter_parameter_logging.rb
+                  </TD
+><TD
+>&#13;                    Parámetros por filtrar (no dejar) en bitácoras
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/initializers/inflections.rb
+                  </TD
+><TD
+>&#13;                    Inflecciones singular/plural
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/initializers/mime_types.rb
+                  </TD
+><TD
+>&#13;                    Registra tipos MIME
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/initializers/session_store.rb
+                  </TD
+><TD
+>&#13;                    Configura donde se almacena sesión
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/initializers/wrap_parameters.rb
+                  </TD
+><TD
+>&#13;                    Configuración para ActionController::ParamsWrapper
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/locales/en.yml
+                  </TD
+><TD
+>&#13;                    Localización en inglés
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/boot.rb
+                  </TD
+><TD
+>&#13;                    Prepara rutas para encontrar gemas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/database.yml
+                  </TD
+><TD
+>&#13;                    Configuración de base de datos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    config/puma.rb
+                  </TD
+><TD
+>&#13;                    Configuración de servidor web puma
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    db/seeds.rb
+                  </TD
+><TD
+>&#13;                    Datos iniciales para base de datos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    lib/tasks/
+                  </TD
+><TD
+>&#13;                    Tareas para <TT
+CLASS="literal"
+>rake</TT
+>
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    lib/assets/
+                  </TD
+><TD
+>&#13;                    <SPAN
+CLASS="QUOTE"
+>"Activos"</SPAN
+> comunes para librerías
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    log/
+                  </TD
+><TD
+>&#13;                    Bitácoras
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    package.json
+                  </TD
+><TD
+>&#13;                    Paquetes javascript requeridos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    public
+                  </TD
+><TD
+>&#13;                    Archivos estáticos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    public/404.html
+                  </TD
+><TD
+>&#13;                    Mensaje por defecto para páginas no encontradas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    public/422.html
+                  </TD
+><TD
+>&#13;                    Mensaje por defecto para rechazar cambios
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    public/500.html
+                  </TD
+><TD
+>&#13;                    Mensaje por defecto cuando ocurren errores en
+                    servidor
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    public/favicon.ico
+                  </TD
+><TD
+>&#13;                    Icono
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    public/robots.txt
+                  </TD
+><TD
+>&#13;                    Puede evitar indexación por parte de motores de
+                    búsqueda
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    storage/
+                  </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>&#13;                    test/fixtures
+                  </TD
+><TD
+>&#13;                    Datos para pruebas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    test/controllers
+                  </TD
+><TD
+>&#13;                    Pruebas a controladores
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    test/mailers
+                  </TD
+><TD
+>&#13;                    Pruebas a controladores de envio de correo
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    test/models
+                  </TD
+><TD
+>&#13;                    Pruebas a modelos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    test/helpers
+                  </TD
+><TD
+>&#13;                    Pruebas a funciones para ayudar a construir vistas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    test/integration
+                  </TD
+><TD
+>&#13;                    Pruebas de integración
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    test/test_helper.rb
+                  </TD
+><TD
+>&#13;                    Pruebas funciones auxiliares
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    tmp/
+                  </TD
+><TD
+>&#13;                    Temporales y cache
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    vendor/assets/javascripts
+                  </TD
+><TD
+>&#13;                    Fuentes Javascript para código de terceros
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    vendor/assets/stylesheets
+                  </TD
+><TD
+>&#13;                    Hojas de estilo para código de terceros
+                  </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="generar-un-recurso"
+>Generar un recurso</A
+></H5
+><P
+>&#13;            Puede crear un primer recurso (digamos
+            <TT
+CLASS="literal"
+>Departamento</TT
+>) con modelo, controlador
+            simple y vistas para operaciones CRUD y RESTful con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
+    rake db:migrate
+</PRE
+><P
+>&#13;            Tras esto y volver a iniciar el servidor (más breve con
+            <TT
+CLASS="literal"
+>rails s</TT
+>) podrá realizar las operaciones
+            básicas sobre departamentos desde:
+            <A
+HREF="http://127.0.0.1:3000/departamentos/"
+TARGET="_top"
+>http://127.0.0.1:3000/departamentos/</A
+>
+          </P
+><P
+>&#13;            El <TT
+CLASS="literal"
+>scaffold</TT
+> genera tablas (con una
+            migración), modelo, controlador, vistas y rutas iniciales
+            que con una interfaz muy simple le permitirán listar
+            departamentos, ver detalles de cada uno, crear nuevos,
+            editar existentes y eliminar.
+          </P
+><P
+>&#13;            Los archivos generados son:
+          </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN1894"
+></A
+><P
+><B
+>Tabla 3. 
+              Archivos generados con scaffold
+            </B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"><COL
+WIDTH="1*"
+ALIGN="left"><THEAD
+><TR
+><TH
+>&#13;                    Archivo/Directorio
+                  </TH
+><TH
+>&#13;                    Descripción
+                  </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>db/migrate/20160320131555_create_departamentos.rb</TT
+>
+                  </TD
+><TD
+>&#13;                    Migración para crear tabla
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/models/departamento.rb</TT
+>
+                  </TD
+><TD
+>&#13;                    Modelo
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>test/models/departamento_test.rb</TT
+>
+                  </TD
+><TD
+>&#13;                    Prueba al modelo
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>test/fixtures/departamentos.yml</TT
+>
+                  </TD
+><TD
+>&#13;                    Datos para pruebas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/controllers/departamentos_controller.rb</TT
+>
+                  </TD
+><TD
+>&#13;                    Controlador
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/views/departamentos</TT
+>
+                  </TD
+><TD
+>&#13;                    Vistas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/views/departamentos/index.html.erb</TT
+>
+                  </TD
+><TD
+>&#13;                    Lista de departamentos
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/views/departamentos/edit.html.erb</TT
+>
+                  </TD
+><TD
+>&#13;                    Formulario para editar
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/views/departamentos/show.html.erb</TT
+>
+                  </TD
+><TD
+>&#13;                    Muestra un departamento
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/views/departamentos/new.html.erb</TT
+>
+                  </TD
+><TD
+>&#13;                    Nuevo departamento
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/views/departamentos/_form.html.erb</TT
+>
+                  </TD
+><TD
+>&#13;                    Formulario usado por <TT
+CLASS="literal"
+>edit</TT
+> y
+                    <TT
+CLASS="literal"
+>new</TT
+>
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>test/controllers/departamentos_controller_test.rb</TT
+>
+                  </TD
+><TD
+>&#13;                    Pruebas al controlador
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/helpers/departamentos_helper.rb</TT
+>
+                  </TD
+><TD
+>&#13;                    Funciones auxiliares para construir vistas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/views/departamentos/index.json.jbuilder</TT
+>
+                  </TD
+><TD
+>&#13;                    Lista en JSON
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/views/departamentos/show.json.jbuilder</TT
+>
+                  </TD
+><TD
+>&#13;                    Muestra un departamento en JSON
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/assets/javascripts/departamentos.coffee</TT
+>
+                  </TD
+><TD
+>&#13;                    Donde agregar código Coffescript para vistas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/assets/stylesheets/departamentos.scss</TT
+>
+                  </TD
+><TD
+>&#13;                    Para poner CSS de las vistas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/assets/stylesheets/scaffolds.scss</TT
+>
+                  </TD
+><TD
+>&#13;                    Para poner CSS de las vistas
+                  </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;            Por convención de Ruby on Rails:
+          </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Las fuentes del modelo quedan en
+                <TT
+CLASS="literal"
+>app/models/departamento.rb</TT
+>
+              </P
+></LI
+><LI
+><P
+>&#13;                El nombre de la tabla será la forma plural del nombre
+                del modelo (e.g <TT
+CLASS="literal"
+>departamentos</TT
+>)
+              </P
+></LI
+><LI
+><P
+>&#13;                La tabla incluirá automáticamente un campo id de tipo
+                entero que se autoincrementa
+              </P
+></LI
+><LI
+><P
+>&#13;                La tabla incluirá automáticamente los campos
+                <TT
+CLASS="literal"
+>created_at</TT
+> y
+                <TT
+CLASS="literal"
+>updated_at</TT
+> de tipo
+                <TT
+CLASS="literal"
+>datetime</TT
+>.
+              </P
+></LI
+><LI
+><P
+>&#13;                La tabla será creada con una migración (cuya fuente
+                quedará en <TT
+CLASS="literal"
+>db/migrate/</TT
+>) y el registro
+                de las migraciones ya aplicadas se lleva en una tabla
+                <TT
+CLASS="literal"
+>schema_migrations</TT
+> creada
+                automáticamente en la base de datos.
+              </P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="página-de-inicio"
+>Página de inicio</A
+></H5
+><P
+>&#13;            La página inicial de su aplicación puede crearla generando
+            un controlador con vista, modificando la vista y
+            especificando la ruta:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    rails g controller hogar
+</PRE
+><P
+>&#13;            Que genera:
+          </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN2002"
+></A
+><P
+><B
+>Tabla 4. 
+              Archivos generados con
+              <TT
+CLASS="literal"
+>g controller hogar</TT
+>
+            </B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"><COL
+WIDTH="1*"
+ALIGN="left"><THEAD
+><TR
+><TH
+>&#13;                    Archivo/Directorio
+                  </TH
+><TH
+>&#13;                    Descripción
+                  </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/controllers/hogar_controller.rb</TT
+>
+                  </TD
+><TD
+>&#13;                    Controlador
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/views/hogar</TT
+>
+                  </TD
+><TD
+>&#13;                    Vistas relacionadas con el controlador
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>test/controllers/hogar_controller_test.rb</TT
+>
+                  </TD
+><TD
+>&#13;                    Pruebas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/helpers/hogar_helper.rb</TT
+>
+                  </TD
+><TD
+>&#13;                    Funciones auxiliares para vistas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/assets/javascripts/hogar.coffee</TT
+>
+                  </TD
+><TD
+>&#13;                    Coffescript para vistas
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    <TT
+CLASS="literal"
+>app/assets/stylesheets/hogar.scss</TT
+>
+                  </TD
+><TD
+>&#13;                    CSS para vistas
+                  </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;            Modifique el controlador
+            <TT
+CLASS="literal"
+>app/controllers/hogar_controller.rb</TT
+> para
+            indicar que tendrá un vista <TT
+CLASS="literal"
+>index</TT
+>:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    class HogarController &#60; ApplicationController
+        def index
+        end
+    end
+</PRE
+><P
+>&#13;            Cree la vista
+            <TT
+CLASS="literal"
+>app/views/hogar/index.html.erb</TT
+>:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    &#60;article&#62;
+      &#60;h1&#62;Mi aplicación&#60;/h1&#62;
+      &#60;para&#62; Manejar &#60;a href="/departamentos"&#62;Departamentos&#60;/a&#62;&#60;/para&#62;
+    &#60;/article&#62;
+</PRE
+><P
+>&#13;            Y en el archivo de configuración de rutas
+            <TT
+CLASS="literal"
+>config/routes.rb</TT
+> añada:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    root "hogar#index"
+</PRE
+><P
+>&#13;            Al modificar fuentes en general no necesita volver a lanzar
+            el servidor de rails, pero si modifica
+            <TT
+CLASS="literal"
+>config/routes.rb</TT
+> o cualquier archivo
+            fuera del directorio <TT
+CLASS="literal"
+>app</TT
+> debe reiniciar
+            el servicio.
+          </P
+><P
+>&#13;            Examine desde un navegador
+            <A
+HREF="http://127.0.0.1:3000/"
+TARGET="_top"
+>http://127.0.0.1:3000/</A
+>.
+            Verá lo que escribió en
+            <TT
+CLASS="literal"
+>app/views/hogar/index.html.erb</TT
+> en el
+            ambiente HTML que tenga diseñado en
+            <TT
+CLASS="literal"
+>app/views/layouts/application.html.erb</TT
+>.
+          </P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="interacción-con-la-base-de-datos"
+>Interacción con la base de datos</A
+></H5
+><P
+>&#13;            Puede examinar la tabla creada e interactuar con la base de
+            datos con la interfaz texto de SQLite como se ejemplifica a
+            continuación:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    $ rails dbconsole
+    sqlite&#62; .schema
+    CREATE TABLE "departamentos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre"
+    varchar(500), "latitud" float, "longitud" float, "created_at" datetime, "updated_at" datetime);
+    CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
+    CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version"
+    );
+</PRE
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="ayudas-para-usar-una-base-de-datos-postgresql-existente"
+>Ayudas para usar una base de datos PostgreSQL
+          existente:</A
+></H5
+><P
+>&#13;            Se recomienda emplear UTF8 como codificación de PostgreSQL
+            (si emplea otra codificación convierta sacando un respaldo
+            eliminando la base, volviéndola a crear con
+            <TT
+CLASS="literal"
+>-E UTF8</TT
+> y restaurando los datos).
+          </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Arregle la aplicación recién creada para que emplee
+                PostgreSQL, modificando parámetros de base de datos en
+                <TT
+CLASS="literal"
+>config/database.yml</TT
+>. Si crea una
+                nueva aplicación:
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        cd ..
+        rails new prueba1 --database=postgresql
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Si lo requiere en otra terminal cree un usuario para la
+                base de datos que será el que empleará desde su
+                aplicación ruby:
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;         doas su - _postgresql
+        $ createuser -Upostgres -h/var/www/tmp prueba
+        Shall the new role be a superuser? (y/n) n
+        Shall the new role be allowed to create databases? (y/n) y
+        Shall the new role be allowed to create more new roles? (y/n) n
+        $ psql -h/var/www/tmp -Upostgres psql (9.3.6) Type "help" for help.
+        postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
+</PRE
+><P
+></P
+><UL
+><LI
+><P
+>&#13;                Vuelva a las fuentes de la aplicación y modifique los
+                parámetros de la base de datos editando
+                <TT
+CLASS="literal"
+>conf/database.ym</TT
+>l Ponga el usuario
+                recién creado, la clave y en la especificación de cada
+                una de las 3 bases de datos (desarrollo, pruebas y
+                producción) agregue la ruta de la conexión al motor de
+                bases de datos: <TT
+CLASS="literal"
+>host: /var/www/tmp/</TT
+>
+              </P
+></LI
+><LI
+><P
+>&#13;                A manera de prueba de su configuración intente ingresar
+                a un intérprete de órdenes para su base de datos con:
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        rails dbconsole
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Si las tablas de la base de datos no emplean la
+                convención para nomenclatura de Ruby on Rails (nombres
+                de tabla en plural, clases en singular) agregue al
+                archivo <TT
+CLASS="literal"
+>config/environment.rb</TT
+>:
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        ActiveRecord::Base.pluralize_table_names=false
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Además de esto para que las pruebas puedan operar
+                seguramente deberá renombrar los archivos con datos de
+                prueba del directorio <TT
+CLASS="literal"
+>tests/fixtures</TT
+>,
+                y en lugar de dejar forma plural dejar forma singular.
+                Si el nombre de tabla es muy diferente en el modelo
+                puede usar
+                <TT
+CLASS="literal"
+>self.table_name = "cc"</TT
+> como
+                se indica en {8}.
+              </P
+></LI
+><LI
+><P
+>&#13;                Para generar un volcado inicial de la base de datos en
+                <TT
+CLASS="literal"
+>db/structure.sql</TT
+> (incluyendo
+                características no portables de PostgreSQL a otros
+                motores de bases de datos), agregue al archivo
+                <TT
+CLASS="literal"
+>config/application.rb</TT
+> la línea
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;       config.active_record.schema_format=:sql
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Después ejecute la tarea rake apropiada (ver {4}):
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        rake db:structure:dump
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Genere clases (modelos) en blanco en el directorio
+                <TT
+CLASS="literal"
+>app/models</TT
+> para cada una de las
+                tablas de su aplicación, por ejemplo para la tabla
+                <TT
+CLASS="literal"
+>mitabla</TT
+> :
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        rails generate model mitabla --migration=false --timestamp=false
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Cuando la aplicación esté en operación ActiveRecord
+                tomará la estructura directamente de la base de datos,
+                no de los modelos en sus fuentes. Sin embargo puede ser
+                útil poner comentarios en esos modelos con los campos de
+                cada tabla. Esto puede hacerse instalando la gema
+                <TT
+CLASS="literal"
+>annotate</TT
+> con:
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    doas gem install annotate
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;y ejecute:
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;        annotate
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Si desea ayuda en la generación de controladores y
+                vistas para sus tablas, instale
+                <TT
+CLASS="literal"
+>doas gem install</TT
+>schema_to_scaffold`<TT
+CLASS="literal"
+>,     genere (puede ser momentáneamente) el archivo</TT
+>db/schema.rb`
+                con
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    rake db:schema:dump
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;y ejecute
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;    scaffold
+</PRE
+><P
+>&#13;            para ver las instrucciones que debe dar a rails para generar
+            modelos, controladores y vistas para las tablas de la base
+            de datos.
+          </P
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="detalles-para-tener-en-cuenta-al-migrar-aplicaciones"
+>Detalles para tener en cuenta al migrar
+          aplicaciones</A
+></H5
+><P
+>&#13;            RoR tiene sus propias convenciones respecto a SQL, nombres
+            de tablas y demás, en ocasiones puede ser mejor intercambiar
+            datos JSON con una aplicación ya existente que interactúe
+            con la base de datos. Sin embargo si desea emplear RoR tanto
+            como pueda para interactuar con la base de datos, tenga en
+            cuenta:
+          </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Toda tabla creada y maneja por RoR se espera que tenga
+                los campos <TT
+CLASS="literal"
+>created_at</TT
+> y
+                <TT
+CLASS="literal"
+>updated_at</TT
+> de tipo
+                <TT
+CLASS="literal"
+>datetime</TT
+> . Puede generar una
+                migración que agregue estos campos digamos para la tabla
+                <TT
+CLASS="literal"
+>intervalo</TT
+> con
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    rails g migration addTiempoToIntervalo created_at:datetime
+    updated_at:datetime
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;tras lo cual debe editar la migración creada para asegurar que queda
+bien (por ejemplo pasando a singular la tabla si ese es su caso).
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Por defecto cada tabla debe tener una única llave
+                primaria de nombre <TT
+CLASS="literal"
+>id</TT
+> y tipo entero
+                autoincremental. Esto puede cambiarse un poco –pero no
+                del todo según {6}– la sugerencia allí dada es definir
+                la llave primaria en SQL en la migración, la cual debe
+                incluir <TT
+CLASS="literal"
+>id:false</TT
+> y en el modelo
+                agregar
+                <TT
+CLASS="literal"
+>self.primary_key=:campo_llave_primaria</TT
+>.
+                Por ejemplo si la llave primaria de una tabla usuario
+                debe ser <TT
+CLASS="literal"
+>id</TT
+> pero de tipo
+                <TT
+CLASS="literal"
+>string</TT
+> , la migración será:
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        create_table "usuario", id: false, force: true do |t|
+          t.string "id", limit: 15, null: false
+          t.string "nombre", limit: 50 ...
+          t.datetime "created_at"
+          t.datetime "updated_at"
+        end
+        add_index "usuario", ["id"], name: "index_usuario_on_id",
+        unique: true, using: :btree
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;Y en el modelo `app/models/usuario.rb` debe quedar:
+</PRE
+><PRE
+CLASS="programlisting"
+>&#13;        class Usuario &#60; ActiveRecord::Base
+          ...
+          self.primary_key=:id
+        end
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Aunque es posible insertar datos iniciales para algunas
+                tablas en <TT
+CLASS="literal"
+>db/seeds.rb</TT
+>, los métodos
+                por defecto de RoR emplearán un campo autoincremental
+                para la identificación, puede insertarse directamente en
+                SQL, como se explica en {7}, con:
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        connection = ActiveRecord::Base.connection()
+        connection.execute("INSERT INTO mitabla(id, nombre) VALUES ('id1', 'nom1')")
+</PRE
+></DIV
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="localización"
+>4.3 Localización</A
+></H5
+><P
+>&#13;            Si su público objetivo habla principalmente español puede:
+          </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Instalar la gema <TT
+CLASS="literal"
+>rails-i18n</TT
+> que
+                incluye traducción a español y otros idiomas de varias
+                cadenas de Ruby on Rails
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;       doas gem install rails-i18n
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Agregar <TT
+CLASS="literal"
+>gem "rails-i18n"</TT
+> en
+                su archivo <TT
+CLASS="literal"
+>Gemfile</TT
+> y ejecutar
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        bundle update
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Configurar en <TT
+CLASS="literal"
+>config/application.rb</TT
+> :
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        config.time_zone = 'America/Bogota'
+        config.i18n.default_locale = :es
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;                Eventualmente corregir inflexiones singular/plural en
+                <TT
+CLASS="literal"
+>config/initializers/inflections.rb</TT
+>,
+                por ejemplo (ver {3}):
+              </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;        ActiveSupport::Inflector.inflections do |inflect|
+          inflect.irregular 'pais', 'paises'
+        end
+</PRE
+></DIV
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="depuración"
+>Depuración</A
+></H4
+><P
+>&#13;          Como se explica en {5}, desde la aplicación en rails puede
+          entrar a depurar:
+        </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Instale la gema
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    gem install byebug
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Para activar el depurador en sitios en producción debe
+              además iniciar el servidor web con
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    rails s --debugger
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              En el sitio de las fuentes donde quiere comenzar a depurar
+              llamando la función
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    byebug
+</PRE
+><P
+>&#13;          Ruby también ofrece facilidades para medir tiempos como se
+          resume en {4}.
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="lecturas-recomendadas-y-referencias"
+>Lecturas recomendadas y referencias</A
+></H4
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              {1} http://guides.rubyonrails.org/getting_started.html
+            </P
+></LI
+><LI
+><P
+>&#13;              {2}
+              http://stackoverflow.com/questions/7092107/rails-3-1-error-could-not-find-a-javascript-runtime
+            </P
+></LI
+><LI
+><P
+>&#13;              {3}
+              http://stackoverflow.com/questions/5285048/rails-3-routing-singular-option
+            </P
+></LI
+><LI
+><P
+>&#13;              {4} http://www.caliban.org/ruby/rubyguide.shtml
+            </P
+></LI
+><LI
+><P
+>&#13;              {5}
+              http://guides.rubyonrails.org/debugging_rails_applications.html
+            </P
+></LI
+><LI
+><P
+>&#13;              {6}
+              http://stackoverflow.com/questions/1200568/using-rails-how-can-i-set-my-primary-key-to-not-be-an-integer-typed-column
+            </P
+></LI
+><LI
+><P
+>&#13;              {7}
+              http://stackoverflow.com/questions/6223803/execute-sql-script-inside-seed-rb-in-rails3
+            </P
+></LI
+><LI
+><P
+>&#13;              {8}
+              http://stackoverflow.com/questions/7542976/add-timestamps-to-an-existing-table
+            </P
+></LI
+><LI
+><P
+>&#13;              {9}
+              http://stackoverflow.com/questions/4613574/how-do-i-explicitly-specify-a-models-table-name-mapping-in-rails
+            </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="java"
+>Java</A
+></H3
+><P
+>&#13;        Desde OpenBSD 4.7 se incluyó un porte oficial de Java de fuentes
+        abiertas, se trata del <TT
+CLASS="literal"
+>jdk-1.7</TT
+>.
+      </P
+><P
+>&#13;        Si requiere versiones anteriores de Java o si requiere el plugin
+        para Firefox deberá compilar una versión anterior.
+      </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="compilacion"
+>Compilación de JDKs de fuentes cerradas</A
+></H4
+><P
+>&#13;          Las versiones anteriores a la 1.7, deben compilarse como
+          portes (de subdirectorios de
+          <TT
+CLASS="literal"
+>/usr/ports/devel/jdk/</TT
+>), pues las licencias
+          de las fuente exigen que al descargar de las mismas las haga
+          directamente de los sitios de distribución. Al intentar
+          compilar cada uno podrá ver instrucciones que le indican de
+          donde descargar las fuentes para ubicarlas en
+          <TT
+CLASS="literal"
+>/usr/ports/distfiles</TT
+>.
+        </P
+><P
+>&#13;          Tras descargar manualmente las fuentes, la compilación e
+          instalación son directas (i.e con <TT
+CLASS="literal"
+>make</TT
+> y
+          <TT
+CLASS="literal"
+>make install</TT
+> respectivamente).
+        </P
+><P
+>&#13;          Si por ejemplo instala <TT
+CLASS="literal"
+>jdk-1.4</TT
+> los binarios
+          quedarán en <TT
+CLASS="literal"
+>/usr/local/jdk1.4/bin/</TT
+> así que
+          es recomendable que agregue tal ruta a su variable
+          <TT
+CLASS="literal"
+>PATH</TT
+> por ejemplo en su archivo
+          <TT
+CLASS="literal"
+>~/.profile</TT
+> o el equivalente.
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="plugin-java"
+>Plugin de Java para Mozilla y Firefox</A
+></H4
+><P
+>&#13;          El <TT
+CLASS="literal"
+>jdk-1.4</TT
+> incluye un plugin que puede
+          emplearse con <TT
+CLASS="literal"
+>mozilla</TT
+> o
+          <TT
+CLASS="literal"
+>mozilla-firefox</TT
+>. Basta ejecutar:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd  ~/.mozilla
+    mkdir plugins
+    cd plugins
+    ln -s /usr/local/jdk-1.4.2/jre/plugin/i386/ns610/libjavaplugin_oji.so .
+</PRE
+><P
+>&#13;          después reiniciar <TT
+CLASS="literal"
+>mozilla-firefox</TT
+> y
+          verificar que el plugin esté operando abriendo el URL
+          <TT
+CLASS="literal"
+>about:plugins</TT
+>. Como se indica en
+          http://archives.neohapsis.com/archives/openbsd/2005-09/2253.html,
+          para que puedan cargarse applets es necesario aumentar el
+          límite de memoria para datos con algo como:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    ulimit -d 2000000
+</PRE
+><P
+>&#13;          que de requerirse puede ejecutarse desde la cuenta root (cuyo
+          límite máximo es mayor que el de cuentas de usuario).
+        </P
+></DIV
+></DIV
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notas</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN1315"
+HREF="x1187.htm#AEN1315"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;              Si usa <TT
+CLASS="literal"
+>ksh</TT
+> puede ver una lista de
+              posibles programas que le permitan imprimir, tecleando
+              <TT
+CLASS="literal"
+>dvi</TT
+> desde un intérprete de órdenes y
+              presionando Tab dos veces.
+            </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN1391"
+HREF="x1187.htm#AEN1391"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;              Puede cambiar el diccionario personal que
+              <TT
+CLASS="literal"
+>ispell</TT
+> debe emplear con la opción
+              <TT
+CLASS="literal"
+>-p archivo</TT
+>
+            </P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1037.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x2239.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuración y uso de programas y servicios básicos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuración y uso de algunos dispositivos y servicios</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
