@@ -96,7 +96,6 @@ mplayer-[v]	Escuchar y ver diversidad de audio y vídeo
 musescore-[v]		Software de notación musical WYSIWYG (MuseScore)
 libreoffice-[v]	Aplicaciones de oficina
 libreoffice-i18n-es-[v]	Localización en Español para LibreOffice
-pidgin-[v]		Mensajería (soporta protocolo SILC)
 qemu-[v]		Emulador de varios sistemas
 vim-[v]-gtk3	Editor de texto eficiente que requiere estudio previo
 vlc-[v]		Reproductor Multimedia
@@ -120,7 +119,6 @@ hexedit-[v]		Ver y editar archivos en hexadecimal o ASCII
 htop-[v]		Visor de procesos interactivo para sistemas Unix
 ImageMagick-[v]	Conversión de formatos gráficos
 ispell-[v]	Chequea ortografía interactivamente
-ispell-[v]-spanish	Diccionario en español usado por aspell
 mutt-[v]		Cliente de correo
 neovim-[v]		Continuación y extensión de vim
 rcm-[v]		Maneja archivos de configuración
@@ -195,6 +193,8 @@ atk2mm-[v]		Interfaz en C++ para la librería ATK
 audacious-player-[v]	Reproductor gráfico que soporta muchos formatos
 audacious-plugins-[v]	Extensiones de entrada y salida para Audacious
 avahi-[v]		Descubrimiento de servicio DNS multi-distribución
+avahi-glib-[v]	
+avahi-libs-[v]	
 babl-[v]		Librería para conversión dinámica de formatos de puntos
 blas-[v]		Subprogramas básicos de álgebra lineal
 boehm-gc-[v]	Recolector de basura y detector de fallas para C y C++
@@ -309,6 +309,7 @@ hyphen-[v]		Librería de separación silábica
 icu4c-[v]		Componentes internacionales para Unicode
 icu4c-wwwdata-[v]	Datos ICU para usar en la jaula chroot /var/ww
 ijs-[v]		Librería para transmisión de imágenes raster
+Imath-[v]
 imlib2-[v]		Librería para manipulación de imágenes 2
 iodbc-[v]		Manejador ODBC 2
 iso-codes-[v]		Lista de códigos ISO de países, idiomas y monedas
@@ -350,7 +351,6 @@ libdvdread-[v]	Acceso a archivos DVD
 libebml-[v]		Librería extensible de meta lenguaje binario
 liberation-fonts-[v]	Sustituto para fuentes principales MS TTF
 libevent-[v]		Librería para notificación de eventos
-libexecinfo-[v]	Facilidad backtrace
 libexif-[v]		Extrae tags de cámara digital de imágenes JPEG
 libexttextcat-[v]	Librería para adivinar idioma teniendo en cuenta UTF-8
 libfilezilla-[v]	Librería de soporte para FileZilla
@@ -363,6 +363,7 @@ libglade2-[v]	Carga interfaces Glade
 libgnome-keyring-[v]	Librería GNOME para integración con keyring
 libgpg-error-[v]	Códigos de error de GnuPG
 libgsf-[v]		Archivos estructurados de Gnome
+libhandy-[v]
 libheif-[v]		Codificador/decodificador de HEIF ISO/IEC 23008-12:2017
 libiconv-[v]		Conversión entre codificaciones de caracteres
 libid3tag-[v]	Lector de marcas ID3
@@ -387,7 +388,6 @@ libpaper-[v]		Librería para manejar tipos de papel
 libplacebo-[v]	Librería reusable para vídeo acelerado por GPU
 libproxy-[v]	Librería para manejar detalles de un proxy
 libpsl-[v]		Librería con lista de sufijos pública
-libpurple-[v]	Librería multi-protocolo de mensajería instantánea
 libraw-[v]		Librería para leer archivos RAW
 librsvg-[v]		Librería para reconocer archivos SVG basada en SAX
 librttopo-[v]	Librería de topología RT
@@ -417,11 +417,12 @@ libunistring-[v]	Manipula cadenas Unicode
 libusb1-[v]	Rutinas para manejar dispositivos USB
 libuv-[v]		Librería para entrada/salida multiplataforma
 libv4l-[v]		Librería en espacio de usuario de libv4l
-libvterm-[v]	Librería para emular una termina VT220/xterm/ECMA-48
 libvhdi-[v]	Librería y herramientas para el formato de imagenes VHD
+libvidstab-[v]
 libvmdk-[v]	Librería y herramientas para el formato de vmdk
 libvorbis-[v]		Codec para compresión de audio
 libvpx-[v]	Codec para video VP8 de Google
+libvterm-[v]	Librería para emular una termina VT220/xterm/ECMA-48
 libwebp-[v]		Conversión del formatos gráficos Google WebP
 libwmf-[v]	Conversión y manejo WMF
 libxkbcommon-[v]	Librería para manejar descripciones de teclado
@@ -640,12 +641,11 @@ py-dnspython-[v]	Juego de herramientas DNS para Python
 py-gobject-[v]	Uniones en python para gobjects glib2
 py-gtk2-[v]	Conexión con GTK+2 en Python
 py-setuptools-[v]	Sistema de empaquetamiento de módulos Python
-py-talloc-[v]	Uniones Python 2.7 para talloc
-py-tdb-[v]	Uniones Python 2.7 para tdb
 py3-acme-[v]	Implementación del protocolo ACME
 py3-asn1-[v]	Librería de ASN.1 para Python
 py3-asn1crypto-[v]	Serializador y reconocedor rápido de ASN.1
 py3-beaker-[v]	Librería para sesiones y colchón (buffer) con capa wsgi
+py3-brotli-[v]
 py3-cairo-[v]	Uniones con cairo para Python
 py3-certifi-[v]	Paquete python para revisar certificados 
 py3-cffi-[v]	Interfaz de funciones foráneas para llamar código C
@@ -655,6 +655,7 @@ py3-configobj-[v]	Escribe y lee archivo de configuración
 py3-cparser-[v]	Reconocedor de C en Python puro
 py3-cryptography-[v]	Recetas y primitivas criptográficas en Python
 py3-cryptodome-[v]	Librería criptográfica autocontenida para Python
+py3-dnspython-[v]
 py3-distro-[v]	Provee información sobre el sistema operativo
 py3-gobject3-[v]	Uniones Python para GLib y GObject
 py3-josepy-[v]	Cifrado y firma de objets en Javascript
@@ -672,6 +673,8 @@ py3-requests-[v]	Librería Python para HTTP simple y elegante
 py3-requests-toolbelt-[v]	Cinturón de utilidades para py-requests
 py3-setuptools-[v]	Sistema de empaquetamiento de módulos Python
 py3-six-[v]	Librería de compatibilidad entre Python 2 y 3
+py3-talloc-[v]
+py3-tdb-[v]
 py3-tz-[v]		API de Python para tratar con zonas horarias
 py3-urllib3-[v]	Librería HTTP para Python
 py3-werkzeug-[v]	Colección de utilidades WSGI
@@ -700,7 +703,7 @@ rasqal-[v]		Librería de consultas RDF para Redland
 re2c-[v]		Generador de reconocedores de expresiones regulares
 recode-[v]		Convertir archivos entre juegos de caracteres y usos
 redland-[v]	Interfaz de alto nivel para RDF 
-ruby30-ri_docs-[v]	Documentación de núcleo y librería estándar de Ruby
+ruby31-ri_docs-[v]	Documentación de núcleo y librería estándar de Ruby
 samba-[v]		Interconexión con Windows con protocolos SMB/CIFS
 samba-util-[v]	Librerías comunes para Samba
 sane-backends-[v]	API para acceder a scanners
@@ -722,6 +725,7 @@ taglib-[v]		Para manejar meta-datos de formatos de audio
 tdb-[v]		Librería para base de datos trivial
 tevent-[v]	Sistema de eventos basado en talloc
 tiff-[v]		Manipula formato gráfico TIFF
+tree-sitter-[v] 	
 twolame-[v]	Codificador de MPEG Audio Capa 2 (MP2) optimizado
 unibilium-[v]		Librería básica de terminfo
 vamp-plugin-sdk-[v]	API de extensiones para audio
