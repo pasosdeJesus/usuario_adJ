@@ -1365,3 +1365,75 @@ para datos con algo como:
 
 que de requerirse puede ejecutarse desde la cuenta root (cuyo límite
 máximo es mayor que el de cuentas de usuario).
+
+
+## Criptomonedas {#criptomonedas}
+
+### TON {#ton}
+
+Se trata de un blockchain diseñado para procesar muchas transacciones 
+con comisiones bajas.  El diseño inicial es de Nikolai Durov, --quien
+también diseñó y opera Telegram-- pero desde el 2020 es operado e
+implementado por otras personas de la Fundación TON.
+
+Las transacciones se especifican en contratos inteligentes, que son 
+programas para la Máquina Virtual TON (TVM), que corre en rondas en varios 
+servidores llamados validadores. Los validadores ejecutan los contratos 
+en rondas cobran comisiones a cada contrato y envian mensajes que los 
+contratos producen a otros contratos.
+
+Cada contrato es como una unidad de trabajo para un validador en una
+ronda, que debe ejecutarse en un tiempo limitado y pagar comisión por
+su ejecución, por el espacio de almacenamiento que emplee y por enviar
+mensajes a oros contratos --mensajes que se procesaran asincronamente
+en una ronda diferente de los validadores.
+
+La moneda principal en este blockcahin es TON (o TONcoin) usada y 
+producida por los validadores.
+
+Las herramientas básicas están disponibles en el paquete ton de adJ que
+incluyen:
+* Librería en lenguaje ensamblador (llamado fift) ubicada en
+  `/usr/local/lib/fift`
+* Varios contratos en `/usr/local/share/ton/smartcont`
+* Diversos binarios que incluyen:
+  * `fift` para ejecutar instrucciones en la máquina virtual TON
+    y depurar y para crear binarios para esa máquina virtual a partir de 
+    fuentes en lenguaje ensamblador fift.
+  * `func` para compilar a binarios para TVM a partir de fuentes en
+    lenguaje FunC.
+  * `lite-client` para conectarse a una red TON y hacer consulta a los
+    validadores.
+  * `tonlib-cli` Uso de la librería tonlib desde la terminal, la cual 
+    permite hacer operaciones con billetera(s).
+  * `validator-engine` y `validator-engine-console` para operar un nodo
+    validador
+
+Es importante que en su archivo `~/.profile` (o equivalente como
+`~/.zshrc.local` si usa zsh) agregue:
+```
+export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
+```
+
+#### Referencias
+
+* Para aprender sobre el diseño y arquitectura de la red TON:
+  https://ton.org/docs/#/docs
+* Para aprender sobre fift: https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md
+* Para aprender sobre func: https://ton.org/docs/#/smart-contracts/
+
+
+#### toncli para probar un contrato inteligente {#toncli}
+
+Para facilitar la ejecución de pruebas a un contrato inteligente 
+puede instalar el paquete en python toncli de esta forma:
+```
+doas pkg_add py3-pip
+doas pip install toncli
+```
+
+Tras esto, debe poder ejecutar
+```
+toncli
+```
+

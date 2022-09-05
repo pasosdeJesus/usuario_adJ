@@ -1303,6 +1303,7 @@ continuar.
 
 Página `man vnconfig`.
 
+
 ## Teclado en español {#teclado-en-espanol}
 
 ### En las consolas tipo texto {#consolas}
@@ -1385,3 +1386,56 @@ y asegurarse de ejecutar `xmodmap ~/.Xmodmap` durante el arranque de su
 sesión X (podría ser por ejemplo agregándolo a `~/.xsession`)
 
 [^tec.1]: Tecla de composición: en inglés *compose key*
+
+##  Varios usuarios {#varios-usuarios}
+
+### Creación de un segundo usuario
+
+Cree la cuenta con:
+```
+doas adduser
+```
+Respondiendo las preguntas que este programa hace.
+
+Tras crear la cuenta de un segundo usuario (digamos `segundousuario`)
+puede configurar `fluxbox` copiando la configuración del primero y 
+cambiando rutas e.g
+```
+cp /home/primerusuario/.xsession ~/
+cp -rf /home/primerusuario/.fluxbox ~/
+for i in `find .fluxbox -exec grep -l primerusuario {} ';'`; do 
+  sed -i -e 's/primerusuario/segundousuario/g' $i; 
+done
+```
+
+### Desde la cuenta de un primer usuario ejecutar programas como un segundo usuario
+
+Para ejecutar una orden no gráfica, sólo en consola:
+```
+su - segundousuario -c 'man man'
+```
+que pedirá la clave del segundo usuario y ejecutara `man man`
+
+O para quedar en el interprete de ordenes configurado para el segundo usuario:
+```
+doas su - segundousuario
+```
+
+Si necesita ejecutar programas gráficos:
+
+1. El primer usuario da permiso de usar su sesión de X-Window a cualquier
+   usuario:
+   ```
+   xhost +
+   ```
+2. Se inicia una terminal con una sesión del segundo usuario:
+  ```
+  doas su - segundousuario
+  ```
+3. En la terminal del segundo usuario se configura la salida para X-Window
+   y se ejecuta la orden que usa X-Window:
+   ```
+   export DISPLAY=:0.0
+   chrome
+   ```
+

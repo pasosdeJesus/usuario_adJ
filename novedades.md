@@ -1,3 +1,8 @@
+Versión 7.1
+:   - Instrucciones básicas para añadir una cuenta de usuario [xref](#varios-usuarios)
+    - Comienza sección sobre blockchain ton y las herramientas
+      disponibles en adJ [xref](#ton)
+
 Versión 6.9
 :   - Ortografía
     - Usa `pandoc` reciente de portes de OpenBSD
