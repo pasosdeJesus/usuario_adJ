@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Instalaciones duales</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Configuración y uso de algunos dispositivos y servicios"
+HREF="x2275.htm"><LINK
+REL="NEXT"
+TITLE="Paquetes incluidos en adJ"
+HREF="a3165.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x2275.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="a3165.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="duales"
+>Instalaciones duales</A
+></H1
+><P
+>&#13;    Aunque no es recomendable, es posible tener en un mismo computador
+    OpenBSD/adJ y otros sistemas operativos. En esta sección se
+    describen algunos detalles de estas configuraciones.
+  </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="con-linux"
+>Dual con Linux</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="arranque-multiple"
+>Arranque múltiple</A
+></H3
+><P
+>&#13;        Si deja en su computador tanto Linux como adJ podrá configurar
+        GRUB para arrancar cualquiera de los dos sistemas. Las
+        instrucciones precisas dependen de la versión de Ubuntu y la
+        forma como haya instalado los sistemas, se sugiere leer
+        <A
+HREF="https://dhobsd.defensor.info/grub2.html"
+TARGET="_top"
+>https://dhobsd.defensor.info/grub2.html</A
+>.
+      </P
+><P
+>&#13;        Por ejemplo con Ubuntu 20.04, y suponiendo que el particionado
+        es en modo EFI, debe agregar en
+        <TT
+CLASS="literal"
+>/etc/grub.d/40_custom</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    menuentry "adJ" {
+      set root=(hd0,gpt1)
+        chainloader /efi/Boot/bootx64.efi
+    } 
+           
+</PRE
+><P
+>&#13;        remplazando <TT
+CLASS="literal"
+>gpt1</TT
+> por la partición donde haya
+        quedado el arranque EFI. Después ejecute:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    sudo update-grub2
+</PRE
+><P
+>&#13;        y reinicie.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="montaje-de-directorios-del-otro-sistema"
+>Montar directorios del otro sistema</A
+></H3
+><P
+>&#13;        Desde OpenBSD podrá montar una partición ext2 de Linux (digamos
+        <TT
+CLASS="literal"
+>/dev/wd0i</TT
+> que puede examinar con
+        <TT
+CLASS="literal"
+>disklabel</TT
+>) con:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas mkdir -p /mnt/linux
+    doas mount -t ext2 /dev/wd0i /mnt/linux 
+</PRE
+><P
+>&#13;        Desde Linux podrá montar una partición de OpenBSD usando el tipo
+        ufs con la opción 44bsd. Si una partición para OpenBSD está
+        dividida en slices Linux los detectará durante el arranque y
+        asignará dispositivos apropiados (busque los nombres entre los
+        mensajes de <TT
+CLASS="literal"
+>dmesg</TT
+>):
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    sudo mkdir -p /mnt/openbsd
+    sudo mount -t ufs -o ufstype=44bsd /dev/hda1 /mnt/openbsd 
+</PRE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="con-windows-xp"
+>Dual con Windows XP o NT</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="arranque-multiple-ntfs"
+>Arranque múltiple</A
+></H3
+><P
+>&#13;        El arranque múltiple puede administrarse con NTLDR el gestor de
+        arranque de Windows XP/NT. La herramienta Bootpart le facilitará
+        configurar el menu de arranque que NTLDR puede presentar,
+        descárguelo bien del CD adJ del subdirectorio
+        <TT
+CLASS="literal"
+>util/bootpart</TT
+> o de
+        <A
+HREF="http://www.winimage.com/bootpart.htm"
+TARGET="_top"
+>http://www.winimage.com/bootpart.htm</A
+>,
+        descomprímalo y copie <TT
+CLASS="literal"
+>bootpart.exe</TT
+> al
+        directorio <TT
+CLASS="literal"
+>C:\</TT
+>. Inicie un interprete de
+        órdenes (Inicio-&#62;Ejecutar-&#62;cmd) y después:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd \
+    bootpart 
+             
+</PRE
+><P
+>&#13;        Con esto podrá ver el número de la partición de OpenBSD que
+        distinguirá porque su tipo es <TT
+CLASS="literal"
+>a6</TT
+>. Suponiendo
+        que fuera la partición 1, después desde el mismo interprete
+        teclee:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    bootpart 1 lba openbsd.prt OpenBSD
+             
+</PRE
+><P
+>&#13;        tras esto reinicie Windows y al arranque debe poder ver un menú
+        que le permite elegir con las flechas bien Windows XP o bien
+        OpenBSD.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="discos-ntfs"
+>Montaje de particiones NTFS</A
+></H3
+><P
+>&#13;        Es posible montar particiones escritas por Windows en formato
+        NTFS, pero sólo en modo lectura.
+      </P
+><P
+>&#13;        Puede montar una partición (digamos <TT
+CLASS="literal"
+>wd0i</TT
+>)
+        con:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    mkdir /mnt/winc
+    mount_ntfs /dev/wd0i /mnt/winc
+</PRE
+><P
+>&#13;        o agregar una entrada en <TT
+CLASS="literal"
+>/etc/fstab</TT
+> para
+        montaje automático en cada arranque:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    /dev/wd0i /mnt/winc ntfs ro 0,0
+</PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x2275.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="a3165.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuración y uso de algunos dispositivos y servicios</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Paquetes incluidos en adJ</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
