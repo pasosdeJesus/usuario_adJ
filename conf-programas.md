@@ -1393,6 +1393,7 @@ producida por los validadores.
 
 Las herramientas básicas están disponibles en el paquete ton de adJ que
 incluyen:
+
 * Librería en lenguaje ensamblador (llamado fift) ubicada en
   `/usr/local/lib/fift`
 * Varios contratos en `/usr/local/share/ton/smartcont`
