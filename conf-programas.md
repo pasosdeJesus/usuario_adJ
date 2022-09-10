@@ -1419,39 +1419,27 @@ export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
 #### Referencias
 
 * Para aprender sobre el diseño y arquitectura de la red TON:
-  <https://ton.org/docs/#/docs>
-* Para aprender sobre fift: <https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md>
-* Para aprender sobre func: <https://ton.org/docs/#/smart-contracts/>
+  https://ton.org/docs/#/docs
+* Para aprender sobre fift: https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md
+* Para aprender sobre func: https://ton.org/docs/#/smart-contracts/
 
 
-#### toncli 0.38 para probar un contrato inteligente {#toncli}
+#### toncli para probar un contrato inteligente {#toncli}
 
 Para facilitar la ejecución de pruebas a un contrato inteligente 
-puede instalar el paquete toncli (escrito en python).
-
-La versión 0.38 de toncli opera bien con las herramientas de ton de comienzo
-de Agosto de 2022 (son las que incluimos en adJ 7.1 para facilitar el uso de
-toncli 0.38 como se describe aquí).
-
+puede instalar el paquete en python toncli de esta forma:
 ```
 doas pkg_add py3-pip
-doas pip3 install toncli
+doas pip install toncli
 ```
 
-Tras esto, debe poder ejecutar lo siguiente para crear la configuración 
-inicial de toncli `~/.config/toncli`:
+Tras esto, debe poder ejecutar
 ```
-cd /usr/local/bin
 toncli
 ```
 
-(si ejecuta la primera vez desde otro directorio `toncli` le preguntará
-rutas de func, fift y lite-client a lo que podrá responder con
-`/usr/local/bin/func`, `/usr/local/bin/fift` y `/usr/local/bin/lite-client`
-respectivamente.
-
-
 ##### Ejemplo de un contrato y sus pruebas con toncli 0.38
+
 Un ejemplo completo para probar un contrato que calcule el máximo común
 divisor entre dos números (como fue enunciado en segunda
 competencia de programación en FunC) está disponible en
@@ -1551,6 +1539,7 @@ Y como contenido de `tests/example.fc`:
 ;; Esta función prepara los datos por pasar a la función gcd dejando 30 y 12 
 ;; en la pila
 ;; El número asignado a function_selected i.e 93344 corresponde al
+
 ;; número asignado a la función tras compilarla, visible en
 ;; build/contract.fift  (al probar otras funciones debe revisar
 ;; ese archivo para asignar el número correspondiente en sus pruebas)
@@ -1571,6 +1560,7 @@ Y como contenido de `tests/example.fc`:
 ;; datos preparados por test_30_12_data() y verifica que sea correcta
 _ test_30_12(int exit_code, cell data, tuple stack,
 		cell actions, int gas) method_id(1) {
+
 	throw_if(100, exit_code != 0);
 
 	int result = first(stack); 
@@ -1579,7 +1569,7 @@ _ test_30_12(int exit_code, cell data, tuple stack,
 }
 ```
 
-Tras esto ya podr�á jeecutar las pruebas con:
+Tras esto ya podrá jeecutar las pruebas con:
 ```
 toncli run_tests
 ```
@@ -1591,4 +1581,3 @@ make
 que deben darle un resultado como el del pantallazo siguiente:
 
 ![Pantallazo con ejecución exitosa de toncli](img/toncliej.png)
-
