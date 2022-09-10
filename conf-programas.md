@@ -1419,22 +1419,176 @@ export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
 #### Referencias
 
 * Para aprender sobre el diseño y arquitectura de la red TON:
-  https://ton.org/docs/#/docs
-* Para aprender sobre fift: https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md
-* Para aprender sobre func: https://ton.org/docs/#/smart-contracts/
+  <https://ton.org/docs/#/docs>
+* Para aprender sobre fift: <https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md>
+* Para aprender sobre func: <https://ton.org/docs/#/smart-contracts/>
 
 
-#### toncli para probar un contrato inteligente {#toncli}
+#### toncli 0.38 para probar un contrato inteligente {#toncli}
 
 Para facilitar la ejecución de pruebas a un contrato inteligente 
-puede instalar el paquete en python toncli de esta forma:
+puede instalar el paquete toncli (escrito en python).
+
+La versión 0.38 de toncli opera bien con las herramientas de ton de comienzo
+de Agosto de 2022 (son las que incluimos en adJ 7.1 para facilitar el uso de
+toncli 0.38 como se describe aquí).
+
 ```
 doas pkg_add py3-pip
-doas pip install toncli
+doas pip3 install toncli
 ```
 
-Tras esto, debe poder ejecutar
+Tras esto, debe poder ejecutar lo siguiente para crear la configuración 
+inicial de toncli `~/.config/toncli`:
 ```
+cd /usr/local/bin
 toncli
 ```
+
+(si ejecuta la primera vez desde otro directorio `toncli` le preguntará
+rutas de func, fift y lite-client a lo que podrá responder con
+`/usr/local/bin/func`, `/usr/local/bin/fift` y `/usr/local/bin/lite-client`
+respectivamente.
+
+
+##### Ejemplo de un contrato y sus pruebas con toncli 0.38
+Un ejemplo completo para probar un contrato que calcule el máximo común
+divisor entre dos números (como fue enunciado en segunda
+competencia de programación en FunC) está disponible en
+<https://gitlab.com/pasosdeJesus/pruebas_mdc_func>
+
+El contenido de ese repositorio podría conformarse desde
+una terminal con toncli y un editor como `vim` (o uno
+extra-simple y gráfico como `xfe`) con:
+
+```
+toncli start wallet  # inicia proyecto con código de ejemplo de una billetera
+mv wallet pruebas_mdc_func  # Renombra
+cd pruebas_mdc_func
+find .
+```
+
+Verá la estructura de un proyecto toncli típico que incluye:
+```
+project.yaml    # Con datos del proyecto
+build/          # Directorio donde quedan compilados
+fift/           # Directorio con fuentes en fift
+func/           # Directorio con fuentes en FunC
+tests/          # Directorio con pruebas
+```
+
+Podemos reorganizar un poco el proyecto de ejemplo para nuestro
+caso de una sola función en FunC con:
+
+```
+rm  -rf build/*  # no necesitamos lo precompilado del ejemplo
+rm -rf fift # no necesitamos lo que viene del ejemplo en fift
+mv func/code.func func/code.fc   # La extensión .fc es bastante usada
+```
+
+Editar `project.yaml` para que quede el siguiente contenido que
+indica que el código func por probar está en `func/code.fc` y
+las pruebas están en `tests/example.fc` (para editar puede 
+ver <http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html>):
+```
+contract:
+  func:
+      - func/code.fc
+        tests:
+            - tests/example.fc
+```
+
+El contenido de `func/code.fc`:
+
+```
+{-
+  TAREA 1 - Maximo divisor común
+
+  Enunciando basado en 
+  https://github.com/vtamara/func-contest2/blob/master/1.fc
+
+  Escribir un método que calcule el máximo divisor común entre 2 enteros
+  mayores o iguales a 1 y menores que 1048576.
+-}
+
+() recv_internal() {
+}
+
+;; por probar
+(int) gcd(int a, int b) method_id {
+
+  ;; Solución con base en 
+  ;; https://people.cs.ksu.edu/~schmidt/301s14/Exercises/euclid_alg.html
+  int k = a;
+  int m = b;
+  if (b > a) {
+    k = b;
+    m = a;
+  }
+  ;; k es max(a,b) y m = min(a,b)
+
+  while (m != 0) {
+    int r = k % m;
+    k = m;
+    m = r;
+  }
+ 
+  return k;
+}
+```
+
+Y como contenido de `tests/example.fc`:
+
+```
+;; Debemos implementar pares de funciones de pruebas
+;; una de nombre estilo prueba_data y otra de nombre prueba
+;; la primera organiza los datos para pasarlos a la función por
+;; probar y la segunda revisa que el resultado de la función
+;; probada sea el esperado.
+
+;; En este ejemplo probaremos sacar el máximo divisor común entre 30 y 12
+
+;; Esta función prepara los datos por pasar a la función gcd dejando 30 y 12 
+;; en la pila
+;; El número asignado a function_selected i.e 93344 corresponde al
+;; número asignado a la función tras compilarla, visible en
+;; build/contract.fift  (al probar otras funciones debe revisar
+;; ese archivo para asignar el número correspondiente en sus pruebas)
+[int, tuple, cell, tuple, int] test_30_12_data() method_id(0) {
+	int function_selector = 93344; 
+
+	int a = 30;
+	int b = 12;
+
+	tuple stack = unsafe_tuple([a, b]); 
+
+	cell data = begin_cell().end_cell();
+
+	return [function_selector, stack, data, get_c7(), null()];
+}
+
+;; La siguiente función recibe la respuesta de la función gcd a los
+;; datos preparados por test_30_12_data() y verifica que sea correcta
+_ test_30_12(int exit_code, cell data, tuple stack,
+		cell actions, int gas) method_id(1) {
+	throw_if(100, exit_code != 0);
+
+	int result = first(stack); 
+
+	throw_if(101, result != 6); 
+}
+```
+
+Tras esto ya podr�á jeecutar las pruebas con:
+```
+toncli run_tests
+```
+o más simple
+```
+make
+```
+
+que deben darle un resultado como el del pantallazo siguiente:
+
+![Pantallazo con ejecución exitosa de toncli](img/toncliej.png)
 
