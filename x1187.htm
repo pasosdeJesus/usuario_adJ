@@ -13,7 +13,7 @@ TITLE="Configuración y uso de programas y servicios básicos"
 HREF="x1037.htm"><LINK
 REL="NEXT"
 TITLE="Configuración y uso de algunos dispositivos y servicios"
-HREF="x2293.htm"></HEAD
+HREF="x2327.htm"></HEAD
 ><BODY
 CLASS="sect1"
 BGCOLOR="#FFFFFF"
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="x2293.htm"
+HREF="x2327.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
@@ -92,7 +92,7 @@ NAME="fluxbox"
 >&#13;        La operación básica de este liviano y estético administrador de
         ventanas se describe en
         <A
-HREF="a4110.htm"
+HREF="a4141.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -262,7 +262,7 @@ CLASS="literal"
 ><P
 >&#13;        La operación básica se describe en
         <A
-HREF="a4110.htm"
+HREF="a4141.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -310,7 +310,7 @@ CLASS="literal"
 ><P
 >&#13;        Como se describe en
         <A
-HREF="a4110.htm"
+HREF="a4141.htm"
 >xiphosmanual</A
 >, es una
         herramienta gráfica de estudio e investigación bíblica que se
@@ -423,7 +423,7 @@ CLASS="literal"
 >). Puede aprender más sobre este
         procesador en
         <A
-HREF="a4110.htm"
+HREF="a4141.htm"
 >libreoffice-basico</A
 >
       </P
@@ -486,7 +486,7 @@ CLASS="literal"
 >gv</TT
 > en la sección
         <A
-HREF="x2293.htm#uso-impresora"
+HREF="x2327.htm#uso-impresora"
 >la sección de nombre <I
 >Uso de una impresora ya configurada</I
 ></A
@@ -1158,7 +1158,7 @@ CLASS="literal"
 ><P
 >&#13;        El uso básico de mutt puede consultarlo en
         <A
-HREF="a4110.htm"
+HREF="a4141.htm"
 >basico_adJ</A
 >
       </P
@@ -1316,7 +1316,7 @@ CLASS="literal"
 >mutt</TT
 > de
               <A
-HREF="a4110.htm"
+HREF="a4141.htm"
 >basico_adJ</A
 >
             </P
@@ -4153,8 +4153,8 @@ NAME="toncli"
 ></H4
 ><P
 >&#13;          Para facilitar la ejecución de pruebas a un contrato
-          inteligente puede instalar el paquete en python toncli de esta
-          forma:
+          inteligente puede instalar el paquete toncli (escrito en
+          python) de esta forma:
         </P
 ><PRE
 CLASS="programlisting"
@@ -4168,6 +4168,218 @@ doas pip install toncli
 CLASS="programlisting"
 >&#13;toncli
 </PRE
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="ejemplo-de-un-contrato-y-sus-pruebas-con-toncli-0.38"
+>Ejemplo de un contrato y sus pruebas con toncli
+          0.38</A
+></H5
+><P
+>&#13;            Un ejemplo completo para probar un contrato que calcule el
+            máximo común divisor entre dos números (como fue enunciado
+            en segunda competencia de programación en FunC) está
+            disponible en
+            <A
+HREF="https://gitlab.com/pasosdeJesus/pruebas_mdc_func"
+TARGET="_top"
+>https://gitlab.com/pasosdeJesus/pruebas_mdc_func</A
+>
+          </P
+><P
+>&#13;            El contenido de ese repositorio podría conformarse desde una
+            terminal con toncli y un editor (ver sobre editores en adJ
+            en
+            <A
+HREF="http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html"
+TARGET="_top"
+>http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html</A
+>)
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;toncli start wallet         # Inicia proyecto con código de ejemplo de una billetera
+mv wallet pruebas_mdc_func  # Renombra
+cd pruebas_mdc_func
+find .
+</PRE
+><P
+>&#13;            Verá la estructura de un proyecto toncli típico que incluye:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;.
+├── build
+│   ├── contract.fif        Compilado de func/code.fc
+│   └──contract_tests.fif   Compilado automaticamente de tests/example.fc
+├── fift                    Directorio con fuentes en fift (por borrar en este caso)
+├── func
+│   └── code.fc             Código con la función por probar
+├── project.yaml            Estructura del proyecto para toncli
+└── tests
+    └── example.fc          Pruebas a la función que esta'en func/code.fc
+</PRE
+><P
+>&#13;            Podemos reorganizar un poco el proyecto de ejemplo para
+            nuestro caso de una sola función en FunC con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;rm  -rf build/*                  # no necesitamos lo precompilado del ejemplo
+rm -rf fift                      # no necesitamos lo que viene del ejemplo en fift
+mv func/code.func func/code.fc   # La extensión .fc es bastante usada
+</PRE
+><P
+>&#13;            Editar <TT
+CLASS="literal"
+>project.yaml</TT
+> para que quede el
+            siguiente contenido que indica que el código func por probar
+            está en <TT
+CLASS="literal"
+>func/code.fc</TT
+> y las pruebas están
+            en <TT
+CLASS="literal"
+>tests/example.fc</TT
+> :
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;contract:
+  func:
+      - func/code.fc
+        tests:
+            - tests/example.fc
+</PRE
+><P
+>&#13;            El contenido de <TT
+CLASS="literal"
+>func/code.fc</TT
+>:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;{-
+  TAREA 1 - Maximo divisor común
+
+  Enunciando basado en 
+  https://github.com/vtamara/func-contest2/blob/master/1.fc
+
+  Escribir un método que calcule el máximo divisor común entre 2 enteros
+  mayores o iguales a 1 y menores que 1048576.
+-}
+
+() recv_internal() {
+}
+
+;; por probar
+(int) gcd(int a, int b) method_id {
+
+  ;; Solución con base en 
+  ;; https://people.cs.ksu.edu/~schmidt/301s14/Exercises/euclid_alg.html
+  int k = a;
+  int m = b;
+  if (b &#62; a) {
+    k = b;
+    m = a;
+  }
+  ;; k es max(a,b) y m = min(a,b)
+
+  while (m != 0) {
+    int r = k % m;
+    k = m;
+    m = r;
+  }
+ 
+  return k;
+}
+</PRE
+><P
+>&#13;            Y como contenido de <TT
+CLASS="literal"
+>tests/example.fc</TT
+>:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;;; Debemos implementar pares de funciones de pruebas
+;; una de nombre estilo prueba_data y otra de nombre prueba
+;; la primera organiza los datos para pasarlos a la función por
+;; probar y la segunda revisa que el resultado de la función
+;; probada sea el esperado.
+
+;; En este ejemplo probaremos sacar el máximo divisor común entre 30 y 12
+
+;; Esta función prepara los datos por pasar a la función gcd dejando 30 y 12 
+;; en la pila
+;; El número asignado a function_selected i.e 93344 corresponde al
+
+;; número asignado a la función tras compilarla, visible en
+;; build/contract.fift  (al probar otras funciones debe revisar
+;; ese archivo para asignar el número correspondiente en sus pruebas)
+[int, tuple, cell, tuple, int] test_30_12_data() method_id(0) {
+    int function_selector = 93344; 
+
+    int a = 30;
+    int b = 12;
+
+    tuple stack = unsafe_tuple([a, b]); 
+
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+;; La siguiente función recibe la respuesta de la función gcd a los
+;; datos preparados por test_30_12_data() y verifica que sea correcta
+_ test_30_12(int exit_code, cell data, tuple stack,
+        cell actions, int gas) method_id(1) {
+
+    throw_if(100, exit_code != 0);
+
+    int result = first(stack); 
+
+    throw_if(101, result != 6); 
+}
+</PRE
+><P
+>&#13;            Tras esto ya podrá jeecutar las pruebas con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;toncli run_tests
+</PRE
+><P
+>&#13;            o más simple
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;make
+</PRE
+><P
+>&#13;            que deben darle un resultado como el del pantallazo
+            siguiente:
+          </P
+><DIV
+CLASS="figure"
+><A
+NAME="AEN2320"
+></A
+><P
+><B
+>Figura 3. Pantallazo con ejecución exitosa de toncli</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="img/toncliej.png"></P
+></DIV
+></DIV
+></DIV
 ></DIV
 ></DIV
 ></DIV
@@ -4275,7 +4487,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="x2293.htm"
+HREF="x2327.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
