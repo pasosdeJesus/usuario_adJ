@@ -1427,7 +1427,7 @@ export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
 #### toncli para probar un contrato inteligente {#toncli}
 
 Para facilitar la ejecución de pruebas a un contrato inteligente 
-puede instalar el paquete en python toncli de esta forma:
+puede instalar el paquete toncli (escrito en python) de esta forma:
 ```
 doas pkg_add py3-pip
 doas pip install toncli
@@ -1446,11 +1446,11 @@ competencia de programación en FunC) está disponible en
 <https://gitlab.com/pasosdeJesus/pruebas_mdc_func>
 
 El contenido de ese repositorio podría conformarse desde
-una terminal con toncli y un editor como `vim` (o uno
-extra-simple y gráfico como `xfe`) con:
+una terminal con toncli y un editor (ver sobre editores en adJ en
+<http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html>)
 
 ```
-toncli start wallet  # inicia proyecto con código de ejemplo de una billetera
+toncli start wallet         # Inicia proyecto con código de ejemplo de una billetera
 mv wallet pruebas_mdc_func  # Renombra
 cd pruebas_mdc_func
 find .
@@ -1458,26 +1458,30 @@ find .
 
 Verá la estructura de un proyecto toncli típico que incluye:
 ```
-project.yaml    # Con datos del proyecto
-build/          # Directorio donde quedan compilados
-fift/           # Directorio con fuentes en fift
-func/           # Directorio con fuentes en FunC
-tests/          # Directorio con pruebas
+.
+├── build
+│   ├── contract.fif        Compilado de func/code.fc
+│   └──contract_tests.fif   Compilado automaticamente de tests/example.fc
+├── fift                    Directorio con fuentes en fift (por borrar en este caso)
+├── func
+│   └── code.fc             Código con la función por probar
+├── project.yaml            Estructura del proyecto para toncli
+└── tests
+    └── example.fc          Pruebas a la función que esta'en func/code.fc
 ```
 
 Podemos reorganizar un poco el proyecto de ejemplo para nuestro
 caso de una sola función en FunC con:
 
 ```
-rm  -rf build/*  # no necesitamos lo precompilado del ejemplo
-rm -rf fift # no necesitamos lo que viene del ejemplo en fift
+rm  -rf build/*                  # no necesitamos lo precompilado del ejemplo
+rm -rf fift                      # no necesitamos lo que viene del ejemplo en fift
 mv func/code.func func/code.fc   # La extensión .fc es bastante usada
 ```
 
 Editar `project.yaml` para que quede el siguiente contenido que
 indica que el código func por probar está en `func/code.fc` y
-las pruebas están en `tests/example.fc` (para editar puede 
-ver <http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html>):
+las pruebas están en `tests/example.fc` :
 ```
 contract:
   func:

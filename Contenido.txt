@@ -82,7 +82,6 @@ audacious-[v]		Reproductor multimedia
 audacity-[v]		Editor de audio
 chromium-[v]	Navegador web Chrome
 evince-[v]-light	Visor de documentos (proyecto GNOME)
-fbdesk-[v]		Permite poner iconos en escritorio fluxbox
 fluxbox-[v]		Escritorio extra liviano
 fluxter-[v]		Pagina espacios de trabajo en fluxbox
 filezilla-[v]	Transmite archivos (soporta protocolo ssh)
