@@ -1373,11 +1373,11 @@ máximo es mayor que el de cuentas de usuario).
 
 Se trata de un blockchain diseñado para procesar muchas transacciones 
 con comisiones bajas.  El diseño inicial es de Nikolai Durov, --quien
-también diseñó y opera Telegram-- pero desde el 2020 es operado e
+también diseñó y opera Telegram-- pero desde el 2020 TON es operado e
 implementado por otras personas de la Fundación TON.
 
 Las transacciones se especifican en contratos inteligentes, que son 
-programas para la Máquina Virtual TON (TVM), que corre en rondas en varios 
+programas para la Máquina Virtual TON (TVM), que corren en rondas en varios 
 servidores llamados validadores. Los validadores ejecutan los contratos 
 en rondas cobran comisiones a cada contrato y envian mensajes que los 
 contratos producen a otros contratos.
@@ -1385,14 +1385,15 @@ contratos producen a otros contratos.
 Cada contrato es como una unidad de trabajo para un validador en una
 ronda, que debe ejecutarse en un tiempo limitado y pagar comisión por
 su ejecución, por el espacio de almacenamiento que emplee y por enviar
-mensajes a oros contratos --mensajes que se procesaran asincronamente
+mensajes a otros contratos --mensajes que se procesaran asincronamente
 en una ronda diferente de los validadores.
 
 La moneda principal en este blockcahin es TON (o TONcoin) usada y 
-producida por los validadores.
+producida por los validadores.  Puede ver su tasa de cambio e historial
+por ejemplo en <https://coinmarketcap.com/currencies/toncoin/>
 
-Las herramientas básicas están disponibles en el paquete ton de adJ que
-incluyen:
+Las herramientas fundamentales están disponibles en el paquete `ton` de adJ 
+e incluyen:
 
 * Librería en lenguaje ensamblador (llamado fift) ubicada en
   `/usr/local/lib/fift`
@@ -1401,17 +1402,17 @@ incluyen:
   * `fift` para ejecutar instrucciones en la máquina virtual TON
     y depurar y para crear binarios para esa máquina virtual a partir de 
     fuentes en lenguaje ensamblador fift.
-  * `func` para compilar a binarios para TVM a partir de fuentes en
+  * `func` para compilar a lenguaje ensamblador fift a partir de fuentes en
     lenguaje FunC.
-  * `lite-client` para conectarse a una red TON y hacer consulta a los
+  * `lite-client` para conectarse a una red TON e interactuar con los
     validadores.
-  * `tonlib-cli` Uso de la librería tonlib desde la terminal, la cual 
+  * `tonlib-cli` Uso de la librería `tonlib` desde la terminal, la cual 
     permite hacer operaciones con billetera(s).
   * `validator-engine` y `validator-engine-console` para operar un nodo
     validador
 
 Es importante que en su archivo `~/.profile` (o equivalente como
-`~/.zshrc.local` si usa zsh) agregue:
+`~/.zshrc.local` si usa `zsh`) agregue:
 ```
 export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
 ```
@@ -1419,15 +1420,18 @@ export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
 #### Referencias
 
 * Para aprender sobre el diseño y arquitectura de la red TON:
-  https://ton.org/docs/#/docs
-* Para aprender sobre fift: https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md
-* Para aprender sobre func: https://ton.org/docs/#/smart-contracts/
+  <https://ton.org/docs/#/docs>
+* Para aprender sobre fift: 
+  <https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md>
+* Para aprender sobre func: 
+  <https://ton.org/docs/#/smart-contracts/>
 
 
-#### toncli para probar un contrato inteligente {#toncli}
+#### `toncli` para probar un contrato inteligente {#toncli}
 
-Para facilitar la ejecución de pruebas a un contrato inteligente 
-puede instalar el paquete toncli (escrito en python) de esta forma:
+Una vez tenga instalado el paquete `ton`, para facilitar la ejecución
+de pruebas a un contrato inteligente puede instalar el paquete en
+python `toncli` de esta forma:
 ```
 doas pkg_add py3-pip
 doas pip install toncli
@@ -1441,12 +1445,12 @@ toncli
 ##### Ejemplo de un contrato y sus pruebas con toncli 0.38
 
 Un ejemplo completo para probar un contrato que calcule el máximo común
-divisor entre dos números (como fue enunciado en segunda
+divisor entre dos números (problema propuesto en segunda
 competencia de programación en FunC) está disponible en
 <https://gitlab.com/pasosdeJesus/pruebas_mdc_func>
 
 El contenido de ese repositorio podría conformarse desde
-una terminal con toncli y un editor (ver sobre editores en adJ en
+una terminal con `toncli` y un editor (ver sobre editores en adJ en
 <http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html>)
 
 ```
@@ -1474,9 +1478,9 @@ Podemos reorganizar un poco el proyecto de ejemplo para nuestro
 caso de una sola función en FunC con:
 
 ```
-rm  -rf build/*                  # no necesitamos lo precompilado del ejemplo
-rm -rf fift                      # no necesitamos lo que viene del ejemplo en fift
-mv func/code.func func/code.fc   # La extensión .fc es bastante usada
+rm  -rf build/*                # no necesitamos lo precompilado del ejemplo
+rm -rf fift                    # no necesitamos ejemplo en fift
+mv func/code.func func/code.fc # La extensión .fc es bastante usada
 ```
 
 Editar `project.yaml` para que quede el siguiente contenido que
@@ -1542,8 +1546,8 @@ Y como contenido de `tests/example.fc`:
 
 ;; Esta función prepara los datos por pasar a la función gcd dejando 30 y 12 
 ;; en la pila
-;; El número asignado a function_selected i.e 93344 corresponde al
 
+;; El número asignado a function_selected i.e 93344 corresponde al
 ;; número asignado a la función tras compilarla, visible en
 ;; build/contract.fift  (al probar otras funciones debe revisar
 ;; ese archivo para asignar el número correspondiente en sus pruebas)
@@ -1573,7 +1577,7 @@ _ test_30_12(int exit_code, cell data, tuple stack,
 }
 ```
 
-Tras esto ya podrá jeecutar las pruebas con:
+Tras esto ya podrá ejecutar las pruebas con:
 ```
 toncli run_tests
 ```
@@ -1581,7 +1585,12 @@ o más simple
 ```
 make
 ```
+una vez cree un archivo `Makefile` con el siguiente contenido:
+```
+all:
+        toncli run_tests
+```
 
-que deben darle un resultado como el del pantallazo siguiente:
+Deben darle un resultado como el del pantallazo siguiente:
 
 ![Pantallazo con ejecución exitosa de toncli](img/toncliej.png)
