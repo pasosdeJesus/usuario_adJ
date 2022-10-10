@@ -124,7 +124,7 @@
       instalación de OpenBSD</a>.
     </p><p>
       Si tiene la USB o el DVD oficial, configure su UEFI para que
-      arranque por este y reinicie<sup>[<a name="idp866278992" href="#ftn.idp866278992">4</a>]</sup>.
+      arranque por este y reinicie<sup>[<a name="idp859323984" href="#ftn.idp859323984">4</a>]</sup>.
     </p><p>
       Recuerde que si usará el DVD debe dejar su UEFI en modo CSM o
       Legacy. Tenga en cuenta que aún con USB de arranque el modo UEFI
@@ -151,7 +151,7 @@
       Linux y OpenBSD:
     </p><div class="variablelist"><dl><dt><span class="term">
           Nombres y manejo de dispositivos
-        </span></dt><dd><div class="table"><a name="idp866276176"></a><p class="title"><b>Tabla 1. 
+        </span></dt><dd><div class="table"><a name="idp859222608"></a><p class="title"><b>Tabla 1. 
               Nombres de dispositivos
             </b></p><table summary="
               Nombres de dispositivos
@@ -196,7 +196,7 @@
                   </td><td align="left">
                     <code class="literal">/dev/fd0</code>
                   </td><td align="left">
-                    <code class="literal">/dev/fd0c</code><sup>[<a name="idp866283856" href="#ftn.idp866283856">a</a>]</sup>
+                    <code class="literal">/dev/fd0c</code><sup>[<a name="idp859358928" href="#ftn.idp859358928">a</a>]</sup>
                   </td></tr><tr><td align="left">
                     Primera unidad de DVD
                   </td><td align="left">
@@ -204,7 +204,7 @@
                     es SCSI algo como <code class="literal">/dev/sda</code>
                   </td><td align="left">
                     <code class="literal">/dev/cd0c</code>
-                  </td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp866283856" href="#idp866283856">a</a>] </sup>
+                  </td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp859358928" href="#idp859358928">a</a>] </sup>
                         En discos, DVDs y disquetes las particiones se
                         indican con a, b, d y letras que se usan como
                         postfijo. El postfijo c representa el
@@ -343,7 +343,7 @@
       partición <code class="literal">c</code> representa la partición del BIOS
       completa y no debe tocarse, la tercera (<code class="literal">d</code>)
       corresponderá a <code class="literal">/home</code> y la cuarta
-      (<code class="literal">e</code>) a <code class="literal">/var</code><sup>[<a name="idp752338896" href="#ftn.idp752338896">5</a>]</sup>. Note que con este esquema los programas y sus datos
+      (<code class="literal">e</code>) a <code class="literal">/var</code><sup>[<a name="idp430567760" href="#ftn.idp430567760">5</a>]</sup>. Note que con este esquema los programas y sus datos
       estáticos (típicos de los directorios <code class="literal">/bin</code>,
       <code class="literal">/sbin</code> y <code class="literal">/usr</code> quedarán en la
       subpartición <code class="literal">a</code>. Los datos de usuario
@@ -467,7 +467,7 @@
       los componentes que eligió el instalador preparará el directorio
       <code class="literal">/dev</code> de dispositivos y cambiará la partición de
       OpenBSD para que pueda arrancar el sistema en caso de que sea la
-      partición activa<sup>[<a name="idp752277328" href="#ftn.idp752277328">6</a>]</sup>. Puede entonces apagar con la orden
+      partición activa<sup>[<a name="idp430731984" href="#ftn.idp430731984">6</a>]</sup>. Puede entonces apagar con la orden
       <code class="literal">halt -p</code>, retirar el CD y volver a iniciar para
       entrar al sistema instalado. Si tienes problemas para ingresar a
       OpenBSD puede arrancar con el CD de instalación y cuando este
@@ -883,18 +883,18 @@ Identifier “<span class="quote">Screen0</span>” Device “<span class="qu
             Puede consultar el procedimiento para instalar fuentes True
             Type en
             <a href="http://www.openbsd.org/faq/truetype.html" target="_top">http://www.openbsd.org/faq/truetype.html</a>.
-          </p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp866278992" href="#idp866278992">4</a>] </sup>
+          </p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp859323984" href="#idp859323984">4</a>] </sup>
           El método de instalación por red PXE requiere que configure
           otro servidor con los servicios DHCP para asignarle dirección
           durante la instalación y TFTP para que pueda servirle el
           archivo de arranque <code xmlns="" class="literal">boot</code> y un kernel como
           <code xmlns="" class="literal">bsd</code>
-        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp752338896" href="#idp752338896">5</a>] </sup>
+        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp430567760" href="#idp430567760">5</a>] </sup>
           Si el disco tiene otras particiones del BIOS para otros
           sistemas, estos se verán con otras etiquetas (típicamente i
           para la primera partición Windows, m para la primera partición
           Linux).
-        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp752277328" href="#idp752277328">6</a>] </sup>
+        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp430731984" href="#idp430731984">6</a>] </sup>
           Si no tiene un manejador de arranque, puede determinar cual de
           las 4 particiones primarias es la activa con el programa
           <code xmlns="" class="literal">fdisk</code>.

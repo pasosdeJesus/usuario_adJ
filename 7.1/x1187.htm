@@ -13,7 +13,7 @@ TITLE="Configuración y uso de programas y servicios básicos"
 HREF="x1037.htm"><LINK
 REL="NEXT"
 TITLE="Configuración y uso de algunos dispositivos y servicios"
-HREF="x2327.htm"></HEAD
+HREF="x2341.htm"></HEAD
 ><BODY
 CLASS="sect1"
 BGCOLOR="#FFFFFF"
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="x2327.htm"
+HREF="x2341.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
@@ -92,7 +92,7 @@ NAME="fluxbox"
 >&#13;        La operación básica de este liviano y estético administrador de
         ventanas se describe en
         <A
-HREF="a4141.htm"
+HREF="a4158.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -262,7 +262,7 @@ CLASS="literal"
 ><P
 >&#13;        La operación básica se describe en
         <A
-HREF="a4141.htm"
+HREF="a4158.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -310,7 +310,7 @@ CLASS="literal"
 ><P
 >&#13;        Como se describe en
         <A
-HREF="a4141.htm"
+HREF="a4158.htm"
 >xiphosmanual</A
 >, es una
         herramienta gráfica de estudio e investigación bíblica que se
@@ -423,7 +423,7 @@ CLASS="literal"
 >). Puede aprender más sobre este
         procesador en
         <A
-HREF="a4141.htm"
+HREF="a4158.htm"
 >libreoffice-basico</A
 >
       </P
@@ -486,7 +486,7 @@ CLASS="literal"
 >gv</TT
 > en la sección
         <A
-HREF="x2327.htm#uso-impresora"
+HREF="x2341.htm#uso-impresora"
 >la sección de nombre <I
 >Uso de una impresora ya configurada</I
 ></A
@@ -1158,7 +1158,7 @@ CLASS="literal"
 ><P
 >&#13;        El uso básico de mutt puede consultarlo en
         <A
-HREF="a4141.htm"
+HREF="a4158.htm"
 >basico_adJ</A
 >
       </P
@@ -1316,7 +1316,7 @@ CLASS="literal"
 >mutt</TT
 > de
               <A
-HREF="a4141.htm"
+HREF="a4158.htm"
 >basico_adJ</A
 >
             </P
@@ -3984,12 +3984,12 @@ NAME="ton"
 >&#13;        Se trata de un blockchain diseñado para procesar muchas
         transacciones con comisiones bajas. El diseño inicial es de
         Nikolai Durov, –quien también diseñó y opera Telegram– pero
-        desde el 2020 es operado e implementado por otras personas de la
-        Fundación TON.
+        desde el 2020 TON es operado e implementado por otras personas
+        de la Fundación TON.
       </P
 ><P
 >&#13;        Las transacciones se especifican en contratos inteligentes, que
-        son programas para la Máquina Virtual TON (TVM), que corre en
+        son programas para la Máquina Virtual TON (TVM), que corren en
         rondas en varios servidores llamados validadores. Los
         validadores ejecutan los contratos en rondas cobran comisiones a
         cada contrato y envian mensajes que los contratos producen a
@@ -3999,17 +3999,26 @@ NAME="ton"
 >&#13;        Cada contrato es como una unidad de trabajo para un validador en
         una ronda, que debe ejecutarse en un tiempo limitado y pagar
         comisión por su ejecución, por el espacio de almacenamiento que
-        emplee y por enviar mensajes a oros contratos –mensajes que se
+        emplee y por enviar mensajes a otros contratos –mensajes que se
         procesaran asincronamente en una ronda diferente de los
         validadores.
       </P
 ><P
 >&#13;        La moneda principal en este blockcahin es TON (o TONcoin) usada
-        y producida por los validadores.
+        y producida por los validadores. Puede ver su tasa de cambio e
+        historial por ejemplo en
+        <A
+HREF="https://coinmarketcap.com/currencies/toncoin/"
+TARGET="_top"
+>https://coinmarketcap.com/currencies/toncoin/</A
+>
       </P
 ><P
->&#13;        Las herramientas básicas están disponibles en el paquete ton de
-        adJ que incluyen:
+>&#13;        Las herramientas fundamentales están disponibles en el paquete
+        <TT
+CLASS="literal"
+>ton</TT
+> de adJ e incluyen:
       </P
 ><P
 ></P
@@ -4057,8 +4066,8 @@ CLASS="literal"
 >&#13;                <TT
 CLASS="literal"
 >func</TT
-> para compilar a binarios para
-                TVM a partir de fuentes en lenguaje FunC.
+> para compilar a lenguaje
+                ensamblador fift a partir de fuentes en lenguaje FunC.
               </P
 ></LI
 ><LI
@@ -4067,7 +4076,7 @@ CLASS="literal"
 CLASS="literal"
 >lite-client</TT
 > para conectarse a una red
-                TON y hacer consulta a los validadores.
+                TON e interactuar con los validadores.
               </P
 ></LI
 ><LI
@@ -4075,9 +4084,12 @@ CLASS="literal"
 >&#13;                <TT
 CLASS="literal"
 >tonlib-cli</TT
-> Uso de la librería tonlib
-                desde la terminal, la cual permite hacer operaciones con
-                billetera(s).
+> Uso de la librería
+                <TT
+CLASS="literal"
+>tonlib</TT
+> desde la terminal, la cual
+                permite hacer operaciones con billetera(s).
               </P
 ></LI
 ><LI
@@ -4104,8 +4116,11 @@ CLASS="literal"
         equivalente como <TT
 CLASS="literal"
 >~/.zshrc.local</TT
-> si usa zsh)
-        agregue:
+> si usa
+        <TT
+CLASS="literal"
+>zsh</TT
+>) agregue:
       </P
 ><PRE
 CLASS="programlisting"
@@ -4126,19 +4141,32 @@ COMPACT="COMPACT"
 ><LI
 ><P
 >&#13;              Para aprender sobre el diseño y arquitectura de la red
-              TON: https://ton.org/docs/#/docs
+              TON:
+              <A
+HREF="https://ton.org/docs/#/docs"
+TARGET="_top"
+>https://ton.org/docs/#/docs</A
+>
             </P
 ></LI
 ><LI
 ><P
 >&#13;              Para aprender sobre fift:
-              https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md
+              <A
+HREF="https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md"
+TARGET="_top"
+>https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md</A
+>
             </P
 ></LI
 ><LI
 ><P
 >&#13;              Para aprender sobre func:
-              https://ton.org/docs/#/smart-contracts/
+              <A
+HREF="https://ton.org/docs/#/smart-contracts/"
+TARGET="_top"
+>https://ton.org/docs/#/smart-contracts/</A
+>
             </P
 ></LI
 ></UL
@@ -4149,12 +4177,23 @@ CLASS="sect4"
 CLASS="sect4"
 ><A
 NAME="toncli"
->toncli para probar un contrato inteligente</A
+><TT
+CLASS="literal"
+>toncli</TT
+> para probar un contrato
+        inteligente</A
 ></H4
 ><P
->&#13;          Para facilitar la ejecución de pruebas a un contrato
-          inteligente puede instalar el paquete toncli (escrito en
-          python) de esta forma:
+>&#13;          Una vez tenga instalado el paquete <TT
+CLASS="literal"
+>ton</TT
+>,
+          para facilitar la ejecución de pruebas a un contrato
+          inteligente puede instalar el paquete en python
+          <TT
+CLASS="literal"
+>toncli</TT
+> de esta forma:
         </P
 ><PRE
 CLASS="programlisting"
@@ -4179,7 +4218,7 @@ NAME="ejemplo-de-un-contrato-y-sus-pruebas-con-toncli-0.38"
 ></H5
 ><P
 >&#13;            Un ejemplo completo para probar un contrato que calcule el
-            máximo común divisor entre dos números (como fue enunciado
+            máximo común divisor entre dos números (problema propuesto
             en segunda competencia de programación en FunC) está
             disponible en
             <A
@@ -4190,8 +4229,11 @@ TARGET="_top"
           </P
 ><P
 >&#13;            El contenido de ese repositorio podría conformarse desde una
-            terminal con toncli y un editor (ver sobre editores en adJ
-            en
+            terminal con <TT
+CLASS="literal"
+>toncli</TT
+> y un editor (ver
+            sobre editores en adJ en
             <A
 HREF="http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html"
 TARGET="_top"
@@ -4227,9 +4269,9 @@ CLASS="programlisting"
           </P
 ><PRE
 CLASS="programlisting"
->&#13;rm  -rf build/*                  # no necesitamos lo precompilado del ejemplo
-rm -rf fift                      # no necesitamos lo que viene del ejemplo en fift
-mv func/code.func func/code.fc   # La extensión .fc es bastante usada
+>&#13;rm  -rf build/*                # no necesitamos lo precompilado del ejemplo
+rm -rf fift                    # no necesitamos ejemplo en fift
+mv func/code.func func/code.fc # La extensión .fc es bastante usada
 </PRE
 ><P
 >&#13;            Editar <TT
@@ -4315,8 +4357,8 @@ CLASS="programlisting"
 
 ;; Esta función prepara los datos por pasar a la función gcd dejando 30 y 12 
 ;; en la pila
-;; El número asignado a function_selected i.e 93344 corresponde al
 
+;; El número asignado a function_selected i.e 93344 corresponde al
 ;; número asignado a la función tras compilarla, visible en
 ;; build/contract.fift  (al probar otras funciones debe revisar
 ;; ese archivo para asignar el número correspondiente en sus pruebas)
@@ -4346,7 +4388,7 @@ _ test_30_12(int exit_code, cell data, tuple stack,
 }
 </PRE
 ><P
->&#13;            Tras esto ya podrá jeecutar las pruebas con:
+>&#13;            Tras esto ya podrá ejecutar las pruebas con:
           </P
 ><PRE
 CLASS="programlisting"
@@ -4360,13 +4402,24 @@ CLASS="programlisting"
 >&#13;make
 </PRE
 ><P
->&#13;            que deben darle un resultado como el del pantallazo
-            siguiente:
+>&#13;            una vez cree un archivo <TT
+CLASS="literal"
+>Makefile</TT
+> con el
+            siguiente contenido:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;all:
+        toncli run_tests
+</PRE
+><P
+>&#13;            Deben darle un resultado como el del pantallazo siguiente:
           </P
 ><DIV
 CLASS="figure"
 ><A
-NAME="AEN2320"
+NAME="AEN2334"
 ></A
 ><P
 ><B
@@ -4487,7 +4540,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="x2327.htm"
+HREF="x2341.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
