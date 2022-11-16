@@ -1,0 +1,223 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>5. Configuración y uso de programas y servicios básicos</title><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="up" href="index.html" title="La distribución Aprendiendo de Jesús de OpenBSD como Sistema de Escritorio"><link rel="prev" href="paquetesyportes.html" title="4. Paquetes y portes"><link rel="next" href="conf-programas.html" title="6. Configuración y uso de algunos programas"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">5. Configuración y uso de programas y servicios básicos</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="paquetesyportes.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="conf-programas.html">Siguiente</a></td></tr></table><hr></div><div class="sect1" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="configuracion-de-componentes-basicos"></a>5. Configuración y uso de programas y servicios básicos</h2></div></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="pdksh"></a>5.1. pdksh (ksh)</h3></div></div></div><p>
+      Es un intérprete de órdenes similar a <code class="literal">bash</code>.
+      Este intérprete de órdenes al iniciarse como intérprete de login
+      lee los archivos <code class="literal">/etc/profile</code> y
+      <code class="literal">$HOME/.profile</code>, pero no lo hace si es iniciado
+      como intérprete interactivo. Puede iniciarse explícitamente como
+      intérprete de login con <code class="literal">ksh -l</code>. Esto puede
+      resultar útil para iniciarlo por ejemplo dentro de
+      <code class="literal">xterm</code>:
+    </p><pre class="programlisting">
+    xterm -en utf8 -e /bin/ksh -l 
+</pre><p>
+      El método de edición (<code class="literal">vi</code>,
+      <code class="literal">emacs</code> o <code class="literal">gmacs</code>) se configura
+      en la variable <code class="literal">VISUAL</code>.
+    </p></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="ftp"></a>5.2. ftp</h3></div></div></div><p>
+      Además de las características usuales de un cliente
+      <code class="literal">ftp</code> (RFC 959, extendido en RFC 1123), el
+      cliente <code class="literal">ftp</code> de OpenBSD:
+    </p><div class="itemizedlist"><ul type="disc"><li><p>
+          Realiza conexiones pasivas por defecto. Sin embargo algunos
+          servidores de ftp requiere conexiones activas, si ese es el
+          caso (por ejemplo cuando el servidor responde a
+          <code class="literal">ls</code> con
+          <code class="literal">425 Can't open data connection</code>) emplee la
+          opción <code class="literal">-A</code>.
+        </p></li><li><p>
+          Emplea el archivo de configuración <code class="literal">~/.netrc</code>
+          para establecer conexiones automáticamente. En ese archivo
+          usted puede especificar servidores a los que suele conectarse
+          (y por ejemplo emplear redireccionamiento para automatizar
+          operaciones . Este archivo puede tener comentarios (líneas
+          iniciadas con el caracter “<span class="quote">#</span>”) o líneas como:
+        </p><pre class="programlisting">
+    machine Jesus.miescuela.edu.co login pablo
+    machine rt.fm login anonymous passwd pablo@miescuela.edu.co
+</pre><p>
+          que indican emplear el usuario pablo al conectarse a
+          Jesus.miescuela.edu.co (pedirá la clave al hacer la conexión) y emplear
+          el usuario <code class="literal">anonymous</code>, con clave
+          <code class="literal">pablo@miescuela.edu.co</code> al hacer
+          conexiones con <code class="literal">rt.fm</code>.
+        </p><div class="blockquote"><blockquote class="blockquote"><p>
+            <span class="inlinemediaobject"><img src="img/warning.png"></span>
+            <span class="strong"><strong>Advertencia</strong></span>
+          </p><p>
+            Las claves que se almacenan en este archivo son textos
+            planos que el superusuario del sistema podría ver. Para que
+            otros usuarios no puedan verlas quite el permiso de lectura
+            para otros usuarios y para el grupo:
+          </p><pre class="programlisting">
+    chmod og-r ~/.netrc
+</pre></blockquote></div></li><li><p>
+          Permite especificar el URL (iniciado con
+          <code class="literal">http://</code> o <code class="literal">ftp://</code>) de un
+          archivo por descargar en la línea de órdenes (y realiza
+          autenticación automática si es ftp:// y se ha configurado
+          <code class="literal">~/.netrc</code>, o si el URL es análogo a
+          <code class="literal">ftp://pablo:miclave@Jesus.miescuela.edu.co/pub/doc.txt</code>).
+          En este caso si se requiere puede emplearse la opción
+          <code class="literal">-o</code> seguida del nombre del archivo con el
+          que se desea salvar el archivo transmitido. También puede
+          emplearse <code class="literal">*</code> para indicar transmisión de
+          varios archivos.
+        </p></li></ul></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="doas"></a>5.3. doas</h3></div></div></div><p>
+      Este programa permite ejecutar órdenes privilegiadas a algunos
+      usuarios. A partir de adJ y OpenBSD 5.8 el sistema base incluye
+      <code class="literal">doas</code> como remplazo del antiguo
+      <code class="literal">sudo</code>. <code class="literal">doas</code> es más simple y
+      fácil de auditar.
+    </p><p>
+      Se configura en <code class="literal">/etc/doas.conf</code>. Un ejemplo
+      mínimo es:
+    </p><pre class="programlisting">
+    permit nopass keepenv :wheel
+</pre><p>
+      que permitirá su uso sin requerir clave a todos los usuarios del
+      grupo <code class="literal">wheel</code> manteniendo las variables de
+      ambiente.
+    </p><p>
+      Una vez configurado, puede ejecutar una orden privilegiada desde
+      una cuenta configurada con <code class="literal">doas orden</code>. Por
+      ejemplo:
+    </p><pre class="programlisting">
+    doas vi /etc/rc.conf.local 
+</pre><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="sudo"></a>5.3.1. sudo</h4></div></div></div><p>
+        El programa <code class="literal">sudo</code> se mantiene como paquete, si
+        lo requiere instálelo desde la cuenta <code class="literal">root</code>
+        con:
+      </p><pre class="programlisting">
+    pkg_add sudo
+</pre><p>
+        Se configura en <code class="literal">/etc/sudoers</code> que debe
+        editarse con <code class="literal">visudo</code>.
+      </p><p>
+        Consulte los ejemplos allí presentados en líneas con comentarios
+        y quite el comentario a la configuración que considere
+        apropiada. Por ejemplo si desea que todo usuario que esté en el
+        grupo <code class="literal">wheel</code> pueda emplear
+        <code class="literal">sudo</code> sin necesidad de ingresar una clave,
+        quite el comentario a la línea:
+      </p><pre class="programlisting">
+    %wheel  ALL=(ALL)       NOPASSWD: ALL
+</pre><p>
+        Puede verse en
+        <a href="http://rr.sans.org/authentic/sudo.php" target="_top">http://rr.sans.org/authentic/sudo.php</a>
+        interacción entre <code class="literal">sudo</code> y
+        <code class="literal">ssh</code> para administrar una red.
+      </p><p>
+        ##<code class="literal">cron</code>: para programar tareas {#cron}
+      </p><p>
+        El programa <code class="literal">cron</code> ejecuta tareas configuradas
+        para correr en cierto(s) momento(s). Este servicio debe correr
+        permanentemente. Puede comprobar que opera con
+        <code class="literal">pgrep cron</code> que debe responder con el número
+        del proceso. Si no está corriendo debe ejecutarlo urgentemente
+        bien reiniciando el servido o ejecutando
+        <code class="literal">doas cron</code>.
+      </p><p>
+        Cada minuto el programa <code class="literal">cron</code> busca tareas
+        cuya ejecución esté pendiente.
+      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="ld"></a>5.4. ld</h3></div></div></div><p>
+      <code class="literal">ld</code> es el programa que carga otros programas
+      junto con las librerías compartidas que requieran y resuelve los
+      símbolos. Para buscar librerías compartidas emplea la información
+      de <code class="literal">/var/run/ld.so.hints</code> (que puede examinarse
+      con <code class="literal">ldconfig -r</code>).
+    </p><p>
+      Con <code class="literal">ldd</code> pueden examinarse las librerías
+      compartidas que un programa requiere, por ejemplo:
+    </p><pre class="programlisting">
+    ldd /usr/bin/less
+    
+</pre><p>
+      Cuando se agregan librerías compartidas o se requiere que las
+      librerías de nuevos directorios sean referenciados en
+      <code class="literal">/var/run/ld.so.hints</code> puede ejecutar
+      <code class="literal">ldconfig</code> (que por defecto busca nuevas
+      librerías en <code class="literal">/usr/lib</code>). Por ejemplo durante el
+      arranque en un sistema con X-Window se ejecuta:
+    </p><pre class="programlisting">
+    ldconfig /usr/local/lib /usr/X11R6/lib
+    
+</pre><p>
+      También pueden especificarse otros directorios por usar durante el
+      arranque definiendo la variable <code class="literal">shlib_dirs</code> en
+      <code class="literal">/etc/rc.conf.local</code> (ver
+      <a href="sobre-la-instalacion.html#inicio-del-sistema" title="2.5. Inicio del sistema">Sección 2.5, “Inicio del sistema”</a>)
+    </p><p>
+      Incluso un usuario puede establecer otros directorios donde buscar
+      librerías compartidas especificándolos en la variable de entorno
+      <code class="literal">LD_LIBRARY_PATH</code> (separar un directorio de otro
+      con “<span class="quote">:</span>” ).
+    </p></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="kernel"></a>5.5. Kernel</h3></div></div></div><p>
+      Algunas configuraciones pueden hacerse con
+      <code class="literal">sysctl</code>, otras MUY inusuales requieren
+      recompilación del kernel.
+    </p><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="compilacion-del-kernel"></a>5.5.1. Compilación del kernel</h4></div></div></div><p>
+        Puede sacar las fuentes del CD de instalación o de un
+        repositorio FTP (<code class="literal">src.tgz</code>) descomprimiéndolas
+        en <code class="literal">/usr/src</code>, después puede actualizarlas con
+        el CVS de OpenBSD con:
+      </p><pre class="programlisting">
+    cd /usr
+    export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+    cvs -z3 co -r7.0_7_0 -P src 
+</pre><p>
+        empleando un espejo más cercano a su computador y cambiado
+        7.0_7_0 por la versión que desea
+        actualizar, o si las fuentes que tiene son la versión que desea
+        puede emplear:
+      </p><pre class="programlisting">
+    cd /usr/src
+    export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+    cvs -z3 update -r7.0_7_0 -Pd 
+</pre><p>
+        Tal como se describe en <code class="literal">man afterboot</code>, para
+        compilar basta editar el archivo de configuración del kernel que
+        se desea, después ejecutar <code class="literal">config</code>, cambiar al
+        directorio donde se compila y compilar. Por ejemplo:
+      </p><pre class="programlisting">
+    cd /usr/src/sys/arch/amd64/conf
+    vi GENERIC
+    config GENERIC
+    cd ../compile/GENERIC
+    make clean
+    make depend
+    make
+      
+</pre><p>
+        con esto se generará el ejecutable <code class="literal">bsd</code> en el
+        directorio de compilación, tal ejecutable puede usarse para
+        reemplazar <code class="literal">/bsd</code>, eventualmente dejando el
+        kernel anterior listo para un arranque de emergencia:
+      </p><pre class="programlisting">
+    mv /bsd /bsd.old
+    mv bsd /bsd
+      
+</pre></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="syslog"></a>5.6. syslog</h3></div></div></div><p>
+      <code class="literal">syslogd</code> es un servidor que recibe mensajes de
+      depuración y trazas de diversos programas. Su archivo de
+      configuración es <code class="literal">/etc/syslog.conf</code>, cada línea
+      de este archivo especifica que hacer con los mensajes recibidos
+      por uno o más programas.
+    </p><p>
+      Tras modificar <code class="literal">/etc/syslog.conf</code> puede obligarse
+      a <code class="literal">syslogd</code> a leerlo de nuevo enviado la señal
+      HUP, por ejemplo:
+    </p><pre class="programlisting">
+# ps ax | grep syslogd
+7723 ??  Is      0:00.06 syslogd 
+# kill -HUP 7723
+    
+</pre><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="referencias-syslog"></a>5.6.1. Referencias y lecturas recomendadas</h4></div></div></div><p>
+        Las siguientes páginas man: syslog.conf 8, syslog 3, syslogd 8 y
+        logger 1.
+      </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="zona-horaria"></a>5.7. Zona horaria</h3></div></div></div><p>
+      La zona horaria se establece enlazando
+      <code class="literal">/etc/localtime</code> con una de las zonas del
+      directorio <code class="literal">/usr/share/zoneinfo</code>, por ejemplo
+    </p><pre class="programlisting">
+doas ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
+</pre></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="paquetesyportes.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="conf-programas.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">4. Paquetes y portes </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 6. Configuración y uso de algunos programas</td></tr></table></div></body></html>
