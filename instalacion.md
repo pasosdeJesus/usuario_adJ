@@ -290,12 +290,47 @@ sectores corresponden a 1GB. En el ejemplo anterior / es de
 aproximadamente 10GB, la partición de intercambio es de 500MB, /home de
 1GB y /var aproximadamente de 2.1GB. 
 
-![](img/instala5.png)
 
 Después de elegir subparticiones el instalador formateará las subparticiones. 
-Después podrá especificar la ruta donde están los juegos de instalación 
+Tras esto podrá especificar la ruta donde están los juegos de instalación 
 (en el caso de la distribución Aprendiendo de Jesús es `/`) y elegir los que 
-instalará. Podrá elegir entre:
+instalará.
+
+![](img/instala5.png)
+
+La imagen anterior presenta la forma de ubicar los juegos de instalación 
+cuando se usa CDROM.
+
+En caso de usar USB el procedimiento es minimamente más largo, pues
+primero debe montar el sistema de archivos como se
+ve en le siguiente pantallazo.
+
+![](img/instala5-usb.png)
+
+Note que a la pregunta de la ruta de instalación debe teclear 
+`!sh` para entrar momentaneamente a un interprete de ordenes.
+
+Desde ese interprete desconecte la USB y vuelvala a conectar 
+y fijese en el dispositivo asignado (en el pantallazo de ejemplo es `sd1`).
+
+Proceda a crear el dispositivo y a montar la subpartición `a` 
+de dispositivo disco en `/mnt2`  
+(no vaya a emplear `/mnt`  porque esa es la ruta donde el instalador 
+monta el disco donde hará la instalación):
+
+```
+cd /dev
+sh MAKEDEV sd1
+mount /dev/sd1a /mnt2/
+```
+Si lo anterior no le presento problemas al ejecutar `mount` debe ver algo
+como en el pantallazo.
+Y podrá volver al instalador con `exit` elegir `disco` como medio de 
+instalación, indicando que ya está montada la partición y que su ubicacíon es
+`/mnt2/`
+
+
+Podrá elegir entre:
 
 bsd
 
