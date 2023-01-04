@@ -125,8 +125,10 @@ repasa:
 
 
 paquetes-adJ.xdbk: infoversion.ent
-	if (test -f /home/$(LOGNAME)/comp/adJ/Contenido.txt) then { cp /home/$(LOGNAME)/comp/adJ/Contenido.txt Contenido.txt ; recode utf8..latin1 Contenido.txt; } else { touch Contenido.txt; } fi;
+	if (test -f /home/$(LOGNAME)/comp/adJ/Contenido.txt) then { cp /home/$(LOGNAME)/comp/adJ/Contenido.txt Contenido.txt; } else { touch Contenido.txt; } fi;
 	awk -f herram/convContenido.awk Contenido.txt > paquetes-adJ.xdbk; 
+
+#if (test -f /home/$(LOGNAME)/comp/adJ/Contenido.txt) then { cp /home/$(LOGNAME)/comp/adJ/Contenido.txt Contenido.txt ; recode utf8..latin1 Contenido.txt; } else { touch Contenido.txt; } fi;
 
 infoversion.ent:
 	if (test -f ../servidor_adJ/infoversion.ent) then { \

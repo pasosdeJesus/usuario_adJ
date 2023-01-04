@@ -1,3 +1,6 @@
+Versión 7.2
+:   - Actualizada sección sobre toncli a la versión 0.0.43 [xref](#toncli)
+
 Versión 7.1
 :   - Instrucciones básicas para añadir una cuenta de usuario [xref](#varios-usuarios)
     - Comienza sección sobre blockchain ton y las herramientas

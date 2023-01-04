@@ -662,12 +662,12 @@ Prepare ese directorio con:
 
 Y cuando requiera instalar una gema allí emplee:
 ```
-	gem install --install-dir /var/www/bundler/ruby/3.0/ json 
+	gem install --install-dir /var/www/bundler/ruby/3.0/ json
 ```
 
 O si llega a tener problemas de permisos con:
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt 
+	doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt
 ```
 
 Para facilitar compilación de algunas extensiones (como las de nokogiri) se
@@ -729,7 +729,7 @@ Si eventualmente no logra instalar algunas --por problemas de permisos
 típicamente-- puede instalar con
 
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.0 json 
+	doas gem install --install-dir /var/www/bundler/ruby/3.0 json
 ```
 
 Cuando actualice la versión del sistema operativo al igual que con gemas
@@ -1367,19 +1367,20 @@ que de requerirse puede ejecutarse desde la cuenta root (cuyo límite
 máximo es mayor que el de cuentas de usuario).
 
 
-## Criptomonedas {#criptomonedas}
+## Blockchains {#blockchains}
 
 ### TON {#ton}
 
-Se trata de un blockchain diseñado para procesar muchas transacciones 
-con comisiones bajas.  El diseño inicial es de Nikolai Durov, --quien
-también diseñó y opera Telegram-- pero desde el 2020 TON es operado e
-implementado por otras personas de la Fundación TON.
+Se trata de un blockchain de fuentes abiertas diseñado para procesar muchas 
+transacciones con comisiones bajas.  El diseño inicial es de Nikolai Durov, 
+--quien también diseñó y opera Telegram-- pero desde el 2020 TON es operado e
+implementado por otras personas de la Fundación TON.  Sus fuentes están en
+<https://github.com/ton-blockchain/ton>
 
-Las transacciones se especifican en contratos inteligentes, que son 
-programas para la Máquina Virtual TON (TVM), que corren en rondas en varios 
-servidores llamados validadores. Los validadores ejecutan los contratos 
-en rondas cobran comisiones a cada contrato y envian mensajes que los 
+Las transacciones se especifican en contratos inteligentes, que son
+programas para la Máquina Virtual TON (TVM), que corren en rondas en varios
+servidores llamados validadores. Los validadores ejecutan los contratos
+en rondas, cobran comisiones a cada contrato y envian mensajes que los
 contratos producen a otros contratos.
 
 Cada contrato es como una unidad de trabajo para un validador en una
@@ -1388,11 +1389,11 @@ su ejecución, por el espacio de almacenamiento que emplee y por enviar
 mensajes a otros contratos --mensajes que se procesaran asincronamente
 en una ronda diferente de los validadores.
 
-La moneda principal en este blockcahin es TON (o TONcoin) usada y 
-producida por los validadores.  Puede ver su tasa de cambio e historial
+La moneda principal en este blockcahin es TON (o TONcoin) usada
+por los validadores.  Puede ver su tasa de cambio e historial
 por ejemplo en <https://coinmarketcap.com/currencies/toncoin/>
 
-Las herramientas fundamentales están disponibles en el paquete `ton` de adJ 
+Las herramientas fundamentales están disponibles en el paquete `ton` de adJ
 e incluyen:
 
 * Librería en lenguaje ensamblador (llamado fift) ubicada en
@@ -1400,13 +1401,13 @@ e incluyen:
 * Varios contratos en `/usr/local/share/ton/smartcont`
 * Diversos binarios que incluyen:
   * `fift` para ejecutar instrucciones en la máquina virtual TON
-    y depurar y para crear binarios para esa máquina virtual a partir de 
+    y depurar y para crear binarios para esa máquina virtual a partir de
     fuentes en lenguaje ensamblador fift.
   * `func` para compilar a lenguaje ensamblador fift a partir de fuentes en
     lenguaje FunC.
   * `lite-client` para conectarse a una red TON e interactuar con los
     validadores.
-  * `tonlib-cli` Uso de la librería `tonlib` desde la terminal, la cual 
+  * `tonlib-cli` Uso de la librería `tonlib` desde la terminal, la cual
     permite hacer operaciones con billetera(s).
   * `validator-engine` y `validator-engine-console` para operar un nodo
     validador
@@ -1421,19 +1422,31 @@ export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
 
 * Para aprender sobre el diseño y arquitectura de la red TON:
   <https://ton.org/docs/#/docs>
-* Para aprender sobre fift: 
+* Para aprender sobre fift:
   <https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md>
-* Para aprender sobre func: 
+* Para aprender sobre func:
   <https://ton.org/docs/#/smart-contracts/>
 
 
-#### `toncli` para probar un contrato inteligente {#toncli}
+#### `toncli` 0.0.43 para probar un contrato inteligente {#toncli}
 
-Una vez tenga instalado el paquete `ton`, para facilitar la ejecución
-de pruebas a un contrato inteligente puede instalar el paquete en
-python `toncli` de esta forma:
+`toncli` es un paquete python que facilita el desarrollo y pruebas
+de contratos inteligentes para el blockchain TON.
+
+Como el diseño de la TVM no incluyó muchas ayudas para el desarrollo o la 
+depuración, para emplear `toncli` debe usarse una bifurcación de la TVM original 
+con más primitivas para depurar: 
+<https://github.com/SpyCheese/ton/tree/toncli-local>
+
+adJ también incluye un paquete con esa bifurcación llamado `ton-toncli`
+cuyos archivos son como los del paquete `ton` pero en rutas
+diferentes (i.e `/usr/local/bin/ton-toncli`, `/usr/local/lib/ton-toncli` y
+`/usr/local/share/ton-toncli/`).
+
+Una vez tenga instalado el paquete `ton-toncli`, instale `toncli` así:
 ```
 doas pkg_add py3-pip
+doas pip install bitstring==3.1.9   
 doas pip install toncli
 ```
 
@@ -1442,20 +1455,27 @@ Tras esto, debe poder ejecutar
 toncli
 ```
 
-##### Ejemplo de un contrato y sus pruebas con toncli 0.38
+que en la primera ejecución le pedirá:
 
-Un ejemplo completo para probar un contrato que calcule el máximo común
-divisor entre dos números (problema propuesto en segunda
-competencia de programación en FunC) está disponible en
-<https://gitlab.com/pasosdeJesus/pruebas_mdc_func>
+1. Ruta de `func`. Utilice `/usr/local/bin/ton-toncli/func`
+2. Ruta de `fift`. Utilice `/usr/local/bin/ton-toncli/fift`
+3. Ruta de `lite-client`. Utilice `/usr/local/bin/ton-toncli/lite-client`
 
-El contenido de ese repositorio podría conformarse desde
-una terminal con `toncli` y un editor (ver sobre editores en adJ en
+Sus respuestas quedarán en `~/.config/toncli/config.ini`
+
+##### Ejemplo de un contrato y sus pruebas con toncli 0.0.43
+
+Como ejemplo implementaremos un contrato inteligente que calcule el máximo común
+divisor entre dos números (problema propuesto en la segunda
+competencia de programación en FunC como puede verse en 
+<https://github.com/ton-blockchain/func-contest2>
+
+Desde la terminal podrá preparar una estructura de directorios con:
 <http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html>)
 
 ```
-toncli start wallet         # Inicia proyecto con código de ejemplo de una billetera
-mv wallet pruebas_mdc_func  # Renombra
+toncli start wallet        # Inicia proyecto con ejemplo de una billetera
+mv wallet pruebas_mdc_func # Renombra
 cd pruebas_mdc_func
 find .
 ```
@@ -1464,43 +1484,40 @@ Verá la estructura de un proyecto toncli típico que incluye:
 ```
 .
 ├── build
-│   ├── contract.fif        Compilado de func/code.fc
-│   └──contract_tests.fif   Compilado automaticamente de tests/example.fc
 ├── fift                    Directorio con fuentes en fift (por borrar en este caso)
 ├── func
-│   └── code.fc             Código con la función por probar
+│   └── code.fc             Código con la función por probar
 ├── project.yaml            Estructura del proyecto para toncli
 └── tests
-    └── example.fc          Pruebas a la función que esta'en func/code.fc
 ```
 
 Podemos reorganizar un poco el proyecto de ejemplo para nuestro
 caso de una sola función en FunC con:
 
 ```
-rm  -rf build/*                # no necesitamos lo precompilado del ejemplo
-rm -rf fift                    # no necesitamos ejemplo en fift
-mv func/code.func func/code.fc # La extensión .fc es bastante usada
+rm -rf fift                        # no necesitamos ejemplo en fift
+mv func/code.func func/solucion.fc # La extensión .fc es bastante usada
 ```
 
 Editar `project.yaml` para que quede el siguiente contenido que
-indica que el código func por probar está en `func/code.fc` y
-las pruebas están en `tests/example.fc` :
-```
+indica que el código func por probar está en `func/solucion.fc` y
+las pruebas están en `tests/pruebas.fc` :
+
+```yaml
 contract:
   func:
-      - func/code.fc
-        tests:
-            - tests/example.fc
+      - func/solucion.fc
+  tests:
+      - tests/pruebas.fc
 ```
 
-El contenido de `func/code.fc`:
+El contenido de `func/solucion.fc`:
 
-```
+```func
 {-
-  TAREA 1 - Maximo divisor común
+  TAREA 1 - Máximo divisor común
 
-  Enunciando basado en 
+  Enunciando basado en
   https://github.com/vtamara/func-contest2/blob/master/1.fc
 
   Escribir un método que calcule el máximo divisor común entre 2 enteros
@@ -1513,7 +1530,7 @@ El contenido de `func/code.fc`:
 ;; por probar
 (int) gcd(int a, int b) method_id {
 
-  ;; Solución con base en 
+  ;; Solución con base en
   ;; https://people.cs.ksu.edu/~schmidt/301s14/Exercises/euclid_alg.html
   int k = a;
   int m = b;
@@ -1528,52 +1545,30 @@ El contenido de `func/code.fc`:
     k = m;
     m = r;
   }
- 
+
   return k;
 }
 ```
 
-Y como contenido de `tests/example.fc`:
+Y como contenido de `tests/pruebas.fc`:
 
-```
-;; Debemos implementar pares de funciones de pruebas
-;; una de nombre estilo prueba_data y otra de nombre prueba
-;; la primera organiza los datos para pasarlos a la función por
-;; probar y la segunda revisa que el resultado de la función
-;; probada sea el esperado.
+```func
+int __test_t30_12() {
 
-;; En este ejemplo probaremos sacar el máximo divisor común entre 30 y 12
+  int a = 30;
+  int b = 12;
 
-;; Esta función prepara los datos por pasar a la función gcd dejando 30 y 12 
-;; en la pila
+  tuple pila = unsafe_tuple([a, b]);
 
-;; El número asignado a function_selected i.e 93344 corresponde al
-;; número asignado a la función tras compilarla, visible en
-;; build/contract.fift  (al probar otras funciones debe revisar
-;; ese archivo para asignar el número correspondiente en sus pruebas)
-[int, tuple, cell, tuple, int] test_30_12_data() method_id(0) {
-	int function_selector = 93344; 
+  cell datos = begin_cell().end_cell();
 
-	int a = 30;
-	int b = 12;
+  var (int gas_usado1, pila_ret) = invoke_method(gcd, pila);
 
-	tuple stack = unsafe_tuple([a, b]); 
+  int result = first(pila_ret);
 
-	cell data = begin_cell().end_cell();
+  throw_if(101, result != 6);
 
-	return [function_selector, stack, data, get_c7(), null()];
-}
-
-;; La siguiente función recibe la respuesta de la función gcd a los
-;; datos preparados por test_30_12_data() y verifica que sea correcta
-_ test_30_12(int exit_code, cell data, tuple stack,
-		cell actions, int gas) method_id(1) {
-
-	throw_if(100, exit_code != 0);
-
-	int result = first(stack); 
-
-	throw_if(101, result != 6); 
+  return gas_usado1;
 }
 ```
 
