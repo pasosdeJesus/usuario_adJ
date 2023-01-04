@@ -1466,12 +1466,11 @@ Sus respuestas quedarán en `~/.config/toncli/config.ini`
 ##### Ejemplo de un contrato y sus pruebas con toncli 0.0.43
 
 Como ejemplo implementaremos un contrato inteligente que calcule el máximo común
-divisor entre dos números (problema propuesto en la segunda
+divisor entre dos números (ejercicio propuesto en la segunda
 competencia de programación en FunC como puede verse en 
-<https://github.com/ton-blockchain/func-contest2>
+<https://github.com/ton-blockchain/func-contest2>).
 
 Desde la terminal podrá preparar una estructura de directorios con:
-<http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html>)
 
 ```
 toncli start wallet        # Inicia proyecto con ejemplo de una billetera
@@ -1483,12 +1482,12 @@ find .
 Verá la estructura de un proyecto toncli típico que incluye:
 ```
 .
-├── build
-├── fift                    Directorio con fuentes en fift (por borrar en este caso)
-├── func
-│   └── code.fc             Código con la función por probar
-├── project.yaml            Estructura del proyecto para toncli
-└── tests
+├── build              Aquí quedarán resultados de compilación
+├── fift               Directorio con fuentes en fift (por borrar en este caso)
+├── func               Directorio con fuentes en FunC
+│   └── code.func      Código con la función por probar
+├── project.yaml       Estructura del proyecto para toncli
+└── tests              Directorio con fuentes en FunC de pruebas de regresión
 ```
 
 Podemos reorganizar un poco el proyecto de ejemplo para nuestro
@@ -1500,7 +1499,7 @@ mv func/code.func func/solucion.fc # La extensión .fc es bastante usada
 ```
 
 Editar `project.yaml` para que quede el siguiente contenido que
-indica que el código func por probar está en `func/solucion.fc` y
+indica que el código FunC por probar está en `func/solucion.fc` y
 las pruebas están en `tests/pruebas.fc` :
 
 ```yaml
@@ -1566,7 +1565,7 @@ int __test_t30_12() {
 
   int result = first(pila_ret);
 
-  throw_if(101, result != 6);
+  throw_if(101, result != 6);  ;; mcd(30, 12) == 6
 
   return gas_usado1;
 }
@@ -1586,6 +1585,6 @@ all:
         toncli run_tests
 ```
 
-Deben darle un resultado como el del pantallazo siguiente:
+Que deben darle un resultado como el del pantallazo siguiente:
 
 ![Pantallazo con ejecución exitosa de toncli](img/toncliej.png)
