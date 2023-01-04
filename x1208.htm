@@ -13,7 +13,7 @@ TITLE="Configuración y uso de programas y servicios básicos"
 HREF="x1058.htm"><LINK
 REL="NEXT"
 TITLE="Configuración y uso de algunos dispositivos y servicios"
-HREF="x2362.htm"></HEAD
+HREF="x2389.htm"></HEAD
 ><BODY
 CLASS="sect1"
 BGCOLOR="#FFFFFF"
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="x2362.htm"
+HREF="x2389.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
@@ -92,7 +92,7 @@ NAME="fluxbox"
 >&#13;        La operación básica de este liviano y estético administrador de
         ventanas se describe en
         <A
-HREF="a4176.htm"
+HREF="a4210.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -262,7 +262,7 @@ CLASS="literal"
 ><P
 >&#13;        La operación básica se describe en
         <A
-HREF="a4176.htm"
+HREF="a4210.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -310,7 +310,7 @@ CLASS="literal"
 ><P
 >&#13;        Como se describe en
         <A
-HREF="a4176.htm"
+HREF="a4210.htm"
 >xiphosmanual</A
 >, es una
         herramienta gráfica de estudio e investigación bíblica que se
@@ -423,7 +423,7 @@ CLASS="literal"
 >). Puede aprender más sobre este
         procesador en
         <A
-HREF="a4176.htm"
+HREF="a4210.htm"
 >libreoffice-basico</A
 >
       </P
@@ -486,7 +486,7 @@ CLASS="literal"
 >gv</TT
 > en la sección
         <A
-HREF="x2362.htm#uso-impresora"
+HREF="x2389.htm#uso-impresora"
 >la sección de nombre <I
 >Uso de una impresora ya configurada</I
 ></A
@@ -1158,7 +1158,7 @@ CLASS="literal"
 ><P
 >&#13;        El uso básico de mutt puede consultarlo en
         <A
-HREF="a4176.htm"
+HREF="a4210.htm"
 >basico_adJ</A
 >
       </P
@@ -1316,7 +1316,7 @@ CLASS="literal"
 >mutt</TT
 > de
               <A
-HREF="a4176.htm"
+HREF="a4210.htm"
 >basico_adJ</A
 >
             </P
@@ -1589,14 +1589,14 @@ CLASS="programlisting"
           </P
 ><PRE
 CLASS="programlisting"
->&#13;    gem install --install-dir /var/www/bundler/ruby/3.0/ json 
+>&#13;    gem install --install-dir /var/www/bundler/ruby/3.0/ json
 </PRE
 ><P
 >&#13;            O si llega a tener problemas de permisos con:
           </P
 ><PRE
 CLASS="programlisting"
->&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt 
+>&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt
 </PRE
 ><P
 >&#13;            Para facilitar compilación de algunas extensiones (como las
@@ -1708,7 +1708,7 @@ CLASS="programlisting"
           </P
 ><PRE
 CLASS="programlisting"
->&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0 json 
+>&#13;    doas gem install --install-dir /var/www/bundler/ruby/3.0 json
 </PRE
 ><P
 >&#13;            Cuando actualice la versión del sistema operativo al igual
@@ -3969,8 +3969,8 @@ CLASS="sect2"
 ><H2
 CLASS="sect2"
 ><A
-NAME="criptomonedas"
->Criptomonedas</A
+NAME="blockchains"
+>Blockchains</A
 ></H2
 ><DIV
 CLASS="sect3"
@@ -3981,18 +3981,23 @@ NAME="ton"
 >TON</A
 ></H3
 ><P
->&#13;        Se trata de un blockchain diseñado para procesar muchas
-        transacciones con comisiones bajas. El diseño inicial es de
-        Nikolai Durov, –quien también diseñó y opera Telegram– pero
-        desde el 2020 TON es operado e implementado por otras personas
-        de la Fundación TON.
+>&#13;        Se trata de un blockchain de fuentes abiertas diseñado para
+        procesar muchas transacciones con comisiones bajas. El diseño
+        inicial es de Nikolai Durov, –quien también diseñó y opera
+        Telegram– pero desde el 2020 TON es operado e implementado por
+        otras personas de la Fundación TON. Sus fuentes están en
+        <A
+HREF="https://github.com/ton-blockchain/ton"
+TARGET="_top"
+>https://github.com/ton-blockchain/ton</A
+>
       </P
 ><P
 >&#13;        Las transacciones se especifican en contratos inteligentes, que
         son programas para la Máquina Virtual TON (TVM), que corren en
         rondas en varios servidores llamados validadores. Los
-        validadores ejecutan los contratos en rondas cobran comisiones a
-        cada contrato y envian mensajes que los contratos producen a
+        validadores ejecutan los contratos en rondas, cobran comisiones
+        a cada contrato y envian mensajes que los contratos producen a
         otros contratos.
       </P
 ><P
@@ -4005,8 +4010,8 @@ NAME="ton"
       </P
 ><P
 >&#13;        La moneda principal en este blockcahin es TON (o TONcoin) usada
-        y producida por los validadores. Puede ver su tasa de cambio e
-        historial por ejemplo en
+        por los validadores. Puede ver su tasa de cambio e historial por
+        ejemplo en
         <A
 HREF="https://coinmarketcap.com/currencies/toncoin/"
 TARGET="_top"
@@ -4180,24 +4185,69 @@ NAME="toncli"
 ><TT
 CLASS="literal"
 >toncli</TT
-> para probar un contrato
+> 0.0.43 para probar un contrato
         inteligente</A
 ></H4
 ><P
->&#13;          Una vez tenga instalado el paquete <TT
+>&#13;          <TT
 CLASS="literal"
->ton</TT
->,
-          para facilitar la ejecución de pruebas a un contrato
-          inteligente puede instalar el paquete en python
+>toncli</TT
+> es un paquete python que facilita el
+          desarrollo y pruebas de contratos inteligentes para el
+          blockchain TON.
+        </P
+><P
+>&#13;          Como el diseño de la TVM no incluyó muchas ayudas para el
+          desarrollo o la depuración, para emplear
           <TT
 CLASS="literal"
 >toncli</TT
-> de esta forma:
+> debe usarse una bifurcación de la
+          TVM original con más primitivas para depurar:
+          <A
+HREF="https://github.com/SpyCheese/ton/tree/toncli-local"
+TARGET="_top"
+>https://github.com/SpyCheese/ton/tree/toncli-local</A
+>
+        </P
+><P
+>&#13;          adJ también incluye un paquete con esa bifurcación llamado
+          <TT
+CLASS="literal"
+>ton-toncli</TT
+> cuyos archivos son como los del
+          paquete <TT
+CLASS="literal"
+>ton</TT
+> pero en rutas diferentes (i.e
+          <TT
+CLASS="literal"
+>/usr/local/bin/ton-toncli</TT
+>,
+          <TT
+CLASS="literal"
+>/usr/local/lib/ton-toncli</TT
+> y
+          <TT
+CLASS="literal"
+>/usr/local/share/ton-toncli/</TT
+>).
+        </P
+><P
+>&#13;          Una vez tenga instalado el paquete
+          <TT
+CLASS="literal"
+>ton-toncli</TT
+>, instale
+          <TT
+CLASS="literal"
+>toncli</TT
+> así:
         </P
 ><PRE
 CLASS="programlisting"
 >&#13;doas pkg_add py3-pip
+doas pip install bitstring==3.1.9   
 doas pip install toncli
 </PRE
 ><P
@@ -4207,33 +4257,81 @@ doas pip install toncli
 CLASS="programlisting"
 >&#13;toncli
 </PRE
+><P
+>&#13;          que en la primera ejecución le pedirá:
+        </P
+><P
+></P
+><OL
+COMPACT="COMPACT"
+TYPE="1"
+><LI
+><P
+>&#13;              Ruta de <TT
+CLASS="literal"
+>func</TT
+>. Utilice
+              <TT
+CLASS="literal"
+>/usr/local/bin/ton-toncli/func</TT
+>
+            </P
+></LI
+><LI
+><P
+>&#13;              Ruta de <TT
+CLASS="literal"
+>fift</TT
+>. Utilice
+              <TT
+CLASS="literal"
+>/usr/local/bin/ton-toncli/fift</TT
+>
+            </P
+></LI
+><LI
+><P
+>&#13;              Ruta de <TT
+CLASS="literal"
+>lite-client</TT
+>. Utilice
+              <TT
+CLASS="literal"
+>/usr/local/bin/ton-toncli/lite-client</TT
+>
+            </P
+></LI
+></OL
+><P
+>&#13;          Sus respuestas quedarán en
+          <TT
+CLASS="literal"
+>~/.config/toncli/config.ini</TT
+>
+        </P
 ><DIV
 CLASS="sect5"
 ><H5
 CLASS="sect5"
 ><A
-NAME="ejemplo-de-un-contrato-y-sus-pruebas-con-toncli-0.38"
+NAME="ejemplo-de-un-contrato-y-sus-pruebas-con-toncli-0.0.43"
 >Ejemplo de un contrato y sus pruebas con toncli
-          0.38</A
+          0.0.43</A
 ></H5
 ><P
->&#13;            Un ejemplo completo para probar un contrato que calcule el
-            máximo común divisor entre dos números (problema propuesto
-            en segunda competencia de programación en FunC) está
-            disponible en
+>&#13;            Como ejemplo implementaremos un contrato inteligente que
+            calcule el máximo común divisor entre dos números (problema
+            propuesto en la segunda competencia de programación en FunC
+            como puede verse en
             <A
-HREF="https://gitlab.com/pasosdeJesus/pruebas_mdc_func"
+HREF="https://github.com/ton-blockchain/func-contest2"
 TARGET="_top"
->https://gitlab.com/pasosdeJesus/pruebas_mdc_func</A
+>https://github.com/ton-blockchain/func-contest2</A
 >
           </P
 ><P
->&#13;            El contenido de ese repositorio podría conformarse desde una
-            terminal con <TT
-CLASS="literal"
->toncli</TT
-> y un editor (ver
-            sobre editores en adJ en
+>&#13;            Desde la terminal podrá preparar una estructura de
+            directorios con:
             <A
 HREF="http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html"
 TARGET="_top"
@@ -4242,8 +4340,8 @@ TARGET="_top"
           </P
 ><PRE
 CLASS="programlisting"
->&#13;toncli start wallet         # Inicia proyecto con código de ejemplo de una billetera
-mv wallet pruebas_mdc_func  # Renombra
+>&#13;toncli start wallet        # Inicia proyecto con ejemplo de una billetera
+mv wallet pruebas_mdc_func # Renombra
 cd pruebas_mdc_func
 find .
 </PRE
@@ -4254,14 +4352,11 @@ find .
 CLASS="programlisting"
 >&#13;.
 ├── build
-│   ├── contract.fif        Compilado de func/code.fc
-│   └──contract_tests.fif   Compilado automaticamente de tests/example.fc
 ├── fift                    Directorio con fuentes en fift (por borrar en este caso)
 ├── func
-│   └── code.fc             Código con la función por probar
+│   └── code.fc             Código con la función por probar
 ├── project.yaml            Estructura del proyecto para toncli
 └── tests
-    └── example.fc          Pruebas a la función que esta'en func/code.fc
 </PRE
 ><P
 >&#13;            Podemos reorganizar un poco el proyecto de ejemplo para
@@ -4269,9 +4364,8 @@ CLASS="programlisting"
           </P
 ><PRE
 CLASS="programlisting"
->&#13;rm  -rf build/*                # no necesitamos lo precompilado del ejemplo
-rm -rf fift                    # no necesitamos ejemplo en fift
-mv func/code.func func/code.fc # La extensión .fc es bastante usada
+>&#13;rm -rf fift                        # no necesitamos ejemplo en fift
+mv func/code.func func/solucion.fc # La extensión .fc es bastante usada
 </PRE
 ><P
 >&#13;            Editar <TT
@@ -4281,33 +4375,33 @@ CLASS="literal"
             siguiente contenido que indica que el código func por probar
             está en <TT
 CLASS="literal"
->func/code.fc</TT
-> y las pruebas están
-            en <TT
+>func/solucion.fc</TT
+> y las pruebas
+            están en <TT
 CLASS="literal"
->tests/example.fc</TT
+>tests/pruebas.fc</TT
 > :
           </P
 ><PRE
 CLASS="programlisting"
 >&#13;contract:
   func:
-      - func/code.fc
-        tests:
-            - tests/example.fc
+      - func/solucion.fc
+  tests:
+      - tests/pruebas.fc
 </PRE
 ><P
 >&#13;            El contenido de <TT
 CLASS="literal"
->func/code.fc</TT
+>func/solucion.fc</TT
 >:
           </P
 ><PRE
 CLASS="programlisting"
 >&#13;{-
-  TAREA 1 - Maximo divisor común
+  TAREA 1 - Máximo divisor común
 
-  Enunciando basado en 
+  Enunciando basado en
   https://github.com/vtamara/func-contest2/blob/master/1.fc
 
   Escribir un método que calcule el máximo divisor común entre 2 enteros
@@ -4320,7 +4414,7 @@ CLASS="programlisting"
 ;; por probar
 (int) gcd(int a, int b) method_id {
 
-  ;; Solución con base en 
+  ;; Solución con base en
   ;; https://people.cs.ksu.edu/~schmidt/301s14/Exercises/euclid_alg.html
   int k = a;
   int m = b;
@@ -4335,56 +4429,34 @@ CLASS="programlisting"
     k = m;
     m = r;
   }
- 
+
   return k;
 }
 </PRE
 ><P
 >&#13;            Y como contenido de <TT
 CLASS="literal"
->tests/example.fc</TT
+>tests/pruebas.fc</TT
 >:
           </P
 ><PRE
 CLASS="programlisting"
->&#13;;; Debemos implementar pares de funciones de pruebas
-;; una de nombre estilo prueba_data y otra de nombre prueba
-;; la primera organiza los datos para pasarlos a la función por
-;; probar y la segunda revisa que el resultado de la función
-;; probada sea el esperado.
+>&#13;int __test_t30_12() {
 
-;; En este ejemplo probaremos sacar el máximo divisor común entre 30 y 12
+  int a = 30;
+  int b = 12;
 
-;; Esta función prepara los datos por pasar a la función gcd dejando 30 y 12 
-;; en la pila
+  tuple pila = unsafe_tuple([a, b]);
 
-;; El número asignado a function_selected i.e 93344 corresponde al
-;; número asignado a la función tras compilarla, visible en
-;; build/contract.fift  (al probar otras funciones debe revisar
-;; ese archivo para asignar el número correspondiente en sus pruebas)
-[int, tuple, cell, tuple, int] test_30_12_data() method_id(0) {
-    int function_selector = 93344; 
+  cell datos = begin_cell().end_cell();
 
-    int a = 30;
-    int b = 12;
+  var (int gas_usado1, pila_ret) = invoke_method(gcd, pila);
 
-    tuple stack = unsafe_tuple([a, b]); 
+  int result = first(pila_ret);
 
-    cell data = begin_cell().end_cell();
+  throw_if(101, result != 6);
 
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-;; La siguiente función recibe la respuesta de la función gcd a los
-;; datos preparados por test_30_12_data() y verifica que sea correcta
-_ test_30_12(int exit_code, cell data, tuple stack,
-        cell actions, int gas) method_id(1) {
-
-    throw_if(100, exit_code != 0);
-
-    int result = first(stack); 
-
-    throw_if(101, result != 6); 
+  return gas_usado1;
 }
 </PRE
 ><P
@@ -4419,7 +4491,7 @@ CLASS="programlisting"
 ><DIV
 CLASS="figure"
 ><A
-NAME="AEN2355"
+NAME="AEN2382"
 ></A
 ><P
 ><B
@@ -4540,7 +4612,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="x2362.htm"
+HREF="x2389.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
