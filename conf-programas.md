@@ -1389,7 +1389,7 @@ su ejecución, por el espacio de almacenamiento que emplee y por enviar
 mensajes a otros contratos --mensajes que se procesaran asincronamente
 en una ronda diferente de los validadores.
 
-La moneda principal en este blockcahin es TON (o TONcoin) usada
+La moneda principal en este blockchain es TON (o TONcoin) usada
 por los validadores.  Puede ver su tasa de cambio e historial
 por ejemplo en <https://coinmarketcap.com/currencies/toncoin/>
 
@@ -1410,7 +1410,7 @@ e incluyen:
   * `tonlib-cli` Uso de la librería `tonlib` desde la terminal, la cual
     permite hacer operaciones con billetera(s).
   * `validator-engine` y `validator-engine-console` para operar un nodo
-    validador
+    validador.
 
 Es importante que en su archivo `~/.profile` (o equivalente como
 `~/.zshrc.local` si usa `zsh`) agregue:
@@ -1430,12 +1430,12 @@ export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
 
 #### `toncli` 0.0.43 para probar un contrato inteligente {#toncli}
 
-`toncli` es un paquete python que facilita el desarrollo y pruebas
+`toncli` es un paquete de python que facilita el desarrollo y pruebas
 de contratos inteligentes para el blockchain TON.
 
-Como el diseño de la TVM no incluyó muchas ayudas para el desarrollo o la 
-depuración, para emplear `toncli` debe usarse una bifurcación de la TVM original 
-con más primitivas para depurar: 
+Como en el diseño de la TVM original no se incluyeron muchas ayudas 
+para el desarrollo o para la depuración, para emplear `toncli` debe 
+usar una bifurcación de la TVM original con más instrucciones para depurar: 
 <https://github.com/SpyCheese/ton/tree/toncli-local>
 
 adJ también incluye un paquete con esa bifurcación llamado `ton-toncli`
@@ -1450,18 +1450,18 @@ doas pip install bitstring==3.1.9
 doas pip install toncli
 ```
 
-Tras esto, debe poder ejecutar
+Tras esto, debe poder ejecutar:
 ```
 toncli
 ```
 
-que en la primera ejecución le pedirá:
+Que en la primera ejecución le pedirá:
 
 1. Ruta de `func`. Utilice `/usr/local/bin/ton-toncli/func`
 2. Ruta de `fift`. Utilice `/usr/local/bin/ton-toncli/fift`
 3. Ruta de `lite-client`. Utilice `/usr/local/bin/ton-toncli/lite-client`
 
-Sus respuestas quedarán en `~/.config/toncli/config.ini`
+Esas rutas quedarán en el archivo `~/.config/toncli/config.ini`
 
 ##### Ejemplo de un contrato y sus pruebas con toncli 0.0.43
 
@@ -1516,7 +1516,7 @@ El contenido de `func/solucion.fc`:
 {-
   TAREA 1 - Máximo divisor común
 
-  Enunciando basado en
+  Enunciando basado en:
   https://github.com/vtamara/func-contest2/blob/master/1.fc
 
   Escribir un método que calcule el máximo divisor común entre 2 enteros
