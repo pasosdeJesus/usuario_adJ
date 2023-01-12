@@ -121,7 +121,7 @@ sudo_nopasswd=1
         procesador en
         <a href="bibliografia.html" title="E. Bibliografía">libreoffice-basico</a>
       </p><p>
-        Para operar con hojas de cálculo incluye gnumeric-1.12.50, que
+        Para operar con hojas de cálculo incluye gnumeric-1.12.53, que
         también puede abrir y guardar en OpenDocument y en formatos de
         Microsoft Office.
       </p><p>
@@ -210,7 +210,7 @@ LaTeX es un experto en esta materia:
           El archivo DVI es apropiado para imprimir, puede imprimirlo
           con una orden como <code class="literal">dvilj</code>,
           <code class="literal">dvidj</code> o un nombre análogo que corresponda a
-          su impresora <sup>[<a name="idm1340802664" href="#ftn.idm1340802664">9</a>]</sup>. Para visualizar un archivo DVI puede emplear la
+          su impresora <sup>[<a name="idm1420807912" href="#ftn.idm1420807912">9</a>]</sup>. Para visualizar un archivo DVI puede emplear la
           orden xdvi:
         </p><pre class="programlisting">
     xdvi documento.dvi
@@ -224,7 +224,7 @@ LaTeX es un experto en esta materia:
 </pre><p>
           A continuación se presenta como se ve el ejemplo de esta
           sección con el programa <code class="literal">xdvi</code>.
-        </p><div class="figure"><a name="idm1340594920"></a><p class="title"><b>Figura 2. Visualización de DVI generado de fuente en
+        </p><div class="figure"><a name="idm1420620008"></a><p class="title"><b>Figura 2. Visualización de DVI generado de fuente en
           LaTeX</b></p><div class="mediaobject"><img src="img/ejlatex.png" alt="Visualización de DVI generado de fuente
             en LaTeX"></div></div><p>
           Existen además otros programas para convertir de LaTeX a HTML
@@ -242,7 +242,7 @@ LaTeX es un experto en esta materia:
         </p><pre class="programlisting">
         doas pkg_add $PKG_PATH/docbook-4.5p4.tgz
         doas pkg_add $PKG_PATH/docbook-dsssl-1.79.tgz
-        doas pkg_add $PKG_PATH/openjade-1.3.3pre1p8.tgz
+        doas pkg_add $PKG_PATH/openjade-1.3.3pre1p9.tgz
 </pre><p>
           Esto bastará para hacer conversiones de DocBook SGML a HTML
           por ejemplo si su hoja de estilo DSSL es
@@ -348,7 +348,7 @@ LaTeX es un experto en esta materia:
 </pre><p>
           Al corregir interactivamente <code class="literal">ispell</code>
           mostrará palabras que no encuentre en el diccionario del
-          idioma ni en su diccionario personal<sup>[<a name="idm1360847464" href="#ftn.idm1360847464">10</a>]</sup> del idioma
+          idioma ni en su diccionario personal<sup>[<a name="idp819764376" href="#ftn.idp819764376">10</a>]</sup> del idioma
           (e.g. <code class="literal">~/.ispell_spanish</code>), así como posibles
           remplazos. Podrá elegir uno de los remplazos tecleando el
           número que antecede al remplazo.
@@ -378,12 +378,12 @@ LaTeX es un experto en esta materia:
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="ediciongraficos"></a>6.5.2. Edición de gráficos</h4></div></div></div><p>
         Para ver una gráfica (sin editarla) prácticamente en cualquier
         formato, puede usar <code class="literal">display</code> incluido en
-        ImageMagick-6.9.12.19:
+        ImageMagick-6.9.12.63:
       </p><pre class="programlisting">
     display migrafica.png
 </pre><p>
         Otra opción que facilita ver un directorio con imágenes es
-        <code class="literal">xfi</code> incluido en el paquete xfe-1.43.2p0:
+        <code class="literal">xfi</code> incluido en el paquete xfe-1.44p0:
       </p><pre class="programlisting">
     xfi migrafica.png
 </pre><p>
@@ -394,11 +394,11 @@ LaTeX es un experto en esta materia:
         vectoriales.
       </p><p>
         Como editor de gráficos a nivel de pixels, el CD de adJ incluye
-        gimp-2.10.24p2
+        gimp-2.99.12p0
       </p><p>
         <span class="inlinemediaobject"><img src="img/gimp.png"></span>
       </p><p>
-        Como editor vectorial incluye inkscape-1.0.2p0
+        Como editor vectorial incluye inkscape-1.2.1
       </p><p>
         <span class="inlinemediaobject"><img src="img/inkscape.png"></span>
       </p><p>
@@ -406,7 +406,7 @@ LaTeX es un experto en esta materia:
         <code class="literal">draw</code>.
       </p><p>
         Para la generación de gráficos de barras y estadísticos resulta
-        más apropiado el graficador de gnumeric-1.12.50 o de calc –la
+        más apropiado el graficador de gnumeric-1.12.53 o de calc –la
         hoja de cálculo de OpenOffice–, ver
         <a href="conf-programas.html#msoffice" title="6.3.1. Aplicaciones estilo MS-Office">Sección 6.3.1, “Aplicaciones estilo MS-Office”</a>
       </p></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="edicionaudio"></a>6.5.3. Edición de audio</h4></div></div></div><p>
@@ -415,12 +415,12 @@ LaTeX es un experto en esta materia:
         usar <code class="literal">mplayer</code> (ver
         <a href="conf-programas.html#mplayer" title="6.5.1. Mplayer">Sección 6.5.1, “Mplayer”</a>), o bien
         <code class="literal">audacious</code> (incluido en el paquete
-        audacious-4.1p0):
+        audacious-4.2):
       </p><p>
         <span class="inlinemediaobject"><img src="img/audacious.png"></span>
       </p><p>
         El programa <code class="literal">play</code> incluido en el paquete
-        sox-14.4.2p5 también le permitirá escuchar diversos formatos.
+        sox-14.4.2pl20210509 también le permitirá escuchar diversos formatos.
       </p><p>
         Desde la línea de órdenes podrá recortar, cambiar volumen y
         aplicar otros efectos empleando el programa
@@ -428,7 +428,7 @@ LaTeX es un experto en esta materia:
       </p><p>
         Si prefiere un editor gráfico que le permite recortar y aplicar
         algunos efectos a pistas de audio en prácticamente cualquier
-        formato de audio utilice el programa audacity-2.4.2:
+        formato de audio utilice el programa audacity-2.4.2p1:
       </p><p>
         <span class="inlinemediaobject"><img src="img/audacity.png"></span>
       </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="operaci%C3%B3n-en-red"></a>6.6. Operación en red</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="mutt"></a>6.6.1. <code class="literal">mutt</code></h4></div></div></div><p>
@@ -504,12 +504,12 @@ emplee el agente (ver un ejemplo en [xref](#fluxbox)).
         Tras esto ya podrá ingresar direcciones de la intranet desde el
         navegador.
       </p></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="ambiente-de-desarrollo"></a>6.7. Ambiente de Desarrollo</h3></div></div></div><div class="sect3" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="ruby"></a>6.7.1. Ruby</h4></div></div></div><p>
-        En adJ 7.0 es sencillo usar ruby-3.1.1 con Ruby on
+        En adJ 7.2 es sencillo usar ruby-3.1.2p0 con Ruby on
         Rails 6. Lo básico se instala de paquetes de OpenBSD y lo más
         reciente de Ruby directamente como gemas.
       </p><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="instalaci%C3%B3n-y-configuraci%C3%B3n"></a>6.7.1.1. Instalación y configuración</h5></div></div></div><p>
-          Asegúrese de tener instalados los paquetes ruby-3.1.1 y
-          node-12.22.9p0, incluidos en el DVD de adJ 7.0
+          Asegúrese de tener instalados los paquetes ruby-3.1.2p0 y
+          node-16.17.1v0, incluidos en el DVD de adJ 7.2
         </p><p>
           Asegúrese de tener enlaces al intérprete de ruby y
           herramientas (como describe el paquete ruby):
@@ -686,7 +686,7 @@ BUNDLE_PATH: "/var/www/bundler/"
 </pre><p>
             Rails requiere en el servidor un intérprete de JavaScript,
             por lo que recomendamos <code class="literal">node.js</code> (ver {1})
-            incluido en adJ 7.0 y que se configurará
+            incluido en adJ 7.2 y que se configurará
             automáticamente.
           </p><p>
             La gran mayoría de gemas usadas por rails instalarán de la
@@ -807,7 +807,7 @@ doas ln -s /usr/local/bin/node /tmp/
             <a href="http://127.0.0.1:3000/" target="_top">http://127.0.0.1:3000/</a>
           </p><p>
             Notará que se generan los siguientes directorios y archivos:
-          </p><div class="table"><a name="idm1360732264"></a><p class="title"><b>Tabla 2. 
+          </p><div class="table"><a name="idp819730072"></a><p class="title"><b>Tabla 2. 
               Archivos generados
             </b></p><table summary="
               Archivos generados
@@ -1110,7 +1110,7 @@ doas ln -s /usr/local/bin/node /tmp/
             editar existentes y eliminar.
           </p><p>
             Los archivos generados son:
-          </p><div class="table"><a name="idm444128616"></a><p class="title"><b>Tabla 3. 
+          </p><div class="table"><a name="idm1482457064"></a><p class="title"><b>Tabla 3. 
               Archivos generados con scaffold
             </b></p><table summary="
               Archivos generados con scaffold
@@ -1221,7 +1221,7 @@ doas ln -s /usr/local/bin/node /tmp/
     rails g controller hogar
 </pre><p>
             Que genera:
-          </p><div class="table"><a name="idm444184808"></a><p class="title"><b>Tabla 4. 
+          </p><div class="table"><a name="idm1482446696"></a><p class="title"><b>Tabla 4. 
               Archivos generados con
               <code class="literal">g controller hogar</code>
             </b></p><table summary="
@@ -1601,7 +1601,7 @@ Y en el modelo `app/models/usuario.rb` debe quedar:
         procesaran asincronamente en una ronda diferente de los
         validadores.
       </p><p>
-        La moneda principal en este blockcahin es TON (o TONcoin) usada
+        La moneda principal en este blockchain es TON (o TONcoin) usada
         por los validadores. Puede ver su tasa de cambio e historial por
         ejemplo en
         <a href="https://coinmarketcap.com/currencies/toncoin/" target="_top">https://coinmarketcap.com/currencies/toncoin/</a>
@@ -1634,7 +1634,7 @@ Y en el modelo `app/models/usuario.rb` debe quedar:
               </p></li><li><p>
                 <code class="literal">validator-engine</code> y
                 <code class="literal">validator-engine-console</code> para operar
-                un nodo validador
+                un nodo validador.
               </p></li></ul></div></li></ul></div><p>
         Es importante que en su archivo <code class="literal">~/.profile</code> (o
         equivalente como <code class="literal">~/.zshrc.local</code> si usa
@@ -1653,14 +1653,14 @@ export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
               <a href="https://ton.org/docs/#/smart-contracts/" target="_top">https://ton.org/docs/#/smart-contracts/</a>
             </p></li></ul></div></div><div class="sect4" lang="es"><div class="titlepage"><div><div><h5 class="title"><a name="toncli"></a>6.8.1.2. <code class="literal">toncli</code> 0.0.43 para probar un contrato
         inteligente</h5></div></div></div><p>
-          <code class="literal">toncli</code> es un paquete python que facilita el
-          desarrollo y pruebas de contratos inteligentes para el
+          <code class="literal">toncli</code> es un paquete de python que facilita
+          el desarrollo y pruebas de contratos inteligentes para el
           blockchain TON.
         </p><p>
-          Como el diseño de la TVM no incluyó muchas ayudas para el
-          desarrollo o la depuración, para emplear
-          <code class="literal">toncli</code> debe usarse una bifurcación de la
-          TVM original con más primitivas para depurar:
+          Como en el diseño de la TVM original no se incluyeron muchas
+          ayudas para el desarrollo o para la depuración, para emplear
+          <code class="literal">toncli</code> debe usar una bifurcación de la TVM
+          original con más instrucciones para depurar:
           <a href="https://github.com/SpyCheese/ton/tree/toncli-local" target="_top">https://github.com/SpyCheese/ton/tree/toncli-local</a>
         </p><p>
           adJ también incluye un paquete con esa bifurcación llamado
@@ -1678,11 +1678,11 @@ doas pkg_add py3-pip
 doas pip install bitstring==3.1.9   
 doas pip install toncli
 </pre><p>
-          Tras esto, debe poder ejecutar
+          Tras esto, debe poder ejecutar:
         </p><pre class="programlisting">
 toncli
 </pre><p>
-          que en la primera ejecución le pedirá:
+          Que en la primera ejecución le pedirá:
         </p><div class="orderedlist"><ol type="1" compact><li><p>
               Ruta de <code class="literal">func</code>. Utilice
               <code class="literal">/usr/local/bin/ton-toncli/func</code>
@@ -1693,19 +1693,18 @@ toncli
               Ruta de <code class="literal">lite-client</code>. Utilice
               <code class="literal">/usr/local/bin/ton-toncli/lite-client</code>
             </p></li></ol></div><p>
-          Sus respuestas quedarán en
+          Esas rutas quedarán en el archivo
           <code class="literal">~/.config/toncli/config.ini</code>
         </p><div class="sect5" lang="es"><div class="titlepage"><div><div><h6 class="title"><a name="ejemplo-de-un-contrato-y-sus-pruebas-con-toncli-0.0.43"></a>6.8.1.2.1. Ejemplo de un contrato y sus pruebas con toncli
           0.0.43</h6></div></div></div><p>
             Como ejemplo implementaremos un contrato inteligente que
-            calcule el máximo común divisor entre dos números (problema
+            calcule el máximo común divisor entre dos números (ejercicio
             propuesto en la segunda competencia de programación en FunC
             como puede verse en
-            <a href="https://github.com/ton-blockchain/func-contest2" target="_top">https://github.com/ton-blockchain/func-contest2</a>
+            <a href="https://github.com/ton-blockchain/func-contest2" target="_top">https://github.com/ton-blockchain/func-contest2</a>).
           </p><p>
             Desde la terminal podrá preparar una estructura de
             directorios con:
-            <a href="http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html" target="_top">http://pasosdejesus.github.io/basico_adJ/edicion_de_textos.html</a>)
           </p><pre class="programlisting">
 toncli start wallet        # Inicia proyecto con ejemplo de una billetera
 mv wallet pruebas_mdc_func # Renombra
@@ -1715,12 +1714,12 @@ find .
             Verá la estructura de un proyecto toncli típico que incluye:
           </p><pre class="programlisting">
 .
-├── build
-├── fift                    Directorio con fuentes en fift (por borrar en este caso)
-├── func
-│   └── code.fc             Código con la función por probar
-├── project.yaml            Estructura del proyecto para toncli
-└── tests
+├── build              Aquí quedarán resultados de compilación
+├── fift               Directorio con fuentes en fift (por borrar en este caso)
+├── func               Directorio con fuentes en FunC
+│   └── code.func      Código con la función por probar
+├── project.yaml       Estructura del proyecto para toncli
+└── tests              Directorio con fuentes en FunC de pruebas de regresión
 </pre><p>
             Podemos reorganizar un poco el proyecto de ejemplo para
             nuestro caso de una sola función en FunC con:
@@ -1729,7 +1728,7 @@ rm -rf fift                        # no necesitamos ejemplo en fift
 mv func/code.func func/solucion.fc # La extensión .fc es bastante usada
 </pre><p>
             Editar <code class="literal">project.yaml</code> para que quede el
-            siguiente contenido que indica que el código func por probar
+            siguiente contenido que indica que el código FunC por probar
             está en <code class="literal">func/solucion.fc</code> y las pruebas
             están en <code class="literal">tests/pruebas.fc</code> :
           </p><pre class="programlisting">
@@ -1744,7 +1743,7 @@ contract:
 {-
   TAREA 1 - Máximo divisor común
 
-  Enunciando basado en
+  Enunciando basado en:
   https://github.com/vtamara/func-contest2/blob/master/1.fc
 
   Escribir un método que calcule el máximo divisor común entre 2 enteros
@@ -1791,7 +1790,7 @@ int __test_t30_12() {
 
   int result = first(pila_ret);
 
-  throw_if(101, result != 6);
+  throw_if(101, result != 6);  ;; mcd(30, 12) == 6
 
   return gas_usado1;
 }
@@ -1810,14 +1809,15 @@ make
 all:
         toncli run_tests
 </pre><p>
-            Deben darle un resultado como el del pantallazo siguiente:
-          </p><div class="figure"><a name="idm587716072"></a><p class="title"><b>Figura 3. Pantallazo con ejecución exitosa de toncli</b></p><div class="mediaobject"><img src="img/toncliej.png" alt="Pantallazo con ejecución exitosa de
-              toncli"></div></div></div></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1340802664" href="#idm1340802664">9</a>] </sup>
+            Que deben darle un resultado como el del pantallazo
+            siguiente:
+          </p><div class="figure"><a name="idp1213423256"></a><p class="title"><b>Figura 3. Pantallazo con ejecución exitosa de toncli</b></p><div class="mediaobject"><img src="img/toncliej.png" alt="Pantallazo con ejecución exitosa de
+              toncli"></div></div></div></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1420807912" href="#idm1420807912">9</a>] </sup>
               Si usa <code xmlns="" class="literal">ksh</code> puede ver una lista de
               posibles programas que le permitan imprimir, tecleando
               <code xmlns="" class="literal">dvi</code> desde un intérprete de órdenes y
               presionando Tab dos veces.
-            </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1360847464" href="#idm1360847464">10</a>] </sup>
+            </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp819764376" href="#idp819764376">10</a>] </sup>
               Puede cambiar el diccionario personal que
               <code xmlns="" class="literal">ispell</code> debe emplear con la opción
               <code xmlns="" class="literal">-p archivo</code>

@@ -15,13 +15,13 @@
       <code class="literal">~/.profile</code> o en <code class="literal">~/.xsession</code>
       vale la pena agregar:
     </p><pre class="programlisting">
-    export PKG_PATH=ftp://ftp.pasosdeJesus.org/pub/OpenBSD/7.0/packages/amd64
+    export PKG_PATH=ftp://ftp.pasosdeJesus.org/pub/OpenBSD/7.2/packages/amd64
 </pre><p>
       o la vía del CD-ROM 1 o una vía de un espejo más rápido para su
-      caso<sup>[<a name="idm562422504" href="#ftn.idm562422504">7</a>]</sup>. Una vez establecida esta variable, para agregar por
-      ejemplo el paquete <code class="literal">vim-8.2.3394-gtk3.tgz</code>:
+      caso<sup>[<a name="idm2055635432" href="#ftn.idm2055635432">7</a>]</sup>. Una vez establecida esta variable, para agregar por
+      ejemplo el paquete <code class="literal">vim-9.0.0192-gtk3.tgz</code>:
     </p><pre class="programlisting">
-    pkg_add $PKG_PATH/vim-8.2.3394-gtk3.tgz 
+    pkg_add $PKG_PATH/vim-9.0.0192-gtk3.tgz 
 </pre><p>
       Puede ver la lista de paquetes instalados en su sistema con
       <code class="literal">pkg_info</code> o con
@@ -32,7 +32,7 @@
       actualizando un paquete).
     </p><p>
       Podrá ver los paquetes disponibles para instalar en
-      <a href="http://www.openbsd.org/&amp;7.0;_packages/amd64.html" target="_top">http://www.openbsd.org/7.0_packages/amd64.html</a>.
+      <a href="http://www.openbsd.org/&amp;7.2;_packages/amd64.html" target="_top">http://www.openbsd.org/7.2_packages/amd64.html</a>.
     </p><p>
       En el <a href="paquetes-adJ.html" title="A. Paquetes incluidos en adJ">Apéndice Paquetes de adJ</a>
       destacamos algunos que permiten tener un ambiente para producir
@@ -84,7 +84,7 @@
     </p><pre class="programlisting">
     cd /usr
     export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-    cvs -z3 -q get -rOPENBSD_7_0 -P ports 
+    cvs -z3 -q get -rOPENBSD_7_2 -P ports 
 </pre><p>
       La vía para <code class="literal">CVSROOT</code> adáptela a su servidor más
       cercano, escogiendo entre los disponibles en:
@@ -134,7 +134,7 @@
             distinfo
           </span></dt><dd><p>
               Este archivo incluye diversos
-              “<span class="quote">condensados</span>”<sup>[<a name="idm1602600424" href="#ftn.idm1602600424">8</a>]</sup> de cada fuente que debe descargarse para
+              “<span class="quote">condensados</span>”<sup>[<a name="idm2055653096" href="#ftn.idm2055653096">8</a>]</sup> de cada fuente que debe descargarse para
               asegurar su integridad. Se genera automáticamente con
               <code class="literal">make makesum</code> y se verifica con
               <code class="literal">make checksum</code>
@@ -167,12 +167,12 @@
         refinarse el porte para asegurar que cumple con todos los
         lineamientos que espera el equipo de portes de OpenBSD. Puede
         consultar más en porting-checklist porting.
-      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm562422504" href="#idm562422504">7</a>] </sup>
+      </p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2055635432" href="#idm2055635432">7</a>] </sup>
           Para determinarlo puede ver la velocidad de cada espejo con
           algo como <code xmlns="" class="literal">ping ftp.pasosdeJesus.org</code> o
           emplear el script <code xmlns="" class="literal">pos.sh</code> que hará la prueba
           para los espejos oficiales de OpenBSD. Está en el directorio
           <code xmlns="" class="literal">herram</code> de las fuentes de este escrito.
-        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1602600424" href="#idm1602600424">8</a>] </sup>
+        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm2055653096" href="#idm2055653096">8</a>] </sup>
                   Resultados de pasar archivos por funciones de hashing.
                 </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="interprete_de_ordenes.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="configuracion-de-componentes-basicos.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">3. Interprete de órdenes </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 5. Configuración y uso de programas y servicios básicos</td></tr></table></div></body></html>

@@ -11,11 +11,11 @@
               por ejemplo con el programa <code class="literal">ftp</code> de
               OpenBSD:
             </p><pre class="programlisting">
-    ftp -C https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus7.0-amd64.usb
+    ftp -C https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus7.2-amd64.usb
 </pre><p>
               o bien con el programa <code class="literal">wget</code>:
             </p><pre class="programlisting">
-    wget -c https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus7.0-amd64.usb
+    wget -c https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus/AprendiendoDeJesus7.2-amd64.usb
 </pre><p>
               Usando estas formas podrá reanudar la transferencia en
               caso de que se interrumpa. Otra posibilidad que tiene que
@@ -23,7 +23,7 @@
               reanudar en caso de que se interrumpa, es emplear el
               programa <code class="literal">rsync</code>:
             </p><pre class="programlisting">
-    rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/AprendiendoDeJesus7.0-amd64.usb .
+    rsync -vz rsync://ftp.pasosdeJesus.org/AprendiendoDeJesus/AprendiendoDeJesus7.2-amd64.usb .
 </pre><p>
               Note que hay un punto al final, que indica que el destino
               de la copia es el directorio actual. Si desea ver que
@@ -39,7 +39,7 @@
               <code class="literal">/dev/sd2c</code> (verifique dispositivo con
               <code class="literal">dmesg</code> y remplace):
             </p><p>
-              doas dd if=AprendiendoDeJesus-7.0-amd64.usb
+              doas dd if=AprendiendoDeJesus-7.2-amd64.usb
               of=/dev/sd2c bs=1M
             </p><p>
               Este proceso puede ser demorado, puede ver el progreso con
@@ -117,14 +117,14 @@
           Leer la fe de erratas que incluye soluciones a eventuales
           problemas que tendrá durante la instalación o cuando concluya
           junto con soluciones:
-          <a href="http://aprendiendo.pasosdejesus.org/?id=AdJ+7.0+-+Aprendiendo+de+Jesus+7.0" target="_top">http://aprendiendo.pasosdejesus.org/?id=AdJ+7.0+-+Aprendiendo+de+Jesus+7.0</a>
+          <a href="http://aprendiendo.pasosdejesus.org/?id=AdJ+7.2+-+Aprendiendo+de+Jesus+7.2" target="_top">http://aprendiendo.pasosdejesus.org/?id=AdJ+7.2+-+Aprendiendo+de+Jesus+7.2</a>
         </p></li></ol></div></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="ayudas-para-la-instalacion"></a>2.2. Ayudas para la instalación</h3></div></div></div><p>
       Es muy recomendable consultar
       <a href="http://www.openbsd.org/faq/faq4.html#4.1" target="_top">guía de
       instalación de OpenBSD</a>.
     </p><p>
       Si tiene la USB o el DVD oficial, configure su UEFI para que
-      arranque por este y reinicie<sup>[<a name="idp271383448" href="#ftn.idp271383448">4</a>]</sup>.
+      arranque por este y reinicie<sup>[<a name="idp1053561240" href="#ftn.idp1053561240">4</a>]</sup>.
     </p><p>
       Recuerde que si usará el DVD debe dejar su UEFI en modo CSM o
       Legacy. Tenga en cuenta que aún con USB de arranque el modo UEFI
@@ -151,7 +151,7 @@
       Linux y OpenBSD:
     </p><div class="variablelist"><dl><dt><span class="term">
           Nombres y manejo de dispositivos
-        </span></dt><dd><div class="table"><a name="idp271460760"></a><p class="title"><b>Tabla 1. 
+        </span></dt><dd><div class="table"><a name="idp1053581464"></a><p class="title"><b>Tabla 1. 
               Nombres de dispositivos
             </b></p><table summary="
               Nombres de dispositivos
@@ -196,7 +196,7 @@
                   </td><td align="left">
                     <code class="literal">/dev/fd0</code>
                   </td><td align="left">
-                    <code class="literal">/dev/fd0c</code><sup>[<a name="idp271409560" href="#ftn.idp271409560">a</a>]</sup>
+                    <code class="literal">/dev/fd0c</code><sup>[<a name="idp1053558424" href="#ftn.idp1053558424">a</a>]</sup>
                   </td></tr><tr><td align="left">
                     Primera unidad de DVD
                   </td><td align="left">
@@ -204,7 +204,7 @@
                     es SCSI algo como <code class="literal">/dev/sda</code>
                   </td><td align="left">
                     <code class="literal">/dev/cd0c</code>
-                  </td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp271409560" href="#idp271409560">a</a>] </sup>
+                  </td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1053558424" href="#idp1053558424">a</a>] </sup>
                         En discos, DVDs y disquetes las particiones se
                         indican con a, b, d y letras que se usan como
                         postfijo. El postfijo c representa el
@@ -343,7 +343,7 @@
       partición <code class="literal">c</code> representa la partición del BIOS
       completa y no debe tocarse, la tercera (<code class="literal">d</code>)
       corresponderá a <code class="literal">/home</code> y la cuarta
-      (<code class="literal">e</code>) a <code class="literal">/var</code><sup>[<a name="idp271379608" href="#ftn.idp271379608">5</a>]</sup>. Note que con este esquema los programas y sus datos
+      (<code class="literal">e</code>) a <code class="literal">/var</code><sup>[<a name="idp1053524376" href="#ftn.idp1053524376">5</a>]</sup>. Note que con este esquema los programas y sus datos
       estáticos (típicos de los directorios <code class="literal">/bin</code>,
       <code class="literal">/sbin</code> y <code class="literal">/usr</code> quedarán en la
       subpartición <code class="literal">a</code>. Los datos de usuario
@@ -416,7 +416,7 @@ mount /dev/sd1a /mnt2/
             sino un disco virtual en RAM (útil por ejemplo para hacer
             actualizaciones).
           </p></dd><dt><span class="term">
-          base70
+          base72
         </span></dt><dd><p>
             Que es indispensable, porque además de la jerarquía de
             directorios incluye: los programas de los directorios
@@ -431,7 +431,7 @@ mount /dev/sd1a /mnt2/
             autenticación con Kerberos, NFS, NAT, AMD, AFS, perl y
             algunas herramientas de desarrollo.
           </p></dd><dt><span class="term">
-          etc70
+          etc72
         </span></dt><dd><p>
             También indispensable en sistemas que se instalan por
             primera vez (aunque no necesariamente si se hace
@@ -439,51 +439,51 @@ mount /dev/sd1a /mnt2/
             directorio <code class="literal">/etc</code> e información
             complementaria de <code class="literal">/var</code>.
           </p></dd><dt><span class="term">
-          comp70
+          comp72
         </span></dt><dd><p>
             Que incluye herramientas de desarrollo para Fortran, C y
             C++. Las librerías que estas requieren y la documentación de
             las llamadas al sistema y de las librerías.
           </p></dd><dt><span class="term">
-          man70
+          man72
         </span></dt><dd><p>
             Que incluye documentación HTML, info y man de los programas
-            y librerías de base70.
+            y librerías de base72.
           </p></dd><dt><span class="term">
-          game70
+          game72
         </span></dt><dd><p>
             Algunos juegos que se instalan en
             <code class="literal">/usr/games</code>
           </p></dd><dt><span class="term">
-          misc70
+          misc72
         </span></dt><dd><p>
             Que incluye información del directorio
             <code class="literal">/usr/share</code> como diccionarios y
             documentación complementaria.
           </p></dd><dt><span class="term">
-          xbase70
+          xbase72
         </span></dt><dd><p>
             Programas básicos de X-Window
             (<code class="literal">/usr/X11R6/bin</code>), librerías
             (<code class="literal">/usr/X11R6/lib</code>) y su documentación
             (<code class="literal">/usr/X11R6/man</code>).
           </p></dd><dt><span class="term">
-          xfont70
+          xfont72
         </span></dt><dd><p>
             Tipos de letra para X-Window
             (<code class="literal">/usr/X11R6/lib/X11/fonts</code>), para diversas
             codificaciones e idiomas, en resoluciones 100ppp y 75ppp.
           </p></dd><dt><span class="term">
-          xserv70
+          xserv72
         </span></dt><dd><p>
             Servidores X-Window para diversas tarjetas de video,
             librerías para soportar fuentes y documentación.
           </p></dd><dt><span class="term">
-          xshare70
+          xshare72
         </span></dt><dd><p>
             Encabezados y documentación complementaria de X-Window
           </p></dd><dt><span class="term">
-          site70
+          site72
         </span></dt><dd><p>
             Requerido para continuar la instalación y configuración de
             Aprendiendo de Jesús. En particular archivo de órdenes
@@ -491,14 +491,14 @@ mount /dev/sd1a /mnt2/
             ejecutar como usuario administrador cuando haya reiniciado.
           </p></dd></dl></div><p>
       la instalación de los componentes indispensables
-      (base70 y etc70) requiere cerca
+      (base72 y etc72) requiere cerca
       de 100MB, y la instalación de todos requiere alrededor de 300MB.
     </p><p>
       Una vez se instalen el kernel genérico (<code class="literal">/bsd</code>) y
       los componentes que eligió el instalador preparará el directorio
       <code class="literal">/dev</code> de dispositivos y cambiará la partición de
       OpenBSD para que pueda arrancar el sistema en caso de que sea la
-      partición activa<sup>[<a name="idp271448600" href="#ftn.idp271448600">6</a>]</sup>. Puede entonces apagar con la orden
+      partición activa<sup>[<a name="idp1053466264" href="#ftn.idp1053466264">6</a>]</sup>. Puede entonces apagar con la orden
       <code class="literal">halt -p</code>, retirar el CD y volver a iniciar para
       entrar al sistema instalado. Si tienes problemas para ingresar a
       OpenBSD puede arrancar con el CD de instalación y cuando este
@@ -716,10 +716,10 @@ mount /dev/sd1a /mnt2/
 </pre></div><div class="sect2" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="configuracion-de-xorg"></a>2.6. Configuración de Xorg</h3></div></div></div><p>
       Si durante la instalación eligió usar X-Window y xdm, e instaló
       los juegos de instalación de X-Window (i.e
-      <code class="literal">xbase70</code>,
-      <code class="literal">xfont70</code>,
-      <code class="literal">xserv70</code>,
-      <code class="literal">xshare70</code>), y si su tarjeta fue
+      <code class="literal">xbase72</code>,
+      <code class="literal">xfont72</code>,
+      <code class="literal">xserv72</code>,
+      <code class="literal">xshare72</code>), y si su tarjeta fue
       correctamente configurada, al arrancar iniciará en el ambiente
       gráfico.
     </p><p>
@@ -910,22 +910,22 @@ Identifier “<span class="quote">Screen0</span>” Device “<span class="qu
             archivo <code class="literal">/usr/X11R6/README</code>
           </p></li><li><p>
             El servidor de X-Window incluido en OpenBSD
-            7.0 soporta fuentes anti-aliasing y True Type.
+            7.2 soporta fuentes anti-aliasing y True Type.
             Puede consultar el procedimiento para instalar fuentes True
             Type en
             <a href="http://www.openbsd.org/faq/truetype.html" target="_top">http://www.openbsd.org/faq/truetype.html</a>.
-          </p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp271383448" href="#idp271383448">4</a>] </sup>
+          </p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1053561240" href="#idp1053561240">4</a>] </sup>
           El método de instalación por red PXE requiere que configure
           otro servidor con los servicios DHCP para asignarle dirección
           durante la instalación y TFTP para que pueda servirle el
           archivo de arranque <code xmlns="" class="literal">boot</code> y un kernel como
           <code xmlns="" class="literal">bsd</code>
-        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp271379608" href="#idp271379608">5</a>] </sup>
+        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1053524376" href="#idp1053524376">5</a>] </sup>
           Si el disco tiene otras particiones del BIOS para otros
           sistemas, estos se verán con otras etiquetas (típicamente i
           para la primera partición Windows, m para la primera partición
           Linux).
-        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp271448600" href="#idp271448600">6</a>] </sup>
+        </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1053466264" href="#idp1053466264">6</a>] </sup>
           Si no tiene un manejador de arranque, puede determinar cual de
           las 4 particiones primarias es la activa con el programa
           <code xmlns="" class="literal">fdisk</code>.

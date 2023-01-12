@@ -1,0 +1,3858 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Configuración y uso de algunos dispositivos y servicios</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Configuración y uso de algunos programas"
+HREF="x1208.htm"><LINK
+REL="NEXT"
+TITLE="Instalaciones duales"
+HREF="x3230.htm"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1208.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x3230.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="conf-dispositivos"
+>Configuración y uso de algunos dispositivos y servicios</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="hardware-arranque"
+>Reconocimiento de hardware durante el arranque</A
+></H2
+><P
+>&#13;      Durante el arranque el kernel detecta hardware usando diversos
+      controladores en cierto orden. El orden y los controladores que se
+      usen dependen de la configuración que se haya dado al kernel al
+      compilarlo. El orden típico configurado en el kernel genérico es:
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;          Procesador, Memoria, UEFI
+        </P
+></LI
+><LI
+><P
+>&#13;          Discos duros, CDROM y unidades de disquete
+        </P
+></LI
+><LI
+><P
+>&#13;          Buses, Teclado, Dispositivos ISA
+        </P
+></LI
+><LI
+><P
+>&#13;          Puertos paralelos y seriales
+        </P
+></LI
+><LI
+><P
+>&#13;          Dispositivos ISA plug and play
+        </P
+></LI
+></UL
+><P
+>&#13;      La configuración de la mayoría de estos dispositivos puede ser
+      determinada por el controlador, pero con algunos dispositivos (e.g
+      ISA, ciertos teclados) el kernel incluye valores predeterminados
+      que en algunos casos pueden no corresponder al hardware o que por
+      la forma de detectar congelan el sistema completo. En tal caso,
+      determine los recursos que el dispositivo tiene configurados con
+      jumpers o con software (e.g IRQ, dirección de entrada salida base,
+      DMA) y modifique los valores que emplea el kernel de una de estas
+      formas (en un caso extremo puede tener que deshabilitar el
+      dispositivo):
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;          Arranque con
+          <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+><TT
+CLASS="literal"
+>boot -c</TT
+></B
+></SPAN
+>
+          y cambie parámetros usados por los controladores antes de
+          continuar con la detección automática de hardware. El cambio
+          sólo durará mientras no reinicie el sistema, puede hacer el
+          cambio durable por ejemplo con la orden:
+          <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+><TT
+CLASS="literal"
+>config -u</TT
+></B
+></SPAN
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;          Después de que su sistema haya iniciado modifique los recursos
+          asignados por defecto del kernel con
+          <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+><TT
+CLASS="literal"
+>config -e -o /bsd.new /bsd</TT
+></B
+></SPAN
+>
+        </P
+></LI
+><LI
+><P
+>&#13;          Recompile el kernel con una configuración apropiada.
+        </P
+></LI
+></UL
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="modificacion-antes-de-arrancar"
+>Modificación antes de arrancar</A
+></H3
+><P
+>&#13;        Al arrancar, cuando esté en el prompt
+        <TT
+CLASS="literal"
+>boot&#62;</TT
+>, inicie con:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;        boot&#62; boot -c
+      
+</PRE
+><P
+>&#13;        Así entrará a un entorno interactivo, que le permite cambiar la
+        asignación de recursos predeterminada para algunos dispositivos.
+        Por ejemplo si tiene una tarjeta de red compatible NE2000 con
+        dirección base 0x300 e IRQ 3, el controlador
+        <TT
+CLASS="literal"
+>ne</TT
+> la asignará la interfaz
+        <TT
+CLASS="literal"
+>ne1</TT
+> que por defecto usa la dirección base
+        0x300 pero la IRQ 10. Desde el prompt que
+        <TT
+CLASS="literal"
+>boot -c</TT
+> produce ingrese:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;        UKC&#62; change ne1
+      
+</PRE
+><P
+>&#13;        puede ver otras órdenes disponibles con la orden
+        <TT
+CLASS="literal"
+>help</TT
+>. Una vez complete la configuración salga
+        del entorno interactivo con <TT
+CLASS="literal"
+>quit</TT
+>, tras esto
+        el kernel continuará la detección pero usando los cambios que
+        haya hecho.
+      </P
+><P
+>&#13;        Una vez haya configurado los recursos que un controlador emplea
+        para que correspondan a los de un dispositivo y que su sistema
+        esté operando, puede hacer el cambio permanente usando:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas config -e -o /bsd.ne1 -u /bsd
+      
+</PRE
+><P
+>&#13;        que le permitirá al mismo entorno interactivo, que procurará
+        detectar los cambios que usted haya podido hacer durante el
+        arranque, le permitirá completarlos y cuando salga (con
+        <TT
+CLASS="literal"
+>quit</TT
+>) escribirá un nuevo kernel
+        <TT
+CLASS="literal"
+>/bsd.ne1</TT
+> con la misma configuración de
+        <TT
+CLASS="literal"
+>/bsd</TT
+> pero con sus cambios aplicados.
+      </P
+><P
+>&#13;        Si no logra configurar algún dispositivo y esto hace que el
+        sistema completo se congele durante el arranque, puede requerir
+        deshabilitar el dispositivo (situación que es muy inusual).
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="hardware-arranque-lecturas"
+>Lecturas recomendadas y referencias
+      (hardware-arranque)</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+>&#13;            Página del manual unix de autoconf8.
+            <TT
+CLASS="literal"
+>autoconf</TT
+> determina el orden y los
+            controladores que se usan para la detección automática de
+            hardware.
+          </P
+></LI
+><LI
+><P
+>&#13;            Página del manual unix de boot_config y de 8 donde se
+            describen las órdenes aceptados por el entorno interactivo
+            de configuración de dispositivos.
+          </P
+></LI
+><LI
+><P
+>&#13;            Puede encontrar más sobre la secuencia de arranque de
+            OpenBSD por ejemplo en
+            <A
+HREF="http://dhobsd.pasosdeJesus.org/pres21abr2005/"
+TARGET="_top"
+>http://dhobsd.pasosdeJesus.org/pres21abr2005/</A
+>
+          </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="impresion"
+>Impresión</A
+></H2
+><P
+>&#13;      Para atender trabajos de impresión hay disponibles para Unix
+      varios sistemas: lpd, LPRng, CUPS, QPD. El más popular y el
+      incluido en la distribución básica de OpenBSD es
+      <TT
+CLASS="literal"
+>lpd</TT
+> que además de poder llevar cuentas de cada
+      usuario, permite a varios computadores en red compartir una misma
+      impresora.
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="uso-impresora"
+>Uso de una impresora ya configurada</A
+></H3
+><P
+>&#13;        Aun cuando algunos programas ofrecen menús con una opción para
+        imprimir, prácticamente todos usan en últimas el programa
+        <TT
+CLASS="literal"
+>lpr</TT
+> (o <TT
+CLASS="literal"
+>/usr/local/bin/lpr</TT
+>
+        si está usando CUPS) que se encarga de poner la información que
+        debe enviarse a la impresora en una cola de trabajos pendientes
+        <A
+NAME="AEN2458"
+HREF="#FTN.AEN2458"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+>, que es atendida automáticamente (i.e de ella se
+        envían trabajos pendientes cuando la impresora está disponible)
+        por un programa.
+      </P
+><P
+>&#13;        Cada impresora configurada tiene un nombre, la impresora por
+        defecto se llama <TT
+CLASS="literal"
+>lp</TT
+> <A
+NAME="AEN2465"
+HREF="#FTN.AEN2465"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+>.
+      </P
+><P
+>&#13;        Posiblemente su sistema esté configurado para permitir a
+        <TT
+CLASS="literal"
+>lpr</TT
+> la impresión de textos planos y
+        documentos PostScript o PDF. Para programar la impresión de un
+        texto plano con nombre <TT
+CLASS="literal"
+>tarea.txt</TT
+> en la
+        impresora por defecto, puede emplear:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;      lpr tarea.txt
+    
+</PRE
+><P
+>&#13;        o eventualmente para especificar una impresora diferente a
+        <TT
+CLASS="literal"
+>lp</TT
+>, digamos <TT
+CLASS="literal"
+>imp2</TT
+> use la
+        opción <TT
+CLASS="literal"
+>-P</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;      lpr -Pimp2 tarea.txt
+    
+</PRE
+><P
+>&#13;        Puede examinar la cola de sus impresiones pendientes con
+        <TT
+CLASS="literal"
+>lpq</TT
+> que junto con los nombres de las
+        impresiones pendientes presentará un número que la identifica.
+        Tal número le permitirá cancelar una de sus tareas de impresión
+        pendiente, usándolo como parámetro de <TT
+CLASS="literal"
+>lprm</TT
+>.
+      </P
+><P
+>&#13;        Para imprimir gráficas y documentos con diversos tipos de letra
+        o colores, primero debe convertirse la información a secuencias
+        de control particulares de su impresora. Cómo de una impresora a
+        otra varían los secuencias de control, en sistemas tipo Unix con
+        LPD suele emplearse PostScript (que es un lenguaje apropiado
+        para documentos por imprimir) como formato común y se usan los
+        filtros del programa Ghostscript para traducir de PostScript al
+        formato particular de su impresora <A
+NAME="AEN2480"
+HREF="#FTN.AEN2480"
+><SPAN
+CLASS="footnote"
+>[3]</SPAN
+></A
+>. Si se usa CUPS es posible emplear controladores
+        particulares para su impresora y no depender de Ghostscript.
+      </P
+><P
+>&#13;        Ghostscript es un programa que puede leer documentos PostScript
+        y PDF <A
+NAME="AEN2483"
+HREF="#FTN.AEN2483"
+><SPAN
+CLASS="footnote"
+>[4]</SPAN
+></A
+> y presentarlos en una ventana de X-Window o
+        transformarlos al lenguaje particular de algunas impresoras. Por
+        ejemplo para generar a partir de un documento PostScript
+        <TT
+CLASS="literal"
+>s2.ps</TT
+> la secuencia de caracteres apropiada
+        para una impresora LaserJet en el archivo
+        <TT
+CLASS="literal"
+>s2.lj</TT
+> se usaría:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    gs -sDEVICE=laserjet -sOutputFile=s2.lj s2.ps -c quit       
+      
+</PRE
+><P
+>&#13;        O para imprimir directamente usando <TT
+CLASS="literal"
+>lpr</TT
+>, en
+        lugar de <TT
+CLASS="literal"
+>s2.lj</TT
+> puede usar
+        <TT
+CLASS="literal"
+>-sOutputFile=\|lpr</TT
+>. Puede experimentar con
+        este intérprete tecleando <TT
+CLASS="literal"
+>gs</TT
+> y por ejemplo
+        ingresando la siguiente secuencia de instrucciones en lenguaje
+        PostScript:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    100 100
+    moveto
+    200 200
+    lineto
+    stroke
+      
+</PRE
+><P
+>&#13;        gs Nombre del programa con el que se inicia Ghostscript
+        —intérprete de PostScript.
+      </P
+><P
+>&#13;        Para visualizar un documento PostScript o PDF puede emplear el
+        programa <TT
+CLASS="literal"
+>gv</TT
+> —el cual se apoya en Ghostscript—
+        por ejemplo:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    gv micarta.ps
+    
+</PRE
+><P
+>&#13;        mostrará el documento PostScript <TT
+CLASS="literal"
+>micarta.ps</TT
+>
+        en una ventana de X-Window y con menús le permitirá consultarlo
+        e imprimirlo.
+      </P
+><P
+>&#13;        gv Programa empleado para visualizar documentos Postcript o PDF.
+      </P
+><P
+>&#13;        Para imprimir y hacer transformaciones a un PostScript (por
+        ejemplo 2 páginas en una sola), o para convertir de otros
+        formatos a PostScript puede emplear el programa
+        <TT
+CLASS="literal"
+>a2ps</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    a2ps ­­columns=2 -o micarta-2.ps micarta.ps
+      
+</PRE
+><P
+>&#13;        o <TT
+CLASS="literal"
+>mpage</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    mpage -2 micarta.ps &#62; micarta-2.ps
+      
+</PRE
+><P
+>&#13;        a2ps Programa para transformar de diversos formatos a PostScript
+        o para hacer transformaciones a un Postcript.
+      </P
+><P
+>&#13;        Además de los programas <TT
+CLASS="literal"
+>a2ps</TT
+> y del paquete
+        <TT
+CLASS="literal"
+>psutils</TT
+> es posible modificar directamente un
+        archivo PostScript. Por ejemplo siguiendo las indicaciones de
+        <A
+HREF="http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html"
+TARGET="_top"
+>http://www.ghostscript.com/pipermail/bug-gs/2001-August/000641.html</A
+>,
+        resulta posible rotar una página, editando el archivo y en la
+        sección <TT
+CLASS="literal"
+>%%%BeginPageSetup</TT
+> agregando después
+        de establecer tamaño de página,
+        e.g. <TT
+CLASS="literal"
+>595 842 /a4 setpagesize</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    currentpagedevice /PageSize get aload pop translate
+    180 rotate
+    
+</PRE
+><P
+>&#13;        Tanto PostScript como PDF requieren bastante espacio para
+        describir un documento, usualmente los documentos PDF requieren
+        menos porque mantienen la información comprimida. Para convertir
+        entre PostScript y PDF se emplean <TT
+CLASS="literal"
+>ps2pdf</TT
+> y
+        <TT
+CLASS="literal"
+>pdf2ps</TT
+> <A
+NAME="AEN2519"
+HREF="#FTN.AEN2519"
+><SPAN
+CLASS="footnote"
+>[5]</SPAN
+></A
+>. Para visualizar e imprimir un PDF, además de
+        <TT
+CLASS="literal"
+>gv</TT
+>, puede emplear <TT
+CLASS="literal"
+>xpdf</TT
+> o
+        el programa Acrobat Reader (<TT
+CLASS="literal"
+>acroread</TT
+>).
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="lpd-local"
+>Configuración de una impresora local con
+      <TT
+CLASS="literal"
+>lpd</TT
+></A
+></H3
+><P
+>&#13;        lpd (también llamado <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Berkeley line printer spooling
+        system</I
+></SPAN
+>) es un sistema que maneja una cola de
+        impresión por cada impresora configurada, filtros para convertir
+        información de diversos tipos (e.g PostScript y PDF) al lenguaje
+        particular de cada impresora así como filtros de cuentas que
+        permiten monitorear y controlar el uso de cada impresora por
+        parte de cada usuario. LPD recibe y procesa solicitudes de
+        impresión realizadas por programas cliente e imprime la
+        información de las colas en los dispositivo configurados para
+        cada cola (e.g <TT
+CLASS="literal"
+>/dev/lpt0</TT
+> o enviando por red a
+        una impresora remota).
+      </P
+><P
+>&#13;        En OpenBSD lpd debe activarse durante el arranque, agregando en
+        <TT
+CLASS="literal"
+>/etc/rc.conf.local</TT
+> la línea:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    lpd_flags="" 
+</PRE
+><P
+>&#13;        su archivo de configuración principal es
+        <TT
+CLASS="literal"
+>/etc/printcap</TT
+> el cual es leído cada vez que
+        lpd inicia y donde se configura cada cola de impresión, el
+        dispositivo asociado a cada una y sus parámetros, los filtros
+        para los diversos tipos de información que puede imprimir y
+        filtros de cuentas.
+      </P
+><P
+>&#13;        lpd es un servidor TCP/IP que imprime trabajos pendientes en las
+        colas de impresoras locales (sólo modificables con programas
+        clientes) y que atiende conexiones de clientes que emplean el
+        protocolo LPD en el puerto TCP 515. La conexión normalmente la
+        realiza un programa cliente como <TT
+CLASS="literal"
+>lpr</TT
+>,
+        <TT
+CLASS="literal"
+>lpq</TT
+>, <TT
+CLASS="literal"
+>lprm</TT
+> o
+        <TT
+CLASS="literal"
+>lpc</TT
+> que pueden solicitar una de las
+        siguientes operaciones:
+      </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;            Revisar trabajos en cola de una impresora.
+          </P
+></LI
+><LI
+><P
+>&#13;            Recibir y poner en cola de una impresora un trabajo de otra
+            máquina.
+          </P
+></LI
+><LI
+><P
+>&#13;            Listado corto del estado de los trabajos de un usuario en la
+            cola de una impresora.
+          </P
+></LI
+><LI
+><P
+>&#13;            Listado largo del estado de los trabajos de un usuario en la
+            cola de una impresora.
+          </P
+></LI
+><LI
+><P
+>&#13;            Eliminar trabajos de un usuario de la cola de una impresora
+          </P
+></LI
+></UL
+><P
+>&#13;        <TT
+CLASS="literal"
+>lpd</TT
+> envía errores a la bitácora
+        <TT
+CLASS="literal"
+>/var/log/lpd-errs</TT
+>.
+      </P
+><P
+>&#13;        lpd Nombre del servidor de impresión disponible por defecto en
+        OpenBSD. Permite manejar colas, dispositivos de impresión,
+        filtros y puede llevar cuentas.
+      </P
+><P
+>&#13;        Además de esta documentación puede consultar más sobre la
+        configuración de <TT
+CLASS="literal"
+>lpd</TT
+> en FreeBSDHandBook y
+        OpenBSDlpd
+      </P
+><P
+>&#13;        /dev/lpt0 Dispositivo que representa el primero puerto paralelo.
+      </P
+><P
+>&#13;        La mayoría de impresoras se conectan al puerto paralelo (por
+        ejemplo utilizables con dispositivos
+        <TT
+CLASS="literal"
+>/dev/lpt0</TT
+> o <TT
+CLASS="literal"
+>/dev/lpt1</TT
+>).
+        Puede probar que su impresora funciona enviando una cadena
+        sencilla al puerto apropiado por ejemplo
+        <TT
+CLASS="literal"
+>echo "Hola"       &#62;/dev/lpt0</TT
+> o
+        <TT
+CLASS="literal"
+>lptest &#62;       /dev/lpt0</TT
+>.
+      </P
+><P
+>&#13;        /etc/printcap Archivo donde se configuran impresoras para el
+        sistema <TT
+CLASS="literal"
+>lpd</TT
+>.
+      </P
+><P
+>&#13;        El siguiente es un ejemplo del archivo
+        <TT
+CLASS="literal"
+>/etc/printcap</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;      lp|local line printer:\
+      :lp=/dev/lpt0:sd=/var/spool/output:lf=/var/log/lpd-errs:
+    
+</PRE
+><P
+>&#13;        que configura una impresora local para textos llamada
+        <TT
+CLASS="literal"
+>lp</TT
+> o <TT
+CLASS="literal"
+>local line printer</TT
+>.
+        Está conectada a <TT
+CLASS="literal"
+>/dev/lpt0</TT
+>, la cola de
+        impresión la mantiene en <TT
+CLASS="literal"
+>/var/spool/output</TT
+> y
+        envía errores a <TT
+CLASS="literal"
+>/var/log/lpd-errs</TT
+>. Para
+        configurar impresoras que puedan imprimir gráficas (así como
+        PostScript con diversos tipos de letra) debe emplear un filtro
+        del programa Ghostscript.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="cups"
+>CUPS</A
+></H3
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="cups-inst"
+>Instalación</A
+></H4
+><P
+>&#13;          Hay un paquete de CUPS entre los portes oficiales de OpenBSD
+          7.2. Una vez instalado puede ejecutarlo con
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas cupsd
+    
+</PRE
+><P
+>&#13;          Para que en cada arranque se ejecute automáticamente, se
+          recomienda agregar en <TT
+CLASS="literal"
+>rc.local</TT
+>:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    if (test -x /usr/local/sbin/cupsd) then {
+        echo -n ' cupsd';
+        /usr/local/sbin/cupsd;
+    } fi;
+    
+</PRE
+><P
+>&#13;          La distribución estándar de cups incluye unos pocos archivos
+          <TT
+CLASS="literal"
+>ppd</TT
+>, así que posiblemente tendrá que
+          generar o conseguir los apropiados para su impresora con
+          <TT
+CLASS="literal"
+>foomatic</TT
+> (ver
+          <A
+HREF="x2388.htm#foomatic"
+>foomatic</A
+>).
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="cups-conf"
+>Configuración</A
+></H4
+><P
+>&#13;          La configuración de CUPS (por ejemplo para añadir una
+          impresora) puede hacerse con facilidad una vez esté
+          ejecutándose el servidor, usando un navegador y abriendo en la
+          máquina donde corre CUPS el puerto 631, por ejemplo
+          <TT
+CLASS="literal"
+>http://127.0.0.1:631</TT
+>. Para hacer labores
+          administrativas ingrese con la identificación y la clave de un
+          usuario que esté en el grupo <TT
+CLASS="literal"
+>sys</TT
+> o por la
+          cuenta <TT
+CLASS="literal"
+>root</TT
+>.
+        </P
+><P
+>&#13;          También es recomendable que cree un directorio:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas mkdir /var/spool/cups/tmp
+    doas chown _cups:_cups /var/spool/cups/tmp/
+    
+</PRE
+><P
+>&#13;          Si tiene problemas al instalar/usar una impresora puede
+          consultar el archivo de errores de <TT
+CLASS="literal"
+>cups</TT
+> en:
+          <TT
+CLASS="literal"
+>/var/log/cups/error_log</TT
+>.
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="uso-cups"
+>Utilización de CUPS</A
+></H4
+><P
+>&#13;          El paquete de <TT
+CLASS="literal"
+>cups</TT
+> cuenta con programas
+          análogos a los de LPD, pero ubicados en
+          <TT
+CLASS="literal"
+>/usr/local/bin</TT
+>. Diversos programas
+          emplearan la orden <TT
+CLASS="literal"
+>lpr</TT
+> para hacer
+          impresiones, así que tiene dos opciones:
+        </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;              Ejecutar <TT
+CLASS="literal"
+>cups-enable</TT
+> que remplazará los
+              ejecutables relacionados con impresión de
+              <TT
+CLASS="literal"
+>/usr/</TT
+> con los de CUPS disponibles en
+              <TT
+CLASS="literal"
+>/usr/local/</TT
+>.
+            </P
+></LI
+><LI
+><P
+>&#13;              Configurar cada programa para que en lugar de emplear
+              <TT
+CLASS="literal"
+>/usr/bin/lpr</TT
+> utilice
+              <TT
+CLASS="literal"
+>/usr/local/bin/lpr</TT
+>. Por ejemplo así
+              debe configurar xpdf.
+            </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="foomatic"
+>foomatic</A
+></H3
+><P
+>&#13;        <TT
+CLASS="literal"
+>foomatic</TT
+> ofrece gran cantidad de
+        controladores para una variada gama de impresoras, estos
+        controladores e instrucciones para impresoras particulares están
+        disponibles en
+        <A
+HREF="http://www.openprinting.org"
+TARGET="_top"
+>http://www.openprinting.org</A
+>
+        Es posible emplearlos bien con <TT
+CLASS="literal"
+>lpr</TT
+> o bien con
+        <TT
+CLASS="literal"
+>cups</TT
+>.
+      </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="foomatic-lpr"
+>Foomatic con LPR</A
+></H4
+><P
+>&#13;          Si la impresora está conectada a <TT
+CLASS="literal"
+>/dev/lpt0</TT
+>
+          basta que agregue a <TT
+CLASS="literal"
+>/etc/printcap</TT
+> una
+          entrada como:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;lp|local line printer:\
+    :lp=/dev/lpt0:\
+        :af=/etc/foomatic/laserjet6p.ppd:\
+        :if=/usr/local/bin/foomatic-rip:\
+        :sd=/var/spool/lpd:\
+        :lf=/var/log/lpd-errs:\
+        :mx#0:sh:
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="foomatic-cups"
+>Foomatic con CUPS</A
+></H4
+><P
+>&#13;          Cada archivo <TT
+CLASS="literal"
+>ppd</TT
+> que descargue debe
+          ubicarlo en: <TT
+CLASS="literal"
+>/usr/local/share/cups/model/</TT
+>.
+          Después de agregar archivos en ese directorio reinicie CUPS
+          para que lea nuevamente sus archivos de configuración con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;# pkill -HUP cupsd
+              
+</PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="discos-duros"
+>Discos duros</A
+></H2
+><P
+>&#13;      En la actualidad hay discos duros de estado sólido y discos
+      electromecánicos.
+    </P
+><P
+>&#13;      Los discos de estado sólido o SSD (del inglés <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>solid
+      state disk</I
+></SPAN
+>) mantienen información de manera permanente
+      mediante circuitos integrados, pero ante el sistema operativo se
+      presentan como si fuesen discos electromecánicos SCSI.
+    </P
+><P
+>&#13;      Los discos electromecánicos constan de varias placas circulares
+      sobre las que se almacena información magnéticamente. La
+      organización o geometría de un disco suele especificarse como
+      cantidad de cilindros (del ingleś <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>cylinder</I
+></SPAN
+>),
+      cantidad de cabezas (del inglés <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>head</I
+></SPAN
+>) y
+      cantidad de sectores.
+    </P
+><P
+>&#13;      Para emplear un disco en OpenBSD se requiere:
+    </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;          que sea manejado por un controlador que lo asocie con un
+          dispositivo (e.g /dev/wd0c para un primer disco IDE o
+          /dev/sd1c para un segundo disco SCSI)
+        </P
+></LI
+><LI
+><P
+>&#13;          el disco debe estar formateado a bajo nivel, debe tener
+          subparticiones o etiquetas (del inglés
+          <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>disklabel</I
+></SPAN
+>) en particiones, debe haber
+          subparticiones con sistemas de archivos soportados (e.g FFS2
+          que es el nativo de adJ/OpenBSD, FAT o msdos, ext2 de Linux o
+          NTFS de sólo lectura de Windows) que sean montadas en el
+          sistema de archivos comenzando por una que debe estar montada
+          como directorio raiz / (digamos /dev/sd0a sería primera
+          partición de un disco SCSI) .
+        </P
+></LI
+></UL
+><P
+>&#13;      Además de esto para iniciar un computador con un disco duro
+    </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;          debe estar configurado como disco de arranque en la UEFI (o
+          durante el arranque el usuario debe indicarle a la UEFI por
+          cual disco arrancar)
+        </P
+></LI
+><LI
+><P
+>&#13;          debe tener una partición marcada como iniciable en la tabla de
+          particiones y/o emplear un cargador de arranque (e.g GRUB si
+          tiene Linux y adJ/OpenBSD en el mismo disco).
+        </P
+></LI
+><LI
+><P
+>&#13;          Debe tener al menos una partición para OpenBSD (tipo A6) con
+          subparticiones entre las cuales haya una con sistema de
+          archivos FFS2 que se monte como raiz.
+        </P
+></LI
+></UL
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="particiones-slices"
+>Particiones</A
+></H3
+><P
+>&#13;        Una partición es una porción de un disco duro destinada para un
+        sistema de archivos. Un disco duro puede particionarse para:
+      </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            Mantener varios sistemas operativos.
+          </P
+></LI
+><LI
+><P
+>&#13;            Organizar diversos espacios para un mismo sistema operativo,
+            aunque en OpenBSD esto suele hacerse con subparticiones .
+          </P
+></LI
+><LI
+><P
+>&#13;            Arrancar los sistemas operativos mediante aplicaciones UEFI
+            en una partición especial tipo EFI con sistema de archivos
+            FAT32. (su tamaño puede ser de 1G para los casos más
+            comunes).
+          </P
+></LI
+></UL
+><P
+>&#13;        El disco comienza con una tabla de particiones tipo GPT (aunque
+        si su computador tiene habilitado el modo de compatibilidad CSM
+        - Compatibility Support Mode) la tabla de particiones sería modo
+        MBR. Las tablas tipo MBR son reconocidas por BIOS antiguos y
+        recientes (en modo <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Legacy</I
+></SPAN
+> o CSM) soportan
+        discos de hasta 2T, y hasta 4 particiones primarias, si se
+        requieren más particiones una de las primarias debe definirse
+        como extendida y dentro de esta se podrán dividir otras
+        particiones que se llamaran lógicas. Por su parte las
+        particiones GPT son reconocidas por BIOS (UEFI) posteriores al
+        año 2011, requieren que una partición se destine a un arranque
+        EFI y cada partición puede tener cualquier tamaño y puede haber
+        tantas particiones como se requiera.
+      </P
+><P
+>&#13;        OpenBSD puede tener problemas para arrancar en algunos sistemas
+        UEFI, como se describe en
+        <A
+HREF="https://marc.info/?l=openbsd-misc&#38;m=159039904132502&#38;w=2"
+TARGET="_top"
+>https://marc.info/?l=openbsd-misc&#38;m=159039904132502&#38;w=2</A
+>.
+        En tales casos debe activar el modo CSM e instalar con este.
+      </P
+><P
+>&#13;        Para cambiar la tabla de particiones de un disco en OpenBSD/adJ
+        puede emplearse el programas <TT
+CLASS="literal"
+>fdisk</TT
+>. Se inicia
+        pasando como parámetro el dispositivo del disco que desea editar
+        (e.g /dev/rsd0c), le permiten modificar la partición hasta que
+        este satisfecho con la distribución y finalmente permiten salvar
+        la partición configurada en el disco.
+      </P
+><P
+>&#13;        En un OpenBSD/adJ que esté corriendo puede determinar si esta
+        operando en modo UEFI o en modo CSM examinando el disco de
+        arranque con <TT
+CLASS="literal"
+>fdisk</TT
+>. En modo UEFI se verá algo
+        como:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;% doas fdisk /dev/rsd0c
+Disk: /dev/rsd0c       Usable LBA: 34 to 468862094 [468862128 Sectors]
+   #: type                                 [       start:         size ]
+------------------------------------------------------------------------
+   0: EFI Sys                              [        2048:       204800 ]
+   1: e3c9e316-0b5c-4db8-817d-f92df00215ae [      206848:        32768 ]
+   2: FAT12                                [      239616:     97656250 ]
+   3: Win Recovery                         [   467798016: 1060864 ]
+   4: Linux files*                         [    97896448: 78125056 ]
+   5: Linux swap                           [   176021504: 31250432 ]
+   6: Linux files*                         [   207271936: 78125056 ]
+   7: OpenBSD                              [ 285396992:    183465103 ]
+</PRE
+><P
+>&#13;        Mientras que en modo CSM se verá algo como
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;% doas fdisk /dev/rsd0c
+[27/19380]
+Disk: /dev/rsd0c        geometry: 121601/255/63 [1953525168 Sectors]
+Offset: 0       Signature: 0xAA55                                               
+            Starting         Ending         LBA Info:
+ #: id      C   H   S -      C   H   S [       start:        size ]
+-------------------------------------------------------------------------------
+*0: 07      0  32  33 -     12 223  19 [        2048:      204800 ] NTFS         
+ 1: A6     12 223  20 -  81237 215   2 [      206848:  1304879104 ] OpenBSD      
+ 2: 05  81237 247  33 - 121601  57  56 [  1305087998:   648435714 ] Extended DOS 
+ 3: 00      0   0   0 -      0   0   0 [           0:           0 ] unused       
+Disk: /dev/rsd0c        geometry: 121601/255/63 [1953525168 Sectors]
+...
+</PRE
+><A
+NAME="AEN2679"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>&#13;          <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/warning.png"></SPAN
+>
+          <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+>Advertencia</B
+></SPAN
+>
+        </P
+><P
+>&#13;          Al modificar una partición el sistema de archivos que en ella
+          hubiera no podrá usarse
+        </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="subparticiones"
+>Subparticiones o etiquetas</A
+></H3
+><P
+>&#13;        Hay dos niveles de particiones: (1) del UEFI/BIOS y (2)
+        particulares de OpenBSD. Las primeras se configuran con
+        <TT
+CLASS="literal"
+>fdisk</TT
+> y las segundas se crean dentro de las
+        primeras con <TT
+CLASS="literal"
+>disklabel</TT
+>.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="sistema-de-archivos-ffs2"
+>Sistema de archivos FFS2</A
+></H3
+><P
+>&#13;        Un sistema de archivos FFS2 sólo puede crearse en una
+        subpartición identificada con <TT
+CLASS="literal"
+>disklabel</TT
+>. Como
+        se explica en la página del manual <TT
+CLASS="literal"
+>fs</TT
+>, consta
+        de:
+      </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;            Un superbloque con los parámetros básicos del sistema de
+            archivos (e.g tamaño de cada bloque, lista de grupos de
+            cilindros) y con los parámetros del hardware que afectan el
+            desempeño<A
+NAME="AEN2699"
+HREF="#FTN.AEN2699"
+><SPAN
+CLASS="footnote"
+>[6]</SPAN
+></A
+> (tipo de transferencia de disco a memoria,
+            tiempo esperado por transferencia, bloques por pista,
+            velocidad de rotación).
+          </P
+></LI
+><LI
+><P
+>&#13;            Copias de seguridad del superbloque en diversos bloques del
+            disco.
+          </P
+></LI
+><LI
+><P
+>&#13;            Archivos, algunos de los cuales pueden ser directorios. Todo
+            archivo tiene asociado un nodo-i, que mantiene información
+            del archivo (dueño, tiempo de última modificación y de
+            creación, algunos de los bloques que emplea el archivo y
+            referencia a otros nodos-i con el resto de bloques).
+          </P
+></LI
+></UL
+><P
+>&#13;        Los bloques pueden fragmentarse para aprovechar espacio cuando
+        se mantienen archivos pequeños. Cada grupo de cilindros tiene
+        una tabla de fragmentos libres en los bloques del grupo e
+        información sobre bloques libres de acuerdo a las diversas
+        posiciones rotacionales (para optimizar ubicación de información
+        de acuerdo al hardware disponible).
+      </P
+><P
+>&#13;        Algunos bloques se reservan para que sólo puedan ser usados por
+        el administrador (reserva de espacio libre). En OpenBSD por
+        defecto es 5% del espacio total.
+      </P
+><P
+>&#13;        Entre las características soportadas por FFS2 están:
+      </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            Enlaces duros dentro de una misma partición o enlaces
+            simbólicos. Candados, nombres largos para archivos,
+            validaciones y cuotas (para limitar espacio utilizable por
+            los usuarios).
+          </P
+></LI
+><LI
+><P
+>&#13;            Soporta particiones de más de 1TB (FFS1 solo soportaba 1T),
+          </P
+></LI
+><LI
+><P
+>&#13;            FFS2 es más rápido que FFS1 al crear y al chequear la
+            particíon (con <TT
+CLASS="literal"
+>fsck</TT
+>)
+          </P
+></LI
+><LI
+><P
+>&#13;            FFS2 usa marcas de tiempo y bloques de 64 bits (a diferencia
+            de FFS1), así que maneja fechas posteriores a 2038 y
+            particiones mucho más grandes (aunque las particiones muy
+            grandes requieren mucho tiempo en el chequeo).
+          </P
+></LI
+><LI
+><P
+>&#13;            No hay herramienta para convertir entre FFS1 y FFS2 –debe
+            respaldar toda la información y formatear.
+          </P
+></LI
+></UL
+><P
+>&#13;        Para revisar un sistema de archivos FFS2 (digamos que esté en la
+        partición <TT
+CLASS="literal"
+>/dev/wd1j</TT
+>) ejecute:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas fsck_ffs /dev/rwd1j
+</PRE
+><P
+>&#13;        note la <TT
+CLASS="literal"
+>r</TT
+> antes de <TT
+CLASS="literal"
+>wd1j</TT
+>
+        que indica que la partición debe tratarse en modo puro (del
+        inglés <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>raw</I
+></SPAN
+>). Puede agregar la opción
+        <TT
+CLASS="literal"
+>-y</TT
+> antes del dispositivo para responder si
+        por defecto a toda pregunta (intentado que solucione
+        automáticamente todos los problemas). En algunos casos cuando un
+        disco está bastante inconsistente en su estructura, puede
+        perderse información que <TT
+CLASS="literal"
+>fsck_ffs</TT
+> intentará
+        recuperar y dejar en archivos cuyos nombres son números en el
+        directorio <TT
+CLASS="literal"
+>lost+found</TT
+>. En los casos que se
+        dañe el superbloque de la partición que desea revisar
+        <TT
+CLASS="literal"
+>fsck_ffs</TT
+> se negará a realizar el chequeo, en
+        tales casos puede intentar con un superbloque de respaldo
+        –típicamente hay uno en el bloque 32:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas fsck_ffs -b 32 /dev/rwd1j
+</PRE
+><P
+>&#13;        Para crear un sistema de archivos <TT
+CLASS="literal"
+>ffs</TT
+> en un
+        disco ya particionado con <TT
+CLASS="literal"
+>disklabel</TT
+> puede
+        emplearse <TT
+CLASS="literal"
+>newfs</TT
+>, por ejemplo:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas newfs -t ffs /dev/wd1j
+</PRE
+><P
+>&#13;        Hasta OpenBSD/adJ 6.6 se empleaba FFS1, a partir de 6.7 las
+        nuevas particiones eran de tipo FFS2 de forma predeterminada y a
+        partir de 6.8 se prefiere FFS2. Con <TT
+CLASS="literal"
+>newfs</TT
+>
+        podría crearse una partición tipo FFS1 con la opción
+        <TT
+CLASS="literal"
+>-O 1</TT
+>.
+      </P
+><P
+>&#13;        Puede identificar si una subpartición (digamos
+        <TT
+CLASS="literal"
+>sd2a</TT
+>) de es FFS1 o FFS2 ejecutando:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;dumpfs /dev/rsd2a | head -1
+</PRE
+><A
+NAME="AEN2743"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>&#13;          <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/warning.png"></SPAN
+>
+          <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+>Advertencia</B
+></SPAN
+>
+        </P
+><P
+>&#13;          Al crear un nuevo sistema de archivos se borra la información
+          que pudiera haber existido.
+        </P
+></BLOCKQUOTE
+><P
+>&#13;        Para detectar particiones ffs en un disco, puede emplearse
+        <TT
+CLASS="literal"
+>scan_ffs</TT
+>.
+      </P
+><P
+>&#13;        Para examinar la estructura de una partición con ffs, se emplea
+        <TT
+CLASS="literal"
+>dumpfs</TT
+>. Puede afinarse un sistema ffs con
+        <TT
+CLASS="literal"
+>tunefs</TT
+>
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="zonas-de-intercambio"
+>Zonas de intercambio (swap)</A
+></H3
+><P
+>&#13;        Son porciones de un disco duro que pueden emplearse como si
+        fuera memoria RAM (aunque es mucho más lenta). Si por ejemplo
+        desea agregar como dispositivo de intercambio el disco
+        <TT
+CLASS="literal"
+>/dev/wd1l</TT
+> debe:
+      </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;            Asegurarse de poner tipo swap a la partición. Puede emplear
+            <TT
+CLASS="literal"
+>disklabel</TT
+>. Por ejemplo puede emplear el
+            modo interactivo de este programa:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas disklabel -E /dev/wd1c 
+</PRE
+><P
+>&#13;            en este modo puede examinar las particiones y divisiones del
+            disco con p, puede ver una ayuda abreviada con h. Con m le
+            será posible cambiar el tipo de una partición (por ejemplo
+            puede ser <TT
+CLASS="literal"
+>4.2BSD</TT
+> si se trata de un
+            sistema ffs o <TT
+CLASS="literal"
+>swap</TT
+> si se trata de un
+            dispositivo para intercambio), y la ubicación.
+          </P
+><A
+NAME="AEN2767"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>&#13;              <SPAN
+CLASS="inlinemediaobject"
+><IMG
+SRC="img/caution.png"></SPAN
+>
+              <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+>Cuidado</B
+></SPAN
+>
+            </P
+><P
+>&#13;              El sitio donde reubique una partición NO debe estar
+              traslapado sobre una partición ya existente. Si traslapa
+              una partición sobre otra, la información que hubiera en la
+              partición sobre la que traslapa puede perderse de manera
+              irreversible.
+            </P
+></BLOCKQUOTE
+></LI
+><LI
+><P
+>&#13;            Agregue una línea a su archivo <TT
+CLASS="literal"
+>/etc/fstab</TT
+>
+            con el dispositivo de intercambio, punto de montaje
+            <TT
+CLASS="literal"
+>none</TT
+>, tipo <TT
+CLASS="literal"
+>swap</TT
+> y
+            opción <TT
+CLASS="literal"
+>sw</TT
+>:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    /dev/wd1l none  swap sw 0 0 
+</PRE
+><P
+>&#13;            Con este cambio, el dispositivo será montado como zona de
+            intercambio cada vez que el sistema inicie (está en
+            <TT
+CLASS="literal"
+>/etc/rc</TT
+>).
+          </P
+></LI
+><LI
+><P
+>&#13;            Intente agregar el dispositivo como zona de intercambio sin
+            reiniciar con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas swapon -a 
+</PRE
+><P
+>&#13;            o con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas swapctl -A -t blk 
+</PRE
+><P
+>&#13;            Ambas órdenes intentarán montar como zonas de intercambio
+            todos dispositivos por bloques de
+            <TT
+CLASS="literal"
+>/etc/fstab</TT
+> que tengan la opción
+            <TT
+CLASS="literal"
+>sw</TT
+>. Puede verificar la adición listando
+            todas las zonas de intercambio con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas swapctl -l 
+</PRE
+></LI
+></OL
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="raid"
+>Arreglo de discos RAID por software</A
+></H3
+><P
+CLASS="literallayout"
+>Cómo&nbsp;se&nbsp;explica&nbsp;en&nbsp;la&nbsp;página&nbsp;del&nbsp;manual&nbsp;de&nbsp;<TT
+CLASS="literal"
+>softraid</TT
+>,&nbsp;OpenBSD&nbsp;incluye&nbsp;el&nbsp;dispositivo&nbsp;<TT
+CLASS="literal"
+>softraid</TT
+>&nbsp;que&nbsp;puede&nbsp;proveer&nbsp;RAID&nbsp;y&nbsp;otros&nbsp;servicios&nbsp;relacionados&nbsp;con&nbsp;entrada/salida.<br>
+Un&nbsp;volumen&nbsp;es&nbsp;un&nbsp;disco&nbsp;virtual&nbsp;que&nbsp;consta&nbsp;de&nbsp;varios&nbsp;<SPAN
+CLASS="QUOTE"
+>"pedazos"</SPAN
+>,&nbsp;cada&nbsp;<SPAN
+CLASS="QUOTE"
+>"pedazo"</SPAN
+>&nbsp;(del&nbsp;inglés&nbsp;<SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+>chunk</B
+></SPAN
+>)&nbsp;es&nbsp;una&nbsp;subpartición&nbsp;del&nbsp;disco&nbsp;de&nbsp;tipo&nbsp;RAID&nbsp;(el&nbsp;tipo&nbsp;se&nbsp;establece&nbsp;con&nbsp;<TT
+CLASS="literal"
+>disklabel</TT
+>).</P
+><P
+>&#13;        Las posibles disciplinas que soporta <TT
+CLASS="literal"
+>softraid</TT
+>
+        son:
+      </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            RAID 0: Que segmenta los datos sobre un número de
+            <SPAN
+CLASS="QUOTE"
+>"pedazos"</SPAN
+> para aumentar el desempeño (aunque no
+            provee redundancia). No es posible hacer volumenes de
+            arranque.
+          </P
+></LI
+><LI
+><P
+>&#13;            RAID 1: Copia cada dato en más de un <SPAN
+CLASS="QUOTE"
+>"pedazo"</SPAN
+>
+            para facilitar recuperar información en caso de perdida de
+            datos. Si es posible hacer volúmenes de arranque.
+          </P
+></LI
+><LI
+><P
+>&#13;            RAID 5: Divide los datos en varios pedazos pero proveen
+            paridad para prevenir perdida de datos. No es posible hacer
+            volumenes de arranque.
+          </P
+></LI
+><LI
+><P
+>&#13;            CRYPTO: Cifra los datos en un sólo pedazo para proveer
+            confidencialidad (aunque no redundancia). Si es posible
+            hacer volumenes de arranque.
+          </P
+></LI
+><LI
+><P
+>&#13;            CONCAT: Que concatena varios pedazos, aunque no provee
+            redundancia ni permite hacer volumenes de arranque.
+          </P
+></LI
+></UL
+><P
+>&#13;        Hemos notado en la práctica que cada <SPAN
+CLASS="QUOTE"
+>"pedazo"</SPAN
+> debe
+        ser máximo de 2T.
+      </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="raid-1-sin-arranque"
+>RAID 1 sin arranque</A
+></H4
+><P
+>&#13;          La disciplina RAID 1 provee redundancia, pues cada dato lo
+          escribe en todos los pedazos que conforman el arreglo. Así que
+          cada pedazo es como una copia de cada uno de los otros.
+        </P
+><P
+>&#13;          Para el caso típico de 2 <SPAN
+CLASS="QUOTE"
+>"pedazos"</SPAN
+> que se
+          configurarán en RAID 1 pero no como volumen de arranque, se
+          recomienda usar 3 discos duros. Uno para arrancar (digamos
+          sd0) y 2 de las mismas dimensiones que se configuraran en RAID
+          1 (digamos sd1 y sd2 cada uno de 2T).
+        </P
+><P
+>&#13;          sd0 debe tener un sistema OpenBSD/adJ típico para (1)
+          configurar el RAID 1 para sd1 y sd2 y (2) montar el arreglo
+          resultante en un directorio de su sistema de archivos.
+        </P
+><P
+>&#13;          Primero se preparan sd1 y sd2 completos para OpenBSD (o si es
+          una parte de cada uno usar -e)
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas fdisk -iy sd1
+    doas fdisk -iy sd2
+</PRE
+><P
+>&#13;          Después en cada uno se crea una subpartición de tipo RAID con
+          disklabel, ambas deben quedar del mismo tamaño y se recomienda
+          inicializarlas en ceros:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    $ doas disklabel -E sd1
+    Label editor (enter '?' for help at any prompt)
+    &#62; a a
+    offset: [64]
+    size: [39825135] *
+    FS type: [4.2BSD] RAID
+    &#62; w
+    &#62; q
+    $ doas dd if=/dev/zero of=/dev/rsd1a bs=1m count=1
+</PRE
+><P
+>&#13;          En el ejemplo anterior se presentó el caso de creación de
+          sd1a, debe repetirse lo mismo para sd2 para contar con sd2a.
+        </P
+><P
+>&#13;          A continuación debe ensamblarse el arreglo RAID con algo como:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas bioctl -v -c 1 -l sd1a,sd2a softraid0
+</PRE
+><P
+>&#13;          Que creará otro dispositivo, digamos sd3 (aún si necesita
+          hacer varios arreglos RAID emplee siempre softraid0). Puede
+          verificar que sd3 es el arreglo RAID con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    $ doas bioctl sd3
+    Volume Status Size Device 
+    softraid0 0 Online 3298542608896 sd3 RAID1 
+    0 Online 3298542608896 0:0.0 noencl 
+    1 Online 3298542608896 0:1.0 noencl
+</PRE
+><P
+>&#13;          Con el arreglo ensamblado en sd3, usted puede operar con ese
+          dispositivo como si fuera un disco más, es recomendable que
+          inicialice sus primeros sectores en 0:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas dd if=/dev/zero of=/dev/rsd3c bs=1m count=1
+</PRE
+><P
+>&#13;          Y proceda a crear partición, subpartición(es) e inicializar
+          cada subpartición. En el siguiente ejemplo se creará una sola
+          subpartición, se inicializará y se montará en /var/raid1:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    $ doas fdisk -iy /dev/rsd3c
+    $ doas disklabel -E /dev/sd3c
+    &#62; a a
+    offset: [64]
+    size: [3999992128] *
+    FS type: [4.2BSD] 
+    &#62; w
+    &#62; q
+    $ doas newfs /dev/rsd3a
+    $ doas mkdir /var/raid1
+    $ doas mount /dev/sd3a /var/raid1
+</PRE
+><P
+>&#13;          Con el ejemplo presentado ya habrían disponibles 2T con
+          redundancia RAID 1 en el punto de montaje /var/raid1.
+        </P
+><P
+>&#13;          Para hacer el cambio permanente es recomendable que en
+          /etc/fstab agregue el duid del arreglo (pues al agregar discos
+          físicos podría cambiar el sd3 por ejemplo por sd4). Examina el
+          duid con disklabel /dev/sd3c
+        </P
+><DIV
+CLASS="sect5"
+><H5
+CLASS="sect5"
+><A
+NAME="operación-y-recuperación-en-caso-de-falla-de-uno-de-los-discos"
+>Operación y recuperación en caso de falla de uno de los
+          discos</A
+></H5
+><P
+>&#13;            Es importante revisar con periodicidad el estado del arreglo
+            con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    $ doas bioctl sd3
+</PRE
+><P
+>&#13;            Allí podría verse si alguno de los discos está fallando
+            (Offline) y en tal caso, debe remplazarse el disco
+            defectuoso (digamos sd2). En el nuevo disco debe crearse
+            partición y subpartición con las mismas características del
+            que funciona bien y entonces debe reconstruirse el espejo.
+            Por ejemplo para reconstruir y unir un nuevo /dev/sd2a:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    $ doas bioctl -R /dev/sd2a sd3
+</PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="lecturas-recomendadas-y-referencias-discos-duros"
+>Lecturas recomendadas y referencias Discos Duros</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+>&#13;            https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/
+          </P
+></LI
+><LI
+><P
+>&#13;            Página del manual de <TT
+CLASS="literal"
+>softraid</TT
+>
+          </P
+></LI
+><LI
+><P
+>&#13;            Página del manual de <TT
+CLASS="literal"
+>bioctl</TT
+>
+          </P
+></LI
+><LI
+><P
+>&#13;            Particiones MBR y GPT:
+            <A
+HREF="https://www.openbsd.org/faq/faq14.html"
+TARGET="_top"
+>https://www.openbsd.org/faq/faq14.html</A
+>
+          </P
+></LI
+><LI
+><P
+>&#13;            Modo UEFI:
+            <A
+HREF="https://wiki.osdev.org/UEFI"
+TARGET="_top"
+>https://wiki.osdev.org/UEFI</A
+>
+          </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="cd"
+>Unidad de CD-ROM</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="montar-cd"
+>Montar un CD</A
+></H3
+><P
+>&#13;        Cómo en el caso de disquetes, por defecto, sólo root puede
+        montar CDs. Puede permitir que se haga desde una cuenta
+        diferente, agregando tal cuenta al grupo
+        <TT
+CLASS="literal"
+>operator</TT
+> y cambiando la variable del kernel
+        <TT
+CLASS="literal"
+>kern.usermount</TT
+> como se presentó en la sección
+        sobre disquetes. Por ejemplo para montar el CD que está en la
+        primera unidad (después de haber creado el directorio
+        <TT
+CLASS="literal"
+>/mnt/cdrom</TT
+>):
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    mount -t cd9660 /dev/cd0c /mnt/cdrom 
+</PRE
+><P
+>&#13;        o para lograrlo con sólo <TT
+CLASS="literal"
+>mount /mnt/cdrom</TT
+> se
+        agregaría en <TT
+CLASS="literal"
+>/etc/fstab</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    /dev/cd0c /mnt/cdrom cd9660 ro,noauto 0 0 
+</PRE
+><P
+>&#13;        Para desmontar un CD se emplea:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    umount /mnt/cdrom
+</PRE
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="montar-imagen-iso"
+>Montar imagen ISO 9660</A
+></H3
+><P
+>&#13;        Para montar una imagen ISO (i.e un archivo con información de un
+        CD con el sistema de archivos ISO 9660), primero debe crear un
+        dispositivo que la represente, por ejemplo:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    vnconfig -c vnd0 /home/pablo/micd.iso 
+    mount /dev/vnd0a /mnt/tmp
+    
+</PRE
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="referencias-cd-y-quemadoras"
+>Lecturas recomendadas y referencias CD y Quemadoras</A
+></H3
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            Más sobre montaje de archivos con
+            <TT
+CLASS="literal"
+>man fstab</TT
+>.
+          </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="quemadora"
+>Quemadora de CD-R y CD-RW</A
+></H2
+><P
+>&#13;      Una quemadora de CD-R y CD-RW se puede comportar como un lector de
+      CDs y usarse como se explica en la sección sobre unidades de CD
+      (ver <A
+HREF="x2388.htm#cd"
+>la sección de nombre <I
+>Unidad de CD-ROM</I
+></A
+>.
+    </P
+><P
+>&#13;      Para quemar una imagen de un CD con datos que usted elija se debe:
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;          Contar con una imagen ISO del CD que desea quemar. Es decir un
+          archivo con la información que irá en el CD en formato
+          ISO9660. Tal imagen la puede crear a partir de un CD que tenga
+          o crearla con archivos y directorios que usted elija.
+        </P
+></LI
+><LI
+><P
+>&#13;          Grabar (o quemar) la imagen ISO en un CD-R o un CD-RW.
+        </P
+></LI
+></UL
+><P
+>&#13;      Cada uno de estos pasos se describe en detalle a continuación.
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="crear-imagen-de-cd"
+>Crear una imagen ISO a partir de un CD existente</A
+></H3
+><P
+>&#13;        Para crear una imagen ISO de un CD existente primero examine la
+        cantidad de sectores de los que consta con
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas disklabel /dev/rcd0c
+      
+</PRE
+><P
+>&#13;        Suponiendo que cada sector tenga 2048 bytes y el total de
+        sectores fuera 112120 puede crear la imagen
+        (<TT
+CLASS="literal"
+>/home/imagen/micd.iso</TT
+>) empleando la orden:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas dd if=/dev/rcd0c of=/home/imagen/micd.iso bs=2048 count=112120
+      
+</PRE
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="crear-nueva-imagen-iso"
+>Crear una imagen nueva ISO 9660</A
+></H3
+><P
+>&#13;        Para crear una imagen ISO a partir de datos que usted elija,
+        deje los archivos y directorios por incluir en un directorio
+        (digamos <TT
+CLASS="literal"
+>/home/pablo/imagen</TT
+>), el
+        cual después puede especificarse a <TT
+CLASS="literal"
+>mkisofs</TT
+>
+        (programa que hace parte del paquete
+        <TT
+CLASS="literal"
+>cdrtools</TT
+>). El formato estándar para salvar
+        información en CD-ROMs (ISO9660) sólo permite nombres de
+        archivos con 8 caracteres, extensiones de 3 y restricciones en
+        la codificación de caracteres, hay algunas extensiones que
+        permiten aumentar este margen, una de estas que es algo portable
+        es Rock Ridge (funciona al menos en sistemas Unix y en Windows).
+      </P
+><P
+>&#13;        Para crear una imagen ISO con nombre
+        <TT
+CLASS="literal"
+>/home/pablo/micd.iso</TT
+> a partir de la
+        información disponible en
+        <TT
+CLASS="literal"
+>/home/pablo/imagen</TT
+> puede ejecutar
+        como usuario <TT
+CLASS="literal"
+>root</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd /home/pablo/imagen
+    doas mkisofs -r -l -f -o /home/pablo/micd.iso  .
+    
+</PRE
+><P
+>&#13;        Note que la imagen creada emplea la extensión Rock Ridge (opción
+        <TT
+CLASS="literal"
+>-r</TT
+>), permite nombres largos (opción
+        <TT
+CLASS="literal"
+>-l</TT
+>) y maneja enlaces simbólicos (opción
+        <TT
+CLASS="literal"
+>-f</TT
+>).
+      </P
+><P
+>&#13;        Por otra parte en sistemas amd64 es posible arrancar un
+        computador desde un CD, configurando el arranque del computador
+        desde el UEFI para que sea por la unidad y cuando la imagen del
+        CD se crea con la extensión El Torito. La extensión El Torito
+        permite incluir la imagen de un floppy que se usa para arrancar.
+      </P
+><P
+>&#13;        Para crear una imagen ISO que use extensión Rock Ridge, con una
+        tabla de contenido de cada directorio
+        (<TT
+CLASS="literal"
+>TRANS.TBL</TT
+>), que emplee la imagen de disquete
+        <TT
+CLASS="literal"
+>floppy.img</TT
+> para arrancar, con información de
+        derechos de reproducción del archivo
+        <TT
+CLASS="literal"
+>/home/pablo/Derechos.txt</TT
+>, siguiendo
+        enlaces simbólicos y con la jerarquía de directorios y archivos
+        de <TT
+CLASS="literal"
+>/home/pablo/imagen/</TT
+> (en la que no
+        debe existir el archivo <TT
+CLASS="literal"
+>boot.catalog</TT
+>) use:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    cd /home/pablo/imagen
+    doas mkisofs -b floppy.img -c boot.catalog -copyright /home/pablo/Derechos.txt \
+      -r -l -f -o /home/pablo/micd.iso  .
+    
+</PRE
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="quemar-imagen-iso"
+>Quemado de una imagen ISO 9660 en un CD-R o en un
+      CD-RW</A
+></H3
+><P
+>&#13;        Para escribir una imagen ISO (<TT
+CLASS="literal"
+>micd.iso</TT
+>) con
+        datos en un CD-R, puede emplear el programa
+        <TT
+CLASS="literal"
+>cdrecord</TT
+>, el cual puede emplear como
+        dispositivo uno de la forma <TT
+CLASS="literal"
+>/dev/cd0c</TT
+> o bien
+        <TT
+CLASS="literal"
+>/dev/rcd0c:0,0,0</TT
+>, por ejemplo:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas cdrecord dev=/dev/cd0c -data speed=16 /home/pablo/micd.iso
+    
+</PRE
+><P
+>&#13;        Si emplea un CD-RW tenga en cuenta blanquearlo antes de escribir
+        usando la opción <TT
+CLASS="literal"
+>blank=fast</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas cdrecord dev=/dev/cd0c -data blank=fast speed=16 /home/pablo/micd.iso
+    
+</PRE
+><P
+>&#13;        Si desea emplear varias sesiones en un mismo CD-R (o CD-RW)
+        tenga en cuenta:
+      </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;            La primera sesión se hace creando una imagen ISO usual y al
+            quemar con cdrecord agregue la opción
+            <TT
+CLASS="literal"
+>-multi</TT
+>.
+          </P
+></LI
+><LI
+><P
+>&#13;            Las imágenes de sesiones posteriores deben crearse empleando
+            la opción <TT
+CLASS="literal"
+>-C</TT
+> de
+            <TT
+CLASS="literal"
+>mkisofs</TT
+> <A
+NAME="AEN2948"
+HREF="#FTN.AEN2948"
+><SPAN
+CLASS="footnote"
+>[7]</SPAN
+></A
+>. Los datos precisos que debe pasar a la opción
+            -C los examina con:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas cdrecord dev=/dev/cd0c -msinfo
+</PRE
+><P
+>&#13;            Que retorna un par de números (supongamos que 18904,26106),
+            los cuales debe usar con mkisofs, por ejemplo:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas mkisofs -r -l -f -C 18904,26106 -o ../micd.iso .
+</PRE
+><P
+>&#13;            Y nuevamente debe pasar la opción <TT
+CLASS="literal"
+>-multi</TT
+>
+            a <TT
+CLASS="literal"
+>cdrecord</TT
+> en el momento de quemar.
+          </P
+></LI
+></UL
+><P
+>&#13;        Para crear CDs de audio deben emplearse archivos de sonido (por
+        ejemplo formatos <TT
+CLASS="literal"
+>.wav</TT
+> o
+        <TT
+CLASS="literal"
+>.au</TT
+>) con información de 16 bits en estéreo a
+        44100 muestras/s, codificación PCM. Al quemar con
+        <TT
+CLASS="literal"
+>cdrecord</TT
+> en lugar de la opción
+        <TT
+CLASS="literal"
+>-data</TT
+> debe emplearse
+        <TT
+CLASS="literal"
+>-audio</TT
+>.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="referencias-quemadoras"
+>Lecturas recomendadas y referencias Quemadoras</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+>&#13;            Puede consultar más sobre creación de imágenes para CDs con
+            <TT
+CLASS="literal"
+>man mkisofs</TT
+> (tras haber instalado
+            <TT
+CLASS="literal"
+>cdrtools</TT
+>)).
+          </P
+></LI
+><LI
+><P
+>&#13;            Para conocer más sobre el quemado de CDs puede consultar
+            <TT
+CLASS="literal"
+>man cdrecord</TT
+> (también después de instalar
+            el paquete <TT
+CLASS="literal"
+>cdrtools</TT
+>). En foros de
+            usuarios pueden verse mensajes como
+            <A
+HREF="http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html"
+TARGET="_top"
+>http://archives.neohapsis.com/archives/openbsd/2002-10/0548.html</A
+>,
+            <A
+HREF="http://www.deadly.org/article.php3?sid=20031105030127&#38;mode=flat"
+TARGET="_top"
+>http://www.deadly.org/article.php3?sid=20031105030127&#38;mode=flat</A
+>
+            y
+            <A
+HREF="http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html"
+TARGET="_top"
+>http://archives.neohapsis.com/archives/openbsd/2001-12/2096.html</A
+>
+          </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="dvd"
+>Operaciones con DVD</A
+></H2
+><P
+>&#13;      El sistema de archivos de los DVD es UDF, que es diferente al de
+      los CDs (ISO9660). Desde la versión 4.0, OpenBSD soporta las
+      versiones 1.02 y 1.50 de UDF en modos plain y VAT (ver &#60;&#62;
+    </P
+><P
+>&#13;      Las operaciones de montaje de DVDs, montaje de imágenes y copia de
+      DVDs a disco son como las de CDs remplazando el tipo
+      <TT
+CLASS="literal"
+>cd9660</TT
+> por <TT
+CLASS="literal"
+>udf</TT
+> (ver
+      <A
+HREF="x2388.htm#montar-cd"
+>la sección de nombre <I
+>Montar un CD</I
+></A
+>,
+      <A
+HREF="x2388.htm#montar-imagen-iso"
+>la sección de nombre <I
+>Montar imagen ISO 9660</I
+></A
+> y
+      <A
+HREF="x2388.htm#crear-imagen-de-cd"
+>la sección de nombre <I
+>Crear una imagen ISO a partir de un CD existente</I
+></A
+>).
+    </P
+><P
+>&#13;      Para quemar DVDs es necesario instalar el paquete
+      <TT
+CLASS="literal"
+>cdrtools</TT
+>, el cual incluye el programa
+      <TT
+CLASS="literal"
+>growisofs</TT
+> que permite quemar DVDs al menos de
+      dos formas:
+    </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;          Incluir una serie de archivos sin necesidad de preparar
+          previamente una imagen del DVD. Por ejemplo para quemar un DVD
+          que tenga los archivos <TT
+CLASS="literal"
+>/home/copia/a</TT
+> y
+          <TT
+CLASS="literal"
+>/home/copia/b</TT
+>:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas growisofs -Z /dev/rcd0c -R /home/copia/a /home/copia/b
+</PRE
+></LI
+><LI
+><P
+>&#13;          Para quemar un DVD con la imagen ISO
+          <TT
+CLASS="literal"
+>dvd.iso</TT
+>
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas growisofs -dvd-compat -Z /dev/rcd0c=dvd.iso
+</PRE
+></LI
+></OL
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="referencias-dvd"
+>Lecturas recomendadas y referencias DVD</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+>&#13;            <TT
+CLASS="literal"
+>man mount_udf</TT
+> y
+            <TT
+CLASS="literal"
+>man growisofs</TT
+>.
+          </P
+></LI
+><LI
+><P
+>&#13;            Universal Disk Format:
+            <A
+HREF="http://en.wikipedia.org/wiki/Universal_Disk_Format"
+TARGET="_top"
+>http://en.wikipedia.org/wiki/Universal_Disk_Format</A
+>
+          </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="memoria-usb"
+>Memoria USB</A
+></H2
+><P
+>&#13;      Para emplear una memoria USB después de conectarse debe:
+    </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;          Examinar el dispositivo con el cual fue reconocida su memoria
+          tras conectarla. Vea los últimos mensajes presentados por
+          <TT
+CLASS="literal"
+>dmesg</TT
+>, típicamente será
+          <TT
+CLASS="literal"
+>sd0</TT
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;          Examinar la partición por montar con
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas disklabel /dev/rsd0c
+</PRE
+><P
+>&#13;          la partición que deberá montar podría ser
+          <TT
+CLASS="literal"
+>/dev/sd0c</TT
+> o por ejemplo
+          <TT
+CLASS="literal"
+>/dev/sd0i</TT
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;          Montar la partición apropiada en un punto del sistema de
+          archivos, por ejemplo con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas mkdir /mnt/usb
+    doas mount /dev/sd0i /mnt/usb
+</PRE
+></LI
+><LI
+><P
+>&#13;          Usar su memoria para leer/escribir (recordando que sólo podría
+          escribir el usuario que sea dueño del punto de montaje)
+        </P
+></LI
+><LI
+><P
+>&#13;          Cuando termine su utilización desmontar por ejemplo con:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas umount /mnt/usb
+</PRE
+></LI
+></OL
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="imagen-cifrada"
+>Imagen cifrada</A
+></H2
+><P
+>&#13;      Es posible tener particiones cifradas que que exigen una clave
+      antes de montarlas —por ejemplo en el momento del arranque.
+    </P
+><P
+>&#13;      Las dos formas de configurarlas son con softraid y con vnconfig.
+    </P
+><P
+>&#13;      Tuvimos muy buena experiencia con vnconfig desde OpenBSD 3.6, pero
+      a partir de OpenBSD 6.6 empezamos a experimentar bloqueos extraños
+      en algunos computadores (si respondía ping pero no ssh ni órdenes
+      en terminal) que dejaban de presentarse cuando no se usaba
+      vnconfig. No todos los computadores con vnconfig presentaron ese
+      inconveniente. El problema podría relacionarse con:
+      <A
+HREF="https://marc.info/?l=openbsd-bugs&#38;m=159181442320329&#38;w=2"
+TARGET="_top"
+>https://marc.info/?l=openbsd-bugs&#38;m=159181442320329&#38;w=2</A
+>
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="imagen-cifrada-con-softraid"
+>Método 1: Imagen cifrada con softraid</A
+></H3
+><P
+>&#13;        Esté método requiere más planeación en el momento de la
+        instalación porque por cada imagen cifrada se requiere una
+        subpartición o etiqueta.
+      </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="prepare-una-subpartición-tipo-raid-para-la-partición-cifrada"
+>Prepare una subpartición tipo RAID para la partición
+        cifrada</A
+></H4
+><P
+>&#13;          Supongamos que requiere una imagen cifrada de 2.2 gigas.
+        </P
+><P
+>&#13;          Examine un disco donde la partición de OpenBSD tenga espacio
+          extra, algo como:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;$ doas disklabel -E /dev/sd0c
+/dev/sd0c&#62; p
+OpenBSD area: 409601660-1953525135; size: 1543923475; free: 10000015
+#                size           offset  fstype [fsize bsize   cpg]
+  a:        799999940        409601660  4.2BSD   4096 32768 26062 # /home
+  c:       1953525168                0  unused                    
+  d:        140000000       1209601600  4.2BSD   2048 16384 12958 # /compila
+  e:        150000000       1359601600  4.2BSD   2048 16384 12958 # /usr/local
+  f:        443923520       1509601600  4.2BSD   4096 32768 26062 # /var
+  i:        409599610             2048  ext2fs                    
+</PRE
+><P
+>&#13;          En este ejemplo vemos que el área para OpenBSD está entre los
+          sectores 409’601.660 y 1953’525.135 y poniendo en otra
+          notación las subparticiones ( calculando el final de cada
+          subpartición como desplazamiento más tamaño menos uno) podemos
+          ver que si hay espacio disponible:
+        </P
+><DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN3045"
+></A
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"><COL
+WIDTH="1*"
+ALIGN="left"><COL
+WIDTH="1*"
+ALIGN="left"><THEAD
+><TR
+><TH
+>&#13;                  etiqueta
+                </TH
+><TH
+>&#13;                  inicio
+                </TH
+><TH
+>&#13;                  fin
+                </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                  a
+                </TD
+><TD
+>&#13;                  409’601.660
+                </TD
+><TD
+>&#13;                  1209’601.599
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  d
+                </TD
+><TD
+>&#13;                  1209’601.600
+                </TD
+><TD
+>&#13;                  1349’601.599
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  e
+                </TD
+><TD
+>&#13;                  1359’601.600
+                </TD
+><TD
+>&#13;                  1509’601.599
+                </TD
+></TR
+><TR
+><TD
+>&#13;                  f
+                </TD
+><TD
+>&#13;                  1509’601.600
+                </TD
+><TD
+>&#13;                  1953’525.119
+                </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;          Hay espacio disponible entre los sectores 1349’601.600 y
+          1359’601.599, es decir 10’000.000 disponibles.
+        </P
+><P
+>&#13;          Agregue en el espacio disponible una subpartición nueva tipo
+          RAID, por ejemplo:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;/dev/sd0c&#62; a g
+offset: [1349601600] 
+size: [10000000] 5000000
+FS type: [4.2BSD] RAID
+/dev/sd0c*&#62; w
+/dev/sd0c&#62; q
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="presentar-la-subpartición-como-un-nuevo-volumen-cifrado"
+>Presentar la subpartición como un nuevo volumen
+        cifrado</A
+></H4
+><P
+>&#13;          Asocie al dispositivo con tipo RAID (en el ejemplo
+          <TT
+CLASS="literal"
+>sd0g</TT
+>) un volumen softraid con disciplina
+          cifrada usando <TT
+CLASS="literal"
+>bioctl</TT
+>:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;$ doas /sbin/bioctl -c C -l /dev/sd0g softraid0
+New passphrase:
+Re-type passphrase: 
+softraid0: CRYPTO volume attached as sd2
+</PRE
+><P
+>&#13;          La contraseña que suministre debe suminitrarla igual cada vez
+          que vuelva a asociar el dispositivo con el volumen softraid.
+        </P
+><P
+>&#13;          Ahora es tiempo de inicializar ese volumen softraid como si
+          fuera un nuevo dispositivo, primero limpie el comienzo:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;doas dd if=/dev/zero of=/dev/sd2c count=1024 bs=1024
+1024+0 records in
+1024+0 records out
+1048576 bytes transferred in 0.101 secs (10302430 bytes/sec)
+</PRE
+><P
+>&#13;          Después subparticionando como se requiera, debe bastar una
+          sola subpartición o etiqueta (note que en el siguiente ejemplo
+          se ajusta el límite del área de OpenBSD para que coincida con
+          el tamaño del dispositivo RAID y por precaución no se usan los
+          primeros 64 bloques y tras intentos y errores se determina que
+          no se debe usar los últimos 512):
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;$ doas disklabel -E sd2
+Label editor (enter '?' for help at any prompt)
+sd2&#62; p
+OpenBSD area: 0-9999472; size: 9999472; free: 9999472
+#                size           offset  fstype [fsize bsize   cpg]
+  c:          9999472                0  unused                    
+sd2&#62; b
+Starting sector: [0] 
+Size ('*' for entire disk): [9999472] 4999999
+sd2*&#62; p
+OpenBSD area: 0-4999999; size: 4999999; free: 4999999
+#                size           offset  fstype [fsize bsize   cpg]
+  c:          9999472                0  unused                    
+sd2*&#62; w
+sd2&#62; a a
+offset: [0] 64
+size: [4999935] 4999423
+FS type: [4.2BSD] 
+sd2*&#62; w
+sd2&#62; q
+No label changes.
+</PRE
+><P
+>&#13;          Después puede formatear la subpartición que creó:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;$ doas newfs /dev/rsd2a
+/dev/rsd2a: 2441.1MB in 4999392 sectors of 512 bytes
+13 cylinder groups of 202.47MB, 12958 blocks, 25984 inodes each
+super-block backups (for fsck -b #) at:
+ 32, 414688, 829344, 1244000, 1658656, 2073312, 2487968, 2902624, 3317280, 3731936, 4146592, 4561248, 4975904,
+</PRE
+><P
+>&#13;          Y usarla:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;$ doas fsck -y /dev/rsd2a
+** /dev/rsd2a
+** File system is clean; not checking
+$ doas mkdir /mnt/tmp       
+$ doas mount /dev/sd2a /mnt/tmp/
+$ df -h
+Filesystem     Size    Used   Avail Capacity  Mounted on
+...
+/dev/sd2a      2.3G    2.0K    2.2G     0%    /mnt/tmp
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="montar-el-volumen-cifrado-en-cada-arranque"
+>Montar el volumen cifrado en cada arranque</A
+></H4
+><P
+>&#13;          Note que el volumen softraid es <TT
+CLASS="literal"
+>sd2</TT
+> pero
+          para evitar que se confunda con otros dispositivo (por ejemplo
+          al insertar una USB) es recomendable utilizar el UUID en lugar
+          de ese nombre de dispositivo.
+        </P
+><P
+>&#13;          Puede revisar el UUID asignado con
+          <TT
+CLASS="literal"
+>sysctl hw.disknames</TT
+>, por ejemplo:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;$ sysctl hw.disknames
+hw.disknames=sd0:3c9be252c1607a88,sd1:b0dc1d64ba942c13,vnd2:953c2509f76c14eb,sd2:235a066b691f538c,sd3:d60a4c86bc6a923c
+</PRE
+><P
+>&#13;          muestra que en lugar de <TT
+CLASS="literal"
+>sd0</TT
+> puede usar el
+          UUID <TT
+CLASS="literal"
+>3c9be252c1607a88</TT
+> y en lugar de
+          <TT
+CLASS="literal"
+>sd2</TT
+> puede emplear el UUID
+          <TT
+CLASS="literal"
+>235a066b691f538c</TT
+>.
+        </P
+><P
+>&#13;          Esos UUID los puede usar en un script de arranque, digamos
+          <TT
+CLASS="literal"
+>/etc/rc.d/srpos</TT
+> pensando en poner base
+          PostgreSQL allí:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;#!/bin/sh
+
+servicio="/sbin/mount"
+
+. /etc/rc.d/rc.subr
+
+rc_check() {
+        /sbin/mount | grep "/var/postgresql" &#62; /dev/null
+}
+
+rc_stop() {
+        umount /var/postgresql
+        bioctl -d 235a066b691f538c
+}
+
+rc_start() {
+        disklabel 3c9be252c1607a88 | grep RAID
+        if (test "$?" = "0") then {
+                /sbin/bioctl -c C -l 3c9be252c1607a88.g softraid0
+                echo " " &#62; /dev/tty
+                /sbin/fsck_ffs -y 235a066b691f538c.a
+                /sbin/mount 235a066b691f538c.a /var/postgresql
+        } fi;
+}
+
+rc_cmd $1
+</PRE
+><P
+>&#13;          Aún si fuese a configurar varios volumes softraid cifrados,
+          con <TT
+CLASS="literal"
+>bioctl</TT
+> siempre debe usar
+          <TT
+CLASS="literal"
+>softraid0</TT
+>
+        </P
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="imagen-cifrada-con-vnconfig"
+>Método 2: Imagen cifrada con vnconfig</A
+></H3
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="crear-imagen"
+>Creación de la imagen</A
+></H4
+><P
+>&#13;          Para crear una imagen de aprox. 500MB en el archivo
+          <TT
+CLASS="literal"
+>/var/post.img</TT
+> puede usar:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas dd if=/dev/zero of=/var/post.img bs=1024 count=500000
+    doas vnconfig -ckv vnd0 /var/post.img
+    doas newfs /dev/vnd0c
+    doas vnconfig -u vnd0
+          
+</PRE
+><P
+>&#13;          La clave que ingrese tras
+          <TT
+CLASS="literal"
+>vnconfig -ckv vnd0 /var/post.img</TT
+>, la
+          requerirá posteriormente para usar la imagen.
+        </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="montar-imagen"
+>Montar imagen</A
+></H4
+><P
+>&#13;          Esta imagen puede ser montadas (por ejemplo en
+          <TT
+CLASS="literal"
+>/var/postgresql</TT
+>) con el siguiente archivo
+          de órdenes (ubíquelo por ejemplo en
+          <TT
+CLASS="literal"
+>/usr/local/sbin/montapost.sh</TT
+>):
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;#!/bin/sh
+# Monta imágenes cifradas en OpenBSD. Dominio público. 2006.
+
+if (test ! -d /var/postgresql) then {
+    mkdir /var/postgresql
+    chown _postgresql:_postgresql /var/postgresql
+} fi;
+vnconfig -ckv vnd0 /var/post.img
+mount /dev/vnd0c /var/postgresql
+    
+</PRE
+><P
+>&#13;          y recuerde otorgar permiso de ejecución del mismo:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas chmod +x /usr/local/sbin/montapost.sh
+    
+</PRE
+><P
+>&#13;          Notará que este ejemplo es para montar una partición en la que
+          funcionará una base de datos PostgreSQL, si no existiera el
+          usuario <TT
+CLASS="literal"
+>_postgresql</TT
+> antes de ejecutar este
+          archivo de órdenes ejecute
+          <TT
+CLASS="literal"
+>chmod a+w /var/postgresql</TT
+> y después de que
+          haya instalado PostgreSQL:
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas chown _postgresql:_postgresql /var/postgresql
+    doas chmod o-w /var/postgresql
+    
+</PRE
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="montar-arranque"
+>Montar en el arranque</A
+></H4
+><P
+>&#13;          Este script debe ejecutarse en el momento del arranque y antes
+          de iniciar la base de datos, agregue a su archivo
+          <TT
+CLASS="literal"
+>/etc/rc.local</TT
+> (antes de la inicialización
+          de PostgreSQL):
+        </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas /usr/local/sbin/montapost.sh
+        
+</PRE
+><P
+>&#13;          De forma que en cada arranque el script le solicitará la clave
+          antes de continuar.
+        </P
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="referencias-imagen-cifrada"
+>Lecturas recomendadas y referencias Imagen Cifrada</A
+></H3
+><P
+>&#13;        Página <TT
+CLASS="literal"
+>man vnconfig</TT
+>.
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="teclado-en-espanol"
+>Teclado en español</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="consolas"
+>En las consolas tipo texto</A
+></H3
+><P
+>&#13;        Si su teclado es español o latinoamericano puede configurarlo
+        durante la instalación. Después de instalado puede elegir otra
+        configuración con <TT
+CLASS="literal"
+>keyb la</TT
+> o
+        <TT
+CLASS="literal"
+>keyb es</TT
+>
+      </P
+><P
+>&#13;        Si tiene un teclado US y desea emplear teclas muertas en la
+        consola puede usar desde la línea de órdenes:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
+    doas wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"
+    doas wsconsctl -w keyboard.map+="keycode 56=Cmd2 Multi_key" 
+</PRE
+><P
+>&#13;        o para que esta configuración siempre sea realizada durante el
+        arranque agregue estas líneas al final de
+        <TT
+CLASS="literal"
+>/etc/rc.local</TT
+> (puede agregar al final de cada
+        línea <TT
+CLASS="literal"
+>&#62; /dev/null</TT
+>).
+      </P
+><P
+>&#13;        Estas líneas configuran entre otros:
+      </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>’</DT
+><DD
+><P
+>&#13;              como tecla muerta para la tilde (seguido de un espacio
+              producirá el apostrofe)
+            </P
+></DD
+><DT
+>”</DT
+><DD
+><P
+>&#13;              como tecla muerta para la diéresis (seguido de un espacio
+              producirá las comillas)
+            </P
+></DD
+><DT
+>`</DT
+><DD
+><P
+>&#13;              como tecla muerta para el acento grave (seguido de un
+              espacio produce el apostrofe izquierdo)
+            </P
+></DD
+><DT
+>~</DT
+><DD
+><P
+>&#13;              como tecla muerta para la virgulilla (seguido de un
+              espacio produce ~)
+            </P
+></DD
+><DT
+>^</DT
+><DD
+><P
+>&#13;              como tecla muerta para el acento circunflejo
+            </P
+></DD
+><DT
+>Shift+Alt izquierdo</DT
+><DD
+><P
+>&#13;              Como tecla de composición
+            </P
+></DD
+></DL
+></DIV
+><P
+>&#13;        La tecla de composición<A
+NAME="AEN3178"
+HREF="#FTN.AEN3178"
+><SPAN
+CLASS="footnote"
+>[8]</SPAN
+></A
+> le permitirá generar un carácter empleando una
+        secuencia de dos teclas. Por ejemplo si presiona la tecla de
+        composición (i.e Shift+Alt izquierdo con la configuración
+        presentada), y después presiona ? seguido de ? obtendrá el
+        carácter ¿. En el apéndice
+        <A
+HREF="a3629.htm"
+>Caracteres que
+        pueden generarse</A
+> encontrará una tabla con todas las
+        combinaciones de teclas que pueden usarse con la tecla compose y
+        con teclas muertas.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="teclado-xwindow"
+>X-Window</A
+></H3
+><P
+>&#13;        Dado que X-Window emplea el teclado en modo crudo la
+        configuración que haga para las consolas virtuales no quedará
+        disponible.
+      </P
+><P
+>&#13;        Si tiene un teclado en español puede configurarlo con
+        <TT
+CLASS="literal"
+>xorgcfg</TT
+> o bien con
+        <TT
+CLASS="literal"
+>xorgcfg -textmode</TT
+>, o bien editando el archivo
+        <TT
+CLASS="literal"
+>/etc/X11/xorg.conf</TT
+> para que en la sección del
+        teclado quede la línea:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    Option  "XkbLayout" "es"
+    
+</PRE
+><P
+>&#13;        o si su teclado es latinoamericano remplace
+        <TT
+CLASS="literal"
+>es</TT
+> por <TT
+CLASS="literal"
+>latam</TT
+>.
+      </P
+><P
+>&#13;        Si tiene un teclado en inglés puede agregar las siguientes
+        líneas a su archivo <TT
+CLASS="literal"
+>~/.Xmodmap</TT
+>
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    keycode 64=Alt_L Multi_key
+    keycode 48=dead_acute dead_diaeresis
+    keycode 49=dead_grave dead_tilde 
+</PRE
+><P
+>&#13;        y asegurarse de ejecutar <TT
+CLASS="literal"
+>xmodmap ~/.Xmodmap</TT
+>
+        durante el arranque de su sesión X (podría ser por ejemplo
+        agregándolo a <TT
+CLASS="literal"
+>~/.xsession</TT
+>)
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="varios-usuarios"
+>Varios usuarios</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="creación-de-un-segundo-usuario"
+>Creación de un segundo usuario</A
+></H3
+><P
+>&#13;        Cree la cuenta con:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;doas adduser
+</PRE
+><P
+>&#13;        Respondiendo las preguntas que este programa hace.
+      </P
+><P
+>&#13;        Tras crear la cuenta de un segundo usuario (digamos
+        <TT
+CLASS="literal"
+>segundousuario</TT
+>) puede configurar
+        <TT
+CLASS="literal"
+>fluxbox</TT
+> copiando la configuración del primero
+        y cambiando rutas e.g
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;cp /home/primerusuario/.xsession ~/
+cp -rf /home/primerusuario/.fluxbox ~/
+for i in `find .fluxbox -exec grep -l primerusuario {} ';'`; do 
+  sed -i -e 's/primerusuario/segundousuario/g' $i; 
+done
+</PRE
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="desde-la-cuenta-de-un-primer-usuario-ejecutar-programas-como-un-segundo-usuario"
+>Desde la cuenta de un primer usuario ejecutar programas
+      como un segundo usuario</A
+></H3
+><P
+>&#13;        Para ejecutar una orden no gráfica, sólo en consola:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;su - segundousuario -c 'man man'
+</PRE
+><P
+>&#13;        que pedirá la clave del segundo usuario y ejecutara
+        <TT
+CLASS="literal"
+>man man</TT
+>
+      </P
+><P
+>&#13;        O para quedar en el interprete de ordenes configurado para el
+        segundo usuario:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;doas su - segundousuario
+</PRE
+><P
+>&#13;        Si necesita ejecutar programas gráficos:
+      </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;            El primer usuario da permiso de usar su sesión de X-Window a
+            cualquier usuario:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;xhost +
+</PRE
+></LI
+><LI
+><P
+>&#13;            Se inicia una terminal con una sesión del segundo usuario:
+          </P
+></LI
+></OL
+><PRE
+CLASS="programlisting"
+>&#13;doas su - segundousuario
+</PRE
+><P
+></P
+><OL
+TYPE="1"
+><LI
+STYLE="list-style-type: 3"
+><P
+>&#13;            En la terminal del segundo usuario se configura la salida
+            para X-Window y se ejecuta la orden que usa X-Window:
+          </P
+><PRE
+CLASS="programlisting"
+>&#13;export DISPLAY=:0.0
+chrome
+</PRE
+></LI
+></OL
+></DIV
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notas</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN2458"
+HREF="x2388.htm#AEN2458"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;            En el caso de LPD el directorio con la cola de trabajos de
+            una impresora se configura en
+            <TT
+CLASS="literal"
+>/etc/printcap</TT
+>, en el caso de
+            <TT
+CLASS="literal"
+>lp</TT
+> el directorio por defecto es
+            <TT
+CLASS="literal"
+>/var/spool/outputlpd/lp</TT
+>.
+          </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN2465"
+HREF="x2388.htm#AEN2465"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;            Normalmente puede configurar otro nombre para la impresora
+            por defecto en la variable de ambiente PRINTER.
+          </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN2480"
+HREF="x2388.htm#AEN2480"
+><SPAN
+CLASS="footnote"
+>[3]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;            Hay algunas impresoras que pueden imprimir PostScript
+            directamente, pero en general para hacer la traducción de
+            PostScript al lenguaje de una impresora se requiere un
+            filtro que el administrador del sistema debe configurar.
+          </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN2483"
+HREF="x2388.htm#AEN2483"
+><SPAN
+CLASS="footnote"
+>[4]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;            PDF (<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Portable Document Format</I
+></SPAN
+> es otro
+            lenguaje para impresión, de documentos con gráficas y
+            diversos tipos de letras, basado en PostScript (de la misma
+            compañía —Adobe).
+          </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN2519"
+HREF="x2388.htm#AEN2519"
+><SPAN
+CLASS="footnote"
+>[5]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;            De acuerdo a Printig-HOWTO estas herramientas ofrecen la
+            funcionalidad de las herramientas
+            <SPAN
+CLASS="QUOTE"
+>"<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>distiller</I
+></SPAN
+>"</SPAN
+> de Adobe.
+          </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN2699"
+HREF="x2388.htm#AEN2699"
+><SPAN
+CLASS="footnote"
+>[6]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;                Los parámetros del hardware mantenidos ayudan a
+                localizar bloques libres de forma óptima.
+              </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN2948"
+HREF="x2388.htm#AEN2948"
+><SPAN
+CLASS="footnote"
+>[7]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;                Si la sesión previa tenia -T esta también con mismo
+                nombre de tablas (especificable con -table-name TN).
+              </P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN3178"
+HREF="x2388.htm#AEN3178"
+><SPAN
+CLASS="footnote"
+>[8]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>&#13;            Tecla de composición: en inglés <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>compose
+            key</I
+></SPAN
+>
+          </P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1208.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x3230.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuración y uso de algunos programas</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Instalaciones duales</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
