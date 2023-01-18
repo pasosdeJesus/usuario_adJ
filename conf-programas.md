@@ -568,17 +568,20 @@ describe el paquete ruby):
 
 ```
     doas sh
-    ln -sf /usr/local/bin/ruby30 /usr/local/bin/ruby
-    ln -sf /usr/local/bin/erb30 /usr/local/bin/erb
-    ln -sf /usr/local/bin/irb30 /usr/local/bin/irb
-    ln -sf /usr/local/bin/rdoc30 /usr/local/bin/rdoc
-    ln -sf /usr/local/bin/ri30 /usr/local/bin/ri
-    ln -sf /usr/local/bin/rake30 /usr/local/bin/rake
-    ln -sf /usr/local/bin/gem30 /usr/local/bin/gem
-    ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle
-    ln -sf /usr/local/bin/bundler30 /usr/local/bin/bundler
+    ln -sf /usr/local/bin/ruby32 /usr/local/bin/ruby
+    ;n -sf /usr/local/bin/bundle32 /usr/local/bin/bundle
+    ;n -sf /usr/local/bin/bundler32 /usr/local/bin/bundler
+    ln -sf /usr/local/bin/erb32 /usr/local/bin/erb
+    ln -sf /usr/local/bin/gem32 /usr/local/bin/gem
+    ln -sf /usr/local/bin/irb32 /usr/local/bin/irb
+    ln -sf /usr/local/bin/racc32 /usr/local/bin/racc
+    ln -sf /usr/local/bin/rake32 /usr/local/bin/rake
+    ln -sf /usr/local/bin/rbs32 /usr/local/bin/rbs
+    ln -sf /usr/local/bin/rdbg32 /usr/local/bin/rdbg
+    ln -sf /usr/local/bin/rdoc32 /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri32 /usr/local/bin/ri
+    ln -sf /usr/local/bin/typeprof32 /usr/local/bin/typeprof
 ```
-
 
 ##### Límites amplios
 
@@ -644,10 +647,10 @@ El paquete `ruby` incluye `rubygems` que maneja gemas (es decir
 librerías) con el programa `gem`.
 
 El directorio donde se instalan las gemas globales
-es `/usr/local/lib/ruby/gems/3.0/` donde sólo pueden
+es `/usr/local/lib/ruby/gems/3.2/` donde sólo pueden
 instalarse con ```doas```.
 Recomendamos iniciar un directorio para instalar gemas como usuario normal
-en  ```/var/www/bundler/ruby/3.0```, por 3 razones (1) evitar riesgos de
+en  ```/var/www/bundler/ruby/3.2```, por 3 razones (1) evitar riesgos de
 seguridad al instalar gemas como root, (2) evitar problemas de permisos
 y la dificultad de programas como bundler para usar ```doas``` en lugar
 de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones
@@ -656,18 +659,18 @@ corran en una jaula chroot en ```/var/www```
 Prepare ese directorio con:
 
 ```
-	doas mkdir -p /var/www/bundler/ruby/3.0/
+	doas mkdir -p /var/www/bundler/ruby/3.2/
 	doas chown -R $USER:www /var/www/bundler
 ```
 
 Y cuando requiera instalar una gema allí emplee:
 ```
-	gem install --install-dir /var/www/bundler/ruby/3.0/ json
+	gem install --install-dir /var/www/bundler/ruby/3.2/ json
 ```
 
 O si llega a tener problemas de permisos con:
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.0/ bcrypt
+	doas gem install --install-dir /var/www/bundler/ruby/3.2/ bcrypt
 ```
 
 Para facilitar compilación de algunas extensiones (como las de nokogiri) se
@@ -683,13 +686,13 @@ Para facilitar el manejo de varias gemas (y sus interdependencias) en un
 proyecto es típico emplear ```bundler``` que instala con:
 ```
     doas gem install bundler
-    if (test -x /usr/local/bin/bundle30) then {
-       doas ln -sf /usr/local/bin/bundle30 /usr/local/bin/bundle;
+    if (test -x /usr/local/bin/bundle32) then {
+       doas ln -sf /usr/local/bin/bundle32 /usr/local/bin/bundle;
     } fi
 ```
 
 Configúrelo para que instale gemas localmente
-en `/var/www/bundler/ruby/3.0` con:
+en `/var/www/bundler/ruby/3.2` con:
 
 ```
   bundle config path /var/www/bundler/
@@ -709,7 +712,7 @@ depende la aplicación y genera un archivo ```Gemfile.lock``` con las
 versiones precisas por instalar de cada gema.
 
 Una vez tenga un proyecto asegure que este emplea las gemas de
-```/var/www/bundler/ruby/3.0``` ejecutando dentro del directorio del
+```/var/www/bundler/ruby/3.2``` ejecutando dentro del directorio del
 proyecto:
 
 ```
@@ -729,7 +732,7 @@ Si eventualmente no logra instalar algunas --por problemas de permisos
 típicamente-- puede instalar con
 
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.0 json
+	doas gem install --install-dir /var/www/bundler/ruby/3.2 json
 ```
 
 Cuando actualice la versión del sistema operativo al igual que con gemas
@@ -741,7 +744,7 @@ con versiones de bundler posteriores a la 1.15.4:
 ```
 y después instalando una a una las gemas que sean extensiones, por ejemplo
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.0 nokogiri -v '2.0'
+	doas gem install --install-dir /var/www/bundler/ruby/3.2 nokogiri -v '2.0'
 ```
 
 ##### Rails
@@ -766,7 +769,7 @@ que se explicó. Algunos casos especiales son:
 
 -   ```nokogiri``` que puede requerir
 ```
-        doas gem install --install-dir /var/www/bundler/ruby/3.0/ nokogiri -- --use-system-libraries
+        doas gem install --install-dir /var/www/bundler/ruby/3.2/ nokogiri -- --use-system-libraries
 ```
 
 
