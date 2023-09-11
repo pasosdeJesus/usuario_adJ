@@ -210,7 +210,7 @@ LaTeX es un experto en esta materia:
           El archivo DVI es apropiado para imprimir, puede imprimirlo
           con una orden como <code class="literal">dvilj</code>,
           <code class="literal">dvidj</code> o un nombre análogo que corresponda a
-          su impresora <sup>[<a name="idp1760222488" href="#ftn.idp1760222488">9</a>]</sup>. Para visualizar un archivo DVI puede emplear la
+          su impresora <sup>[<a name="idm1617801064" href="#ftn.idm1617801064">9</a>]</sup>. Para visualizar un archivo DVI puede emplear la
           orden xdvi:
         </p><pre class="programlisting">
     xdvi documento.dvi
@@ -224,7 +224,7 @@ LaTeX es un experto en esta materia:
 </pre><p>
           A continuación se presenta como se ve el ejemplo de esta
           sección con el programa <code class="literal">xdvi</code>.
-        </p><div class="figure"><a name="idp1760273304"></a><p class="title"><b>Figura 2. Visualización de DVI generado de fuente en
+        </p><div class="figure"><a name="idm1617821672"></a><p class="title"><b>Figura 2. Visualización de DVI generado de fuente en
           LaTeX</b></p><div class="mediaobject"><img src="img/ejlatex.png" alt="Visualización de DVI generado de fuente
             en LaTeX"></div></div><p>
           Existen además otros programas para convertir de LaTeX a HTML
@@ -348,7 +348,7 @@ LaTeX es un experto en esta materia:
 </pre><p>
           Al corregir interactivamente <code class="literal">ispell</code>
           mostrará palabras que no encuentre en el diccionario del
-          idioma ni en su diccionario personal<sup>[<a name="idp1760209816" href="#ftn.idp1760209816">10</a>]</sup> del idioma
+          idioma ni en su diccionario personal<sup>[<a name="idm1617845864" href="#ftn.idm1617845864">10</a>]</sup> del idioma
           (e.g. <code class="literal">~/.ispell_spanish</code>), así como posibles
           remplazos. Podrá elegir uno de los remplazos tecleando el
           número que antecede al remplazo.
@@ -787,19 +787,19 @@ doas ln -s /usr/local/bin/node /tmp/
             todas sus dependencias. Las gemas que no logre instalar por
             falta de permisos, como se explicó anteriormente instálelas
             con <code class="literal">doas gem install</code> y la opción
-            <code class="literal">--install-dir /var/www/bundler/</code>
+            <code class="literal">--install-dir /var/www/bundler/ruby/3.2</code>
           </p><p>
             Una vez haya logrado que <code class="literal">bundle install</code>
             se ejecute completo puede ejecutar:
           </p><pre class="programlisting">
-    rails server
+    bin/rails server
 </pre><p>
             Tras esto puede ver con un navegador la aplicación en el
             puerto 3000 del computador donde instaló:
             <a href="http://127.0.0.1:3000/" target="_top">http://127.0.0.1:3000/</a>
           </p><p>
             Notará que se generan los siguientes directorios y archivos:
-          </p><div class="table"><a name="idp1841351960"></a><p class="title"><b>Tabla 2. 
+          </p><div class="table"><a name="idm45979496"></a><p class="title"><b>Tabla 2. 
               Archivos generados
             </b></p><table summary="
               Archivos generados
@@ -833,10 +833,6 @@ doas ln -s /usr/local/bin/node /tmp/
                     Gemfile.lock
                   </td><td align="left">
                     Versiones de las gemas requeridas
-                  </td></tr><tr><td align="left">
-                    app/javascript/packs/application.js
-                  </td><td align="left">
-                    Plantilla de Javascript que usa módulos
                   </td></tr><tr><td align="left">
                     app/assets/stylesheets/application.css
                   </td><td align="left">
@@ -1087,12 +1083,12 @@ doas ln -s /usr/local/bin/node /tmp/
             <code class="literal">Departamento</code>) con modelo, controlador
             simple y vistas para operaciones CRUD y RESTful con:
           </p><pre class="programlisting">
-    rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
-    rake db:migrate
+    bin/rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
+    bin/rails db:migrate
 </pre><p>
             Tras esto y volver a iniciar el servidor (más breve con
-            <code class="literal">rails s</code>) podrá realizar las operaciones
-            básicas sobre departamentos desde:
+            <code class="literal">bin/rails s</code>) podrá realizar las
+            operaciones básicas sobre departamentos desde:
             <a href="http://127.0.0.1:3000/departamentos/" target="_top">http://127.0.0.1:3000/departamentos/</a>
           </p><p>
             El <code class="literal">scaffold</code> genera tablas (con una
@@ -1102,7 +1098,7 @@ doas ln -s /usr/local/bin/node /tmp/
             editar existentes y eliminar.
           </p><p>
             Los archivos generados son:
-          </p><div class="table"><a name="idp1841407000"></a><p class="title"><b>Tabla 3. 
+          </p><div class="table"><a name="idm45880424"></a><p class="title"><b>Tabla 3. 
               Archivos generados con scaffold
             </b></p><table summary="
               Archivos generados con scaffold
@@ -1210,10 +1206,10 @@ doas ln -s /usr/local/bin/node /tmp/
             un controlador con vista, modificando la vista y
             especificando la ruta:
           </p><pre class="programlisting">
-    rails g controller hogar
+    bin/rails g controller hogar
 </pre><p>
             Que genera:
-          </p><div class="table"><a name="idp1841448600"></a><p class="title"><b>Tabla 4. 
+          </p><div class="table"><a name="idm46004456"></a><p class="title"><b>Tabla 4. 
               Archivos generados con
               <code class="literal">g controller hogar</code>
             </b></p><table summary="
@@ -1239,14 +1235,6 @@ doas ln -s /usr/local/bin/node /tmp/
                     <code class="literal">app/helpers/hogar_helper.rb</code>
                   </td><td align="left">
                     Funciones auxiliares para vistas
-                  </td></tr><tr><td align="left">
-                    <code class="literal">app/assets/javascripts/hogar.coffee</code>
-                  </td><td align="left">
-                    Coffescript para vistas
-                  </td></tr><tr><td align="left">
-                    <code class="literal">app/assets/stylesheets/hogar.scss</code>
-                  </td><td align="left">
-                    CSS para vistas
                   </td></tr></tbody></table></div><p>
             Modifique el controlador
             <code class="literal">app/controllers/hogar_controller.rb</code> para
@@ -1287,7 +1275,7 @@ doas ln -s /usr/local/bin/node /tmp/
             datos con la interfaz texto de SQLite como se ejemplifica a
             continuación:
           </p><pre class="programlisting">
-    $ rails dbconsole
+    $ bin/rails dbconsole
     sqlite&gt; .schema
     CREATE TABLE "departamentos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre"
     varchar(500), "latitud" float, "longitud" float, "created_at" datetime, "updated_at" datetime);
@@ -1309,7 +1297,7 @@ doas ln -s /usr/local/bin/node /tmp/
         cd ..
         rails new prueba1 --database=postgresql
 </pre><div class="itemizedlist"><ul type="disc" compact><li><p>
-                Si lo requiere en otra terminal cree un usuario para la
+                Si lo requiere, en otra terminal cree un usuario para la
                 base de datos que será el que empleará desde su
                 aplicación ruby:
               </p></li></ul></div><pre class="programlisting">
@@ -1318,7 +1306,7 @@ doas ln -s /usr/local/bin/node /tmp/
         Shall the new role be a superuser? (y/n) n
         Shall the new role be allowed to create databases? (y/n) y
         Shall the new role be allowed to create more new roles? (y/n) n
-        $ psql -h/var/www/tmp -Upostgres psql (9.3.6) Type "help" for help.
+        $ psql -h/var/www/tmp -Upostgres psql (15.4) Type "help" for help.
         postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
 </pre><div class="itemizedlist"><ul type="disc"><li><p>
                 Vuelva a las fuentes de la aplicación y modifique los
@@ -1332,7 +1320,7 @@ doas ln -s /usr/local/bin/node /tmp/
                 A manera de prueba de su configuración intente ingresar
                 a un intérprete de órdenes para su base de datos con:
               </p></li></ul></div><pre class="programlisting">
-        rails dbconsole
+        bin/rails dbconsole
 </pre><div class="itemizedlist"><ul type="disc" compact><li><p>
                 Si las tablas de la base de datos no emplean la
                 convención para nomenclatura de Ruby on Rails (nombres
@@ -1360,14 +1348,14 @@ doas ln -s /usr/local/bin/node /tmp/
 </pre><div class="itemizedlist"><ul type="disc" compact><li><p>
                 Después ejecute la tarea rake apropiada (ver {4}):
               </p></li></ul></div><pre class="programlisting">
-        rake db:structure:dump
+        bin/rails db:structure:dump
 </pre><div class="itemizedlist"><ul type="disc" compact><li><p>
                 Genere clases (modelos) en blanco en el directorio
                 <code class="literal">app/models</code> para cada una de las
                 tablas de su aplicación, por ejemplo para la tabla
                 <code class="literal">mitabla</code> :
               </p></li></ul></div><pre class="programlisting">
-        rails generate model mitabla --migration=false --timestamp=false
+        bin/rails generate model mitabla --migration=false --timestamp=false
 </pre><div class="itemizedlist"><ul type="disc" compact><li><p>
                 Cuando la aplicación esté en operación ActiveRecord
                 tomará la estructura directamente de la base de datos,
@@ -1387,7 +1375,7 @@ y ejecute:
                 <code class="literal">doas gem install</code>schema_to_scaffold`<code class="literal">,     genere (puede ser momentáneamente) el archivo</code>db/schema.rb`
                 con
               </p></li></ul></div><pre class="programlisting">
-    rake db:schema:dump
+    bin/rails db:schema:dump
 </pre><pre class="programlisting">
 y ejecute
 </pre><pre class="programlisting">
@@ -1412,7 +1400,7 @@ y ejecute
                 migración que agregue estos campos digamos para la tabla
                 <code class="literal">intervalo</code> con
               </p></li></ul></div><pre class="programlisting">
-    rails g migration addTiempoToIntervalo created_at:datetime
+    bin/rails g migration addTiempoToIntervalo created_at:datetime
     updated_at:datetime
 </pre><pre class="programlisting">
 tras lo cual debe editar la migración creada para asegurar que queda
@@ -1484,19 +1472,18 @@ Y en el modelo `app/models/usuario.rb` debe quedar:
           Como se explica en {5}, desde la aplicación en rails puede
           entrar a depurar:
         </p><div class="itemizedlist"><ul type="disc" compact><li><p>
-              Instale la gema
+              Si hace falta instale la gema
             </p></li></ul></div><pre class="programlisting">
-    gem install byebug
-</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
-              Para activar el depurador en sitios en producción debe
-              además iniciar el servidor web con
-            </p></li></ul></div><pre class="programlisting">
-    rails s --debugger
+    gem install debug
 </pre><div class="itemizedlist"><ul type="disc" compact><li><p>
               En el sitio de las fuentes donde quiere comenzar a depurar
-              llamando la función
+              agregue un llamando a la función
             </p></li></ul></div><pre class="programlisting">
-    byebug
+    debugger
+</pre><div class="itemizedlist"><ul type="disc" compact><li><p>
+              Inicie la aplicación en modo de desarrollo:
+            </p></li></ul></div><pre class="programlisting">
+    bin/rails s 
 </pre><p>
           Ruby también ofrece facilidades para medir tiempos como se
           resume en {4}.
@@ -1520,7 +1507,7 @@ Y en el modelo `app/models/usuario.rb` debe quedar:
               {7}
               http://stackoverflow.com/questions/6223803/execute-sql-script-inside-seed-rb-in-rails3
             </p></li><li><p>
-              {8}
+              {8
               http://stackoverflow.com/questions/7542976/add-timestamps-to-an-existing-table
             </p></li><li><p>
               {9}
@@ -1803,13 +1790,13 @@ all:
 </pre><p>
             Que deben darle un resultado como el del pantallazo
             siguiente:
-          </p><div class="figure"><a name="idp2392692888"></a><p class="title"><b>Figura 3. Pantallazo con ejecución exitosa de toncli</b></p><div class="mediaobject"><img src="img/toncliej.png" alt="Pantallazo con ejecución exitosa de
-              toncli"></div></div></div></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1760222488" href="#idp1760222488">9</a>] </sup>
+          </p><div class="figure"><a name="idp2069064856"></a><p class="title"><b>Figura 3. Pantallazo con ejecución exitosa de toncli</b></p><div class="mediaobject"><img src="img/toncliej.png" alt="Pantallazo con ejecución exitosa de
+              toncli"></div></div></div></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1617801064" href="#idm1617801064">9</a>] </sup>
               Si usa <code xmlns="" class="literal">ksh</code> puede ver una lista de
               posibles programas que le permitan imprimir, tecleando
               <code xmlns="" class="literal">dvi</code> desde un intérprete de órdenes y
               presionando Tab dos veces.
-            </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idp1760209816" href="#idp1760209816">10</a>] </sup>
+            </p></div><div class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.idm1617845864" href="#idm1617845864">10</a>] </sup>
               Puede cambiar el diccionario personal que
               <code xmlns="" class="literal">ispell</code> debe emplear con la opción
               <code xmlns="" class="literal">-p archivo</code>

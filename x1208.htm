@@ -13,7 +13,7 @@ TITLE="Configuración y uso de programas y servicios básicos"
 HREF="x1058.htm"><LINK
 REL="NEXT"
 TITLE="Configuración y uso de algunos dispositivos y servicios"
-HREF="x2382.htm"></HEAD
+HREF="x2371.htm"></HEAD
 ><BODY
 CLASS="sect1"
 BGCOLOR="#FFFFFF"
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="x2382.htm"
+HREF="x2371.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
@@ -92,7 +92,7 @@ NAME="fluxbox"
 >&#13;        La operación básica de este liviano y estético administrador de
         ventanas se describe en
         <A
-HREF="a4203.htm"
+HREF="a4196.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -262,7 +262,7 @@ CLASS="literal"
 ><P
 >&#13;        La operación básica se describe en
         <A
-HREF="a4203.htm"
+HREF="a4196.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -310,7 +310,7 @@ CLASS="literal"
 ><P
 >&#13;        Como se describe en
         <A
-HREF="a4203.htm"
+HREF="a4196.htm"
 >xiphosmanual</A
 >, es una
         herramienta gráfica de estudio e investigación bíblica que se
@@ -423,7 +423,7 @@ CLASS="literal"
 >). Puede aprender más sobre este
         procesador en
         <A
-HREF="a4203.htm"
+HREF="a4196.htm"
 >libreoffice-basico</A
 >
       </P
@@ -486,7 +486,7 @@ CLASS="literal"
 >gv</TT
 > en la sección
         <A
-HREF="x2382.htm#uso-impresora"
+HREF="x2371.htm#uso-impresora"
 >la sección de nombre <I
 >Uso de una impresora ya configurada</I
 ></A
@@ -1158,7 +1158,7 @@ CLASS="literal"
 ><P
 >&#13;        El uso básico de mutt puede consultarlo en
         <A
-HREF="a4203.htm"
+HREF="a4196.htm"
 >basico_adJ</A
 >
       </P
@@ -1316,7 +1316,7 @@ CLASS="literal"
 >mutt</TT
 > de
               <A
-HREF="a4203.htm"
+HREF="a4196.htm"
 >basico_adJ</A
 >
             </P
@@ -2011,7 +2011,7 @@ CLASS="literal"
 > y la opción
             <TT
 CLASS="literal"
->--install-dir /var/www/bundler/</TT
+>--install-dir /var/www/bundler/ruby/3.2</TT
 >
           </P
 ><P
@@ -2023,7 +2023,7 @@ CLASS="literal"
           </P
 ><PRE
 CLASS="programlisting"
->&#13;    rails server
+>&#13;    bin/rails server
 </PRE
 ><P
 >&#13;            Tras esto puede ver con un navegador la aplicación en el
@@ -2120,14 +2120,6 @@ CLASS="literal"
                   </TD
 ><TD
 >&#13;                    Versiones de las gemas requeridas
-                  </TD
-></TR
-><TR
-><TD
->&#13;                    app/javascript/packs/application.js
-                  </TD
-><TD
->&#13;                    Plantilla de Javascript que usa módulos
                   </TD
 ></TR
 ><TR
@@ -2649,16 +2641,16 @@ CLASS="literal"
           </P
 ><PRE
 CLASS="programlisting"
->&#13;    rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
-    rake db:migrate
+>&#13;    bin/rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
+    bin/rails db:migrate
 </PRE
 ><P
 >&#13;            Tras esto y volver a iniciar el servidor (más breve con
             <TT
 CLASS="literal"
->rails s</TT
->) podrá realizar las operaciones
-            básicas sobre departamentos desde:
+>bin/rails s</TT
+>) podrá realizar las
+            operaciones básicas sobre departamentos desde:
             <A
 HREF="http://127.0.0.1:3000/departamentos/"
 TARGET="_top"
@@ -2681,7 +2673,7 @@ CLASS="literal"
 ><DIV
 CLASS="table"
 ><A
-NAME="AEN1909"
+NAME="AEN1906"
 ></A
 ><P
 ><B
@@ -2995,7 +2987,7 @@ NAME="página-de-inicio"
           </P
 ><PRE
 CLASS="programlisting"
->&#13;    rails g controller hogar
+>&#13;    bin/rails g controller hogar
 </PRE
 ><P
 >&#13;            Que genera:
@@ -3003,7 +2995,7 @@ CLASS="programlisting"
 ><DIV
 CLASS="table"
 ><A
-NAME="AEN2017"
+NAME="AEN2014"
 ></A
 ><P
 ><B
@@ -3075,28 +3067,6 @@ CLASS="literal"
                   </TD
 ><TD
 >&#13;                    Funciones auxiliares para vistas
-                  </TD
-></TR
-><TR
-><TD
->&#13;                    <TT
-CLASS="literal"
->app/assets/javascripts/hogar.coffee</TT
->
-                  </TD
-><TD
->&#13;                    Coffescript para vistas
-                  </TD
-></TR
-><TR
-><TD
->&#13;                    <TT
-CLASS="literal"
->app/assets/stylesheets/hogar.scss</TT
->
-                  </TD
-><TD
->&#13;                    CSS para vistas
                   </TD
 ></TR
 ></TBODY
@@ -3192,7 +3162,7 @@ NAME="interacción-con-la-base-de-datos"
           </P
 ><PRE
 CLASS="programlisting"
->&#13;    $ rails dbconsole
+>&#13;    $ bin/rails dbconsole
     sqlite&#62; .schema
     CREATE TABLE "departamentos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre"
     varchar(500), "latitud" float, "longitud" float, "created_at" datetime, "updated_at" datetime);
@@ -3246,7 +3216,7 @@ CLASS="programlisting"
 COMPACT="COMPACT"
 ><LI
 ><P
->&#13;                Si lo requiere en otra terminal cree un usuario para la
+>&#13;                Si lo requiere, en otra terminal cree un usuario para la
                 base de datos que será el que empleará desde su
                 aplicación ruby:
               </P
@@ -3259,7 +3229,7 @@ CLASS="programlisting"
         Shall the new role be a superuser? (y/n) n
         Shall the new role be allowed to create databases? (y/n) y
         Shall the new role be allowed to create more new roles? (y/n) n
-        $ psql -h/var/www/tmp -Upostgres psql (9.3.6) Type "help" for help.
+        $ psql -h/var/www/tmp -Upostgres psql (15.4) Type "help" for help.
         postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
 </PRE
 ><P
@@ -3291,7 +3261,7 @@ CLASS="literal"
 ></UL
 ><PRE
 CLASS="programlisting"
->&#13;        rails dbconsole
+>&#13;        bin/rails dbconsole
 </PRE
 ><P
 ></P
@@ -3367,7 +3337,7 @@ COMPACT="COMPACT"
 ></UL
 ><PRE
 CLASS="programlisting"
->&#13;        rake db:structure:dump
+>&#13;        bin/rails db:structure:dump
 </PRE
 ><P
 ></P
@@ -3390,7 +3360,7 @@ CLASS="literal"
 ></UL
 ><PRE
 CLASS="programlisting"
->&#13;        rails generate model mitabla --migration=false --timestamp=false
+>&#13;        bin/rails generate model mitabla --migration=false --timestamp=false
 </PRE
 ><P
 ></P
@@ -3443,7 +3413,7 @@ CLASS="literal"
 ></UL
 ><PRE
 CLASS="programlisting"
->&#13;    rake db:schema:dump
+>&#13;    bin/rails db:schema:dump
 </PRE
 ><PRE
 CLASS="programlisting"
@@ -3505,7 +3475,7 @@ CLASS="literal"
 ></UL
 ><PRE
 CLASS="programlisting"
->&#13;    rails g migration addTiempoToIntervalo created_at:datetime
+>&#13;    bin/rails g migration addTiempoToIntervalo created_at:datetime
     updated_at:datetime
 </PRE
 ><PRE
@@ -3703,28 +3673,13 @@ NAME="depuración"
 COMPACT="COMPACT"
 ><LI
 ><P
->&#13;              Instale la gema
+>&#13;              Si hace falta instale la gema
             </P
 ></LI
 ></UL
 ><PRE
 CLASS="programlisting"
->&#13;    gem install byebug
-</PRE
-><P
-></P
-><UL
-COMPACT="COMPACT"
-><LI
-><P
->&#13;              Para activar el depurador en sitios en producción debe
-              además iniciar el servidor web con
-            </P
-></LI
-></UL
-><PRE
-CLASS="programlisting"
->&#13;    rails s --debugger
+>&#13;    gem install debug
 </PRE
 ><P
 ></P
@@ -3733,13 +3688,27 @@ COMPACT="COMPACT"
 ><LI
 ><P
 >&#13;              En el sitio de las fuentes donde quiere comenzar a depurar
-              llamando la función
+              agregue un llamando a la función
             </P
 ></LI
 ></UL
 ><PRE
 CLASS="programlisting"
->&#13;    byebug
+>&#13;    debugger
+</PRE
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;              Inicie la aplicación en modo de desarrollo:
+            </P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>&#13;    bin/rails s 
 </PRE
 ><P
 >&#13;          Ruby también ofrece facilidades para medir tiempos como se
@@ -3800,7 +3769,7 @@ COMPACT="COMPACT"
 ></LI
 ><LI
 ><P
->&#13;              {8}
+>&#13;              {8
               http://stackoverflow.com/questions/7542976/add-timestamps-to-an-existing-table
             </P
 ></LI
@@ -4464,7 +4433,7 @@ CLASS="programlisting"
 ><DIV
 CLASS="figure"
 ><A
-NAME="AEN2375"
+NAME="AEN2364"
 ></A
 ><P
 ><B
@@ -4585,7 +4554,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="x2382.htm"
+HREF="x2371.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
