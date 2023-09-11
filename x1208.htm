@@ -13,7 +13,7 @@ TITLE="Configuración y uso de programas y servicios básicos"
 HREF="x1058.htm"><LINK
 REL="NEXT"
 TITLE="Configuración y uso de algunos dispositivos y servicios"
-HREF="x2388.htm"></HEAD
+HREF="x2382.htm"></HEAD
 ><BODY
 CLASS="sect1"
 BGCOLOR="#FFFFFF"
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="x2388.htm"
+HREF="x2382.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
@@ -92,7 +92,7 @@ NAME="fluxbox"
 >&#13;        La operación básica de este liviano y estético administrador de
         ventanas se describe en
         <A
-HREF="a4209.htm"
+HREF="a4203.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -262,7 +262,7 @@ CLASS="literal"
 ><P
 >&#13;        La operación básica se describe en
         <A
-HREF="a4209.htm"
+HREF="a4203.htm"
 >basico_adJ</A
 >, aquí describimos
         algunos detalles de configuración.
@@ -310,7 +310,7 @@ CLASS="literal"
 ><P
 >&#13;        Como se describe en
         <A
-HREF="a4209.htm"
+HREF="a4203.htm"
 >xiphosmanual</A
 >, es una
         herramienta gráfica de estudio e investigación bíblica que se
@@ -423,7 +423,7 @@ CLASS="literal"
 >). Puede aprender más sobre este
         procesador en
         <A
-HREF="a4209.htm"
+HREF="a4203.htm"
 >libreoffice-basico</A
 >
       </P
@@ -486,7 +486,7 @@ CLASS="literal"
 >gv</TT
 > en la sección
         <A
-HREF="x2388.htm#uso-impresora"
+HREF="x2382.htm#uso-impresora"
 >la sección de nombre <I
 >Uso de una impresora ya configurada</I
 ></A
@@ -1158,7 +1158,7 @@ CLASS="literal"
 ><P
 >&#13;        El uso básico de mutt puede consultarlo en
         <A
-HREF="a4209.htm"
+HREF="a4203.htm"
 >basico_adJ</A
 >
       </P
@@ -1316,7 +1316,7 @@ CLASS="literal"
 >mutt</TT
 > de
               <A
-HREF="a4209.htm"
+HREF="a4203.htm"
 >basico_adJ</A
 >
             </P
@@ -1382,7 +1382,7 @@ NAME="ruby"
 ></H3
 ><P
 >&#13;        En adJ 7.3 es sencillo usar ruby-3.2.2 con Ruby on
-        Rails 6. Lo básico se instala de paquetes de OpenBSD y lo más
+        Rails 7. Lo básico se instala de paquetes de OpenBSD y lo más
         reciente de Ruby directamente como gemas.
       </P
 ><DIV
@@ -1395,7 +1395,7 @@ NAME="instalación-y-configuración"
 ></H4
 ><P
 >&#13;          Asegúrese de tener instalados los paquetes ruby-3.2.2 y
-          node-18.17.1v0, incluidos en el DVD de adJ 7.3
+          node-18.17.1v0, incluidos en el instalador de adJ 7.3
         </P
 ><P
 >&#13;          Asegúrese de tener enlaces al intérprete de ruby y
@@ -1405,8 +1405,8 @@ NAME="instalación-y-configuración"
 CLASS="programlisting"
 >&#13;    doas sh
     ln -sf /usr/local/bin/ruby32 /usr/local/bin/ruby
-    ;n -sf /usr/local/bin/bundle32 /usr/local/bin/bundle
-    ;n -sf /usr/local/bin/bundler32 /usr/local/bin/bundler
+    ln -sf /usr/local/bin/bundle32 /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler32 /usr/local/bin/bundler
     ln -sf /usr/local/bin/erb32 /usr/local/bin/erb
     ln -sf /usr/local/bin/gem32 /usr/local/bin/gem
     ln -sf /usr/local/bin/irb32 /usr/local/bin/irb
@@ -1554,28 +1554,29 @@ CLASS="literal"
             <TT
 CLASS="literal"
 >/usr/local/lib/ruby/gems/3.2/</TT
-> donde sólo
-            pueden instalarse con <TT
+>
+            donde sólo pueden instalarse con <TT
 CLASS="literal"
 >doas</TT
->. Recomendamos
-            iniciar un directorio para instalar gemas como usuario
-            normal en <TT
+>.
+            Recomendamos iniciar un directorio para instalar gemas como
+            usuario normal en
+            <TT
 CLASS="literal"
 >/var/www/bundler/ruby/3.2</TT
->, por
-            3 razones (1) evitar riesgos de seguridad al instalar gemas
-            como root, (2) evitar problemas de permisos y la dificultad
-            de programas como bundler para usar <TT
+>,
+            por 3 razones (1) evitar riesgos de seguridad al instalar
+            gemas como root, (2) evitar problemas de permisos y la
+            dificultad de programas como bundler para usar
+            <TT
 CLASS="literal"
 >doas</TT
->
-            en lugar de <TT
+> en lugar de <TT
 CLASS="literal"
 >sudo</TT
-> y (3) alistar
-            infraestructura para que sus aplicaciones corran en una
-            jaula chroot en <TT
+>
+            y (3) alistar infraestructura para que sus aplicaciones
+            corran en una jaula chroot en <TT
 CLASS="literal"
 >/var/www</TT
 >
@@ -1643,7 +1644,8 @@ CLASS="programlisting"
             <TT
 CLASS="literal"
 >/var/www/bundler/ruby/3.2</TT
-> con:
+>
+            con:
           </P
 ><PRE
 CLASS="programlisting"
@@ -1687,8 +1689,8 @@ CLASS="literal"
             de <TT
 CLASS="literal"
 >/var/www/bundler/ruby/3.2</TT
-> ejecutando
-            dentro del directorio del proyecto:
+>
+            ejecutando dentro del directorio del proyecto:
           </P
 ><PRE
 CLASS="programlisting"
@@ -1815,44 +1817,17 @@ CLASS="sect5"
 ><H5
 CLASS="sect5"
 ><A
-NAME="coffescript"
->Coffescript</A
-></H5
-><P
->&#13;            Si su aplicación rails emplea coffescript necesitará un
-            programa que pueda ejecutar javascript al lado del servidor,
-            recomendamos node.js incluido en adJ. Actualice a la versión
-            más reciente de npm con:
-          </P
-><PRE
-CLASS="programlisting"
->&#13;    doas npm install npm -g
-</PRE
-><P
->&#13;            Instale coffeescript con:
-          </P
-><PRE
-CLASS="programlisting"
->&#13;    doas npm install -g coffee-script
-</PRE
-></DIV
-><DIV
-CLASS="sect5"
-><H5
-CLASS="sect5"
-><A
 NAME="yarn"
 >yarn</A
 ></H5
 ><P
 >&#13;            Las aplicaciones Ruby on Rails posteriores a 6.0 requieren
             el manejador de paquetes Javascript yarn. Lo puede instalar
-            más fácil con bash y con:
+            con:
           </P
 ><PRE
 CLASS="programlisting"
->&#13;doas pkg_add bash
-curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+>&#13;doas npm install -g yarn
 </PRE
 ><P
 >&#13;            Si durante la ejecución de yarn ve fallas del estilo:
@@ -1863,9 +1838,7 @@ CLASS="programlisting"
 /tmp/yarn--1602506143839-0.91595986516731/../node: not found
 </PRE
 ><P
->&#13;            que hemos visto por ejemplo con
-            @fortawesome/fontawesome-free, se recomienda enlazar el
-            binario de node en /tmp:
+>&#13;            se recomienda enlazar el binario de node en /tmp:
           </P
 ><PRE
 CLASS="programlisting"
@@ -1892,14 +1865,14 @@ CLASS="programlisting"
 >&#13;    cd ~
     mkdir -p .vim
     cd .vim
-    cp -rf /usr/local/share/vim/vim83/* .
+    cp -rf /usr/local/share/vim/vim90/* .
 </PRE
 ><P
 >&#13;            y si no tiene archivo ~/.vimrc ejecutar:
           </P
 ><PRE
 CLASS="programlisting"
->&#13;    cp /usr/local/share/vim/vim83/vimrc_example.vi ~/.vimrc
+>&#13;    cp /usr/local/share/vim/vim90/vimrc_example.vim ~/.vimrc
 </PRE
 ><P
 >&#13;            así como agregar el archivo
@@ -1945,9 +1918,9 @@ TARGET="_top"
 ><P
 >&#13;          En Internet puede ver la referencia oficial de las clases en:
           <A
-HREF="http://ruby-doc.org/core-2.1.5/Integer.html"
+HREF="http://ruby-doc.org/core-3.1.0/Integer.html"
 TARGET="_top"
->http://ruby-doc.org/core-2.1.5/Integer.html</A
+>http://ruby-doc.org/core-3.1.0/Integer.html</A
 >
         </P
 ><P
@@ -2067,7 +2040,7 @@ TARGET="_top"
 ><DIV
 CLASS="table"
 ><A
-NAME="AEN1687"
+NAME="AEN1681"
 ></A
 ><P
 ><B
@@ -2708,7 +2681,7 @@ CLASS="literal"
 ><DIV
 CLASS="table"
 ><A
-NAME="AEN1915"
+NAME="AEN1909"
 ></A
 ><P
 ><B
@@ -3030,7 +3003,7 @@ CLASS="programlisting"
 ><DIV
 CLASS="table"
 ><A
-NAME="AEN2023"
+NAME="AEN2017"
 ></A
 ><P
 ><B
@@ -4491,7 +4464,7 @@ CLASS="programlisting"
 ><DIV
 CLASS="figure"
 ><A
-NAME="AEN2381"
+NAME="AEN2375"
 ></A
 ><P
 ><B
@@ -4612,7 +4585,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="x2388.htm"
+HREF="x2382.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
