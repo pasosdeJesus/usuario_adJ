@@ -135,5 +135,8 @@ infoversion.ent:
 		cp ../servidor_adJ/infoversion.ent .; \
 	} fi;
 
+masversiones.ent: infoversion.ent
+	herram/masversiones.sh
+
 openbsdsrc/tabcompose.xdbk:
 	(cd openbsdsrc; ./gensym.sh)
