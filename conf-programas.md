@@ -552,7 +552,7 @@ navegador.
 
 ## Ambiente de Desarrollo {#ambiente-de-desarrollo}
 
-### Ruby
+### Ruby {#ruby}
 
 En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 7.
 Lo básico se instala de paquetes de OpenBSD y lo más reciente de Ruby
@@ -873,13 +873,13 @@ Genere una nueva aplicación:
 Esto creará una nueva aplicación de ejemplo e instalará todas sus
 dependencias. Las gemas que no logre instalar por falta de permisos,
 como se explicó anteriormente instálelas con `doas gem install` y la
-opción `--install-dir /var/www/bundler/`
+opción `--install-dir /var/www/bundler/ruby/&rubymayor;`
 
 Una vez haya logrado que `bundle install` se ejecute completo puede
 ejecutar:
 
 ```
-	rails server
+	bin/rails server
 ```
 
 Tras esto puede ver con un navegador la aplicación en el puerto 3000 del
@@ -895,7 +895,6 @@ config.ru                                           Configurar servidor web por 
 .gitignore                                          Archivos por ignorar en control de versiones
 Gemfile                                             Gemas requeridas
 Gemfile.lock                                        Versiones de las gemas requeridas
-app/javascript/packs/application.js                 Plantilla de Javascript que usa módulos
 app/assets/stylesheets/application.css              Plantilla de CSS para aplicación
 app/controllers/application_controller.rb           Plantilla del controlador de la aplicación
 app/helpers/application_helper.rb                   Ayudas para construir vistas (sin lógica del modelos).
@@ -965,12 +964,12 @@ Puede crear un primer recurso (digamos `Departamento`) con modelo,
 controlador simple y vistas para operaciones CRUD y RESTful con:
 
 ```
-	rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
-	rake db:migrate
+	bin/rails g scaffold Departamento nombre:string{500} latitud:float longitud:float fechadeshabilitacion:date
+	bin/rails db:migrate
 ```
 
 
-Tras esto y volver a iniciar el servidor (más breve con `rails s`) podrá
+Tras esto y volver a iniciar el servidor (más breve con `bin/rails s`) podrá
 realizar las operaciones básicas sobre departamentos desde:
 <http://127.0.0.1:3000/departamentos/>
 
@@ -1023,7 +1022,7 @@ Por convención de Ruby on Rails:
 La página inicial de su aplicación puede crearla generando un
 controlador con vista, modificando la vista y especificando la ruta:
 ```
-	rails g controller hogar
+	bin/rails g controller hogar
 ```
 
 Que genera:
@@ -1034,8 +1033,6 @@ Archivo/Directorio                            Descripción
 `app/views/hogar`                             Vistas relacionadas con el controlador
 `test/controllers/hogar_controller_test.rb`   Pruebas
 `app/helpers/hogar_helper.rb`                 Funciones auxiliares para vistas
-`app/assets/javascripts/hogar.coffee`         Coffescript para vistas
-`app/assets/stylesheets/hogar.scss`           CSS para vistas
 
 : Archivos generados con `g controller hogar`
 
@@ -1074,7 +1071,7 @@ tenga diseñado en `app/views/layouts/application.html.erb`.
 Puede examinar la tabla creada e interactuar con la base de datos con la
 interfaz texto de SQLite como se ejemplifica a continuación:
 ```
-    $ rails dbconsole
+    $ bin/rails dbconsole
     sqlite> .schema
     CREATE TABLE "departamentos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre"
     varchar(500), "latitud" float, "longitud" float, "created_at" datetime, "updated_at" datetime);
@@ -1097,7 +1094,7 @@ volviéndola a crear con `-E UTF8` y restaurando los datos).
         rails new prueba1 --database=postgresql
 ```
 
--   Si lo requiere en otra terminal cree un usuario para la base de
+-   Si lo requiere, en otra terminal cree un usuario para la base de
     datos que será el que empleará desde su aplicación ruby:
 ```
          doas su - _postgresql
@@ -1105,7 +1102,7 @@ volviéndola a crear con `-E UTF8` y restaurando los datos).
         Shall the new role be a superuser? (y/n) n
         Shall the new role be allowed to create databases? (y/n) y
         Shall the new role be allowed to create more new roles? (y/n) n
-        $ psql -h/var/www/tmp -Upostgres psql (9.3.6) Type "help" for help.
+        $ psql -h/var/www/tmp -Upostgres psql (15.4) Type "help" for help.
         postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
 ```
 
@@ -1121,7 +1118,7 @@ volviéndola a crear con `-E UTF8` y restaurando los datos).
 -   A manera de prueba de su configuración intente ingresar a un
     intérprete de órdenes para su base de datos con:
 ```
-        rails dbconsole
+        bin/rails dbconsole
 ```
 
 -   Si las tablas de la base de datos no emplean la convención para
@@ -1145,14 +1142,14 @@ volviéndola a crear con `-E UTF8` y restaurando los datos).
 ```
 -    Después ejecute la tarea rake apropiada (ver {4}):
 ```
-        rake db:structure:dump
+        bin/rails db:structure:dump
 ```
 
 -   Genere clases (modelos) en blanco en el directorio ```app/models```
     para cada una de las tablas de su aplicación, por ejemplo para la
     tabla ```mitabla``` :
 ```
-        rails generate model mitabla --migration=false --timestamp=false
+        bin/rails generate model mitabla --migration=false --timestamp=false
 ```
 
 -   Cuando la aplicación esté en operación ActiveRecord tomará la
@@ -1173,7 +1170,7 @@ volviéndola a crear con `-E UTF8` y restaurando los datos).
     genere (puede ser momentáneamente) el archivo `db/schema.rb`
     con
 ```
-	rake db:schema:dump
+	bin/rails db:schema:dump
 ```
     y ejecute
 ```
@@ -1195,7 +1192,7 @@ datos, tenga en cuenta:
     . Puede generar una migración que agregue estos campos digamos para
     la tabla `intervalo` con
 ```
-    rails g migration addTiempoToIntervalo created_at:datetime
+    bin/rails g migration addTiempoToIntervalo created_at:datetime
     updated_at:datetime
 ```
     tras lo cual debe editar la migración creada para asegurar que queda
@@ -1269,19 +1266,18 @@ Si su público objetivo habla principalmente español puede:
 Como se explica en {5}, desde la aplicación en rails puede entrar a
 depurar:
 
--   Instale la gema
+-   Si hace falta instale la gema
 ```
-    gem install byebug
-```
--   Para activar el depurador en sitios en producción debe además
-    iniciar el servidor web con
-```
-    rails s --debugger
+    gem install debug
 ```
 -   En el sitio de las fuentes donde quiere comenzar a depurar
-    llamando la función
+    agregue un llamando a la función
 ```
-    byebug
+    debugger
+```
+-   Inicie la aplicación en modo de desarrollo:
+```
+    bin/rails s 
 ```
 
 Ruby también ofrece facilidades para medir tiempos como se resume en
@@ -1303,7 +1299,7 @@ Ruby también ofrece facilidades para medir tiempos como se resume en
     http://stackoverflow.com/questions/1200568/using-rails-how-can-i-set-my-primary-key-to-not-be-an-integer-typed-column
 -   {7}
     http://stackoverflow.com/questions/6223803/execute-sql-script-inside-seed-rb-in-rails3
--   {8}
+-   {8
     http://stackoverflow.com/questions/7542976/add-timestamps-to-an-existing-table
 -   {9}
     http://stackoverflow.com/questions/4613574/how-do-i-explicitly-specify-a-models-table-name-mapping-in-rails
