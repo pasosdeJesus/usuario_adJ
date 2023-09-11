@@ -554,14 +554,14 @@ navegador.
 
 ### Ruby
 
-En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 6.
+En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 7.
 Lo básico se instala de paquetes de OpenBSD y lo más reciente de Ruby
 directamente como gemas.
 
 #### Instalación y configuración
 
 Asegúrese de tener instalados los paquetes &p-ruby; y &p-node;,
-incluidos en el DVD de adJ &VER-ADJ;
+incluidos en el instalador de adJ &VER-ADJ;
 
 Asegúrese de tener enlaces al intérprete de ruby y herramientas (como
 describe el paquete ruby):
@@ -569,8 +569,8 @@ describe el paquete ruby):
 ```
     doas sh
     ln -sf /usr/local/bin/ruby32 /usr/local/bin/ruby
-    ;n -sf /usr/local/bin/bundle32 /usr/local/bin/bundle
-    ;n -sf /usr/local/bin/bundler32 /usr/local/bin/bundler
+    ln -sf /usr/local/bin/bundle32 /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler32 /usr/local/bin/bundler
     ln -sf /usr/local/bin/erb32 /usr/local/bin/erb
     ln -sf /usr/local/bin/gem32 /usr/local/bin/gem
     ln -sf /usr/local/bin/irb32 /usr/local/bin/irb
@@ -647,10 +647,10 @@ El paquete `ruby` incluye `rubygems` que maneja gemas (es decir
 librerías) con el programa `gem`.
 
 El directorio donde se instalan las gemas globales
-es `/usr/local/lib/ruby/gems/3.2/` donde sólo pueden
+es `/usr/local/lib/ruby/gems/&rubymayor;/` donde sólo pueden
 instalarse con ```doas```.
 Recomendamos iniciar un directorio para instalar gemas como usuario normal
-en  ```/var/www/bundler/ruby/3.2```, por 3 razones (1) evitar riesgos de
+en  ```/var/www/bundler/ruby/&rubymayor;```, por 3 razones (1) evitar riesgos de
 seguridad al instalar gemas como root, (2) evitar problemas de permisos
 y la dificultad de programas como bundler para usar ```doas``` en lugar
 de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones
@@ -659,18 +659,18 @@ corran en una jaula chroot en ```/var/www```
 Prepare ese directorio con:
 
 ```
-	doas mkdir -p /var/www/bundler/ruby/3.2/
+	doas mkdir -p /var/www/bundler/ruby/&rubymayor;/
 	doas chown -R $USER:www /var/www/bundler
 ```
 
 Y cuando requiera instalar una gema allí emplee:
 ```
-	gem install --install-dir /var/www/bundler/ruby/3.2/ json
+	gem install --install-dir /var/www/bundler/ruby/&rubymayor;/ json
 ```
 
 O si llega a tener problemas de permisos con:
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.2/ bcrypt
+	doas gem install --install-dir /var/www/bundler/ruby/&rubymayor;/ bcrypt
 ```
 
 Para facilitar compilación de algunas extensiones (como las de nokogiri) se
@@ -692,7 +692,7 @@ proyecto es típico emplear ```bundler``` que instala con:
 ```
 
 Configúrelo para que instale gemas localmente
-en `/var/www/bundler/ruby/3.2` con:
+en `/var/www/bundler/ruby/&rubymayor;` con:
 
 ```
   bundle config path /var/www/bundler/
@@ -712,7 +712,7 @@ depende la aplicación y genera un archivo ```Gemfile.lock``` con las
 versiones precisas por instalar de cada gema.
 
 Una vez tenga un proyecto asegure que este emplea las gemas de
-```/var/www/bundler/ruby/3.2``` ejecutando dentro del directorio del
+```/var/www/bundler/ruby/&rubymayor;``` ejecutando dentro del directorio del
 proyecto:
 
 ```
@@ -732,7 +732,7 @@ Si eventualmente no logra instalar algunas --por problemas de permisos
 típicamente-- puede instalar con
 
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.2 json
+	doas gem install --install-dir /var/www/bundler/ruby/&rubymayor; json
 ```
 
 Cuando actualice la versión del sistema operativo al igual que con gemas
@@ -744,7 +744,7 @@ con versiones de bundler posteriores a la 1.15.4:
 ```
 y después instalando una a una las gemas que sean extensiones, por ejemplo
 ```
-	doas gem install --install-dir /var/www/bundler/ruby/3.2 nokogiri -v '2.0'
+	doas gem install --install-dir /var/www/bundler/ruby/&rubymayor; nokogiri -v '2.0'
 ```
 
 ##### Rails
@@ -769,7 +769,7 @@ que se explicó. Algunos casos especiales son:
 
 -   ```nokogiri``` que puede requerir
 ```
-        doas gem install --install-dir /var/www/bundler/ruby/3.2/ nokogiri -- --use-system-libraries
+        doas gem install --install-dir /var/www/bundler/ruby/&rubymayor;/ nokogiri -- --use-system-libraries
 ```
 
 
@@ -778,27 +778,13 @@ que se explicó. Algunos casos especiales son:
         QMAKE=qmake-qt5 MAKE=gmake doas gem install capybara-webkit
 ```
 
-##### Coffescript
-
-Si su aplicación rails emplea coffescript necesitará un programa que pueda
-ejecutar javascript al lado del servidor, recomendamos node.js incluido en
-adJ. Actualice a la versión más reciente de npm con:
-```
-	doas npm install npm -g
-```
-Instale coffeescript con:
-
-```
-	doas npm install -g coffee-script
-```
 ##### yarn
 
 Las aplicaciones Ruby on Rails posteriores a 6.0 requieren el manejador de
-paquetes Javascript yarn. Lo puede instalar más fácil con bash y con:
+paquetes Javascript yarn. Lo puede instalar con:
 
 ```
-doas pkg_add bash
-curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+doas npm install -g yarn
 ```
 
 Si durante la ejecución de yarn ve fallas del estilo:
@@ -807,7 +793,6 @@ Si durante la ejecución de yarn ve fallas del estilo:
 /tmp/yarn--1602506143839-0.91595986516731/node[3]:
 /tmp/yarn--1602506143839-0.91595986516731/../node: not found
 ```
-que hemos visto por ejemplo con @fortawesome/fontawesome-free,
 se recomienda enlazar el binario de node en /tmp:
 
 ```
@@ -824,11 +809,11 @@ ejecutado:
 	cd ~
 	mkdir -p .vim
 	cd .vim
-	cp -rf /usr/local/share/vim/vim83/* .
+	cp -rf /usr/local/share/vim/vim90/* .
 ```
 y si no tiene archivo \~/.vimrc ejecutar:
 ```
-	cp /usr/local/share/vim/vim83/vimrc_example.vi ~/.vimrc
+	cp /usr/local/share/vim/&dirvim;/vimrc_example.vim ~/.vimrc
 ```
 así como agregar el archivo `~/.vim/ftplugin/ruby.vim` las siguientes
 líneas:
@@ -849,7 +834,7 @@ Puede aprender por ejemplo con los tutoriales interactivos de
 <https://rubymonk.com>
 
 En Internet puede ver la referencia oficial de las clases en:
-<http://ruby-doc.org/core-2.1.5/Integer.html>
+<http://ruby-doc.org/core-3.1.0/Integer.html>
 
 Y es buena referencia para Ruby, Rails y Rspec (incluidos cambios entre
 una versión y otra y comentarios) es: <http://apidock.com/>

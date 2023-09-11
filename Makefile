@@ -124,7 +124,7 @@ repasa:
 	DEF=$(PROYECTO).def CLA=$(PROYECTO).cla SEC=$(PROYECTO).sec DESC="Información extraida de: $(PRY_DESC)" FECHA="$(FECHA_ACT)" BIBLIO="$(URLSITE)" TIPO_DERECHOS="Dominio público" TIEMPO_DERECHOS="$(MES_ACT)" DERECHOS="Información cedida al dominio público. Sin garantías." AUTORES="Vladimir Támara" IDSIGNIFICADO="openbsd_usuario" awk -f herram_confsh/db2rep $(SOURCES)
 
 
-paquetes-adJ.xdbk: infoversion.ent
+paquetes-adJ.xdbk: infoversion.ent masversiones.ent
 	if (test -f /home/$(LOGNAME)/comp/adJ/Contenido.txt) then { cp /home/$(LOGNAME)/comp/adJ/Contenido.txt Contenido.txt; } else { touch Contenido.txt; } fi;
 	awk -f herram/convContenido.awk Contenido.txt > paquetes-adJ.xdbk; 
 

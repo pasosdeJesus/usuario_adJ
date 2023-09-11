@@ -190,7 +190,7 @@ Particiones
 
     Para un sistema de escritorio puede bastar dividir el espacio de su
     partición para OpenBSD en: `/` (al menos con 3G o si desea instalar
-    los paquetes incluidos en el DVD y para compilar fuentes al menos
+    los paquetes incluidos en el instalador y para compilar fuentes al menos
     con 50G), `/home` (con tanto espacio como desee para los usuarios) y
     `/var` (al menos con 1.2G si planea sacar respaldos de imágenes
     cifradas en CD o de 8G si planea sacarlas en DVD).
