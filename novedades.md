@@ -1,7 +1,7 @@
 Versión 7.4
 :   - Revisada sección [xref](#multimedia)
     - Nueva sección sobre ffmpeg [xref](#ffmpeg)
-    - Nueva sección sobre ImageMagick [xref](#ImageMaguick)
+    - Nueva sección sobre ImageMagick [xref](#imagemagick)
     - Nueva sección sobre vlc [xref](#vlc)
 
 Versión 7.3

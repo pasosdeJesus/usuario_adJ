@@ -451,7 +451,7 @@ Para la generación de gráficos de barras y estadísticos resulta más
 apropiado el graficador de &p-gnumeric; o de calc --la hoja de cálculo de
 OpenOffice--, ver [xref](#msoffice)
 
-#### ImageMagick {#ImageMagick}
+#### ImageMagick {#imagemagick}
 
 El paquete &p-ImageMagick; incluye varios programas que le permiten ver 
 una imagen, información de la misma, hacer algunas operaciones
