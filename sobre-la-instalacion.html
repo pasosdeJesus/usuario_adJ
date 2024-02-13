@@ -38,14 +38,13 @@
               <code class="literal">dd</code>. Si por ejemplo en adJ la USB es
               <code class="literal">/dev/sd2c</code> (verifique dispositivo con
               <code class="literal">dmesg</code> y remplace):
-            </p><p>
-              doas dd if=AprendiendoDeJesus-7.4-amd64.usb
-              of=/dev/sd2c bs=1M
-            </p><p>
+            </p><pre class="programlisting">
+    doas dd if=AprendiendoDeJesus-7.4-amd64.usb of=/dev/sd2c bs=1M
+</pre><p>
               Este proceso puede ser demorado, puede ver el progreso con
-            </p><p>
-              doas pkill -SIGINFO dd
-            </p></li><li><p>
+            </p><pre class="programlisting">
+    doas pkill -SIGINFO dd
+</pre></li><li><p>
               Imagen CDROM. Aunque con esta no podrá instalar en modo
               UEFI, sino únicamente en modo CSM (que desde varias
               configuraciones UEFI se llama modo
