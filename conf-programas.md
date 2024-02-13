@@ -379,18 +379,17 @@ remplazo.
 
 ## Multimedia {#multimedia}
 
-### Mplayer
+### Reproductores de vídeo {#reproductores-de-video}
 
-Es un reproductor de audio y video que soporta gran variedad de
-formatos. Por ejemplo para ver video.flv:
-```
+#### mplayer {#mplayer}
+
+`mplayer` es un reproductor de audio y vídeo que soporta gran variedad de
+formatos. Por ejemplo para ver `video.flv`:
+
         mplayer video.flv
-```
 
-
-Se distribuye con codecs que pueden distribuirse libremente. Para que
-soporte codecs de Windows es importante instalar también el paquete
-`win32-codecs`
+Se distribuye con codecs de código abierto y de calidad para muchos 
+formatos.
 
 También permite hacer conversiones y extraer partes. Por ejemplo para
 extraer pista de audio de un video descargado de youtube, y dejarla en
@@ -399,27 +398,33 @@ formato WAV:
         mplayer -vo null -ao "pcm:file=pista.wav" -af resample=44100 "video.flv"
 ```
 
-
-
 Para reproducir 10 segundos de un DVD comenzando en el segundo 240:
 ```
         mplayer -ss 240 -endpos 10 dvd://1
 ```
 
-
 Se distribuye junto con `mencoder` que permite convertir de un formato a
 otro.
 
+Si requiere una interfaz gráfica de usuario (GUI) puede instalar
+bien el paquete `smplayer` o bien `gnome-player`.
+
+#### vlc {#vlc}
+
+Además de reproducir videos de diversos formatos, permite convertir e incluso
+transmitir por streaming empleando como fuente un archivo, o un stream
+desde una red o un dispositivo de captura.
+
+En su forma de uso más simple para ver el video `video.mp4`:
+
+        vlc video.mp4
+
+![](img/vlc.png)
+
+
 ### Edición de gráficos {#ediciongraficos}
 
-Para ver una gráfica (sin editarla) prácticamente en cualquier formato,
-puede usar `display` incluido en &p-ImageMagick;:
-```
-    display migrafica.png
-```
-
-
-Otra opción que facilita ver un directorio con imágenes es `xfi`
+Para ver un directorio con imágenes puede usar `xfi`
 incluido en el paquete &p-xfe;:
 
 ```
@@ -446,6 +451,33 @@ Para la generación de gráficos de barras y estadísticos resulta más
 apropiado el graficador de &p-gnumeric; o de calc --la hoja de cálculo de
 OpenOffice--, ver [xref](#msoffice)
 
+#### ImageMagick {#ImageMagick}
+
+El paquete &p-ImageMagick; incluye varios programas que le permiten ver 
+una imagen, información de la misma, hacer algunas operaciones
+o convertir de un formato a otro.
+
+Para ver una gráfica (sin editarla) prácticamente en cualquier formato,
+puede usar `display`
+
+        display migrafica.png
+
+Para ver información de una imágen use:
+
+        identify migrafica.png
+
+Para convertir de un formato a otro (y opcionalmente hacerle
+transformaciones) use:
+
+        convert migrafica.png migrafica.jpg
+
+Para capturar una ventana o una porción rectangular puede
+usar 
+
+        import pantallazo.png
+
+y elegir una ventana  o marcar el rectángulo por capturar.
+
 
 ### Edición de audio {#edicionaudio}
 
@@ -457,16 +489,32 @@ libre ogg, el común wav y el patentado mp3) puede usar `mplayer` (ver
 ![](img/audacious.png)
 
  El programa `play` incluido en el paquete &p-sox; también le
-permitirá escuchar diversos formatos.
-
-Desde la línea de órdenes podrá recortar, cambiar volumen y aplicar
-otros efectos empleando el programa `sox`.
+permitirá escuchar diversos formatos. Desde la línea de órdenes podrá 
+recortar, cambiar volumen y aplicar otros efectos empleando el programa `sox`.
 
 Si prefiere un editor gráfico que le permite recortar y aplicar algunos
 efectos a pistas de audio en prácticamente cualquier formato de audio
 utilice el programa &p-audacity;:
 
 ![](img/audacity.png)
+
+
+### Conversión de audio y vídeo con `ffmpeg` {#ffmpeg}
+
+ffmpeg es un conversor rápido para audio y video que
+puede capturar de fuentes de audio/vide en vivo.
+
+Puede leer de muchos archivos/fuentes y escribir en muchos archivos/destinos,
+cada fuente puede constar de varios streams de diversos tipos.
+
+En la línea de ordenes `-i` indica una entrada y `-o` una salida,
+cada `-i` o `-o` puede predecerse de opciones para la respectiva
+entrada o salida. El siguiente ejemplo tomado del manual
+(disponible con el paquete) establece la tasa de bits del archivo
+de salida a 64 kbit/s:
+
+        ffmpeg -i input.avi -b:v 64k -bufsize 64k output.avi
+
 
 ## Operación en red {#operación-en-red}
 

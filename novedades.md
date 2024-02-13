@@ -1,5 +1,12 @@
+Versión 7.4
+:   - Revisada sección [xref](#multimedia)
+    - Nueva sección sobre ffmpeg [xref](#ffmpeg)
+    - Nueva sección sobre ImageMagick [xref](#ImageMaguick)
+    - Nueva sección sobre vlc [xref](#vlc)
+
 Versión 7.3
 :   - Actualizada sección sobre ruby [xref](#ruby)
+
 Versión 7.2
 :   - Actualizada sección sobre toncli a la versión 0.0.43 [xref](#toncli)
 
