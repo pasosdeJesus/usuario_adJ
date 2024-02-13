@@ -14,7 +14,7 @@ este requiera, usando para descargarlos lo(s) repositorio(s)
 especificada(s) en la variable de ambiente `PKG_PATH`, por esto en el
 archivo `~/.profile` o en `~/.xsession` vale la pena agregar:
 
-        export PKG_PATH=ftp://ftp.pasosdeJesus.org/pub/OpenBSD/&VER-OPENBSD;/packages/amd64
+        export PKG_PATH=http://adJ.pasosdeJesus.org/pub/OpenBSD/&VER-OPENBSD;/packages/amd64
 
 o la vía del CD-ROM 1 o una vía de un espejo más rápido para su
 caso[^paq.1]. Una vez establecida esta variable, para agregar por ejemplo el

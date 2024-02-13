@@ -38,11 +38,11 @@
         en adJ la USB es `/dev/sd2c` (verifique dispositivo con `dmesg` 
         y remplace):
 
-          doas dd if=AprendiendoDeJesus-&VER-ADJ;-amd64.usb of=/dev/sd2c bs=1M
+                doas dd if=AprendiendoDeJesus-&VER-ADJ;-amd64.usb of=/dev/sd2c bs=1M
 
         Este proceso puede ser demorado, puede ver el progreso con 
 
-          doas pkill -SIGINFO dd
+                doas pkill -SIGINFO dd
 
     -  Imagen CDROM.  Aunque con esta no podrá instalar en modo UEFI, sino
     únicamente en modo CSM (que desde varias configuraciones UEFI se llama

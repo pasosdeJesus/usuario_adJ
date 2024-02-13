@@ -5,8 +5,8 @@ OpenBSD es un sistema operativo tipo Unix de libre redistribución[^1].
 Es descendiente directo de NetBSD que a su vez desciende de los sistemas
 Unix desarrollados en la Universidad de Berkeley i.e. BSD[^2]. Sus
 puntos más fuertes son estandarización (cumplir POSIX), seguridad y
-criptografía. Para lograr seguridad los desarrolladores de OpenBSD 
-continuamente examinan detalladamente (auditan) y mejoran el código 
+criptografía. Para lograr seguridad los desarrolladores de OpenBSD
+continuamente examinan detalladamente (auditan) y mejoran el código
 fuente para descubrir fallas de seguridad[^3]. Este trabajo ha
 permitido liberar varias versiones de OpenBSD desde hace más de 10 años
 con tan sólo dos fallas de seguridad conocidas en los componentes
@@ -17,10 +17,8 @@ conectado a Internet).
 Diferencias entre OpenBSD y Linux
 ---------------------------------
 
--   Linux soporta más hardware y cuenta con muchas más aplicaciones, sin
-    embargo la autodetección de hardware de OpenBSD es mejor y este
-    sistema cuenta con capas de emulación que permiten ejecutar algunas
-    aplicaciones para Linux, BSD/OS, SVR4, IBCS2 y FreeBSD (en i386).
+-   Linux soporta más hardware y cuenta con muchas más aplicaciones,
+    la autodetección de hardware de OpenBSD es mejor y es más seguro.
 
 -   OpenBSD no ha sido diseñado como sistema operativo de escritorio,
     sino para manejar un servidor conectado a Internet de forma
@@ -30,11 +28,12 @@ Diferencias entre OpenBSD y Linux
 
 -   OpenBSD es un sistema completo, pensado para mantenerse sincronizado.
     No es un "kernel más utilidades" (GNU/Linux) que puede ser actualizado
-    por separado uno de otro. Si no se mantiene el sistema en correcta sincronía
-    (kernel, utilidades y aplicaciones) cosas malas sucederán.
+    por separado uno de otro. Si no se mantiene el sistema en correcta
+    sincronía (kernel, utilidades y aplicaciones) cosas malas sucederán.
 
--   En particular la distribución [Aprendiendo de Jesús](http://aprendiendo.pasosdeJesus.org)
-    busca personalizar OpenBSD como plataforma de comunicaciones y 
+-   En particular la distribución
+    [Aprendiendo de Jesús](http://aprendiendo.pasosdeJesus.org)
+    busca personalizar OpenBSD como plataforma de comunicaciones y
     sistema de escritorio completo y usable.
 
 -   Las fuentes de OpenBSD son en la humilde opinión del autor de este

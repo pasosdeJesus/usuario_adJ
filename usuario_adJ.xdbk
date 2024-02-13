@@ -48,7 +48,7 @@
 
     <legalnotice>
 	    <para>Este documento, sus fuentes y actualizaciones se ceden al 
-		    dominio público desde el 2002.  
+		    dominio público.
 		     Esta es la versión &PRY-VERSION; de este documento, 
 actualizada por última vez en &FECHA-ACT; para que corresponda a 
 la distribución adJ de OpenBSD &VER-OPENBSD;.
@@ -69,7 +69,7 @@ la distribución adJ de OpenBSD &VER-OPENBSD;.
 	  comprimido</ulink> y como 
   <ulink url="&URLSITE;/&PROYECTO;-&PRY-VERSION;.pdf">PDF</ulink>. -->
 	Sus fuentes en DocBook están disponibles en 
-	<ulink url="https://github.com/pasosdeJesus/&PROYECTO;/">https://github.com/pasosdeJesus/&PROYECTO;/</ulink>.
+	<ulink url="https://gitlab.com/pasosdeJesus/&PROYECTO;/">https://gitlab.com/pasosdeJesus/&PROYECTO;/</ulink>.
       </para>
     </legalnotice>
 

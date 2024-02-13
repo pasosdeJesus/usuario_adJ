@@ -140,3 +140,7 @@ masversiones.ent: infoversion.ent
 
 openbsdsrc/tabcompose.xdbk:
 	(cd openbsdsrc; ./gensym.sh)
+
+copia-pdJ:
+	rsync --delete -ravzp html/* pasosdeJesus.org:/var/www/pasosdeJesus/doc/usuario_adJ
+	rsync $(PROYECTO)-$(PRY_VERSION)_html.tar.gz pasosdeJesus.org:/var/www/pasosdeJesus/doc/usuario_adJ
