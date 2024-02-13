@@ -3,6 +3,9 @@ Versión 7.4
     - Nueva sección sobre ffmpeg [xref](#ffmpeg)
     - Nueva sección sobre ImageMagick [xref](#imagemagick)
     - Nueva sección sobre vlc [xref](#vlc)
+    - Repositorio maestro de fuentes movido de github a gitlab:
+      <https://gitlab.com/pasosdeJesus/usuario_adJ>. Se mantiene
+      copia en github.
 
 Versión 7.3
 :   - Actualizada sección sobre ruby [xref](#ruby)
