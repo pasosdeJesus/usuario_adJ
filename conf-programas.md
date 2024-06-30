@@ -616,19 +616,19 @@ describe el paquete ruby):
 
 ```
     doas sh
-    ln -sf /usr/local/bin/ruby32 /usr/local/bin/ruby
-    ln -sf /usr/local/bin/bundle32 /usr/local/bin/bundle
-    ln -sf /usr/local/bin/bundler32 /usr/local/bin/bundler
-    ln -sf /usr/local/bin/erb32 /usr/local/bin/erb
-    ln -sf /usr/local/bin/gem32 /usr/local/bin/gem
-    ln -sf /usr/local/bin/irb32 /usr/local/bin/irb
-    ln -sf /usr/local/bin/racc32 /usr/local/bin/racc
-    ln -sf /usr/local/bin/rake32 /usr/local/bin/rake
-    ln -sf /usr/local/bin/rbs32 /usr/local/bin/rbs
-    ln -sf /usr/local/bin/rdbg32 /usr/local/bin/rdbg
-    ln -sf /usr/local/bin/rdoc32 /usr/local/bin/rdoc
-    ln -sf /usr/local/bin/ri32 /usr/local/bin/ri
-    ln -sf /usr/local/bin/typeprof32 /usr/local/bin/typeprof
+    ln -sf /usr/local/bin/ruby&rubymayorsinpunto; /usr/local/bin/ruby
+    ln -sf /usr/local/bin/bundle&rubymayorsinpunto; /usr/local/bin/bundle
+    ln -sf /usr/local/bin/bundler&rubymayorsinpunto; /usr/local/bin/bundler
+    ln -sf /usr/local/bin/erb&rubymayorsinpunto; /usr/local/bin/erb
+    ln -sf /usr/local/bin/gem&rubymayorsinpunto; /usr/local/bin/gem
+    ln -sf /usr/local/bin/irb&rubymayorsinpunto; /usr/local/bin/irb
+    ln -sf /usr/local/bin/racc&rubymayorsinpunto; /usr/local/bin/racc
+    ln -sf /usr/local/bin/rake&rubymayorsinpunto; /usr/local/bin/rake
+    ln -sf /usr/local/bin/rbs&rubymayorsinpunto; /usr/local/bin/rbs
+    ln -sf /usr/local/bin/rdbg&rubymayorsinpunto; /usr/local/bin/rdbg
+    ln -sf /usr/local/bin/rdoc&rubymayorsinpunto; /usr/local/bin/rdoc
+    ln -sf /usr/local/bin/ri&rubymayorsinpunto; /usr/local/bin/ri
+    ln -sf /usr/local/bin/typeprof&rubymayorsinpunto; /usr/local/bin/typeprof
 ```
 
 ##### Límites amplios
@@ -698,8 +698,8 @@ El directorio donde se instalan las gemas globales
 es `/usr/local/lib/ruby/gems/&rubymayor;/` donde sólo pueden
 instalarse con ```doas```.
 Recomendamos iniciar un directorio para instalar gemas como usuario normal
-en  ```/var/www/bundler/ruby/&rubymayor;```, por 3 razones (1) evitar riesgos de
-seguridad al instalar gemas como root, (2) evitar problemas de permisos
+en  ```/var/www/bundler/ruby/&rubymayor;```, por 3 razones (1) evitar riesgos 
+de seguridad al instalar gemas como root, (2) evitar problemas de permisos
 y la dificultad de programas como bundler para usar ```doas``` en lugar
 de ```sudo``` y (3) alistar infraestructura para que sus aplicaciones
 corran en una jaula chroot en ```/var/www```
@@ -734,8 +734,8 @@ Para facilitar el manejo de varias gemas (y sus interdependencias) en un
 proyecto es típico emplear ```bundler``` que instala con:
 ```
     doas gem install bundler
-    if (test -x /usr/local/bin/bundle32) then {
-       doas ln -sf /usr/local/bin/bundle32 /usr/local/bin/bundle;
+    if (test -x /usr/local/bin/bundle&rubymayorsinpunto;) then {
+       doas ln -sf /usr/local/bin/bundle&rubymayorsinpunto; /usr/local/bin/bundle;
     } fi
 ```
 
@@ -857,7 +857,7 @@ ejecutado:
 	cd ~
 	mkdir -p .vim
 	cd .vim
-	cp -rf /usr/local/share/vim/vim90/* .
+	cp -rf /usr/local/share/vim/&dirvim;/* .
 ```
 y si no tiene archivo \~/.vimrc ejecutar:
 ```
@@ -882,7 +882,7 @@ Puede aprender por ejemplo con los tutoriales interactivos de
 <https://rubymonk.com>
 
 En Internet puede ver la referencia oficial de las clases en:
-<http://ruby-doc.org/core-3.1.0/Integer.html>
+<http://ruby-doc.org/core-3.3.0/Integer.html>
 
 Y es buena referencia para Ruby, Rails y Rspec (incluidos cambios entre
 una versión y otra y comentarios) es: <http://apidock.com/>
@@ -908,7 +908,7 @@ y con un navegador consultando <http://localhost:8808>
 Genere una nueva aplicación:
 
 ```
-	rails new aplicacion
+	rails new aplicacion --skip-bundle
 	cd aplicacion
 	mkdir .bundle
 	cat > .bundle/config <<EOF
@@ -1030,7 +1030,7 @@ Los archivos generados son:
 
 Archivo/Directorio                                    Descripción
 ----------------------------------------------------- ----------------------------------------------
-`db/migrate/20160320131555_create_departamentos.rb`   Migración para crear tabla
+`db/migrate/20240320131555_create_departamentos.rb`   Migración para crear tabla
 `app/models/departamento.rb`                          Modelo
 `test/models/departamento_test.rb`                    Prueba al modelo
 `test/fixtures/departamentos.yml`                     Datos para pruebas
@@ -1127,209 +1127,15 @@ interfaz texto de SQLite como se ejemplifica a continuación:
     CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version"
     );
 ```
+#### Recomendamos que desarrolle su aplicación web sobre msip
 
-##### Ayudas para usar una base de datos PostgreSQL existente:
-
-Se recomienda emplear UTF8 como codificación de PostgreSQL (si emplea
-otra codificación convierta sacando un respaldo eliminando la base,
-volviéndola a crear con `-E UTF8` y restaurando los datos).
-
--   Arregle la aplicación recién creada para que emplee PostgreSQL,
-    modificando parámetros de base de datos en
-    `config/database.yml`. Si crea una nueva aplicación:
-```
-        cd ..
-        rails new prueba1 --database=postgresql
-```
-
--   Si lo requiere, en otra terminal cree un usuario para la base de
-    datos que será el que empleará desde su aplicación ruby:
-```
-         doas su - _postgresql
-        $ createuser -Upostgres -h/var/www/tmp prueba
-        Shall the new role be a superuser? (y/n) n
-        Shall the new role be allowed to create databases? (y/n) y
-        Shall the new role be allowed to create more new roles? (y/n) n
-        $ psql -h/var/www/tmp -Upostgres psql (15.4) Type "help" for help.
-        postgres=# ALTER USER prueba1 WITH password 'miclave'; ALTER ROLE postgres=# $ exit
-```
-
--   Vuelva a las fuentes de la aplicación y modifique los parámetros de
-    la base de datos editando
-    ```conf/database.ym```l
-    Ponga el usuario recién creado, la clave y en la especificación de
-    cada una de las 3 bases de datos (desarrollo, pruebas y producción)
-    agregue la ruta de la conexión al motor de bases de datos:
-        ```host: /var/www/tmp/```
-
-
--   A manera de prueba de su configuración intente ingresar a un
-    intérprete de órdenes para su base de datos con:
-```
-        bin/rails dbconsole
-```
-
--   Si las tablas de la base de datos no emplean la convención para
-    nomenclatura de Ruby on Rails (nombres de tabla en plural, clases en
-    singular) agregue al archivo ```config/environment.rb```:
-```
-        ActiveRecord::Base.pluralize_table_names=false
-```
-
--   Además de esto para que las pruebas puedan operar seguramente deberá
-    renombrar los archivos con datos de prueba del directorio
-    ```tests/fixtures```, y en lugar de dejar forma plural dejar forma singular.
-    Si el nombre de tabla es muy diferente en el modelo puede usar
-    ```self.table_name = "cc"``` como se indica en {8}.
--   Para generar un volcado inicial de la base de datos en ```db/structure.sql```
-    (incluyendo características no portables de PostgreSQL a otros
-    motores de bases de datos), agregue al archivo ```config/application.rb```
-    la línea
-```
-       config.active_record.schema_format=:sql
-```
--    Después ejecute la tarea rake apropiada (ver {4}):
-```
-        bin/rails db:structure:dump
-```
-
--   Genere clases (modelos) en blanco en el directorio ```app/models```
-    para cada una de las tablas de su aplicación, por ejemplo para la
-    tabla ```mitabla``` :
-```
-        bin/rails generate model mitabla --migration=false --timestamp=false
-```
-
--   Cuando la aplicación esté en operación ActiveRecord tomará la
-    estructura directamente de la base de datos, no de los modelos en
-    sus fuentes. Sin embargo puede ser útil poner comentarios en esos
-    modelos con los campos de cada tabla. Esto puede hacerse instalando
-    la gema ```annotate``` con:
-```
-	doas gem install annotate
-```
-    y ejecute:
-```
-        annotate
-```
-
--   Si desea ayuda en la generación de controladores y vistas para sus
-    tablas, instale `doas gem install `schema_to_scaffold``,
-    genere (puede ser momentáneamente) el archivo `db/schema.rb`
-    con
-```
-	bin/rails db:schema:dump
-```
-    y ejecute
-```
-	scaffold
-```
-   para ver las instrucciones que debe dar a rails para generar
-    modelos, controladores y vistas para las tablas de la base de datos.
-
-##### Detalles para tener en cuenta al migrar aplicaciones
-
-RoR tiene sus propias convenciones respecto a SQL, nombres de tablas y
-demás, en ocasiones puede ser mejor intercambiar datos JSON con una
-aplicación ya existente que interactúe con la base de datos. Sin embargo
-si desea emplear RoR tanto como pueda para interactuar con la base de
-datos, tenga en cuenta:
-
--   Toda tabla creada y maneja por RoR se espera que tenga los campos
-    ```created_at``` y ```updated_at``` de tipo ```datetime```
-    . Puede generar una migración que agregue estos campos digamos para
-    la tabla `intervalo` con
-```
-    bin/rails g migration addTiempoToIntervalo created_at:datetime
-    updated_at:datetime
-```
-    tras lo cual debe editar la migración creada para asegurar que queda
-    bien (por ejemplo pasando a singular la tabla si ese es su caso).
--   Por defecto cada tabla debe tener una única llave primaria de nombre `id`
-    y tipo entero autoincremental. Esto puede cambiarse un poco --pero
-    no del todo según {6}-- la sugerencia allí dada es definir la llave
-    primaria en SQL en la migración, la cual debe incluir
-    `id:false` y en el modelo agregar
-    `self.primary_key=:campo_llave_primaria`. Por ejemplo si la llave
-    primaria de una tabla usuario debe ser `id` pero de tipo
-    `string` , la migración será:
-```
-        create_table "usuario", id: false, force: true do |t|
-          t.string "id", limit: 15, null: false
-          t.string "nombre", limit: 50 ...
-          t.datetime "created_at"
-          t.datetime "updated_at"
-        end
-        add_index "usuario", ["id"], name: "index_usuario_on_id",
-		unique: true, using: :btree
-```
-    Y en el modelo `app/models/usuario.rb` debe quedar:
-```
-        class Usuario < ActiveRecord::Base
-          ...
-          self.primary_key=:id
-        end
-```
--   Aunque es posible insertar datos iniciales para algunas tablas en
-    `db/seeds.rb`, los métodos por defecto de RoR emplearán un campo
-    autoincremental para la identificación, puede insertarse directamente en
-    SQL, como se explica en {7}, con:
-```
-        connection = ActiveRecord::Base.connection()
-        connection.execute("INSERT INTO mitabla(id, nombre) VALUES ('id1', 'nom1')")
-```
-
-##### 4.3 Localización
-
-Si su público objetivo habla principalmente español puede:
-
--   Instalar la gema `rails-i18n` que incluye traducción a
-    español y otros idiomas de varias cadenas de Ruby on Rails
-```
-       doas gem install rails-i18n
-```
-
--   Agregar `gem "rails-i18n"` en su archivo `Gemfile`
-    y ejecutar
-```
-        bundle update
-```
-
--   Configurar en `config/application.rb` :
-```
-        config.time_zone = 'America/Bogota'
-        config.i18n.default_locale = :es
-```
-
--   Eventualmente corregir inflexiones singular/plural
-    en `config/initializers/inflections.rb`, por ejemplo (ver {3}):
-```
-        ActiveSupport::Inflector.inflections do |inflect|
-          inflect.irregular 'pais', 'paises'
-        end
-```
-
-#### Depuración
-
-Como se explica en {5}, desde la aplicación en rails puede entrar a
-depurar:
-
--   Si hace falta instale la gema
-```
-    gem install debug
-```
--   En el sitio de las fuentes donde quiere comenzar a depurar
-    agregue un llamando a la función
-```
-    debugger
-```
--   Inicie la aplicación en modo de desarrollo:
-```
-    bin/rails s 
-```
-
-Ruby también ofrece facilidades para medir tiempos como se resume en
-{4}.
+Si planea desarrollar un sistema de información o aplicación web
+con Ruby on Rails con PostgreSQL, autenticación con devise, permisos con 
+cancancan, geografía predeterminada para algunos paises de latinoamérica, 
+vistas automáticas, temas de ejemplo con bootstrap y otras
+facilidaes recomendamos que use el motor `msip` cuya documentación 
+está disponible en:  
+<https://gitlab.com/pasosdeJesus/msip/-/tree/main/doc>
 
 #### Lecturas recomendadas y referencias
 

@@ -35,19 +35,19 @@
         Utilice la imagen descargada para grabarla en una memoria
         USB y arrancar con esta. Para grabar la imagen en una memoria
         desde adJ o desde Linux utilice `dd`. Si por ejemplo
-        en adJ la USB es `/dev/sd2c` (verifique dispositivo con `dmesg` 
+        en adJ la USB es `/dev/sd2c` (verifique dispositivo con `dmesg`
         y remplace):
 
                 doas dd if=AprendiendoDeJesus-&VER-ADJ;-amd64.usb of=/dev/sd2c bs=1M
 
-        Este proceso puede ser demorado, puede ver el progreso con 
+        Este proceso puede ser demorado, puede ver el progreso con
 
                 doas pkill -SIGINFO dd
 
     -  Imagen CDROM.  Aunque con esta no podrá instalar en modo UEFI, sino
     únicamente en modo CSM (que desde varias configuraciones UEFI se llama
-    modo *Legacy*).  También la encuentra en 
-    [https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus](https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus) 
+    modo *Legacy*).  También la encuentra en
+    [https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus](https://adJ.pasosdeJesus.org/pub/AprendiendoDeJesus)
     y puede quemarla en un DVD con algún programa que soporte
     quemar imágenes ISO de otros sistemas operativos (por ejemplo con
     Brasero desde Linux).
@@ -61,7 +61,7 @@
         computador.
 
     Aunque es posible realizar la descarga de los medios de instalación
-    recomendamos donar para apoyar los proyectos OpenBSD y adJ. 
+    recomendamos donar para apoyar los proyectos OpenBSD y adJ.
     La estructura del CD oficial de OpenBSD
     tiene derechos de reproducción restrictivos ---sólo la estructura,
     las fuentes son de libre redistribución en su mayoría cubiertas por
@@ -71,7 +71,7 @@
     caso de adJ ver <https://aprendiendo.pasosdeJesus.org>.
 
 3.  Contar con hardware soportado. La mayoría de componentes típicos son
-    soportados, aunque hay excepciones (especialmente hay dificultad 
+    soportados, aunque hay excepciones (especialmente hay dificultad
     con varias tarjetas de red inalámbrica) por lo que antes de comprar se
     recomienda consultar la lista completa de los dispositivos para
     procesadores amd64 que son soportados en:
@@ -85,16 +85,16 @@
     etiquetas que son como subparticiones lógicas sólo visibles en
     OpenBSD (e.g para `/`, `/home` y `/var`) sobre cada una de las
     cuales podrá emplear el sistema de archivos de OpenBSD (FFS2 -
-    Enhanced Fast File System o `ufs` en terminología Linux). También 
-    podrá montar particiones de otros sistemas operativos, por ejemplo 
+    Enhanced Fast File System o `ufs` en terminología Linux). También
+    podrá montar particiones de otros sistemas operativos, por ejemplo
     `ext2` está bien soportado, o tener un sistema dual (ver [xref](#duales)).
 
     Si en su computador no tiene una partición disponible, puede
     intentar cambiar el tamaño de una existente para liberar espacio y
     crear una nueva (sacando copia de respaldo antes de estas
     operaciones). Si una de las particiones tiene sistema FAT o FAT32
-    puede usar `fips`. Si la partición que desea redimensionar tiene formato 
-    ext2fs (Linux) puede usar `parted` o `resize2fs`. En el caso de 
+    puede usar `fips`. Si la partición que desea redimensionar tiene formato
+    ext2fs (Linux) puede usar `parted` o `resize2fs`. En el caso de
     particiones NTFS (Windows recientes)
     puede usar `ntfsresize` desde un sistema Linux o arrancando con un
     disquete como [PAUD](http://paud.sourceforge.net/), o bien si
@@ -114,25 +114,25 @@
 Es muy recomendable consultar [guía de instalación de
 OpenBSD](http://www.openbsd.org/faq/faq4.html#4.1).
 
-Si tiene la USB o el DVD oficial, configure su UEFI para que arranque por 
-este y reinicie[^ayu.1]. 
+Si tiene la USB o el DVD oficial, configure su UEFI para que arranque por
+este y reinicie[^ayu.1].
 
 Recuerde que si usará el DVD debe dejar
 su UEFI en modo CSM o Legacy.
-Tenga en cuenta que aún con USB de arranque el modo UEFI de algunos 
-computadores no permite el arranque de OpenBSD/adJ en modo seguro 
--- Secure Boot (ver por ejemplo <https://dhobsd.defensor.info/instalar-adj-6-8b1-en-un-portatil-lenovo-e490.html>) 
-en tal caso puede deshabilitar ese modo desde la configuración 
-UEFI (puede intentar rehabilitarlo después de que este operando su 
-OpenBSD/adJ siguiendo las instrucciones de 
+Tenga en cuenta que aún con USB de arranque el modo UEFI de algunos
+computadores no permite el arranque de OpenBSD/adJ en modo seguro
+-- Secure Boot (ver por ejemplo <https://dhobsd.defensor.info/instalar-adj-6-8b1-en-un-portatil-lenovo-e490.html>)
+en tal caso puede deshabilitar ese modo desde la configuración
+UEFI (puede intentar rehabilitarlo después de que este operando su
+OpenBSD/adJ siguiendo las instrucciones de
 <http://daemonforums.org/showthread.php?t=9559>).
-También podría encontrar UEFIs que no permiten el arranque de OpenBSD/adJ 
+También podría encontrar UEFIs que no permiten el arranque de OpenBSD/adJ
 desde USB (por ejemplo si está virtualizando con QEMU y el UEFI OVMF o como
-se reporta con algunos computadores en 
-<https://marc.info/?l=openbsd-misc&m=159039904132502&w=2>) y en tales 
+se reporta con algunos computadores en
+<https://marc.info/?l=openbsd-misc&m=159039904132502&w=2>) y en tales
 casos configure el UEFI en modo CSM o Legacy (esto será posible
 siempre que no haya otros sistemas operativos ya instalados que
-tengan modo UEFI). 
+tengan modo UEFI).
 
 La USB contiene un sistema OpenBSD mínimo que detectará
 automáticamente el hardware y lo guiará en el proceso de instalación. Si
@@ -142,7 +142,7 @@ en cuenta algunas diferencias entre Linux y OpenBSD:
 
 Nombres y manejo de dispositivos
 
-:   
+:
       Dispositivo                  Linux                                                             OpenBSD
       ---------------------------- ----------------------------------------------------------------- -------------------------------------------------------------------------------
       Disco IDE 1 maestro          `/dev/hda`                                                        `/dev/wd0c` o en modo crudo `/dev/rwd0c`
@@ -233,7 +233,7 @@ Si no arranca de inmediato el medio de instalación intente con
 Una vez pueda iniciar un medio con un instalador, el sistema reconocerá
 las partes de su computador y esperará algunas respuestas de su parte,
 como si desea instalar, actualizar o iniciar un intérprete de órdenes
-para rescatar un sistema: 
+para rescatar un sistema:
 
 ![](img/instala1.png)
 
@@ -241,12 +241,12 @@ También podrá elegir distribución del teclado,
 por ejemplo el teclado típico con 'ñ' y junto a esta un '{' corresponde
 a 'es'. El instalador a continuación le permitirá configurar dispositivo
 de red que usará, clave para la cuenta root y detalles para el inicio
-del sistema entre los cuales es importante que confirme el uso de `xdm`,
+del sistema entre los cuales es importante que confirme el uso de `xenodm`,
 la zona horaria (por defecto `America/Bogota`) y que cree una cuenta del
 sistema (en este ejemplo servidor) que posteriormente podrá configurar
 como cuenta de usuario administrador (`sshd` es un servicio que permite
 operación remota con ssh, `ntpd` permite sincronizar reloj con
-servidores para esto, X-Window es el entorno gráfico, `xdm` es el
+servidores para esto, X-Window es el entorno gráfico, `xenodm` es el
 programa que tras iniciar el entorno gráfico le permite autenticarse).
 
 
@@ -257,7 +257,7 @@ usará completo para OpenBSD, es decir tendrá una sola partición del BIOS
 que abarca todo el disco. De no usarse completo el instalador ingresará
 al programa `fdisk` que le permitirá especificar la partición del BIOS
 que destinará para OpenBSD (en `fdisk` la orden 'h' le presentará una
-breve ayuda). 
+breve ayuda).
 
 ![](img/instala3.png)
 
@@ -278,7 +278,7 @@ programas y sus datos estáticos (típicos de los directorios `/bin`,
 `/sbin` y `/usr` quedarán en la subpartición `a`. Los datos de usuario
 típicamente en `/home` quedarán en la subpartición `d`, y los datos
 variables de los programas (e.g páginas web, bases de datos, bitácoras)
-típicos de `/var` quedarán en la subpartición `e`. 
+típicos de `/var` quedarán en la subpartición `e`.
 
 ![](img/instala4.png)
 
@@ -288,17 +288,17 @@ comienza) y tamaño (i.e cantidad de sectores que ocupa). Tenga en cuenta
 que un sector es de 512bytes, así que aproximadamente 2'000.000 de
 sectores corresponden a 1GB. En el ejemplo anterior / es de
 aproximadamente 10GB, la partición de intercambio es de 500MB, /home de
-1GB y /var aproximadamente de 2.1GB. 
+1GB y /var aproximadamente de 2.1GB.
 
 
-Después de elegir subparticiones el instalador formateará las subparticiones. 
-Tras esto podrá especificar la ruta donde están los juegos de instalación 
-(en el caso de la distribución Aprendiendo de Jesús es `/`) y elegir los que 
+Después de elegir subparticiones el instalador formateará las subparticiones.
+Tras esto podrá especificar la ruta donde están los juegos de instalación
+(en el caso de la distribución Aprendiendo de Jesús es `/`) y elegir los que
 instalará.
 
 ![](img/instala5.png)
 
-La imagen anterior presenta la forma de ubicar los juegos de instalación 
+La imagen anterior presenta la forma de ubicar los juegos de instalación
 cuando se usa CDROM.
 
 En caso de usar USB el procedimiento es minimamente más largo, pues
@@ -307,15 +307,15 @@ ve en le siguiente pantallazo.
 
 ![](img/instala5-usb.png)
 
-Note que a la pregunta de la ruta de instalación debe teclear 
+Note que a la pregunta de la ruta de instalación debe teclear
 `!sh` para entrar momentaneamente a un interprete de ordenes.
 
-Desde ese interprete desconecte la USB y vuelvala a conectar 
+Desde ese interprete desconecte la USB y vuelvala a conectar
 y fijese en el dispositivo asignado (en el pantallazo de ejemplo es `sd1`).
 
-Proceda a crear el dispositivo y a montar la subpartición `a` 
-de dispositivo disco en `/mnt2`  
-(no vaya a emplear `/mnt`  porque esa es la ruta donde el instalador 
+Proceda a crear el dispositivo y a montar la subpartición `a`
+de dispositivo disco en `/mnt2`
+(no vaya a emplear `/mnt`  porque esa es la ruta donde el instalador
 monta el disco donde hará la instalación):
 
 ```
@@ -325,7 +325,7 @@ mount /dev/sd1a /mnt2/
 ```
 Si lo anterior no le presento problemas al ejecutar `mount` debe ver algo
 como en el pantallazo.
-Y podrá volver al instalador con `exit` elegir `disco` como medio de 
+Y podrá volver al instalador con `exit` elegir `disco` como medio de
 instalación, indicando que ya está montada la partición y que su ubicacíon es
 `/mnt2/`
 
@@ -423,7 +423,7 @@ arrancar con el CD de instalación y cuando este comenzando a cargar
 expulsarlo para quedar en la linea de espera:
 
         boot>
-              
+
 
 En la que puede teclear `boot hd0a:bsd`
 
@@ -435,7 +435,7 @@ GRUB o LILO si también usa Linux ver [xref](#con-linux),
 usa Windows NT o XP puede ser con el manejador de arranque de ese
 sistema ver [xref](#con-windows-xp), si usa Windows Vista, 7, 8, 8.1 y 10 puede ser con EasyBCD).
 
-Una vez ingrese verá `xdm` como se presenta a continuación (siempre y
+Una vez ingrese verá `xenodm` como se presenta a continuación (siempre y
 cuando haya elegido iniciarlo durante la instalación y mientras su
 tarjeta gráfico y monitor sean autodetectados).
 
@@ -457,14 +457,14 @@ instalación ejecutando desde una terminal:
 
         /inst-adJ.sh
 
-Note que la J es mayúscula (en sistemas tipo Unix los nombres de 
+Note que la J es mayúscula (en sistemas tipo Unix los nombres de
 archivos y programas son sensibles a la capitalización).
 
 Este procedimiento permite instalar y actualizar adJ, así que puede
 ejecutarlo cuantas veces lo requiera para completar la instalación o una
 actualización. El archivo de órdenes `/inst-adJ.sh` lo guiará en la
 instalación del resto del sistema con preguntas típicamente de si o no,
-como se presenta en las siguientes capturas de pantalla de ejemplo: 
+como se presenta en las siguientes capturas de pantalla de ejemplo:
 
 ![](img/insadJ1.png)
 
@@ -519,8 +519,8 @@ servicio y es pasado como parámetro (si no se desean parámetros
 adicionales puede simplemente asignarse ""). Por ejemplo para iniciar
 XDM en cada arranque:
 
-        xdm_flags=""
-        
+        xenodm_flags=""
+
 
 Los servicios proveídos por paquetes que son iniciados se especifican en
 la variable `pkg_scripts`, que se define en el archivo
@@ -552,7 +552,7 @@ opciones (llamadas acciones):
     configuración sin necesidad de detenerlo y volverlo a iniciar.
 
 
-Otra forma de manejar servicios y sus variables (especificadas en 
+Otra forma de manejar servicios y sus variables (especificadas en
 `/etc/rc.conf.local`) es con `rcctl.` Esta herramienta maneja cada servicio
 con 5 variables que indican como ejecutarlo: class (clase de login con la
 que inicia), flags (opciones para iniciarlo), status (estado habilitado o no),
@@ -572,19 +572,19 @@ Veamos ejemplos de su uso:
 
 `doas rcctl -d restart cupsd`
 
-:   Reinicia servicio cupsd presentado errores en la terminal si los hay, 
+:   Reinicia servicio cupsd presentado errores en la terminal si los hay,
     en lugar `restart` también pueden usarse las acciones explicadas
     antes para archivos de órdenes del directorio `/etc/rc.d`.
 
 `doas rcctl get cupsd`
 
-:   Presenta las variables del servicio `cupsd` (también podría agregar una 
+:   Presenta las variables del servicio `cupsd` (también podría agregar una
     variable al final si desea ver sólo una).
 
 `doas rcctl getdef cupsd`
 
-:   Presenta valor por omisión de las variables del servicio `cupsd` 
-    (también podría agregar el nombre de una variable al final si desea 
+:   Presenta valor por omisión de las variables del servicio `cupsd`
+    (también podría agregar el nombre de una variable al final si desea
      ver sólo una).
 
 `doas rcctl set cupsd flags "-c /etc/cupsd2.conf"`
@@ -599,14 +599,14 @@ Veamos ejemplos de su uso:
 
 :   Presenta los servicios que están habilitados. En lugar de on
     también puede usarse `all` (todos), `failed` (los que fallaron),
-    `off` (deshabilitados), `started` (que están corriendo), 
+    `off` (deshabilitados), `started` (que están corriendo),
     `stopped` (detenidos).
- 
+
 `doas rcctl order cupsd postgresql`
 
 :   Pone primero los servicios `cupsd` y `postgresql` en `pkg_script`
     de forma que serán los primeros servicios en iniciar.
- 
+
 
 En adJ el archivo de órdenes `/etc/rc.local` además de poder contener
 acciones por realizar en el arranque, permite reiniciar servicios que se
@@ -615,10 +615,10 @@ o por error) puede ejecutar este archivo de órdenes para reiniciarlo
 con:
 
         doas sh /etc/rc.local
-              
+
 ## Configuración de Xorg {#configuracion-de-xorg}
 
-Si durante la instalación eligió usar X-Window y xdm, e instaló los
+Si durante la instalación eligió usar X-Window y xenodm, e instaló los
 juegos de instalación de X-Window (i.e `xbase&VER-OPENBSD-S;`,
 `xfont&VER-OPENBSD-S;`, `xserv&VER-OPENBSD-S;`, `xshare&VER-OPENBSD-S;`), y si
 su tarjeta fue correctamente configurada, al arrancar iniciará en el
@@ -636,18 +636,17 @@ servidor X-Window con:
 
 y edite el archivo de configuración, siguiendo las instrucciones de
 
-        man xorg.conf 
+        man xorg.conf
 
 hasta lograr que opere, puede editar por ejemplo con:
 
         doas mg /etc/X11/xorg.conf
 
 Una vez le funciona (entra a modo gráfico del cual puede salir con
-Ctrl-Alt-BackSpace) 
+Ctrl-Alt-BackSpace)
 ejecutando
 
-        doas xdm
-        
+        doas xenodm
 
 Si persisten sus dificultades, puede buscar en Internet una
 configuración correcta o solicitar el archivo de configuración a alguien
@@ -657,12 +656,10 @@ usuarios. Unos cambios que suelen funcionar son:
 1.  Si en la bitácora `/var/log/Xorg.0.log` se recomienda, agregar
 
             machdep.allowaperture=2
-                    
 
     o bien
 
             machdep.allowaperture=1
-            
 
     hágalo en `/etc/sysctl.conf`, según lo recomendado en la bitácora.
 
@@ -677,6 +674,7 @@ usuarios. Unos cambios que suelen funcionar son:
   de video que soporta VESA, y un monitor que no requiere especificar
   rangos):
 
+```
     Section "ServerLayout"
         Identifier     "X.org Configured"
         Screen      0  "Screen0" 0 0
@@ -717,7 +715,7 @@ usuarios. Unos cambios que suelen funcionar son:
         Driver      "mouse"
         Option      "Protocol" "wsmouse"
         Option      "Device" "/dev/wsmouse"
-        # Si es serial usar protocolo "Microsoft" y dispositivo "/dev/tty00" 
+        # Si es serial usar protocolo "Microsoft" y dispositivo "/dev/tty00"
         Option      "ZAxisMapping" "4 5"
     EndSection
 
@@ -735,7 +733,7 @@ usuarios. Unos cambios que suelen funcionar son:
     #   BusID       "PCI:0:1:0"
     EndSection
 
-    Section "Screen"     
+    Section "Screen"
         Identifier "Screen0"
         Device     "Card0"
         Monitor    "Monitor0"
@@ -766,7 +764,7 @@ usuarios. Unos cambios que suelen funcionar son:
             Depth     24
         EndSubSection
     EndSection
-        
+```
 
 En este ejemplo mire que en la sección del monitor, la línea `HorizSync`
 está comentada (el símbolo \# al comienzo de la línea) por lo que no se
@@ -790,13 +788,106 @@ Una vez logre configurar Xorg puede activar el administrador de vistas
 XDM permanentemente agregando la siguiente línea al archivo
 `/etc/rc.conf.local` (créelo si no existe):
 
-        xenodm_flags="" 
+        xenodm_flags=""
 
-### Tipos de letra
+
+### xenodm y xrandr {#xenodm-y-xrandr}
+
+Como se indica en el manual de `xenodm`, este maneja la colección de
+pantallas en su computador, para esperar que un usuario se autentique
+con su nombre de usuario y clave para iniciar una "sesión" i.e un
+proceso como fluxbox.  Cuando la sesión/poceso termina xenodm
+reiniciar el servidor X.
+
+La configuración por omisión está en `/etc/X11/xenodm/xenodm-config` que
+ejecuta `/etc/X11/xenodm/Xsetup_0` tras la inicialización
+del servidor y que presenta xlogin, el dialogo que pide usuario y clave.
+Cuando un usuario se autentica ejecuta `/etc/X11/xenodm/Xstartup` como
+root y después `/etc/X11/xenodm/Xsession` como el usuario.
+
+xrandr le permite manejar los diversos monitores que pueda tener
+conectados a su CPU, al ejecutarlo sin argumentos verá los puertos
+para monitores conocidos por el sistema operativo y las resoluciones
+que cada monitor conectado soporta, por ejemplo en un portátil con
+una monitor HDMI conectado la salida es algo como:
+
+```
+% xrandr
+Screen 0: minimum 320 x 200, current 1366 x 768, maximum 16384 x 16384
+eDP-1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis)
+309mm x 173mm
+   1366x768      60.00*+
+   1280x720      60.00    59.99    59.86    59.74
+   1024x768      60.04    60.00
+   960x720       60.00
+   928x696       60.05
+   896x672       60.01
+   1024x576      59.95    59.96    59.90    59.82
+   960x600       59.93    60.00
+   960x540       59.96    59.99    59.63    59.82
+   800x600       60.00    60.32    56.25
+   840x525       60.01    59.88
+   864x486       59.92    59.57
+   700x525       59.98
+   800x450       59.95    59.82
+   640x512       60.02
+   700x450       59.96    59.88
+   640x480       60.00    59.94
+   720x405       59.51    58.99
+   684x384       59.88    59.85
+   640x400       59.88    59.98
+   640x360       59.86    59.83    59.84    59.32
+   512x384       60.00
+   512x288       60.00    59.92
+   480x270       59.63    59.82
+   400x300       60.32    56.34
+   432x243       59.92    59.57
+   320x240       60.05
+   360x202       59.51    59.13
+   320x180       59.84    59.32
+HDMI-1 connected (normal left inverted right x axis y axis)
+   1920x1080     60.00 +  50.00    59.94
+   1920x1080i    60.00    50.00    59.94
+   1600x900      60.00
+   1280x1024     75.02    60.02
+   1152x864      75.00
+   1280x720      75.02    60.00    50.00    59.94
+   1024x768      75.03    60.00
+   800x600       75.00    60.32
+   720x576       50.00
+   720x480       60.00    59.94
+   640x480       75.00    60.00    59.94
+   720x400       70.08
+DP-1 disconnected (normal left inverted right x axis y axis)
+HDMI-2 disconnected (normal left inverted right x axis y axis)
+```
+
+Como el manual de `xrandr` indica, los modos preferidos tienen un `+` y
+el modo actual tiene un `*`.
+
+Con xrandr puede establecer el tamaño, orientación y/o reflexión para
+las salidas de una pantalla y puede establecer el tamaño de la pantalla.
+Por ejemplo en el portatil de ejemplo puede especificar usar el 
+monitor conectado al puerto HDMI como principal con:
+
+```
+xrandr --output HDMI-1 --auto --output eDP-1 --auto --same-as HDMI-1
+```
+
+Si necesita que esta configuración se aplique antes de xenodm puede agregar
+esa línea en el archivo `/etc/X11/xenodm/Xsetup_0.`
+
+Puede experimentar las posibilidades de xrandr graficamente por ejemplo
+instalando y ejecutando le paquete `arandr.` 
+Puede consultar más de `xrandr` y soluciones a diversos tipos de problemas 
+con monitores en <https://wiki.archlinux.org/title/xrandr>
+
+
+## Tipos de letra
 
 Los tipos de letra del sistema base para X-Window se mantienen en
 `/usr/X11R6/lib/X11/fonts` en diversos formatos (por ejemplo PCF, SNF,
-BDF, TTF). 
+BDF, TTF).
 Y los paquetes suelen dejar tipos de letra en `/usr/local/share/fonts/`
 
 Podrá editar diversos formatos y crear nuevos tipos de letra
@@ -809,11 +900,11 @@ documentación de Bochs 2.0.2) es:
         compress /usr/X11R6/lib/X11/fonts/misc/vga.pcf
         mkfontdir /usr/X11R6/lib/X11/fonts/misc
         xset fp rehash
-          
+
 
 Para emplear un nuevo tipo de letra TrueType basta:
 
-1.  Ubiquela en una carpeta de `/usr/local/share/fonts/`. Por ejemplo 
+1.  Ubiquela en una carpeta de `/usr/local/share/fonts/`. Por ejemplo
     `/usr/local/share/fonts/MisTTF/`
 
 2.  Genere archivos `fonts.dir` y `scale` en el directorio donde está la
@@ -822,17 +913,17 @@ Para emplear un nuevo tipo de letra TrueType basta:
             cd /usr/local/share/fonts/MisTTF
             /usr/X11R6/bin/mkfontscale
             /usr/X11R6/bin/mkfontdir
-                          
+
 3.  Aplicar cambios a sesión actual
 
             xset fp rehash
-                          
+
 4.  Regenerar cache de tipos de letra, ejecutando como usuario `root`:
 
             cd /usr/local/lib/X11/fonts/MisTTF
             /usr/X11R6/bin/fc-cache -v
             /usr/X11R6/bin/fc-cache -v
-                          
+
 
 Si eventualmente el nuevo tipo no queda en los archivos generados
 (`fonts.dir`, `fonts.scale`) edítelos y agréguelo (el primer número en

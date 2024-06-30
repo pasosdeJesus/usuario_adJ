@@ -1,3 +1,7 @@
+Versión 7.5
+:  - Nueva sección sobre xenodm y xrandr [xref](#xenodm-y-xrandr)
+   - Actualizada sección sobre ruby [xref](#ruby)
+
 Versión 7.4
 :   - Revisada sección [xref](#multimedia)
     - Nueva sección sobre ffmpeg [xref](#ffmpeg)
