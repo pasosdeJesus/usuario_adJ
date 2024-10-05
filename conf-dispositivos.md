@@ -35,7 +35,7 @@ extremo puede tener que deshabilitar el dispositivo):
     __`config -u`__.
 
 -   Después de que su sistema haya iniciado modifique los recursos
-    asignados por defecto del kernel con __`config -e -o /bsd.new /bsd`__
+    asignados por defecto del kernel con __`config -e -o /bsd.nuevo /bsd.booted`__
 
 -   Recompile el kernel con una configuración apropiada.
 
@@ -65,7 +65,7 @@ Una vez haya configurado los recursos que un controlador emplea para que
 correspondan a los de un dispositivo y que su sistema esté operando,
 puede hacer el cambio permanente usando:
 
-        doas config -e -o /bsd.ne1 -u /bsd
+        doas config -e -o /bsd.ne1 -u /bsd.booted
           
 
 que le permitirá al mismo entorno interactivo, que procurará detectar
