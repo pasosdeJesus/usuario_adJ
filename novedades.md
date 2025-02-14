@@ -1,3 +1,7 @@
+Versión 7.6
+:  - Actualizad la sección [xref](#paquetesyporte)
+
+
 Versión 7.5
 :  - Nueva sección sobre xenodm y xrandr [xref](#xenodm-y-xrandr)
    - Actualizada sección sobre ruby [xref](#ruby)

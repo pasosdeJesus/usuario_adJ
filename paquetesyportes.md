@@ -7,25 +7,42 @@ portes compilados para alguna plataforma se les llama paquetes.
 ## Paquetes
 
 Cada paquete es un archivo con extensión `.tgz` que incluye información
-de dependencias y scripts para instalar y desinstalar. Para manejarlos
-se emplean los programas `pkg_add`, `pkg_delete`, `pkg_info` y
-`pkg_create`. El programa `pkg_add` instala un paquete y todos los que
-este requiera, usando para descargarlos lo(s) repositorio(s)
-especificada(s) en la variable de ambiente `PKG_PATH`, por esto en el
-archivo `~/.profile` o en `~/.xsession` vale la pena agregar:
+de dependencias, scripts para instalar y desinstalar así como una
+firma criptográfica para garantizar que procede de una fuente confiable. 
+Para manejarlos se emplean los programas `pkg_add`, `pkg_delete`, `pkg_info` y
+`pkg_create`. 
+
+El programa `pkg_add` instala un paquete y todos los que
+este requiera.  Intenta localizar el paquete y sus dependencias en este 
+orden:
+  1. En el directorio de trabajo
+  2. Si no se encontró en el directorio de trabajo, usará el repositorio 
+     especificado en la variable de ambiente `TRUSTED_PKG_PATH` (de donde
+    instalará paquetes incluso no firmados).  Esa variable puede referirse a 
+    un directorio local o remoto (con ftp, http, https o scp)
+  3. Si no se especifica `TRUSTED_PKG_PATH` o no se encuentra allí,
+     buscar en el repositorio especificado en la variable `PKG_PATH`
+  4. Si no se especificaron `TRUSTED_PKG_PATH` ni `PKG_PATH` usara
+     el repositorio especificado en `/etc/installurl` que de manera
+     predeterminada es `https://cdn.openbsd.org/pub/OpenBSD`
+
+Por esto en el archivo `~/.zshrc` o en `~/.profile` o en `~/.xsession` 
+vale la pena agregar:
 
         export PKG_PATH=http://adJ.pasosdeJesus.org/pub/OpenBSD/&VER-OPENBSD;/packages/amd64
 
-o la vía del CD-ROM 1 o una vía de un espejo más rápido para su
-caso[^paq.1]. Una vez establecida esta variable, para agregar por ejemplo el
+o una vía de un espejo más rápido para su caso[^paq.1]. 
+Una vez establecida esta variable, para agregar por ejemplo el
 paquete `&p-vim;.tgz`:
 
         pkg_add $PKG_PATH/&p-vim;.tgz 
 
 [^paq.1]: Para determinarlo puede ver la velocidad de cada espejo con algo
-    como `ping ftp.pasosdeJesus.org` o emplear el script `pos.sh` que
-    hará la prueba para los espejos oficiales de OpenBSD. Está en el
-    directorio `herram` de las fuentes de este escrito.
+    como `ping ftp.pasosdeJesus.org` o emplear el script 
+    `/usr/local/share/doc/usuario_adJ/pos.sh` que
+    hará la prueba para los espejos oficiales de OpenBSD. Es script
+    es instalado con el paquete `usuario_adJ` que corresponde a esta
+    documentación.
 
 Puede ver la lista de paquetes instalados en su sistema con `pkg_info` o
 con `ls -l /var/db/pkg`, podrá desinstalar uno con `pkg_delete` seguido
@@ -53,12 +70,12 @@ Cada paquete instalado crea un directorio con el nombre del paquete en
 `/var/db/pkg` por lo que además de `pkg_info -L` puede usar
 
         ls /var/db/pkg
-            
+
 
 Y para actualizar todos los paquetes puede utilizar
 
         doas pkg_add -u 
-            
+
 
 ## Portes
 

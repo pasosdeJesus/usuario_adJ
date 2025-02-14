@@ -16,8 +16,8 @@ para encerrar parámetros opcionales y opciones. Por ejemplo
 
 indica que la orden `ls` puede recibir la opción `-l` y una ruta como
 parámetro (las opciones suelen comenzar con uno o dos guiones). Puede
-descubrir que hace tal opción y el parámetro tecleando `ls /
-      -l` y comparando con `ls -l`, `ls /`, y `ls`.
+descubrir que hace tal opción y el parámetro tecleando `ls / -l` 
+y comparando con `ls -l`, `ls /`, y `ls`.
 
 [//]: # "opciones"
 [//]: # "Alteran el comportamiento por defecto de una orden, suelen comenzar con uno o dos guiones."
@@ -114,7 +114,7 @@ nombre de un archivo."
 :   Para examinar espacio disponible en los dispositivos de
     almacenamiento, en particular el de las particiones cuyos sistemas
     de archivos estén montados (ver [Montaje y desmontaje de sistemas de
-    archivos](#montaje-y-desmontaje-de-sistemas-de-archivos)). Puede
+    archivos](https://pasosdejesus.org/doc/basico_adJ/uso_de_medios_de_almacenamiento.html#montaje_y_desmontaje_desde_interprete_de_ordenes)). Puede
     emplearse con la opción `-h` para obtener datos en unidades más
     conocidas (en Kilobytes, Megabytes y Gigabytes) [^2].
 
@@ -239,7 +239,7 @@ los cuales un usuario pertenece son mostrados por el programa `groups`.
 ### Lecturas recomendadas: Archivos y permisos
 
 -   En estas guías puede consultar más sobre permisos y administración,
-    ver [Administración de usuarios](#administracion-de-usuarios).
+    ver [Administración de usuarios](https://pasosdejesus.org/doc/basico_adJ/labores_basicas_de_administracion.html#manejo_de_usuario).
 
 -   Cada uno de los órdenes para administrar archivos es muy flexible y
     configurable por medio de opciones, recomendamos de forma especial

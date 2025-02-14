@@ -115,6 +115,7 @@ Derechos.txt: $(PROYECTO).$(EXT_DOCBOOK)
 instala:
 	mkdir -p $(DESTDIR)$(INSDOC)/img/
 	install html/*html $(DESTDIR)$(INSDOC)
+	install herram/pos.sh $(DESTDIR)$(INSDOC)
 	install html/img/*png $(DESTDIR)$(INSDOC)/img/
 	if (test -f $(PRINT_DIR)/$(PROYECTO).ps) then { \
 		install imp/*ps $(DESTDIR)$(INSDOC);\
