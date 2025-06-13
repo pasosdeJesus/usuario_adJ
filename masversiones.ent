@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<!ENTITY rubymayor "">
-<!ENTITY rubymayorsinpunto "">
+<!ENTITY rubymayor "3.4">
+<!ENTITY rubymayorsinpunto "34">
 <!ENTITY dirvim "vim91">
