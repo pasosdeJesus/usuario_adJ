@@ -13,7 +13,7 @@ FUENTESDB=introduccion.xdbk instalacion.xdbk paquetesyportes.xdbk interprete-de-
 SOURCES=$(PROYECTO).$(EXT_DOCBOOK)  $(FUENTESDB)
 # Listado de fuentes XML. Preferiblmente en el orden de inclusión.
 
-IMAGES=img/vlc.png img/toncliej.png img/fluxbox-xfig.png img/home.png img/prev.png img/toc-minus.png img/blank.png img/important.png img/toc-plus.png img/caution.png img/next.png img/tip.png img/up.png img/draft.png img/note.png img/toc-blank.png img/warning.png img/instala1.png img/instala2.png img/instala3.png img/instala4.png img/instala5.png img/instala5-usb.png img/instala6.png img/ejlatex.png img/xiphos.png img/gimp.png img/inkscape.png img/insadJ1.png img/insadJ1.png img/insadJ2.png img/insadJ3.png img/insadJ4.png img/insadJ5.png img/insadJ6.png img/insadJ7.png img/audacious.png img/audacity.png img/gnumeric.png
+IMAGES=img/vlc.png img/toncliej.png img/fluxbox-xfig.png img/home.png img/prev.png img/toc-minus.png img/blank.png img/important.png img/toc-plus.png img/caution.png img/next.png img/tip.png img/up.png img/draft.png img/note.png img/toc-blank.png img/warning.png img/instala1.png img/instala2.png img/instala3.png img/instala4.png img/instala5.png img/instala5-usb.png img/instala6.png img/ejlatex.png img/bibletime.png img/gimp.png img/inkscape.png img/insadJ1.png img/insadJ1.png img/insadJ2.png img/insadJ3.png img/insadJ4.png img/insadJ5.png img/insadJ6.png img/insadJ7.png img/audacious.png img/audacity.png img/gnumeric.png
 # Listado de imagenes, preferiblemente en formato PNG
 
 HTML_DIR=html
