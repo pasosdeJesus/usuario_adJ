@@ -7,8 +7,6 @@
 
 [servidor_adJ] La distribución Aprendiendo de Jesús de OpenBSD como Servidor y Cortafuegos <http://pasosdeJesus.github.io/servidor_adJ> &ANIO-ACT;
 
-[xiphosmanual] Manual de Xiphos <http://xiphos.org/manual/index> 2010
-
 [libreoffice-basico] Curso LibreOffice Básico <http://www.p2pu.org/general/libreoffice-basico> 2011
 
 [openbsd-FAQ] Frequently Asked Questions. OpenBSD. <https://www.openbsd.org/faq/index.html>

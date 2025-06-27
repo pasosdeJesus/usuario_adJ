@@ -72,25 +72,32 @@ archivo de configuración en la sección `OPTIONS` debe incluir:
 
 ## Espiritualidad {#espiritualidad}
 
-### `xiphos`
+### `bibletime`
 
-Como se describe en [xiphosmanual](#bibliografia), es una herramienta gráfica de
-estudio e investigación bíblica que se basa en las librerías del
-proyecto Sword.
+Como se describe en el manual de BibeTime, es una herramienta
+de estudio bíblico con soporte para diferente tipos de textos
+e idiomas.  Usa la librería SWORD que da acceso a más de 200 documentos
+en 50 idiomas de la Sociedad bíblica Crosswire.
 
-![](img/xiphos.png)
 
-Puede iniciarla desde el menu de fluxbox Espiritualidad-&gt;Xiphos o
-desde una terminal con `xiphos`. Deben instalarse módulos primero. Cada
-módulo puede ser una traducción, comentario, diccionario. Hay
+![](img/bibletime.png)
+
+Puede iniciarla desde el menu de fluxbox Espiritualidad-&gt;bibletime o
+desde una terminal con `bibletime`. Deben instalarse obras primero. Cada
+obra puede ser una traducción, comentario, diccionario. Hay
 traducciones a muchos idiomas (incluyendo manuscritos griegos y hebreo).
 En español entre otras se encuentra parte de la traducción de dominio
 público de los evangelios que típicamente se ha incluido con adJ.
 
+Instale obras desde Preferencias-&gt;Administrador de Biblioteca.
+
 Una vez instale los módulos que desea usar, es posible ver varias
 traducciones en paralelo. Cada traducción puede contar con opciones
-como: Palabras de Cristo en Rojo, Números Strong, Etiquetas
-morfológicas, Notas al pie, encabezados.
+como: Palabras de Cristo en Rojo, Mostrar cabeceras, Mostrar notas al pie.
+ 
+De manera predeterminada incluye la versión KJV de la biblia en inglés 
+y su marcado Strong.  Cuando estudia un pasaje  pasa el curso sobre una
+palabra en la ventana "Lente" verá el marcado Strong.
 
 ## Preparación de Documentos y Aplicaciones de Oficina {#documentos}
 

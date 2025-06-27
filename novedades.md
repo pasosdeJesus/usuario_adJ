@@ -1,6 +1,8 @@
+Versión 7.7
+:  - Remplazado Xiphos por [xref](#bibletime)
+
 Versión 7.6
 :  - Actualizad la sección [xref](#paquetesyporte)
-
 
 Versión 7.5
 :  - Nueva sección sobre xenodm y xrandr [xref](#xenodm-y-xrandr)
