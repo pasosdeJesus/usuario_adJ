@@ -776,7 +776,43 @@ Un volumen es un disco virtual que consta de varios <span class="quote
           <code class="literal">ZZZ</code> debe escribirse en mayúsculas. Algunos
           sistemas requieren que la partición de intercambio (swap)
           tenga al menos el mismo tamaño que la memoria RAM instalada.
-        </p></blockquote></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a name="verificar-compatibilidad"></a>7.7.3. Verificar compatibilidad</h4></div></div></div><p>
+        </p></blockquote></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a name="configuraci%C3%B3n-del-comportamiento-del-bot%C3%B3n-de-encendido"></a>7.7.3. Configuración del comportamiento del botón de
+      encendido</h4></div></div></div><p>
+        Puede definir qué acción realiza el sistema cuando se presiona
+        el botón de encendido durante unos 6 segundos (si lo mantiene 10
+        se hará un apagado inmediato no limpio). La variable del kernel
+        que controla esto es <code class="literal">machdep.pwraction</code>. Los
+        valores válidos son:
+      </p><div class="itemizedlist"><ul class="itemizedlist compact" style="list-style-type: disc; "><li class="listitem"><p>
+            <code class="literal">0</code>: No hace ninguna acción limpia. Solo
+            tras mantener el botón presionado durante 10 segundos se
+            produce un apagado no limpio (por hardware).
+          </p></li><li class="listitem"><p>
+            <code class="literal">1</code> (valor por defecto): Tras mantener el
+            botón presionado 6 segundos, realiza un apagado limpio
+            (equivale a <code class="literal">doas halt -p</code>).
+          </p></li><li class="listitem"><p>
+            <code class="literal">2</code>: Tras mantener el botón presionado 6
+            segundos, entra en suspensión (equivale a
+            <code class="literal">zzz</code>).
+          </p></li></ul></div><p>
+        Para cambiar temporalmente el comportamiento, ejecute como
+        superusuario:
+      </p><pre class="programlisting">
+    doas sysctl -w machdep.pwraction=2
+</pre><p>
+        Para hacer el cambio permanente, agregue la línea
+        correspondiente a <code class="literal">/etc/sysctl.conf</code>:
+      </p><pre class="programlisting">
+    machdep.pwraction=2
+</pre><div class="blockquote"><blockquote class="blockquote"><p>
+          <span class="strong"><strong>Importante:</strong></span> Si configura el
+          botón para suspender (<code class="literal">=2</code>), ya no podrá
+          apagar el equipo limpiamente con el botón. Deberá usar
+          <code class="literal">doas halt -p</code> o
+          <code class="literal">doas shutdown -p now</code> desde una terminal. El
+          valor <code class="literal">=1</code> restaura el apagado limpio.
+        </p></blockquote></div></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a name="verificar-compatibilidad"></a>7.7.4. Verificar compatibilidad</h4></div></div></div><p>
         Si alguno de los comandos no funciona, puede deberse a que su
         hardware no soporta estas funciones o que falta cargar el
         controlador adecuado. Revise las bitácoras del sistema con
@@ -790,7 +826,7 @@ Un volumen es un disco virtual que consta de varios <span class="quote
       </p><pre class="programlisting">
     doas rcctl enable apmd
     doas rcctl start apmd
-</pre></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a name="lecturas-recomendadas"></a>7.7.4. Lecturas recomendadas</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist compact" style="list-style-type: disc; "><li class="listitem"><p>
+</pre></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a name="lecturas-recomendadas"></a>7.7.5. Lecturas recomendadas</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist compact" style="list-style-type: disc; "><li class="listitem"><p>
             Páginas del manual: <code class="literal">zzz(8)</code>,
             <code class="literal">apmd(8)</code>, <code class="literal">sysctl(8)</code>
           </p></li></ul></div></div></div><div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="impresion"></a>7.8. Impresión</h3></div></div></div><p>
@@ -806,12 +842,12 @@ Un volumen es un disco virtual que consta de varios <span class="quote
         <code class="literal">lpr</code> (o <code class="literal">/usr/local/bin/lpr</code>
         si está usando CUPS) que se encarga de poner la información que
         debe enviarse a la impresora en una cola de trabajos pendientes
-        <a href="#ftn.id3340" class="footnote" name="id3340"><sup class="footnote">[13]</sup></a>, que es atendida automáticamente (i.e de ella se
+        <a href="#ftn.id3368" class="footnote" name="id3368"><sup class="footnote">[13]</sup></a>, que es atendida automáticamente (i.e de ella se
         envían trabajos pendientes cuando la impresora está disponible)
         por un programa.
       </p><p>
         Cada impresora configurada tiene un nombre, la impresora por
-        defecto se llama <code class="literal">lp</code> <a href="#ftn.id3347" class="footnote" name="id3347"><sup class="footnote">[14]</sup></a>.
+        defecto se llama <code class="literal">lp</code> <a href="#ftn.id3375" class="footnote" name="id3375"><sup class="footnote">[14]</sup></a>.
       </p><p>
         Posiblemente su sistema esté configurado para permitir a
         <code class="literal">lpr</code> la impresión de textos planos y
@@ -842,11 +878,11 @@ Un volumen es un disco virtual que consta de varios <span class="quote
         LPD suele emplearse PostScript (que es un lenguaje apropiado
         para documentos por imprimir) como formato común y se usan los
         filtros del programa Ghostscript para traducir de PostScript al
-        formato particular de su impresora <a href="#ftn.id3362" class="footnote" name="id3362"><sup class="footnote">[15]</sup></a>. Si se usa CUPS es posible emplear controladores
+        formato particular de su impresora <a href="#ftn.id3390" class="footnote" name="id3390"><sup class="footnote">[15]</sup></a>. Si se usa CUPS es posible emplear controladores
         particulares para su impresora y no depender de Ghostscript.
       </p><p>
         Ghostscript es un programa que puede leer documentos PostScript
-        y PDF <a href="#ftn.id3365" class="footnote" name="id3365"><sup class="footnote">[16]</sup></a> y presentarlos en una ventana de X-Window o
+        y PDF <a href="#ftn.id3393" class="footnote" name="id3393"><sup class="footnote">[16]</sup></a> y presentarlos en una ventana de X-Window o
         transformarlos al lenguaje particular de algunas impresoras. Por
         ejemplo para generar a partir de un documento PostScript
         <code class="literal">s2.ps</code> la secuencia de caracteres apropiada
@@ -919,7 +955,7 @@ Un volumen es un disco virtual que consta de varios <span class="quote
         describir un documento, usualmente los documentos PDF requieren
         menos porque mantienen la información comprimida. Para convertir
         entre PostScript y PDF se emplean <code class="literal">ps2pdf</code> y
-        <code class="literal">pdf2ps</code> <a href="#ftn.id3401" class="footnote" name="id3401"><sup class="footnote">[17]</sup></a>. Para visualizar e imprimir un PDF, además de
+        <code class="literal">pdf2ps</code> <a href="#ftn.id3429" class="footnote" name="id3429"><sup class="footnote">[17]</sup></a>. Para visualizar e imprimir un PDF, además de
         <code class="literal">gv</code>, puede emplear <code class="literal">xpdf</code> o
         el programa Acrobat Reader (<code class="literal">acroread</code>).
       </p></div><div class="sect3"><div class="titlepage"><div><div><h4 class="title"><a name="lpd-local"></a>7.8.2. Configuración de una impresora local con
@@ -1403,7 +1439,7 @@ mount /dev/vnd0c /var/postgresql
           </span></dt><dd><p>
               Como tecla de composición
             </p></dd></dl></div><p>
-        La tecla de composición<a href="#ftn.id3665" class="footnote" name="id3665"><sup class="footnote">[18]</sup></a> le permitirá generar un carácter empleando una
+        La tecla de composición<a href="#ftn.id3693" class="footnote" name="id3693"><sup class="footnote">[18]</sup></a> le permitirá generar un carácter empleando una
         secuencia de dos teclas. Por ejemplo si presiona la tecla de
         composición (i.e Shift+Alt izquierdo con la configuración
         presentada), y después presiona ? seguido de ? obtendrá el
@@ -1492,30 +1528,30 @@ chrome
               </p></div><div id="ftn.id3217" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3217" href="#id3217">12</a>] </sup>
                 Si la sesión previa tenia -T esta también con mismo
                 nombre de tablas (especificable con -table-name TN).
-              </p></div><div id="ftn.id3340" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3340" href="#id3340">13</a>] </sup>
+              </p></div><div id="ftn.id3368" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3368" href="#id3368">13</a>] </sup>
             En el caso de LPD el directorio con la cola de trabajos de
             una impresora se configura en
             <code xmlns="" class="literal">/etc/printcap</code>, en el caso de
             <code xmlns="" class="literal">lp</code> el directorio por defecto es
             <code xmlns="" class="literal">/var/spool/outputlpd/lp</code>.
-          </p></div><div id="ftn.id3347" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3347" href="#id3347">14</a>] </sup>
+          </p></div><div id="ftn.id3375" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3375" href="#id3375">14</a>] </sup>
             Normalmente puede configurar otro nombre para la impresora
             por defecto en la variable de ambiente PRINTER.
-          </p></div><div id="ftn.id3362" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3362" href="#id3362">15</a>] </sup>
+          </p></div><div id="ftn.id3390" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3390" href="#id3390">15</a>] </sup>
             Hay algunas impresoras que pueden imprimir PostScript
             directamente, pero en general para hacer la traducción de
             PostScript al lenguaje de una impresora se requiere un
             filtro que el administrador del sistema debe configurar.
-          </p></div><div id="ftn.id3365" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3365" href="#id3365">16</a>] </sup>
+          </p></div><div id="ftn.id3393" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3393" href="#id3393">16</a>] </sup>
             PDF (<span xmlns="" class="emphasis"><em>Portable Document Format</em></span> es otro
             lenguaje para impresión, de documentos con gráficas y
             diversos tipos de letras, basado en PostScript (de la misma
             compañía —Adobe).
-          </p></div><div id="ftn.id3401" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3401" href="#id3401">17</a>] </sup>
+          </p></div><div id="ftn.id3429" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3429" href="#id3429">17</a>] </sup>
             De acuerdo a Printig-HOWTO estas herramientas ofrecen la
             funcionalidad de las herramientas
             <span xmlns="" class="quote">“<span class="quote"><span class="emphasis"><em>distiller</em></span></span>”</span> de Adobe.
-          </p></div><div id="ftn.id3665" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3665" href="#id3665">18</a>] </sup>
+          </p></div><div id="ftn.id3693" class="footnote"><p xmlns="http://www.w3.org/TR/xhtml1/transitional"><sup>[<a name="ftn.id3693" href="#id3693">18</a>] </sup>
             Tecla de composición: en inglés <span xmlns="" class="emphasis"><em>compose
             key</em></span>
           </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="conf-programas.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="duales.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">6. Configuración y uso de algunos programas </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 8. Instalaciones duales</td></tr></table></div></body></html>

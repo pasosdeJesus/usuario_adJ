@@ -13,7 +13,7 @@ TITLE="Configuración y uso de algunos programas"
 HREF="x1115.htm"><LINK
 REL="NEXT"
 TITLE="Instalaciones duales"
-HREF="x2934.htm"></HEAD
+HREF="x2962.htm"></HEAD
 ><BODY
 CLASS="sect1"
 BGCOLOR="#FFFFFF"
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="x2934.htm"
+HREF="x2962.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
@@ -2044,6 +2044,118 @@ CLASS="sect3"
 ><H3
 CLASS="sect3"
 ><A
+NAME="configuración-del-comportamiento-del-botón-de-encendido"
+>Configuración del comportamiento del botón de
+      encendido</A
+></H3
+><P
+>&#13;        Puede definir qué acción realiza el sistema cuando se presiona
+        el botón de encendido durante unos 6 segundos (si lo mantiene 10
+        se hará un apagado inmediato no limpio). La variable del kernel
+        que controla esto es <TT
+CLASS="literal"
+>machdep.pwraction</TT
+>. Los
+        valores válidos son:
+      </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>&#13;            <TT
+CLASS="literal"
+>0</TT
+>: No hace ninguna acción limpia. Solo
+            tras mantener el botón presionado durante 10 segundos se
+            produce un apagado no limpio (por hardware).
+          </P
+></LI
+><LI
+><P
+>&#13;            <TT
+CLASS="literal"
+>1</TT
+> (valor por defecto): Tras mantener el
+            botón presionado 6 segundos, realiza un apagado limpio
+            (equivale a <TT
+CLASS="literal"
+>doas halt -p</TT
+>).
+          </P
+></LI
+><LI
+><P
+>&#13;            <TT
+CLASS="literal"
+>2</TT
+>: Tras mantener el botón presionado 6
+            segundos, entra en suspensión (equivale a
+            <TT
+CLASS="literal"
+>zzz</TT
+>).
+          </P
+></LI
+></UL
+><P
+>&#13;        Para cambiar temporalmente el comportamiento, ejecute como
+        superusuario:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    doas sysctl -w machdep.pwraction=2
+</PRE
+><P
+>&#13;        Para hacer el cambio permanente, agregue la línea
+        correspondiente a <TT
+CLASS="literal"
+>/etc/sysctl.conf</TT
+>:
+      </P
+><PRE
+CLASS="programlisting"
+>&#13;    machdep.pwraction=2
+</PRE
+><A
+NAME="AEN2553"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>&#13;          <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+>Importante:</B
+></SPAN
+> Si configura el
+          botón para suspender (<TT
+CLASS="literal"
+>=2</TT
+>), ya no podrá
+          apagar el equipo limpiamente con el botón. Deberá usar
+          <TT
+CLASS="literal"
+>doas halt -p</TT
+> o
+          <TT
+CLASS="literal"
+>doas shutdown -p now</TT
+> desde una terminal. El
+          valor <TT
+CLASS="literal"
+>=1</TT
+> restaura el apagado limpio.
+        </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
 NAME="verificar-compatibilidad"
 >Verificar compatibilidad</A
 ></H3
@@ -2144,8 +2256,8 @@ CLASS="literal"
         si está usando CUPS) que se encarga de poner la información que
         debe enviarse a la impresora en una cola de trabajos pendientes
         <A
-NAME="AEN2557"
-HREF="#FTN.AEN2557"
+NAME="AEN2585"
+HREF="#FTN.AEN2585"
 ><SPAN
 CLASS="footnote"
 >[3]</SPAN
@@ -2160,8 +2272,8 @@ CLASS="footnote"
 CLASS="literal"
 >lp</TT
 > <A
-NAME="AEN2564"
-HREF="#FTN.AEN2564"
+NAME="AEN2592"
+HREF="#FTN.AEN2592"
 ><SPAN
 CLASS="footnote"
 >[4]</SPAN
@@ -2227,8 +2339,8 @@ CLASS="literal"
         para documentos por imprimir) como formato común y se usan los
         filtros del programa Ghostscript para traducir de PostScript al
         formato particular de su impresora <A
-NAME="AEN2579"
-HREF="#FTN.AEN2579"
+NAME="AEN2607"
+HREF="#FTN.AEN2607"
 ><SPAN
 CLASS="footnote"
 >[5]</SPAN
@@ -2239,8 +2351,8 @@ CLASS="footnote"
 ><P
 >&#13;        Ghostscript es un programa que puede leer documentos PostScript
         y PDF <A
-NAME="AEN2582"
-HREF="#FTN.AEN2582"
+NAME="AEN2610"
+HREF="#FTN.AEN2610"
 ><SPAN
 CLASS="footnote"
 >[6]</SPAN
@@ -2393,8 +2505,8 @@ CLASS="literal"
 CLASS="literal"
 >pdf2ps</TT
 > <A
-NAME="AEN2618"
-HREF="#FTN.AEN2618"
+NAME="AEN2646"
+HREF="#FTN.AEN2646"
 ><SPAN
 CLASS="footnote"
 >[7]</SPAN
@@ -2952,7 +3064,7 @@ CLASS="informaltable"
 ><P
 ></P
 ><A
-NAME="AEN2749"
+NAME="AEN2777"
 ></A
 ><TABLE
 BORDER="1"
@@ -3496,8 +3608,8 @@ CLASS="variablelist"
 ></DIV
 ><P
 >&#13;        La tecla de composición<A
-NAME="AEN2882"
-HREF="#FTN.AEN2882"
+NAME="AEN2910"
+HREF="#FTN.AEN2910"
 ><SPAN
 CLASS="footnote"
 >[8]</SPAN
@@ -3508,7 +3620,7 @@ CLASS="footnote"
         presentada), y después presiona ? seguido de ? obtendrá el
         carácter ¿. En el apéndice
         <A
-HREF="a3333.htm"
+HREF="a3361.htm"
 >Caracteres que
         pueden generarse</A
 > encontrará una tabla con todas las
@@ -3769,8 +3881,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2557"
-HREF="x2060.htm#AEN2557"
+NAME="FTN.AEN2585"
+HREF="x2060.htm#AEN2585"
 ><SPAN
 CLASS="footnote"
 >[3]</SPAN
@@ -3804,8 +3916,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2564"
-HREF="x2060.htm#AEN2564"
+NAME="FTN.AEN2592"
+HREF="x2060.htm#AEN2592"
 ><SPAN
 CLASS="footnote"
 >[4]</SPAN
@@ -3827,8 +3939,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2579"
-HREF="x2060.htm#AEN2579"
+NAME="FTN.AEN2607"
+HREF="x2060.htm#AEN2607"
 ><SPAN
 CLASS="footnote"
 >[5]</SPAN
@@ -3852,8 +3964,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2582"
-HREF="x2060.htm#AEN2582"
+NAME="FTN.AEN2610"
+HREF="x2060.htm#AEN2610"
 ><SPAN
 CLASS="footnote"
 >[6]</SPAN
@@ -3883,8 +3995,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2618"
-HREF="x2060.htm#AEN2618"
+NAME="FTN.AEN2646"
+HREF="x2060.htm#AEN2646"
 ><SPAN
 CLASS="footnote"
 >[7]</SPAN
@@ -3916,8 +4028,8 @@ ALIGN="LEFT"
 VALIGN="TOP"
 WIDTH="5%"
 ><A
-NAME="FTN.AEN2882"
-HREF="x2060.htm#AEN2882"
+NAME="FTN.AEN2910"
+HREF="x2060.htm#AEN2910"
 ><SPAN
 CLASS="footnote"
 >[8]</SPAN
@@ -3974,7 +4086,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="x2934.htm"
+HREF="x2962.htm"
 ACCESSKEY="N"
 >Siguiente</A
 ></TD
