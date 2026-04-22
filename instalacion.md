@@ -729,7 +729,7 @@ usuarios. Unos cambios que suelen funcionar son:
 
     Section "Device"
         Identifier  "Card0"
-        Driver      "vesa
+        Driver      "vesa"
     #   BusID       "PCI:0:1:0"
     EndSection
 
@@ -796,8 +796,8 @@ XDM permanentemente agregando la siguiente línea al archivo
 Como se indica en el manual de `xenodm`, este maneja la colección de
 pantallas en su computador, para esperar que un usuario se autentique
 con su nombre de usuario y clave para iniciar una "sesión" i.e un
-proceso como fluxbox.  Cuando la sesión/poceso termina xenodm
-reiniciar el servidor X.
+proceso como fluxbox.  Cuando la sesión/proceso termina xenodm
+reinicia el servidor X.
 
 La configuración por omisión está en `/etc/X11/xenodm/xenodm-config` que
 ejecuta `/etc/X11/xenodm/Xsetup_0` tras la inicialización

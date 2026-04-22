@@ -350,39 +350,37 @@ con una hoja XSLT de DocBook con:
 
 ## Español {#espanol}
 
-### ispell
+### aspell 
 
-`ispell` permite revisar ortografía de textos planos o fuentes de
+`aspell` permite revisar ortografía de textos planos o fuentes de
 documentos en diversos formatos (HTML, XML o TeX). Hay diccionarios
-disponibles para diversos idiomas. Al instalar el paquete `ispell` se
-instalarán dos diccionarios: inglés de EUA (`american`) e inglés de
-Inglaterra (`british`). Para emplear el diccionario en español
-(`spanish`) instale el paquete `ispell-spanish`, puede configurarlo como
-diccionario por defecto con `ispell-config`.
+disponibles para diversos idiomas. Al instalar el paquete `aspell` se
+instalará el diccionario en inglés. Para emplear el diccionario en español
+instale el paquete `aspell-es`.
 
 #### Corrección ortográfica {#correccion-ortográfica}
 
 Puede corregir interactivamente la ortografía de un texto plano (digamos
-`carta.txt`) usando el diccionario por defecto con:
+`letter.txt`) usando el diccionario por defecto (inglés) con:
 ```
-        ispell carta.txt
-```
-
-
-o si desea emplear el diccionario de un idioma particular:
-```
-        ispell -d spanish carta.txt
+        aspell -c letter.txt
 ```
 
 
-Al corregir interactivamente `ispell` mostrará palabras que no encuentre
+o si desea emplear el diccionario en español para revisar `carta.txt`:
+```
+        aspell -d spanish -c carta.txt
+```
+
+
+Al corregir interactivamente `aspell` mostrará palabras que no encuentre
 en el diccionario del idioma ni en su diccionario personal[^corr.1] del
-idioma (e.g. `~/.ispell_spanish`), así como posibles remplazos. Podrá
-elegir uno de los remplazos tecleando el número que antecede al
-remplazo.
+idioma, así como posibles reemplazos. Podrá elegir uno de los reemplazos 
+tecleando el número (o letra) que antecede al reemplazo.
 
-[^corr.1]: Puede cambiar el diccionario personal que `ispell` debe emplear
-    con la opción `-p archivo`
+[^corr.1]: `aspell` mantiene diccionarios personales por idioma en
+    archivos como `~/.aspell.es.*` (para español). Puede especificar
+    una ruta diferente con la opción `-p archivo`
 
 ## Multimedia {#multimedia}
 
@@ -1212,224 +1210,3 @@ que de requerirse puede ejecutarse desde la cuenta root (cuyo límite
 máximo es mayor que el de cuentas de usuario).
 
 
-## Blockchains {#blockchains}
-
-### TON {#ton}
-
-Se trata de un blockchain de fuentes abiertas diseñado para procesar muchas 
-transacciones con comisiones bajas.  El diseño inicial es de Nikolai Durov, 
---quien también diseñó y opera Telegram-- pero desde el 2020 TON es operado e
-implementado por otras personas de la Fundación TON.  Sus fuentes están en
-<https://github.com/ton-blockchain/ton>
-
-Las transacciones se especifican en contratos inteligentes, que son
-programas para la Máquina Virtual TON (TVM), que corren en rondas en varios
-servidores llamados validadores. Los validadores ejecutan los contratos
-en rondas, cobran comisiones a cada contrato y envian mensajes que los
-contratos producen a otros contratos.
-
-Cada contrato es como una unidad de trabajo para un validador en una
-ronda, que debe ejecutarse en un tiempo limitado y pagar comisión por
-su ejecución, por el espacio de almacenamiento que emplee y por enviar
-mensajes a otros contratos --mensajes que se procesaran asincronamente
-en una ronda diferente de los validadores.
-
-La moneda principal en este blockchain es TON (o TONcoin) usada
-por los validadores.  Puede ver su tasa de cambio e historial
-por ejemplo en <https://coinmarketcap.com/currencies/toncoin/>
-
-Las herramientas fundamentales están disponibles en el paquete `ton` de adJ
-e incluyen:
-
-* Librería en lenguaje ensamblador (llamado fift) ubicada en
-  `/usr/local/lib/fift`
-* Varios contratos en `/usr/local/share/ton/smartcont`
-* Diversos binarios que incluyen:
-  * `fift` para ejecutar instrucciones en la máquina virtual TON
-    y depurar y para crear binarios para esa máquina virtual a partir de
-    fuentes en lenguaje ensamblador fift.
-  * `func` para compilar a lenguaje ensamblador fift a partir de fuentes en
-    lenguaje FunC.
-  * `lite-client` para conectarse a una red TON e interactuar con los
-    validadores.
-  * `tonlib-cli` Uso de la librería `tonlib` desde la terminal, la cual
-    permite hacer operaciones con billetera(s).
-  * `validator-engine` y `validator-engine-console` para operar un nodo
-    validador.
-
-Es importante que en su archivo `~/.profile` (o equivalente como
-`~/.zshrc.local` si usa `zsh`) agregue:
-```
-export FIFTPATH=/usr/local/lib/fift:/usr/local/share/ton/smartcont
-```
-
-#### Referencias
-
-* Para aprender sobre el diseño y arquitectura de la red TON:
-  <https://ton.org/docs/#/docs>
-* Para aprender sobre fift:
-  <https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md>
-* Para aprender sobre func:
-  <https://ton.org/docs/#/smart-contracts/>
-
-
-#### `toncli` 0.0.43 para probar un contrato inteligente {#toncli}
-
-`toncli` es un paquete de python que facilita el desarrollo y pruebas
-de contratos inteligentes para el blockchain TON.
-
-Como en el diseño de la TVM original no se incluyeron muchas ayudas 
-para el desarrollo o para la depuración, para emplear `toncli` debe 
-usar una bifurcación de la TVM original con más instrucciones para depurar: 
-<https://github.com/SpyCheese/ton/tree/toncli-local>
-
-adJ también incluye un paquete con esa bifurcación llamado `ton-toncli`
-cuyos archivos son como los del paquete `ton` pero en rutas
-diferentes (i.e `/usr/local/bin/ton-toncli`, `/usr/local/lib/ton-toncli` y
-`/usr/local/share/ton-toncli/`).
-
-Una vez tenga instalado el paquete `ton-toncli`, instale `toncli` así:
-```
-doas pkg_add py3-pip
-doas pip install bitstring==3.1.9   
-doas pip install toncli
-```
-
-Tras esto, debe poder ejecutar:
-```
-toncli
-```
-
-Que en la primera ejecución le pedirá:
-
-1. Ruta de `func`. Utilice `/usr/local/bin/ton-toncli/func`
-2. Ruta de `fift`. Utilice `/usr/local/bin/ton-toncli/fift`
-3. Ruta de `lite-client`. Utilice `/usr/local/bin/ton-toncli/lite-client`
-
-Esas rutas quedarán en el archivo `~/.config/toncli/config.ini`
-
-##### Ejemplo de un contrato y sus pruebas con toncli 0.0.43
-
-Como ejemplo implementaremos un contrato inteligente que calcule el máximo común
-divisor entre dos números (ejercicio propuesto en la segunda
-competencia de programación en FunC como puede verse en 
-<https://github.com/ton-blockchain/func-contest2>).
-
-Desde la terminal podrá preparar una estructura de directorios con:
-
-```
-toncli start wallet        # Inicia proyecto con ejemplo de una billetera
-mv wallet pruebas_mdc_func # Renombra
-cd pruebas_mdc_func
-find .
-```
-
-Verá la estructura de un proyecto toncli típico que incluye:
-```
-.
-├── build              Aquí quedarán resultados de compilación
-├── fift               Directorio con fuentes en fift (por borrar en este caso)
-├── func               Directorio con fuentes en FunC
-│   └── code.func      Código con la función por probar
-├── project.yaml       Estructura del proyecto para toncli
-└── tests              Directorio con fuentes en FunC de pruebas de regresión
-```
-
-Podemos reorganizar un poco el proyecto de ejemplo para nuestro
-caso de una sola función en FunC con:
-
-```
-rm -rf fift                        # no necesitamos ejemplo en fift
-mv func/code.func func/solucion.fc # La extensión .fc es bastante usada
-```
-
-Editar `project.yaml` para que quede el siguiente contenido que
-indica que el código FunC por probar está en `func/solucion.fc` y
-las pruebas están en `tests/pruebas.fc` :
-
-```yaml
-contract:
-  func:
-      - func/solucion.fc
-  tests:
-      - tests/pruebas.fc
-```
-
-El contenido de `func/solucion.fc`:
-
-```func
-{-
-  TAREA 1 - Máximo divisor común
-
-  Enunciando basado en:
-  https://github.com/vtamara/func-contest2/blob/master/1.fc
-
-  Escribir un método que calcule el máximo divisor común entre 2 enteros
-  mayores o iguales a 1 y menores que 1048576.
--}
-
-() recv_internal() {
-}
-
-;; por probar
-(int) gcd(int a, int b) method_id {
-
-  ;; Solución con base en
-  ;; https://people.cs.ksu.edu/~schmidt/301s14/Exercises/euclid_alg.html
-  int k = a;
-  int m = b;
-  if (b > a) {
-    k = b;
-    m = a;
-  }
-  ;; k es max(a,b) y m = min(a,b)
-
-  while (m != 0) {
-    int r = k % m;
-    k = m;
-    m = r;
-  }
-
-  return k;
-}
-```
-
-Y como contenido de `tests/pruebas.fc`:
-
-```func
-int __test_t30_12() {
-
-  int a = 30;
-  int b = 12;
-
-  tuple pila = unsafe_tuple([a, b]);
-
-  cell datos = begin_cell().end_cell();
-
-  var (int gas_usado1, pila_ret) = invoke_method(gcd, pila);
-
-  int result = first(pila_ret);
-
-  throw_if(101, result != 6);  ;; mcd(30, 12) == 6
-
-  return gas_usado1;
-}
-```
-
-Tras esto ya podrá ejecutar las pruebas con:
-```
-toncli run_tests
-```
-o más simple
-```
-make
-```
-una vez cree un archivo `Makefile` con el siguiente contenido:
-```
-all:
-        toncli run_tests
-```
-
-Que deben darle un resultado como el del pantallazo siguiente:
-
-![Pantallazo con ejecución exitosa de toncli](img/toncliej.png)

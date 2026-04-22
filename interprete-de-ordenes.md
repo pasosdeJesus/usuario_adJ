@@ -261,7 +261,7 @@ los cuales un usuario pertenece son mostrados por el programa `groups`.
 1. ¿En su directorio personal hay archivos de configuración? En caso
 afirmativo cite algunos.
 
-[//]: # "**R:** `~/.bashrc`"
+[//]: # "**R:** `~/.profile`"
 
 2. Estando en un intérprete de órdenes vaya al directorio
 `/usr/share/pixmaps` y liste con `ls` y caracteres comodín todos los

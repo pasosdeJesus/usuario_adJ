@@ -1,3 +1,9 @@
+Versión 7.8
+
+:  - Actualizada sección sobre diccionarios cambiando 
+     ispell por  [xref](#aspell)
+:  - Mejoras en precisión y estilo a lo largo del documento
+
 Versión 7.7
 :  - Remplazado Xiphos por [xref](#bibletime)
 
