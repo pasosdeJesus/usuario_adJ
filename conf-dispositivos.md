@@ -759,6 +759,33 @@ fue hibernado y restaura el estado exacto en que se dejó. Para hibernar ejecute
 > requieren que la partición de intercambio (swap) tenga al menos el mismo
 > tamaño que la memoria RAM instalada.
 
+### Configuración del comportamiento del botón de encendido
+
+Puede definir qué acción realiza el sistema cuando se presiona el botón de
+encendido durante unos 6 segundos (si lo mantiene 10 se hará un apagado 
+inmediato no limpio). La variable del kernel que controla esto es
+`machdep.pwraction`. Los valores válidos son:
+
+- `0`: No hace ninguna acción limpia. Solo tras mantener el botón presionado
+  durante 10 segundos se produce un apagado no limpio (por hardware).
+- `1` (valor por defecto): Tras mantener el botón presionado 6 segundos, 
+  realiza un apagado limpio (equivale a `doas halt -p`).
+- `2`: Tras mantener el botón presionado 6 segundos, entra en suspensión
+  (equivale a `zzz`).
+
+Para cambiar temporalmente el comportamiento, ejecute como superusuario:
+
+        doas sysctl -w machdep.pwraction=2
+
+Para hacer el cambio permanente, agregue la línea correspondiente a
+`/etc/sysctl.conf`:
+
+        machdep.pwraction=2
+
+> **Importante:** Si configura el botón para suspender (`=2`), ya no podrá
+> apagar el equipo limpiamente con el botón. Deberá usar `doas halt -p` o `doas
+> shutdown -p now` desde una terminal. El valor `=1` restaura el apagado limpio.
+
 ### Verificar compatibilidad
 
 Si alguno de los comandos no funciona, puede deberse a que su hardware no
