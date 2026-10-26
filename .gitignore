@@ -15,6 +15,7 @@ indice.xdbk
 indice.xdbk.m
 s.xdbk
 *xdbk
+openbsdsrc/ch*.sed
 personaliza.ent
 confaux.tmp
 confv.bak 

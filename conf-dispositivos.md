@@ -1440,6 +1440,12 @@ después presiona ? seguido de ? obtendrá el carácter ¿. En el apéndice
 encontrará una tabla con todas las combinaciones de teclas que pueden
 usarse con la tecla compose y con teclas muertas.
 
+Para navegar la web en modo texto desde una consola puede usar `w3m`,
+por ejemplo:
+
+        w3m https://www.openbsd.org
+
+
 ### X-Window {#teclado-xwindow}
 
 Dado que X-Window emplea el teclado en modo crudo la configuración que
@@ -1465,6 +1471,18 @@ y asegurarse de ejecutar `xmodmap ~/.Xmodmap` durante el arranque de su
 sesión X (podría ser por ejemplo agregándolo a `~/.xsession`)
 
 [^tec.1]: Tecla de composición: en inglés *compose key*
+
+## Capturas de pantalla {#capturas}
+
+Para capturar la pantalla en X-Window use `scrot`. Para elegir
+interactivamente la región por capturar (por ejemplo una ventana de
+Chromium) use la opción `-s`:
+
+        scrot -s captura.png
+
+Para capturar toda la pantalla use `scrot captura.png` y para capturar
+solo la ventana activa agregue la opción `-u`.
+
 
 ##  Varios usuarios {#varios-usuarios}
 

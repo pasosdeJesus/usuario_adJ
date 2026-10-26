@@ -1,5 +1,10 @@
+Versión 7.9
+:  - Nueva subsección sobre solc [xref](#solc)
+   - Nuevas subsecciones: xarchiver [xref](#xarchiver), htop [xref](#htop)
+     y python [xref](#python)
+
 Versión 7.8
-:  - Nueva sección [xref](#gestion-energia}
+:  - Nueva sección [xref](#gestion-energia)
    - Actualizada sección sobre diccionarios cambiando ispell 
      por [xref](#aspell)
    - Mejoras en precisión y estilo a lo largo del documento
@@ -8,7 +13,7 @@ Versión 7.7
 :  - Remplazado Xiphos por [xref](#bibletime)
 
 Versión 7.6
-:  - Actualizad la sección [xref](#paquetesyporte)
+:  - Actualizad la sección [xref](#paquetesyportes)
 
 Versión 7.5
 :  - Nueva sección sobre xenodm y xrandr [xref](#xenodm-y-xrandr)
@@ -27,12 +32,12 @@ Versión 7.3
 :   - Actualizada sección sobre ruby [xref](#ruby)
 
 Versión 7.2
-:   - Actualizada sección sobre toncli a la versión 0.0.43 [xref](#toncli)
+:   - Actualizada sección sobre toncli a la versión 0.0.43
 
 Versión 7.1
 :   - Instrucciones básicas para añadir una cuenta de usuario [xref](#varios-usuarios)
     - Comienza sección sobre blockchain ton y las herramientas
-      disponibles en adJ [xref](#ton)
+      disponibles en adJ
 
 Versión 6.9
 :   - Ortografía
@@ -150,7 +155,7 @@ Versión 4.8
 
 Versión 4.7
 
-:   -   [xref](#xiphos)
+:   -   [xref](#bibletime)
 
     -   Cubre Aprendiendo de Jesús 4.7
 

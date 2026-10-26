@@ -51,7 +51,7 @@ también paquetes que dependan del que está quitando --que es útil si
 está actualizando un paquete).
 
 Podrá ver los paquetes disponibles para instalar en
-[http://www.openbsd.org/&VER-OPENBSD;\_packages/amd64.html](http://www.openbsd.org/&&VER-OPENBSD;;_packages/amd64.html).
+[http://www.openbsd.org/&VER-OPENBSD;\_packages/amd64.html](http://www.openbsd.org/&VER-OPENBSD;_packages/amd64.html).
 
 En el [Apéndice Paquetes de adJ](#paquetes-adJ) destacamos algunos que 
 permiten tener un ambiente para producir contenidos, programar, escuchar 
@@ -118,7 +118,7 @@ Que presentará los portes que en su descripción tengan la cadena dada.
 Esta búsqueda se realiza sobre el archivo `/usr/ports/INDEX`, el cual si
 lo desea también puede explorar con un editor.
 
-### Compilación de portes {#compilación-portes}
+### Compilación de portes {#compilacion-portes}
 
 Para compilar e instalar un porte (tras la compilación normalmente se
 crea un paquete), basta pasar al directorio del porte y como usuario

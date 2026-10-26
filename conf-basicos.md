@@ -154,15 +154,15 @@ actualizarlas con el CVS de OpenBSD con:
 
         cd /usr
         export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-        cvs -z3 co -r&VER-OPENBSD;_&VER-OPENBSD-U; -P src 
+        cvs -z3 co -rOPENBSD_&VER-OPENBSD-U; -P src 
 
 empleando un espejo más cercano a su computador y cambiado
-&VER-OPENBSD;\_&VER-OPENBSD-U; por la versión que desea actualizar, o si las
+OPENBSD_&VER-OPENBSD-U; por la versión que desea actualizar, o si las
 fuentes que tiene son la versión que desea puede emplear:
 
         cd /usr/src
         export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
-        cvs -z3 update -r&VER-OPENBSD;_&VER-OPENBSD-U; -Pd 
+        cvs -z3 update -rOPENBSD_&VER-OPENBSD-U; -Pd 
 
 Tal como se describe en `man afterboot`, para compilar basta editar el
 archivo de configuración del kernel que se desea, después ejecutar
@@ -207,6 +207,15 @@ de nuevo enviado la señal HUP, por ejemplo:
 
 Las siguientes páginas man: syslog.conf 8, syslog 3, syslogd 8 y logger
 1.
+
+## Monitoreo del sistema {#monitoreo-del-sistema}
+
+### htop {#htop}
+
+`htop` es un visor interactivo de procesos y de uso de CPU y memoria.
+Inícielo desde una terminal con `htop`. Dentro puede ordenar los
+procesos, enviarles señales (con `k`) y salir con `q`.
+
 
 ## Zona horaria {#zona-horaria}
 

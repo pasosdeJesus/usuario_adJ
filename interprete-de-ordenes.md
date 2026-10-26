@@ -286,3 +286,13 @@ Intente cambiar los permisos de archivos o directorios de otro usuario.
 [//]: # "**R:** cd /home ; ls -l ; chmod -w pepe"
 
 
+## Scripts {#scripts}
+
+### dialog {#dialog}
+
+`dialog` permite crear menús y diálogos interactivos en scripts de
+shell. Por ejemplo, para preguntar si desea continuar:
+
+        dialog --yesno "¿Desea continuar?" 0 0
+
+

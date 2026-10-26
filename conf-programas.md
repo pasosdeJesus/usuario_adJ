@@ -70,6 +70,14 @@ archivo de configuración en la sección `OPTIONS` debe incluir:
     sudo_nopasswd=1
 
 
+### xarchiver {#xarchiver}
+
+`xarchiver` es un administrador gráfico de archivos comprimidos. Permite
+crear y extraer archivos `.zip`, `.tar`, `.tar.gz`, `.tar.bz2`, `.7z`,
+entre otros. Inícielo desde una terminal con `xarchiver` o desde el menú
+del escritorio.
+
+
 ## Espiritualidad {#espiritualidad}
 
 ### `bibletime`
@@ -137,6 +145,14 @@ de la funcionalidad de una hoja de cálculo la tiene desde una terminal
 `sc`. También puede usar `magicpoint` para hacer presentaciones. Sin
 embargo para usar estas herramientas se requiere aprender formas
 diferentes de operar.
+
+
+### antiword {#antiword}
+
+Para convertir a texto plano documentos antiguos en formato `.doc` de
+Microsoft Word use `antiword`, por ejemplo:
+
+        antiword documento.doc > documento.txt
 
 
 ### TeX y Ghostview {#conf-tex-gv}
@@ -243,10 +259,6 @@ programa `xdvi`.
 
 ![Visualización de DVI generado de fuente en LaTeX](img/ejlatex.png)
 
-Existen además otros programas para convertir de LaTeX a HTML como
-latex2html y HeVeA. Puede encontrar más información de latex2html en
-<http://ctan.tug.org/ctan/tex-archive/support/latex2html/> y de HeVeA
-en <http://pauillac.inria.fr/hevea/>.
 
 [^lat.1]: Si usa `ksh` puede ver una lista de posibles programas que le
     permitan imprimir, tecleando `dvi` desde un intérprete de órdenes y
@@ -358,7 +370,7 @@ disponibles para diversos idiomas. Al instalar el paquete `aspell` se
 instalará el diccionario en inglés. Para emplear el diccionario en español
 instale el paquete `aspell-es`.
 
-#### Corrección ortográfica {#correccion-ortográfica}
+#### Corrección ortográfica {#correccion-ortografica}
 
 Puede corregir interactivamente la ortografía de un texto plano (digamos
 `letter.txt`) usando el diccionario por defecto (inglés) con:
@@ -521,7 +533,7 @@ de salida a 64 kbit/s:
         ffmpeg -i input.avi -b:v 64k -bufsize 64k output.avi
 
 
-## Operación en red {#operación-en-red}
+## Operación en red {#operacion-en-red}
 
 ### `mutt`
 
@@ -605,9 +617,57 @@ navegador.
 
 ## Ambiente de Desarrollo {#ambiente-de-desarrollo}
 
+### Node.js {#node}
+
+adJ incluye Node.js &p-node;, un intérprete de JavaScript para ejecutar
+programas fuera del navegador. Puede ejecutar un programa con:
+
+        node programa.js
+
+Con Node.js puede desarrollar aplicaciones web, por ejemplo con Next.js.
+Para el desarrollo de aplicaciones web con blockchain, el ecosistema
+estándar no funciona nativamente en OpenBSD: Hardhat y Foundry no
+compilan ni corren (binarios Rust/napi-rs sin OpenBSD), y para pruebas
+e2e ni Cypress ni Playwright tienen binarios para OpenBSD, mientras que
+Puppeteer es difícil de operar. Para resolverlo, Pasos de Jesús
+desarrolla `m` (paquete npm `@pasosdejesus/m`,
+<https://gitlab.com/pasosdeJesus/m>), un marco para Next.js (y Hardhat)
+que en OpenBSD:
+
+- Crea y gestiona proyectos que integran Next.js y Hardhat.
+- Prueba y compila contratos Solidity sin Hardhat: remplaza el EDR con
+  `@ethereumjs/vm` (JavaScript puro) y usa `solc` nativo.
+- Administra billeteras y transacciones (remplaza `cast` de Foundry).
+- Mantiene requerimientos (`req:*`) sincronizados con issues.
+- Aporta pruebas e2e (Puppeteer + Chromium, con los ajustes que OpenBSD
+  requiere) y utilidades de mocking.
+
+No hay una ruta establecida para migrar de Ruby on Rails a Next.js; `m`
+ayuda a proveer una, con `kysely` para remplazar el ORM (ActiveRecord) y
+conceptos análogos a Rails: controladores, librerías, componentes (como
+vistas) y motores, además de un CLI de estilo Rails.
+
+La extensión `@pasosdejesus/mpdj` añade comandos específicos de Pasos de
+Jesús. `m` incluye además un sistema de *motores* (engines): módulos
+autocontenidos (contratos + base de datos + API + interfaz + CLI) que se
+añaden o quitan de un proyecto sin tocar su núcleo, al estilo de los
+Rails Engines.
+
+
+### Python {#python}
+
+adJ incluye Python &p-python;, puede iniciar el intérprete con `python3`
+y ejecutar un programa con:
+
+        python3 programa.py
+
+Los módulos adicionales se instalan de los paquetes `py3-*` de OpenBSD
+(por ejemplo `py3-requests`) o con `pip`.
+
+
 ### Ruby {#ruby}
 
-En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails 7.
+En adJ &VER-ADJ; es sencillo usar &p-ruby; con Ruby on Rails.
 Lo básico se instala de paquetes de OpenBSD y lo más reciente de Ruby
 directamente como gemas.
 
@@ -887,7 +947,7 @@ Puede aprender por ejemplo con los tutoriales interactivos de
 <https://rubymonk.com>
 
 En Internet puede ver la referencia oficial de las clases en:
-<http://ruby-doc.org/core-3.3.0/Integer.html>
+<https://ruby-doc.org/core/Integer.html>
 
 Y es buena referencia para Ruby, Rails y Rspec (incluidos cambios entre
 una versión y otra y comentarios) es: <http://apidock.com/>
@@ -1163,50 +1223,21 @@ está disponible en:
 -   {9}
     http://stackoverflow.com/questions/4613574/how-do-i-explicitly-specify-a-models-table-name-mapping-in-rails
 
-### Java
+### Solidity (solc) {#solc}
 
-Desde OpenBSD 4.7 se incluyó un porte oficial de Java de fuentes
-abiertas, se trata del `jdk-1.7`.
+`solidity` provee `solc`, el compilador de contratos inteligentes
+Solidity para Ethereum/EVM. Para compilar un contrato use:
 
-Si requiere versiones anteriores de Java o si requiere el plugin para
-Firefox deberá compilar una versión anterior.
+        solc --bin contrato.sol
 
-#### Compilación de JDKs de fuentes cerradas {#compilacion}
 
-Las versiones anteriores a la 1.7, deben compilarse como portes (de
-subdirectorios de `/usr/ports/devel/jdk/`), pues las licencias de las
-fuente exigen que al descargar de las mismas las haga directamente de
-los sitios de distribución. Al intentar compilar cada uno podrá ver
-instrucciones que le indican de donde descargar las fuentes para
-ubicarlas en `/usr/ports/distfiles`.
+### clang {#clang}
 
-Tras descargar manualmente las fuentes, la compilación e instalación son
-directas (i.e con `make` y `make install` respectivamente).
+El compilador de C y C++ `clang` (parte de LLVM) viene incluido en el
+sistema base. Para compilar un programa en C use:
 
-Si por ejemplo instala `jdk-1.4` los binarios quedarán en
-`/usr/local/jdk1.4/bin/` así que es recomendable que agregue tal ruta a
-su variable `PATH` por ejemplo en su archivo `~/.profile` o el
-equivalente.
+        clang programa.c -o programa
 
-#### Plugin de Java para Mozilla y Firefox {#plugin-java}
 
-El `jdk-1.4` incluye un plugin que puede emplearse con `mozilla` o
-`mozilla-firefox`. Basta ejecutar:
-
-        cd  ~/.mozilla
-        mkdir plugins
-        cd plugins
-        ln -s /usr/local/jdk-1.4.2/jre/plugin/i386/ns610/libjavaplugin_oji.so .
-
-después reiniciar `mozilla-firefox` y verificar que el plugin esté
-operando abriendo el URL `about:plugins`. Como se indica en
-http://archives.neohapsis.com/archives/openbsd/2005-09/2253.html, para
-que puedan cargarse applets es necesario aumentar el límite de memoria
-para datos con algo como:
-
-        ulimit -d 2000000
-
-que de requerirse puede ejecutarse desde la cuenta root (cuyo límite
-máximo es mayor que el de cuentas de usuario).
 
 
